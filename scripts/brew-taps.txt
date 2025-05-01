@@ -1,0 +1,17 @@
+ankitpokhrel/jira-cli
+bridgecrewio/tap
+cloudquery/tap
+common-fate/granted
+gefyrahq/gefyra
+gromgit/fuse
+hashicorp/tap
+homebrew/services
+isen-ng/dotnet-sdk-versions
+jameswoolfenden/tap
+keidarcy/tap
+meeuw/aws-credential-process
+minamijoyo/hcledit
+saml-to/tap
+spacelift-io/spacelift
+thecasualcoder/stable
+upbound/tap

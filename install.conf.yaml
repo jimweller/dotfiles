@@ -1,0 +1,40 @@
+- defaults:
+    link:
+      force: true
+      create: true
+
+- create:
+  - ~/bin
+
+- link:
+    ~/.bash_profile: dotfiles/.bash_profile
+    ~/.gitconfig: dotfiles/.gitconfig
+    ~/.gitignore_global: dotfiles/.gitignore_global
+
+- shell:
+    - description: Install oh-my-zsh and powerlevel10k
+      command: ~/.dotfiles/scripts/ohmyzsh.sh
+      stderr: true
+      stdout: true
+
+- defaults:
+    link:
+      force: true
+      create: true
+
+- link:
+    ~/.p10k.zsh: dotfiles/.p10k.zsh
+    ~/.zshrc: dotfiles/.zshrc
+    ~/.oh-my-zsh/custom:
+      glob: true
+      path: dotfiles/.oh-my-zsh/custom/*
+
+- shell:
+    - description: Install and Setup
+      command: |
+        ~/.dotfiles/scripts/brew.sh
+        ~/.dotfiles/scripts/apt.sh
+        ~/.dotfiles/scripts/other.sh
+        ~/.dotfiles/scripts/gen-gitconfig.sh
+      stderr: true
+      stdout: true

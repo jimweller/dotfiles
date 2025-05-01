@@ -1,0 +1,5 @@
+python3-pygments
+gh
+awscli
+ca-certificates
+curl

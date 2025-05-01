@@ -1,0 +1,13 @@
+python3-pygments
+gh
+awscli
+awslogs
+ca-certificates
+curl
+fzf
+granted
+helm
+kube-ps1
+kubectx
+opentofu
+zsh-completions

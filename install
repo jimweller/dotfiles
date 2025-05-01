@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -e
+
+CONFIG="install.conf.yaml"
+DOTBOT_DIR="dotbot"
+
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python3 not found."
+
+  echo -n "Detecting OS..."
+  OS="$(uname -s)"
+  echo " $OS"
+
+  if [ "$OS" = "Linux" ]; then
+    echo "Installing Python3 using apt-get..."
+    sudo apt-get update && sudo apt-get install -y python3
+
+  elif [ "$OS" = "Darwin" ]; then
+    echo "Installing Python3 using Homebrew..."
+    echo "    brew install python"
+
+  else
+    echo "Unknown OS: $OS. Cannot install Python automatically."
+  fi
+fi
+
+
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
