@@ -10,17 +10,18 @@ switch_git_profile() {
   local profile=$1
   local env_file="$HOME/.secrets/git-${profile}.env"
   local ssh_key="$HOME/.ssh/id_${profile}"
+  local git_config_filer="$HOME/.gitconfig-dynamic"
 
   [[ -f "$env_file" ]] || { echo "Missing env: $env_file"; return 1; }
   [[ -f "$ssh_key" ]] || { echo "Missing key: $ssh_key"; return 1; }
 
   loadenv "$env_file"
 
-  git config --global user.name "$GIT_USER"
-  git config --global user.email "$GIT_EMAIL"
-  git config --global user.signingkey "$ssh_key"
-  git config --global credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
-  git config --global credential.https://github.com.username "$GIT_USERNAME"
+  git config --file "$CONFIG" --global user.name "$GIT_USER"
+  git config --file "$CONFIG" --global user.email "$GIT_EMAIL"
+  git config --file "$CONFIG" --global user.signingkey "$ssh_key"
+  git config --file "$CONFIG" --global credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
+  git config --file "$CONFIG" --global credential.https://github.com.username "$GIT_USERNAME"
 
   export GH_TOKEN="$GIT_TOKEN"
   export GH_HOST="${GIT_HOST:-github.com}"
