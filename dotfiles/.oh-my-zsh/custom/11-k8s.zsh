@@ -20,8 +20,8 @@ rancher_kubeconfigs() {
   done
 
   KUBECONFIG=~/.kube/config:$rancher_clusters kubectl config view --flatten > "$final_config"
-  mv "$final_config" ~/.kube/config
+  /bin/mv -f "$final_config" ~/.kube/config
   chmod 600 ~/.kube/config
 
-  rm "$rancher_clusters"
+  /bin/rm -f "$rancher_clusters"
 }
