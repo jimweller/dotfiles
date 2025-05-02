@@ -27,7 +27,7 @@ FILES=$(find ${FILE_PATTERNS[@]} -type f 2>/dev/null)
 if [ "$MODE" = "open" ]; then
   while true; do
     if echo "$PASSWORD" | gpg --decrypt --pinentry-mode loopback --passphrase-fd 0 "$ARCHIVE" > "$TMPFILE" 2>/dev/null; then
-      if tar xz -C "$HOME" -f "$TMPFILE"; then
+      if tar xvz -C "$HOME" -f "$TMPFILE"; then
         for pattern in "${FILE_PATTERNS[@]}"; do
           chmod 600 $pattern 2>/dev/null
         done
