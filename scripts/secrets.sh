@@ -1,30 +1,48 @@
 #!/bin/bash
 
-# secrets, ssh keys
+MODE="$1"
+PASSWORD="$2"
+ARCHIVE="${3:-$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg}"
+TMPFILE=$(mktemp)
 
-if [ ! -f "$HOME/.git-credentials-work" ]; then
+if [[ "$MODE" != "open" && "$MODE" != "save" ]]; then
+  echo "Usage: $0 [open|save] [password] [archive_file]"
+  exit 1
+fi
+
+if [ -z "$PASSWORD" ]; then
+  printf "Enter passphrase: "
+  read -s PASSWORD
+  echo
+fi
+
+FILE_PATTERNS=(
+  "$HOME/.ssh/id*"
+  "$HOME/.ssh/allowed_signers"
+  "$HOME/.secrets/*.env"
+)
+
+FILES=$(find ${FILE_PATTERNS[@]} -type f 2>/dev/null)
+
+if [ "$MODE" = "open" ]; then
   while true; do
-    printf "Enter passphrase to decrypt secrets: "
-    read -s GPG_PASS
-    echo
-
-    TMPFILE=$(mktemp)
-
-    if echo "$GPG_PASS" | gpg --decrypt --pinentry-mode loopback --passphrase-fd 0 ~/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg > "$TMPFILE" 2>/dev/null; then
+    if echo "$PASSWORD" | gpg --decrypt --pinentry-mode loopback --passphrase-fd 0 "$ARCHIVE" > "$TMPFILE" 2>/dev/null; then
       if tar xz -C "$HOME" -f "$TMPFILE"; then
-        chmod 600 ~/.git-credentials-*
-        chmod 600 ~/.config/gh/hosts.*
-        chmod 600 ~/.ssh/*
+        for pattern in "${FILE_PATTERNS[@]}"; do
+          chmod 600 $pattern 2>/dev/null
+        done
         rm -f "$TMPFILE"
         break
       fi
     fi
-
     echo "Incorrect passphrase or extraction failed, try again."
-    rm -f "$TMPFILE"
+    printf "Enter passphrase: "
+    read -s PASSWORD
+    echo
   done
+
+elif [ "$MODE" = "save" ]; then
+  tar --disable-copyfile --no-xattrs -cvzf - \
+    -C "$HOME" $(echo "$FILES" | sed "s|$HOME/||g") \
+    | gpg --batch --yes --passphrase "$PASSWORD" --symmetric --cipher-algo AES256 -o "$ARCHIVE"
 fi
-
-
-# DFPASS='pazwerd'
-# tar --disable-copyfile --no-xattrs -cvzf - -s ",^$HOME/,," .git-credentials-* .config/gh/hosts.* .ssh/id_* .ssh/allowed_signers | gpg --batch --yes --passphrase "$DFPASS" --symmetric --cipher-algo AES256 -o ~/Projects/personal/dotfiles/dotfiles/zcnqj7nbbgg4szrm.gpg
