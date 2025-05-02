@@ -17,11 +17,11 @@ switch_git_profile() {
 
   loadenv "$env_file"
 
-  git config --file "$git_config_file" --global user.name "$GIT_USER"
-  git config --file "$git_config_file" --global user.email "$GIT_EMAIL"
-  git config --file "$git_config_file" --global user.signingkey "$ssh_key"
-  git config --file "$git_config_file" --global credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
-  git config --file "$git_config_file" --global credential.https://github.com.username "$GIT_USERNAME"
+  git config --file "$git_config_file" user.name "$GIT_USER"
+  git config --file "$git_config_file" user.email "$GIT_EMAIL"
+  git config --file "$git_config_file" user.signingkey "$ssh_key"
+  git config --file "$git_config_file" credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
+  git config --file "$git_config_file" credential.https://github.com.username "$GIT_USERNAME"
 
   export GH_TOKEN="$GIT_TOKEN"
   export GH_HOST="${GIT_HOST:-github.com}"
