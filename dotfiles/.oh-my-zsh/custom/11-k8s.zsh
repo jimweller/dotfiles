@@ -15,7 +15,7 @@ rancher_kubeconfigs() {
   rancher_clusters=$(mktemp)
   final_config=$(mktemp)
 
-  rancher clusters | awk 'NR>1 {print $2}' | while read -r cluster; do
+  rancher clusters ls --format json |  jq -r '.ID' | while read -r cluster; do
     rancher clusters kubeconfig "$cluster" >> "$rancher_clusters"
   done
 
