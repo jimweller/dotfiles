@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# secrets, ssh keys
+
 if [ ! -f "$HOME/.git-credentials-work" ]; then
   while true; do
     printf "Enter passphrase to decrypt secrets: "

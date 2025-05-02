@@ -1,29 +1,30 @@
 # Alias to switch between work and personal git profiles
-alias work='jump work && switch_git_work'
-alias personal='jump personal && switch_git_personal'
+alias work='jump work && switch_git_profile work'
+alias personal='jump personal && switch_git_profile personal'
 
-alias hyland='switch_git_work'
-alias jim='switch_git_personal'
-alias ghu='gh auth switch --user'
+alias hyland='sswitch_git_profile work'
+alias jim='switch_git_profile personal'
 
 
-switch_git_work() {
-  /bin/cp -f ~/.config/gh/hosts.work ~/.config/gh/hosts.yml
-  git config --global user.name "Jim Weller"
-  git config --global user.email "jim.weller@hyland.com"
-  git config --global user.signingkey "$HOME/.ssh/id_hyland"
-  git config --global credential.helper "store --file=$HOME/.git-credentials-work"
-  git config --global credential.https://github.com.username "jim-weller"
-  gh auth status | grep Logged
-}
+switch_git_profile() {
+  local profile=$1
+  local env_file="$HOME/.secrets/git-${profile}.env"
+  local ssh_key="$HOME/.ssh/id_${profile}"
 
-switch_git_personal() {
-  /bin/cp -f ~/.config/gh/hosts.personal ~/.config/gh/hosts.yml
-  git config --global user.name "Jim Weller"
-  git config --global user.email "jim.weller@gmail.com"
-  git config --global user.signingkey "$HOME/.ssh/id_rsa"
-  git config --global credential.helper "store --file=$HOME/.git-credentials-personal"
-  git config --global credential.https://github.com.username "jimweller"
+  [[ -f "$env_file" ]] || { echo "Missing env: $env_file"; return 1; }
+  [[ -f "$ssh_key" ]] || { echo "Missing key: $ssh_key"; return 1; }
+
+  loadenv "$env_file"
+
+  git config --global user.name "$GIT_USER"
+  git config --global user.email "$GIT_EMAIL"
+  git config --global user.signingkey "$ssh_key"
+  git config --global credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
+  git config --global credential.https://github.com.username "$GIT_USERNAME"
+
+  export GH_TOKEN="$GIT_TOKEN"
+  export GH_HOST="${GIT_HOST:-github.com}"
+
   gh auth status | grep Logged
 }
 
