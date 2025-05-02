@@ -11,3 +11,4 @@ kube-ps1
 kubectx
 opentofu
 zsh-completions
+direnv

@@ -5,6 +5,7 @@
 
 - create:
   - ~/bin
+  - ~/.secrets
 
 - link:
     ~/.bash_profile: dotfiles/.bash_profile

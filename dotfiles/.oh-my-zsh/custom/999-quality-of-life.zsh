@@ -12,3 +12,5 @@ alias cbp='cb paste'
 alias z='. ~/.zshrc'
 
 unsetopt share_history
+
+loadenv() { set -a; source "$1"; set +a; }

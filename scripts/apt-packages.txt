@@ -3,3 +3,4 @@ gh
 awscli
 ca-certificates
 curl
+direnv

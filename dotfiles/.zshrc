@@ -12,7 +12,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
-plugins=(dotnet asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu terraform aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent  encode64 colored-man-pages helm history-substring-search)
+plugins=(direnv dotnet asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu terraform aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent  encode64 colored-man-pages helm history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
