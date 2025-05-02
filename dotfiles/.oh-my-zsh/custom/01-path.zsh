@@ -22,3 +22,8 @@ if [ -d "$HOME/bin" ]; then
   export PATH="$HOME/bin:$PATH"
 fi
 
+
+# Add .dotfiles scripts if available
+if [ -d "$HOME/.dotfiles/scripts" ]; then
+  export PATH="$HOME/.dotfiles/scripts:$PATH"
+fi
