@@ -2,7 +2,7 @@
 
 MODE="$1"
 PASSWORD="$2"
-ARCHIVE="${3:-$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg}"
+ARCHIVE="${3:-$HOME/Projects/personal/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg}"
 TMPFILE=$(mktemp)
 
 if [[ "$MODE" != "open" && "$MODE" != "save" ]]; then
