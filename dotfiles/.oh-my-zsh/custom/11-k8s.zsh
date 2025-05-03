@@ -12,16 +12,17 @@ alias hxns='k config set-context --current --namespace'
 
 
 rancher_kubeconfigs() {
-  rancher_clusters=$(mktemp)
-  final_config=$(mktemp)
+  tmpdir=$(mktemp -d)
+  kubeconfigs=(~/.kube/config)
 
-  rancher clusters ls --format json |  jq -r '.ID' | while read -r cluster; do
-    rancher clusters kubeconfig "$cluster" >> "$rancher_clusters"
+  for cluster in $(rancher clusters ls --format json | jq -r '.ID'); do
+    file="$tmpdir/$cluster.yaml"
+    rancher clusters kubeconfig "$cluster" > "$file"
+    kubeconfigs+=("$file")
   done
 
-  KUBECONFIG=~/.kube/config:$rancher_clusters kubectl config view --flatten > "$final_config"
-  /bin/mv -f "$final_config" ~/.kube/config
+  export KUBECONFIG=$(IFS=:; echo "${kubeconfigs[*]}")
+  kubectl config view --flatten > ~/.kube/config
   chmod 600 ~/.kube/config
-
-  /bin/rm -f "$rancher_clusters"
+  rm -rf "$tmpdir"
 }
