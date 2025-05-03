@@ -1,33 +1,49 @@
 #!/bin/zsh
+set -euo pipefail
 
-# backup the old file
-mv -f /Users/jim.weller/Projects/HYLANDARCHIVE/hyland.tbz /Users/jim.weller/Projects/HYLANDARCHIVE/hyland.tbz.bak
+# Variables
+PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
+DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg"
+MOUNT="/Volumes/WorkPortfolio"
+SIZE="16g"
 
-# capture some things
-brew list > ~/.jim/brew-list.txt
-code --list-extensions | xargs -L 1 echo code --install-extension > ~/.jim/vscode-extensions.txt
+# Create encrypted DMG if it doesn't exist
+if [ ! -f "$DMG" ]; then
+  echo "$PASSWORD" | hdiutil create -encryption -stdinpass -size "$SIZE" -volname HylandBackup -fs APFS "$DMG"
+fi
 
-# create a new file
-tar -cjf /Users/jim.weller/Projects/HYLANDARCHIVE/hyland.tbz \
-~/.jim/ \
-~/Projects/work/ \
-~/Projects/personal/ \
-~/.zshrc \
-~/.p10k.zsh \
-~/.aws/config \
-~/.oh-my-zsh \
-~/.vscode \
-~/.vscode-oss \
-~/Library/Application\ Support/Google/Chrome/Profile\ 1 \
-~/.gitconfig* \
-~/.config/gh \
-~/.steampipe/config \
-~/.cloudquery \
-~/bin \
-~/.gnupg/ \
-~/.ssh/ \
-~/.kube \
-~/Library/CloudStorage/OneDrive-HylandSoftware/Images/ \
-~/Library/CloudStorage/OneDrive-HylandSoftware/Documents/ \
-~/Library/CloudStorage/OneDrive-HylandSoftware/Drawings \
-~/Library/CloudStorage/OneDrive-HylandSoftware/Exfl 
+# Mount encrypted DMG
+echo "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT"
+
+# Generate brew + extensions
+brew list --formula > "$MOUNT/brew-formulas.txt"
+brew list --cask > "$MOUNT/brew-casks.txt"
+brew tap > "$MOUNT/brew-taps.txt"
+code --list-extensions > "$MOUNT/vscode-extensions.txt"
+
+# Rsync everything to mounted volume
+rsync -avL --delete \
+  ~/Projects/work/ \
+  ~/Projects/personal/ \
+  ~/Library/Preferences/com.microsoft.VSCode.plist \
+  ~/Library/Preferences/com.visualstudio.code.oss.plist \
+  ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
+  ~/Library/Application\ Support/Code/User/settings.json \
+  ~/Library/Application\ Support/Code/User/keybindings.json \
+  ~/Library/Application\ Support/Code/User/snippets/ \
+  ~/Library/Application\ Support/Google/Chrome/Profile\ 1 \
+  ~/.git* \
+  ~/.config/gh \
+  ~/.gnupg/ \
+  ~/.ssh/ \
+  ~/.kube \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Documents/ \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Drawings/ \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Exfl/ \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Images/ \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/notes.txt \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/passwi.kdbx \
+  "$MOUNT/"
+
+# Unmount
+hdiutil detach "$MOUNT"
