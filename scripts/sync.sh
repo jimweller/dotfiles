@@ -13,7 +13,7 @@ SIZE="16g"
 
 # Create encrypted DMG if it doesn't exist
 if [ ! -f "$DMG" ]; then
-  echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname HylandBackup -fs APFS "$DMG"
+  echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname WorkPortfolio -fs APFS "$DMG"
 fi
 
 # Mount encrypted DMG
@@ -35,7 +35,7 @@ rsync -avL --delete \
   ~/Library/Application\ Support/Code/User/settings.json \
   ~/Library/Application\ Support/Code/User/keybindings.json \
   ~/Library/Application\ Support/Code/User/snippets/ \
-  ~/Library/Application\ Support/Google/Chrome/Profile\ 1 \
+  ~/Library/Application\ Support/Google/Chrome/Profile\ 1/Bookmarks \
   ~/.git* \
   ~/.config/gh \
   ~/.gnupg/ \
