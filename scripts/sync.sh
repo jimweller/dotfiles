@@ -9,7 +9,7 @@ set +a
 PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
 DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg.sparseimage"
 MOUNT="/Volumes/WorkPortfolio"
-SIZE="16g"
+SIZE="128g"
 
 # Create encrypted DMG if it doesn't exist
 if [ ! -f "$DMG" ]; then
@@ -27,6 +27,13 @@ code --list-extensions > "$MOUNT/vscode-extensions.txt"
 
 # Rsync everything to mounted volume
 rsync -avL --delete \
+  --exclude='.Trash/' \
+  --exclude='.trash/' \
+  --exclude='.git/' \
+  --exclude='.gitt/' \
+  --exclude='.gitt/' \
+  --exclude='.kube/cache' \
+  --exclude='.kube/http-cache' \
   ~/Projects/work/ \
   ~/Projects/personal/ \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
