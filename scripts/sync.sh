@@ -1,7 +1,9 @@
 #!/bin/zsh
 set -euo pipefail
 
-loadenv "$HOME/.secrets/exfl.env"
+set -a
+source "$HOME/.secrets/exfl.env"
+set +a
 
 # Variables
 PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
