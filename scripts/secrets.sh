@@ -2,7 +2,16 @@
 
 MODE="$1"
 PASSWORD="$2"
-ARCHIVE="${3:-$HOME/Projects/personal/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg}"
+
+if [ -n "$3" ]; then
+  ARCHIVE="$3"
+elif [ "$1" = "open" ]; then
+  ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+else
+  ARCHIVE="$HOME/Projects/personal/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+fi
+
+
 TMPFILE=$(mktemp)
 
 if [[ "$MODE" != "open" && "$MODE" != "save" ]]; then
