@@ -27,31 +27,30 @@ code --list-extensions > "$MOUNT/vscode-extensions.txt"
 
 # Rsync everything to mounted volume
 rsync -avL --delete \
-  --exclude='.Trash/' \
-  --exclude='.trash/' \
-  --exclude='.git/' \
-  --exclude='.gitt/' \
-  --exclude='.gitt/' \
+  --exclude='.Trash' \
+  --exclude='.trash' \
+  --exclude='.git' \
+  --exclude='.gitt' \
+  --exclude='.gitt' \
   --exclude='.kube/cache' \
   --exclude='.kube/http-cache' \
   --exclude='.terraform' \
-  ~/Projects/work/ \
-  ~/Projects/personal/ \
+  ~/Projects/work \
+  ~/Projects/personal \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
   ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
   ~/Library/Application\ Support/Code/User/settings.json \
   ~/Library/Application\ Support/Code/User/keybindings.json \
-  ~/Library/Application\ Support/Code/User/snippets/ \
   ~/Library/Application\ Support/Google/Chrome/Profile\ 1/Bookmarks \
   ~/.git* \
   ~/.config/gh \
-  ~/.gnupg/ \
-  ~/.ssh/ \
+  ~/.gnupg \
+  ~/.ssh \
   ~/.kube \
-  ~/Library/CloudStorage/OneDrive-HylandSoftware/Documents/ \
-  ~/Library/CloudStorage/OneDrive-HylandSoftware/Drawings/ \
-  ~/Library/CloudStorage/OneDrive-HylandSoftware/Exfl/ \
-  ~/Library/CloudStorage/OneDrive-HylandSoftware/Images/ \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Documents \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Drawings \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Exfl \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/Images \
   ~/Library/CloudStorage/OneDrive-HylandSoftware/notes.txt \
   ~/Library/CloudStorage/OneDrive-HylandSoftware/passwii.kdbx \
   "$MOUNT/"
