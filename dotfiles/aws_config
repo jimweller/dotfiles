@@ -1,0 +1,207 @@
+[profile cfdev]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 183631344218
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile cfdev
+
+[profile cfprod]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 481665117323
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile cfprod
+
+[profile cfsandbox]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 682033495584
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile cfsandbox
+
+[profile cfstaging]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 761018848685
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile cfstaging
+
+[profile seudev]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 711387108459
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile seudev
+
+[profile seuprod]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 676206907917
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile seuprod
+
+[profile seusandbox]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 183631336940
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile seusandbox
+region = us-east-2
+
+[profile seustaging]
+granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 588738599145
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile seustaging
+
+
+
+# jim.weller identity center
+# ----------------------------------------------------
+[profile jim-lab-org/AWSAdministratorAccess]
+granted_sso_start_url      = https://d-90678f9d9b.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 206190791305
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile jim-lab-org/AWSAdministratorAccess
+
+[profile jim-lab-prod/AWSOrganizationsFullAccess]
+granted_sso_start_url      = https://d-90678f9d9b.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 043349590897
+granted_sso_role_name      = AWSOrganizationsFullAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile jim-lab-prod/AWSOrganizationsFullAccess
+
+[profile jim-lab-dev/AWSOrganizationsFullAccess]
+granted_sso_start_url      = https://d-90678f9d9b.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 647355953950
+granted_sso_role_name      = AWSOrganizationsFullAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile jim-lab-dev/AWSOrganizationsFullAccess
+
+[profile jim-lab-Log-Archive/AWSAdministratorAccess]
+granted_sso_start_url      = https://d-90678f9d9b.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 975049938897
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile jim-lab-Log-Archive/AWSAdministratorAccess
+
+[profile jim-lab-Audit/AWSAdministratorAccess]
+granted_sso_start_url      = https://d-90678f9d9b.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 471112715377
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile jim-lab-Audit/AWSAdministratorAccess
+
+# jim.weller classic with local IAM users w/ ACCESS_KEY
+# granted credentials add
+# -----------------------------------------------------------------------------
+[profile jim.weller-org]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-org
+
+[profile jim.weller-prod]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-prod
+
+[profile jim.weller-dev]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-dev
+
+[profile jim.weller-sandbox]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-sandbox
+
+[profile jim.weller-work1-dev]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-work1-dev
+
+[profile jim.weller-work2-dev]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-work2-dev
+
+[profile jim.weller-work1-prod]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-work1-prod
+
+[profile jim.weller-work2-prod]
+region             = us-west-2
+credential_process = granted credential-process --profile=jim.weller-work2-prod
+
+
+
+
+
+
+# ----------------------------------------------------
+# jim.weller+tf@gmail.com for AWS SSO for terraform and EKS
+# remember to sign out of AWS SSO before 
+# ----------------------------------------------------
+
+[profile tf-dev/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 647355953950
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-dev/AWSAdministratorAccess
+region                     = us-west-2
+
+[profile tf-prod/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 043349590897
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-prod/AWSAdministratorAccess
+region                     = us-west-2
+
+[profile tf-work1-dev/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 296062590485
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-work1-dev/AWSAdministratorAccess
+region                     = us-west-2
+
+[profile tf-work1-prod/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 577638380690
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-work1-prod/AWSAdministratorAccess
+region                     = us-west-2
+
+[profile tf-work2-dev/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 195275675931
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-work2-dev/AWSAdministratorAccess
+region                     = us-west-2
+
+[profile tf-work2-prod/AWSAdministratorAccess]
+granted_sso_start_url      = https://jimweller-org.awsapps.com/start
+granted_sso_region         = us-east-1
+granted_sso_account_id     = 124355673619
+granted_sso_role_name      = AWSAdministratorAccess
+common_fate_generated_from = aws-sso
+credential_process         = granted credential-process --profile tf-work2-prod/AWSAdministratorAccess
+region                     = us-west-2
