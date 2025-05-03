@@ -1,6 +1,8 @@
 #!/bin/zsh
 set -euo pipefail
 
+loadenv "$HOME/.secrets/exfl.env"
+
 # Variables
 PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
 DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg"
