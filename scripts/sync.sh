@@ -13,7 +13,7 @@ SIZE="16g"
 
 # Create encrypted DMG if it doesn't exist
 if [ ! -f "$DMG" ]; then
-  echo "$PASSWORD" | hdiutil create -encryption -stdinpass -size "$SIZE" -volname HylandBackup -fs APFS "$DMG"
+  echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname HylandBackup -fs APFS "$DMG"
 fi
 
 # Mount encrypted DMG
