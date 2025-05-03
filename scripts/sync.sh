@@ -34,10 +34,10 @@ rsync -avL --delete \
   --exclude='.gitt/' \
   --exclude='.kube/cache' \
   --exclude='.kube/http-cache' \
+  --exclude='.terraform' \
   ~/Projects/work/ \
   ~/Projects/personal/ \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
-  ~/Library/Preferences/com.visualstudio.code.oss.plist \
   ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
   ~/Library/Application\ Support/Code/User/settings.json \
   ~/Library/Application\ Support/Code/User/keybindings.json \
@@ -53,7 +53,7 @@ rsync -avL --delete \
   ~/Library/CloudStorage/OneDrive-HylandSoftware/Exfl/ \
   ~/Library/CloudStorage/OneDrive-HylandSoftware/Images/ \
   ~/Library/CloudStorage/OneDrive-HylandSoftware/notes.txt \
-  ~/Library/CloudStorage/OneDrive-HylandSoftware/passwi.kdbx \
+  ~/Library/CloudStorage/OneDrive-HylandSoftware/passwii.kdbx \
   "$MOUNT/"
 
 # Unmount
