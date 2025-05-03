@@ -7,7 +7,7 @@ set +a
 
 # Variables
 PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
-DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg"
+DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg.sparseimage"
 MOUNT="/Volumes/WorkPortfolio"
 SIZE="16g"
 
