@@ -1693,9 +1693,9 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_TOFU_ICON='\uF1B2 '
-typeset -g POWERLEVEL9K_TOFU_COLOR=yellow
-typeset -g POWERLEVEL9K_TOFU_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
+typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2 '
+typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=yellow
+typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
 
 function prompt_tofu_version() {
   local tofu=${commands[tofu]} v cfg
@@ -1707,7 +1707,7 @@ function prompt_tofu_version() {
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TOFU_COLOR TOFU_ICON 0 '' ${v//\%/%%}
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TOFU_VERSION_COLOR TOFU_VERSION_ICON 0 '' ${v//\%/%%}
 }
 
 function _p9k_prompt_tofu_version_init() {
