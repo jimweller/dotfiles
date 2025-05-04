@@ -1724,8 +1724,12 @@ typeset -gA AWS_REGION_ALIASES=(
 
 
 
-################################################################
-# AWS Profile
+typeset -gA AWS_REGION_ALIASES=(
+  us-east-1    use1
+  us-west-2    usw2
+  eu-central-1 euc1
+)
+
 prompt_aws() {
   typeset -g P9K_AWS_PROFILE="${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}"
   local pat class state
@@ -1736,9 +1740,8 @@ prompt_aws() {
     fi
   done
 
-  if [[ -n ${AWS_REGION:-$AWS_DEFAULT_REGION} ]]; then
-    typeset -g P9K_AWS_REGION=${AWS_REGION:-$AWS_DEFAULT_REGION}
-  else
+  local region="${AWS_REGION:-$AWS_DEFAULT_REGION}"
+  if [[ -z $region ]]; then
     local cfg=${AWS_CONFIG_FILE:-~/.aws/config}
     if ! _p9k_cache_stat_get $0 $cfg; then
       local -a reply
@@ -1747,11 +1750,15 @@ prompt_aws() {
     fi
     local prefix=$#P9K_AWS_PROFILE:$P9K_AWS_PROFILE:
     local kv=$_p9k__cache_val[(r)${(b)prefix}*]
-    typeset -g P9K_AWS_REGION=${kv#$prefix}
+    region=${kv#$prefix}
   fi
 
-  local region_alias=${AWS_REGION_ALIASES[$P9K_AWS_REGION]:-$P9K_AWS_REGION}
-  _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${region_alias}"
+  typeset -g P9K_AWS_REGION=$region
+  local alias=${AWS_REGION_ALIASES[$region]:-$region}
+
+  print -P "DEBUG: profile=%F{yellow}$P9K_AWS_PROFILE%f  region=%F{cyan}$region%f  alias=%F{green}$alias%f"
+
+  _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
 }
 
 
