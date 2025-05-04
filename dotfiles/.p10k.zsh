@@ -1691,6 +1691,13 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 
 # Jim's custome
+
+
+typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF135'       # example: rocket
+typeset -g POWERLEVEL9K_OPENTOFU_COLOR=green          # segment color
+
+
+
 function prompt_opentofu_version() {
   local tofu=${commands[tofu]} v cfg
   _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
@@ -1701,7 +1708,7 @@ function prompt_opentofu_version() {
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 blue '\uF4A3' 0 '' ${v//\%/%%}
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_OPENTOFU_COLOR $POWERLEVEL9K_OPENTOFU_ICON 0 '' ${v//\%/%%}
 }
 
 function _p9k_prompt_opentofu_version_init() {
