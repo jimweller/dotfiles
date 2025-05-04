@@ -1694,7 +1694,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 
 typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2'
-typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=yellow
+typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=220
 typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
 
 function prompt_tofu_version() {
@@ -1739,7 +1739,7 @@ typeset -gA AWS_REGION_ALIASES=(
 
 typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
 typeset -g POWERLEVEL9K_AWS_JIM_ICON='\uF270'
-typeset -g POWERLEVEL9K_AWS_JIM_COLOR='FF9900'
+typeset -g POWERLEVEL9K_AWS_JIM_COLOR=214
 
 
 prompt_aws_jim() {
