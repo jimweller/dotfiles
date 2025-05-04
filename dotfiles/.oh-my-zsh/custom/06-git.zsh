@@ -2,7 +2,7 @@
 alias work='jump work && switch_git_profile work'
 alias personal='jump personal && switch_git_profile personal'
 
-alias hyland='sswitch_git_profile work'
+alias hyland='switch_git_profile work'
 alias jim='switch_git_profile personal'
 
 
