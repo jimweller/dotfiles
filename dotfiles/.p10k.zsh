@@ -1790,13 +1790,11 @@ function _set_git_alias_in_vcs() {
   zstyle ':vcs_info:*' enable git
   vcs_info
 
-  local icon=$'\uf113'       # 
-  local branch_icon=$'\ue0a0'  # 
+  local icon=$'\uf113'  # 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
 
   if [[ -n $vcs_info_msg_0_ ]]; then
-    local expanded="%F{214}${icon} %f${alias:+$alias }%F{green}${branch_icon} ${vcs_info_msg_0_}%f"
-    vcs_info_msg_0_=$expanded
+    vcs_info_msg_0_="%F{214}${icon} %f${alias:+$alias } ${vcs_info_msg_0_}"
   fi
 }
 
