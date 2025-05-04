@@ -76,11 +76,11 @@
     #phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     #scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     #haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     #terraform               # terraform workspace (https://www.terraform.io)
     #terraform_version     # terraform version (https://www.terraform.io)
     tofu_version
-    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     #aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     #azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     #gcloud                  # google cloud cli account and project (https://cloud.google.com/)
@@ -1703,7 +1703,7 @@ function prompt_tofu_version() {
   if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
     v=$_p9k__cache_val[1]
   else
-    v=${${"$(tofu -version 2>/dev/null)"#Tofu v}%%$'\n'*} || v=
+    v=${${"$(tofu version 2>/dev/null)"##*v}}
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
