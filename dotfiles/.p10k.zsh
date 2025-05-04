@@ -1693,7 +1693,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF135'       # example: rocket
+typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF1BB'       # example: rocket
 typeset -g POWERLEVEL9K_OPENTOFU_COLOR=green          # segment color
 
 
