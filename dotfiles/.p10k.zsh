@@ -1720,15 +1720,25 @@ typeset -gA AWS_REGION_ALIASES=(
   us-east-2    use2
   us-west-1    usw1
   us-west-2    usw2
-)
-
-
-
-typeset -gA AWS_REGION_ALIASES=(
-  us-east-1    use1
-  us-west-2    usw2
+  af-south-1   afs1
+  ap-east-1    aep1
+  ap-south-1   aps1
+  ap-northeast-1 apn1
+  ap-northeast-2 apn2
+  ap-northeast-3 apn3
+  ap-southeast-1 aps1
+  ap-southeast-2 aps2
+  ca-central-1 cac1
   eu-central-1 euc1
+  eu-west-1    euw1
+  eu-west-2    euw2
+  eu-west-3    euw3
+  eu-north-1   eun1
+  sa-east-1    sae1
 )
+
+typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
+
 
 prompt_aws_jim() {
   typeset -g P9K_AWS_PROFILE="${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}"
@@ -1756,9 +1766,6 @@ prompt_aws_jim() {
   typeset -g P9K_AWS_REGION=$region
   local alias=${AWS_REGION_ALIASES[$region]:-$region}
 
-  print -P "DEBUG: profile=%F{yellow}$P9K_AWS_PROFILE%f  region=%F{cyan}$region%f  alias=%F{green}$alias%f"
-
-  typeset -g _p9k__aws_profile="${P9K_AWS_PROFILE//\%/%%} ${alias}"
   _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
 }
 
