@@ -1758,6 +1758,7 @@ prompt_aws() {
 
   print -P "DEBUG: profile=%F{yellow}$P9K_AWS_PROFILE%f  region=%F{cyan}$region%f  alias=%F{green}$alias%f"
 
+  typeset -g _p9k__aws_profile="${P9K_AWS_PROFILE//\%/%%} ${alias}"
   _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
 }
 
