@@ -1738,6 +1738,8 @@ typeset -gA AWS_REGION_ALIASES=(
 )
 
 typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
+typeset -g POWERLEVEL9K_AWS_JIM_ICON='\uF270'
+typeset -g POWERLEVEL9K_AWS_JIM_COLOR='FF9900'
 
 
 prompt_aws_jim() {
