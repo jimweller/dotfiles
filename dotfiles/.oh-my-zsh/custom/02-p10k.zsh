@@ -1,5 +1,6 @@
 # Jim's custome
 
+echo "p10 me"
 
 typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2'
 typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=220
