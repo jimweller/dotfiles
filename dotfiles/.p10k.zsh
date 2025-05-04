@@ -1712,7 +1712,7 @@ function prompt_opentofu_version() {
 
 function _p9k_prompt_opentofu_version_init() {
 #  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='(( $+commands[tofu] )) && [[ -n ${(M)POWERLEVEL9K_COMMANDS[@]:#${POWERLEVEL9K_OPENTOFU_SHOW_ON_COMMAND}} ]] || [[ -n ./*.tf(N) ]]'
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='(( $+commands[tofu] )) && [[ $POWERLEVEL9K_COMMAND =~ $POWERLEVEL9K_OPENTOFU_SHOW_ON_COMMAND ]]'
 }
 
 
