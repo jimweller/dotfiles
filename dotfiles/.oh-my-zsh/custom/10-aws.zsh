@@ -1,9 +1,3 @@
-# p10k
-# POWERLEVEL9K_AWS_CLASSES=( '*' DEFAULT )
-# POWERLEVEL9K_AWS_CONTENT_EXPANSION='${P9K_AWS_PROFILE//\%/%%}${P9K_AWS_REGION:+ ${P9K_AWS_REGION//\%/%%}}'
-# POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=208
-# POWERLEVEL9K_AWS_EB_ENV_FOREGROUND=70
-# POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
 
 # alias to clear all the granted session credentials from the mac keychain
 alias granted-clear='while security delete-generic-password -l "granted-aws-session-credentials"; do true; done'

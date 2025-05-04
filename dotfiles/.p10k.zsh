@@ -79,6 +79,7 @@
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     #terraform               # terraform workspace (https://www.terraform.io)
     #terraform_version     # terraform version (https://www.terraform.io)
+    opentofu_version
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     #aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     #azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
@@ -169,7 +170,7 @@
   typeset -g POWERLEVEL9K_BACKGROUND=234
 
   # Separator between same-color segments on the left.
-  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%246F\uE0B1'
+  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%242F\uE0BB'
   # Separator between same-color segments on the right.
   typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%242F\uE0B3'
   # Separator between different-color segments on the left.
@@ -1685,8 +1686,29 @@
 # Tell `p10k configure` which file it should overwrite.
 typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
-# JIM this is for cline to work in vscode
-# typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
+
+
+# JIM: opentofu prompt
+
+function prompt_opentofu_version() {
+  local tofu=${commands[opentofu]} v cfg
+  _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
+  if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
+    v=$_p9k__cache_val[1]
+  else
+    v=${${"$(opentofu version 2>/dev/null)"#OpenTofu v}%%$'\n'*} || v=
+    _p9k_cache_stat_set "$v"
+  fi
+  [[ -n $v ]] || return
+  _p9k_prompt_segment $0 $_p9k_color1 blue '\uF4A3' 0 '' ${v//\%/%%}
+}
+
+function _p9k_prompt_opentofu_version_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[opentofu]'
+}
+
+
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
