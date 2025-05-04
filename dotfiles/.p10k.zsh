@@ -1776,6 +1776,13 @@ function _p9k_prompt_aws_jim_init() {
 }
 
 
+typeset -gA GIT_USERNAME_ALIASES=(
+  jimweller     jw
+  jim-weller    j-w
+)
+
+zstyle ':vcs_info:git:*' formats '%F{214} %f${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME} %F{green} %b%F{red}%c%u%F{yellow}%m%f'
+zstyle ':vcs_info:git:*' actionformats '%F{214} %f${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME} %F{green} %b|%a%F{red}%c%u%F{yellow}%m%f'
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
