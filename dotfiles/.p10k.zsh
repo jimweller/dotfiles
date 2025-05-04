@@ -1692,6 +1692,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 # Jim's custome
 function prompt_opentofu_version() {
+  echo "TOFU DEBUG: running tofu version"
   local tofu=${commands[tofu]} v cfg
   _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
   if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
