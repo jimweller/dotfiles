@@ -1710,10 +1710,10 @@ function prompt_opentofu_version() {
   _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_OPENTOFU_COLOR OPENTOFU_ICON 0 '' ${v//\%/%%}
 }
 
-function _p9k_prompt_opentofu_version_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='
-    [[ $P9K_SUGGESTED_COMMAND =~ ^(tofu|terraform|terragrunt)($| ) ]]'
-}
+# function _p9k_prompt_opentofu_version_init() {
+#   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
+# }
+
 
 
 
