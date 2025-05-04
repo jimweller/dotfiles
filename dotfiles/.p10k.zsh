@@ -1792,7 +1792,7 @@ function prompt_gituser() {
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
   [[ -n $alias ]] || return
 
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR POWERLEVEL9K_GIT_USER_ICON  0 '' $alias
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR GIT_USER_ICON 0 '' $alias
 }
 
 
