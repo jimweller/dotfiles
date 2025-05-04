@@ -1693,7 +1693,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_OPENTOFU_ICON=$'\uF1B2 '
+typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF1B2 '
 typeset -g POWERLEVEL9K_OPENTOFU_COLOR='#F2C94C'
 
 function prompt_opentofu_version() {
@@ -1706,7 +1706,7 @@ function prompt_opentofu_version() {
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 POWERLEVEL9K_OPENTOFU_COLOR POWERLEVEL9K_OPENTOFU_ICON 0 '' ${v//\%/%%}
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_OPENTOFU_COLOR POWERLEVEL9K_OPENTOFU_ICON 0 '' ${v//\%/%%}
 }
 
 function _p9k_prompt_opentofu_version_init() {
