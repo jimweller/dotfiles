@@ -1782,10 +1782,15 @@ typeset -gA GIT_USERNAME_ALIASES=(
   jim-weller    j-w
 )
 
-typeset -gA GIT_USERNAME_ALIASES=(
-  jimweller     jw
-  jim-weller    j-w
-)
+function prompt_gituser() {
+  [[ -d .git || -n $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] || return
+
+  local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
+  [[ -n $alias ]] || return
+
+  _p9k_prompt_segment "$0" 7 0 '\uf113' 0 '' $alias
+}
+
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
