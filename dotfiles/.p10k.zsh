@@ -1784,8 +1784,8 @@ typeset -gA GIT_USERNAME_ALIASES=(
 zstyle ':vcs_info:git:*' formats '%b%c%u%m'
 zstyle ':vcs_info:git:*' actionformats '%b|%a%c%u%m'
 
-function +vi-git-post-backend() {
-  print -P "%F{red}HOOK TRIGGERED%f alias=$GIT_USERNAME" > ~/tmp/git-alias-debug.log
+function vcs_info() {
+  builtin vcs_info "$@"
 
   local icon=$'\uf113'  # 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
