@@ -1692,12 +1692,12 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 # Jim's custome
 function prompt_opentofu_version() {
-  local tofu=${commands[opentofu]} v cfg
+  local tofu=${commands[tofu]} v cfg
   _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
   if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
     v=$_p9k__cache_val[1]
   else
-    v=${${"$(opentofu version 2>/dev/null)"#OpenTofu v}%%$'\n'*} || v=
+    v=${${"$(tofu version 2>/dev/null)"#OpenTofu v}%%$'\n'*} || v=
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
@@ -1705,7 +1705,7 @@ function prompt_opentofu_version() {
 }
 
 function _p9k_prompt_opentofu_version_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[opentofu]'
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
 }
 
 
