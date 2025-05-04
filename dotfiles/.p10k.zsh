@@ -1694,7 +1694,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 
 typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF1B2 '
-typeset -g POWERLEVEL9K_OPENTOFU_COLOR='#F2C94C'
+typeset -g POWERLEVEL9K_OPENTOFU_COLOR=yellow
 
 function prompt_opentofu_version() {
   local tofu=${commands[tofu]} v cfg
