@@ -1785,7 +1785,7 @@ typeset -gA GIT_USERNAME_ALIASES=(
 
 typeset -g POWERLEVEL9K_GIT_USER_ICON='\uf2bb'
 typeset -g POWERLEVEL9K_GIT_USER_COLOR=33
-typeset -g POWERLEVEL9K_GITUSER_LEFT_SEPARATOR=''
+typeset -g POWERLEVEL9K_VCS_LEFT_SEPARATOR=''
 
 function prompt_gituser() {
   [[ -d .git || -n $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] || return
@@ -1793,9 +1793,7 @@ function prompt_gituser() {
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
   [[ -n $alias ]] || return
 
-  _p9k_left_segment_end=''
   _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR GIT_USER_ICON 0 '' $alias
-  _p9k_prompt_segment gituser $_p9k_color1 $POWERLEVEL9K_GITUSER_COLOR ${POWERLEVEL9K_GITUSER_ICON} 0 '' $alias
 }
 
 
