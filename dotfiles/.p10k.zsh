@@ -1784,7 +1784,7 @@ typeset -gA GIT_USERNAME_ALIASES=(
 zstyle ':vcs_info:git:*' formats '%b%c%u%m'
 zstyle ':vcs_info:git:*' actionformats '%b|%a%c%u%m'
 
-function _set_git_alias_in_vcs() {
+function +vi-git-post-backend() {
   local icon=$'\uf113'  # 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
 
@@ -1793,8 +1793,6 @@ function _set_git_alias_in_vcs() {
   fi
 }
 
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd _set_git_alias_in_vcs
 
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
