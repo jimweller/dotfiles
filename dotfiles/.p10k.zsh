@@ -76,7 +76,7 @@
     #phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     #scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     #haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    aws_jim                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     #terraform               # terraform workspace (https://www.terraform.io)
     #terraform_version     # terraform version (https://www.terraform.io)
@@ -1730,7 +1730,7 @@ typeset -gA AWS_REGION_ALIASES=(
   eu-central-1 euc1
 )
 
-prompt_aws() {
+prompt_aws_jim() {
   typeset -g P9K_AWS_PROFILE="${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}"
   local pat class state
   for pat class in "${_POWERLEVEL9K_AWS_CLASSES[@]}"; do
