@@ -1782,13 +1782,17 @@ typeset -gA GIT_USERNAME_ALIASES=(
   jim-weller    j-w
 )
 
+
+typeset -g POWERLEVEL9K_GIT_USER_ICON='\uF2BB'
+typeset -g POWERLEVEL9K_GIT_USER_COLOR=33
+
 function prompt_gituser() {
   [[ -d .git || -n $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] || return
 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
   [[ -n $alias ]] || return
 
-  _p9k_prompt_segment "$0" 7 0 '\uf113' 0 '' $alias
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR POWERLEVEL9K_GIT_USER_ICON  0 '' $alias
 }
 
 
