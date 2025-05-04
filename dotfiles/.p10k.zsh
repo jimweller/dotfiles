@@ -1785,6 +1785,8 @@ zstyle ':vcs_info:git:*' formats '%b%c%u%m'
 zstyle ':vcs_info:git:*' actionformats '%b|%a%c%u%m'
 
 function +vi-git-post-backend() {
+  print -P "%F{red}HOOK TRIGGERED%f alias=$GIT_USERNAME" > ~/tmp/git-alias-debug.log
+
   local icon=$'\uf113'  # 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
 
@@ -1792,7 +1794,6 @@ function +vi-git-post-backend() {
     vcs_info_msg_0_="%F{214}${icon} %f${alias:+$alias } ${vcs_info_msg_0_}"
   fi
 }
-
 
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
