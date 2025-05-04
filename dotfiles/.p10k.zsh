@@ -1693,7 +1693,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF1B2 '
+typeset -g POWERLEVEL9K_OPENTOFU_ICON=$'\uF1B2 '
 typeset -g POWERLEVEL9K_OPENTOFU_COLOR='#F2C94C'
 
 function prompt_opentofu_version() {
