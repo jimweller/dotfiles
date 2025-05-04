@@ -1768,8 +1768,7 @@ prompt_aws_jim() {
   typeset -g P9K_AWS_REGION=$region
   local alias=${AWS_REGION_ALIASES[$region]:-$region}
 
-  # _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
-  _p9k_prompt_segment "$0 $_p9k_color1 $POWERLEVEL9K_AWS_JIM_VERSION_COLOR AWS_JIM_VERSION_ICON 0 '' ${P9K_AWS_PROFILE//\%/%%} ${alias}
+  _p9k_prompt_segment "$0$state" $_p9k_color1 $POWERLEVEL9K_AWS_JIM_COLOR AWS_JIM_ICON 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
 }
 
 
