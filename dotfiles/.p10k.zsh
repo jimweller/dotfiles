@@ -169,7 +169,7 @@
   typeset -g POWERLEVEL9K_BACKGROUND=234
 
   # Separator between same-color segments on the left.
-  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%242F\U+E0BB'
+  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%242F\uE0BB'
   # Separator between same-color segments on the right.
   typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%242F\uE0B3'
   # Separator between different-color segments on the left.
