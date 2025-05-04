@@ -1771,7 +1771,9 @@ prompt_aws_jim() {
   _p9k_prompt_segment "$0$state" $_p9k_color1 $POWERLEVEL9K_AWS_JIM_COLOR AWS_JIM_ICON 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
 }
 
-
+function _p9k_prompt_aws_jim_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}'
+}
 
 
 
