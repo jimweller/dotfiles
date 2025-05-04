@@ -79,7 +79,7 @@
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     #terraform               # terraform workspace (https://www.terraform.io)
     #terraform_version     # terraform version (https://www.terraform.io)
-    opentofu_version
+    tofu_version
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     #aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     #azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
@@ -1693,26 +1693,26 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_OPENTOFU_ICON='\uF1B2 '
-typeset -g POWERLEVEL9K_OPENTOFU_COLOR=yellow
-typeset -g POWERLEVEL9K_OPENTOFU_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
+typeset -g POWERLEVEL9K_TOFU_ICON='\uF1B2 '
+typeset -g POWERLEVEL9K_TOFU_COLOR=yellow
+typeset -g POWERLEVEL9K_TOFU_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
 
-function prompt_opentofu_version() {
+function prompt_tofu_version() {
   local tofu=${commands[tofu]} v cfg
   _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
   if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
     v=$_p9k__cache_val[1]
   else
-    v=${${"$(tofu -version 2>/dev/null)"#OpenTofu v}%%$'\n'*} || v=
+    v=${${"$(tofu -version 2>/dev/null)"#Tofu v}%%$'\n'*} || v=
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_OPENTOFU_COLOR OPENTOFU_ICON 0 '' ${v//\%/%%}
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TOFU_COLOR TOFU_ICON 0 '' ${v//\%/%%}
 }
 
-# function _p9k_prompt_opentofu_version_init() {
-#   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
-# }
+function _p9k_prompt_tofu_version_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
+}
 
 
 
