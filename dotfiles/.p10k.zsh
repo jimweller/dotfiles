@@ -1693,7 +1693,7 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 # Jim's custome
 
 
-typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2 '
+typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2'
 typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=yellow
 typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
 
