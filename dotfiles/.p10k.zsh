@@ -1703,7 +1703,7 @@ function prompt_tofu_version() {
   if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
     v=$_p9k__cache_val[1]
   else
-    v=${${"$(tofu version 2>/dev/null)"##*v}}
+    v=${${"$(tofu version 2>/dev/null)"%%$'\n'*}##*v}
     _p9k_cache_stat_set "$v"
   fi
   [[ -n $v ]] || return
