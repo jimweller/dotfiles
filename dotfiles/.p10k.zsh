@@ -1715,6 +1715,45 @@ function _p9k_prompt_tofu_version_init() {
 }
 
 
+typeset -gA AWS_REGION_ALIASES=(
+  us-east-1    use1
+  us-east-2    use2
+  us-west-1    usw1
+  us-west-2    usw2
+)
+
+
+
+################################################################
+# AWS Profile
+prompt_aws() {
+  typeset -g P9K_AWS_PROFILE="${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}"
+  local pat class state
+  for pat class in "${_POWERLEVEL9K_AWS_CLASSES[@]}"; do
+    if [[ $P9K_AWS_PROFILE == ${~pat} ]]; then
+      [[ -n $class ]] && state=_${${(U)class}//İ/I}
+      break
+    fi
+  done
+
+  if [[ -n ${AWS_REGION:-$AWS_DEFAULT_REGION} ]]; then
+    typeset -g P9K_AWS_REGION=${AWS_REGION:-$AWS_DEFAULT_REGION}
+  else
+    local cfg=${AWS_CONFIG_FILE:-~/.aws/config}
+    if ! _p9k_cache_stat_get $0 $cfg; then
+      local -a reply
+      _p9k_parse_aws_config $cfg
+      _p9k_cache_stat_set $reply
+    fi
+    local prefix=$#P9K_AWS_PROFILE:$P9K_AWS_PROFILE:
+    local kv=$_p9k__cache_val[(r)${(b)prefix}*]
+    typeset -g P9K_AWS_REGION=${kv#$prefix}
+  fi
+
+  local region_alias=${AWS_REGION_ALIASES[$P9K_AWS_REGION]:-$P9K_AWS_REGION}
+  _p9k_prompt_segment "$0$state" red white 'AWS_ICON' 0 '' "${P9K_AWS_PROFILE//\%/%%} ${region_alias}"
+}
+
 
 
 
