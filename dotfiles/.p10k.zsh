@@ -1795,7 +1795,8 @@ function _set_git_alias_in_vcs() {
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
 
   if [[ -n $vcs_info_msg_0_ ]]; then
-    vcs_info_msg_0_="%F{214}${icon} %f${alias:+$alias }%F{green}${branch_icon} %b%F{red}%c%u%F{yellow}%m%f"
+    local expanded="%F{214}${icon} %f${alias:+$alias }%F{green}${branch_icon} ${vcs_info_msg_0_}%f"
+    vcs_info_msg_0_=$expanded
   fi
 }
 
