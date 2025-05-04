@@ -1781,8 +1781,27 @@ typeset -gA GIT_USERNAME_ALIASES=(
   jim-weller    j-w
 )
 
-zstyle ':vcs_info:git:*' formats '%F{214} %f${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME} %F{green} %b%F{red}%c%u%F{yellow}%m%f'
-zstyle ':vcs_info:git:*' actionformats '%F{214} %f${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME} %F{green} %b|%a%F{red}%c%u%F{yellow}%m%f'
+zstyle ':vcs_info:git:*' formats '%b%c%u%m'
+zstyle ':vcs_info:git:*' actionformats '%b|%a%c%u%m'
+
+
+function _set_git_alias_in_vcs() {
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' enable git
+  vcs_info
+
+  local icon=$'\uf113'       # 
+  local branch_icon=$'\ue0a0'  # 
+  local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
+
+  if [[ -n $vcs_info_msg_0_ ]]; then
+    vcs_info_msg_0_="%F{214}${icon} %f${alias:+$alias }%F{green}${branch_icon} %b%F{red}%c%u%F{yellow}%m%f"
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _set_git_alias_in_vcs
+
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
