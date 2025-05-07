@@ -1791,9 +1791,16 @@ function prompt_gituser() {
   [[ -d .git || -n $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] || return
 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
-  [[ -n $alias ]] || return
+  local icon=${POWERLEVEL9K_GIT_USER_ICON}
+  local color=$POWERLEVEL9K_GIT_USER_COLOR
+  local suffix=''
 
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR GIT_USER_ICON 0 '' $alias
+  if [[ -z $alias ]]; then
+    suffix=$'\u2205'
+    alias='none'
+  fi
+
+  _p9k_prompt_segment gituser $_p9k_color1 $color $icon 0 '' "$alias$suffix"
 }
 
 
