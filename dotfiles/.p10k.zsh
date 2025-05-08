@@ -1788,7 +1788,7 @@ typeset -g POWERLEVEL9K_GIT_USER_COLOR=33
 typeset -g POWERLEVEL9K_VCS_LEFT_SEPARATOR=''
 
 function prompt_gituser() {
-  [[ -d .git || -n $(git rev-parse --is-inside-work-tree 2>/dev/null) ]] || return
+  [[ -n $GH_TOKEN && -n $GIT_USERNAME ]] || return
 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
   [[ -z $alias ]]
