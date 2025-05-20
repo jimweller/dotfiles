@@ -12,6 +12,7 @@
     ~/.gitconfig: dotfiles/.gitconfig
     ~/.gitignore_global: dotfiles/.gitignore_global
     ~/.aws/config: dotfiles/aws_config
+    ~/.azure/config: dotfiles/azure_config
 
 - shell:
     - description: Install oh-my-zsh and powerlevel10k
