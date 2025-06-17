@@ -1803,3 +1803,5 @@ function prompt_gituser() {
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+
+typeset -g POWERLEVEL9K_VCS_GIT_AZURE_ICON='\uebe8 '
