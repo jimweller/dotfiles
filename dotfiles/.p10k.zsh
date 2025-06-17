@@ -1779,7 +1779,7 @@ function _p9k_prompt_aws_jim_init() {
 
 typeset -gA GIT_USERNAME_ALIASES=(
   jimweller     jw
-  jim-weller    j-w
+  Jim.Weller    mcg
 )
 
 

@@ -2,7 +2,7 @@
 alias work='jump work && switch_git_profile work'
 alias personal='jump personal && switch_git_profile personal'
 
-alias hyl='switch_git_profile work'
+alias mcg='switch_git_profile work'
 alias jim='switch_git_profile personal'
 
 
@@ -26,7 +26,7 @@ switch_git_profile() {
   export GH_TOKEN="$GIT_TOKEN"
   export GH_HOST="${GIT_HOST:-github.com}"
 
-  gh auth status | grep Logged
+  #gh auth status | grep Logged
 }
 
 
