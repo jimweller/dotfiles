@@ -1,11 +1,17 @@
+Host jimweller.com
+  HostName jimweller.com
+  User jimwelle
+  IdentityFile ~/.ssh/id_jim
+  IdentitiesOnly yes
+
 Host vs-ssh.visualstudio.com
   HostName vs-ssh.visualstudio.com
   User mcgsead
   IdentityFile ~/.ssh/id_mcg
   IdentitiesOnly yes
 
-Host jimweller.com
-  HostName jimweller.com
-  User jimwelle
-  IdentityFile ~/.ssh/id_personal
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_jim
   IdentitiesOnly yes

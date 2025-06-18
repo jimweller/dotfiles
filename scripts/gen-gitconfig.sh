@@ -27,5 +27,5 @@ git config --file "$CONFIG" filter.lfs.smudge "git-lfs smudge -- %f"
 git config --file "$CONFIG" filter.lfs.process "git-lfs filter-process"
 git config --file "$CONFIG" filter.lfs.required true
 
-git config --file "$CONFIG" credential.helper "store --file=$HOME/.git-credentials-personal"
-git config --file "$CONFIG" credential."https://github.com".username jimweller
+# git config --file "$CONFIG" credential.helper "store --file=$HOME/.git-credentials-personal"
+# git config --file "$CONFIG" credential."https://github.com".username jimweller

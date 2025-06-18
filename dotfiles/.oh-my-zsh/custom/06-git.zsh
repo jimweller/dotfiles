@@ -1,9 +1,9 @@
 # Alias to switch between work and personal git profiles
-alias work='jump work && switch_git_profile work'
-alias personal='jump personal && switch_git_profile personal'
+alias work='jump work && switch_git_profile mcg'
+alias personal='jump personal && switch_git_profile jim'
 
-alias mcg='switch_git_profile work'
-alias jim='switch_git_profile personal'
+alias mcg='switch_git_profile mcg'
+alias jim='switch_git_profile jim'
 
 
 switch_git_profile() {
@@ -17,14 +17,23 @@ switch_git_profile() {
 
   loadenv "$env_file"
 
+  /bin/rm -f $git_config_file"
+
   git config --file "$git_config_file" user.name "$GIT_USER"
   git config --file "$git_config_file" user.email "$GIT_EMAIL"
   git config --file "$git_config_file" user.signingkey "$ssh_key"
-  git config --file "$git_config_file" credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
-  git config --file "$git_config_file" credential.https://github.com.username "$GIT_USERNAME"
 
-  export GH_TOKEN="$GIT_TOKEN"
-  export GH_HOST="${GIT_HOST:-github.com}"
+  local prefix="${GIT_URL_PREFIX}${GIT_SSH_USER}@${GIT_HOST}"
+  [[ -n "$GIT_URL_PORT" ]] && prefix="${prefix}:${GIT_URL_PORT}"
+  git config --file "$git_config_file" --remove-section url "$prefix" 2>/dev/null || true
+  git config --file "$git_config_file" url."$prefix:".insteadOf "$GIT_URL_INSTEADOF"
+
+
+  # git config --file "$git_config_file" credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
+  # git config --file "$git_config_file" credential.https://github.com.username "$GIT_USERNAME"
+
+  # export GH_TOKEN="$GIT_TOKEN"
+  # export GH_HOST="${GIT_HOST:-github.com}"
 
   #gh auth status | grep Logged
 }
