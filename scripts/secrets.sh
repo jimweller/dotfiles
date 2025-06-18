@@ -8,7 +8,7 @@ if [ -n "$3" ]; then
 elif [ "$1" = "open" ]; then
   ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 else
-  ARCHIVE="$HOME/Projects/personal/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+  ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 fi
 
 
