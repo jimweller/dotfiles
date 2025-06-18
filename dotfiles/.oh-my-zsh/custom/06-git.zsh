@@ -17,6 +17,7 @@ switch_git_profile() {
 
   loadenv "$env_file"
 
+  rm -f "$git_config_file"
 
   git config --file "$git_config_file" user.name "$GIT_USER"
   git config --file "$git_config_file" user.email "$GIT_EMAIL"
@@ -24,7 +25,6 @@ switch_git_profile() {
 
   local prefix="${GIT_URL_PREFIX}${GIT_SSH_USER}@${GIT_HOST}"
   [[ -n "$GIT_URL_PORT" ]] && prefix="${prefix}:${GIT_URL_PORT}"
-  git config --file "$git_config_file" --remove-section url "$prefix" 2>/dev/null || true
   git config --file "$git_config_file" url."$prefix:".insteadOf "$GIT_URL_INSTEADOF"
 
 
