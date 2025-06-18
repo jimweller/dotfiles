@@ -1,5 +1,5 @@
 #!/bin/bash
-CONFIG="$HOME/.gitconfig-dynamic"
+CONFIG="$HOME/.gitconfig-static"
 
 git config --file "$CONFIG" commit.gpgsign true
 git config --file "$CONFIG" gpg.format ssh
