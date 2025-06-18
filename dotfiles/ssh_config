@@ -1,0 +1,11 @@
+Host vs-ssh.visualstudio.com
+  HostName vs-ssh.visualstudio.com
+  User mcgsead
+  IdentityFile ~/.ssh/id_mcg
+  IdentitiesOnly yes
+
+Host jimweller.com
+  HostName jimweller.com
+  User jimwelle
+  IdentityFile ~/.ssh/id_personal
+  IdentitiesOnly yes
