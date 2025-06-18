@@ -1,2 +1,3 @@
 [include]
     path = ~/.gitconfig-dynamic
+    path = ~/.gitconfig-static
