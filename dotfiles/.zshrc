@@ -12,7 +12,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
-plugins=(dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent  encode64 colored-man-pages helm history-substring-search)
+# vscode plugin needs code in the path. This is a hack since
+# the path is already loaded from the custom folder, but 
+# that is too late for the plugins. So, we run it here and in custom.
+source $ZSH/custom/01-path.zsh
+
+plugins=(dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent encode64 colored-man-pages helm history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
