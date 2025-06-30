@@ -1791,7 +1791,6 @@ function prompt_gituser() {
   [[ -n $GIT_USERNAME ]] || return
 
   local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
-  [[ -z $alias ]]
 
   if [[ -z $alias ]]; then
     alias=$'\u2205'
