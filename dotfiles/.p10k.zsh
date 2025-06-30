@@ -1796,7 +1796,21 @@ function prompt_gituser() {
     alias=$'\u2205'
   fi
 
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR GIT_USER_ICON 0 '' $alias
+  # Set icon based on GIT_USERNAME
+  local icon
+  case "$GIT_USERNAME" in
+    "jimweller")
+      icon=$'\uF2BB '  # existing personal icon
+      ;;
+    "Jim.Weller")
+      icon=$'\ued77 '  # medical bag icon for work
+      ;;
+    *)
+      icon=$'\uF2BB '  # default to personal icon
+      ;;
+  esac
+
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR '' 0 '' "$icon$alias"
 }
 
 
