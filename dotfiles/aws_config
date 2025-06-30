@@ -1,68 +1,15 @@
-[profile cfdev]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 183631344218
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile cfdev
+# MCG with identity center
+# ----------------------------------------------------
 
-[profile cfprod]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
+[profile hearst_mcg_bedrock_user]
+granted_sso_start_url      = https://d-9067f7a2b2.awsapps.com/start
 granted_sso_region         = us-east-1
-granted_sso_account_id     = 481665117323
-granted_sso_role_name      = AWSAdministratorAccess
+granted_sso_account_id     = 493888979299
+granted_sso_role_name      = 493888979299-mcg-rockusr
 common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile cfprod
-
-[profile cfsandbox]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 682033495584
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile cfsandbox
-
-[profile cfstaging]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 761018848685
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile cfstaging
-
-[profile seudev]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 711387108459
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile seudev
-
-[profile seuprod]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 676206907917
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile seuprod
-
-[profile seusandbox]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 183631336940
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile seusandbox
-region = us-east-2
-
-[profile seustaging]
-granted_sso_start_url      = https://d-906701405f.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 588738599145
-granted_sso_role_name      = AWSAdministratorAccess
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile seustaging
-
+credential_process         = granted credential-process --profile hearst_mcg_bedrock_user
+granted_sso_registration_scopes = sso:account:access
+region                     = us-west-2
 
 
 # jim.weller identity center
@@ -142,16 +89,10 @@ credential_process = granted credential-process --profile=jim.weller-work1-prod
 region             = us-west-2
 credential_process = granted credential-process --profile=jim.weller-work2-prod
 
-
-
-
-
-
 # ----------------------------------------------------
 # jim.weller+tf@gmail.com for AWS SSO for terraform and EKS
-# remember to sign out of AWS SSO before 
+# remember to sign out of AWS SSO before
 # ----------------------------------------------------
-
 [profile tf-dev/AWSAdministratorAccess]
 granted_sso_start_url      = https://jimweller-org.awsapps.com/start
 granted_sso_region         = us-east-1
