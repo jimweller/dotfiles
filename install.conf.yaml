@@ -14,6 +14,7 @@
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
     ~/.ssh/config: dotfiles/ssh_config
+    ~/.claude/settings.json: dotfiles/claude_settings_json
 
 - shell:
     - description: Install oh-my-zsh and powerlevel10k
