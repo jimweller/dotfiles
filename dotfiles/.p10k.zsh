@@ -84,6 +84,7 @@
     tofu_version
     #aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    devbox                  # devbox environment indicator
     #gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     #google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
     #toolbox                 # toolbox name (https://github.com/containers/toolbox)
@@ -1810,7 +1811,20 @@ function prompt_gituser() {
       ;;
   esac
 
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR '' 0 '' "$icon$alias"
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_GIT_USER_COLOR '' 0 '' "$icon $alias"
+}
+
+
+# Devbox environment indicator
+typeset -g POWERLEVEL9K_DEVBOX_FOREGROUND=172
+
+function prompt_devbox() {
+  [[ "$DEVBOX_SHELL_ENABLED" == "1" ]] || return
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_DEVBOX_FOREGROUND '' 0 '' $'\ued95  devbox'
+}
+
+function _p9k_prompt_devbox_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$DEVBOX_SHELL_ENABLED'
 }
 
 
