@@ -5,7 +5,8 @@ name = AzureCloud
 first_run = yes
 collect_telemetry = false
 no_color = true
-login_experience_v2 = true
+login_experience_v2 = off
 
 [logging]
 enable_log_file = false
+

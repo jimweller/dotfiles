@@ -22,6 +22,11 @@ if [ -d "$HOME/bin" ]; then
   export PATH="$HOME/bin:$PATH"
 fi
 
+# add nix, mostly for devbox
+if [ -d "/nix/var/nix/profiles/default/bin/" ]; then
+  export PATH="/nix/var/nix/profiles/default/bin/:$PATH"
+fi
+
 
 # Add .dotfiles scripts if available
 if [ -d "$HOME/.dotfiles/scripts" ]; then

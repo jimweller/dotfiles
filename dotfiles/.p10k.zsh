@@ -1820,7 +1820,7 @@ typeset -g POWERLEVEL9K_DEVBOX_FOREGROUND=172
 
 function prompt_devbox() {
   [[ "$DEVBOX_SHELL_ENABLED" == "1" ]] || return
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_DEVBOX_FOREGROUND '' 0 '' $'\ued95  devbox'
+  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_DEVBOX_FOREGROUND '' 0 '' $'\ued95 devbox'
 }
 
 function _p9k_prompt_devbox_init() {
