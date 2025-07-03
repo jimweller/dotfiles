@@ -1,12 +1,26 @@
 #!/bin/bash
 
 MODE="$1"
-PASSWORD="$2"
 
+# Load secrets if available
+if [ -f "$HOME/.secrets/dotfiles.env" ]; then
+  set -a
+  source "$HOME/.secrets/dotfiles.env"
+  set +a
+fi
+
+# Set password - use parameter if provided, otherwise use DOTFILES_KEY
+if [ -n "$2" ]; then
+  PASSWORD="$2"
+elif [ -n "$DOTFILES_KEY" ]; then
+  PASSWORD="$DOTFILES_KEY"
+fi
+
+# Set archive - use parameter if provided, otherwise use DOTFILES_ARCHIVE, otherwise use default
 if [ -n "$3" ]; then
   ARCHIVE="$3"
-elif [ "$1" = "open" ]; then
-  ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+elif [ -n "$DOTFILES_ARCHIVE" ]; then
+  ARCHIVE="$DOTFILES_ARCHIVE"
 else
   ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 fi
