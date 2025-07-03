@@ -6,6 +6,13 @@ unset PATH
 # Set base system PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+
+# prepend go
+if [ -d "$HOME/go/bin" ]; then
+  export PATH="$HOME/go/bin:$PATH"
+fi
+
+
 # Prepend Homebrew
 if [ -d "/opt/homebrew/bin" ]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
