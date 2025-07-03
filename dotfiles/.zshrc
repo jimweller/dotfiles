@@ -13,7 +13,7 @@ zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
 # vscode plugin needs code in the path. This is a hack since
-# the path is already loaded from the custom folder, but 
+# the path is later loaded from the custom folder, but 
 # that is too late for the plugins. So, we run it here and in custom.
 source $ZSH/custom/01-path.zsh
 

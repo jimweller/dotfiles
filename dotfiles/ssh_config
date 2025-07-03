@@ -1,3 +1,5 @@
+Include /Users/jimweller/.colima/ssh_config
+
 Host jimweller.com
   HostName jimweller.com
   User jimwelle
