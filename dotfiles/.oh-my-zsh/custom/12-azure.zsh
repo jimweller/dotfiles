@@ -16,15 +16,15 @@ activate_pim() {
   az config set core.login_experience_v2=off >/dev/null 2>&1
   
   # open PIM activation page in browser
-  echo "Opening PIM activation page in browser..."
   open "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
   
-  # wait for user to manually activate PIM role
-  echo "Please login and activate your PIM role '$pim_role' in the browser, then press any key to continue..."
+  # wait to manually activate PIM role
+  echo "Activate PIM role '$pim_role' in the browser."
+  echo -n "Press any key to continue..."
   read -k 1
-  echo
   
   # login to get new permissions after PIM activation
+  az account clear
   az login --tenant "$tenant" >/dev/null 2>&1 || { echo "Error: Failed to login after PIM activation" >&2; return 1; }
   
   # set subscription context
@@ -33,5 +33,4 @@ activate_pim() {
   # restore original login experience setting
   az config set core.login_experience_v2="$original_login_experience" >/dev/null 2>&1
   
-  echo "PIM activation workflow complete. You should now have access to resources."
 }
