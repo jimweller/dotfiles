@@ -1,15 +1,13 @@
-# The current version of the config schema
 version: 1
-# What protocol to use when performing git operations. Supported values: ssh, https
-git_protocol: https
-# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+git_protocol: ssh
+# $VISUAL, $EDITOR and $PAGER are set already
 editor:
+pager:
+
 # When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
 prompt: enabled
 # Preference for editor-based interactive prompting. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
 prefer_editor_prompt: disabled
-# A pager program to send command output to, e.g. "less". If blank, will refer to environment. Set the value to "cat" to disable the pager.
-pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
@@ -24,4 +22,4 @@ accessible_colors: disabled
 # Whether an accessible prompter should be used. Supported values: enabled, disabled
 accessible_prompter: disabled
 # Whether to use a animated spinner as a progress indicator. If disabled, a textual progress indicator is used instead. Supported values: enabled, disabled
-spinner: enabled
+spinner: disabled
