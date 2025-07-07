@@ -13,7 +13,6 @@ switch_git_profile() {
   local git_config_file="$HOME/.gitconfig-dynamic"
 
   [[ -f "$env_file" ]] || { echo "Missing env: $env_file"; return 1; }
-  [[ -f "$ssh_key" ]] || { echo "Missing key: $ssh_key"; return 1; }
 
   loadenv "$env_file"
 
@@ -21,16 +20,42 @@ switch_git_profile() {
 
   git config --file "$git_config_file" user.name "$GIT_USER"
   git config --file "$git_config_file" user.email "$GIT_EMAIL"
-  git config --file "$git_config_file" user.signingkey "$ssh_key"
 
-  local prefix="${GIT_URL_PREFIX}${GIT_SSH_USER}@${GIT_HOST}"
-  [[ -n "$GIT_URL_PORT" ]] && prefix="${prefix}:${GIT_URL_PORT}"
-  git config --file "$git_config_file" url."$prefix:".insteadOf "$GIT_URL_INSTEADOF"
+  if [[ "$profile" == "mcg" ]]; then
+    # Use Azure DevOps PAT authentication for work profile
+    [[ -n "$AZURE_DEVOPS_EXT_PAT" ]] || { echo "Missing AZURE_DEVOPS_EXT_PAT in $env_file"; return 1; }
+    [[ -f "$ssh_key" ]] || { echo "Missing key: $ssh_key (needed for commit signing)"; return 1; }
+    
+    # Configure SSH key for commit signing
+    git config --file "$git_config_file" user.signingkey "$ssh_key"
+    
+    # Export variables so they're available to git credential helper subprocess
+    export GIT_USERNAME
+    export AZURE_DEVOPS_EXT_PAT
+    
+    # Configure credential helper for Azure DevOps using environment variables
+    git config --file "$git_config_file" credential.helper '!f() { echo "username=$GIT_USERNAME"; echo "password=$AZURE_DEVOPS_EXT_PAT"; }; f'
+    
+    # Set up URL rewriting for HTTPS
+    if [[ -n "$GIT_URL_INSTEADOF" ]]; then
+      git config --file "$git_config_file" url."https://dev.azure.com/".insteadOf "$GIT_URL_INSTEADOF"
+    fi
+    
+    echo "Switched to $profile profile (Azure DevOps PAT authentication with SSH signing)"
+  else
+    # Use SSH authentication for personal profile
+    [[ -f "$ssh_key" ]] || { echo "Missing key: $ssh_key"; return 1; }
+    
+    git config --file "$git_config_file" user.signingkey "$ssh_key"
 
+    local prefix="${GIT_URL_PREFIX}${GIT_SSH_USER}@${GIT_HOST}"
+    [[ -n "$GIT_URL_PORT" ]] && prefix="${prefix}:${GIT_URL_PORT}"
+    git config --file "$git_config_file" url."$prefix:".insteadOf "$GIT_URL_INSTEADOF"
+    
+    echo "Switched to $profile profile (SSH authentication)"
+  fi
 
-  # git config --file "$git_config_file" credential.helper "!f() { echo username=$GIT_USERNAME; echo password=$GIT_TOKEN; }; f"
-  # git config --file "$git_config_file" credential.https://github.com.username "$GIT_USERNAME"
-
+  # Set up GitHub CLI if needed
   # export GH_TOKEN="$GIT_TOKEN"
   # export GH_HOST="${GIT_HOST:-github.com}"
 
