@@ -1779,8 +1779,8 @@ function _p9k_prompt_aws_jim_init() {
 
 
 typeset -gA GIT_USERNAME_ALIASES=(
-  jimweller     jw
-  Jim.Weller    mcg
+  jim.weller@gmail.com  jw
+  jim.weller@mcg.com    mcg
 )
 
 
@@ -1789,21 +1789,25 @@ typeset -g POWERLEVEL9K_GIT_USER_COLOR=33
 typeset -g POWERLEVEL9K_VCS_LEFT_SEPARATOR=''
 
 function prompt_gituser() {
-  [[ -n $GIT_USERNAME ]] || return
+  # Read current git user from actual git config instead of environment variable
+  local git_user
+  git_user=$(git config user.email 2>/dev/null)
+  [[ -n $git_user ]] || return
 
-  local alias=${GIT_USERNAME_ALIASES[$GIT_USERNAME]:-$GIT_USERNAME}
+  # Look up alias directly using email address
+  local alias=${GIT_USERNAME_ALIASES[$git_user]:-$git_user}
 
   if [[ -z $alias ]]; then
     alias=$'\u2205'
   fi
 
-  # Set icon based on GIT_USERNAME
+  # Set icon based on email address
   local icon
-  case "$GIT_USERNAME" in
-    "jimweller")
-      icon=$'\uF2BB '  # existing personal icon
+  case "$git_user" in
+    jim.weller@gmail.com)
+      icon=$'\uF2BB '  # personal icon
       ;;
-    "Jim.Weller")
+    jim.weller@mcg.com)
       icon=$'\ued77 '  # medical bag icon for work
       ;;
     *)
