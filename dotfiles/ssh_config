@@ -1,5 +1,11 @@
 Include /Users/jimweller/.colima/ssh_config
 
+# macOS-specific settings for automatic key management
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly no
+
 Host jimweller.com
   HostName jimweller.com
   User jimwelle
