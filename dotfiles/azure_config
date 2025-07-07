@@ -10,3 +10,6 @@ login_experience_v2 = off
 [logging]
 enable_log_file = false
 
+[defaults]
+location = westus2
+

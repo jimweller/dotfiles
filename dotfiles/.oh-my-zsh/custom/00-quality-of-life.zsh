@@ -18,4 +18,6 @@ unsetopt share_history
 
 loadenv() { set -a; source "$1"; set +a; }
 
+secrets() { loadenv "$HOME/.secrets/$1.env" }
+
 source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
