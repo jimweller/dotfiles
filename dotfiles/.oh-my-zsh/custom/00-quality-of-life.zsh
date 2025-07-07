@@ -21,3 +21,22 @@ loadenv() { set -a; source "$1"; set +a; }
 secrets() { loadenv "$HOME/.secrets/$1.env" }
 
 source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+# Set EDITOR and VISUAL variables - prefer 'code', then 'nano', fallback to 'vi'
+if command -v code > /dev/null 2>&1; then
+    export EDITOR="code -w"
+    export VISUAL="code -w"
+elif command -v nano > /dev/null 2>&1; then
+    export EDITOR=nano
+    export VISUAL=nano
+else
+    export EDITOR=vi
+    export VISUAL=vi
+fi
+
+# Set PAGER variable - prefer 'bat' if available, otherwise use 'less'
+if command -v bat > /dev/null 2>&1; then
+    export PAGER=bat
+else
+    export PAGER=less
+fi
