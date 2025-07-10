@@ -20,7 +20,10 @@ loadenv() { set -a; source "$1"; set +a; }
 
 secrets() { loadenv "$HOME/.secrets/$1.env" }
 
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+if [ -f if [ -d "/opt/homebrew/bin" ]; then
+  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
 
 # Set EDITOR and VISUAL variables - prefer 'code', then 'nano', fallback to 'vi'
 if command -v code > /dev/null 2>&1; then
@@ -40,3 +43,6 @@ if command -v bat > /dev/null 2>&1; then
 else
     export PAGER=less
 fi
+
+# DevContainer management alias
+alias devcontainer='devcontainer.sh'
