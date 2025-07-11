@@ -16,8 +16,6 @@ activate_pim() {
   az config set core.login_experience_v2=off >/dev/null 2>&1
   
   # open PIM activation page in browser
-  echo   "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
- 
   if [ "$(uname)" = "Darwin" ]; then
     open "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
   else
@@ -27,7 +25,7 @@ activate_pim() {
   # wait to manually activate PIM role
   echo "Activate PIM role '$pim_role' in the browser."
   echo -n "Press any key to continue..."
-  read -k 1
+  read -n 1
   
   # login to get new permissions after PIM activation
   az account clear
