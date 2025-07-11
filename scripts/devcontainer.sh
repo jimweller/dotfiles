@@ -38,12 +38,12 @@ case "$MODE" in
         docker exec -it devcontainer /bin/zsh
         ;;
     help|*)
-        echo "Usage: devcontainer.sh [build|run|connect]"
+        echo "Usage: devcontainer.sh [build|b|run|r|connect|c]"
         echo ""
         echo "Commands:"
-        echo "  build   - Build the devcontainer"
-        echo "  run     - Run the devcontainer"
-        echo "  connect - Connect to the running devcontainer"
+        echo "  build (b)   - Build the devcontainer"
+        echo "  run (r)     - Run the devcontainer"
+        echo "  connect (c) - Connect to the running devcontainer"
         exit 1
         ;;
 esac
