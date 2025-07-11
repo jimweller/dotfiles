@@ -46,3 +46,4 @@ fi
 
 # DevContainer management alias
 alias devcontainer='devcontainer.sh'
+alias devc='devcontainer.sh'
