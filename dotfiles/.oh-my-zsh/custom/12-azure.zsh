@@ -21,7 +21,7 @@ activate_pim() {
   if [ "$(uname)" == "Darwin" ]; then
     open "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
   else
-    echo Go to "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
+    echo "Go to https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
   fi
 
   # wait to manually activate PIM role
