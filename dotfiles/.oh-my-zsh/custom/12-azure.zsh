@@ -18,7 +18,7 @@ activate_pim() {
   # open PIM activation page in browser
   echo   "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
  
-  if [ "$(uname)" != "Darwin" ]; then
+  if [ "$(uname)" == "Darwin" ]; then
     open "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
   else
     echo Go to "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ActivationMenuBlade/~/aadgroup"
