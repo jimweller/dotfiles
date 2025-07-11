@@ -27,6 +27,7 @@ case "$MODE" in
         docker build \
           --build-arg USER_UID=$HOST_UID \
           --build-arg USER_GID=$HOST_GID \
+          --progress=plain \
           -t devcontainer ~/.dotfiles/devcontainer
         run_devcontainer
         ;;
