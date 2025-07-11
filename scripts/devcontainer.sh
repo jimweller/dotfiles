@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # DevContainer management script
-# Usage: devcontainer.sh [build|run|connect]
+# Usage: devcontainer.sh [build|b|run|r|connect|c]
 
 # Function to run the devcontainer
 run_devcontainer() {
@@ -19,7 +19,7 @@ run_devcontainer() {
 MODE="${1:-help}"
 
 case "$MODE" in
-    build)
+    build|b)
         docker stop devcontainer 2>/dev/null || true
         docker rm devcontainer 2>/dev/null || true
         HOST_UID=$(id -u)
@@ -31,10 +31,10 @@ case "$MODE" in
           -t devcontainer ~/.dotfiles/devcontainer
         run_devcontainer
         ;;
-    run)
+    run|r)
         run_devcontainer
         ;;
-    connect)
+    connect|c)
         docker exec -it devcontainer /bin/zsh
         ;;
     help|*)
