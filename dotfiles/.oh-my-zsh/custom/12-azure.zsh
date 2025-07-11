@@ -4,6 +4,11 @@ loadenv ~/.secrets/azure.env
 alias azup='activate_pim'
 alias azdown='az account clear'
 
+readit () {   
+  echo -n "Press any key to continue..."
+  read -n 1
+}
+
 activate_pim() {
   local pim_role="${1:-$AZ_PIM_ROLE}"
   local subscription="${2:-$AZ_SUBSCRIPTION_ID}"
