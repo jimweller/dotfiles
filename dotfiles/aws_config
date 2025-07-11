@@ -1,6 +1,9 @@
 # MCG with identity center
 # ----------------------------------------------------
 
+[profile bedrock]
+source_profile = hearst_mcg_bedrock_user
+
 [profile hearst_mcg_bedrock_user]
 granted_sso_start_url      = https://d-9067f7a2b2.awsapps.com/start
 granted_sso_region         = us-east-1
