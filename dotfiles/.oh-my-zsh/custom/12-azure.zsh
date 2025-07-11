@@ -30,7 +30,7 @@ activate_pim() {
   # wait to manually activate PIM role
   echo "Activate PIM role '$pim_role' in the browser."
   echo -n "Press any key to continue..."
-  read -n 1
+  read -k 1
   echo "it"
   
   # login to get new permissions after PIM activation
