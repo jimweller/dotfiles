@@ -14,10 +14,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # that is too late for the plugins. So, we run it here and in custom.
 source $ZSH/custom/01-path.zsh
 
-plugins=(dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent encode64 colored-man-pages helm history-substring-search)
+plugins=(dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu terraform aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent encode64 colored-man-pages helm history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
