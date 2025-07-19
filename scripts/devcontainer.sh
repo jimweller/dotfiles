@@ -9,6 +9,7 @@ run_devcontainer() {
       --name devcontainer \
       --restart unless-stopped \
       -p 3000:3000 \
+      -p 3333:3333 \
       --mount source=devcontainer-homedir,target=/home/vscode \
       --mount type=bind,source=/Users/jimweller/Projects/work,target=/home/vscode/Projects/work \
       --mount type=bind,source=/Users/jimweller/Projects/personal,target=/home/vscode/Projects/personal \
