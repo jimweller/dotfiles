@@ -1,5 +1,35 @@
 Include /Users/jimweller/.colima/ssh_config
 
+# DevPod Start vscode-remote-try-python.devpod
+Host vscode-remote-try-python.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/Applications/DevPod.app/Contents/MacOS/devpod-cli" ssh --stdio --context default --user vscode vscode-remote-try-python
+  User vscode
+# DevPod End vscode-remote-try-python.devpod
+# DevPod Start devpod-example-go.devpod
+Host devpod-example-go.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/Applications/DevPod.app/Contents/MacOS/devpod-cli" ssh --stdio --context default --user vscode devpod-example-go
+  User vscode
+# DevPod End devpod-example-go.devpod
+# DevPod Start devcontainer.devpod
+Host devcontainer.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/Applications/DevPod.app/Contents/MacOS/devpod-cli" ssh --stdio --context default --user vscode devcontainer
+  User vscode
+# DevPod End devcontainer.devpod
 # macOS-specific settings for automatic key management
 Host *
   AddKeysToAgent yes

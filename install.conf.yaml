@@ -21,7 +21,7 @@
 
 - shell:
     - description: Install oh-my-zsh and powerlevel10k
-      command: ~/.dotfiles/scripts/ohmyzsh.sh
+      command: ~/dotfiles/scripts/ohmyzsh.sh
       stderr: true
       stdout: true
 
@@ -40,9 +40,9 @@
 # - shell:
 #     - description: Install and Setup
 #       command: |
-#         ~/.dotfiles/scripts/brew.sh
-#         ~/.dotfiles/scripts/apt.sh
-#         ~/.dotfiles/scripts/other.sh
-#         ~/.dotfiles/scripts/gen-gitconfig.sh
+#         ~/dotfiles/scripts/brew.sh
+#         ~/dotfiles/scripts/apt.sh
+#         ~/dotfiles/scripts/other.sh
+#         ~/dotfiles/scripts/gen-gitconfig.sh
 #       stderr: true
 #       stdout: true
