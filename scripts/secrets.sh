@@ -22,7 +22,7 @@ if [ -n "$3" ]; then
 elif [ -n "$DOTFILES_ARCHIVE" ]; then
   ARCHIVE="$DOTFILES_ARCHIVE"
 else
-  ARCHIVE="$HOME/.dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+  ARCHIVE="$HOME/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 fi
 
 

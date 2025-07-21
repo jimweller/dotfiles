@@ -35,7 +35,7 @@ if [ -d "/nix/var/nix/profiles/default/bin/" ]; then
 fi
 
 
-# Add .dotfiles scripts if available
-if [ -d "$HOME/.dotfiles/scripts" ]; then
-  export PATH="$HOME/.dotfiles/scripts:$PATH"
+# Add dotfiles scripts if available
+if [ -d "$HOME/dotfiles/scripts" ]; then
+  export PATH="$HOME/dotfiles/scripts:$PATH"
 fi
