@@ -18,6 +18,8 @@
     ~/.claude/settings.json: dotfiles/claude_settings_json
     ~/.config/gh/config.yml: dotfiles/github_config.yml
     ~/.config/gh/hosts.yml: dotfiles/github_hosts.yml
+    ~/.config/devcontainer/features/fix-zsh-prompt/devcontainer-feature.json: dotfiles/fix-zsh-feature/devcontainer-feature.json
+    ~/.config/devcontainer/features/fix-zsh-prompt/install.sh: dotfiles/fix-zsh-feature/install.sh
     
 
 - shell:
