@@ -16,9 +16,9 @@
     ~/.azure/config: dotfiles/azure_config
     ~/.ssh/config: dotfiles/ssh_config
     ~/.claude/settings.json: dotfiles/claude_settings_json
-    ~/.config/gh/config.yml: dotfiles/github_config.yml
-    ~/.config/gh/hosts.yml: dotfiles/github_hosts.yml
-    
+    ~/.config/gh/:
+      glob: true
+      path: dotfiles/github/*
 
 - shell:
     - description: Install oh-my-zsh and powerlevel10k
