@@ -65,17 +65,7 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 
 # install the common configuration used by all OS
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}"
+# https://github.com/ssbanerje/dotbot-ifplatform
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" --plugin-dir dotbot-ifplatform
 
 
-# install OS specific configurations
-# Detect OS and run the OS-specific profile
-if [[ "$(uname)" == "Darwin" ]]; then
-    echo "Running macOS-specific tasks..."
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG_MACOS}"
-elif [[ "$(uname)" == "Linux" ]]; then
-    echo "Running Linux-specific tasks..."
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG_LINUX}"
-else
-    echo "Unsupported OS: $(uname)"
-fi
