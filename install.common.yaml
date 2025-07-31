@@ -39,7 +39,7 @@
       glob: true
       path: dotfiles/.oh-my-zsh/custom/*
 
-- ifanylinux:
+- ifubuntu:
   - link:
       ~/.granted/config: dotfiles/granted_config_linux
 
