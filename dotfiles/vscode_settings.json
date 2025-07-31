@@ -1,0 +1,222 @@
+{
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced"
+  },
+  "[github-actions-workflow]": {
+    "editor.autoIndent": "advanced",
+    "editor.indentSize": 2
+  },
+  "[yaml]": {
+    "editor.autoIndent": "advanced",
+    "editor.indentSize": 2,
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.detectIndentation": false,
+  "editor.minimap.enabled": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "git.openRepositoryInParentFolders": "never",
+  "copilot.enable": "min",
+  "copilot.enableInEditor": true,
+  "copilot.enableInTerminal": false,
+  "copilot.enableInNotebook": false,
+  "copilot.enableInInteractiveWindows": false,
+  "copilot.chat.enable": false,
+  "hediet.vscode-drawio.resizeImages": null,
+  "hediet.vscode-drawio.theme": "kennedy",
+  "launch": {
+    "configurations": []
+  },
+  "markdown-preview-github-styles.colorTheme": "light",
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "security.workspace.trust.untrustedFiles": "open",
+  "telemetry.telemetryLevel": "off",
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.automationProfile.osx": null,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.environmentChangesRelaunch": false,
+  "terminal.integrated.fontFamily": "Mononoki Nerd Font",
+  "terminal.integrated.tabs.defaultIcon": "terminal-powershell",
+  "terraform.languageServer.enable": true,
+  "workbench.colorCustomizations": {
+    "[*]": {
+      "terminal.background": "#000000"
+    }
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.settings.applyToAllProfiles": ["editor.detectIndentation"],
+  "workbench.startupEditor": "none",
+  "terminal.integrated.env.osx": {
+    "Q_NEW_SESSION": "1"
+  },
+  "[html]": {
+    "html.format.wraapLineLength": 0,
+    "editor.indentSize": 2,
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+  "html.format.indentInnerHtml": true,
+  "html.format.extraLiners": "body",
+  "html.format.wrapLineLength": 0,
+  "html.format.indentHandlebars": true,
+  "window.confirmSaveUntitledWorkspace": false,
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.codeLens": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "sshfs.configs": [
+    {
+      "name": "jimweller",
+      "host": "jimweller.com",
+      "agent": "$SSH_AUTH_SOCK",
+      "username": "jimwelle",
+      "newFileMode": "0o644",
+      "root": "/home4/jimwelle",
+      "privateKeyPath": "/Users/jim.weller/.ssh/id_rsa"
+    }
+  ],
+  "workbench.editor.enablePreview": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "editor.tabSize": 2,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "workbench.activityBar.location": "top",
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": ["-l"],
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh",
+      "args": ["-l"]
+    },
+    "fish": {
+      "path": "fish",
+      "args": ["-l"]
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    },
+    "ohmyzsh": {
+      "path": "/bin/bash",
+      "args": ["-l"]
+    }
+  },
+  "errorLens.enabled": false,
+  "git.blame.editorDecoration.enabled": false,
+  "cline.mcp.mode": "off",
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.drawio.png": "hediet.vscode-drawio"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "aws.resources.enabledResources": [
+    "AWS::AutoScaling::LaunchConfiguration",
+    "AWS::SQS::Queue"
+  ],
+  "roo-cline.allowedCommands": [
+    "tsc",
+    "git log",
+    "git diff",
+    "git show",
+    "sqllite3",
+    "az",
+    "aws",
+    "go",
+    "make",
+    "./bin/azure-discover ",
+    "npm",
+    "npx",
+    "uvx",
+    "uv",
+    "docker",
+    "psql",
+    "head",
+    "tail",
+    "*"
+  ],
+  "roo-cline.vsCodeLmModelSelector": {},
+  "dotfiles.repository": "https://github.com/jimweller/dotfiles",
+  "dotfiles.targetPath": "~/dotfiles",
+  "dev.containers.defaultFeatures": {
+    "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
+  },
+  "terminal.integrated.profiles.linux": {
+    "zsh": {
+      "path": "zsh",
+      "args": ["-l"]
+    },
+    "bash": {
+      "path": "bash",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.shellIntegration.enabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "dev.containers.copyGitConfig": false,
+  "dev.containers.mountWaylandSocket": false,
+  "dev.containers.optimisticallyLaunchDocker": false,
+  "window.title": "${rootName}:${activeEditorShort}",
+  "workbench.colorTheme": "GitHub Dark Default",
+  "aws.telemetry": false,
+  "peacock.favoriteColors": [
+    { "name": "Crimson", "value": "#610000" },
+    { "name": "Dark Slate Blue", "value": "#322b61" },
+    { "name": "Forest Green", "value": "#186118" },
+    { "name": "Steel Blue", "value": "#315b7e" },
+    { "name": "Indigo", "value": "#34005b" },
+    { "name": "Teal", "value": "#005757" },
+    { "name": "Dark Olive Green", "value": "#3c4b21" },
+    { "name": "Maroon", "value": "#590000" },
+    { "name": "Saddle Brown", "value": "#613214" },
+    { "name": "Dark Goldenrod", "value": "#826008" },
+    { "name": "Midnight Blue", "value": "#121249" },
+    { "name": "Dark Cyan", "value": "#006161" },
+    { "name": "Dark Turquoise", "value": "#009194" },
+    { "name": "Sea Green", "value": "#205f3c" },
+    { "name": "Slate Gray", "value": "#4e5e63" },
+    { "name": "Dim Gray", "value": "#4b4b4b" },
+    { "name": "Dark Magenta", "value": "#610061" },
+    { "name": "Chocolate", "value": "#941c15" },
+    { "name": "Firebrick", "value": "#7d1818" },
+    { "name": "Indian Red", "value": "#903f3f" },
+    { "name": "Dark Orchid", "value": "#6b2391" },
+    { "name": "Dark Orange", "value": "#b25f00" },
+    { "name": "Dark Violet", "value": "#69009a" },
+    { "name": "Dark Sea Green", "value": "#628265" },
+    { "name": "Rosy Brown", "value": "#856262" },
+    { "name": "Peru", "value": "#90613b" },
+    { "name": "Cadet Blue", "value": "#437086" },
+    { "name": "Rebecca Purple", "value": "#47264c" },
+    { "name": "Slate Blue", "value": "#4b4191" },
+    { "name": "Medium Violet Red", "value": "#8d105f" }
+  ],
+  "dev.containers.gitCredentialHelperConfigLocation": "none",
+  "editor.fontFamily": "MesloLGL Nerd Font, FiraCode Nerd Font, SauceCodePro Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "terminal.integrated.fontSize": 14,
+  "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
+  "docker.extension.enableComposeLanguageServer": false,
+  "sqlite3-editor.ui.minimizePanel": true,
+  "roo-cline.deniedCommands": [],
+  "cSpell.enabled": false,
+  "makefile.configureOnOpen": true
+}
