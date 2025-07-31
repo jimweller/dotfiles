@@ -6,4 +6,4 @@
 
 - link:
     ~/.granted/config: dotfiles/granted_config_macos
-
+    "~/Library/Application Support/Code/User/settings.json": dotfiles/vscode_settings.json
