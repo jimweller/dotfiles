@@ -23,7 +23,35 @@ if ! command -v python3 >/dev/null 2>&1; then
 
   elif [ "$OS" = "Darwin" ]; then
     echo "Installing Python3 using Homebrew..."
-    echo "    brew install python"
+    
+    # Check if Homebrew is installed
+    if ! command -v brew >/dev/null 2>&1; then
+      echo "Homebrew not found. Installing Homebrew..."
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      
+      # Add Homebrew to PATH for current session
+      if [[ -d "/opt/homebrew" ]]; then
+        export PATH="/opt/homebrew/bin:$PATH"
+      elif [[ -d "/usr/local/Homebrew" ]]; then
+        export PATH="/usr/local/bin:$PATH"
+      fi
+      
+      # Verify Homebrew installation
+      if ! command -v brew >/dev/null 2>&1; then
+        echo "Error: Homebrew installation failed. Please install manually."
+        exit 1
+      fi
+      echo "Homebrew installed successfully."
+    fi
+    
+    # Install Python3 using Homebrew
+    echo "Installing Python3..."
+    if ! brew install python; then
+      echo "Warning: Python3 installation via Homebrew failed. You may need to install it manually."
+      echo "You can try: brew install python3"
+    else
+      echo "Python3 installed successfully via Homebrew."
+    fi
 
   else
     echo "Unknown OS: $OS. Cannot install Python automatically."
