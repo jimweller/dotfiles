@@ -5,6 +5,3 @@
 [submodule "devcontainer"]
 	path = devcontainer
 	url = https://github.com/jimweller/devcontainer
-[submodule "dotbot-ifplatform"]
-	path = dotbot-ifplatform
-	url = https://github.com/ssbanerje/dotbot-ifplatform.git
