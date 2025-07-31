@@ -40,6 +40,11 @@
       path: dotfiles/.oh-my-zsh/custom/*
 
 - ifubuntu:
-  - link:
-      ~/.granted/config: dotfiles/granted_config_linux
+  - shell:
+      - echo "Ubuntu"
+
+- anylinux:
+  - shell:
+      - echo "anylinux"
+      # ~/.granted/config: dotfiles/granted_config_linux
 
