@@ -1,0 +1,9 @@
+- defaults:
+    link:
+      force: true
+      create: true
+      relink: true
+
+- link:
+  ~/.granted/config : dotfiles/granted_config_linux
+
