@@ -1,0 +1,28 @@
+{
+  "numStartups": 1,
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "tipsHistory": {
+    "new-user-warmup": 1
+  },
+  "shiftEnterKeyBindingInstalled": true,
+  "hasCompletedOnboarding": true,
+  "userID": "d981860f2d67a76147bc9a288136730d09e7702edbde7c8d6068b29a151ad9d9",
+  "subscriptionNoticeCount": 0,
+  "hasAvailableSubscription": false,
+  "changelogLastFetched": 1753969347417,
+  "bypassPermissionsModeAccepted": true,
+  "hasAcknowledgedCostThreshold": true,
+  "isQualifiedForDataSharing": false,
+  "projects": {
+    "/workspaces": {
+      "hasTrustDialogAccepted": true
+    },
+    "/home/vscode": {
+      "hasTrustDialogAccepted": true
+    },
+    "/Users/jimweller": {
+      "hasTrustDialogAccepted": true
+    }
+  }
+}

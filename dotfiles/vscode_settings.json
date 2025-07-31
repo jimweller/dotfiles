@@ -152,6 +152,25 @@
   "roo-cline.vsCodeLmModelSelector": {},
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/dotfiles",
+  "dev.containers.defaultExtensions": [
+    "rooveterinaryinc.roo-cline",
+    "anthropic.claude-code",
+    "bierner.github-markdown-preview",
+    "bierner.markdown-checkbox",
+    "bierner.markdown-emoji",
+    "bierner.markdown-footnotes",
+    "bierner.markdown-mermaid",
+    "bierner.markdown-preview-github-styles",
+    "bierner.markdown-yaml-preamble",
+    "davidanson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "docker.docker",
+    "eamodio.gitlens",
+    "mcsodbrenner.better-open-editors",
+    "mhutchie.git-graph",
+    "usernamehw.errorlens",
+    "esbenp.prettier-vscode"
+  ],
   "dev.containers.defaultFeatures": {
     "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
   },

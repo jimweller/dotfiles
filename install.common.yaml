@@ -16,6 +16,7 @@
     ~/.azure/config: dotfiles/azure_config
     ~/.ssh/config: dotfiles/ssh_config
     ~/.claude/settings.json: dotfiles/claude_settings_json
+    ~/.claude.json: dotfiles/claude_json
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
