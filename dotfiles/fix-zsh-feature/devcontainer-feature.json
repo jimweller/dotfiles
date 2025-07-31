@@ -2,5 +2,5 @@
 {
   "name": "Fix Zsh New User Prompt",
   "id": "fix-zsh-prompt",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
