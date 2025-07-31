@@ -5,5 +5,5 @@
       relink: true
 
 - link:
-  ~/.granted/config : dotfiles/granted_config_macos
+    ~/.granted/config: dotfiles/granted_config_macos
 
