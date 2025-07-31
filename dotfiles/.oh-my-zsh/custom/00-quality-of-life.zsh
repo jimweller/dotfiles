@@ -16,9 +16,17 @@ alias z='. ~/.zshrc'
 
 unsetopt share_history
 
-loadenv() { set -a; source "$1"; set +a; }
+loadenv() { 
+  set -a 
+  if [[ -f "$1" ]]; then
+    source "$1"
+  fi
+  set +a; 
+}
 
-secret() { loadenv "$HOME/.secrets/$1.env" }
+secret() { 
+  loadenv "$HOME/.secrets/$1.env" 
+}
 
 if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
