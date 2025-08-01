@@ -1,3 +1,5 @@
 [include]
     path = ~/.gitconfig-dynamic
     path = ~/.gitconfig-static
+[core]
+	excludesFile = ~/dotfiles/dotfiles/.gitignore_global
