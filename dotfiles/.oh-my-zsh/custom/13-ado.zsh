@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Main ado wrapper function
 ado() {
 
-    # Check prerequisites before executing commands
     if ! _ado_check_prerequisites; then
         return 1
     fi
@@ -33,7 +31,6 @@ ado() {
     esac
 }
 
-# Azure DevOps browse function - works like 'gh browse' but for ADO repositories
 ado_browse() {
     if [[ $# -eq 0 ]]; then
         echo "Usage: ado browse"
@@ -49,11 +46,25 @@ ado_browse() {
     fi
     
     if [[ "$remote_url" =~ ^https://dev\.azure\.com/ ]]; then
-        # HTTPS URLs are already web URLs - just use them directly
         echo "Opening Azure DevOps repository: $remote_url"
         open "$remote_url"
+    elif [[ "$remote_url" =~ ^https://.*\.visualstudio\.com ]]; then
+        local clean_url=$(echo "$remote_url" | sed 's|https://[^@]*@|https://|')
+        local org=$(echo "$clean_url" | sed -n 's|^https://\([^.]*\)\..*|\1|p')
+        local project=$(echo "$clean_url" | sed -n 's|.*/DefaultCollection/\([^/]*\)/_git/.*|\1|p')
+        local repo=$(echo "$clean_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
+        
+        if [[ -n "$org" && -n "$project" && -n "$repo" ]]; then
+            project=$(printf '%s\n' "$project" | sed 's/ /%20/g')
+            local web_url="https://dev.azure.com/${org}/${project}/_git/${repo}"
+            echo "Opening Azure DevOps repository: $web_url"
+            open "$web_url"
+        else
+            echo "Error: Could not parse Azure DevOps URL format"
+            echo "Remote URL: $remote_url"
+            return 1
+        fi
     elif [[ "$remote_url" =~ ^git@ssh\.dev\.azure\.com ]]; then
-        # SSH URLs need to be converted to HTTPS format
         local org=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/\([^/]*\)/.*|\1|p')
         local project=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/[^/]*/\([^/]*\)/.*|\1|p')
         local repo=$(echo "$remote_url" | sed -n 's|.*[^/]*/\([^/]*\)$|\1|p')
@@ -75,7 +86,6 @@ ado_browse() {
     fi
 }
 
-# Azure DevOps PR operations
 ado_pr() {
     if [[ $# -eq 0 ]]; then
         echo "Usage: ado pr <command> [arguments]"
@@ -127,7 +137,6 @@ ado_pr() {
     esac
 }
 
-# Individual PR command functions
 ado_pr_create() {
     if [[ $# -eq 0 ]]; then
         az repos pr create --help
@@ -135,7 +144,6 @@ ado_pr_create() {
         return
     fi
     
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
@@ -146,14 +154,12 @@ ado_pr_create() {
 }
 
 ado_pr_list() {
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
         return 1
     fi
     
-    # Always output table format with desired columns: PR, title, creator, created (trimmed), url
     az repos pr list "$@" --output table --query "[].{PR:pullRequestId,Title:title,Creator:createdBy.uniqueName,Created:creationDate,URL:join(\`\`,[\`$base_url\`,\`/pullrequest/\`,to_string(pullRequestId)])}"
 }
 
@@ -164,14 +170,12 @@ ado_pr_show() {
         return
     fi
     
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
         return 1
     fi
     
-    # Always output table format with desired columns: PR, title, creator, created (trimmed), url
     az repos pr show "$@" --output table --query "{PR:pullRequestId,Title:title,Creator:createdBy.uniqueName,Created:creationDate,URL:join(\`\`,[\`$base_url\`,\`/pullrequest/\`,to_string(pullRequestId)])}"
 }
 
@@ -182,7 +186,6 @@ ado_pr_update() {
         return
     fi
     
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
@@ -199,7 +202,6 @@ ado_pr_complete() {
         return
     fi
     
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
@@ -216,7 +218,6 @@ ado_pr_abandon() {
         return
     fi
     
-    # Use string concatenation approach with native Azure CLI table output
     local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not determine base URL"
@@ -233,18 +234,15 @@ ado_pr_vote() {
         return
     fi
     
-    # Parse arguments to extract PR ID
     local pr_id=""
     local parsed_args=("$@")
     
-    # Handle 'approve' alias and extract PR ID
     if [[ "${1}" != "--id" && "${1}" != "--vote" ]]; then
         if [[ $# -eq 1 ]]; then
             pr_id="$1"
             parsed_args=(--id "$1" --vote approve)
         fi
     else
-        # Extract PR ID from --id parameter using zsh-compatible approach
         local args=("$@")
         for ((i=1; i<=${#args}; i++)); do
             if [[ "${args[i]}" == "--id" ]]; then
@@ -260,26 +258,21 @@ ado_pr_vote() {
         return 1
     fi
     
-    # First call: Execute the vote silently (let Azure CLI handle errors naturally)
     az repos pr set-vote "${parsed_args[@]}" >/dev/null 2>&1
     
-    # If first call failed, exit (Azure CLI will show the error)
     if [[ $? -ne 0 ]]; then
         return 1
     fi
     
-    # Second call: Get repository metadata from pr show
     local pr_data=$(az repos pr show --id "$pr_id" --output json)
     if [[ $? -ne 0 ]]; then
         return 1
     fi
     
-    # Extract repository components
     local org=$(echo "$pr_data" | jq -r '.repository.remoteUrl' | sed -n 's|.*dev\.azure\.com/\([^/]*\)/.*|\1|p')
     local project=$(echo "$pr_data" | jq -r '.repository.project.name' | sed 's/ /%20/g')
     local repo=$(echo "$pr_data" | jq -r '.repository.name')
     
-    # Third call: Execute vote again with native Azure CLI table formatting
     az repos pr set-vote "${parsed_args[@]}" --output table --query "{PR:pullRequestId,Vote:vote,URL:join(\`\`,[\`https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}\`])}"
 }
 
@@ -299,7 +292,6 @@ ado_pr_browse() {
     fi
     
     if [[ "$remote_url" =~ ^https://dev\.azure\.com/ ]]; then
-        # Extract org and project from HTTPS URL
         local org=$(echo "$remote_url" | sed -n 's|https://dev\.azure\.com/\([^/]*\)/.*|\1|p')
         local project=$(echo "$remote_url" | sed -n 's|https://dev\.azure\.com/[^/]*/\([^/]*\)/_git/.*|\1|p')
         local repo=$(echo "$remote_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
@@ -312,8 +304,21 @@ ado_pr_browse() {
             echo "Error: Could not parse repository information"
             return 1
         fi
+    elif [[ "$remote_url" =~ ^https://.*\.visualstudio\.com ]]; then
+        local clean_url=$(echo "$remote_url" | sed 's|https://[^@]*@|https://|')
+        local org=$(echo "$clean_url" | sed -n 's|^https://\([^.]*\)\..*|\1|p')
+        local project=$(echo "$clean_url" | sed -n 's|.*/DefaultCollection/\([^/]*\)/_git/.*|\1|p')
+        local repo=$(echo "$clean_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
+        
+        if [[ -n "$org" && -n "$project" && -n "$repo" ]]; then
+            local pr_url="https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}"
+            echo "Opening PR #${pr_id}: $pr_url"
+            open "$pr_url"
+        else
+            echo "Error: Could not parse repository information"
+            return 1
+        fi
     elif [[ "$remote_url" =~ ^git@ssh\.dev\.azure\.com ]]; then
-        # Handle SSH URLs similar to browse function
         local org=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/\([^/]*\)/.*|\1|p')
         local project=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/[^/]*/\([^/]*\)/.*|\1|p')
         local repo=$(echo "$remote_url" | sed -n 's|.*[^/]*/\([^/]*\)$|\1|p')
@@ -333,7 +338,6 @@ ado_pr_browse() {
     fi
 }
 
-# Helper function to get base URL for PR links
 _ado_get_base_url() {
     local remote_url=$(git remote get-url origin 2>/dev/null)
     
@@ -345,21 +349,16 @@ _ado_get_base_url() {
     local org project repo
     
     if [[ "$remote_url" =~ ^https://.*@?dev\.azure\.com/ ]]; then
-        # New format: https://[user@]dev.azure.com/org/project/_git/repo
-        # Remove any authentication part first
         local clean_url=$(echo "$remote_url" | sed 's|https://[^@]*@|https://|')
         org=$(echo "$clean_url" | sed -n 's|https://dev\.azure\.com/\([^/]*\)/.*|\1|p')
         project=$(echo "$clean_url" | sed -n 's|https://dev\.azure\.com/[^/]*/\([^/]*\)/_git/.*|\1|p')
         repo=$(echo "$clean_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
     elif [[ "$remote_url" =~ ^https://.*\.visualstudio\.com ]]; then
-        # Old format: https://[user@]org.visualstudio.com/DefaultCollection/project/_git/repo
-        # Remove any authentication part first
         local clean_url=$(echo "$remote_url" | sed 's|https://[^@]*@|https://|')
         org=$(echo "$clean_url" | sed -n 's|^https://\([^.]*\)\..*|\1|p')
         project=$(echo "$clean_url" | sed -n 's|.*/DefaultCollection/\([^/]*\)/_git/.*|\1|p')
         repo=$(echo "$clean_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
     elif [[ "$remote_url" =~ ^git@ssh\.dev\.azure\.com ]]; then
-        # SSH format: git@ssh.dev.azure.com:v3/org/project/repo
         org=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/\([^/]*\)/.*|\1|p')
         project=$(echo "$remote_url" | sed -n 's|git@ssh\.dev\.azure\.com:v3/[^/]*/\([^/]*\)/.*|\1|p')
         repo=$(echo "$remote_url" | sed -n 's|.*[^/]*/\([^/]*\)$|\1|p')
@@ -373,38 +372,31 @@ _ado_get_base_url() {
         return 1
     fi
     
-    # URL encode project name (replace spaces with %20)
     project=$(printf '%s\n' "$project" | sed 's/ /%20/g')
     
-    # Return the base URL in new format
     echo "https://dev.azure.com/${org}/${project}/_git/${repo}"
 }
 
-# Validation and error handling utilities
 _ado_check_prerequisites() {
-    # Check if Azure DevOps extension is installed
     if ! az extension list --query "[?name=='azure-devops']" --output tsv | grep -q azure-devops; then
         echo "Error: Azure DevOps CLI extension is not installed."
         echo "Install with: az extension add --name azure-devops"
         return 1
     fi
     
-    # Check if user is authenticated
     if ! az account show &>/dev/null; then
         echo "Error: Not authenticated with Azure CLI."
         echo "Login with: az login"
         return 1
     fi
     
-    # Check if in a git repository
     if ! git rev-parse --is-inside-work-tree &>/dev/null; then
         echo "Error: Not in a git repository."
         return 1
     fi
     
-    # Check if Azure DevOps remote exists
     local remote_url=$(git remote get-url origin 2>/dev/null)
-    if [[ ! "$remote_url" =~ dev\.azure\.com ]]; then
+    if [[ ! "$remote_url" =~ dev\.azure\.com ]] && [[ ! "$remote_url" =~ visualstudio\.com ]]; then
         echo "Error: Current repository is not an Azure DevOps repository."
         echo "Remote URL: $remote_url"
         return 1
@@ -412,4 +404,3 @@ _ado_check_prerequisites() {
     
     return 0
 }
-
