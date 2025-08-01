@@ -195,6 +195,9 @@
   "window.title": "${rootName}:${activeEditorShort}",
   "workbench.colorTheme": "GitHub Dark Default",
   "aws.telemetry": false,
+  // "peacock.affectUntitledWorkspaces": true,
+  // "peacock.affectEmptyWorkspaces": true,
+  // "peacock.affectRemoteWorkspaces": true,
   "peacock.favoriteColors": [
     { "name": "Crimson", "value": "#610000" },
     { "name": "Dark Slate Blue", "value": "#322b61" },
@@ -237,5 +240,7 @@
   "sqlite3-editor.ui.minimizePanel": true,
   "roo-cline.deniedCommands": [],
   "cSpell.enabled": false,
-  "makefile.configureOnOpen": true
+  "makefile.configureOnOpen": true,
+  "peacock.surpriseMeOnStartup": true,
+  "peacock.surpriseMeFromFavoritesOnly": true
 }
