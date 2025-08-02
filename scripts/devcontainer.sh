@@ -23,7 +23,11 @@ DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
 
 # Secrets configuration
 SECRETS_AUTO_SETUP="${DEVC_SECRETS_AUTO:-true}"
-HOST_SECRETS_DIR="${HOME}/.secrets"
+HOST_SECRETS_DIR="${DEVC_SECRETS_DIR:-${HOME}/.secrets}"
+
+# Timeout configuration
+DOTFILES_TIMEOUT="${DEVC_DOTFILES_TIMEOUT:-60}"
+SECRETS_TIMEOUT="${DEVC_SECRETS_TIMEOUT:-30}"
 
 # Utility functions
 debug() {
@@ -50,7 +54,7 @@ setup_dotfiles_in_container() {
     
     debug "Cloning and installing dotfiles..."
     # Clone and install dotfiles
-    if ! timeout 60 docker exec "$container_name" bash -c "
+    if ! timeout $DOTFILES_TIMEOUT docker exec "$container_name" bash -c "
         if [ ! -d ~/dotfiles ]; then
             git clone $DOTFILES_REPO ~/dotfiles >/dev/null 2>&1
         fi
@@ -62,16 +66,49 @@ setup_dotfiles_in_container() {
         return 1
     fi
     
-    # Unpack secrets if available and auto-setup enabled
-    if [[ "$SECRETS_AUTO_SETUP" == "true" && -f "$HOST_SECRETS_DIR/dotfiles.env" ]]; then
-        debug "Secrets auto-setup enabled and dotfiles.env found"
-        debug "Unpacking secrets..."
-        if ! timeout 30 docker exec "$container_name" bash -c "
-            if [ -f ~/.secrets/dotfiles.env ] && [ -x ~/dotfiles/scripts/secrets.sh ]; then
-                cd ~/dotfiles && ./scripts/secrets.sh open </dev/null >/dev/null 2>&1
+    # Unpack secrets if auto-setup enabled
+    if [[ "$SECRETS_AUTO_SETUP" == "true" ]]; then
+        debug "Secrets auto-setup enabled"
+        
+        # Check if dotfiles.env exists
+        if [[ -f "$HOST_SECRETS_DIR/dotfiles.env" ]]; then
+            debug "Loading environment from dotfiles.env..."
+            
+            # Load environment variables (equivalent to secret dotfiles / loadenv)
+            set -a  # automatically export all variables
+            if source "$HOST_SECRETS_DIR/dotfiles.env" 2>/dev/null; then
+                set +a  # turn off automatic export
+                
+                debug "Environment loaded - DOTFILES_KEY length: ${#DOTFILES_KEY}, DOTFILES_ARCHIVE: $DOTFILES_ARCHIVE"
+                debug "Unpacking secrets with environment variables..."
+                
+                # Pass specific dotfiles environment variables to container
+                local env_args=()
+                [[ -n "$DOTFILES_KEY" ]] && env_args+=("--env" "DOTFILES_KEY=$DOTFILES_KEY")
+                [[ -n "$DOTFILES_ARCHIVE" ]] && env_args+=("--env" "DOTFILES_ARCHIVE=$DOTFILES_ARCHIVE")
+                
+                debug "Environment args: ${env_args[*]}"
+                
+                # Run secrets.sh with environment variables
+                if ! timeout $SECRETS_TIMEOUT docker exec "${env_args[@]}" "$container_name" bash -c "
+                    echo 'Container env check - Key length:' \${#DOTFILES_KEY} 'Archive:' \$DOTFILES_ARCHIVE
+                    SECRETS_SCRIPT=~/dotfiles/scripts/secrets.sh
+                    if [[ -x \$SECRETS_SCRIPT ]]; then
+                        echo 'Running secrets.sh...'
+                        \$SECRETS_SCRIPT open </dev/null >/dev/null 2>&1
+                    else
+                        echo 'secrets.sh not found or not executable at' \$SECRETS_SCRIPT
+                        ls -la ~/dotfiles/scripts/ 2>/dev/null || echo 'scripts directory not found'
+                    fi
+                " 2>/dev/null; then
+                    debug "Secrets unpacking failed or timed out (this is optional)"
+                fi
+            else
+                set +a  # make sure to turn off automatic export even on failure
+                debug "Failed to load environment from dotfiles.env"
             fi
-        " 2>/dev/null; then
-            debug "Secrets unpacking failed or timed out"
+        else
+            debug "No dotfiles.env found, skipping secrets"
         fi
     fi
     
@@ -190,19 +227,13 @@ connect_container() {
         # Start temporary container to check/setup dotfiles
         temp_container="temp-${CONTAINER_NAME}"
         
-        # Build docker run command with conditional secrets mount
+        # Build docker run command for temporary container
         temp_run_args=(
             -d --name "$temp_container"
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
             --user "$(id -u):$(id -g)"
+            "$IMAGE_NAME"
         )
-        
-        # Mount secrets directory if it exists
-        if [[ "$SECRETS_AUTO_SETUP" == "true" && -d "$HOST_SECRETS_DIR" ]]; then
-            temp_run_args+=(--mount "type=bind,source=${HOST_SECRETS_DIR},target=/home/vscode/.secrets,readonly")
-        fi
-        
-        temp_run_args+=("$IMAGE_NAME")
         
         docker run "${temp_run_args[@]}" >/dev/null 2>&1
         
@@ -281,16 +312,22 @@ Configuration (environment variables):
   DEVC_DEBUG                   Enable debug output (default: false)
   DEVC_NAME                    Container name (default: devcontainer-<project>-<xx>)
   DEVC_IMAGE                   Image name (default: devcontainer)
+  DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/dotfiles/devcontainer)
   DEVC_HOST_PROJECTS          Host projects directory (default: \$HOME/Projects)
   DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
   DEVC_DOTFILES_INSTALL       Install command (default: ~/dotfiles/install)
   DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)
-  DEVC_SECRETS_AUTO           Auto-setup secrets (default: true)
+  DEVC_DOTFILES_TIMEOUT       Dotfiles installation timeout in seconds (default: 60)
+  DEVC_SECRETS_AUTO           Auto-setup secrets via secrets.sh (default: true)
+  DEVC_SECRETS_TIMEOUT        Secrets unpacking timeout in seconds (default: 30)
+  DEVC_SECRETS_DIR            Host secrets directory (default: \$HOME/.secrets)
 
 Note: Container names automatically include the current directory name plus a random
 2-character suffix for uniqueness. Each gets its own container instance and volume.
 Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
-Secrets are automatically unpacked after dotfiles installation if ~/.secrets/dotfiles.env exists and DEVC_SECRETS_AUTO=true (default).
+Secrets are automatically unpacked after dotfiles installation using secrets.sh if DEVC_SECRETS_AUTO=true (default).
+For secrets to work, you need the 'secret' command available on the host and a dotfiles.env file in DEVC_SECRETS_DIR.
+The script uses 'secret dotfiles' to source environment variables, then passes them to the container.
 Enable debug output with DEVC_DEBUG=true to troubleshoot setup issues.
 
 EOF

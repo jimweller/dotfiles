@@ -2,12 +2,8 @@
 
 MODE="$1"
 
-# Load secrets if available
-if [ -f "$HOME/.secrets/dotfiles.env" ]; then
-  set -a
-  source "$HOME/.secrets/dotfiles.env"
-  set +a
-fi
+# Environment variables (DOTFILES_KEY, DOTFILES_ARCHIVE) should be passed from host
+# via docker --env flags rather than sourcing local files in container
 
 # Set password - use parameter if provided, otherwise use DOTFILES_KEY
 if [ -n "$2" ]; then
