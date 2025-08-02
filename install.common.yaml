@@ -22,8 +22,8 @@
     - description: Copy claude configuration files
       command: |
         mkdir -p ~/.claude
-        cp ~/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json
-        cp ~/dotfiles/dotfiles/claude_json_bak ~/.claude.json
+        cp ~/dotfiles/dotfiles/claude_settings_json ~/.claude/settings.json
+        cp ~/dotfiles/dotfiles/claude_json ~/.claude.json
       stderr: true
       stdout: true
 

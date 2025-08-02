@@ -290,22 +290,8 @@ Configuration (environment variables):
 Note: Container names automatically include the current directory name plus a random
 2-character suffix for uniqueness. Each gets its own container instance and volume.
 Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
-Secrets are automatically unpacked after dotfiles installation if ~/.secrets/dotfiles.env
-exists and DEVC_SECRETS_AUTO=true (default).
+Secrets are automatically unpacked after dotfiles installation if ~/.secrets/dotfiles.env exists and DEVC_SECRETS_AUTO=true (default).
 Enable debug output with DEVC_DEBUG=true to troubleshoot setup issues.
-
-Examples:
-  $0 build                     # Build and start background container
-  $0 rebuild                   # Rebuild from scratch (no cache)
-  $0 run                       # Start background container
-  $0 connect                   # Start new interactive container instance
-  $0 cleanup                   # Clean up unused Docker resources
-  $0 status                    # Check status
-
-Docker Volume Cleanup (manual commands):
-  docker volume ls             # List all volumes
-  docker volume prune          # Remove all unused volumes
-  docker system prune --volumes # Remove all unused Docker data including volumes
 
 EOF
 }
