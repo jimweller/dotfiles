@@ -14,11 +14,18 @@
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
     ~/.ssh/config: dotfiles/ssh_config
-    ~/.claude/settings.json: dotfiles/claude_settings_json
-    ~/.claude.json: dotfiles/claude_json
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
+
+- shell:
+    - description: Copy claude configuration files
+      command: |
+        mkdir -p ~/.claude
+        cp ~/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json
+        cp ~/dotfiles/dotfiles/claude_json_bak ~/.claude.json
+      stderr: true
+      stdout: true
 
 - shell:
     - description: Install oh-my-zsh and powerlevel10k

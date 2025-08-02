@@ -264,16 +264,13 @@ ado_pr_vote() {
         return 1
     fi
     
-    local pr_data=$(az repos pr show --id "$pr_id" --output json)
+    local base_url=$(_ado_get_base_url)
     if [[ $? -ne 0 ]]; then
+        echo "Error: Could not determine base URL"
         return 1
     fi
     
-    local org=$(echo "$pr_data" | jq -r '.repository.remoteUrl' | sed -n 's|.*dev\.azure\.com/\([^/]*\)/.*|\1|p')
-    local project=$(echo "$pr_data" | jq -r '.repository.project.name' | sed 's/ /%20/g')
-    local repo=$(echo "$pr_data" | jq -r '.repository.name')
-    
-    az repos pr set-vote "${parsed_args[@]}" --output table --query "{PR:pullRequestId,Vote:vote,URL:join(\`\`,[\`https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}\`])}"
+    az repos pr show --id "$pr_id" --output table --query "{PR:pullRequestId,Title:title,Creator:createdBy.uniqueName,Created:creationDate,URL:join(\`\`,[\`$base_url\`,\`/pullrequest/\`,to_string(pullRequestId)])}"
 }
 
 ado_pr_browse() {

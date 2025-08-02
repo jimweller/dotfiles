@@ -5,35 +5,80 @@
 
 set -euo pipefail
 
-# Configuration with defaults
-CONTAINER_NAME="${DEVCONTAINER_NAME:-devcontainer}"
-IMAGE_NAME="${DEVCONTAINER_IMAGE:-devcontainer}"
-DOCKERFILE_PATH="${DEVCONTAINER_DOCKERFILE_PATH:-./devcontainer}"
-HOST_PROJECTS_DIR="${DEVCONTAINER_HOST_PROJECTS:-${HOME}/Projects}"
-PORTS="${DEVCONTAINER_PORTS:-3000:3000,3333:3333}"
+# Debug configuration
+DEBUG="${DEVC_DEBUG:-false}"
 
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+# Configuration with defaults
+PROJECT_NAME="$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g')"
+RANDOM_SUFFIX="$(openssl rand -hex 1)"
+CONTAINER_NAME="${DEVC_NAME:-devcontainer-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
+IMAGE_NAME="${DEVC_IMAGE:-devcontainer}"
+DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/dotfiles/devcontainer}"
+HOST_PROJECTS_DIR="${DEVC_HOST_PROJECTS:-${HOME}/Projects}"
+
+# Dotfiles configuration
+DOTFILES_REPO="${DEVC_DOTFILES_REPO:-https://github.com/jimweller/dotfiles}"
+DOTFILES_INSTALL_COMMAND="${DEVC_DOTFILES_INSTALL:-~/dotfiles/install}"
+DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
+
+# Secrets configuration
+SECRETS_AUTO_SETUP="${DEVC_SECRETS_AUTO:-true}"
+HOST_SECRETS_DIR="${HOME}/.secrets"
 
 # Utility functions
-log_info() {
-    echo -e "${BLUE}[INFO]${NC} $1"
-}
-
-log_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
-}
-
-log_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+debug() {
+    if [[ "$DEBUG" == "true" ]]; then
+        echo "[DEBUG] $1" >&2
+    fi
 }
 
 log_error() {
-    echo -e "${RED}[ERROR]${NC} $1" >&2
+    echo "[ERROR] $1" >&2
+}
+
+# Setup dotfiles function
+setup_dotfiles_in_container() {
+    local container_name="$1"
+    
+    debug "Starting dotfiles setup for container: $container_name"
+    
+    # Check if dotfiles already installed
+    if docker exec "$container_name" test -f /home/vscode/.dotfiles_installed 2>/dev/null; then
+        debug "Dotfiles already installed, skipping"
+        return 0
+    fi
+    
+    debug "Cloning and installing dotfiles..."
+    # Clone and install dotfiles
+    if ! timeout 60 docker exec "$container_name" bash -c "
+        if [ ! -d ~/dotfiles ]; then
+            git clone $DOTFILES_REPO ~/dotfiles >/dev/null 2>&1
+        fi
+        if [ -x $DOTFILES_INSTALL_COMMAND ]; then
+            cd ~/dotfiles && $DOTFILES_INSTALL_COMMAND >/dev/null 2>&1
+        fi
+    " 2>/dev/null; then
+        debug "Dotfiles installation failed or timed out"
+        return 1
+    fi
+    
+    # Unpack secrets if available and auto-setup enabled
+    if [[ "$SECRETS_AUTO_SETUP" == "true" && -f "$HOST_SECRETS_DIR/dotfiles.env" ]]; then
+        debug "Secrets auto-setup enabled and dotfiles.env found"
+        debug "Unpacking secrets..."
+        if ! timeout 30 docker exec "$container_name" bash -c "
+            if [ -f ~/.secrets/dotfiles.env ] && [ -x ~/dotfiles/scripts/secrets.sh ]; then
+                cd ~/dotfiles && ./scripts/secrets.sh open </dev/null >/dev/null 2>&1
+            fi
+        " 2>/dev/null; then
+            debug "Secrets unpacking failed or timed out"
+        fi
+    fi
+    
+    debug "Marking dotfiles as installed"
+    # Mark dotfiles as installed
+    docker exec "$container_name" bash -c "touch ~/.dotfiles_installed" 2>/dev/null || true
+    debug "Dotfiles setup completed"
 }
 
 # Check if Docker is running
@@ -57,121 +102,162 @@ container_running() {
 # Function to run the devcontainer
 run_devcontainer() {
     if container_running; then
-        log_warning "Container '$CONTAINER_NAME' is already running"
         return 0
     fi
     
     if container_exists; then
-        log_info "Starting existing container..."
-        docker start "$CONTAINER_NAME"
-        log_success "Container started successfully"
+        docker start "$CONTAINER_NAME" >/dev/null
         return 0
     fi
     
-    log_info "Creating and starting new container..."
-    
-    # Parse ports
-    local port_args=()
-    IFS=',' read -ra PORT_ARRAY <<< "$PORTS"
-    for port in "${PORT_ARRAY[@]}"; do
-        port_args+=("-p" "$port")
-    done
-    
     # Check if host projects directory exists
     if [[ ! -d "$HOST_PROJECTS_DIR" ]]; then
-        log_warning "Host projects directory '$HOST_PROJECTS_DIR' does not exist"
-        log_info "Creating directory..."
         mkdir -p "$HOST_PROJECTS_DIR"
     fi
     
     docker run -d \
         --name "$CONTAINER_NAME" \
         --restart unless-stopped \
-        "${port_args[@]}" \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
+        --mount "type=bind,source=$(pwd),target=/workspace" \
         --mount "type=bind,source=${HOST_PROJECTS_DIR},target=/home/vscode/Projects" \
         --user "$(id -u):$(id -g)" \
+        --workdir="/workspace" \
         --health-cmd="ps aux | grep -v grep | grep -q sleep" \
         --health-interval=30s \
         --health-timeout=3s \
         --health-retries=3 \
-        "$IMAGE_NAME"
-    
-    log_success "Container created and started successfully"
+        "$IMAGE_NAME" >/dev/null
 }
 
 # Build the container
 build_container() {
-    log_info "Building devcontainer image..."
+    local no_cache="${1:-false}"
     
     # Stop and remove existing container if running
     if container_running; then
-        log_info "Stopping existing container..."
-        docker stop "$CONTAINER_NAME"
+        docker stop "$CONTAINER_NAME" >/dev/null 2>&1
     fi
     
     if container_exists; then
-        log_info "Removing existing container..."
-        docker rm "$CONTAINER_NAME"
+        docker rm "$CONTAINER_NAME" >/dev/null 2>&1
     fi
     
     local build_args=(
         --build-arg "USER_UID=$(id -u)"
         --build-arg "USER_GID=$(id -g)"
         --progress=plain
-        -t "$IMAGE_NAME"
-        "$DOCKERFILE_PATH"
     )
     
-    if docker build "${build_args[@]}"; then
-        log_success "Container built successfully"
-        run_devcontainer
-    else
+    if [[ "$no_cache" == "true" ]]; then
+        build_args+=(--no-cache)
+    fi
+    
+    build_args+=(-t "$IMAGE_NAME" "$DOCKERFILE_PATH")
+    
+    if ! docker build "${build_args[@]}"; then
         log_error "Failed to build container"
         exit 1
     fi
 }
 
-# Connect to the container
+# Rebuild the container from scratch
+rebuild_container() {
+    # Remove existing image if it exists (this is the extra cleanup step for rebuild)
+    if docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
+        docker rmi "$IMAGE_NAME" >/dev/null 2>&1
+    fi
+    
+    # Call build_container with no-cache flag
+    build_container "true"
+}
+
+# Connect to the container with a new interactive instance
 connect_container() {
-    if ! container_running; then
-        log_error "Container '$CONTAINER_NAME' is not running"
-        log_info "Use '$0 run' to start the container first"
+    # Check if image exists
+    if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
+        log_error "Image '$IMAGE_NAME' not found. Build it first with: $0 build"
         exit 1
     fi
     
-    log_info "Connecting to container..."
-    docker exec -it "$CONTAINER_NAME" /bin/zsh
+    # Check if host projects directory exists
+    if [[ ! -d "$HOST_PROJECTS_DIR" ]]; then
+        mkdir -p "$HOST_PROJECTS_DIR"
+    fi
+    
+    # Create a temporary container for dotfiles setup if auto-setup enabled
+    if [[ "$DOTFILES_AUTO_SETUP" == "true" && -n "$DOTFILES_REPO" ]]; then
+        # Start temporary container to check/setup dotfiles
+        temp_container="temp-${CONTAINER_NAME}"
+        
+        # Build docker run command with conditional secrets mount
+        temp_run_args=(
+            -d --name "$temp_container"
+            --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
+            --user "$(id -u):$(id -g)"
+        )
+        
+        # Mount secrets directory if it exists
+        if [[ "$SECRETS_AUTO_SETUP" == "true" && -d "$HOST_SECRETS_DIR" ]]; then
+            temp_run_args+=(--mount "type=bind,source=${HOST_SECRETS_DIR},target=/home/vscode/.secrets,readonly")
+        fi
+        
+        temp_run_args+=("$IMAGE_NAME")
+        
+        docker run "${temp_run_args[@]}" >/dev/null 2>&1
+        
+        # Setup dotfiles in temp container
+        setup_dotfiles_in_container "$temp_container"
+        
+        # Clean up temp container
+        docker rm -f "$temp_container" >/dev/null 2>&1
+    fi
+    
+    # Start a new interactive container instance, overriding the ENTRYPOINT
+    docker run -it --rm \
+        --entrypoint="" \
+        --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
+        --mount "type=bind,source=$(pwd),target=/workspace" \
+        --mount "type=bind,source=${HOST_PROJECTS_DIR},target=/home/vscode/Projects" \
+        --user "$(id -u):$(id -g)" \
+        --workdir="/workspace" \
+        "$IMAGE_NAME" /bin/zsh
 }
 
 # Show container status
 show_status() {
     if container_running; then
-        log_success "Container '$CONTAINER_NAME' is running"
-        docker ps --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+        docker ps --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}"
     elif container_exists; then
-        log_warning "Container '$CONTAINER_NAME' exists but is not running"
         docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}"
-    else
-        log_info "Container '$CONTAINER_NAME' does not exist"
     fi
 }
 
 # Restart the container
 restart_container() {
-    log_info "Restarting container..."
-    
     if container_running; then
-        log_info "Stopping container..."
-        docker stop "$CONTAINER_NAME"
+        docker stop "$CONTAINER_NAME" >/dev/null 2>&1
     fi
     
     if container_exists; then
-        log_info "Removing container..."
-        docker rm "$CONTAINER_NAME"
+        docker rm "$CONTAINER_NAME" >/dev/null 2>&1
     fi
     
     run_devcontainer
+}
+
+# Clean up unused Docker resources
+cleanup_docker() {
+    echo "Cleaning up unused Docker resources..."
+    echo "- Removing unused volumes:"
+    docker volume prune -f
+    echo "- Removing unused containers:"
+    docker container prune -f
+    echo "- Removing unused images:"
+    docker image prune -f
+    echo "- Removing unused networks:"
+    docker network prune -f
+    echo "Docker cleanup completed"
 }
 
 # Show help
@@ -183,23 +269,43 @@ Usage: $0 <command>
 
 Commands:
   build (b)     Build the devcontainer image
-  run (r)       Run the devcontainer (create if needed)
-  connect (c)   Connect to the running devcontainer
-  restart (rt)  Restart the devcontainer
+  rebuild (rb)  Rebuild the devcontainer from scratch (no cache)
+  run (r)       Run the devcontainer in background (daemon mode)
+  connect (c)   Start a new interactive container instance
+  restart (rt)  Restart the background devcontainer
   status (st)   Show container status
+  cleanup (cl)  Clean up unused Docker resources (volumes, containers, images)
   help          Show this help message
 
 Configuration (environment variables):
-  DEVCONTAINER_NAME            Container name (default: devcontainer)
-  DEVCONTAINER_IMAGE           Image name (default: devcontainer)
-  DEVCONTAINER_HOST_PROJECTS   Host projects directory (default: \$HOME/Projects)
-  DEVCONTAINER_PORTS           Port mappings (default: 3000:3000,3333:3333)
+  DEVC_DEBUG                   Enable debug output (default: false)
+  DEVC_NAME                    Container name (default: devcontainer-<project>-<xx>)
+  DEVC_IMAGE                   Image name (default: devcontainer)
+  DEVC_HOST_PROJECTS          Host projects directory (default: \$HOME/Projects)
+  DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
+  DEVC_DOTFILES_INSTALL       Install command (default: ~/dotfiles/install)
+  DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)
+  DEVC_SECRETS_AUTO           Auto-setup secrets (default: true)
+
+Note: Container names automatically include the current directory name plus a random
+2-character suffix for uniqueness. Each gets its own container instance and volume.
+Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
+Secrets are automatically unpacked after dotfiles installation if ~/.secrets/dotfiles.env
+exists and DEVC_SECRETS_AUTO=true (default).
+Enable debug output with DEVC_DEBUG=true to troubleshoot setup issues.
 
 Examples:
-  $0 build                     # Build and start container
-  $0 run                       # Start container
-  $0 connect                   # Connect with shell
+  $0 build                     # Build and start background container
+  $0 rebuild                   # Rebuild from scratch (no cache)
+  $0 run                       # Start background container
+  $0 connect                   # Start new interactive container instance
+  $0 cleanup                   # Clean up unused Docker resources
   $0 status                    # Check status
+
+Docker Volume Cleanup (manual commands):
+  docker volume ls             # List all volumes
+  docker volume prune          # Remove all unused volumes
+  docker system prune --volumes # Remove all unused Docker data including volumes
 
 EOF
 }
@@ -212,6 +318,10 @@ main() {
         build|b)
             check_docker
             build_container
+            ;;
+        rebuild|rb)
+            check_docker
+            rebuild_container
             ;;
         run|r)
             check_docker
@@ -228,6 +338,10 @@ main() {
         status|st)
             check_docker
             show_status
+            ;;
+        cleanup|cl)
+            check_docker
+            cleanup_docker
             ;;
         help|--help|-h)
             show_help
