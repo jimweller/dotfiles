@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# DevContainer management script - Phase 1 improvements
+# 0jimbox management script - Phase 1 improvements
 # Usage: devcontainer.sh [build|b|run|r|connect|c|restart|rt|status|st]
 
 set -euo pipefail
@@ -11,8 +11,8 @@ DEBUG="${DEVC_DEBUG:-false}"
 # Configuration with defaults
 PROJECT_NAME="$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g')"
 RANDOM_SUFFIX="$(openssl rand -hex 1)"
-CONTAINER_NAME="${DEVC_NAME:-devcontainer-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
-IMAGE_NAME="${DEVC_IMAGE:-devcontainer}"
+CONTAINER_NAME="${DEVC_NAME:-0jimbox-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
+IMAGE_NAME="${DEVC_IMAGE:-0jimbox}"
 DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/dotfiles/devcontainer}"
 HOST_PROJECTS_DIR="${DEVC_HOST_PROJECTS:-${HOME}/Projects}"
 
@@ -92,14 +92,9 @@ setup_dotfiles_in_container() {
                 
                 # Run secrets.sh with environment variables
                 if ! timeout $SECRETS_TIMEOUT docker exec "${env_args[@]}" "$container_name" bash -c "
-                    echo 'Container env check - Key length:' \${#DOTFILES_KEY} 'Archive:' \$DOTFILES_ARCHIVE
                     SECRETS_SCRIPT=~/dotfiles/scripts/secrets.sh
                     if [[ -x \$SECRETS_SCRIPT ]]; then
-                        echo 'Running secrets.sh...'
                         \$SECRETS_SCRIPT open </dev/null >/dev/null 2>&1
-                    else
-                        echo 'secrets.sh not found or not executable at' \$SECRETS_SCRIPT
-                        ls -la ~/dotfiles/scripts/ 2>/dev/null || echo 'scripts directory not found'
                     fi
                 " 2>/dev/null; then
                     debug "Secrets unpacking failed or timed out (this is optional)"
@@ -137,8 +132,8 @@ container_running() {
     docker ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"
 }
 
-# Function to run the devcontainer
-run_devcontainer() {
+# Function to run the 0jimbox
+run_0jimbox() {
     if container_running; then
         return 0
     fi
@@ -275,19 +270,19 @@ restart_container() {
         docker rm "$CONTAINER_NAME" >/dev/null 2>&1
     fi
     
-    run_devcontainer
+    run_0jimbox
 }
 
 # Clean up unused Docker resources
 cleanup_docker() {
-    # Stop and remove all devcontainer-related containers
-    docker ps -a --format '{{.Names}}' | grep -E '(devcontainer|temp-)' | xargs -r docker rm -f 2>/dev/null || true
+    # Stop and remove all 0jimbox-related containers
+    docker ps -a --format '{{.Names}}' | grep -E '(0jimbox|temp-)' | xargs -r docker rm -f 2>/dev/null || true
     
-    # Remove all devcontainer-related volumes
-    docker volume ls --format '{{.Name}}' | grep -E 'devcontainer' | xargs -r docker volume rm 2>/dev/null || true
+    # Remove all 0jimbox-related volumes
+    docker volume ls --format '{{.Name}}' | grep -E '0jimbox' | xargs -r docker volume rm 2>/dev/null || true
     
-    # Remove all devcontainer-related images
-    docker images --format '{{.Repository}}:{{.Tag}}' | grep -E 'devcontainer' | xargs -r docker rmi -f 2>/dev/null || true
+    # Remove all 0jimbox-related images
+    docker images --format '{{.Repository}}:{{.Tag}}' | grep -E '0jimbox' | xargs -r docker rmi -f 2>/dev/null || true
     
     docker volume prune -f
     docker container prune -f
@@ -298,24 +293,24 @@ cleanup_docker() {
 # Show help
 show_help() {
     cat << EOF
-DevContainer Management Script - Phase 1 Improved
+0jimbox Management Script - Phase 1 Improved
 
 Usage: $0 <command>
 
 Commands:
-  build (b)     Build the devcontainer image
-  rebuild (rb)  Rebuild the devcontainer from scratch (no cache)
-  run (r)       Run the devcontainer in background (daemon mode)
+  build (b)     Build the 0jimbox image
+  rebuild (rb)  Rebuild the 0jimbox from scratch (no cache)
+  run (r)       Run the 0jimbox in background (daemon mode)
   connect (c)   Start a new interactive container instance
-  restart (rt)  Restart the background devcontainer
+  restart (rt)  Restart the background 0jimbox
   status (st)   Show container status
   cleanup (cl)  Clean up unused Docker resources (volumes, containers, images)
   help          Show this help message
 
 Configuration (environment variables):
   DEVC_DEBUG                   Enable debug output (default: false)
-  DEVC_NAME                    Container name (default: devcontainer-<project>-<xx>)
-  DEVC_IMAGE                   Image name (default: devcontainer)
+  DEVC_NAME                    Container name (default: 0jimbox-<project>-<xx>)
+  DEVC_IMAGE                   Image name (default: 0jimbox)
   DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/dotfiles/devcontainer)
   DEVC_HOST_PROJECTS          Host projects directory (default: \$HOME/Projects)
   DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
@@ -353,7 +348,7 @@ main() {
             ;;
         run|r)
             check_docker
-            run_devcontainer
+            run_0jimbox
             ;;
         connect|c)
             check_docker

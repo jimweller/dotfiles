@@ -253,5 +253,7 @@
   "cSpell.enabled": false,
   "makefile.configureOnOpen": true,
   "peacock.surpriseMeOnStartup": true,
-  "peacock.surpriseMeFromFavoritesOnly": true
+  "peacock.surpriseMeFromFavoritesOnly": true,
+  "dev.containers.dockerCredentialHelper": false,
+  "dev.containers.whenFolderOpen": "openInContainer"
 }

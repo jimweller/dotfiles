@@ -7,6 +7,11 @@
 - link:
     ~/.granted/config: dotfiles/granted_config_macos
     "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode_settings.json
-    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/": 
-      glob: true
-      path: dotfiles/roocode/*
+    # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template
+    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/": dotfiles/roocode
+
+# MSFT broke custom templates
+# - shell:
+#     - description: Copy devcontainer template
+#       command: |
+#         cp -a ~/dotfiles/devcontainer/vscode_template ~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox

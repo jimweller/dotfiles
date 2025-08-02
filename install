@@ -65,11 +65,13 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 
 # install the common configuration used by all OS
+echo "Running Common tasks..."
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}"
 
 
 # install OS specific configurations
 # Detect OS and run the OS-specific profile
+echo "Running OS-specific tasks..."
 if [[ "$(uname)" == "Darwin" ]]; then
     echo "Running macOS-specific tasks..."
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG_MACOS}"
