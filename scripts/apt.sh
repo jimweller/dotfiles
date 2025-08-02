@@ -5,7 +5,6 @@ if [ "$(uname)" != "Linux" ]; then
   exit 0
 fi
 
-echo "Updating apt packages..."
 
 # Add the GitHub CLI repository
 out=$(mktemp) \

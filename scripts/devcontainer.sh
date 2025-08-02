@@ -24,6 +24,7 @@ DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
 # Secrets configuration
 SECRETS_AUTO_SETUP="${DEVC_SECRETS_AUTO:-true}"
 HOST_SECRETS_DIR="${DEVC_SECRETS_DIR:-${HOME}/.secrets}"
+SECRETS_ENV_FILE="${DEVC_SECRETS_ENV:-dotfiles.env}"
 
 # Timeout configuration
 DOTFILES_TIMEOUT="${DEVC_DOTFILES_TIMEOUT:-60}"
@@ -70,13 +71,13 @@ setup_dotfiles_in_container() {
     if [[ "$SECRETS_AUTO_SETUP" == "true" ]]; then
         debug "Secrets auto-setup enabled"
         
-        # Check if dotfiles.env exists
-        if [[ -f "$HOST_SECRETS_DIR/dotfiles.env" ]]; then
-            debug "Loading environment from dotfiles.env..."
+        # Check if secrets env file exists
+        if [[ -f "$HOST_SECRETS_DIR/$SECRETS_ENV_FILE" ]]; then
+            debug "Loading environment from $SECRETS_ENV_FILE..."
             
             # Load environment variables (equivalent to secret dotfiles / loadenv)
             set -a  # automatically export all variables
-            if source "$HOST_SECRETS_DIR/dotfiles.env" 2>/dev/null; then
+            if source "$HOST_SECRETS_DIR/$SECRETS_ENV_FILE" 2>/dev/null; then
                 set +a  # turn off automatic export
                 
                 debug "Environment loaded - DOTFILES_KEY length: ${#DOTFILES_KEY}, DOTFILES_ARCHIVE: $DOTFILES_ARCHIVE"
@@ -105,10 +106,10 @@ setup_dotfiles_in_container() {
                 fi
             else
                 set +a  # make sure to turn off automatic export even on failure
-                debug "Failed to load environment from dotfiles.env"
+                debug "Failed to load environment from $SECRETS_ENV_FILE"
             fi
         else
-            debug "No dotfiles.env found, skipping secrets"
+            debug "No $SECRETS_ENV_FILE found, skipping secrets"
         fi
     fi
     
@@ -279,16 +280,19 @@ restart_container() {
 
 # Clean up unused Docker resources
 cleanup_docker() {
-    echo "Cleaning up unused Docker resources..."
-    echo "- Removing unused volumes:"
+    # Stop and remove all devcontainer-related containers
+    docker ps -a --format '{{.Names}}' | grep -E '(devcontainer|temp-)' | xargs -r docker rm -f 2>/dev/null || true
+    
+    # Remove all devcontainer-related volumes
+    docker volume ls --format '{{.Name}}' | grep -E 'devcontainer' | xargs -r docker volume rm 2>/dev/null || true
+    
+    # Remove all devcontainer-related images
+    docker images --format '{{.Repository}}:{{.Tag}}' | grep -E 'devcontainer' | xargs -r docker rmi -f 2>/dev/null || true
+    
     docker volume prune -f
-    echo "- Removing unused containers:"
     docker container prune -f
-    echo "- Removing unused images:"
     docker image prune -f
-    echo "- Removing unused networks:"
     docker network prune -f
-    echo "Docker cleanup completed"
 }
 
 # Show help
@@ -321,13 +325,14 @@ Configuration (environment variables):
   DEVC_SECRETS_AUTO           Auto-setup secrets via secrets.sh (default: true)
   DEVC_SECRETS_TIMEOUT        Secrets unpacking timeout in seconds (default: 30)
   DEVC_SECRETS_DIR            Host secrets directory (default: \$HOME/.secrets)
+  DEVC_SECRETS_ENV            Secrets environment file name (default: dotfiles.env)
 
 Note: Container names automatically include the current directory name plus a random
 2-character suffix for uniqueness. Each gets its own container instance and volume.
 Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
 Secrets are automatically unpacked after dotfiles installation using secrets.sh if DEVC_SECRETS_AUTO=true (default).
-For secrets to work, you need the 'secret' command available on the host and a dotfiles.env file in DEVC_SECRETS_DIR.
-The script uses 'secret dotfiles' to source environment variables, then passes them to the container.
+For secrets to work, you need the 'secret' command available on the host and a secrets env file in DEVC_SECRETS_DIR.
+The script sources the environment file (default: dotfiles.env, configurable via DEVC_SECRETS_ENV), then passes them to the container.
 Enable debug output with DEVC_DEBUG=true to troubleshoot setup issues.
 
 EOF
