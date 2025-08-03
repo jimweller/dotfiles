@@ -153,7 +153,8 @@ run_0jimbox() {
         --restart unless-stopped \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR},target=/home/vscode/Projects" \
+        --mount "type=bind,source=${HOST_PROJECTS_DIR}/work,target=/home/vscode/Projects/work" \
+        --mount "type=bind,source=${HOST_PROJECTS_DIR}/personal,target=/home/vscode/Projects/personal" \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         --health-cmd="ps aux | grep -v grep | grep -q sleep" \
@@ -245,7 +246,8 @@ connect_container() {
         --entrypoint="" \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR},target=/home/vscode/Projects" \
+        --mount "type=bind,source=${HOST_PROJECTS_DIR}/work,target=/home/vscode/Projects/work" \
+        --mount "type=bind,source=${HOST_PROJECTS_DIR}/personal,target=/home/vscode/Projects/personal" \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         "$IMAGE_NAME" /bin/zsh
