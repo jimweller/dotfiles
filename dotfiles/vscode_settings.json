@@ -34,6 +34,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
+  "files.associations": {
+    "*.bats": "shellscript"
+  },
+
   // =============================================================================
   // CORE EDITOR CONFIGURATION
   // General editor behavior, appearance, and interaction settings

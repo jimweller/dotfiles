@@ -16,6 +16,10 @@ alias z='. ~/.zshrc'
 
 unsetopt share_history
 
+myip () {
+  dig +short myip.opendns.com @resolver1.opendns.com
+}
+
 loadenv() { 
   set -a 
   if [[ -f "$1" ]]; then
