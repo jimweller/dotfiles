@@ -32,11 +32,6 @@ ado() {
 }
 
 ado_browse() {
-    if [[ $# -eq 0 ]]; then
-        echo "Usage: ado browse"
-        echo "Example: ado browse"
-        return
-    fi
     
     local remote_url=$(git remote get-url origin 2>/dev/null)
     
