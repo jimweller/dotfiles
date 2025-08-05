@@ -6,8 +6,7 @@ otp() { if [ -z $1 ]; then echo "Missing parameter, TOTP seed\nUsage: otp [seed]
 cj() { vsc -n ~/dotfiles ~/bin/sync.sh }
 dotfiles() { cd ~/dotfiles && gl && ./install }
 
-# sync portfolio
-exfl() { sync.sh & }
+ef() { sync.sh & }
 
 alias cbc='cb copy'
 alias cbp='cb paste'

@@ -72,7 +72,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.applyToAllProfiles": ["editor.detectIndentation"],
   "workbench.startupEditor": "none",
-  "workbench.editor.enablePreview": false,
   "workbench.editor.showIcons": false,
   "workbench.editorAssociations": {
     "*.copilotmd": "vscode.markdown.preview.editor",
