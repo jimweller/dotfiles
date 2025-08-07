@@ -2,22 +2,22 @@
 set -euo pipefail
 
 set -a
-source "$HOME/.secrets/exfl.env"
+source "$HOME/.secrets/dotfiles.env"
 set +a
 
 # Variables
-PASSWORD="${SYNC_ENCRYPTION_PASSWORD:?Set SYNC_ENCRYPTION_PASSWORD}"
+PASSWORD="${DOTFILES_KEY:?Set DOTFILES_KEY}"
 DMG="$HOME/Projects/WorkPortfolio/WorkPortfolio.dmg.sparseimage"
 MOUNT="/Volumes/WorkPortfolio"
 SIZE="128g"
 
 # Create encrypted DMG if it doesn't exist
 if [ ! -f "$DMG" ]; then
-  echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname WorkPortfolio -fs APFS "$DMG"
+  printf '%s' "$PASSWORD"  | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname WorkPortfolio -fs APFS "$DMG"
 fi
 
 # Mount encrypted DMG
-echo "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT"
+printf '%s\n' "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT"
 
 # Generate brew + extensions
 brew list --formula > "$MOUNT/brew-formulas.txt"
@@ -30,8 +30,6 @@ rsync -avL --delete \
   --exclude='.Trash' \
   --exclude='.trash' \
   --exclude='.git' \
-  --exclude='.gitt' \
-  --exclude='.gitt' \
   --exclude='.kube/cache' \
   --exclude='.kube/http-cache' \
   --exclude='.terraform' \
