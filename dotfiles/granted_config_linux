@@ -9,4 +9,4 @@ ExportCredentialSuffix = ""
 
 [Keyring]
   Backend = "file"
- FileDir = "~/.config/granted/secure-storage"
+  FileDir = "~/.config/granted/secure-storage"
