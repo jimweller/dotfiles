@@ -349,7 +349,7 @@ exec_container() {
         temp_run_args=(
             -d --name "$temp_container"
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
-            "${temp_granted_mounts[@]}"
+            "${temp_granted_mounts[@]+"${temp_granted_mounts[@]}"}"
             --user "$(id -u):$(id -g)"
             "$IMAGE_NAME"
         )
