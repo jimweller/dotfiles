@@ -142,11 +142,27 @@ run_0jimbox() {
         return 0
     fi
     
+    # Check if host .granted directory exists
+    local host_granted_dir="${HOME}/.granted"
+    local granted_mounts=""
+    
+    if [[ -d "$host_granted_dir" ]]; then
+        # Mount AWS SSO token directories if they exist
+        if [[ -d "$host_granted_dir/secure-storage-aws-sso-tokens" ]]; then
+            granted_mounts="$granted_mounts --mount type=bind,source=$host_granted_dir/secure-storage-aws-sso-tokens,target=/home/vscode/.granted/secure-storage-aws-sso-tokens"
+        fi
+        
+        if [[ -d "$host_granted_dir/secure-storage-aws-idc-user-codes" ]]; then
+            granted_mounts="$granted_mounts --mount type=bind,source=$host_granted_dir/secure-storage-aws-idc-user-codes,target=/home/vscode/.granted/secure-storage-aws-idc-user-codes"
+        fi
+    fi
+    
     docker run -d \
         --name "$CONTAINER_NAME" \
         --restart unless-stopped \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
+        $granted_mounts \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         --health-cmd="ps aux | grep -v grep | grep -q zsh" \
@@ -228,11 +244,27 @@ connect_container() {
         docker rm -f "$temp_container" >/dev/null 2>&1
     fi
     
+    # Check if host .granted directory exists for mount options
+    local host_granted_dir="${HOME}/.granted"
+    local granted_mounts=""
+    
+    if [[ -d "$host_granted_dir" ]]; then
+        # Mount AWS SSO token directories if they exist
+        if [[ -d "$host_granted_dir/secure-storage-aws-sso-tokens" ]]; then
+            granted_mounts="$granted_mounts --mount type=bind,source=$host_granted_dir/secure-storage-aws-sso-tokens,target=/home/vscode/.granted/secure-storage-aws-sso-tokens"
+        fi
+        
+        if [[ -d "$host_granted_dir/secure-storage-aws-idc-user-codes" ]]; then
+            granted_mounts="$granted_mounts --mount type=bind,source=$host_granted_dir/secure-storage-aws-idc-user-codes,target=/home/vscode/.granted/secure-storage-aws-idc-user-codes"
+        fi
+    fi
+    
     # Start a new interactive container instance, overriding the ENTRYPOINT
     docker run -it --rm \
         --entrypoint="" \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
+        $granted_mounts \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         "$IMAGE_NAME" /bin/zsh
@@ -298,10 +330,26 @@ exec_container() {
         # Start temporary container to check/setup dotfiles
         temp_container="temp-${CONTAINER_NAME}"
         
+        # Check if host .granted directory exists for mount options
+        local host_granted_dir="${HOME}/.granted"
+        local temp_granted_mounts=()
+        
+        if [[ -d "$host_granted_dir" ]]; then
+            # Mount AWS SSO token directories if they exist
+            if [[ -d "$host_granted_dir/secure-storage-aws-sso-tokens" ]]; then
+                temp_granted_mounts+=("--mount" "type=bind,source=$host_granted_dir/secure-storage-aws-sso-tokens,target=/home/vscode/.granted/secure-storage-aws-sso-tokens")
+            fi
+            
+            if [[ -d "$host_granted_dir/secure-storage-aws-idc-user-codes" ]]; then
+                temp_granted_mounts+=("--mount" "type=bind,source=$host_granted_dir/secure-storage-aws-idc-user-codes,target=/home/vscode/.granted/secure-storage-aws-idc-user-codes")
+            fi
+        fi
+        
         # Build docker run command for temporary container
         temp_run_args=(
             -d --name "$temp_container"
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
+            "${temp_granted_mounts[@]}"
             --user "$(id -u):$(id -g)"
             "$IMAGE_NAME"
         )
