@@ -162,7 +162,7 @@ run_0jimbox() {
         --health-interval=30s \
         --health-timeout=3s \
         --health-retries=3 \
-        "$IMAGE_NAME" >/dev/null
+        "$IMAGE_NAME" tail -f /dev/null >/dev/null
 }
 
 # Build the container
@@ -291,7 +291,7 @@ restart_container() {
     run_0jimbox
 }
 
-# Execute command in running container
+# Execute command in container (like connect but runs command instead of interactive shell)
 exec_container() {
     # Check if image exists
     if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
@@ -299,36 +299,15 @@ exec_container() {
         exit 1
     fi
     
-    # Check if container is running
-    if ! container_running; then
-        echo "Container not running. Starting container first..."
-        if ! run_0jimbox; then
-            log_error "Failed to start container"
-            exit 1
-        fi
-        
-        # Wait a moment for container to be ready
-        sleep 2
-    fi
-    
     # Create a temporary container for dotfiles setup if auto-setup enabled
     if [[ "$DOTFILES_AUTO_SETUP" == "true" && -n "$DOTFILES_REPO" ]]; then
         # Start temporary container to check/setup dotfiles
         temp_container="temp-${CONTAINER_NAME}"
         
-        # Check if host .granted directory exists for mount options
-        local host_granted_dir="${HOME}/.granted"
-        local temp_granted_mounts=()
-        
-        if [[ -d "$host_granted_dir/secure-storage" ]]; then
-            temp_granted_mounts+=("--mount" "type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage")
-        fi
-        
         # Build docker run command for temporary container
         temp_run_args=(
             -d --name "$temp_container"
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
-            "${temp_granted_mounts[@]+"${temp_granted_mounts[@]}"}"
             --user "$(id -u):$(id -g)"
             "$IMAGE_NAME"
         )
@@ -342,13 +321,35 @@ exec_container() {
         docker rm -f "$temp_container" >/dev/null 2>&1
     fi
     
-    # Execute the command
+    # Check if host .granted directory exists for mount options
+    local host_granted_dir="${HOME}/.granted"
+    local granted_mounts=""
+    
+    if [[ -d "$host_granted_dir/secure-storage" ]]; then
+        granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
+    fi
+    
+    # Execute command in a new container instance, like connect but run command
     if [[ $# -eq 0 ]]; then
-        # No command provided, start interactive shell
-        docker exec -it "$CONTAINER_NAME" /bin/zsh
+        # No command provided, start interactive shell (same as connect)
+        docker run -it --rm \
+            --entrypoint="" \
+            --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
+            --mount "type=bind,source=$(pwd),target=/workspace" \
+            $granted_mounts \
+            --user "$(id -u):$(id -g)" \
+            --workdir="/workspace" \
+            "$IMAGE_NAME" /bin/zsh
     else
-        # Execute the provided command
-        docker exec -it "$CONTAINER_NAME" "$@"
+        # Execute the provided command - use -it for interactive tools like Claude CLI
+        docker run -it --rm \
+            --entrypoint="" \
+            --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
+            --mount "type=bind,source=$(pwd),target=/workspace" \
+            $granted_mounts \
+            --user "$(id -u):$(id -g)" \
+            --workdir="/workspace" \
+            "$IMAGE_NAME" "$@"
     fi
 }
 
