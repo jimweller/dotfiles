@@ -250,8 +250,6 @@
     "tail",
     "*"
   ],
-  "roo-cline.vsCodeLmModelSelector": {},
-  "roo-cline.deniedCommands": [],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/dotfiles",
   "peacock.favoriteColors": [
@@ -362,5 +360,7 @@
     "size": 10,
     "itemSize": 10 // Smaller item height
   },
-  "workbench.activityBar.location": "bottom"
+  "workbench.activityBar.location": "bottom",
+  "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
+  //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
 }

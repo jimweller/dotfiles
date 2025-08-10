@@ -4,6 +4,9 @@ alias personal='jump personal && switch_git_profile jim'
 alias mcg='switch_git_profile mcg'
 alias jim='switch_git_profile jim'
 
+alias gitlock='git_lock'
+alias glock='git_lock'
+alias glk='git_lock'
 
 switch_git_profile() {
   local profile=$1
@@ -30,6 +33,7 @@ switch_git_profile() {
     export AZURE_DEVOPS_EXT_PAT
     
     git config --file "$git_config_file" credential.helper '!f() { echo "username=$GIT_USERNAME"; echo "password=$AZURE_DEVOPS_EXT_PAT"; }; f'
+    git config --file "$git_config_file" credential."https://dev.azure.com".useHttpPath true
     
     git config --file "$git_config_file" url."https://dev.azure.com/mcgsead/".insteadOf "${GIT_URL_INSTEADOF}DefaultCollection/"
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/".insteadOf "$GIT_URL_INSTEADOF"
@@ -46,6 +50,32 @@ switch_git_profile() {
   fi
 }
 
+git_lock() {
+  # Check if we're in a git repository
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
+  # Check required environment variables are set
+  [[ -n "$GIT_USER" ]] || { echo "Error: GIT_USER not set. Run a profile switch first (jim/mcg)"; return 1; }
+  [[ -n "$GIT_EMAIL" ]] || { echo "Error: GIT_EMAIL not set. Run a profile switch first (jim/mcg)"; return 1; }
+
+  # Get current signing key (includes ~/.gitconfig-dynamic)
+  local current_signingkey
+  current_signingkey=$(git config user.signingkey)
+  [[ -n "$current_signingkey" ]] || { echo "Error: No signing key configured. Run a profile switch first (jim/mcg)"; return 1; }
+
+  # Set repository-specific config using current environment
+  git config user.name "$GIT_USER"
+  git config user.email "$GIT_EMAIL"
+  git config user.signingkey "$current_signingkey"
+
+  echo "Repository locked to current profile:"
+  echo "  Name: $GIT_USER"
+  echo "  Email: $GIT_EMAIL"
+  echo "  Signing key: $current_signingkey"
+}
 
 gj() {
   MESSAGE=${1:-"$(date +%s)"}

@@ -1,0 +1,151 @@
+{
+  "providerProfiles": {
+    "currentApiConfigName": "Sonnet 4",
+    "apiConfigs": {
+      "default": {
+        "diffEnabled": true,
+        "todoListEnabled": true,
+        "fuzzyMatchThreshold": 1,
+        "rateLimitSeconds": 0,
+        "consecutiveMistakeLimit": 3,
+        "verbosity": "low",
+        "apiModelId": "claude-sonnet-4-20250514",
+        "claudeCodeMaxOutputTokens": 32000,
+        "apiProvider": "claude-code",
+        "id": "ka9r3w13ls"
+      },
+      "Sonnet 4": {
+        "enableReasoningEffort": true,
+        "modelMaxThinkingTokens": 13107,
+        "verbosity": "low",
+        "apiModelId": "anthropic.claude-sonnet-4-20250514-v1:0",
+        "awsRegion": "us-west-2",
+        "awsUseCrossRegionInference": true,
+        "awsProfile": "bedrock",
+        "awsUseProfile": true,
+        "awsUseApiKey": false,
+        "awsCustomArn": "",
+        "apiProvider": "bedrock",
+        "id": "sonnet4"
+      },
+      "Opus 4.1": {
+        "enableReasoningEffort": true,
+        "modelMaxThinkingTokens": 13107,
+        "verbosity": "low",
+        "apiModelId": "anthropic.claude-opus-4-1-20250805-v1:0",
+        "awsRegion": "us-west-2",
+        "awsUseCrossRegionInference": true,
+        "awsProfile": "bedrock",
+        "awsUseProfile": true,
+        "awsUseApiKey": false,
+        "awsCustomArn": "",
+        "apiProvider": "bedrock",
+        "id": "opus41"
+      }
+    },
+    "modeApiConfigs": {
+      "architect": "opus41",
+      "code": "sonnet4",
+      "ask": "sonnet4",
+      "debug": "sonnet4",
+      "orchestrator": "sonnet4",
+      "bubba": "sonnet4"
+    }
+  },
+  "globalSettings": {
+    "lastShownAnnouncementId": "jul-29-2025-3-25-0",
+    "autoApprovalEnabled": true,
+    "alwaysAllowReadOnly": true,
+    "alwaysApproveResubmit": true,
+    "allowedCommands": [
+      "tsc",
+      "git log",
+      "git diff",
+      "git show",
+      "sqllite3",
+      "az",
+      "aws",
+      "go",
+      "make",
+      "./bin/azure-discover ",
+      "npm",
+      "npx",
+      "uvx",
+      "uv",
+      "docker",
+      "psql",
+      "head",
+      "tail",
+      "*"
+    ],
+    "rateLimitSeconds": 0,
+    "codebaseIndexModels": {
+      "openai": {
+        "text-embedding-3-small": {
+          "dimension": 1536
+        },
+        "text-embedding-3-large": {
+          "dimension": 3072
+        },
+        "text-embedding-ada-002": {
+          "dimension": 1536
+        }
+      },
+      "ollama": {
+        "nomic-embed-text": {
+          "dimension": 768
+        },
+        "nomic-embed-code": {
+          "dimension": 3584
+        },
+        "mxbai-embed-large": {
+          "dimension": 1024
+        },
+        "all-minilm": {
+          "dimension": 384
+        }
+      },
+      "openai-compatible": {
+        "text-embedding-3-small": {
+          "dimension": 1536
+        },
+        "text-embedding-3-large": {
+          "dimension": 3072
+        },
+        "text-embedding-ada-002": {
+          "dimension": 1536
+        },
+        "nomic-embed-code": {
+          "dimension": 3584
+        }
+      },
+      "gemini": {
+        "text-embedding-004": {
+          "dimension": 768
+        },
+        "gemini-embedding-001": {
+          "dimension": 3072
+        }
+      },
+      "mistral": {
+        "codestral-embed-2505": {
+          "dimension": 1536
+        }
+      }
+    },
+    "codebaseIndexConfig": {
+      "codebaseIndexEnabled": true,
+      "codebaseIndexQdrantUrl": "http://localhost:6333",
+      "codebaseIndexEmbedderProvider": "gemini",
+      "codebaseIndexEmbedderBaseUrl": "",
+      "codebaseIndexEmbedderModelId": "text-embedding-004",
+      "codebaseIndexEmbedderModelDimension": 1536,
+      "codebaseIndexSearchMinScore": 0.4,
+      "codebaseIndexSearchMaxResults": 50,
+      "codebaseIndexOpenAiCompatibleBaseUrl": ""
+    },
+    "telemetrySetting": "disabled",
+    "mode": "ask",
+    "hasOpenedModeSelector": true
+  }
+}

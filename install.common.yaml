@@ -7,24 +7,31 @@
 - create:
   - ~/bin
   - ~/.secrets
+  - ~/tmp
 
 - link:
-    ~/.bash_profile: dotfiles/.bash_profile
-    ~/.gitconfig: dotfiles/.gitconfig
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
-    ~/.ssh/config: dotfiles/ssh_config
+    ~/.bash_profile: dotfiles/.bash_profile
+    ~/.colima/default/colima.yaml: dotfiles/colima_default
+    ~/.docker/config.js: dotfiles/docker_config
+    ~/.granted/config: dotfiles/granted_config_macos
+    ~/.gitconfig: dotfiles/.gitconfig
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
+    ~/.roo/roo-code-settings.json: dotfiles/roocode/roo-code-settings.json
+    "~/.roo/":
+      glob: true
+      path: dotfiles/roocode/rules/**
+    ~/.ssh/config: dotfiles/ssh_config
 
 - shell:
-    - description: Copy claude configuration files
+    - description: Copy claude configuration files if not present
       command: |
         mkdir -p ~/.claude
-        rm -f ~/.claude/*
-        cp ~/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json
-        cp ~/dotfiles/dotfiles/claude_json_bak ~/.claude.json
+        cp -n ~/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json || true
+        cp -n ~/dotfiles/dotfiles/claude_json_bak ~/.claude.json || true
       stderr: true
       stdout: true
 

@@ -1,10 +1,47 @@
 [include]
     path = ~/.gitconfig-dynamic
-    path = ~/.gitconfig-static
+
 [core]
 	excludesFile = ~/dotfiles/dotfiles/.gitignore_global
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+	editor = code --wait
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	pager =
+
+[commit]
+	gpgsign = true
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+
+[mergetool "vscodeM"]
+	cmd = code --wait $MERGED
+
+[merge]
+	tool = vscodeM
+
+[difftool "vscodeD"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+
+[diff]
+	tool = vscodeD
+
+[init]
+	defaultBranch = main
+
+[rerere]
+	enabled = true
+
+[user]
+	useConfigOnly = true
+
+[pager]
+	branch = false
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

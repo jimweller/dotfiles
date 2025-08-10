@@ -14,7 +14,6 @@ RANDOM_SUFFIX="$(openssl rand -hex 1)"
 CONTAINER_NAME="${DEVC_NAME:-0jimbox-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
 IMAGE_NAME="${DEVC_IMAGE:-0jimbox}"
 DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/dotfiles/devcontainer}"
-HOST_PROJECTS_DIR="${DEVC_HOST_PROJECTS:-${HOME}/Projects}"
 
 # Dotfiles configuration
 DOTFILES_REPO="${DEVC_DOTFILES_REPO:-https://github.com/jimweller/dotfiles}"
@@ -143,21 +142,14 @@ run_0jimbox() {
         return 0
     fi
     
-    # Check if host projects directory exists
-    if [[ ! -d "$HOST_PROJECTS_DIR" ]]; then
-        mkdir -p "$HOST_PROJECTS_DIR"
-    fi
-    
     docker run -d \
         --name "$CONTAINER_NAME" \
         --restart unless-stopped \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR}/work,target=/home/vscode/Projects/work" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR}/personal,target=/home/vscode/Projects/personal" \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
-        --health-cmd="ps aux | grep -v grep | grep -q sleep" \
+        --health-cmd="ps aux | grep -v grep | grep -q zsh" \
         --health-interval=30s \
         --health-timeout=3s \
         --health-retries=3 \
@@ -214,11 +206,6 @@ connect_container() {
         exit 1
     fi
     
-    # Check if host projects directory exists
-    if [[ ! -d "$HOST_PROJECTS_DIR" ]]; then
-        mkdir -p "$HOST_PROJECTS_DIR"
-    fi
-    
     # Create a temporary container for dotfiles setup if auto-setup enabled
     if [[ "$DOTFILES_AUTO_SETUP" == "true" && -n "$DOTFILES_REPO" ]]; then
         # Start temporary container to check/setup dotfiles
@@ -246,8 +233,6 @@ connect_container() {
         --entrypoint="" \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR}/work,target=/home/vscode/Projects/work" \
-        --mount "type=bind,source=${HOST_PROJECTS_DIR}/personal,target=/home/vscode/Projects/personal" \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         "$IMAGE_NAME" /bin/zsh
@@ -255,10 +240,23 @@ connect_container() {
 
 # Show container status
 show_status() {
-    if container_running; then
-        docker ps --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}"
-    elif container_exists; then
-        docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}"
+    # Show all containers based on 0jimbox image
+    local all_containers
+    all_containers=$(docker ps -a --filter "ancestor=$IMAGE_NAME" --format "table {{.Names}}\t{{.Status}}\t{{.Image}}" 2>/dev/null)
+    
+    if [[ -n "$all_containers" && "$all_containers" != "NAMES	STATUS	IMAGE" ]]; then
+        echo "All 0jimbox Container Instances:"
+        echo "$all_containers"
+        
+        # Highlight current project's container if it exists
+        if container_exists; then
+            echo ""
+            echo "Current project container: $CONTAINER_NAME"
+        fi
+    else
+        echo "No containers found based on $IMAGE_NAME image"
+        echo "Current project container name would be: $CONTAINER_NAME"
+        echo "Use '$0 build' to create the image, then '$0 run' or '$0 connect' to start a container"
     fi
 }
 
@@ -292,6 +290,40 @@ cleanup_docker() {
     docker network prune -f
 }
 
+# Install devcontainer structure in current directory
+install_devcontainer() {
+    local target_dir=".devcontainer"
+    local devcontainer_file="$target_dir/devcontainer.json"
+    local source_file="$DOCKERFILE_PATH/devcontainer.json"
+    
+    # Check if source file exists
+    if [[ ! -f "$source_file" ]]; then
+        log_error "Source devcontainer.json not found at: $source_file"
+        exit 1
+    fi
+    
+    # Check if .devcontainer already exists
+    if [[ -d "$target_dir" ]]; then
+        echo "Warning: .devcontainer directory already exists in $(pwd)"
+        if [[ -f "$devcontainer_file" ]]; then
+            echo "Warning: devcontainer.json already exists, skipping installation"
+            return 0
+        fi
+    fi
+    
+    # Create .devcontainer directory
+    mkdir -p "$target_dir"
+    
+    # Copy devcontainer.json from source
+    if cp "$source_file" "$devcontainer_file"; then
+        echo "Successfully created .devcontainer structure in $(pwd)"
+        echo "Created: $devcontainer_file (copied from $source_file)"
+    else
+        log_error "Failed to copy devcontainer.json from $source_file"
+        exit 1
+    fi
+}
+
 # Show help
 show_help() {
     cat << EOF
@@ -300,6 +332,7 @@ show_help() {
 Usage: $0 <command>
 
 Commands:
+  install (i)   Create .devcontainer structure in current directory
   build (b)     Build the 0jimbox image
   rebuild (rb)  Rebuild the 0jimbox from scratch (no cache)
   run (r)       Run the 0jimbox in background (daemon mode)
@@ -314,7 +347,6 @@ Configuration (environment variables):
   DEVC_NAME                    Container name (default: 0jimbox-<project>-<xx>)
   DEVC_IMAGE                   Image name (default: 0jimbox)
   DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/dotfiles/devcontainer)
-  DEVC_HOST_PROJECTS          Host projects directory (default: \$HOME/Projects)
   DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
   DEVC_DOTFILES_INSTALL       Install command (default: ~/dotfiles/install)
   DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)
@@ -326,6 +358,7 @@ Configuration (environment variables):
 
 Note: Container names automatically include the current directory name plus a random
 2-character suffix for uniqueness. Each gets its own container instance and volume.
+Only the current working directory is mounted to /workspace in the container.
 Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
 Secrets are automatically unpacked after dotfiles installation using secrets.sh if DEVC_SECRETS_AUTO=true (default).
 For secrets to work, you need the 'secret' command available on the host and a secrets env file in DEVC_SECRETS_DIR.
@@ -340,6 +373,9 @@ main() {
     local command="${1:-help}"
     
     case "$command" in
+        install|i)
+            install_devcontainer
+            ;;
         build|b)
             check_docker
             build_container
