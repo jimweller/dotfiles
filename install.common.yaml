@@ -12,11 +12,11 @@
 - link:
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
-    ~/.bash_profile: dotfiles/.bash_profile
+    ~/.bash_profile: dotfiles/bash_profile
     ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.docker/config.js: dotfiles/docker_config
     ~/.granted/config: dotfiles/granted_config_macos
-    ~/.gitconfig: dotfiles/.gitconfig
+    ~/.gitconfig: dotfiles/gitconfig
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
@@ -47,8 +47,8 @@
       create: true
 
 - link:
-    ~/.p10k.zsh: dotfiles/.p10k.zsh
-    ~/.zshrc: dotfiles/.zshrc
+    ~/.p10k.zsh: dotfiles/p10k.zsh
+    ~/.zshrc: dotfiles/zshrc
     ~/.oh-my-zsh/custom:
       glob: true
       path: dotfiles/.oh-my-zsh/custom/*
