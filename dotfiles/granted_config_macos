@@ -5,4 +5,5 @@ Ordering = ""
 ExportCredentialSuffix = ""
 
 [Keyring]
-  Backend = "keychain"
+  Backend = "file"
+ FileDir = "~/.config/granted/secure-storage"

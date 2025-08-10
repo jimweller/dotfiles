@@ -6,3 +6,7 @@ ExportCredentialSuffix = ""
 
 [AWSConsoleBrowserLaunchTemplate]
   Command = ""
+
+[Keyring]
+  Backend = "file"
+ FileDir = "~/.config/granted/secure-storage"
