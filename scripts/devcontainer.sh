@@ -273,6 +273,58 @@ restart_container() {
     run_0jimbox
 }
 
+# Execute command in running container
+exec_container() {
+    # Check if image exists
+    if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
+        log_error "Image '$IMAGE_NAME' not found. Build it first with: $0 build"
+        exit 1
+    fi
+    
+    # Check if container is running
+    if ! container_running; then
+        echo "Container not running. Starting container first..."
+        if ! run_0jimbox; then
+            log_error "Failed to start container"
+            exit 1
+        fi
+        
+        # Wait a moment for container to be ready
+        sleep 2
+    fi
+    
+    # Create a temporary container for dotfiles setup if auto-setup enabled
+    if [[ "$DOTFILES_AUTO_SETUP" == "true" && -n "$DOTFILES_REPO" ]]; then
+        # Start temporary container to check/setup dotfiles
+        temp_container="temp-${CONTAINER_NAME}"
+        
+        # Build docker run command for temporary container
+        temp_run_args=(
+            -d --name "$temp_container"
+            --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode"
+            --user "$(id -u):$(id -g)"
+            "$IMAGE_NAME"
+        )
+        
+        docker run "${temp_run_args[@]}" >/dev/null 2>&1
+        
+        # Setup dotfiles in temp container
+        setup_dotfiles_in_container "$temp_container"
+        
+        # Clean up temp container
+        docker rm -f "$temp_container" >/dev/null 2>&1
+    fi
+    
+    # Execute the command
+    if [[ $# -eq 0 ]]; then
+        # No command provided, start interactive shell
+        docker exec -it "$CONTAINER_NAME" /bin/zsh
+    else
+        # Execute the provided command
+        docker exec -it "$CONTAINER_NAME" "$@"
+    fi
+}
+
 # Clean up unused Docker resources
 cleanup_docker() {
     # Stop and remove all 0jimbox-related containers
@@ -337,6 +389,7 @@ Commands:
   rebuild (rb)  Rebuild the 0jimbox from scratch (no cache)
   run (r)       Run the 0jimbox in background (daemon mode)
   connect (c)   Start a new interactive container instance
+  exec (e)      Execute command in running container (starts container if needed)
   restart (rt)  Restart the background 0jimbox
   status (st)   Show container status
   cleanup (cl)  Clean up unused Docker resources (volumes, containers, images)
@@ -391,6 +444,11 @@ main() {
         connect|c)
             check_docker
             connect_container
+            ;;
+        exec|e)
+            check_docker
+            shift  # Remove 'exec' from arguments
+            exec_container "$@"
             ;;
         restart|rt)
             check_docker
