@@ -1,9 +1,12 @@
-# macOS-specific includes and DevPod configs
-Match host * exec "test $(uname) = Darwin"
-  Include /Users/jimweller/.colima/ssh_config
+# Tell SSH to ignore unknown options (like UseKeychain on Linux)
+Host *
+  IgnoreUnknown UseKeychain
 
-# DevPod configs (macOS only)
-Match host vscode-remote-try-cpp.devpod exec "test $(uname) = Darwin"
+# macOS-specific includes (only exists on macOS)
+Include /Users/jimweller/.colima/ssh_config
+
+# DevPod Start vscode-remote-try-cpp.devpod
+Host vscode-remote-try-cpp.devpod
   ForwardAgent yes
   LogLevel error
   StrictHostKeyChecking no
@@ -11,8 +14,10 @@ Match host vscode-remote-try-cpp.devpod exec "test $(uname) = Darwin"
   HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
   ProxyCommand "/Applications/DevPod.app/Contents/MacOS/devpod-cli" ssh --stdio --context default --user vscode vscode-remote-try-cpp
   User vscode
+# DevPod End vscode-remote-try-cpp.devpod
 
-Match host claude-flow.devpod exec "test $(uname) = Darwin"
+# DevPod Start claude-flow.devpod
+Host claude-flow.devpod
   ForwardAgent yes
   LogLevel error
   StrictHostKeyChecking no
@@ -20,15 +25,12 @@ Match host claude-flow.devpod exec "test $(uname) = Darwin"
   HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
   ProxyCommand "/Applications/DevPod.app/Contents/MacOS/devpod-cli" ssh --stdio --context default --user node claude-flow
   User node
+# DevPod End claude-flow.devpod
 
-# macOS-specific settings for automatic key management
-Match host * exec "test $(uname) = Darwin"
-  AddKeysToAgent yes
-  UseKeychain yes
-
-# Cross-platform settings
+# Cross-platform settings with macOS-specific UseKeychain
 Host *
   AddKeysToAgent yes
+  UseKeychain yes
   IdentitiesOnly no
 
 Host jimweller.com
