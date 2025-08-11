@@ -12,7 +12,7 @@
         "apiModelId": "claude-sonnet-4-20250514",
         "claudeCodeMaxOutputTokens": 32000,
         "apiProvider": "claude-code",
-        "id": "ka9r3w13ls"
+        "id": "claudecode"
       },
       "Sonnet 4": {
         "enableReasoningEffort": true,
@@ -41,15 +41,36 @@
         "awsCustomArn": "",
         "apiProvider": "bedrock",
         "id": "opus41"
+      },
+      "Gemini 2.5 Pro": {
+        "diffEnabled": true,
+        "todoListEnabled": true,
+        "fuzzyMatchThreshold": 1,
+        "rateLimitSeconds": 0,
+        "consecutiveMistakeLimit": 3,
+        "enableReasoningEffort": true,
+        "modelMaxTokens": 64000,
+        "modelMaxThinkingTokens": 32768,
+        "verbosity": "low",
+        "apiModelId": "gemini-2.5-pro",
+        "geminiApiKey": "AIzaSyAOddYoQ3KKlzwxyddztr2-8MkpuqoK6rk",
+        "enableUrlContext": true,
+        "enableGrounding": true,
+        "apiProvider": "gemini",
+        "id": "gemini25p"
       }
     },
     "modeApiConfigs": {
-      "architect": "opus41",
+      "architect": "gemini25p",
       "code": "sonnet4",
-      "ask": "sonnet4",
+      "ask": "opus41",
       "debug": "sonnet4",
       "orchestrator": "sonnet4",
-      "bubba": "sonnet4"
+      "bubba": "sonnet4",
+      "devops": "sonnet4",
+      "product": "sonnet4",
+      "compliance": "sonnet4",
+      "data": "sonnet4"
     }
   },
   "globalSettings": {

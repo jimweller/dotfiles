@@ -362,5 +362,6 @@
   },
   "workbench.activityBar.location": "bottom",
   "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
+  "roo-cline.deniedCommands": [],
   //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
 }
