@@ -174,21 +174,21 @@
 
   "dev.containers.defaultExtensions": [
     "rooveterinaryinc.roo-cline",
-    "anthropic.claude-code",
-    "bierner.github-markdown-preview",
-    "bierner.markdown-checkbox",
-    "bierner.markdown-emoji",
-    "bierner.markdown-footnotes",
-    "bierner.markdown-mermaid",
-    "bierner.markdown-preview-github-styles",
-    "bierner.markdown-yaml-preamble",
-    "davidanson.vscode-markdownlint",
-    "yzhang.markdown-all-in-one",
-    "docker.docker",
-    "eamodio.gitlens",
-    "mcsodbrenner.better-open-editors",
-    "mhutchie.git-graph",
-    "usernamehw.errorlens",
+    // "anthropic.claude-code",
+    // "bierner.github-markdown-preview",
+    // "bierner.markdown-checkbox",
+    // "bierner.markdown-emoji",
+    // "bierner.markdown-footnotes",
+    // "bierner.markdown-mermaid",
+    // "bierner.markdown-preview-github-styles",
+    // "bierner.markdown-yaml-preamble",
+    // "davidanson.vscode-markdownlint",
+    // "yzhang.markdown-all-in-one",
+    // "docker.docker",
+    // "eamodio.gitlens",
+    // "mcsodbrenner.better-open-editors",
+    // "mhutchie.git-graph",
+    // "usernamehw.errorlens",
     "esbenp.prettier-vscode"
   ],
   "dev.containers.defaultFeatures": {
@@ -239,7 +239,6 @@
     "aws",
     "go",
     "make",
-    "./bin/azure-discover ",
     "npm",
     "npx",
     "uvx",
@@ -248,7 +247,16 @@
     "psql",
     "head",
     "tail",
-    "*"
+    "bats",
+    "cd",
+    "pwd",
+    "ls",
+    "chmod",
+    "export",
+    "./test-submission.sh",
+    "timeout",
+    "chmod +x",
+    "./debug_reliability_focused.sh"
   ],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/dotfiles",
@@ -355,13 +363,8 @@
   // EXTREME CUSTOMIZATON
   // Tweak core css
   // =============================================================================
-  "apc.activityBar": {
-    "position": "bottom",
-    "size": 10,
-    "itemSize": 10 // Smaller item height
-  },
   "workbench.activityBar.location": "bottom",
-  "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
+  // "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
   "roo-cline.deniedCommands": [],
   //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
 }

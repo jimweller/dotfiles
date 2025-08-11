@@ -53,7 +53,7 @@
         "modelMaxThinkingTokens": 32768,
         "verbosity": "low",
         "apiModelId": "gemini-2.5-pro",
-        "geminiApiKey": "AIzaSyAOddYoQ3KKlzwxyddztr2-8MkpuqoK6rk",
+        "geminiApiKey": "",
         "enableUrlContext": true,
         "enableGrounding": true,
         "apiProvider": "gemini",

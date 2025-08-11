@@ -20,7 +20,7 @@
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
-    ~/.roo/roo-code-settings.json: dotfiles/roocode/roo-code-settings.json
+    # ~/.roo/roo-code-settings.json: dotfiles/roocode/roo-code-settings.json
     "~/.roo/":
       glob: true
       path: dotfiles/roocode/rules/**
