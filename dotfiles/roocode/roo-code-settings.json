@@ -61,16 +61,18 @@
       }
     },
     "modeApiConfigs": {
-      "architect": "gemini25p",
-      "code": "sonnet4",
+      "architect": "opus41",
+      "code": "gemini25p",
       "ask": "opus41",
       "debug": "sonnet4",
       "orchestrator": "sonnet4",
-      "bubba": "sonnet4",
       "devops": "sonnet4",
       "product": "sonnet4",
       "compliance": "sonnet4",
-      "data": "sonnet4"
+      "data": "sonnet4",
+      "security": "sonnet4",
+      "research": "sonnet4",
+      "docs": "sonnet4"
     }
   },
   "globalSettings": {
@@ -159,7 +161,7 @@
       "codebaseIndexQdrantUrl": "http://localhost:6333",
       "codebaseIndexEmbedderProvider": "gemini",
       "codebaseIndexEmbedderBaseUrl": "",
-      "codebaseIndexEmbedderModelId": "text-embedding-004",
+      "codebaseIndexEmbedderModelId": "text-embedding-001",
       "codebaseIndexEmbedderModelDimension": 1536,
       "codebaseIndexSearchMinScore": 0.4,
       "codebaseIndexSearchMaxResults": 50,
