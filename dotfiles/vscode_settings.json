@@ -256,7 +256,8 @@
     "./test-submission.sh",
     "timeout",
     "chmod +x",
-    "./debug_reliability_focused.sh"
+    "./debug_reliability_focused.sh",
+    "cat"
   ],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/dotfiles",
@@ -366,5 +367,6 @@
   "workbench.activityBar.location": "bottom",
   // "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
   "roo-cline.deniedCommands": [],
+  "workbench.editor.enablePreview": false,
   //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
 }

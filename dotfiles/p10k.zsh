@@ -77,13 +77,13 @@
     #phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     #scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     #haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    terraform_ver          # terraform version (integrates with Oh My Zsh terraform plugin)
+    tofu_version            # opentofu version
+    terragrunt_version      # terragrunt version
+    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     aws_jim                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
-    #terraform               # terraform workspace (https://www.terraform.io)
-    #terraform_version     # terraform version (https://www.terraform.io)
-    tofu_version
     #aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     devbox                  # devbox environment indicator
     #gcloud                  # google cloud cli account and project (https://cloud.google.com/)
     #google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
@@ -1232,6 +1232,8 @@
   # typeset -g POWERLEVEL9K_HASKELL_STACK_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
+  # Show terraform only when the command you are typing invokes one of these tools.
+  typeset -g POWERLEVEL9K_TERRAFORM_SHOW_ON_COMMAND='terraform|tf'
   # Don't show terraform workspace if it's literally "default".
   typeset -g POWERLEVEL9K_TERRAFORM_SHOW_DEFAULT=false
   # POWERLEVEL9K_TERRAFORM_CLASSES is an array with even number of elements. The first element
@@ -1265,10 +1267,37 @@
   # typeset -g POWERLEVEL9K_TERRAFORM_OTHER_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   #############[ terraform_version: terraform version (https://www.terraform.io) ]##############
+  # Show terraform version only when the command you are typing invokes one of these tools.
+  typeset -g POWERLEVEL9K_TERRAFORM_VERSION_SHOW_ON_COMMAND='terraform|tf'
   # Terraform version color.
   typeset -g POWERLEVEL9K_TERRAFORM_VERSION_FOREGROUND=38
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # Custom terraform icon.
+  typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\uE8BD'
+
+# Custom terraform version segment that integrates with Oh My Zsh terraform plugin
+typeset -g POWERLEVEL9K_TERRAFORM_VER_ICON=$'\uE8BD'
+typeset -g POWERLEVEL9K_TERRAFORM_VER_COLOR=38
+typeset -g POWERLEVEL9K_TERRAFORM_VER_SHOW_ON_COMMAND='terraform|tf'
+
+function prompt_terraform_ver() {
+  local terraform=${commands[terraform]}
+  [[ -n $terraform ]] || return
+  
+  # Use the Oh My Zsh terraform plugin function
+  local version_info
+  version_info="$(tf_version_prompt_info 2>/dev/null)"
+  [[ -n $version_info ]] || return
+  
+  # Remove brackets that the plugin adds
+  version_info="${version_info#\[}"
+  version_info="${version_info%\]}"
+  
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TERRAFORM_VER_COLOR TERRAFORM_VER_ICON 0 '' ${version_info//\%/%%}
+}
+
+function _p9k_prompt_terraform_ver_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[terraform]'
+}
 
   #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
   # Show kubecontext only when the command you are typing invokes one of these tools.
@@ -1360,7 +1389,7 @@
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # Show aws only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show aws.
-  typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
+  typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|tf|pulumi|terragrunt|tg|aws-nuke|assume|granted|tofu|tt'
 
   # POWERLEVEL9K_AWS_CLASSES is an array with even number of elements. The first element
   # in each pair defines a pattern against which the current AWS profile gets matched.
@@ -1407,7 +1436,7 @@
   ##########[ azure: azure account name (https://docs.microsoft.com/en-us/cli/azure) ]##########
   # Show azure only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show azure.
-  typeset -g POWERLEVEL9K_AZURE_SHOW_ON_COMMAND='az|terraform|pulumi|terragrunt|tofu'
+  typeset -g POWERLEVEL9K_AZURE_SHOW_ON_COMMAND='az|terraform|tf|pulumi|terragrunt|tg|tofu|tt'
   # Azure account name color.
   typeset -g POWERLEVEL9K_AZURE_FOREGROUND=32
   # Custom icon.
@@ -1692,12 +1721,12 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 
 
-# Jim's custome
+# Jim's custom
 
 
-typeset -g POWERLEVEL9K_TOFU_VERSION_ICON='\uF1B2'
+typeset -g POWERLEVEL9K_TOFU_VERSION_ICON=$'\U000f07c8'
 typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=220
-typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|terraform|terragrunt'
+typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|opentofu|tt'
 
 function prompt_tofu_version() {
   local tofu=${commands[tofu]} v cfg
@@ -1714,6 +1743,28 @@ function prompt_tofu_version() {
 
 function _p9k_prompt_tofu_version_init() {
   typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
+}
+
+# Terragrunt version segment
+typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_ICON=$'\U000f0b22'
+typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_COLOR=214
+typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_SHOW_ON_COMMAND='terragrunt|tg'
+
+function prompt_terragrunt_version() {
+  local terragrunt=${commands[terragrunt]} v
+  if _p9k_cache_stat_get $0 $terragrunt; then
+    v=$_p9k__cache_val[1]
+  else
+    # Extract version using same logic as your plugin: get 3rd word from terragrunt --version
+    v=${${(s: :)$(terragrunt --version 2>/dev/null)}[3]}
+    _p9k_cache_stat_set "$v"
+  fi
+  [[ -n $v ]] || return
+  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TERRAGRUNT_VERSION_COLOR TERRAGRUNT_VERSION_ICON 0 '' ${v//\%/%%}
+}
+
+function _p9k_prompt_terragrunt_version_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[terragrunt]'
 }
 
 
@@ -1739,7 +1790,7 @@ typeset -gA AWS_REGION_ALIASES=(
   sa-east-1    sae1
 )
 
-typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|pulumi|terragrunt|aws-nuke|assume|granted|tofu'
+typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|tf|pulumi|terragrunt|tg|aws-nuke|assume|granted|tofu|tt'
 typeset -g POWERLEVEL9K_AWS_JIM_ICON='\uF270'
 typeset -g POWERLEVEL9K_AWS_JIM_COLOR=214
 
