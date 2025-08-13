@@ -34,6 +34,8 @@ loadenv() {
   set -a 
   if [[ -f "$1" ]]; then
     source "$1"
+  else
+    echo "❌"
   fi
   set +a; 
 }

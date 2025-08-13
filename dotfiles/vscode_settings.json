@@ -94,7 +94,7 @@
   "terminal.integrated.automationProfile.osx": null,
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.environmentChangesRelaunch": false,
-  "terminal.integrated.fontFamily": "Mononoki Nerd Font",
+  "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
   "terminal.integrated.tabs.defaultIcon": "terminal-powershell",
   "terminal.integrated.env.osx": {
     "Q_NEW_SESSION": "1"
