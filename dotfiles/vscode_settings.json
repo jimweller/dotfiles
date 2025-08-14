@@ -257,7 +257,14 @@
     "timeout",
     "chmod +x",
     "./debug_reliability_focused.sh",
-    "cat"
+    "cat",
+    "./deploy.sh",
+    "curl",
+    "rm function-app/src/app.js",
+    "mv",
+    "jq",
+    "grep",
+    "echo"
   ],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/dotfiles",

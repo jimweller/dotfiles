@@ -1,9 +1,14 @@
 {
   "mcpServers": {
     "context7": {
-      "type": "streamable-http",
-      "url": "https://mcp.context7.com/mcp",
-      "disabled": false,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "10000"
+      },
       "alwaysAllow": [
         "resolve-library-id",
         "get-library-docs"

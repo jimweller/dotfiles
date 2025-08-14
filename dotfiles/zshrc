@@ -5,18 +5,49 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
+#export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # vscode plugin needs code in the path. This is a hack since
 # the path is later loaded from the custom folder, but 
 # that is too late for the plugins. So, we run it here and in custom.
-source $ZSH/custom/01-path.zsh
+#source $ZSH/custom/01-path.zsh
 
-plugins=(terragrunt dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu terraform aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent encode64 colored-man-pages helm history-substring-search)
+#plugins=(terragrunt dotnet azure asdf otp dircycle common-aliases git git-lfs copypath copyfile history screen macos opentofu terraform aws docker kind kubectl istioctl vscode brew kubectx kube-ps1 kops gitignore aliases urltools universalarchive jump gpg-agent encode64 colored-man-pages helm history-substring-search)
 
-source $ZSH/oh-my-zsh.sh
+#source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+#antidote load
+
+# Clone antidote if necessary.
+if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
+  git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
+fi
+
+# Create an amazing Zsh config using antidote plugins.
+source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+antidote load
+
+# Source anything in .zshrc.d.
+for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/*.zsh; do
+  # Ignore tilde files.
+  if [[ $_rc:t != '~'* ]]; then
+    source "$_rc"
+  fi
+done
+unset _rc
+
+
+# Source anything in .zshrc.d plugins
+for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/plugins/*/*.zsh; do
+  # Ignore tilde files.
+  if [[ $_rc:t != '~'* ]]; then
+    source "$_rc"
+  fi
+done
+unset _rc
+
+#source $ZSH/oh-my-zsh.sh
 
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
