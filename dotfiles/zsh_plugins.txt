@@ -1,6 +1,7 @@
 #getantidote/use-omz        # handle OMZ dependencies
 #ohmyzsh/ohmyzsh path:lib   # load OMZ's library
 
+zsh-users/zsh-completions
 belak/zsh-utils path:completion
 
 #ohmyzsh/ohmyzsh path:plugins/urltools
