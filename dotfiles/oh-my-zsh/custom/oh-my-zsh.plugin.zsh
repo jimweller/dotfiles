@@ -1,0 +1,11 @@
+. 00-quality-of-life.zsh
+. 01-path.zsh
+. 04-gpg.zsh
+. 06-git.zsh
+. 10-aws.zsh
+. 12-azure.zsh
+. 13-ado.zsh
+. 14-docker.zsh
+. 18-k8s.zsh
+. 20-ai.zsh
+. 91-macos.zsh
