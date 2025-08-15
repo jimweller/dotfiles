@@ -1,11 +1,12 @@
-. 00-quality-of-life.zsh
-. 01-path.zsh
-. 04-gpg.zsh
-. 06-git.zsh
-. 10-aws.zsh
-. 12-azure.zsh
-. 13-ado.zsh
-. 14-docker.zsh
-. 18-k8s.zsh
-. 20-ai.zsh
-. 91-macos.zsh
+0=${(%):-%N}
+source ${0:A:h}/00-quality-of-life.zsh
+source ${0:A:h}/01-path.zsh
+source ${0:A:h}/04-gpg.zsh
+source ${0:A:h}/06-git.zsh
+source ${0:A:h}/10-aws.zsh
+source ${0:A:h}/12-azure.zsh
+source ${0:A:h}/13-ado.zsh
+source ${0:A:h}/14-docker.zsh
+source ${0:A:h}/18-k8s.zsh
+source ${0:A:h}/20-ai.zsh
+source ${0:A:h}/91-macos.zsh
