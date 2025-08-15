@@ -36,11 +36,11 @@
       stderr: true
       stdout: true
 
-- shell:
-    - description: Install oh-my-zsh and powerlevel10k
-      command: ~/dotfiles/scripts/ohmyzsh.sh
-      stderr: true
-      stdout: true
+# - shell:
+#     - description: Install oh-my-zsh and powerlevel10k
+#       command: ~/dotfiles/scripts/ohmyzsh.sh
+#       stderr: true
+#       stdout: true
 
 - defaults:
     link:
