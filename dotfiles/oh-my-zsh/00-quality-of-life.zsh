@@ -78,5 +78,3 @@ fi
 alias devcontainer='devcontainer.sh'
 alias devc='devcontainer.sh'
 alias secrets='secrets.sh'
-
-echo "PLUGIN"
