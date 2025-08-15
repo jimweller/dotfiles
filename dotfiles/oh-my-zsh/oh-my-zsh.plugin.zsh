@@ -11,4 +11,3 @@ source ${0:A:h}/18-k8s.zsh
 source ${0:A:h}/20-ai.zsh
 source ${0:A:h}/91-macos.zsh
 
-echo "PLUGIN"
