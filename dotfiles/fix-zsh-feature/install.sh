@@ -8,6 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 [[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
 cat > /home/vscode/.zshrc << 'EOF'
 export ZSH="$HOME/.oh-my-zsh"
+[[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
 # Wait for dotfiles to complete
 if [[ ! -L ~/.zshrc ]]; then
   while [[ ! -L ~/.zshrc ]]; do sleep 1; done
