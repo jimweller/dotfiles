@@ -37,7 +37,7 @@ ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/helm
 ohmyzsh/ohmyzsh path:plugins/history-substring-search
 
-jimweller/dotfiles path:dotfiles/oh-my-zsh/                      # load Jim's library
+jimweller/dotfiles path:dotfiles/oh-my-zsh                     # load Jim's library
 #jimweller/dotfiles path:dotfiles/oh-my-zsh/custom/plugins/terragrunt   # load Jim's custom terragrunt
 
 
