@@ -2,10 +2,14 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+  branch = main
 [submodule "devcontainer"]
 	path = devcontainer
 	url = https://github.com/jimweller/devcontainer
+	ignore = dirty
+  branch = main
 [submodule "antidote"]
 	path = antidote
 	url = https://github.com/getantidote/antidote
 	ignore = dirty
+  branch = main
