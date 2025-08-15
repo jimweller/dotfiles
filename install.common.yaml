@@ -8,7 +8,6 @@
   - ~/bin
   - ~/.secrets
   - ~/tmp
-#  - ~/.oh-my-zsh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
