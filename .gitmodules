@@ -8,3 +8,4 @@
 [submodule "antidote"]
 	path = antidote
 	url = https://github.com/getantidote/antidote
+	ignore = dirty
