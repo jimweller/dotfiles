@@ -26,7 +26,7 @@ urldecode() {
 }
 
 copyfile() {
-  cat $1 | cb copy
+  [[ -f "$1" ]] && cat $1 | cb copy
 }
 copypath() {
   pwd | cb copy
