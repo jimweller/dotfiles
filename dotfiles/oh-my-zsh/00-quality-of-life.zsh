@@ -16,23 +16,23 @@ alias z='. ~/.zshrc'
 unsetopt share_history
 
 # unalias urlencode
-urlencode () {
+urlencode() {
   urlenc enc
 }
 
 # unalias urldecode
-urldecode () {
+urldecode() {
   urlenc dec
 }
 
-copyfile () {
+copyfile() {
   cat $1 | cb copy
 }
-copypath () {
+copypath() {
   pwd | cb copy
 }
 
-myip () {
+myip() {
   dig +short myip.opendns.com @resolver1.opendns.com
 }
 
