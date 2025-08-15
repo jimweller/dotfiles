@@ -34,8 +34,11 @@ ohmyzsh/ohmyzsh path:plugins/istioctl
 ohmyzsh/ohmyzsh path:plugins/jump
 #ohmyzsh/ohmyzsh path:plugins/kind
 ohmyzsh/ohmyzsh path:plugins/kops
-ohmyzsh/ohmyzsh path:plugins/kube-ps1
-ohmyzsh/ohmyzsh path:plugins/kubectl
+#ohmyzsh/ohmyzsh path:plugins/kube-ps1
+
+#ohmyzsh/ohmyzsh path:plugins/kubectl
+Dbz/kube-aliases
+
 ohmyzsh/ohmyzsh path:plugins/kubectx
 ohmyzsh/ohmyzsh path:plugins/macos
 ohmyzsh/ohmyzsh path:plugins/opentofu
