@@ -25,6 +25,12 @@ urldecode () {
   urlenc dec
 }
 
+copyfile() {
+  cat $1 | cb copy
+}
+copypath() {
+  pwd | cb copy
+}
 
 myip () {
   dig +short myip.opendns.com @resolver1.opendns.com
@@ -72,3 +78,4 @@ fi
 alias devcontainer='devcontainer.sh'
 alias devc='devcontainer.sh'
 alias secrets='secrets.sh'
+
