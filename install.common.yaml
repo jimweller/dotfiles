@@ -13,6 +13,8 @@
     mode: 700
   ~/.colima/default:
     mode: 700
+  ~/.ssh:
+    mode: 700
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
