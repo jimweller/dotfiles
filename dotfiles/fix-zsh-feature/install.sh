@@ -5,11 +5,11 @@
 
 # make a temporary .zshrc that just waits for dotbot to create a symlink
 export ZSH="$HOME/.oh-my-zsh"
-[[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
-ls -lR "$HOME"
+# [[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
+# ls -lR "$HOME"
 cat > /home/vscode/.zshrc << 'EOF'
-export ZSH="$HOME/.oh-my-zsh"
-[[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
+# [[ -d "$HOME/.oh-my-zsh" ]] || mkdir -p "$HOME/.oh-my-zsh"
 # Wait for dotfiles to complete
 if [[ ! -L ~/.zshrc ]]; then
   while [[ ! -L ~/.zshrc ]]; do sleep 1; done
