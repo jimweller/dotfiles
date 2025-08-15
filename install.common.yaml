@@ -10,6 +10,9 @@
   - ~/tmp
 #  - ~/.oh-my-zsh
 
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
 - link:
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
