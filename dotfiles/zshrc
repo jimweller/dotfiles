@@ -29,27 +29,31 @@ if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
   git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
 fi
 
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+
 # Create an amazing Zsh config using antidote plugins.
 source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
 antidote load
 
-# Source anything in .zshrc.d.
-for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/*.zsh; do
-  # Ignore tilde files.
-  if [[ $_rc:t != '~'* ]]; then
-    source "$_rc"
-  fi
-done
-unset _rc
+# # Source anything in .zshrc.d.
+# for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/*.zsh; do
+#   # Ignore tilde files.
+#   if [[ $_rc:t != '~'* ]]; then
+#     source "$_rc"
+#   fi
+# done
+# unset _rc
 
-# Source anything in .zshrc.d plugins
-for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/plugins/*/*.zsh; do
-  # Ignore tilde files.
-  if [[ $_rc:t != '~'* ]]; then
-    source "$_rc"
-  fi
-done
-unset _rc
+# # Source anything in .zshrc.d plugins
+# for _rc in ${ZDOTDIR:-$HOME}/.oh-my-zsh/custom/plugins/*/*.zsh; do
+#   # Ignore tilde files.
+#   if [[ $_rc:t != '~'* ]]; then
+#     source "$_rc"
+#   fi
+# done
+# unset _rc
 
 
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START

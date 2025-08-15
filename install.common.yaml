@@ -50,8 +50,8 @@
 - link:
     ~/.p10k.zsh: dotfiles/p10k.zsh
     ~/.zshrc: dotfiles/zshrc
-    ~/.oh-my-zsh/custom:
-      glob: true
-      path: dotfiles/.oh-my-zsh/custom/*
+#    ~/.oh-my-zsh/custom:
+#      glob: true
+#      path: dotfiles/.oh-my-zsh/custom/*
 
 

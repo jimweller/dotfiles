@@ -37,8 +37,8 @@ ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/helm
 ohmyzsh/ohmyzsh path:plugins/history-substring-search
 
-#ohmyzsh/ohmyzsh path:custom   # load Jim's library
-#ohmyzsh/ohmyzsh path:custom/plugins/terragrunt
-#ohmyzsh/ohmyzsh path:plugins/terragrunt
+jimweller/dotfiles path:dotfiles/oh-my-zsh/custom                      # load Jim's library
+jimweller/dotfiles path:dotfiles/oh-my-zsh/custom/plugins/terragrunt   # load Jim's custom terragrunt
+
 
 romkatv/powerlevel10k
