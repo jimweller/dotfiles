@@ -25,16 +25,14 @@ fi
 
 # TODO
 # Clone antidote if necessary.
-if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
-  git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
-fi
+if [[ ! -d $HOME/.antidote ]] || git clone https://github.com/mattmc3/antidote $HOME/.antidote
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#export ZSH="$HOME/.oh-my-zsh"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Create an amazing Zsh config using antidote plugins.
-source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
+source $HOME/.antidote/antidote.zsh
 antidote load
 
 # # Source anything in .zshrc.d.
