@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Variables
-TARGET_DIR="$HOME/Google Drive/My Drive/PortfolioJim/MCG/EF"
+TARGET_DIR="$HOME/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/EF"
 
 # Create target directory if it doesn't exist
 echo "Ensuring backup directory exists at $TARGET_DIR..."
