@@ -25,6 +25,7 @@
       glob: true
       path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
+    ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
 
 - shell:
     - description: Copy claude configuration files if not present
