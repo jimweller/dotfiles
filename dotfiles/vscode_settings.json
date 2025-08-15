@@ -375,5 +375,11 @@
   // "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
   "roo-cline.deniedCommands": [],
   "workbench.editor.enablePreview": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
   //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
 }
