@@ -8,6 +8,7 @@
   - ~/bin
   - ~/.secrets
   - ~/tmp
+  - ~/.oh-my-zsh
 
 - link:
     ~/.aws/config: dotfiles/aws_config
