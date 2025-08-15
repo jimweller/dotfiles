@@ -1,4 +1,4 @@
-getantidote/use-omz        # handle OMZ dependencies
+#getantidote/use-omz        # handle OMZ dependencies
 #ohmyzsh/ohmyzsh path:lib   # load OMZ's library
 
 belak/zsh-utils path:completion
