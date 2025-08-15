@@ -1,6 +1,8 @@
 #getantidote/use-omz        # handle OMZ dependencies
 #ohmyzsh/ohmyzsh path:lib   # load OMZ's library
 
+belak/zsh-utils path:completion
+
 ohmyzsh/ohmyzsh path:plugins/dotnet
 ohmyzsh/ohmyzsh path:plugins/azure
 ohmyzsh/ohmyzsh path:plugins/asdf

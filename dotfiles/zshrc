@@ -25,7 +25,7 @@ fi
 
 # TODO
 # Clone antidote if necessary.
-if [[ ! -d $HOME/.antidote ]] || git clone https://github.com/mattmc3/antidote $HOME/.antidote
+[[ -d $HOME/.antidote ]] || git clone --depth=1 https://github.com/mattmc3/antidote $HOME/.antidote
 
 #export ZSH="$HOME/.oh-my-zsh"
 #ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -33,6 +33,12 @@ if [[ ! -d $HOME/.antidote ]] || git clone https://github.com/mattmc3/antidote $
 
 # Create an amazing Zsh config using antidote plugins.
 source $HOME/.antidote/antidote.zsh
+
+ZSH=$(antidote path ohmyzsh/ohmyzsh)
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+[[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
+
+
 antidote load
 
 # # Source anything in .zshrc.d.
