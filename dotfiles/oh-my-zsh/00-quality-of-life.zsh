@@ -25,10 +25,10 @@ urldecode () {
   urlenc dec
 }
 
-copyfile() {
+copyfile () {
   cat $1 | cb copy
 }
-copypath() {
+copypath () {
   pwd | cb copy
 }
 
