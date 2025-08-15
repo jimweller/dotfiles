@@ -13,11 +13,14 @@ ohmyzsh/ohmyzsh path:lib   # load OMZ's library
 ohmyzsh/ohmyzsh path:plugins/aliases
 #ohmyzsh/ohmyzsh path:plugins/asdf
 #ohmyzsh/ohmyzsh path:plugins/aws
+apachler/zsh-aws
 
 #ohmyzsh/ohmyzsh path:plugins/azure
 dmakeienko/azcli
 
-ohmyzsh/ohmyzsh path:plugins/brew
+#ohmyzsh/ohmyzsh path:plugins/brew
+sticklerm3/alehouse
+
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/common-aliases
 #ohmyzsh/ohmyzsh path:plugins/copyfile
@@ -50,7 +53,6 @@ ohmyzsh/ohmyzsh path:plugins/otp
 #ohmyzsh/ohmyzsh path:plugins/screen
 ohmyzsh/ohmyzsh path:plugins/terraform
 ohmyzsh/ohmyzsh path:plugins/universalarchive
-ohmyzsh/ohmyzsh path:plugins/uv
 ohmyzsh/ohmyzsh path:plugins/vscode
 
 # load Jim's custom plugins
@@ -58,5 +60,6 @@ jimweller/dotfiles path:dotfiles/oh-my-zsh # load Jim's personal tools
 jimweller/dotfiles path:dotfiles/oh-my-zsh/terragrunt
 jimweller/dotfiles path:dotfiles/oh-my-zsh/docker
 jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
+jimweller/dotfiles path:dotfiles/oh-my-zsh/uv
 
 romkatv/powerlevel10k
