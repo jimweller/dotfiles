@@ -25,14 +25,14 @@ fi
 
 # TODO
 # Clone antidote if necessary.
-[[ -d $HOME/.antidote ]] || git clone --depth=1 -q https://github.com/mattmc3/antidote $HOME/.antidote
+# [[ -d $HOME/.antidote ]] || git clone --depth=1 -q https://github.com/mattmc3/antidote $HOME/.antidote
 
 #export ZSH="$HOME/.oh-my-zsh"
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Create an amazing Zsh config using antidote plugins.
-source $HOME/.antidote/antidote.zsh
+source $HOME/dotfiles/antidote/antidote.zsh
 
 #ANTIDOTE_HOME=$(antidote home)
 #ZSH="$ANTIDOTE_HOME/https-COLON--SLASH--SLASH-github.com-SLASH-ohmyzsh-SLASH-ohmyzsh"
