@@ -19,7 +19,7 @@ apachler/zsh-aws
 dmakeienko/azcli
 
 #ohmyzsh/ohmyzsh path:plugins/brew
-sticklerm3/alehouse
+#sticklerm3/alehouse
 
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/common-aliases

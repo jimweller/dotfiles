@@ -15,6 +15,12 @@
     #   glob: true
     #   path: dotfiles/roocode/*
 
+- shell:
+    - description: MacOS Specific Zsh Plugins
+      command: |
+        antidote
+
+
 # MSFT broke custom templates
 # - shell:
 #     - description: Copy devcontainer template
