@@ -5,15 +5,11 @@
       relink: true
 
 - create:
-  ~/bin:
-    mode: 700
-  ~/.secrets:
-    mode: 700
-  ~/tmp:
-    mode: 700
-  ~/.ssh:
-    mode: 700
-  ~/.colima/default:
+  - ~/bin
+  - ~/.secrets
+  - ~/tmp
+  - ~/.ssh
+  - ~/.colima/default
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
