@@ -6,7 +6,7 @@ zsh-users/zsh-completions kind:fpath path:src
 belak/zsh-utils path:completion
 belak/zsh-utils path:history
 
-ohmyzsh/ohmyzsh path:lib   # load OMZ's library
+ohmyzsh/ohmyzsh path:lib   # load old OMZ library, need get_current_branch
 
 
 #ohmyzsh/ohmyzsh path:plugins/urltools
@@ -60,8 +60,8 @@ ohmyzsh/ohmyzsh path:plugins/universalarchive
 ohmyzsh/ohmyzsh path:plugins/vscode
 
 # load Jim's custom plugins
-jimweller/dotfiles path:dotfiles/oh-my-zsh # load Jim's personal tools
-jimweller/dotfiles path:dotfiles/oh-my-zsh/terragrunt
+jimweller/dotfiles path:dotfiles/zsh-plugin # load Jim's personal tools
+jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/docker
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/uv
