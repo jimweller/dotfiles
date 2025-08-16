@@ -15,14 +15,14 @@
     #   glob: true
     #   path: dotfiles/roocode/*
 
-- shell:
-    - description: MacOS Specific Zsh Plugins
-      command: |
-        source ~/.config/dotfiles/antidote/antidote.zsh
-        antidote install alehouse
-        antidote update
-      stderr: true
-      stdout: true
+# - shell:
+#     - description: MacOS Specific Zsh Plugins
+#       command: |
+#         source ~/.config/dotfiles/antidote/antidote.zsh
+#         antidote install alehouse
+#         antidote update
+#       stderr: true
+#       stdout: true
 
 
 # MSFT broke custom templates

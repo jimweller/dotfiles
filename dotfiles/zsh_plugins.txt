@@ -67,5 +67,3 @@ jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/uv
 
 romkatv/powerlevel10kalehouse
-alehouse
-alehouse
