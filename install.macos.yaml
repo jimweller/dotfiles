@@ -18,7 +18,7 @@
 - shell:
     - description: MacOS Specific Zsh Plugins
       command: |
-        source ~/dotfiles/antidote/antidote.zsh
+        source ~/.config/dotfiles/antidote/antidote.zsh
         antidote install alehouse
         antidote update
       stderr: true
@@ -29,4 +29,4 @@
 # - shell:
 #     - description: Copy devcontainer template
 #       command: |
-#         cp -a ~/dotfiles/devcontainer/vscode_template ~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox
+#         cp -a ~/.config/dotfiles/devcontainer/vscode_template ~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox

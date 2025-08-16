@@ -2,7 +2,7 @@
     path = ~/.gitconfig-dynamic
 
 [core]
-	excludesFile = ~/dotfiles/dotfiles/gitignore_global
+	excludesFile = ~/.config/dotfiles/dotfiles/gitignore_global
 	editor = code --wait
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager =

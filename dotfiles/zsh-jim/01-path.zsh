@@ -36,8 +36,8 @@ fi
 
 
 # Add dotfiles scripts if available
-if [ -d "$HOME/dotfiles/scripts" ]; then
-  export PATH="$HOME/dotfiles/scripts:$PATH"
+if [ -d "$HOME/.config/dotfiles/scripts" ]; then
+  export PATH="$HOME/.config/dotfiles/scripts:$PATH"
 fi
 
 # Add pipx install of az

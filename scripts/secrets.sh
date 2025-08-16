@@ -18,7 +18,7 @@ if [ -n "$3" ]; then
 elif [ -n "$DOTFILES_ARCHIVE" ]; then
   ARCHIVE="$(eval echo "$DOTFILES_ARCHIVE")"
 else
-  ARCHIVE="$HOME/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
+  ARCHIVE="$HOME/.config/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 fi
 
 

@@ -17,7 +17,7 @@ DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/dotfiles/devcontainer}"
 
 # Dotfiles configuration
 DOTFILES_REPO="${DEVC_DOTFILES_REPO:-https://github.com/jimweller/dotfiles}"
-DOTFILES_INSTALL_COMMAND="${DEVC_DOTFILES_INSTALL:-~/dotfiles/install}"
+DOTFILES_INSTALL_COMMAND="${DEVC_DOTFILES_INSTALL:-~/.config/dotfiles/install}"
 DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
 
 # Secrets configuration
@@ -55,11 +55,11 @@ setup_dotfiles_in_container() {
     debug "Cloning and installing dotfiles..."
     # Clone and install dotfiles
     if ! timeout $DOTFILES_TIMEOUT docker exec "$container_name" bash -c "
-        if [ ! -d ~/dotfiles ]; then
-            git clone $DOTFILES_REPO ~/dotfiles >/dev/null 2>&1
+        if [ ! -d ~/.config/dotfiles ]; then
+            git clone $DOTFILES_REPO ~/.config/dotfiles >/dev/null 2>&1
         fi
         if [ -x $DOTFILES_INSTALL_COMMAND ]; then
-            cd ~/dotfiles && $DOTFILES_INSTALL_COMMAND >/dev/null 2>&1
+            cd ~/.config/dotfiles && $DOTFILES_INSTALL_COMMAND >/dev/null 2>&1
         fi
     " 2>/dev/null; then
         debug "Dotfiles installation failed or timed out"
@@ -91,7 +91,7 @@ setup_dotfiles_in_container() {
                 
                 # Run secrets.sh with environment variables
                 if ! timeout $SECRETS_TIMEOUT docker exec "${env_args[@]}" "$container_name" bash -c "
-                    SECRETS_SCRIPT=~/dotfiles/scripts/secrets.sh
+                    SECRETS_SCRIPT=~/.config/dotfiles/scripts/secrets.sh
                     if [[ -x \$SECRETS_SCRIPT ]]; then
                         \$SECRETS_SCRIPT open </dev/null >/dev/null 2>&1
                     fi
@@ -427,9 +427,9 @@ Configuration (environment variables):
   DEVC_DEBUG                   Enable debug output (default: false)
   DEVC_NAME                    Container name (default: 0jimbox-<project>-<xx>)
   DEVC_IMAGE                   Image name (default: 0jimbox)
-  DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/dotfiles/devcontainer)
+  DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/.config/dotfiles/devcontainer)
   DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
-  DEVC_DOTFILES_INSTALL       Install command (default: ~/dotfiles/install)
+  DEVC_DOTFILES_INSTALL       Install command (default: ~/.config/dotfiles/install)
   DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)
   DEVC_DOTFILES_TIMEOUT       Dotfiles installation timeout in seconds (default: 60)
   DEVC_SECRETS_AUTO           Auto-setup secrets via secrets.sh (default: true)

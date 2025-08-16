@@ -36,14 +36,14 @@
     - description: Copy claude configuration files if not present
       command: |
         mkdir -p ~/.claude
-        [ -f ~/.claude/settings.json ] || cp ~/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json || true
-        [ -f ~/.claude.json ] || cp ~/dotfiles/dotfiles/claude_json_bak ~/.claude.json || true
+        [ -f ~/.claude/settings.json ] || cp ~/.config/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json || true
+        [ -f ~/.claude.json ] || cp ~/.config/dotfiles/dotfiles/claude_json_bak ~/.claude.json || true
       stderr: true
       stdout: true
 
 # - shell:
 #     - description: Install oh-my-zsh and powerlevel10k
-#       command: ~/dotfiles/scripts/ohmyzsh.sh
+#       command: ~/.config/dotfiles/scripts/ohmyzsh.sh
 #       stderr: true
 #       stdout: true
 

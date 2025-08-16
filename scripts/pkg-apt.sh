@@ -15,4 +15,4 @@ out=$(mktemp) \
 
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y $(grep -vE '^\s*#' ~/dotfiles/scripts/apt-packages.txt | tr '\n' ' ')
+sudo apt-get install -y $(grep -vE '^\s*#' ~/.config/dotfiles/scripts/apt-packages.txt | tr '\n' ' ')

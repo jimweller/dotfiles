@@ -264,10 +264,12 @@
     "mv",
     "jq",
     "grep",
-    "echo"
+    "echo",
+    "which",
+    "dive"
   ],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
-  "dotfiles.targetPath": "~/dotfiles",
+  "dotfiles.targetPath": "~/.config/dotfiles",
   "peacock.favoriteColors": [
     {
       "name": "Maroon",

@@ -1,1 +1,11 @@
-customModes: []
+customModes:
+  - slug: bob
+    name: bob
+    roleDefinition: bob
+    groups:
+      - read
+      - edit
+      - browser
+      - command
+      - mcp
+    source: global
