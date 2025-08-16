@@ -18,7 +18,10 @@
 - shell:
     - description: MacOS Specific Zsh Plugins
       command: |
-        antidote
+        source ~/dotfiles/antidote/antidote.zsh
+        antidote load install ~/dotfiles/dotfiles/zsh_plugins_macos.txt
+      stderr: true
+      stdout: true
 
 
 # MSFT broke custom templates
