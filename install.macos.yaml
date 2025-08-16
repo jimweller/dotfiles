@@ -19,7 +19,8 @@
     - description: MacOS Specific Zsh Plugins
       command: |
         source ~/dotfiles/antidote/antidote.zsh
-        antidote install ~/dotfiles/dotfiles/zsh_plugins_macos.txt
+        antidote install alehouse
+        antidote update
       stderr: true
       stdout: true
 
