@@ -34,10 +34,13 @@ fi
 # Create an amazing Zsh config using antidote plugins.
 source $HOME/dotfiles/antidote/antidote.zsh
 
+# use short friendly names for antidoce downloads packages
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+
 # conveniences for some older OMZ plugins, that export the old 
 # directories to exist.
 SHELL=zsh
-ZSH=$(antidote path ohmyzsh/ohmyzsh)
+ZSH=$(antidote home)
 ZSH_CACHE_DIR="$ZSH/cache"
 [[ -d $ZSH_CACHE_DIR/completions ]] || mkdir -p $ZSH_CACHE_DIR/completions
 
