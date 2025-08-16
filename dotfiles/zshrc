@@ -34,11 +34,12 @@ fi
 # Create an amazing Zsh config using antidote plugins.
 source $HOME/dotfiles/antidote/antidote.zsh
 
-#ANTIDOTE_HOME=$(antidote home)
-#ZSH="$ANTIDOTE_HOME/https-COLON--SLASH--SLASH-github.com-SLASH-ohmyzsh-SLASH-ohmyzsh"
-# ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
-# [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
-# [[ -d $ZSH_CACHE_DIR/completions ]] || mkdir -p $ZSH_CACHE_DIR/completions
+# conveniences for some older OMZ plugins, that export the old 
+# directories to exist.
+SHELL=zsh
+ZSH=$(antidote path ohmyzsh/ohmyzsh)
+ZSH_CACHE_DIR="$ZSH/cache"
+[[ -d $ZSH_CACHE_DIR/completions ]] || mkdir -p $ZSH_CACHE_DIR/completions
 
 
 antidote load
