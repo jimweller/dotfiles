@@ -362,7 +362,7 @@ cleanup_docker() {
     docker volume ls --format '{{.Name}}' | grep -E '0jimbox' | xargs -r docker volume rm 2>/dev/null || true
     
     # Remove all 0jimbox-related images
-    docker images --format '{{.Repository}}:{{.Tag}}' | grep -E '0jimbox' | xargs -r docker rmi -f 2>/dev/null || true
+    #docker images --format '{{.Repository}}:{{.Tag}}' | grep -E '0jimbox' | xargs -r docker rmi -f 2>/dev/null || true
     
     docker volume prune -f
     docker container prune -f
