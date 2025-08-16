@@ -13,13 +13,13 @@ zstyle ':antidote:bundle' use-friendly-names 'yes'
 SHELL=zsh
 ZSH=$(antidote home)
 ZSH_CACHE_DIR="$ZSH/cache"
-XDG_CACHE_HOME="$ZSH/cache"
+XDG_CACHE_HOME=$ZSH_CACHE_DIR
 [[ -d $ZSH_CACHE_DIR/completions ]] || mkdir -p $ZSH_CACHE_DIR/completions
 
 antidote load
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "$XDG_CACHE_HOME/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START
