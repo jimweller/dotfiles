@@ -1,18 +1,18 @@
 [submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
+  path = dotbot
+  url = https://github.com/anishathalye/dotbot
+  ignore = dirty
   branch = master
   shallow = true
 [submodule "devcontainer"]
-	path = devcontainer
-	url = https://github.com/jimweller/devcontainer
-	ignore = dirty
+  path = devcontainer
+  url = https://github.com/jimweller/devcontainer
+  ignore = dirty
   branch = main
   shallow = true
 [submodule "antidote"]
-	path = antidote
-	url = https://github.com/getantidote/antidote
-	ignore = dirty
+  path = antidote
+  url = https://github.com/getantidote/antidote
+  ignore = dirty
   branch = main
   shallow = true
