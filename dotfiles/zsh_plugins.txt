@@ -60,7 +60,7 @@ ohmyzsh/ohmyzsh path:plugins/universalarchive
 ohmyzsh/ohmyzsh path:plugins/vscode
 
 # load Jim's custom plugins
-jimweller/dotfiles path:dotfiles/zsh-plugin # load Jim's personal tools
+jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/docker
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
