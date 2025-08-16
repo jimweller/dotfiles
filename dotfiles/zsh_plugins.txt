@@ -64,3 +64,4 @@ jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
 
 romkatv/powerlevel10k
 alehouse
+alehouse
