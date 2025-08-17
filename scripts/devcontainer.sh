@@ -13,7 +13,7 @@ PROJECT_NAME="$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9
 RANDOM_SUFFIX="$(openssl rand -hex 1)"
 CONTAINER_NAME="${DEVC_NAME:-0jimbox-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
 IMAGE_NAME="${DEVC_IMAGE:-0jimbox}"
-DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/dotfiles/devcontainer}"
+DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/.config/dotfiles/devcontainer}"
 
 # Dotfiles configuration
 DOTFILES_REPO="${DEVC_DOTFILES_REPO:-https://github.com/jimweller/dotfiles}"
