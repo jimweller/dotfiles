@@ -91,6 +91,9 @@ zsh-users/zsh-history-substring-search
 # TODO
 # ptavares/zsh-direnv
 
+# alias rm to move to trash instead of remove from disk
+mattmc3/zsh-safe-rm
+
 # load Jim's custom aliases, functions, and toggles
 jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 
