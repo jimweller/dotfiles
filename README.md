@@ -7,11 +7,11 @@ it's my beautiful mess.
 Features
 
 - dotbot for managing installation (git submodule)
-- antidote for managing zsh plugins (git submodule)
+- antidote for managing zsh plugins and fast loading (git submodule)
 - macos/linux auto detection
 - linux docker image with lots of utils for me and devcontainer ready (git submodule)
 - tons of personal zsh conveniences
-- lots of software tweaks the way I like it (AI, iterm2, vscode, etc.)
+- lots of software tweaks the way I like it (AI, iterm2, vscode, granted etc.)
 - secrets management and encryptions with .env files and gpg
 - git profile switching between work and personal
 - custom prompts for git identities, cloud providers, etc.
