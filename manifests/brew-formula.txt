@@ -6,6 +6,7 @@ awscli
 awscli-local
 awslogs
 azure-cli
+bat
 bats-core
 certbot
 cf2tf
@@ -101,6 +102,7 @@ rancher-cli
 rig
 rover
 rsync
+safe-rm
 saml-to/tap/saml-to
 serverless
 sha2
