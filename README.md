@@ -2,7 +2,8 @@
 
 Dotfiles allow your profile to roam between machines. I'm setup
 for Linux/Mac, but people do Windows too. It's a mess, but
-it's my beautiful mess.
+it's my beautiful mess that makes a new machine (or container)
+a breeze.
 
 ## Features
 
