@@ -13,6 +13,16 @@
         "resolve-library-id",
         "get-library-docs"
       ]
+    },
+    "GoogleResearcher": {
+      "type": "streamable-http",
+      "url": "http://localhost:3000/mcp",
+      "alwaysAllow": [
+        "google_search",
+        "scrape_page",
+        "analyze_with_gemini",
+        "research_topic"
+      ]
     }
   }
 }

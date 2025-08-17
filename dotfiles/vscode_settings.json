@@ -207,7 +207,7 @@
 
   "hediet.vscode-drawio.resizeImages": null,
   "hediet.vscode-drawio.theme": "kennedy",
-  "markdown-preview-github-styles.colorTheme": "light",
+  "markdown-preview-github-styles.colorTheme": "system",
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "terraform.languageServer.enable": true,
   "html.validate.scripts": false,
