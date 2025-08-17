@@ -1,3 +1,5 @@
+mattmc3/ez-compinit
+
 zsh-users/zsh-completions kind:fpath path:src
 
 ohmyzsh/ohmyzsh path:lib   # load old OMZ library, need get_current_branch
@@ -59,7 +61,9 @@ belak/zsh-utils path:history
 zsh-users/zsh-syntax-highlighting
 jnooree/zoxide-zsh-completion
 birdhackor/zsh-eza-ls-plugin
+zsh-users/zsh-history-substring-search
 
+# ptavares/zsh-direnv
 
 
 # load Jim's custom plugins

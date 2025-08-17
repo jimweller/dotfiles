@@ -11,7 +11,7 @@ ef() { sync.sh & }
 alias cbc='cb copy'
 alias cbp='cb paste'
 
-alias zs='. ~/.zshrc'
+alias zs='antidote update && antidote load && . ~/.zshrc'
 
 unsetopt share_history
 
@@ -81,4 +81,13 @@ alias secrets='secrets.sh'
 
 
 # enable zoxide smart change directory tool
+# replace cd command
 eval "$(zoxide init --cmd cd zsh)"
+
+
+# HISTORY_SUBSTRING_SEARCH_PREFIXED is a global variable that defines how the
+# command history will be searched for your query. If set to a non-empty value,
+# your query will be matched against the start of each history entry. For
+# example, if this variable is empty, ls will match ls -l and echo ls; if it is
+# non-empty, ls will only match ls -l.
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
