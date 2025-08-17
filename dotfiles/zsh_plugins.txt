@@ -1,16 +1,6 @@
-#getantidote/use-omz        # handle OMZ dependencies
-#ohmyzsh/ohmyzsh path:lib   # load OMZ's library
-
-
 zsh-users/zsh-completions kind:fpath path:src
-belak/zsh-utils path:completion
-belak/zsh-utils path:history
-
-zsh-users/zsh-syntax-highlighting
-jnooree/zoxide-zsh-completion
 
 ohmyzsh/ohmyzsh path:lib   # load old OMZ library, need get_current_branch
-
 
 #ohmyzsh/ohmyzsh path:plugins/urltools
 ohmyzsh/ohmyzsh path:plugins/aliases
@@ -62,11 +52,22 @@ ohmyzsh/ohmyzsh path:plugins/terraform
 ohmyzsh/ohmyzsh path:plugins/universalarchive
 ohmyzsh/ohmyzsh path:plugins/vscode
 
+
+belak/zsh-utils path:completion
+belak/zsh-utils path:history
+
+zsh-users/zsh-syntax-highlighting
+jnooree/zoxide-zsh-completion
+birdhackor/zsh-eza-ls-plugin
+
+
+
 # load Jim's custom plugins
 jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/docker
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
 # jimweller/dotfiles path:dotfiles/oh-my-zsh/uv
+
 
 romkatv/powerlevel10k
