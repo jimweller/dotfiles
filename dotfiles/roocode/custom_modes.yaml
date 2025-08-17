@@ -1,11 +1,97 @@
 customModes:
-  - slug: bob
-    name: bob
-    roleDefinition: bob
+  - slug: orchestrator
+    name: 🪃 Orchestrator
+    description: Project coordinator does workflow management.
+    roleDefinition: Project coordinator manages project lifecycle. Develops project plans. Coordinates tasks.
+    groups:
+      - read
+    source: global
+  - slug: architect
+    name: 🏗️ Architect
+    description: System architect does high level design.
+    roleDefinition: System architect develops fit-for-purpose design to be implemented by teams. Develops blueprints. Writes architecture decision records. Facilitates seamless handoffs to implementation teams.
+    groups:
+      - read
+      - - edit
+        - fileRegex: "^.*\\.(md|mmd|drawio)$"
+          description: "Markdown, Mermaid, and DrawIO files only"
+      - command
+      - mcp
+    source: global
+  - slug: code
+    name: 💻 Code
+    description: Senior developer does full stack software engineereing.
+    roleDefinition: Senior developer implements architecture blue prints. Follows software engineering standards and best practices. Develops secure and compliant software.
     groups:
       - read
       - edit
-      - browser
+      - command
+      - mcp
+    source: global
+  - slug: debug
+    name: 📐 Quality
+    description: Quality assurance specialist does testing and debugging.
+    roleDefinition: Quality and testing specialist performs testing, validation, and debugging. Develops automated tests. Measures software quality. Fixes bugs and defects.
+    groups:
+      - read
+      - edit
+      - command
+      - mcp
+    source: global
+  - slug: devops
+    name: 🔧 DevOps
+    description: Software delivery specialies does infrastructure, software delivery, and automation
+    roleDefinition: Platform engineering specialist provides supportin infrastructure, CI/CD pipelines, and observability.
+    groups:
+      - read
+      - edit
+      - command
+      - mcp
+    source: global
+  - slug: security
+    name: 🛡️ Security
+    description: Cybersecurity specialist does security reviews and red/blue teaming.
+    roleDefinition: Cybersecurity specialist conducting threat modeling, security audits, and vulnerability assessments. Fulfills read team and blue team roles using security software tools.
+    groups:
+      - read
+      - edit
+      - command
+      - mcp
+    whenToUse: When security analysis, threat modeling, vulnerability assessment, or compliance validation is required
+    source: global
+  - slug: compliance
+    name: ⚖️ Compliance
+    description: Regulatory compliance specialist with automated auditing
+    roleDefinition: Regulatory compliance specialist ensuring GDPR, SOC2, HIPAA, PCI-DSS compliance with automated audit trails, policy enforcement, and regulatory reporting across all enterprise functions.
+    whenToUse: Use this mode when you need to ensure regulatory compliance, conduct compliance audits, validate data protection policies, prepare for regulatory assessments, or implement compliance frameworks like GDPR, SOC2, HIPAA, or PCI-DSS across enterprise systems.
+    groups:
+      - read
+      - - edit
+        - fileRegex: "^.*(compliance|audits?|policy|policies).*\/.*\\.(md|json|yaml|yml|pdf|docx|gdoc|mmd|drawio|csv|xlsx)$"
+          description: "Compliance-related files and documents only"
+      - command
+      - mcp
+    source: global
+  - slug: docs
+    name: 📚 Documentation
+    description: Technical documentation specialist with automated generation
+    roleDefinition: Technical documentation specialist creating comprehensive user guides, API documentation, architecture documentation, compliance documentation, and knowledge management systems with automated documentation generation.
+    groups:
+      - read
+      - - edit
+        - fileRegex: "^.*\\.(md|txt|docx|gdoc|mmd|drawio)$"
+          description: "Human audience documentats only."
+      - command
+      - mcp
+    whenToUse: When technical documentation, user guides, or knowledge management is required
+    source: global
+  - slug: data
+    name: 📈 Data
+    roleDefinition: Data engineering specialist designing data pipelines, analytics systems, business intelligence solutions, data governance frameworks, and automated reporting with enterprise-grade security and compliance.
+    description: Data engineering specialist with automated analytics
+    groups:
+      - read
+      - edit
       - command
       - mcp
     source: global

@@ -266,7 +266,9 @@
     "grep",
     "echo",
     "which",
-    "dive"
+    "dive",
+    "mkdir",
+    "sleep"
   ],
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/.config/dotfiles",
@@ -383,5 +385,10 @@
     "markdown": false,
     "scminput": false
   },
-  //"roo-cline.customStoragePath": "/Users/jimweller/.roo/vscode-settings/"
+
+  // roo-cline.customStoragePath - Custom storage location
+  "roo-cline.customStoragePath": "/Users/jimweller/.roo/"
+  // roo-cline.autoImportSettingsPath - Auto-import settings file path
+  //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
+
 }

@@ -8,12 +8,13 @@
     ~/.granted/config: dotfiles/granted_config_macos
     "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode_settings.json
     "~/Library/Application\ Support/Iterm2/DynamicProfiles/JimTerm.json": dotfiles/iterm2_profile
-    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
-    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
+    # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
+    # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template
     # "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/":
     #   glob: true
     #   path: dotfiles/roocode/*
+    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
 
 # - shell:
 #     - description: MacOS Specific Zsh Plugins

@@ -25,8 +25,9 @@
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
-    # ~/.roo/roo-code-settings.json: dotfiles/roocode/roo-code-settings.json
-    "~/.roo/":
+    ~/.roo/settings/mcp_settings.json: dotfiles/roocode/mcp_settings.json
+    # ~/.roo/settings/custom_modes.yaml: dotfiles/roocode/custom_modes.yaml
+    ~/.roo/:
       glob: true
       path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
