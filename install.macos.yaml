@@ -15,19 +15,3 @@
     #   glob: true
     #   path: dotfiles/roocode/*
     "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
-
-# - shell:
-#     - description: MacOS Specific Zsh Plugins
-#       command: |
-#         source ~/.config/dotfiles/antidote/antidote.zsh
-#         antidote install alehouse
-#         antidote update
-#       stderr: true
-#       stdout: true
-
-
-# MSFT broke custom templates
-# - shell:
-#     - description: Copy devcontainer template
-#       command: |
-#         cp -a ~/.config/dotfiles/devcontainer/vscode_template ~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox
