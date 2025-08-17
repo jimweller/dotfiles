@@ -81,4 +81,4 @@ alias secrets='secrets.sh'
 
 
 # enable zoxide smart change directory tool
-eval "$(zoxide init bash)"
+eval "$(zoxide init --cmd cd zsh)"
