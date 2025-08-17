@@ -7,19 +7,23 @@ zsh-users/zsh-completions kind:fpath path:src
 # load old OMZ library, need get_current_branch() for git aliases
 ohmyzsh/ohmyzsh path:lib   
 
-#ohmyzsh/ohmyzsh path:plugins/urltools
+
+# gives als to manage aliases
 ohmyzsh/ohmyzsh path:plugins/aliases
-#ohmyzsh/ohmyzsh path:plugins/asdf
-#ohmyzsh/ohmyzsh path:plugins/aws
+
+# handing aws aliases, don't use much. granted.dev is my goto
 apachler/zsh-aws
 
-#ohmyzsh/ohmyzsh path:plugins/azure
+# azure aliases
 dmakeienko/azcli
 
-#ohmyzsh/ohmyzsh path:plugins/brew
+# only load on macos, done manually in install.macos.yaml
 #sticklerm3/alehouse
 
+# pretty man
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+
+
 ohmyzsh/ohmyzsh path:plugins/common-aliases
 #ohmyzsh/ohmyzsh path:plugins/copyfile
 #ohmyzsh/ohmyzsh path:plugins/copypath

@@ -15,12 +15,12 @@ alias zs='antidote update && antidote load &&. ~/.zshrc'
 
 unsetopt share_history
 
-# unalias urlencode
+unalias urlencode
 urlencode() {
   urlenc enc
 }
 
-# unalias urldecode
+unalias urldecode
 urldecode() {
   urlenc dec
 }
