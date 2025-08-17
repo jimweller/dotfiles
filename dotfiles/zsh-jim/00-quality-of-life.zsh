@@ -91,3 +91,5 @@ eval "$(zoxide init --cmd cd zsh)"
 # example, if this variable is empty, ls will match ls -l and echo ls; if it is
 # non-empty, ls will only match ls -l.
 HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+
+alias less=bat

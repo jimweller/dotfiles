@@ -23,62 +23,80 @@ dmakeienko/azcli
 # pretty man
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
-
+# handy posix aliases, ll, la. Especially the suffix commands like L for | less
 ohmyzsh/ohmyzsh path:plugins/common-aliases
-#ohmyzsh/ohmyzsh path:plugins/copyfile
-#ohmyzsh/ohmyzsh path:plugins/copypath
-#ohmyzsh/ohmyzsh path:plugins/dircycle
-#ohmyzsh/ohmyzsh path:plugins/dotnet
-ohmyzsh/ohmyzsh path:plugins/encode64
 
+
+# docker short aliases, dps, dils, etc.
 ohmyzsh/ohmyzsh path:plugins/docker
+
+# helm aliases. hin, hun, etc.
 ohmyzsh/ohmyzsh path:plugins/helm
+
+# uv aliaes. uvv, uva, etc.
 ohmyzsh/ohmyzsh path:plugins/uv
 
 
-#ohmyzsh/ohmyzsh path:plugins/git
+# tons of git aliases, gc, gcmsg, gcl, ggpush, etc.
+# helps me document arcane git sequencies with "als get"
 mdumitru/git-aliases
 
-#ohmyzsh/ohmyzsh path:plugins/git-lfs
+# generate gitignore files with "gi macos,windows,linux,terraform"
 ohmyzsh/ohmyzsh path:plugins/gitignore
-ohmyzsh/ohmyzsh path:plugins/gpg-agent
-#ohmyzsh/ohmyzsh path:plugins/history
-#ohmyzsh/ohmyzsh path:plugins/history-substring-search
-ohmyzsh/ohmyzsh path:plugins/istioctl
-ohmyzsh/ohmyzsh path:plugins/jump
-ohmyzsh/ohmyzsh path:plugins/kops
-#ohmyzsh/ohmyzsh path:plugins/kube-ps1
 
-#ohmyzsh/ohmyzsh path:plugins/kubectl
+# starts gpg agent and ssh support
+ohmyzsh/ohmyzsh path:plugins/gpg-agent
+
+# manage istio service mesh
+ohmyzsh/ohmyzsh path:plugins/istioctl
+
+# kops aliases
+ohmyzsh/ohmyzsh path:plugins/kops
+
+# kubektl shorthands. k, kgp, etc.
 Dbz/kube-aliases
 
-#ohmyzsh/ohmyzsh path:plugins/kubectx
-#ohmyzsh/ohmyzsh path:plugins/macos
+
+# tt/tf aliass. tta, ttaa, ttd!, etc.
 ohmyzsh/ohmyzsh path:plugins/opentofu
-ohmyzsh/ohmyzsh path:plugins/otp
-#ohmyzsh/ohmyzsh path:plugins/screen
 ohmyzsh/ohmyzsh path:plugins/terraform
+
+# convert TOTP to one time codes, otp()
+ohmyzsh/ohmyzsh path:plugins/otp
+
+#  simple archiving. ua <format> file
 ohmyzsh/ohmyzsh path:plugins/universalarchive
+
+# vscode aliases. vsc, vscn, etc.
 ohmyzsh/ohmyzsh path:plugins/vscode
 
-
+# enables zsh completions
 belak/zsh-utils path:completion
+
+# enables zsh history
 belak/zsh-utils path:history
 
+# syntax highlighting on the command line
 zsh-users/zsh-syntax-highlighting
+
+# completions for zoxide, TODO, doesn't seem to work
 jnooree/zoxide-zsh-completion
+
+# ls aliases for eza (better ls)
 birdhackor/zsh-eza-ls-plugin
+
+# searches history for matches base on what is typed on the command line
 zsh-users/zsh-history-substring-search
 
+# TODO
 # ptavares/zsh-direnv
 
-
-# load Jim's custom plugins
+# load Jim's custom aliases, functions, and toggles
 jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
+
+# terragrunts like terraform/tofu. tg, tgaa, tgd!, etc. Pending PR to OMZ
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
-# jimweller/dotfiles path:dotfiles/oh-my-zsh/docker
-# jimweller/dotfiles path:dotfiles/oh-my-zsh/helm
-# jimweller/dotfiles path:dotfiles/oh-my-zsh/uv
 
 
+# powerlevel 10k is my preferred theme. see p10k.zsh
 romkatv/powerlevel10k
