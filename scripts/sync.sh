@@ -10,7 +10,7 @@ mkdir -p "$TARGET_DIR"
 
 # Generate brew + extensions
 echo "Backing up Homebrew and VS Code extensions..."
-brew list --formula > "$TARGET_DIR/brew-formulas.txt"
+brew leaves > "$TARGET_DIR/brew-formulas.txt"
 brew list --cask > "$TARGET_DIR/brew-casks.txt"
 brew tap > "$TARGET_DIR/brew-taps.txt"
 code --list-extensions > "$TARGET_DIR/vscode-extensions.txt"
