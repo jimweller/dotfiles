@@ -23,6 +23,14 @@
         "analyze_with_gemini",
         "research_topic"
       ]
+    },
+    "repomix": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ]
     }
   }
 }

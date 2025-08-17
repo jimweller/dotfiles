@@ -11,7 +11,7 @@ ef() { sync.sh & }
 alias cbc='cb copy'
 alias cbp='cb paste'
 
-alias z='. ~/.zshrc'
+alias zs='. ~/.zshrc'
 
 unsetopt share_history
 
