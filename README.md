@@ -29,7 +29,7 @@ These files "explain" most of it.
 - look at install script and install.*.conf dotbot files
 - look at dotfiles/zsh_plugins.txt
 - look at dotfiles/zsh-jim/*
-- look at scripts
+- look at scripts/
 
 Links
 
