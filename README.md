@@ -1,7 +1,8 @@
 # Jim's Dotfiles
 
-Dotfiles allow your profile to roam between machines. I'm only setup
-for Linux/Mac, but people do Windows too.
+Dotfiles allow your profile to roam between machines. I'm setup
+for Linux/Mac, but people do Windows too. It's a mess, but
+it's my beautiful mess.
 
 Features
 
@@ -13,6 +14,7 @@ Features
 - lots of software tweaks the way I like it (AI, iterm2, vscode, etc.)
 - secrets management and encryptions with .env files and gpg
 - git profile switching between work and personal
+- custom prompts for git identities, cloud providers, etc.
 
 Links
 
