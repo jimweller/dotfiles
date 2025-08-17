@@ -78,3 +78,7 @@ fi
 alias devcontainer='devcontainer.sh'
 alias devc='devcontainer.sh'
 alias secrets='secrets.sh'
+
+
+# enable zoxide smart change directory tool
+eval "$(zoxide init bash)"
