@@ -70,9 +70,6 @@ ohmyzsh/ohmyzsh path:plugins/universalarchive
 # vscode aliases. vsc, vscn, etc.
 ohmyzsh/ohmyzsh path:plugins/vscode
 
-# enables zsh completions
-#belak/zsh-utils path:completion
-
 # enables zsh history
 belak/zsh-utils path:history
 
