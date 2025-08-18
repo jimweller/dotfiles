@@ -1,5 +1,5 @@
-alias work='z work && switch_git_profile mcg'
-alias personal='z personal && switch_git_profile jim'
+alias work='cd work && switch_git_profile mcg'
+alias personal='cd personal && switch_git_profile jim'
 
 alias mcg='switch_git_profile mcg'
 alias jim='switch_git_profile jim'
