@@ -71,7 +71,7 @@ ohmyzsh/ohmyzsh path:plugins/universalarchive
 ohmyzsh/ohmyzsh path:plugins/vscode
 
 # enables zsh completions
-belak/zsh-utils path:completion
+#belak/zsh-utils path:completion
 
 # enables zsh history
 belak/zsh-utils path:history
