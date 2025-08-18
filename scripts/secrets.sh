@@ -16,7 +16,12 @@ fi
 if [ -n "$3" ]; then
   ARCHIVE="$3"
 elif [ -n "$DOTFILES_ARCHIVE" ]; then
-  ARCHIVE="$(eval echo "$DOTFILES_ARCHIVE")"
+  # If DOTFILES_ARCHIVE doesn't start with /, prepend $HOME/
+  if [[ "$DOTFILES_ARCHIVE" != /* ]]; then
+    ARCHIVE="$HOME/$DOTFILES_ARCHIVE"
+  else
+    ARCHIVE="$DOTFILES_ARCHIVE"
+  fi
 else
   ARCHIVE="$HOME/.config/dotfiles/manifests/zcnqj7nbbgg4szrm.gpg"
 fi
