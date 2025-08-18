@@ -194,9 +194,9 @@
     // "usernamehw.errorlens",
     "esbenp.prettier-vscode"
   ],
-  "dev.containers.defaultFeatures": {
-    "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
-  },
+  // "dev.containers.defaultFeatures": {
+  //   "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
+  // },
   "dev.containers.dockerCredentialHelper": false,
   "dev.containers.gitCredentialHelperConfigLocation": "none",
   "dev.containers.mountWaylandSocket": false,
@@ -350,7 +350,8 @@
     "mkdir",
     "sleep",
     "pnpm",
-    "git"
+    "git",
+    "rm"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],
