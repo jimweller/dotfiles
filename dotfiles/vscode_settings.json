@@ -348,7 +348,9 @@
     "which",
     "dive",
     "mkdir",
-    "sleep"
+    "sleep",
+    "pnpm",
+    "git"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],
