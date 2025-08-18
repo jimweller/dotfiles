@@ -2,8 +2,7 @@
 otp() { if [ -z $1 ]; then echo "Missing parameter, TOTP seed\nUsage: otp [seed] "; else oathtool --totp --b $1; fi }
 
 # open my config files, opt for dotfiles now
-# cj() { vsc -n ~/.zshrc ~/.p10k.zsh ~/.aws/config ~/.gitconfig* ~/.config/gh/*.yml ~/.steampipe/config/*.spc ~/bin/sync.sh ~/.config/.jira/.config.yml ~/.kube/config ~/.colima/default/colima.yaml}
-cj() { vsc -n ~/.config/dotfiles ~/bin/sync.sh }
+cj() { vsc -n ~/.config/dotfiles }
 dotfiles() { cd ~/.config/dotfiles && gl && ./install }
 
 ef() { sync.sh & }
