@@ -11,27 +11,27 @@
     "editor.autoIndent": "advanced",
     "editor.indentSize": 2
   },
-  "[yaml]": {
-    "editor.autoIndent": "advanced",
-    "editor.indentSize": 2,
-    "editor.defaultFormatter": "redhat.vscode-yaml",
-    "diffEditor.ignoreTrimWhitespace": false
-  },
   "[html]": {
-    "editor.indentSize": 2,
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.indentSize": 2
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[yaml]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.indentSize": 2
   },
 
   "files.associations": {
@@ -43,47 +43,49 @@
   // General editor behavior, appearance, and interaction settings
   // =============================================================================
 
+  "diffEditor.ignoreTrimWhitespace": true,
   "editor.accessibilitySupport": "off",
-  "editor.detectIndentation": false,
-  "editor.minimap.enabled": false,
-  "editor.codeLens": false,
-  "editor.tabSize": 2,
-  "editor.fontFamily": "MesloLGL Nerd Font, FiraCode Nerd Font, SauceCodePro Nerd Font, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
-  "editor.renderLineHighlight": "none",
-  "editor.renderWhitespace": "selection",
-  "editor.folding": false,
-  "editor.matchBrackets": "never",
+  "editor.codeLens": true,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
+  "editor.detectIndentation": false,
+  "editor.folding": false,
+  "editor.fontFamily": "FiraMono Nerd Font, SauceCodePro Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.matchBrackets": "never",
+  "editor.minimap.enabled": false,
+  "editor.renderLineHighlight": "none",
+  "editor.renderWhitespace": "selection",
   "editor.smoothScrolling": true,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "editor.tabSize": 2,
 
   // =============================================================================
   // WORKBENCH AND UI SETTINGS
   // VSCode interface layout, themes, and visual customizations
   // =============================================================================
 
+  "breadcrumbs.enabled": false,
+  "window.confirmSaveUntitledWorkspace": false,
+  "window.title": "${dirty}${rootName}:${activeEditorShort}",
+  "workbench.activityBar.location": "bottom",
   "workbench.colorCustomizations": {
     "[*]": {
       "terminal.background": "#000000"
     }
   },
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.settings.applyToAllProfiles": ["editor.detectIndentation"],
-  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.editor.enablePreview": false,
   "workbench.editor.showIcons": false,
   "workbench.editorAssociations": {
     "*.copilotmd": "vscode.markdown.preview.editor",
     "*.drawio.png": "hediet.vscode-drawio"
   },
-  "workbench.colorTheme": "GitHub Dark Default",
-  "workbench.statusBar.visible": true,
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.localHistory.enabled": false,
   "workbench.productIconTheme": "material-product-icons",
-  "window.confirmSaveUntitledWorkspace": false,
-  "window.title": "${dirty}${rootName}:${activeEditorShort}",
-  "breadcrumbs.enabled": false,
+  "workbench.settings.applyToAllProfiles": ["editor.detectIndentation"],
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.visible": true,
 
   // =============================================================================
   // TERMINAL CONFIGURATION
@@ -92,55 +94,55 @@
 
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.automationProfile.osx": null,
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.integrated.environmentChangesRelaunch": false,
-  "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
-  "terminal.integrated.tabs.defaultIcon": "terminal-powershell",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
   "terminal.integrated.env.osx": {
     "Q_NEW_SESSION": "1"
   },
-  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.environmentChangesRelaunch": false,
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "args": ["-l"],
+      "path": "bash"
+    },
+    "zsh": {
+      "args": ["-l"],
+      "path": "zsh"
+    }
+  },
   "terminal.integrated.profiles.osx": {
     "bash": {
-      "path": "bash",
       "args": ["-l"],
-      "icon": "terminal-bash"
-    },
-    "zsh": {
-      "path": "zsh",
-      "args": ["-l"]
+      "icon": "terminal-bash",
+      "path": "bash"
     },
     "fish": {
-      "path": "fish",
-      "args": ["-l"]
-    },
-    "tmux": {
-      "path": "tmux",
-      "icon": "terminal-tmux"
-    },
-    "pwsh": {
-      "path": "pwsh",
-      "icon": "terminal-powershell"
+      "args": ["-l"],
+      "path": "fish"
     },
     "ohmyzsh": {
-      "path": "/bin/bash",
-      "args": ["-l"]
-    }
-  },
-  "terminal.integrated.profiles.linux": {
-    "zsh": {
-      "path": "zsh",
-      "args": ["-l"]
+      "args": ["-l"],
+      "path": "/bin/bash"
     },
-    "bash": {
-      "path": "bash",
-      "args": ["-l"]
+    "pwsh": {
+      "icon": "terminal-powershell",
+      "path": "pwsh"
+    },
+    "tmux": {
+      "icon": "terminal-tmux",
+      "path": "tmux"
+    },
+    "zsh": {
+      "args": ["-l"],
+      "path": "zsh"
     }
   },
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.tabs.defaultIcon": "terminal-powershell",
 
   // =============================================================================
   // FILE EXPLORER AND HANDLING
@@ -156,8 +158,8 @@
   // Source control integration and Git-specific settings
   // =============================================================================
 
+  "git.blame.editorDecoration.enabled": true,
   "git.openRepositoryInParentFolders": "never",
-  "git.blame.editorDecoration.enabled": false,
 
   // =============================================================================
   // SECURITY AND PRIVACY
@@ -172,6 +174,7 @@
   // Dev container configuration and default settings
   // =============================================================================
 
+  "dev.containers.copyGitConfig": false,
   "dev.containers.defaultExtensions": [
     "rooveterinaryinc.roo-cline",
     // "anthropic.claude-code",
@@ -194,84 +197,33 @@
   "dev.containers.defaultFeatures": {
     "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
   },
-  "dev.containers.copyGitConfig": false,
+  "dev.containers.dockerCredentialHelper": false,
+  "dev.containers.gitCredentialHelperConfigLocation": "none",
   "dev.containers.mountWaylandSocket": false,
   "dev.containers.optimisticallyLaunchDocker": false,
-  "dev.containers.gitCredentialHelperConfigLocation": "none",
-  "dev.containers.dockerCredentialHelper": false,
 
   // =============================================================================
   // EXTENSION-SPECIFIC SETTINGS
   // Configuration for installed VSCode extensions
   // =============================================================================
 
-  "hediet.vscode-drawio.resizeImages": null,
-  "hediet.vscode-drawio.theme": "kennedy",
-  "markdown-preview-github-styles.colorTheme": "system",
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-  "terraform.languageServer.enable": true,
-  "html.validate.scripts": false,
-  "html.validate.styles": false,
-  "html.format.indentInnerHtml": true,
-  "html.format.extraLiners": "body",
-  "html.format.wrapLineLength": 0,
-  "html.format.indentHandlebars": true,
-  "sshfs.configs": [
-    {
-      "name": "jimweller",
-      "host": "jimweller.com",
-      "agent": "$SSH_AUTH_SOCK",
-      "username": "jimwelle",
-      "newFileMode": "0o644",
-      "root": "/home4/jimwelle",
-      "privateKeyPath": "/Users/jim.weller/.ssh/id_rsa"
-    }
-  ],
-  "errorLens.enabled": false,
-  "go.toolsManagement.autoUpdate": true,
-  "roo-cline.allowedCommands": [
-    "tsc",
-    "git log",
-    "git diff",
-    "git show",
-    "sqllite3",
-    "az",
-    "aws",
-    "go",
-    "make",
-    "npm",
-    "npx",
-    "uvx",
-    "uv",
-    "docker",
-    "psql",
-    "head",
-    "tail",
-    "bats",
-    "cd",
-    "pwd",
-    "ls",
-    "chmod",
-    "export",
-    "./test-submission.sh",
-    "timeout",
-    "chmod +x",
-    "./debug_reliability_focused.sh",
-    "cat",
-    "./deploy.sh",
-    "curl",
-    "rm function-app/src/app.js",
-    "mv",
-    "jq",
-    "grep",
-    "echo",
-    "which",
-    "dive",
-    "mkdir",
-    "sleep"
-  ],
+  "cSpell.enabled": false,
+  "docker.extension.enableComposeLanguageServer": true,
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/.config/dotfiles",
+  "errorLens.enabled": true,
+  "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
+  "go.toolsManagement.autoUpdate": true,
+  "hediet.vscode-drawio.resizeImages": null,
+  "hediet.vscode-drawio.theme": "kennedy",
+  "html.format.extraLiners": "body",
+  "html.format.indentHandlebars": true,
+  "html.format.indentInnerHtml": true,
+  "html.format.wrapLineLength": 0,
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+  "makefile.configureOnOpen": true,
+  "markdown-preview-github-styles.colorTheme": "system",
   "peacock.favoriteColors": [
     {
       "name": "Maroon",
@@ -354,13 +306,65 @@
       "value": "#EBDBB2"
     }
   ],
-  "peacock.surpriseMeOnStartup": true,
   "peacock.surpriseMeFromFavoritesOnly": true,
-  "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
-  "docker.extension.enableComposeLanguageServer": false,
+  "peacock.surpriseMeOnStartup": true,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "roo-cline.allowedCommands": [
+    "tsc",
+    "git log",
+    "git diff",
+    "git show",
+    "sqllite3",
+    "az",
+    "aws",
+    "go",
+    "make",
+    "npm",
+    "npx",
+    "uvx",
+    "uv",
+    "docker",
+    "psql",
+    "head",
+    "tail",
+    "bats",
+    "cd",
+    "pwd",
+    "ls",
+    "chmod",
+    "export",
+    "./test-submission.sh",
+    "timeout",
+    "chmod +x",
+    "./debug_reliability_focused.sh",
+    "cat",
+    "./deploy.sh",
+    "curl",
+    "rm function-app/src/app.js",
+    "mv",
+    "jq",
+    "grep",
+    "echo",
+    "which",
+    "dive",
+    "mkdir",
+    "sleep"
+  ],
+  "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
+  "roo-cline.deniedCommands": [],
   "sqlite3-editor.ui.minimizePanel": true,
-  "cSpell.enabled": false,
-  "makefile.configureOnOpen": true,
+  "sshfs.configs": [
+    {
+      "name": "jimweller",
+      "host": "jimweller.com",
+      "agent": "$SSH_AUTH_SOCK",
+      "username": "jimwelle",
+      "newFileMode": "0o644",
+      "root": "/home4/jimwelle",
+      "privateKeyPath": "/Users/jim.weller/.ssh/id_jim"
+    }
+  ],
+  "terraform.languageServer.enable": true,
 
   // =============================================================================
   // LAUNCH CONFIGURATION
@@ -370,24 +374,8 @@
   "launch": {
     "configurations": []
   },
+  "git.blame.editorDecoration.template": "${subject}, ${authorName} ${authorDateAgo}"
 
-  // =============================================================================
-  // EXTREME CUSTOMIZATON
-  // Tweak core css
-  // =============================================================================
-  "workbench.activityBar.location": "bottom",
-  // "roo-cline.autoImportSettingsPath": "~/.roo/roo-code-settings.json",
-  "roo-cline.deniedCommands": [],
-  "workbench.editor.enablePreview": false,
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-
-  // roo-cline.customStoragePath - Custom storage location
-  "roo-cline.customStoragePath": "/Users/jimweller/.roo/"
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
 
