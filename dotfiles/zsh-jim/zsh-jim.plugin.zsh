@@ -3,6 +3,7 @@ source ${0:A:h}/00-quality-of-life.zsh
 source ${0:A:h}/01-path.zsh
 source ${0:A:h}/04-gpg.zsh
 source ${0:A:h}/06-git.zsh
+source ${0:A:h}/08-iaz.zsh
 source ${0:A:h}/10-aws.zsh
 source ${0:A:h}/12-azure.zsh
 source ${0:A:h}/13-ado.zsh
