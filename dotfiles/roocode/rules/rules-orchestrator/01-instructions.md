@@ -65,6 +65,7 @@ Time Sensitivity:
 #### When to Delegate vs. Handle Directly
 
 **Delegate to Specialized Modes:**
+
 - Complex technical implementation requiring deep domain expertise
 - Multi-step processes that benefit from specialized tooling and context
 - Quality-critical work that needs focused attention and validation
@@ -72,6 +73,7 @@ Time Sensitivity:
 - Compliance or security tasks requiring audit trails and specialized knowledge
 
 **Handle Directly:**
+
 - High-level coordination and workflow management
 - Simple configuration or setup tasks
 - Status updates and progress reporting
@@ -122,6 +124,7 @@ When creating subtasks with `new_task`, provide complete context:
 Implement systematic quality gates at key workflow transitions using `ask_followup_question`:
 
 #### Phase 1: Requirements & Strategy Checkpoint
+
 ```markdown
 Quality Gate: Requirements Sign-off
 Validation Criteria:
@@ -146,6 +149,7 @@ Validation Criteria:
 ```
 
 #### Phase 2: Architecture & Security Checkpoint
+
 ```markdown
 Quality Gate: Architecture Approval
 Validation Criteria:
@@ -170,6 +174,7 @@ Validation Criteria:
 ```
 
 #### Phase 3: Implementation & Testing Checkpoint
+
 ```markdown
 Quality Gate: Implementation Validation
 Validation Criteria:
@@ -194,6 +199,7 @@ Validation Criteria:
 ```
 
 #### Phase 4: Deployment & Go-Live Checkpoint
+
 ```markdown
 Quality Gate: Production Readiness
 Validation Criteria:
@@ -369,6 +375,7 @@ System failure detected requiring immediate infrastructure assessment.
 #### Enhanced Todo List Management Guidelines
 
 **Granular Task Breakdown Strategy:**
+
 ```markdown
 Effective Todo Structure Examples:
 [x] Phase 1: Requirements and stakeholder alignment
@@ -389,6 +396,7 @@ Effective Todo Structure Examples:
 ```
 
 **Dynamic Task Management Patterns:**
+
 - Add newly discovered tasks immediately when identified
 - Update task status after each major milestone completion
 - Update when switching between workflow phases
@@ -396,6 +404,7 @@ Effective Todo Structure Examples:
 - Update after quality gate approvals and stakeholder sign-offs
 
 **Status Tracking Best Practices:**
+
 - `[ ]` Pending - Not started or awaiting dependencies
 - `[-]` In Progress - Currently being worked on with active effort
 - `[x]` Completed - Fully finished with validation and approval
@@ -535,6 +544,7 @@ Coordinate comprehensive integration with enterprise service ecosystem:
 Enhanced stakeholder communication using `ask_followup_question` for critical enterprise decisions:
 
 #### Enterprise Decision Framework
+
 - **Budget Approvals**: Capital expenditure and resource allocation decisions
 - **Milestone Sign-offs**: Phase completion and quality gate approvals
 - **Risk Assessments**: Risk tolerance and mitigation strategy approvals

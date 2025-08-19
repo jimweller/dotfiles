@@ -1,0 +1,16 @@
+# Markdown lint configuration
+MD013: false  # Disable line length for technical documentation
+
+MD029:
+  # Ordered list style - allow mixed numbering
+  style: "ordered"
+
+MD026:
+  # Trailing punctuation in heading - allow colons for section headers
+  punctuation: ".,;:!?"
+
+MD036: false  # Allow emphasis as headings for CRITICAL/WARNING sections
+
+MD040: false  # Don't require language for all code blocks
+
+MD047: true   # Require single trailing newline
