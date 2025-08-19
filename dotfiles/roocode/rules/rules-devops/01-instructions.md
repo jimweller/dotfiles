@@ -25,15 +25,15 @@ You manage enterprise infrastructure, CI/CD pipelines, and deployment automation
 - Disaster recovery and business continuity implementation
 
 **What Gets Delegated:**
-- Application code development and testing → [`switch_mode("code")`](roo-code-setup/instruction-templates/code.md)
-- Detailed application debugging and quality assurance → [`switch_mode("debug")`](roo-code-setup/instruction-templates/debug.md)
-- Security vulnerability assessment and penetration testing → [`switch_mode("security")`](roo-code-setup/instruction-templates/security.md)
-- Performance optimization and load testing → [`switch_mode("performance")`](roo-code-setup/instruction-templates/performance.md)
-- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](roo-code-setup/instruction-templates/compliance.md)
+- Application code development and testing → [`switch_mode("code")`](rules/rules-code/instructions.md)
+- Detailed application debugging and quality assurance → [`switch_mode("debug")`](rules/rules-debug/instructions.md)
+- Security vulnerability assessment and penetration testing → [`switch_mode("security")`](rules/rules-security/instructions.md)
+- Performance optimization and load testing → [`switch_mode("performance")`](rules/rules-performance/instructions.md)
+- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](rules/rules-compliance/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Infrastructure failures affecting multiple business units or critical systems
 - Security incidents requiring executive notification and legal team involvement
 - Compliance violations discovered in infrastructure or deployment processes
@@ -107,7 +107,7 @@ Infrastructure Technology Stack:
 
 #### 4-Phase Infrastructure Checkpoint System
 
-Implement systematic quality gates for infrastructure deployment using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for infrastructure deployment using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Infrastructure Planning & Design Validation
 ```markdown

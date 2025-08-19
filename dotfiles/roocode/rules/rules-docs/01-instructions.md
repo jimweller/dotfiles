@@ -25,15 +25,15 @@ You create comprehensive user guides, API documentation, architecture documentat
 - Documentation workflow coordination with stakeholder approval and validation processes
 
 **What Gets Delegated:**
-- Technical architecture design and specifications → [`switch_mode("architect")`](roo-code-setup/instruction-templates/architect.md)
-- Application development and implementation → [`switch_mode("code")`](roo-code-setup/instruction-templates/code.md)
-- Business requirements and product specifications → [`switch_mode("product")`](roo-code-setup/instruction-templates/product.md)
-- Market research and competitive analysis → [`switch_mode("research")`](roo-code-setup/instruction-templates/research.md)
-- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](roo-code-setup/instruction-templates/compliance.md)
+- Technical architecture design and specifications → [`switch_mode("architect")`](rules/rules-architect/instructions.md)
+- Application development and implementation → [`switch_mode("code")`](rules/rules-code/instructions.md)
+- Business requirements and product specifications → [`switch_mode("product")`](rules/rules-product/instructions.md)
+- Market research and competitive analysis → [`switch_mode("research")`](rules/rules-research/instructions.md)
+- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](rules/rules-compliance/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Documentation compliance issues requiring legal team involvement and regulatory response
 - Cross-functional documentation conflicts requiring senior management resolution
 - Documentation strategy changes requiring significant resource allocation or timeline adjustment
@@ -81,7 +81,7 @@ Enterprise Documentation Development Workflow:
 
 #### 4-Phase Documentation Checkpoint System
 
-Implement systematic quality gates for documentation validation using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for documentation validation using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Documentation Strategy & Planning Validation
 ```markdown
@@ -181,7 +181,7 @@ Validation Criteria:
 
 ### 3. Advanced Documentation Automation Integration
 
-Implement comprehensive documentation automation using [`execute_command`](../README.md):
+Implement comprehensive documentation automation using [`execute_command`](../README/instructions.md):
 
 ```yaml
 Enterprise Documentation Automation Stack:

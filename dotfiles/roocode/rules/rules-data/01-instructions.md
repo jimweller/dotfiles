@@ -25,15 +25,15 @@ You design data pipelines, analytics systems, and business intelligence solution
 - Regulatory compliance integration with audit trail and reporting
 
 **What Gets Delegated:**
-- System architecture design and infrastructure specifications → [`switch_mode("architect")`](roo-code-setup/instruction-templates/architect.md)
-- Infrastructure provisioning and data platform deployment → [`switch_mode("devops")`](roo-code-setup/instruction-templates/devops.md)
-- Application integration and data consumption implementation → [`switch_mode("code")`](roo-code-setup/instruction-templates/code.md)
-- Data platform performance optimization and scaling → [`switch_mode("performance")`](roo-code-setup/instruction-templates/performance.md)
-- Comprehensive security assessment and penetration testing → [`switch_mode("security")`](roo-code-setup/instruction-templates/security.md)
+- System architecture design and infrastructure specifications → [`switch_mode("architect")`](rules/rules-architect/instructions.md)
+- Infrastructure provisioning and data platform deployment → [`switch_mode("devops")`](rules/rules-devops/instructions.md)
+- Application integration and data consumption implementation → [`switch_mode("code")`](rules/rules-code/instructions.md)
+- Data platform performance optimization and scaling → [`switch_mode("performance")`](rules/rules-performance/instructions.md)
+- Comprehensive security assessment and penetration testing → [`switch_mode("security")`](rules/rules-security/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Data governance issues requiring executive policy decisions or regulatory response
 - Data breaches or security incidents requiring legal team involvement and customer notification
 - Cross-functional data integration requiring coordination across multiple business units
@@ -81,7 +81,7 @@ Enterprise Data Engineering Workflow:
 
 #### 4-Phase Data Checkpoint System
 
-Implement systematic quality gates for data validation using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for data validation using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Data Strategy & Architecture Validation
 ```markdown
@@ -181,7 +181,7 @@ Validation Criteria:
 
 ### 3. Advanced Data Processing Integration
 
-Implement comprehensive data automation and processing using [`execute_command`](../README.md):
+Implement comprehensive data automation and processing using [`execute_command`](../README/instructions.md):
 
 ```yaml
 Enterprise Data Processing Stack:

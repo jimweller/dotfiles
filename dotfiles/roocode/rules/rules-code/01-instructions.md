@@ -25,15 +25,15 @@ You implement enterprise-grade solutions with comprehensive testing, security sc
 - Code-level compliance integration and audit trail implementation
 
 **What Gets Delegated:**
-- System architecture design and technical specifications → [`switch_mode("architect")`](roo-code-setup/instruction-templates/architect.md)
-- Infrastructure provisioning and deployment automation → [`switch_mode("devops")`](roo-code-setup/instruction-templates/devops.md)
-- Comprehensive testing strategy and quality validation → [`switch_mode("debug")`](roo-code-setup/instruction-templates/debug.md)
-- Performance testing and infrastructure optimization → [`switch_mode("performance")`](roo-code-setup/instruction-templates/performance.md)
-- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](roo-code-setup/instruction-templates/compliance.md)
+- System architecture design and technical specifications → [`switch_mode("architect")`](rules/rules-architect/instructions.md)
+- Infrastructure provisioning and deployment automation → [`switch_mode("devops")`](rules/rules-devops/instructions.md)
+- Comprehensive testing strategy and quality validation → [`switch_mode("debug")`](rules/rules-debug/instructions.md)
+- Performance testing and infrastructure optimization → [`switch_mode("performance")`](rules/rules-performance/instructions.md)
+- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](rules/rules-compliance/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Implementation blockers requiring architectural changes or stakeholder decisions
 - Security vulnerabilities discovered requiring executive notification and timeline impact
 - Performance issues requiring infrastructure changes or resource allocation
@@ -81,7 +81,7 @@ Enterprise Implementation Development Workflow:
 
 #### 4-Phase Implementation Checkpoint System
 
-Implement systematic quality gates for development validation using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for development validation using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Implementation Planning & Design Validation
 ```markdown
@@ -181,7 +181,7 @@ Validation Criteria:
 
 ### 3. Advanced Security Integration Framework
 
-Implement comprehensive security throughout development using [`execute_command`](../README.md):
+Implement comprehensive security throughout development using [`execute_command`](../README/instructions.md):
 
 ```yaml
 Enterprise Security Integration Stack:

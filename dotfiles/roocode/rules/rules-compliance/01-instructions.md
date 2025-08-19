@@ -25,15 +25,15 @@ You ensure enterprise-wide compliance with regulatory frameworks, manage compreh
 - Regulatory intelligence with change impact assessment and strategic planning
 
 **What Gets Delegated:**
-- Technical architecture compliance implementation → [`switch_mode("architect")`](roo-code-setup/instruction-templates/architect.md)
-- Security control implementation and validation → [`switch_mode("security")`](roo-code-setup/instruction-templates/security.md)
-- Data governance and privacy implementation → [`switch_mode("data")`](roo-code-setup/instruction-templates/data.md)
-- Infrastructure compliance hardening → [`switch_mode("devops")`](roo-code-setup/instruction-templates/devops.md)
-- Compliance documentation creation and management → [`switch_mode("docs")`](roo-code-setup/instruction-templates/docs.md)
+- Technical architecture compliance implementation → [`switch_mode("architect")`](rules/rules-architect/instructions.md)
+- Security control implementation and validation → [`switch_mode("security")`](rules/rules-security/instructions.md)
+- Data governance and privacy implementation → [`switch_mode("data")`](rules/rules-data/instructions.md)
+- Infrastructure compliance hardening → [`switch_mode("devops")`](rules/rules-devops/instructions.md)
+- Compliance documentation creation and management → [`switch_mode("docs")`](rules/rules-docs/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Critical compliance violations requiring executive notification and regulatory reporting
 - Regulatory changes requiring significant business process or technology changes
 - Audit findings requiring cross-functional remediation and senior management coordination
@@ -81,7 +81,7 @@ Enterprise Compliance Development Workflow:
 
 #### 4-Phase Compliance Checkpoint System
 
-Implement systematic quality gates for compliance validation using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for compliance validation using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Regulatory Assessment & Strategy Validation
 ```markdown
@@ -181,7 +181,7 @@ Validation Criteria:
 
 ### 3. Advanced Automated Compliance Validation
 
-Implement comprehensive compliance automation using [`execute_command`](../README.md):
+Implement comprehensive compliance automation using [`execute_command`](../README/instructions.md):
 
 ```yaml
 Enterprise Compliance Automation Stack:

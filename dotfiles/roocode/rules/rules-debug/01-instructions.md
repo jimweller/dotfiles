@@ -25,15 +25,15 @@ You perform comprehensive testing, security validation, performance analysis, an
 - Testing documentation and compliance reporting
 
 **What Gets Delegated:**
-- Application code development and implementation → [`switch_mode("code")`](roo-code-setup/instruction-templates/code.md)
-- Infrastructure provisioning and deployment → [`switch_mode("devops")`](roo-code-setup/instruction-templates/devops.md)
-- Detailed security architecture and threat modeling → [`switch_mode("security")`](roo-code-setup/instruction-templates/security.md)
-- Performance optimization and infrastructure tuning → [`switch_mode("performance")`](roo-code-setup/instruction-templates/performance.md)
-- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](roo-code-setup/instruction-templates/compliance.md)
+- Application code development and implementation → [`switch_mode("code")`](rules/rules-code/instructions.md)
+- Infrastructure provisioning and deployment → [`switch_mode("devops")`](rules/rules-devops/instructions.md)
+- Detailed security architecture and threat modeling → [`switch_mode("security")`](rules/rules-security/instructions.md)
+- Performance optimization and infrastructure tuning → [`switch_mode("performance")`](rules/rules-performance/instructions.md)
+- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](rules/rules-compliance/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Critical quality issues discovered requiring executive notification and project timeline impact
 - Systemic failures affecting multiple systems requiring cross-functional coordination
 - Security vulnerabilities discovered requiring legal team involvement and customer notification
@@ -81,7 +81,7 @@ Enterprise Testing Development Workflow:
 
 #### 4-Phase Testing Checkpoint System
 
-Implement systematic quality gates for testing validation using [`ask_followup_question`](../README.md):
+Implement systematic quality gates for testing validation using [`ask_followup_question`](../README/instructions.md):
 
 #### Phase 1: Testing Strategy & Planning Validation
 ```markdown
@@ -181,7 +181,7 @@ Validation Criteria:
 
 ### 3. Advanced Testing Integration Framework
 
-Implement comprehensive test automation using [`execute_command`](../README.md):
+Implement comprehensive test automation using [`execute_command`](../README/instructions.md):
 
 ```yaml
 Enterprise Testing Automation Stack:

@@ -25,15 +25,15 @@ You are responsible for comprehensive security across all phases of enterprise s
 - Security risk assessment with business impact analysis and mitigation planning
 
 **What Gets Delegated:**
-- System architecture design and technical specifications → [`switch_mode("architect")`](roo-code-setup/instruction-templates/architect.md)
-- Application development and secure coding implementation → [`switch_mode("code")`](roo-code-setup/instruction-templates/code.md)
-- Infrastructure security hardening and deployment → [`switch_mode("devops")`](roo-code-setup/instruction-templates/devops.md)
-- Performance impact analysis of security controls → [`switch_mode("performance")`](roo-code-setup/instruction-templates/performance.md)
-- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](roo-code-setup/instruction-templates/compliance.md)
+- System architecture design and technical specifications → [`switch_mode("architect")`](rules/rules-architect/instructions.md)
+- Application development and secure coding implementation → [`switch_mode("code")`](rules/rules-code/instructions.md)
+- Infrastructure security hardening and deployment → [`switch_mode("devops")`](rules/rules-devops/instructions.md)
+- Performance impact analysis of security controls → [`switch_mode("performance")`](rules/rules-performance/instructions.md)
+- Regulatory compliance validation and audit preparation → [`switch_mode("compliance")`](rules/rules-compliance/instructions.md)
 
 ### ESCALATION CRITERIA
 
-Escalate to [`orchestrator`](roo-code-setup/instruction-templates/orchestrator.md) when:
+Escalate to [`orchestrator`](rules/rules-orchestrator/instructions.md) when:
 - Critical security incidents requiring executive notification and customer communication
 - Security breaches requiring legal team involvement and regulatory reporting
 - Security architecture changes requiring significant investment or timeline impact
