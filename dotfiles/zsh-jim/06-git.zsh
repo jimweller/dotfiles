@@ -1,4 +1,4 @@
-alias work='cd work && switch_git_profile mcg'
+alias work='cd work && switch_git_profile 0mcg'
 alias personal='cd personal && switch_git_profile jim'
 
 alias mcg='switch_git_profile mcg'
