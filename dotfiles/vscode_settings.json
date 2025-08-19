@@ -358,7 +358,14 @@
     "kill",
     "find",
     "terraform",
-    "terragrunt"
+    "terragrunt",
+    "markdownlint",
+    "python3",
+    "xargs",
+    "node",
+    "for",
+    "done",
+    "do"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],
