@@ -1,0 +1,14 @@
+{
+  "command": "npx",
+  "args": [
+    "-y",
+    "repomix",
+    "--mcp"
+  ],
+  "alwaysAllow": [
+    "pack_codebase",
+    "pack_remote_repository",
+    "attach_packed_output",
+    "read_repomix_output"
+  ]
+}

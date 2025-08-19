@@ -351,7 +351,12 @@
     "sleep",
     "pnpm",
     "git",
-    "rm"
+    "rm",
+    "helm",
+    "kubectl",
+    "ps",
+    "kill",
+    "find"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],

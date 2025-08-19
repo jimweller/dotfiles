@@ -38,8 +38,8 @@
     - description: Copy claude configuration files if not present
       command: |
         mkdir -p ~/.claude
-        [ -f ~/.claude/settings.json ] || cp ~/.config/dotfiles/dotfiles/claude_settings_json_bak ~/.claude/settings.json || true
-        [ -f ~/.claude.json ] || cp ~/.config/dotfiles/dotfiles/claude_json_bak ~/.claude.json || true
+        [ -f ~/.claude/settings.json ] || cp ~/.config/dotfiles/dotfiles/claude-code/claude_settings_json_bak ~/.claude/settings.json || true
+        [ -f ~/.claude.json ] || cp ~/.config/dotfiles/dotfiles/claude-code/claude_json_bak ~/.claude.json || true
       stderr: true
       stdout: true
 
