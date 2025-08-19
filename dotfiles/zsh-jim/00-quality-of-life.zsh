@@ -92,3 +92,14 @@ eval "$(zoxide init --cmd cd zsh)"
 HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 
 alias less=bat
+
+# Auto-load all secrets from ~/.secrets/*.env files
+if [[ -d "$HOME/.secrets" ]]; then
+  for secret_file in "$HOME/.secrets"/*.env; do
+    if [[ -f "$secret_file" ]]; then
+      # Extract filename without path and .env extension
+      secret_name=$(basename "$secret_file" .env)
+      secret "$secret_name"
+    fi
+  done
+fi
