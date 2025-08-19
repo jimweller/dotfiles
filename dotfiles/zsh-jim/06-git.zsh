@@ -18,7 +18,7 @@ switch_git_profile() {
 
   loadenv "$env_file"
 
-  [[ -f "$git_config_file" ]] || rm -f "$git_config_file" 
+  [[ -f "$git_config_file" ]] && rm -f "$git_config_file" 
 
   git config --file "$git_config_file" user.name "$GIT_USER"
   git config --file "$git_config_file" user.email "$GIT_EMAIL"
