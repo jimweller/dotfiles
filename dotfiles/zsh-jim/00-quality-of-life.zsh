@@ -97,9 +97,7 @@ alias less=bat
 if [[ -d "$HOME/.secrets" ]]; then
   for secret_file in "$HOME/.secrets"/*.env; do
     if [[ -f "$secret_file" ]]; then
-      # Extract filename without path and .env extension
-      secret_name=$(basename "$secret_file" .env)
-      secret "$secret_name"
+      source $secret_file
     fi
   done
 fi
