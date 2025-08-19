@@ -17,8 +17,6 @@ apachler/zsh-aws
 # azure aliases
 dmakeienko/azcli
 
-# only load on macos, done manually in install.macos.yaml
-#sticklerm3/alehouse
 
 # pretty man
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
@@ -98,5 +96,13 @@ jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 
 
+# only load on macos
+sticklerm3/alehouse conditional:is_macos
+
+
+
+
 # powerlevel 10k is my preferred theme. see p10k.zsh
 romkatv/powerlevel10k
+
+

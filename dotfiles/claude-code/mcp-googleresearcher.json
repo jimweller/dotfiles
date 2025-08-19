@@ -1,6 +1,13 @@
 {
-  "type": "sse",
-  "url": "http://localhost:3000/mcp",
+  "type": "stdio",
+  "command": "docker",
+  "args": [
+    "container",
+    "run",
+    "-i",
+    "--rm",
+    "google-research-mcp"
+  ],
   "alwaysAllow": [
     "google_search",
     "scrape_page",

@@ -15,13 +15,20 @@
       ]
     },
     "GoogleResearcher": {
-      "type": "streamable-http",
-      "url": "http://localhost:3000/mcp",
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "container",
+        "run",
+        "-i",
+        "--rm",
+        "google-research-mcp"
+      ],
       "alwaysAllow": [
-        "google_search",
         "scrape_page",
         "analyze_with_gemini",
-        "research_topic"
+        "research_topic",
+        "google_search"
       ]
     },
     "repomix": {
