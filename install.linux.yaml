@@ -7,3 +7,9 @@
 - link:
     ~/.granted/config: dotfiles/granted_config_linux
 
+- shell:
+    - description: Copy claude configuration files if not present
+      command: |
+        mkdir -p ~/.local/share/Trash/files
+
+
