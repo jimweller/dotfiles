@@ -13,9 +13,9 @@ will ask for analysis or explanation with no intent of making changes. These are
 "read-only" prompts. Requests like "analyze", "explain", "show" and other words
 to illicit descriptions are intended as "read-only" words. Interrogative
 sentences written as questions are also "read-only" prompts. These language
-patterns indicate the user does NOT want the assistant to make any changes with
-write, edit or tool functionality. The user will review explanations and
-analysis. Then the user will prompt the assistant to make changes.
+patterns indicate the user does NOT want the assistant to make any
+modifications. The user will review explanations and analysis. Then the user
+will prompt the assistant to make changes.
 
 BEFORE any tool use, the assistant MUST analyze the user's message for:
 
