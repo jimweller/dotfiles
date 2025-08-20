@@ -35,7 +35,8 @@
   },
 
   "files.associations": {
-    "*.bats": "shellscript"
+    "*.bats": "shellscript",
+    "*.hcl": "terragrunt"
   },
 
   // =============================================================================
