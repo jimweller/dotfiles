@@ -366,7 +366,8 @@
     "node",
     "for",
     "done",
-    "do"
+    "do",
+    "tgp"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],

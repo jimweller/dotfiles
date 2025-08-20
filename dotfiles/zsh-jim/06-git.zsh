@@ -34,7 +34,7 @@ switch_git_profile() {
     
     git config --file "$git_config_file" credential.helper '!f() { echo "username=$GIT_USERNAME"; echo "password=$AZURE_DEVOPS_EXT_PAT"; }; f'
     git config --file "$git_config_file" credential."https://dev.azure.com".useHttpPath true
-    
+
     # SSH-to-HTTPS URL rewriting for all Azure DevOps projects (generated from az devops project list)
     git config --file "$git_config_file" url."https://dev.azure.com/mcgsead/Data%20Engineering/_git/".insteadOf "mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/Data%20Engineering/"
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Data%20Science/_git/".insteadOf "mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/Data%20Science/"
@@ -46,6 +46,18 @@ switch_git_profile() {
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/SysOps%20Infrastructure/_git/".insteadOf "mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/SysOps%20Infrastructure/"
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/tooling/_git/".insteadOf "mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/tooling/"
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/UX%20Engineering/_git/".insteadOf "mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/UX%20Engineering/"
+    
+    # SSH protocol URL rewriting for Terragrunt and other tools (ssh:// format)
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Data%20Engineering/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Data%20Engineering/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Data%20Science/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Data%20Science/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Hermione/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Hermione/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Mathom/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Mathom/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/MCG%20Base/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/MCG%20Base/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/MCG%20DevOps/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/MCG%20DevOps/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/Platform%20Engineering/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Platform%20Engineering/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/SysOps%20Infrastructure/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/SysOps%20Infrastructure/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/tooling/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/tooling/"
+    git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/UX%20Engineering/_git/".insteadOf "ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/UX%20Engineering/"
     
     # Legacy URL rewriting (fallback for old URLs)
     git config --add --file "$git_config_file" url."https://dev.azure.com/mcgsead/".insteadOf "${GIT_URL_INSTEADOF}DefaultCollection/"
