@@ -4,6 +4,8 @@ loadenv ~/.secrets/azure.env
 alias azup='activate_pim'
 alias azdown='az account clear'
 
+alias azs='az accout show'
+
 readit () {   
   echo -n "Press any key to continue..."
   read -n 1
