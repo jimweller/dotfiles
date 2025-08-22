@@ -5,6 +5,8 @@ alias azup='activate_pim'
 alias azdown='az account clear'
 
 alias azs='az account show'
+alias azass='az account set -s'
+alias asasn='az account set -n'
 
 readit () {   
   echo -n "Press any key to continue..."
