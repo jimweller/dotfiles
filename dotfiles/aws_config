@@ -14,6 +14,8 @@ region = us-west-2
 ; sso_session = bedrock2
 sso_account_id = 493888979299
 sso_role_name = 493888979299-mcg-rockusr
+sso_start_url = https://d-9067f7a2b2.awsapps.com/start
+sso_region = us-east-1
 
 ; [sso-session bedrock2]
 ; sso_start_url = https://d-9067f7a2b2.awsapps.com/start/#

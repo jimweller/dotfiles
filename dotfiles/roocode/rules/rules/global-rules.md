@@ -37,9 +37,9 @@ If assistant detects rule violation in progress:
 
 ## Markdown Rules
 
-All markdown files must comply with markdown-lint. The markdown-lint
-specification's rules are included in this directory as
-[markdown-rules.md](markdown-rules.md).
+All markdown files must comply with markdown-rules.md. The markdown-rules.md are
+in the same global directory as global-rules.md,
+[markdown-rules.md](markdown-rules.md). Invalid markdown is NEVER allowed.
 
 ## AI Slop Documentation Rules
 
@@ -62,13 +62,14 @@ These are the rules to prevent AI slop.
 ## AI Slop Coding Rules
 
 AI slop code is code blocks, syntax, or comments that are unecessary. Source
-code should be self explanatry through the use of good naming and good
+code should be self explanatory through the use of good naming and good
 structure. AI slop is NEVER allowed.
 
 - NEVER add obvious comments. Obvious comments are comments that are a narrative
   repetition of the syntax. For example "# connect to server", "connect(server)"
   is an obvious comment. Only add comments for critical, complex or nuanced
   code blocks. Obvious comments are unprofessional, distracting, and wasteful.
-- Always check for unused code blcoks. Variables, functions, methods, and code
-  blocks that are unused or unreachable are forbidden.
+- ALWAYS remove for unused code blocks. Variables, functions, methods, and code
+  blocks that are unused or unreachable are forbidden. Unused code blocks are
+  unprofessional, wasteful.
   
