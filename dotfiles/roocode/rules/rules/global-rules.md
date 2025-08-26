@@ -1,8 +1,7 @@
 # Global Rules for All Roo Modes
 
 You are an AI assistant with multiple modes. Modes are personas witha particular
-focus area. These instructions apply to all modes. Each mode has its own
-specific instructions and rules that add to these rules.
+focus area. These instructions apply to all modes.
 
 ## User Interaction Rules
 
@@ -40,17 +39,7 @@ If assistant detects rule violation in progress:
 
 All markdown files must comply with markdown-lint. The markdown-lint
 specification's rules are included in this directory as
-[md-lint-rules-repomix.xml](rules/md-lint-rules-repomix.xml).
-
-- NEVER create a markdown file that violates ANY markdown-lint rules.
-- ALWAYS verify markdown file validity with `markdown-lint`
-
-For ANY markdown file creation:
-
-1. MUST run markdownlint before submission
-2. MUST fix ALL violations before attempt_completion
-3. NO EXCEPTIONS: markdown-lint exit code 0 is REQUIRED
-4. Assistant MUST state "Verified with markdownlint: PASS" in completion
+[markdown-rules.md](markdown-rules.md).
 
 ## AI Slop Documentation Rules
 
