@@ -28,7 +28,7 @@
     ~/.roo/settings/mcp_settings.json: dotfiles/roocode/mcp_settings.json
     ~/.vscode/extensions/andrewmitchell.devcontainer-template-manager-0.2.2/templates/0jimbox: devcontainer
     ~/.roo/settings/custom_modes.yaml: dotfiles/roocode/custom_modes.yaml
-    ~/.roo/rules/rules: dotfiles/roocode/rules
+    ~/.roo/rules/global-rules.md: dotfiles/roocode/rules/rules/global-rules.md
     # ~/.roo/:
     #   glob: true
     #   path: dotfiles/roocode/rules/**
