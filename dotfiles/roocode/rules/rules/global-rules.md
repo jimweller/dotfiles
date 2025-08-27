@@ -25,7 +25,7 @@ BEFORE any tool use, the assistant MUST analyze the user's message for:
 
 If ANY pattern matches, STOP. Provide explanation only. NO tool use permitted.
 
-Before each tool use, assistant MUST ask:
+BEFORE each tool use, assistant MUST ask:
 
 - "Is this user message interrogative?" (If yes, explain only)
 - "Am I following ALL applicable rules?" (If no, STOP)
@@ -40,6 +40,12 @@ If assistant detects rule violation in progress:
 All markdown files must comply with markdown-rules.md. The markdown-rules.md are
 in the same global directory as global-rules.md,
 [markdown-rules.md](markdown-rules.md). Invalid markdown is NEVER allowed.
+
+BEFORE creating a markdown file, assistant MUST review [markdown-rules.md](markdown-rules.md)
+AFTER creating a markdown file, the assistant MUST assess the document for compliance with markdown rules
+
+If assistant detects markdown rule violations IMMEDIATELY edit the markdown to document to bring it into compliance.
+
 
 ## AI Slop Documentation Rules
 

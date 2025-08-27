@@ -14,7 +14,7 @@
         "get-library-docs"
       ]
     },
-    "GoogleResearcher": {
+    "googler": {
       "type": "stdio",
       "command": "docker",
       "args": [
