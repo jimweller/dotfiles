@@ -46,7 +46,6 @@ AFTER creating a markdown file, the assistant MUST assess the document for compl
 
 If assistant detects markdown rule violations IMMEDIATELY edit the markdown to document to bring it into compliance.
 
-
 ## AI Slop Documentation Rules
 
 AI slop documentation is language or characters that add no substantive value to
