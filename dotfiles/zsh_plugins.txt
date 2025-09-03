@@ -95,9 +95,8 @@ jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 # terragrunts like terraform/tofu. tg, tgaa, tgd!, etc. Pending PR to OMZ
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 
-
-# only load on macos
-sticklerm3/alehouse conditional:is_macos
+# brew aliases, only load on macos
+jimweller/dotfiles path:dotfiles/zsh-jim/alehouse conditional:is_macos
 
 
 
