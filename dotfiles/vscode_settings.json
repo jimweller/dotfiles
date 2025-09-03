@@ -212,7 +212,7 @@
   "docker.extension.enableComposeLanguageServer": true,
   "dotfiles.repository": "https://github.com/jimweller/dotfiles",
   "dotfiles.targetPath": "~/.config/dotfiles",
-  "errorLens.enabled": true,
+  "errorLens.enabled": false,
   "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
   "go.toolsManagement.autoUpdate": true,
   "hediet.vscode-drawio.resizeImages": null,
@@ -367,7 +367,12 @@
     "for",
     "done",
     "do",
-    "tgp"
+    "tgp",
+    "tofu",
+    "bash",
+    "pwsh",
+    "Connect-AzAccount",
+    "base64"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],

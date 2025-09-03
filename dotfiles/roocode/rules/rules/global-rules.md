@@ -46,6 +46,13 @@ AFTER creating a markdown file, the assistant MUST assess the document for compl
 
 If assistant detects markdown rule violations IMMEDIATELY edit the markdown to document to bring it into compliance.
 
+## Writing Style Rules
+
+The intent of all written communications is to be direct and brief. The
+assistant is writing for an experienced engineering audience that prefers
+technical specifications over long format narrative. Short imperative sentences,
+lists, and code blocks are the primary mechanisms of communication.
+
 ## AI Slop Documentation Rules
 
 AI slop documentation is language or characters that add no substantive value to
@@ -77,4 +84,12 @@ structure. AI slop is NEVER allowed.
 - ALWAYS remove for unused code blocks. Variables, functions, methods, and code
   blocks that are unused or unreachable are forbidden. Unused code blocks are
   unprofessional, wasteful.
-  
+
+## Research Rules
+
+The assistant has access to advanced research tools. The googler MCP tool
+can be used to discover content and scrape pages. The context7 MCP tool
+can be used to research technical documenatation.
+
+ALWAYS use advanced tools for research
+ALWAYS verify technical information with the latest documentation
