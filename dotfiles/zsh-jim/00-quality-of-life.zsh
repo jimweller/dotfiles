@@ -104,6 +104,6 @@ fi
 
 # make pretty html files from basic markdown
 markdown_to_html() {
-  pandoc "$1" --css "~/.config/dotfiles/assets/md.css" --embed-resources --standalone -o "${1%.*}.html"
+  pandoc "$1" --css "$HOME/.config/dotfiles/assets/md.css" --embed-resources --standalone -o "${1%.*}.html"
 }
 alias md2html="markdown_to_html $1"
