@@ -311,7 +311,6 @@
   "peacock.surpriseMeOnStartup": true,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
   "roo-cline.allowedCommands": [
-    "tsc",
     "git log",
     "git diff",
     "git show",
@@ -372,7 +371,11 @@
     "bash",
     "pwsh",
     "Connect-AzAccount",
-    "base64"
+    "base64",
+    "tsc",
+    "column",
+    "awk",
+    "json2tsv"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [],
@@ -398,7 +401,8 @@
   "launch": {
     "configurations": []
   },
-  "git.blame.editorDecoration.template": "${subject}, ${authorName} ${authorDateAgo}"
+  "git.blame.editorDecoration.template": "${subject}, ${authorName} ${authorDateAgo}",
+  "todohighlight.isEnable": true
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"

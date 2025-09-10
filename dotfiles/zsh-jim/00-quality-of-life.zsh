@@ -101,3 +101,8 @@ if [[ -d "$HOME/.secrets" ]]; then
     fi
   done
 fi
+
+# make pretty html files from basic markdown
+md2html() {
+  pandoc "$1" --css "~/.config/dotfiles/assets/md.css" --embed-resources --standalone -o "${1%.*}.html"
+}
