@@ -375,10 +375,24 @@
     "tsc",
     "column",
     "awk",
-    "json2tsv"
+    "json2tsv",
+    "nslookup",
+    "date",
+    "ssh",
+    "uniq",
+    "sort",
+    "sed",
+    "diff"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
-  "roo-cline.deniedCommands": [],
+  "roo-cline.deniedCommands": [
+    "terragrunt apply",
+    "terragrunt destroy",
+    "tofu apply",
+    "tofu destroy",
+    "terraform apply",
+    "terraform destory"
+  ],
   "sqlite3-editor.ui.minimizePanel": true,
   "sshfs.configs": [
     {

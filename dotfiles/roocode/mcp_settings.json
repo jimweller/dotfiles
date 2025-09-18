@@ -98,7 +98,8 @@
         "confluence_delete_page",
         "confluence_add_comment",
         "confluence_search_user",
-        "confluence_get_page"
+        "confluence_get_page",
+        "jira_search"
       ],
       "disabled": false
     }

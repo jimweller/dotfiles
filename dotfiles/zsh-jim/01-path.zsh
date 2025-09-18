@@ -52,3 +52,5 @@ export NVM_DIR="$HOME/.nvm"
 mkdir -p "$HOME/.go"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
