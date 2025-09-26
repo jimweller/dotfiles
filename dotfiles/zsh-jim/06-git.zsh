@@ -117,4 +117,4 @@ gpa()
   done  
 }
 
-switch_git_profile jim
+switch_git_profile mcg

@@ -382,7 +382,11 @@
     "uniq",
     "sort",
     "sed",
-    "diff"
+    "diff",
+    "sops",
+    "kubectx",
+    "dig",
+    "cut"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
