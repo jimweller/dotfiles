@@ -72,6 +72,10 @@
       "type": "stdio",
       "command": "uvx",
       "args": [
+        "--python",
+        "python3.10",
+        "--with",
+        "pydantic==2.11.0",
         "mcp-atlassian",
         "-v"
       ],
