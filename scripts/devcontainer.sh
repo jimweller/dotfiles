@@ -253,16 +253,6 @@ connect_container() {
         assets_mount="--mount type=bind,source=$host_assets_dir,target=/home/vscode/assets,readonly"
     fi
     
-    # Mount Docker socket for running containers from within container
-    # Check for Colima socket first (macOS), then fallback to standard location
-    # DOCKER_HOST will be set by zsh login scripts based on socket location
-    local docker_socket_mount=""
-    if [[ -S "${HOME}/.colima/docker.sock" ]]; then
-        docker_socket_mount="--mount type=bind,source=${HOME}/.colima/docker.sock,target=/home/vscode/.colima/docker.sock"
-    elif [[ -S /var/run/docker.sock ]]; then
-        docker_socket_mount="--mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
-    fi
-    
     # Start a new interactive container instance, overriding the ENTRYPOINT
     docker run -it --rm \
         --entrypoint="" \
@@ -270,7 +260,6 @@ connect_container() {
         --mount "type=bind,source=$(pwd),target=/workspace" \
         $granted_mounts \
         $assets_mount \
-        $docker_socket_mount \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         "$IMAGE_NAME" /bin/zsh
@@ -357,16 +346,6 @@ exec_container() {
         assets_mount="--mount type=bind,source=$host_assets_dir,target=/home/vscode/assets,readonly"
     fi
     
-    # Mount Docker socket for running containers from within container
-    # Check for Colima socket first (macOS), then fallback to standard location
-    # DOCKER_HOST will be set by zsh login scripts based on socket location
-    local docker_socket_mount=""
-    if [[ -S "${HOME}/.colima/docker.sock" ]]; then
-        docker_socket_mount="--mount type=bind,source=${HOME}/.colima/docker.sock,target=/home/vscode/.colima/docker.sock"
-    elif [[ -S /var/run/docker.sock ]]; then
-        docker_socket_mount="--mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
-    fi
-    
     # Execute command in a new container instance, like connect but run command
     if [[ $# -eq 0 ]]; then
         # No command provided, start interactive shell (same as connect)
@@ -376,7 +355,6 @@ exec_container() {
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
             $assets_mount \
-            $docker_socket_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
             "$IMAGE_NAME" /bin/zsh
@@ -388,7 +366,6 @@ exec_container() {
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
             $assets_mount \
-            $docker_socket_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
             "$IMAGE_NAME" "$@"
