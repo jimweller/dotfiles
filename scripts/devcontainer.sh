@@ -245,12 +245,21 @@ connect_container() {
         granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
     fi
     
+    # Check if host assets directory exists for AWS credentials
+    local host_assets_dir="${HOME}/assets"
+    local assets_mount=""
+    
+    if [[ -d "$host_assets_dir" ]]; then
+        assets_mount="--mount type=bind,source=$host_assets_dir,target=/home/vscode/assets,readonly"
+    fi
+    
     # Start a new interactive container instance, overriding the ENTRYPOINT
     docker run -it --rm \
         --entrypoint="" \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
         $granted_mounts \
+        $assets_mount \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         "$IMAGE_NAME" /bin/zsh
@@ -329,6 +338,14 @@ exec_container() {
         granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
     fi
     
+    # Check if host assets directory exists for AWS credentials
+    local host_assets_dir="${HOME}/assets"
+    local assets_mount=""
+    
+    if [[ -d "$host_assets_dir" ]]; then
+        assets_mount="--mount type=bind,source=$host_assets_dir,target=/home/vscode/assets,readonly"
+    fi
+    
     # Execute command in a new container instance, like connect but run command
     if [[ $# -eq 0 ]]; then
         # No command provided, start interactive shell (same as connect)
@@ -337,6 +354,7 @@ exec_container() {
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
+            $assets_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
             "$IMAGE_NAME" /bin/zsh
@@ -347,6 +365,7 @@ exec_container() {
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
+            $assets_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
             "$IMAGE_NAME" "$@"
