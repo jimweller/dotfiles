@@ -46,30 +46,6 @@
   "mcpServers": {
     "atl": {
       "type": "stdio",
-      "command": "docker",
-      "args": [
-        "container",
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "CONFLUENCE_URL",
-        "-e",
-        "CONFLUENCE_USERNAME",
-        "-e",
-        "CONFLUENCE_API_TOKEN",
-        "-e",
-        "JIRA_URL",
-        "-e",
-        "JIRA_USERNAME",
-        "-e",
-        "JIRA_API_TOKEN",
-        "ghcr.io/sooperset/mcp-atlassian:latest"
-      ],
-      "env": {}
-    },
-    "atl2": {
-      "type": "stdio",
       "command": "uvx",
       "args": [
         "--python",
@@ -118,6 +94,19 @@
         "--rm",
         "google-research-mcp"
       ]
+    },
+    "googler2": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:jimweller/google-research-mcp"
+      ],
+      "env": {
+        "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
+        "GOOGLE_CUSTOM_SEARCH_ENGINE_ID": "${GOOGLE_SEARCH_ENGINE_ID}",
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+      }
     }
   },
   "hasIdeOnboardingBeenShown": {
