@@ -1,68 +1,83 @@
 {
-  "numStartups": 1,
+  "numStartups": 95,
   "installMethod": "unknown",
   "autoUpdates": true,
   "tipsHistory": {
     "new-user-warmup": 1,
-    "memory-command": 2
+    "memory-command": 80,
+    "shift-enter": 91,
+    "theme-command": 75,
+    "prompt-queue": 80,
+    "enter-to-steer-in-relatime": 80,
+    "todo-list": 90,
+    "# for memory": 91,
+    "install-github-app": 95,
+    "ide-hotkey": 94,
+    "status-line": 85,
+    "permissions": 90,
+    "drag-and-drop-images": 90,
+    "paste-images-mac": 88,
+    "double-esc": 88,
+    "continue": 91,
+    "custom-commands": 94,
+    "shift-tab": 91,
+    "custom-agents": 80,
+    "image-paste": 84,
+    "ide-upsell-external-terminal": 43,
+    "git-worktrees": 85,
+    "plan-mode-for-complex-tasks": 95
+  },
+  "promptQueueUseCount": 4,
+  "cachedStatsigGates": {
+    "tengu_disable_bypass_permissions_mode": false,
+    "tengu_use_file_checkpoints": false
   },
   "shiftEnterKeyBindingInstalled": true,
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1753969347417,
+  "changelogLastFetched": 1759326602648,
   "bypassPermissionsModeAccepted": true,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
-  "projects": {
-    "/workspaces": {
-      "allowedTools": [],
-      "history": [],
-      "mcpContextUris": [],
-      "mcpServers": {},
-      "enabledMcpjsonServers": [],
-      "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
-      "hasClaudeMdExternalIncludesApproved": true,
-      "hasClaudeMdExternalIncludesWarningShown": true
-    },
-    "/home/vscode": {
-      "allowedTools": [],
-      "history": [],
-      "mcpContextUris": [],
-      "mcpServers": {},
-      "enabledMcpjsonServers": [],
-      "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
-      "hasClaudeMdExternalIncludesApproved": true,
-      "hasClaudeMdExternalIncludesWarningShown": true
-    },
-    "/Users/jimweller": {
-      "allowedTools": [],
-      "history": [],
-      "mcpContextUris": [],
-      "mcpServers": {},
-      "enabledMcpjsonServers": [],
-      "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
-      "hasClaudeMdExternalIncludesApproved": true,
-      "hasClaudeMdExternalIncludesWarningShown": true
-    }
-  },
+  "firstStartTime": "2025-08-10T08:28:30.762Z",
+  "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
+  "lastReleaseNotesSeen": "2.0.1",
   "mcpServers": {
-    "atlassian-remote": {
-      "type": "sse",
-      "url": "https://mcp.atlassian.com/v1/sse"
+    "atl": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "container",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "CONFLUENCE_URL",
+        "-e",
+        "CONFLUENCE_USERNAME",
+        "-e",
+        "CONFLUENCE_API_TOKEN",
+        "-e",
+        "JIRA_URL",
+        "-e",
+        "JIRA_USERNAME",
+        "-e",
+        "JIRA_API_TOKEN",
+        "ghcr.io/sooperset/mcp-atlassian:latest"
+      ],
+      "env": {}
     },
-    "Context7": {
+    "context7": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
         "@upstash/context7-mcp"
-      ]
+      ],
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "10000"
+      }
     },
     "repomix": {
       "command": "npx",
@@ -72,15 +87,25 @@
         "--mcp"
       ]
     },
-    "GoogleResearcher": {
-      "type": "streamable-http",
-      "url": "http://localhost:3000/mcp",
-      "alwaysAllow": [
-        "google_search",
-        "scrape_page",
-        "analyze_with_gemini",
-        "research_topic"
+    "googler": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "container",
+        "run",
+        "-i",
+        "--rm",
+        "google-research-mcp"
       ]
     }
-  }
+  },
+  "hasIdeOnboardingBeenShown": {
+    "vscode": true
+  },
+  "iterm2SetupInProgress": false,
+  "iterm2BackupPath": "/Users/jimweller/Library/Preferences/com.googlecode.iterm2.plist.bak",
+  "hasOpusPlanDefault": false,
+  "sonnet45MigrationComplete": true,
+  "hasUsedBackslashReturn": true,
+  "lastPlanModeUse": 1759518565289
 }
