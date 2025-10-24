@@ -68,6 +68,22 @@
       ],
       "env": {}
     },
+    "atl2": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-atlassian",
+        "-v"
+      ],
+      "env": {
+        "CONFLUENCE_URL": "${CONFLUENCE_URL}",
+        "CONFLUENCE_USERNAME": "${JIRA_USERNAME}",
+        "CONFLUENCE_API_TOKEN": "${CONFLUENCE_API_TOKEN}",
+        "JIRA_URL": "${JIRA_URL}",
+        "JIRA_USERNAME": "${JIRA_USERNAME}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
+      }
+    },
     "context7": {
       "type": "stdio",
       "command": "npx",
@@ -80,6 +96,7 @@
       }
     },
     "repomix": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",

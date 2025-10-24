@@ -254,8 +254,12 @@ connect_container() {
     fi
     
     # Mount Docker socket for running containers from within container
+    # Check for Colima socket first (macOS), then fallback to standard location
+    # DOCKER_HOST will be set by zsh login scripts based on socket location
     local docker_socket_mount=""
-    if [[ -S /var/run/docker.sock ]]; then
+    if [[ -S "${HOME}/.colima/docker.sock" ]]; then
+        docker_socket_mount="--mount type=bind,source=${HOME}/.colima/docker.sock,target=/home/vscode/.colima/docker.sock"
+    elif [[ -S /var/run/docker.sock ]]; then
         docker_socket_mount="--mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
     fi
     
@@ -354,8 +358,12 @@ exec_container() {
     fi
     
     # Mount Docker socket for running containers from within container
+    # Check for Colima socket first (macOS), then fallback to standard location
+    # DOCKER_HOST will be set by zsh login scripts based on socket location
     local docker_socket_mount=""
-    if [[ -S /var/run/docker.sock ]]; then
+    if [[ -S "${HOME}/.colima/docker.sock" ]]; then
+        docker_socket_mount="--mount type=bind,source=${HOME}/.colima/docker.sock,target=/home/vscode/.colima/docker.sock"
+    elif [[ -S /var/run/docker.sock ]]; then
         docker_socket_mount="--mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
     fi
     
