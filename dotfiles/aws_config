@@ -1,3 +1,9 @@
+# Default profile using auto-refreshed token - works on host and in container
+# Token refreshed by ~/scripts/aws-refresh-token.sh running via launchd
+[default]
+credential_process = cat $HOME/assets/aws/aws-token.json
+region = us-west-2
+
 # MCG with identity center
 # ----------------------------------------------------
 
