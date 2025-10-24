@@ -9,9 +9,9 @@
     "google-research-mcp"
   ],
   "alwaysAllow": [
-    "google_search",
     "scrape_page",
     "analyze_with_gemini",
-    "research_topic"
+    "research_topic",
+    "google_search"
   ]
 }

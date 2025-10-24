@@ -5,11 +5,20 @@
   // =============================================================================
 
   "[dockercompose]": {
-    "editor.autoIndent": "advanced"
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[github-actions-workflow]": {
     "editor.autoIndent": "advanced",
-    "editor.indentSize": 2
+    "editor.indentSize": 2,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features",
@@ -72,7 +81,8 @@
   "workbench.colorCustomizations": {
     "[*]": {
       "terminal.background": "#000000"
-    }
+    },
+    "git.blame.editorDecorationForeground": "#1e6002",
   },
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.editor.enablePreview": false,
@@ -386,7 +396,32 @@
     "sops",
     "kubectx",
     "dig",
-    "cut"
+    "cut",
+    "source",
+    "services/netbox/tools/import_data.sh",
+    "services/netbox/tools/restore_latest_backup.sh",
+    "tools/restore_latest_backup.sh",
+    "tools/export_data.sh",
+    "tools/import_data.sh tools/netbox_export_20250926_090127/netbox_export.json",
+    "cp",
+    "./export_data.sh",
+    "../tools/restore_latest_backup.sh",
+    "./import_data.sh",
+    "./tools/restore_latest_backup.sh",
+    "./restore_latest_backup.sh",
+    "./validate_migration.sh",
+    "./tools/hf-me.sh",
+    "./costmos-test.sh",
+    "./zscaler-validator",
+    "wc",
+    "bd",
+    "./tests/test-runner.sh",
+    "yq",
+    "nc",
+    "dnf",
+    "./aws-refresh-token.sh",
+    "sqlite3",
+    "file"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [

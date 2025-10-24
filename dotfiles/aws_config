@@ -2,25 +2,27 @@
 # ----------------------------------------------------
 
 
-[profile bedrock]
-granted_sso_start_url      = https://d-9067f7a2b2.awsapps.com/start
-granted_sso_region         = us-east-1
-granted_sso_account_id     = 493888979299
-granted_sso_role_name      = 493888979299-mcg-rockusr
-common_fate_generated_from = aws-sso
-credential_process         = granted credential-process --profile bedrock
-granted_sso_registration_scopes = sso:account:access
-region = us-west-2
-; sso_session = bedrock2
+; [profile bedrock]
+; granted_sso_start_url      = https://d-9067f7a2b2.awsapps.com/start
+; granted_sso_region         = us-east-1
+; granted_sso_account_id     = 493888979299
+; granted_sso_role_name      = 493888979299-mcg-rockusr
+; common_fate_generated_from = aws-sso
+; credential_process         = granted credential-process --profile bedrock
+; granted_sso_registration_scopes = sso:account:access
+; region = us-west-2
+
+[profile mcg]
+sso_session=bedrocksso
 sso_account_id = 493888979299
 sso_role_name = 493888979299-mcg-rockusr
-sso_start_url = https://d-9067f7a2b2.awsapps.com/start
-sso_region = us-east-1
+region = us-west-2
 
-; [sso-session bedrock2]
-; sso_start_url = https://d-9067f7a2b2.awsapps.com/start/#
-; sso_region = us-east-1
-; sso_registration_scopes = sso:account:access
+
+[sso-session bedrocksso]
+sso_start_url = https://d-9067f7a2b2.awsapps.com/start/
+sso_region = us-east-1
+sso_registration_scopes = sso:account:access
 
 
 # jim.weller identity center
