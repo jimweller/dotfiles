@@ -423,7 +423,8 @@
     "sqlite3",
     "file",
     "launchctl",
-    "id"
+    "id",
+    "asdf"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
