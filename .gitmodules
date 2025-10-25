@@ -2,7 +2,6 @@
   path = dotbot
   url = https://github.com/anishathalye/dotbot
   ignore = dirty
-  branch = v1.23.1
   shallow = true
 [submodule "devcontainer"]
   path = devcontainer
