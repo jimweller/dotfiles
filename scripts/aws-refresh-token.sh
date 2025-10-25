@@ -2,37 +2,22 @@
 
 # AWS Temporary Credential Refresh Script
 #
-# Uses a long-lived AWS SSO session token to periodically refresh a short-lived
-# temporary token, ensuring it's always available for applications. It is intended
-# to be run as a scheduled job or in an infinite loop. The scheduled job interval
-# should be less than the temporary token lifetime (8h < 12h at my work).
+# Uses AWS SSO session tokens to periodically refresh short-lived temporary credentials,
+# ensuring they're always available for applications. Intended to run as a scheduled job.
+# The job interval should be less than temporary token lifetime (8h < 12h at my work).
 #
 # This script clears the CLI cache before calling export-credentials to force a fresh
-# temporary token every time. That way there is no need to calculate the difference
-# between the job interval and expiration duration.
+# temporary token every time. No need to calculate difference between job interval and
+# expiration duration.
 #
-# How AWS token caching works
-#
-# SSO Session Tokens (Long-lived, duration configured by AWS admins)
-#    Location: ~/.aws/sso/cache/*.json
-#    Created by: aws sso login
-#    Contains: OAuth access/refresh tokens that prove your identity
-#    Used by: AWS CLI and SDKs to request/refresh a temporary access token
-#
-# Temporary Access Token (Short-lived, duration configured by AWS admins)
-#    Location: ~/.aws/cli/cache/*.json
-#    Created by: Any AWS CLI commands that make api calls (e.g., aws configure export-credentials OR aws sts get-caller-identity)
-#    Contains: AccessKeyId, SecretAccessKey, SessionToken
-#    Used by: AWS CLI and SDKs for API calls
-#
-# Custom Export File (This script's output)
-#    Location: ~/assets/aws/aws-token.json (configurable)
-#    Purpose: Makes temporary token available to a custom credential_process in aws profile config. Like the host exporting credentials to a container
-#
-# How 'aws configure export-credentials' works:
-# - Checks CLI cache for valid temporary token
-# - If expired/missing: Makes STS AssumeRole call using SSO token to get a fresh temporary token
-# - Updates CLI cache with result
+# How this script works:
+# - Clears CLI cache to force fresh token
+# - Calls 'aws configure export-credentials' which:
+#   - Uses accessToken to request new temporary credentials from STS
+#   - If accessToken expired: Auto-renews it using refreshToken (transparent to script)
+#   - Creates new CLI cache with result
+# - Exports credentials to custom file for applications
+# - Works automatically until client registration expires (90 days from 'aws sso login')
 #
 # Scheduling with launchd on MacOS:
 #  Put plist file in: ~/Library/LaunchAgents/com.user.refreshawstoken.plist
@@ -40,6 +25,49 @@
 #  Load: launchctl load ~/Library/LaunchAgents/com.user.refreshawstoken.plist
 #  Unload: launchctl unload ~/Library/LaunchAgents/com.user.refreshawstoken.plist
 #  (if you change the plist file you must unload/load to refresh the job)
+#
+#  IMPORTANT: StartInterval does NOT run during macOS sleep
+#  - Jobs scheduled with StartInterval only run when Mac is awake
+#  - If Mac sleeps through scheduled run time, job is skipped entirely
+#  - Use StartCalendarInterval instead for reliable scheduled execution
+#  - StartCalendarInterval can wake Mac from sleep (if Power Nap enabled)
+#  - Recommended: Run every 4 hours for redundancy (12:00 AM/PM, 4:00 AM/PM, 8:00 AM/PM)
+#
+# How AWS token caching works
+#
+# Client Registration (90 days)
+#    Location: ~/.aws/sso/cache/*.json (separate file with clientId/clientSecret)
+#    Created by: aws sso login
+#    Contains: OIDC client credentials for AWS CLI
+#    Expires: registrationExpiresAt field (90 days from creation)
+#    Impact if expires: All tokens become invalid, must run 'aws sso login'
+#
+# SSO Session Tokens (stored together in same cache file)
+#    Location: ~/.aws/sso/cache/*.json
+#    Created by: aws sso login
+#
+#    accessToken (~1 hour):
+#       Purpose: Proves identity to AWS SSO for requesting temporary credentials
+#       Expires: expiresAt field (~1 hour after login)
+#       Impact if expires: AWS CLI auto-renews using refreshToken (no user action)
+#
+#    refreshToken (bound to client registration):
+#       Purpose: Auto-renews accessToken without user interaction
+#       Expires: When client registration expires (registrationExpiresAt field)
+#       Impact if expires: Must run 'aws sso login' to re-register
+#       Note: Follows OAuth 2.0 spec where refresh tokens are bound to issuing client
+#
+# Temporary Access Token (12 hours, duration configured by AWS admins)
+#    Location: ~/.aws/cli/cache/*.json
+#    Created by: Any AWS CLI commands that make API calls (aws configure export-credentials)
+#    Contains: AccessKeyId, SecretAccessKey, SessionToken
+#    Used by: AWS CLI and SDKs for API calls
+#    Impact if expires: AWS commands fail until refreshed
+#
+# Custom Export File (This script's output)
+#    Location: ~/assets/aws/aws-token.json (configurable)
+#    Purpose: Makes temporary token available to custom credential_process in aws profile config
+#
 
 # configuration - must use full paths for launchd
 AWS_CMD="/opt/homebrew/bin/aws"

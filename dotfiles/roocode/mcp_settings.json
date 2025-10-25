@@ -1,65 +1,28 @@
 {
   "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ],
-      "env": {
-        "DEFAULT_MINIMUM_TOKENS": "10000"
-      },
-      "alwaysAllow": [
-        "resolve-library-id",
-        "get-library-docs"
-      ]
-    },
-    "googler": {
-      "type": "stdio",
-      "command": "docker",
-      "args": [
-        "container",
-        "run",
-        "-i",
-        "--rm",
-        "google-research-mcp"
-      ],
-      "alwaysAllow": [
-        "scrape_page",
-        "analyze_with_gemini",
-        "research_topic",
-        "google_search"
-      ]
-    },
-    "repomix": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "repomix",
-        "--mcp"
-      ],
-      "alwaysAllow": [
-        "pack_codebase",
-        "pack_remote_repository",
-        "attach_packed_output",
-        "read_repomix_output"
-      ]
-    },
     "atl": {
       "type": "stdio",
-      "command": "docker",
+      "command": "uvx",
       "args": [
-        "container",
-        "run",
-        "-i",
-        "--rm",
-        "--env-file",
-        "/Users/jimweller/.secrets/atlassian_docker.env",
-        "ghcr.io/sooperset/mcp-atlassian:latest"
+        "--python",
+        "python3.10",
+        "--with",
+        "pydantic==2.11.0",
+        "mcp-atlassian",
+        "-v"
       ],
+      "env": {
+        "CONFLUENCE_URL": "${CONFLUENCE_URL}",
+        "CONFLUENCE_USERNAME": "${JIRA_USERNAME}",
+        "CONFLUENCE_API_TOKEN": "${CONFLUENCE_API_TOKEN}",
+        "JIRA_URL": "${JIRA_URL}",
+        "JIRA_USERNAME": "${JIRA_USERNAME}",
+        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
+      },
       "alwaysAllow": [
         "jira_get_user_profile",
         "jira_get_issue",
+        "jira_search",
         "jira_search_fields",
         "jira_get_project_issues",
         "jira_get_transitions",
@@ -80,8 +43,6 @@
         "jira_link_to_epic",
         "jira_create_issue_link",
         "jira_create_remote_issue_link",
-        "jira_remove_issue_link",
-        "jira_transition_issue",
         "jira_create_sprint",
         "jira_update_sprint",
         "jira_get_project_versions",
@@ -89,6 +50,7 @@
         "jira_create_version",
         "jira_batch_create_versions",
         "confluence_search",
+        "confluence_get_page",
         "confluence_get_page_children",
         "confluence_get_comments",
         "confluence_get_labels",
@@ -98,10 +60,60 @@
         "confluence_delete_page",
         "confluence_add_comment",
         "confluence_search_user",
-        "confluence_get_page",
-        "jira_search"
+        "jira_remove_issue_link"
+      ]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
       ],
-      "disabled": false
+      "env": {
+        "DEFAULT_MINIMUM_TOKENS": "10000"
+      },
+      "alwaysAllow": [
+        "resolve-library-id",
+        "get-library-docs"
+      ]
+    },
+    "repomix": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ],
+      "alwaysAllow": [
+        "pack_codebase",
+        "pack_remote_repository",
+        "attach_packed_output",
+        "read_repomix_output",
+        "grep_repomix_output",
+        "file_system_read_file",
+        "file_system_read_directory"
+      ]
+    },
+    "googler": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:jimweller/google-research-mcp"
+      ],
+      "env": {
+        "GOOGLE_CUSTOM_SEARCH_API_KEY": "${env:GOOGLE_SEARCH_API_KEY}",
+        "GOOGLE_CUSTOM_SEARCH_ID": "${env:GOOGLE_SEARCH_ID}",
+        "GOOGLE_GEMINI_API_KEY": "${env:GOOGLE_GEMINI_API_KEY}"
+      },
+      "alwaysAllow": [
+        "research_topic",
+        "google_search",
+        "scrape_page",
+        "analyze_with_gemini"
+      ]
     }
   }
 }

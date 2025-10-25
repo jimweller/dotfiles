@@ -421,7 +421,8 @@
     "dnf",
     "./aws-refresh-token.sh",
     "sqlite3",
-    "file"
+    "file",
+    "launchctl"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
