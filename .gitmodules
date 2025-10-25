@@ -2,7 +2,7 @@
   path = dotbot
   url = https://github.com/anishathalye/dotbot
   ignore = dirty
-  branch = master
+  branch = v1.23.1
   shallow = true
 [submodule "devcontainer"]
   path = devcontainer
@@ -15,4 +15,9 @@
   url = https://github.com/getantidote/antidote
   ignore = dirty
   branch = main
+  shallow = true
+[submodule "asdf"]
+  path = asdf
+  url = https://github.com/asdf-vm/asdf
+  ignore = dirty
   shallow = true
