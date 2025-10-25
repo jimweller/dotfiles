@@ -1,0 +1,5 @@
+helm https://github.com/Antiarchitect/asdf-helm.git
+helm-diff https://github.com/dex4er/asdf-helm-diff.git
+helmfile https://github.com/feniix/asdf-helmfile.git
+sops https://github.com/feniix/asdf-sops.git
+nodejs https://github.com/asdf-vm/asdf-nodejs.git

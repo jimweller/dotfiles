@@ -1,0 +1,4 @@
+legacy_version_file = no
+always_keep_download = no
+use_release_candidates = no
+disable_plugin_short_name_repository = no

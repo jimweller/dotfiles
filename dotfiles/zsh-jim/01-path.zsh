@@ -53,4 +53,9 @@ mkdir -p "$HOME/.go"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# Initialize asdf from dotfiles submodule
+ASDF_DIR="${HOME}/.config/dotfiles/asdf"
+if [ -f "${ASDF_DIR}/asdf.sh" ]; then
+  export ASDF_DIR
+  . "${ASDF_DIR}/asdf.sh"
+fi

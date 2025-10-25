@@ -1,5 +1,4 @@
 act
-asdf
 aws-nuke
 aws-vault
 awscli

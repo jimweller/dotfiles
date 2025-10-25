@@ -16,6 +16,7 @@
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
+    ~/.asdfrc: dotfiles/asdfrc
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
     ~/.bash_profile: dotfiles/bash_profile
@@ -35,6 +36,7 @@
     #   glob: true
     #   path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
+    ~/.tool-versions: dotfiles/asdf-tool-versions
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
 
 - shell:

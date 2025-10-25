@@ -5,6 +5,20 @@ otp() { if [ -z $1 ]; then echo "Missing parameter, TOTP seed\nUsage: otp [seed]
 cj() { vsc -n ~/.config/dotfiles }
 dotfiles() { cd ~/.config/dotfiles && gl && ./install }
 
+# Update asdf, plugins, and tool versions
+asdf-update() {
+  echo "Updating asdf submodule..."
+  (cd ~/.config/dotfiles && git submodule update --remote asdf)
+  
+  echo "\nUpdating asdf plugins..."
+  asdf plugin update --all
+  
+  echo "\nReinstalling tools to latest versions..."
+  asdf install
+  
+  echo "\nUpdate complete!"
+}
+
 ef() { sync.sh & }
 
 alias cbc='cb copy'
