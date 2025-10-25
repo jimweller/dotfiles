@@ -13,8 +13,12 @@
     <key>RunAtLoad</key>
     <true />
 
-    <key>StartInterval</key>
-    <integer>28800</integer>
+    <!-- Runs at the zero minute of every hour-->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
 
     <key>StandardOutPath</key>
     <string>/Users/jimweller/assets/aws/launchd.log</string>

@@ -26,12 +26,14 @@
 #  Unload: launchctl unload ~/Library/LaunchAgents/com.user.refreshawstoken.plist
 #  (if you change the plist file you must unload/load to refresh the job)
 #
-#  IMPORTANT: StartInterval does NOT run during macOS sleep
-#  - Jobs scheduled with StartInterval only run when Mac is awake
-#  - If Mac sleeps through scheduled run time, job is skipped entirely
-#  - Use StartCalendarInterval instead for reliable scheduled execution
-#  - StartCalendarInterval can wake Mac from sleep (if Power Nap enabled)
-#  - Recommended: Run every 4 hours for redundancy (12:00 AM/PM, 4:00 AM/PM, 8:00 AM/PM)
+#  Use StartCalendarInterval (not StartInterval) for reliable scheduled execution:
+#  - StartInterval skips jobs if Mac sleeps through scheduled time (launchd.plist(5))
+#  - StartCalendarInterval runs missed jobs on next wake:
+#    "Unlike cron which skips job invocations when the computer is asleep, launchd
+#     will start the job the next time the computer wakes up" - launchd.plist(5)
+#  - User-level LaunchAgents can't wake Mac, but execute all missed jobs upon wake
+#  - Recommended schedule: every hour (runs at minute 0 of each hour), that buys about 12 hours of sleep time
+#  - Reference: https://apple.stackexchange.com/questions/473841/
 #
 # How AWS token caching works
 #
