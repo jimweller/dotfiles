@@ -53,14 +53,5 @@ mkdir -p "$HOME/.go"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
-# Initialize asdf (multiple installation methods)
-if command -v brew >/dev/null 2>&1 && [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
-  # macOS with Homebrew
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
-elif [ -f "/opt/asdf/asdf.sh" ]; then
-  # Linux with system install (Dockerfile)
-  . "/opt/asdf/asdf.sh"
-elif [ -f "$HOME/.asdf/asdf.sh" ]; then
-  # Linux with manual install
-  . "$HOME/.asdf/asdf.sh"
-fi
+# asdf - add shims to PATH (v0.16+ Go version)
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

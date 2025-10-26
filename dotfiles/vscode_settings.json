@@ -425,7 +425,8 @@
     "launchctl",
     "id",
     "asdf",
-    "brew"
+    "brew",
+    "type"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
