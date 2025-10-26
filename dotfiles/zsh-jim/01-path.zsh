@@ -53,9 +53,14 @@ mkdir -p "$HOME/.go"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
-# Initialize asdf from dotfiles submodule
-ASDF_DIR="${HOME}/.config/dotfiles/asdf"
-if [ -f "${ASDF_DIR}/asdf.sh" ]; then
-  export ASDF_DIR
-  . "${ASDF_DIR}/asdf.sh"
+# Initialize asdf (multiple installation methods)
+if command -v brew >/dev/null 2>&1 && [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
+  # macOS with Homebrew
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+elif [ -f "/opt/asdf/asdf.sh" ]; then
+  # Linux with system install (Dockerfile)
+  . "/opt/asdf/asdf.sh"
+elif [ -f "$HOME/.asdf/asdf.sh" ]; then
+  # Linux with manual install
+  . "$HOME/.asdf/asdf.sh"
 fi

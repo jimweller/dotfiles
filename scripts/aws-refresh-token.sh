@@ -2,22 +2,19 @@
 
 # AWS Temporary Credential Refresh Script
 #
-# Uses AWS SSO session tokens to periodically refresh short-lived temporary credentials,
-# ensuring they're always available for applications. Intended to run as a scheduled job.
-# The job interval should be less than temporary token lifetime (8h < 12h at my work).
-#
-# This script clears the CLI cache before calling export-credentials to force a fresh
-# temporary token every time. No need to calculate difference between job interval and
-# expiration duration.
+# Uses AWS SSO session to periodically mint fresh short-lived temporary credentials.
+# This script extends the availability of temporary credentials but CANNOT extend the
+# SSO session itself - periodic re-authentication (aws sso login) is still required.
 #
 # How this script works:
-# - Clears CLI cache to force fresh token
+# - Clears CLI cache to force fresh temporary credentials
 # - Calls 'aws configure export-credentials' which:
-#   - Uses accessToken to request new temporary credentials from STS
-#   - If accessToken expired: Auto-renews it using refreshToken (transparent to script)
-#   - Creates new CLI cache with result
+#   - Uses refreshToken to get fresh accessToken (if needed)
+#   - Uses accessToken to request new temporary IAM credentials from STS
+#   - Creates new CLI cache with 12-hour credentials
 # - Exports credentials to custom file for applications
-# - Works automatically until client registration expires (90 days from 'aws sso login')
+# - Works automatically ONLY while SSO session is valid (8-12 hours from aws sso login)
+# - Once SSO session expires, you must run 'aws sso login' again
 #
 # Scheduling with launchd on MacOS:
 #  Put plist file in: ~/Library/LaunchAgents/com.user.refreshawstoken.plist
@@ -35,40 +32,93 @@
 #  - Recommended schedule: every hour (runs at minute 0 of each hour), that buys about 12 hours of sleep time
 #  - Reference: https://apple.stackexchange.com/questions/473841/
 #
-# How AWS token caching works
+# How AWS SSO Authentication Works
 #
-# Client Registration (90 days)
+# AWS SSO authentication involves three distinct expiration windows that must be understood
+# to properly manage credentials. Each layer serves a different purpose and has different
+# lifetimes. This script manages the innermost layer (temporary credentials) but depends
+# on the outer layers (SSO session and client registration) remaining valid.
+#
+# Layer 1: Client Registration (90 days typical) - OIDC "Trusted Device" Registration
+#    Duration: 90 days for AWS SSO (12 hours for granted, varies by system)
+#    Admin-configured: Yes - configurable OAuth 2.0 OIDC client registration period
 #    Location: ~/.aws/sso/cache/*.json (separate file with clientId/clientSecret)
 #    Created by: aws sso login
-#    Contains: OIDC client credentials for AWS CLI
-#    Expires: registrationExpiresAt field (90 days from creation)
-#    Impact if expires: All tokens become invalid, must run 'aws sso login'
+#    Key fields:
+#       - registrationExpiresAt: Date when client registration expires
+#       - clientId: OAuth client identifier
+#       - clientSecret: OAuth client secret
+#    Purpose: Marks AWS CLI as a trusted OAuth 2.0 client for 90 days
+#    Behavior: This is NOT your login session - it's the device trust window
+#    Impact if expires: All cached tokens become invalid, must run 'aws sso login'
+#    Note: The 90 days does NOT mean your credentials last 90 days
 #
-# SSO Session Tokens (stored together in same cache file)
-#    Location: ~/.aws/sso/cache/*.json
+# Layer 2: SSO Session (8-12 hours typical) - YOUR ACTUAL LOGIN SESSION
+#    Duration: 8-12 hours (commonly 8 hours, configured by AWS administrator)
+#    Admin-configured: Yes - set via IAM Identity Center session duration policy
+#    Location: ~/.aws/sso/cache/*.json (same file as client registration)
 #    Created by: aws sso login
+#    Key fields:
+#       - refreshToken: Valid for SSO session duration (NOT 90 days!)
+#       - accessToken: Short-lived (~1 hour), auto-renewed by refreshToken
+#       - expiresAt: When current accessToken expires (~1 hour from now)
+#    Purpose: Proves you are authenticated and authorized to request temporary credentials
+#    Behavior:
+#       - When accessToken expires (~1 hour), AWS CLI auto-renews it using refreshToken
+#       - When refreshToken expires (SSO session timeout), renewal fails
+#       - refreshToken lifetime is tied to SSO session, NOT client registration
+#    Impact if expires: Script fails with "Token has expired and refresh failed"
+#    Must do: Run 'aws sso login' to start new SSO session
+#    CRITICAL: This script cannot extend your SSO session - only AWS admins can change duration
 #
-#    accessToken (~1 hour):
-#       Purpose: Proves identity to AWS SSO for requesting temporary credentials
-#       Expires: expiresAt field (~1 hour after login)
-#       Impact if expires: AWS CLI auto-renews using refreshToken (no user action)
-#
-#    refreshToken (bound to client registration):
-#       Purpose: Auto-renews accessToken without user interaction
-#       Expires: When client registration expires (registrationExpiresAt field)
-#       Impact if expires: Must run 'aws sso login' to re-register
-#       Note: Follows OAuth 2.0 spec where refresh tokens are bound to issuing client
-#
-# Temporary Access Token (12 hours, duration configured by AWS admins)
+# Layer 3: Temporary IAM Credentials (12 hours typical) - WHAT THIS SCRIPT MANAGES
+#    Duration: 12 hours (configured by AWS administrator for permission set)
+#    Admin-configured: Yes - set via IAM Identity Center permission set configuration
 #    Location: ~/.aws/cli/cache/*.json
-#    Created by: Any AWS CLI commands that make API calls (aws configure export-credentials)
-#    Contains: AccessKeyId, SecretAccessKey, SessionToken
-#    Used by: AWS CLI and SDKs for API calls
-#    Impact if expires: AWS commands fail until refreshed
+#    Created by: aws configure export-credentials (called by this script)
+#    Contains:
+#       - AccessKeyId: Temporary AWS access key
+#       - SecretAccessKey: Temporary AWS secret key
+#       - SessionToken: Session token for temporary credentials
+#       - Expiration: When these credentials expire
+#       - AccountId: AWS account number
+#    Purpose: Short-lived AWS API credentials for making AWS service calls
+#    Behavior:
+#       - Script clears cache and requests fresh credentials every hour
+#       - AWS mints new 12-hour credentials using valid SSO session
+#       - These are the credentials actually used by AWS CLI/SDK commands
+#    Impact if expires: AWS API calls fail until script mints new credentials
+#    Note: This script mints fresh 12-hour credentials hourly while SSO session is valid
 #
-# Custom Export File (This script's output)
+# Layer 4: Custom Export File (This script's output)
 #    Location: ~/assets/aws/aws-token.json (configurable)
-#    Purpose: Makes temporary token available to custom credential_process in aws profile config
+#    Purpose: Makes temporary IAM credentials available to applications via credential_process
+#    Format: JSON with AccessKeyId, SecretAccessKey, SessionToken, Expiration fields
+#    Updated: Every time this script successfully runs
+#
+# Example Timeline (8-hour SSO session):
+#    11:00 AM: Run 'aws sso login'
+#              → Client registration valid until January 22, 2026 (90 days)
+#              → SSO session valid until 7:00 PM today (8 hours)
+#              → Initial temporary credentials valid until 11:00 PM (12 hours)
+#
+#    12:00 PM - 7:00 PM: This script runs hourly
+#              → Uses refreshToken to get fresh accessToken (if needed)
+#              → Uses accessToken to mint new 12-hour temporary credentials
+#              → Exports credentials to custom file
+#              → Success - SSO session still valid
+#
+#    8:00 PM: This script runs
+#              → Attempts to use refreshToken
+#              → AWS rejects: "Token has expired and refresh failed"
+#              → Failure - SSO session expired at 7:00 PM
+#              → Must run 'aws sso login' again to start new 8-hour session
+#
+# Common Misconceptions:
+#    - "90 days means my credentials last 90 days" → NO, that's just client registration
+#    - "refreshToken automatically renews itself" → NO, it expires with SSO session
+#    - "This script extends my SSO session" → NO, only AWS admin can change session duration
+#    - "I can work around session timeout" → NO, must re-authenticate after session expires
 #
 
 # configuration - must use full paths for launchd

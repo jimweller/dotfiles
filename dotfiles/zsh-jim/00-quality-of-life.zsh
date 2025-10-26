@@ -7,8 +7,10 @@ dotfiles() { cd ~/.config/dotfiles && gl && ./install }
 
 # Update asdf, plugins, and tool versions
 asdf-update() {
-  echo "Updating asdf submodule..."
-  (cd ~/.config/dotfiles && git submodule update --remote asdf)
+  if command -v brew >/dev/null 2>&1; then
+    echo "Updating asdf via Homebrew..."
+    brew upgrade asdf
+  fi
   
   echo "\nUpdating asdf plugins..."
   asdf plugin update --all
