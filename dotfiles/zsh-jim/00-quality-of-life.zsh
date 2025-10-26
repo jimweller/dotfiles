@@ -89,9 +89,9 @@ else
     export PAGER=less
 fi
 
-# DevContainer management alias
-alias devcontainer='devcontainer.sh'
-alias devc='devcontainer.sh'
+# JimContainer management alias (renamed from devcontainer to avoid VSCode conflict)
+alias jimcontainer='jimcontainer.sh'
+alias jimc='jimcontainer.sh'
 alias secrets='secrets.sh'
 
 

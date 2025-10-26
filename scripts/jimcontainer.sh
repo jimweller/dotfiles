@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 0jimbox management script - Phase 1 improvements
-# Usage: devcontainer.sh [build|b|run|r|connect|c|restart|rt|status|st]
+# Usage: jimcontainer.sh [build|b|run|r|connect|c|restart|rt|status|st]
 
 set -euo pipefail
 
@@ -389,7 +389,7 @@ cleanup_docker() {
     docker network prune -f
 }
 
-# Install devcontainer structure in current directory
+# Install .devcontainer structure in current directory (VSCode)
 install_devcontainer() {
     local target_dir=".devcontainer"
     local devcontainer_file="$target_dir/devcontainer.json"
@@ -431,7 +431,7 @@ show_help() {
 Usage: $0 <command>
 
 Commands:
-  install (i)   Create .devcontainer structure in current directory
+  install (i)   Create .devcontainer structure in current directory (for VSCode)
   build (b)     Build the 0jimbox image
   rebuild (rb)  Rebuild the 0jimbox from scratch (no cache)
   run (r)       Run the 0jimbox in background (daemon mode)
