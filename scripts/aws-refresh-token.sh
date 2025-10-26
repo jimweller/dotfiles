@@ -86,9 +86,70 @@ log() {
   echo "$($DATE_CMD +'%Y-%m-%d %T %Z'): $1" >> "$LOG_FILE"
 }
 
+# safely inspect JSON file and mask sensitive fields
+log_json_metadata() {
+  local file="$1"
+  local label="$2"
+  
+  if [ ! -f "$file" ]; then
+    log "$label: File not found"
+    return
+  fi
+  
+  log "$label: $(basename "$file")"
+  
+  # extract and mask sensitive fields with 5 asterisks, handling nested structures
+  local content=$($JQ_CMD '
+    # Recursively walk the JSON and mask sensitive fields at any depth
+    walk(
+      if type == "object" then
+        if .accessToken then .accessToken = "*****" else . end |
+        if .refreshToken then .refreshToken = "*****" else . end |
+        if .clientSecret then .clientSecret = "*****" else . end |
+        if .AccessKeyId then .AccessKeyId = "*****" else . end |
+        if .SecretAccessKey then .SecretAccessKey = "*****" else . end |
+        if .SessionToken then .SessionToken = "*****" else . end
+      else
+        .
+      end
+    )
+  ' "$file" 2>/dev/null)
+  
+  if [ $? -eq 0 ]; then
+    log "$content"
+  else
+    log "  ERROR: Failed to parse JSON"
+  fi
+}
+
 mkdir -p "$CREDS_DIR"
 
-log "Refreshing AWS temporary token..."
+log "==== AWS Token Refresh Started ===="
+
+# inspect SSO cache files
+SSO_CACHE_DIR="$HOME/.aws/sso/cache"
+if [ -d "$SSO_CACHE_DIR" ]; then
+  log "-- SSO Cache Files --"
+  for sso_file in "$SSO_CACHE_DIR"/*.json; do
+    if [ -f "$sso_file" ]; then
+      log_json_metadata "$sso_file" "SSO Cache"
+    fi
+  done
+else
+  log "SSO cache directory not found: $SSO_CACHE_DIR"
+fi
+
+# inspect CLI cache files (before clearing)
+if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
+  log "-- CLI Cache Files (before clearing) --"
+  for cli_file in "$CLI_CACHE_DIR"/*.json; do
+    if [ -f "$cli_file" ]; then
+      log_json_metadata "$cli_file" "CLI Cache"
+    fi
+  done
+fi
+
+log "-- Starting Refresh Process --"
 
 # clear CLI cache to force fresh temporary token
 if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
@@ -100,7 +161,28 @@ fi
 $AWS_CMD configure export-credentials --profile "$AWS_PROFILE_NAME" --output json > "$CREDS_FILE" 2>> "$LOG_FILE"
 
 if [ $? -ne 0 ]; then
-  log "ERROR: Failed to get temporary token. Check SSO login status (aws sso login --profile $AWS_PROFILE_NAME)"
+  log "ERROR: Failed to get temporary token"
+  
+  # diagnostic: show cache state at time of failure
+  log "-- Cache State at Failure --"
+  if [ -d "$SSO_CACHE_DIR" ]; then
+    for sso_file in "$SSO_CACHE_DIR"/*.json; do
+      if [ -f "$sso_file" ]; then
+        log_json_metadata "$sso_file" "SSO Cache"
+      fi
+    done
+  fi
+  
+  if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
+    for cli_file in "$CLI_CACHE_DIR"/*.json; do
+      if [ -f "$cli_file" ]; then
+        log_json_metadata "$cli_file" "CLI Cache"
+      fi
+    done
+  fi
+  
+  log "ACTION REQUIRED: Run 'aws sso login --profile $AWS_PROFILE_NAME' to re-authenticate"
+  log "==== AWS Token Refresh Failed ===="
   exit 1
 fi
 
@@ -115,3 +197,28 @@ seconds_remaining=$((expiration_epoch - current_epoch))
 time_remaining=$($DATE_CMD -u -d "@$seconds_remaining" +"%Hh %Mm %Ss")
 
 log "Successfully refreshed. Expiration: $EXPIRATION (${time_remaining} remaining)"
+
+# inspect cache files after refresh to see what changed
+log "-- Post-Refresh Cache State --"
+
+if [ -d "$SSO_CACHE_DIR" ]; then
+  log "SSO Cache Files (after refresh):"
+  for sso_file in "$SSO_CACHE_DIR"/*.json; do
+    if [ -f "$sso_file" ]; then
+      log_json_metadata "$sso_file" "SSO Cache"
+    fi
+  done
+fi
+
+if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
+  log "CLI Cache Files (after refresh):"
+  for cli_file in "$CLI_CACHE_DIR"/*.json; do
+    if [ -f "$cli_file" ]; then
+      log_json_metadata "$cli_file" "CLI Cache"
+    fi
+  done
+else
+  log "No CLI cache files after refresh"
+fi
+
+log "==== AWS Token Refresh Complete ===="
