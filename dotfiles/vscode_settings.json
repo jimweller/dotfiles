@@ -426,7 +426,10 @@
     "id",
     "asdf",
     "brew",
-    "type"
+    "type",
+    "granted",
+    "tenv",
+    "jimcontainer.sh"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [

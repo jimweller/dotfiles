@@ -122,8 +122,8 @@
 #
 
 # configuration - must use full paths for launchd
-AWS_CMD="/opt/homebrew/bin/aws"
-JQ_CMD="/opt/homebrew/bin/jq"
+AWS_CMD="/Users/jimweller/.asdf/shims/aws"
+JQ_CMD="/Users/jimweller/.asdf/shims/jq"
 DATE_CMD="/opt/homebrew/bin/gdate" # use gnu date for portability (brew install coreutils)
 
 AWS_PROFILE_NAME="mcg"

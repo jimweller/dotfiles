@@ -13,7 +13,9 @@ PROJECT_NAME="$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9
 RANDOM_SUFFIX="$(openssl rand -hex 1)"
 CONTAINER_NAME="${DEVC_NAME:-0jimbox-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
 IMAGE_NAME="${DEVC_IMAGE:-0jimbox}"
-DOCKERFILE_PATH="${DEVC_DOCKERFILE_PATH:-${HOME}/.config/dotfiles/devcontainer}"
+DOCKERFILE_DIR="${DEVC_DOCKERFILE_DIR:-${HOME}/.config/dotfiles}"
+DOCKERFILE_PATH="${DOCKERFILE_DIR}/devcontainer/Dockerfile"
+BUILD_CONTEXT="${DOCKERFILE_DIR}"
 
 # Dotfiles configuration
 DOTFILES_REPO="${DEVC_DOTFILES_REPO:-https://github.com/jimweller/dotfiles}"
@@ -188,7 +190,7 @@ build_container() {
         build_args+=(--no-cache)
     fi
     
-    build_args+=(-t "$IMAGE_NAME" "$DOCKERFILE_PATH")
+    build_args+=(-t "$IMAGE_NAME" -f "$DOCKERFILE_PATH" "$BUILD_CONTEXT")
     
     if ! docker build "${build_args[@]}"; then
         log_error "Failed to build container"
@@ -200,10 +202,12 @@ build_container() {
 rebuild_container() {
     # Remove existing image if it exists (this is the extra cleanup step for rebuild)
     if docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
-        docker rmi "$IMAGE_NAME" >/dev/null 2>&1
+        echo "Removing existing image: $IMAGE_NAME"
+        docker rmi -f "$IMAGE_NAME" || true
     fi
     
     # Call build_container with no-cache flag
+    echo "Building image from scratch with --no-cache"
     build_container "true"
 }
 
@@ -393,7 +397,7 @@ cleanup_docker() {
 install_devcontainer() {
     local target_dir=".devcontainer"
     local devcontainer_file="$target_dir/devcontainer.json"
-    local source_file="$DOCKERFILE_PATH/devcontainer.json"
+    local source_file="$DOCKERFILE_DIR/devcontainer/devcontainer.json"
     
     # Check if source file exists
     if [[ ! -f "$source_file" ]]; then

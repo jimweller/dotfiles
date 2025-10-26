@@ -1,5 +1,20 @@
+# Infrastructure Tools
 helm https://github.com/Antiarchitect/asdf-helm.git
 helm-diff https://github.com/dex4er/asdf-helm-diff.git
 helmfile https://github.com/feniix/asdf-helmfile.git
 sops https://github.com/feniix/asdf-sops.git
+
+# Kubernetes
+kubectl https://github.com/asdf-community/asdf-kubectl.git
+
+# Cloud CLI
+awscli https://github.com/MetricMike/asdf-awscli.git
+azure-cli https://github.com/EcoMind/asdf-azure-cli.git
+granted https://github.com/dex4er/asdf-granted.git
+
+# Utilities
+jq https://github.com/lsanwick/asdf-jq.git
+yq https://github.com/sudermanjr/asdf-yq.git
+
+# Runtime Environments
 nodejs https://github.com/asdf-vm/asdf-nodejs.git

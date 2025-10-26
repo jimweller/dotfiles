@@ -51,7 +51,10 @@ ohmyzsh/ohmyzsh path:plugins/istioctl
 # kops aliases
 ohmyzsh/ohmyzsh path:plugins/kops
 
-# kubektl shorthands. k, kgp, etc.
+# Load Jim's custom PATH setup FIRST (includes asdf shims)
+jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
+
+# kubektl shorthands. k, kgp, etc. (AFTER PATH is set)
 Dbz/kube-aliases
 
 
@@ -88,9 +91,6 @@ zsh-users/zsh-history-substring-search
 
 # alias rm to move to trash instead of remove from disk
 mattmc3/zsh-safe-rm
-
-# load Jim's custom aliases, functions, and toggles
-jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 
 # terragrunts like terraform/tofu. tg, tgaa, tgd!, etc. Pending PR to OMZ
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
