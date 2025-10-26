@@ -50,7 +50,15 @@ setup_dotfiles_in_container() {
     
     # Check if dotfiles already installed
     if docker exec "$container_name" test -f /home/vscode/.dotfiles_installed 2>/dev/null; then
-        debug "Dotfiles already installed, skipping"
+        debug "Dotfiles already installed, checking for updates..."
+        # Update existing dotfiles repository
+        if ! timeout $DOTFILES_TIMEOUT docker exec "$container_name" bash -c "
+            if [ -d ~/.config/dotfiles ]; then
+                cd ~/.config/dotfiles && git pull --quiet >/dev/null 2>&1
+            fi
+        " 2>/dev/null; then
+            debug "Dotfiles update failed or timed out (continuing anyway)"
+        fi
         return 0
     fi
     
