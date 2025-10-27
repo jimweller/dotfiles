@@ -25,7 +25,6 @@
     ~/.gitconfig-all: dotfiles/gitconfig-all
     ~/.gitconfig-jim: dotfiles/gitconfig-jim
     ~/.gitconfig-work: dotfiles/gitconfig-work
-    ~/.gemini/settings.json: dotfiles/gemini_settings
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
@@ -40,6 +39,7 @@
     ~/.ssh/config: dotfiles/ssh_config
     ~/.tool-versions: dotfiles/asdf-tool-versions
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
+    ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
 
 - shell:
     - description: Copy claude configuration files if not present
