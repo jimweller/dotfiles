@@ -5,16 +5,11 @@ alias granted-clear='while security delete-generic-password -l "granted-aws-sess
 # don't open aws output in less
 export AWS_PAGER=""
 
-alias assume='. assume'
+# Granted shell integration for asdf
+# Source the actual assume script, not the shim - per official asdf-granted docs
+# https://github.com/dex4er/asdf-granted#configuration
+alias assume='source $(asdf which assume)'
 
-alias cfdev='assume cfdev'
-alias cfprod='assume cfprod'
-alias cfsandbox='assume cfsandbox'
-alias cfstaging='assume cfstaging'
-alias seudev='assume seudev'
-alias seuprod='assume seuprod'
-alias seusandbox='assume seusandbox'
-alias seustaging='assume seustaging'
 alias asar='assume -ar'
 
 

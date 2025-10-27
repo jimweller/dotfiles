@@ -17,13 +17,11 @@ apachler/zsh-aws
 # azure aliases
 dmakeienko/azcli
 
-
 # pretty man
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 # handy posix aliases, ll, la. Especially the suffix commands like L for | less
 ohmyzsh/ohmyzsh path:plugins/common-aliases
-
 
 # docker short aliases, dps, dils, etc.
 ohmyzsh/ohmyzsh path:plugins/docker
@@ -33,7 +31,6 @@ ohmyzsh/ohmyzsh path:plugins/helm
 
 # uv aliaes. uvv, uva, etc.
 ohmyzsh/ohmyzsh path:plugins/uv
-
 
 # tons of git aliases, gc, gcmsg, gcl, ggpush, etc.
 # helps me document arcane git sequencies with "als get"
@@ -56,7 +53,6 @@ jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
 
 # kubektl shorthands. k, kgp, etc. (AFTER PATH is set)
 Dbz/kube-aliases
-
 
 # tt/tf aliass. tta, ttaa, ttd!, etc.
 ohmyzsh/ohmyzsh path:plugins/opentofu
