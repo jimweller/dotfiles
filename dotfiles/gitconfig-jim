@@ -1,0 +1,9 @@
+[include]
+	path = ~/.gitconfig-all
+
+[user]
+	name = Jim Weller
+	email = jim.weller@gmail.com
+	signingkey = /Users/jimweller/.ssh/id_jim
+[url "git@github.com:"]
+	insteadOf = https://github.com/

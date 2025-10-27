@@ -22,7 +22,9 @@
     ~/.bash_profile: dotfiles/bash_profile
     ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.docker/config.js: dotfiles/docker_config
-    ~/.gitconfig: dotfiles/gitconfig
+    ~/.gitconfig-all: dotfiles/gitconfig-all
+    ~/.gitconfig-jim: dotfiles/gitconfig-jim
+    ~/.gitconfig-work: dotfiles/gitconfig-work
     ~/.gemini/settings.json: dotfiles/gemini_settings
     ~/.config/gh/:
       glob: true
