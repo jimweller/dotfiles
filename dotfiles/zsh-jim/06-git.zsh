@@ -26,10 +26,6 @@ switch_git_profile() {
     export GIT_USERNAME
     export AZURE_DEVOPS_EXT_PAT
   fi
-  
-  echo "Switched to git profile: $profile"
-  echo "Config: $GIT_CONFIG_GLOBAL"
-  git config user.email
 }
 
 git_lock() {
