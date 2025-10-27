@@ -15,6 +15,7 @@
         "mcp-atlassian",
         "-v"
       ],
+      "trust": true,
       "env": {
         "CONFLUENCE_URL": "${CONFLUENCE_URL}",
         "CONFLUENCE_USERNAME": "${JIRA_USERNAME}",
@@ -23,13 +24,14 @@
         "JIRA_USERNAME": "${JIRA_USERNAME}",
         "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
       }
-    },
+    },,
     "context7": {
       "command": "npx",
       "args": [
         "-y",
         "@upstash/context7-mcp"
       ],
+      "trust": true,
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       }
@@ -40,7 +42,8 @@
         "-y",
         "repomix",
         "--mcp"
-      ]
+      ],
+      "trust": true
     },
     "googler": {
       "command": "npx",
@@ -48,6 +51,7 @@
         "-y",
         "github:jimweller/google-research-mcp"
       ],
+      "trust": true,
       "env": {
         "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
         "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_SEARCH_ID}",
