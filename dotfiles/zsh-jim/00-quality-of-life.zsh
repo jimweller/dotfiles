@@ -123,3 +123,21 @@ markdown_to_html() {
   pandoc "$1" --css "$HOME/.config/dotfiles/assets/md.css" --embed-resources --standalone -o "${1%.*}.html"
 }
 alias md2html="markdown_to_html $1"
+
+# Convert ISO 8601 date/time to local timezone (America/Los_Angeles)
+# Usage: pdt 2026-01-22T15:55:06Z
+#        echo "2026-01-22T15:55:06+00:00:00" | pdt
+pdt() {
+  local dt="${1:-$(cat)}"
+  # Strip timezone suffixes (Z, +HH:MM:SS, +HH:MM)
+  local clean_dt=$(echo "$dt" | sed -E 's/(Z|[+-][0-9]{2}:[0-9]{2}(:[0-9]{2})?)$//')
+  
+  # Convert to epoch (parse as UTC), then format in local timezone
+  local epoch=$(date -juf "%Y-%m-%dT%H:%M:%S" "$clean_dt" "+%s" 2>/dev/null)
+  
+  if [[ $? -eq 0 ]]; then
+    TZ="America/Los_Angeles" date -r "$epoch" "+%Y-%m-%d %H:%M:%S %Z"
+  else
+    echo "❌ Invalid date format. Expected ISO 8601 (e.g., 2026-01-22T15:55:06Z)"
+  fi
+}
