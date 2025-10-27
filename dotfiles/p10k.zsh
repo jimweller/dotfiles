@@ -1831,7 +1831,7 @@ function _p9k_prompt_aws_jim_init() {
 
 typeset -gA GIT_USERNAME_ALIASES=(
   jim.weller@gmail.com  jw
-  jim.weller@mcg.com    mcg
+  jim.weller@mcg.com    work
 )
 
 
@@ -1861,7 +1861,7 @@ function prompt_gituser() {
       color=33
       ;;
     jim.weller@mcg.com)
-      icon=$'\Uf46e '  # medical bag icon for work
+      icon=$'\Uf46e '  # work profile icon
       color=196
       ;;
     *)

@@ -1,7 +1,7 @@
 alias work='cd work && switch_git_profile work'
 alias personal='cd personal && switch_git_profile jim'
 
-alias mcg='switch_git_profile work'
+alias corp='switch_git_profile work'
 alias jim='switch_git_profile jim'
 
 alias gitlock='git_lock'
@@ -40,13 +40,13 @@ git_lock() {
   fi
 
   # Check required environment variables are set
-  [[ -n "$GIT_USER" ]] || { echo "Error: GIT_USER not set. Run a profile switch first (jim/mcg)"; return 1; }
-  [[ -n "$GIT_EMAIL" ]] || { echo "Error: GIT_EMAIL not set. Run a profile switch first (jim/mcg)"; return 1; }
+  [[ -n "$GIT_USER" ]] || { echo "Error: GIT_USER not set. Run a profile switch first (jim/work)"; return 1; }
+  [[ -n "$GIT_EMAIL" ]] || { echo "Error: GIT_EMAIL not set. Run a profile switch first (jim/work)"; return 1; }
 
-  # Get current signing key (includes ~/.gitconfig-dynamic)
+  # Get current signing key
   local current_signingkey
   current_signingkey=$(git config user.signingkey)
-  [[ -n "$current_signingkey" ]] || { echo "Error: No signing key configured. Run a profile switch first (jim/mcg)"; return 1; }
+  [[ -n "$current_signingkey" ]] || { echo "Error: No signing key configured. Run a profile switch first (jim/work)"; return 1; }
 
   # Set repository-specific config using current environment
   git config user.name "$GIT_USER"
