@@ -6,12 +6,10 @@ unset PATH
 # Set base system PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-
 # prepend go
 if [ -d "$HOME/go/bin" ]; then
   export PATH="$HOME/go/bin:$PATH"
 fi
-
 
 # Prepend Homebrew
 if [ -d "/opt/homebrew/bin" ]; then
@@ -49,9 +47,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
 mkdir -p "$HOME/.go"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+
 
 # asdf - add shims to PATH (v0.16+ Go version)
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.user.refreshawstoken</string>
+    <string>com.user.awsrefreshtoken</string>
 
     <key>ProgramArguments</key>
     <array>

@@ -24,7 +24,7 @@
         "JIRA_USERNAME": "${JIRA_USERNAME}",
         "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
       }
-    },,
+    },
     "context7": {
       "command": "npx",
       "args": [
@@ -58,5 +58,9 @@
         "GOOGLE_GEMINI_API_KEY": "${GOOGLE_GEMINI_API_KEY}"
       }
     }
+  },
+  "hasSeenIdeIntegrationNudge": true,
+  "ide": {
+    "enabled": true
   }
 }

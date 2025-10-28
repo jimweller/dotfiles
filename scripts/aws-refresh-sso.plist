@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.awsrefreshsso</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/jimweller/.config/dotfiles/scripts/aws-refresh-sso.sh</string>
+    </array>
+
+    <!-- Run every 6 hours at :30 minute mark: 12:30am, 6:30am, 12:30pm, 6:30pm -->
+    <key>StartCalendarInterval</key>
+    <array>
+      <dict>
+        <key>Hour</key>
+        <integer>0</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>6</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>12</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>18</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jimweller/assets/aws/launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jimweller/assets/aws/launchd.err</string>
+  </dict>
+</plist>

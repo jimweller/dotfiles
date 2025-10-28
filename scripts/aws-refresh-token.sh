@@ -17,10 +17,9 @@
 # - Once SSO session expires, you must run 'aws sso login' again
 #
 # Scheduling with launchd on MacOS:
-#  Put plist file in: ~/Library/LaunchAgents/com.user.refreshawstoken.plist
-#  The plist filename must match the key: <string>com.user.refreshawstoken</string>
-#  Load: launchctl load ~/Library/LaunchAgents/com.user.refreshawstoken.plist
-#  Unload: launchctl unload ~/Library/LaunchAgents/com.user.refreshawstoken.plist
+#  Put plist file in: ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
+#  Load: launchctl load ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
+#  Unload: launchctl unload ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
 #  (if you change the plist file you must unload/load to refresh the job)
 #
 #  Use StartCalendarInterval (not StartInterval) for reliable scheduled execution:
