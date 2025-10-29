@@ -429,7 +429,8 @@
     "type",
     "granted",
     "tenv",
-    "jimcontainer.sh"
+    "jimcontainer.sh",
+    "xxd"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [

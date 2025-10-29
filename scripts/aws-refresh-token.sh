@@ -1,42 +1,35 @@
 #!/bin/bash
 
-# AWS Temporary Credential Refresh Script
+# AWS SSO Session and Credential Refresh Script
 #
-# Uses AWS SSO session to periodically mint fresh short-lived temporary credentials.
-# This script extends the availability of temporary credentials but CANNOT extend the
-# SSO session itself - periodic re-authentication (aws sso login) is still required.
+# This script provides a self-healing mechanism to maintain a nearly continuous AWS session
+# for up to 90 days, leveraging the trusted device registration of AWS SSO.
 #
 # How this script works:
-# - Clears CLI cache to force fresh temporary credentials
-# - Calls 'aws configure export-credentials' which:
-#   - Uses refreshToken to get fresh accessToken (if needed)
-#   - Uses accessToken to request new temporary IAM credentials from STS
-#   - Creates new CLI cache with 12-hour credentials
-# - Exports credentials to custom file for applications
-# - Works automatically ONLY while SSO session is valid (8-12 hours from aws sso login)
-# - Once SSO session expires, you must run 'aws sso login' again
+# 1. Refreshes the SSO Session: It runs 'aws sso login'. If the 8-hour SSO session
+#    is expired, this command uses the 90-day trusted device registration to
+#    non-interactively start a new 8-hour session. If the session is still valid,
+#    it does nothing.
+# 2. Mints Fresh Temporary Credentials: It then runs 'aws configure export-credentials'
+#    to generate a new set of 12-hour temporary IAM credentials.
+# 3. Exports for Applications: The new credentials are saved to a custom file, making
+#    them available to other applications via the 'credential_process' in ~/.aws/config.
+#
+# This creates a resilient cycle: the 12-hour temporary token remains valid even
+# during the brief window when the 8-hour SSO session is expired, ensuring that
+# the 'credential_process' helper can always serve valid credentials. The next
+# scheduled run then automatically re-establishes the SSO session.
 #
 # Scheduling with launchd on MacOS:
-#  Put plist file in: ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
-#  Load: launchctl load ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
-#  Unload: launchctl unload ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist
-#  (if you change the plist file you must unload/load to refresh the job)
-#
-#  Use StartCalendarInterval (not StartInterval) for reliable scheduled execution:
-#  - StartInterval skips jobs if Mac sleeps through scheduled time (launchd.plist(5))
-#  - StartCalendarInterval runs missed jobs on next wake:
-#    "Unlike cron which skips job invocations when the computer is asleep, launchd
-#     will start the job the next time the computer wakes up" - launchd.plist(5)
-#  - User-level LaunchAgents can't wake Mac, but execute all missed jobs upon wake
-#  - Recommended schedule: every hour (runs at minute 0 of each hour), that buys about 12 hours of sleep time
-#  - Reference: https://apple.stackexchange.com/questions/473841/
+#  - Use StartCalendarInterval for reliability, as it runs missed jobs on wake.
+#  - A schedule of 00:00, 09:00, and 18:00 is recommended. This ensures the 8-hour
+#    SSO session is renewed shortly after it expires, providing continuous coverage.
 #
 # How AWS SSO Authentication Works
 #
 # AWS SSO authentication involves three distinct expiration windows that must be understood
-# to properly manage credentials. Each layer serves a different purpose and has different
-# lifetimes. This script manages the innermost layer (temporary credentials) but depends
-# on the outer layers (SSO session and client registration) remaining valid.
+# to properly manage credentials. This script leverages all three layers to provide a
+# long-running, automated session.
 #
 # Layer 1: Client Registration (90 days typical) - OIDC "Trusted Device" Registration
 #    Duration: 90 days for AWS SSO (12 hours for granted, varies by system)
@@ -66,9 +59,8 @@
 #       - When accessToken expires (~1 hour), AWS CLI auto-renews it using refreshToken
 #       - When refreshToken expires (SSO session timeout), renewal fails
 #       - refreshToken lifetime is tied to SSO session, NOT client registration
-#    Impact if expires: Script fails with "Token has expired and refresh failed"
-#    Must do: Run 'aws sso login' to start new SSO session
-#    CRITICAL: This script cannot extend your SSO session - only AWS admins can change duration
+#    Impact if expires: The next step in this script ('aws sso login') will automatically
+#                       create a new session.
 #
 # Layer 3: Temporary IAM Credentials (12 hours typical) - WHAT THIS SCRIPT MANAGES
 #    Duration: 12 hours (configured by AWS administrator for permission set)
@@ -83,11 +75,11 @@
 #       - AccountId: AWS account number
 #    Purpose: Short-lived AWS API credentials for making AWS service calls
 #    Behavior:
-#       - Script clears cache and requests fresh credentials every hour
-#       - AWS mints new 12-hour credentials using valid SSO session
-#       - These are the credentials actually used by AWS CLI/SDK commands
-#    Impact if expires: AWS API calls fail until script mints new credentials
-#    Note: This script mints fresh 12-hour credentials hourly while SSO session is valid
+#       - This script requests fresh credentials on a fixed schedule (e.g., every 9 hours).
+#       - AWS mints new 12-hour credentials using the just-refreshed SSO session.
+#       - These are the credentials actually used by AWS CLI/SDK commands.
+#    Impact if expires: The 'credential_process' continues to serve the previous, still-valid
+#                       token until the next scheduled run mints a new one.
 #
 # Layer 4: Custom Export File (This script's output)
 #    Location: ~/assets/aws/aws-token.json (configurable)
@@ -95,29 +87,24 @@
 #    Format: JSON with AccessKeyId, SecretAccessKey, SessionToken, Expiration fields
 #    Updated: Every time this script successfully runs
 #
-# Example Timeline (8-hour SSO session):
-#    11:00 AM: Run 'aws sso login'
-#              → Client registration valid until January 22, 2026 (90 days)
-#              → SSO session valid until 7:00 PM today (8 hours)
-#              → Initial temporary credentials valid until 11:00 PM (12 hours)
+# Example Timeline (8-hour SSO session with 00:00, 09:00, 18:00 schedule):
+#    18:00: Script runs. SSO session is expired.
+#           → 'aws sso login' creates a NEW 8-hour session (valid until 02:00).
+#           → 'export-credentials' creates a NEW 12-hour token (valid until 06:00).
 #
-#    12:00 PM - 7:00 PM: This script runs hourly
-#              → Uses refreshToken to get fresh accessToken (if needed)
-#              → Uses accessToken to mint new 12-hour temporary credentials
-#              → Exports credentials to custom file
-#              → Success - SSO session still valid
+#    00:00: Script runs. SSO session is still valid (expires at 02:00).
+#           → 'aws sso login' does nothing, session still expires at 02:00.
+#           → 'export-credentials' creates a NEW 12-hour token (valid until 12:00).
 #
-#    8:00 PM: This script runs
-#              → Attempts to use refreshToken
-#              → AWS rejects: "Token has expired and refresh failed"
-#              → Failure - SSO session expired at 7:00 PM
-#              → Must run 'aws sso login' again to start new 8-hour session
+#    02:00: The 8-hour SSO session expires.
+#           → From 02:00 to 09:00, any new process uses the still-valid temporary
+#             token from 00:00 via the 'credential_process' helper.
 #
-# Common Misconceptions:
-#    - "90 days means my credentials last 90 days" → NO, that's just client registration
-#    - "refreshToken automatically renews itself" → NO, it expires with SSO session
-#    - "This script extends my SSO session" → NO, only AWS admin can change session duration
-#    - "I can work around session timeout" → NO, must re-authenticate after session expires
+#    09:00: Script runs. SSO session is expired.
+#           → 'aws sso login' creates a NEW 8-hour session (valid until 17:00).
+#           → 'export-credentials' creates a NEW 12-hour token (valid until 21:00).
+#
+# This cycle continues, providing uninterrupted credential availability.
 #
 
 # configuration - must use full paths for launchd
@@ -149,7 +136,7 @@ log_json_metadata() {
   log "$label: $(basename "$file")"
   
   # extract and mask sensitive fields with 5 asterisks, handling nested structures
-  local content=$($JQ_CMD '
+  local content=$($JQ_CMD -c '
     # Recursively walk the JSON and mask sensitive fields at any depth
     walk(
       if type == "object" then
@@ -174,65 +161,30 @@ log_json_metadata() {
 
 mkdir -p "$CREDS_DIR"
 
-log "==== AWS Token Refresh Started ===="
+log "[INFO] AWS Token Refresh Started"
 
-# inspect SSO cache files
-SSO_CACHE_DIR="$HOME/.aws/sso/cache"
-if [ -d "$SSO_CACHE_DIR" ]; then
-  log "-- SSO Cache Files --"
-  for sso_file in "$SSO_CACHE_DIR"/*.json; do
-    if [ -f "$sso_file" ]; then
-      log_json_metadata "$sso_file" "SSO Cache"
-    fi
-  done
+# Step 1: Refresh the SSO session. If the session is expired, this will create a
+# new 8-hour session non-interactively. If valid, it does nothing.
+log "[INFO] Attempting to refresh SSO session..."
+if $AWS_CMD sso login --profile "$AWS_PROFILE_NAME" >> "$LOG_FILE" 2>&1; then
+  log "[INFO] SSO session is valid or was successfully renewed."
 else
-  log "SSO cache directory not found: $SSO_CACHE_DIR"
+  log "[ERROR] Failed to refresh SSO session. Manual login may be required."
+  exit 1
 fi
 
-# inspect CLI cache files (before clearing)
+# Step 2: Clear CLI cache to ensure we get a new temporary token.
 if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
-  log "-- CLI Cache Files (before clearing) --"
-  for cli_file in "$CLI_CACHE_DIR"/*.json; do
-    if [ -f "$cli_file" ]; then
-      log_json_metadata "$cli_file" "CLI Cache"
-    fi
-  done
-fi
-
-log "-- Starting Refresh Process --"
-
-# clear CLI cache to force fresh temporary token
-if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
-  log "Clearing AWS CLI cache to force new temporary token"
+  log "[INFO] Clearing AWS CLI cache"
   rm -f "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1
 fi
 
-# get fresh temporary token from AWS (uses SSO token to make STS call)
+# Step 3: Get fresh temporary token from AWS using the now-valid SSO session.
+log "[INFO] Requesting new temporary credentials..."
 $AWS_CMD configure export-credentials --profile "$AWS_PROFILE_NAME" --output json > "$CREDS_FILE" 2>> "$LOG_FILE"
 
 if [ $? -ne 0 ]; then
-  log "ERROR: Failed to get temporary token"
-  
-  # diagnostic: show cache state at time of failure
-  log "-- Cache State at Failure --"
-  if [ -d "$SSO_CACHE_DIR" ]; then
-    for sso_file in "$SSO_CACHE_DIR"/*.json; do
-      if [ -f "$sso_file" ]; then
-        log_json_metadata "$sso_file" "SSO Cache"
-      fi
-    done
-  fi
-  
-  if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
-    for cli_file in "$CLI_CACHE_DIR"/*.json; do
-      if [ -f "$cli_file" ]; then
-        log_json_metadata "$cli_file" "CLI Cache"
-      fi
-    done
-  fi
-  
-  log "ACTION REQUIRED: Run 'aws sso login --profile $AWS_PROFILE_NAME' to re-authenticate"
-  log "==== AWS Token Refresh Failed ===="
+  log "[ERROR] Failed to get temporary token even after SSO refresh."
   exit 1
 fi
 
@@ -246,13 +198,12 @@ seconds_remaining=$((expiration_epoch - current_epoch))
 # convert seconds to HH:MM:SS using GNU date command
 time_remaining=$($DATE_CMD -u -d "@$seconds_remaining" +"%Hh %Mm %Ss")
 
-log "Successfully refreshed. Expiration: $EXPIRATION (${time_remaining} remaining)"
+log "[SUCCESS] Refreshed. Expiration: $EXPIRATION (${time_remaining} remaining)"
 
 # inspect cache files after refresh to see what changed
-log "-- Post-Refresh Cache State --"
-
+log "[INFO] Post-refresh cache state:"
+SSO_CACHE_DIR="$HOME/.aws/sso/cache"
 if [ -d "$SSO_CACHE_DIR" ]; then
-  log "SSO Cache Files (after refresh):"
   for sso_file in "$SSO_CACHE_DIR"/*.json; do
     if [ -f "$sso_file" ]; then
       log_json_metadata "$sso_file" "SSO Cache"
@@ -261,14 +212,13 @@ if [ -d "$SSO_CACHE_DIR" ]; then
 fi
 
 if [ -d "$CLI_CACHE_DIR" ] && ls "$CLI_CACHE_DIR"/*.json > /dev/null 2>&1; then
-  log "CLI Cache Files (after refresh):"
   for cli_file in "$CLI_CACHE_DIR"/*.json; do
     if [ -f "$cli_file" ]; then
       log_json_metadata "$cli_file" "CLI Cache"
     fi
   done
 else
-  log "No CLI cache files after refresh"
+  log "[INFO] No CLI cache files found after refresh"
 fi
 
-log "==== AWS Token Refresh Complete ===="
+log "[INFO] AWS Token Refresh Complete"

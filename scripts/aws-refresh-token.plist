@@ -13,12 +13,28 @@
     <key>RunAtLoad</key>
     <true />
 
-    <!-- Runs at the zero minute of every hour-->
+    <!-- Runs at 00:00, 09:00, and 18:00 -->
     <key>StartCalendarInterval</key>
-    <dict>
-      <key>Minute</key>
-      <integer>0</integer>
-    </dict>
+    <array>
+      <dict>
+        <key>Hour</key>
+        <integer>0</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>18</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+      </dict>
+    </array>
 
     <key>StandardOutPath</key>
     <string>/Users/jimweller/assets/aws/launchd.log</string>
