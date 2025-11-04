@@ -430,7 +430,14 @@
     "granted",
     "tenv",
     "jimcontainer.sh",
-    "xxd"
+    "xxd",
+    "atmos validate",
+    "atmos describe",
+    "atmos terraform",
+    "/tmp/test-all-stacks.sh",
+    "atmos list",
+    "rg",
+    "tr"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
@@ -439,6 +446,9 @@
     "tofu apply",
     "tofu destroy",
     "terraform apply",
+    "terraform destroy",
+    "atmos terraform apply",
+    "atmos terraform destroy",
     "terraform destory"
   ],
   "sqlite3-editor.ui.minimizePanel": true,
