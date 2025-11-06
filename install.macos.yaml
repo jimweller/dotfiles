@@ -10,6 +10,7 @@
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/jim.json": dotfiles/iterm/jim.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/claude.json": dotfiles/iterm/claude.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json
+    ~/Library/Preferences/com.googlecode.iterm2.plist: dotfiles/iterm/com.googlecode.iterm2.plist
     # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
     # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template

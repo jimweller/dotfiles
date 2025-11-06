@@ -18,6 +18,7 @@
         "Alpha Component" : 1,
         "Green Component" : 0.6
       },
+      "Use Tab Color" : true,
       "Ansi 0 Color" : {
         "Red Component" : 0.078431375324726105,
         "Color Space" : "sRGB",
