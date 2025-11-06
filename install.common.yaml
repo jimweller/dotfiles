@@ -41,7 +41,7 @@
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist: scripts/aws-refresh-token.plist
-    ~/Library/LaunchAgents/com.user.awsrefreshsso.plist: scripts/aws-refresh-sso.plist
+    # ~/Library/LaunchAgents/com.user.awsrefreshsso.plist: scripts/aws-refresh-sso.plist
 
 - shell:
     - description: Copy claude configuration files if not present
