@@ -10,7 +10,6 @@
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/jim.json": dotfiles/iterm/jim.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/claude.json": dotfiles/iterm/claude.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json
-    ~/Library/Preferences/com.googlecode.iterm2.plist: dotfiles/iterm/com.googlecode.iterm2.plist
     # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
     # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template
@@ -19,3 +18,11 @@
     #   path: dotfiles/roocode/*
     "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     "~/Library/LaunchAgents/com.user.refreshawstoken.plist": scripts/aws-refresh-token.plist
+
+- shell:
+    - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)
+      command: |
+        cp -f ~/.config/dotfiles/dotfiles/iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+        chmod 600 ~/Library/Preferences/com.googlecode.iterm2.plist
+      stderr: true
+      stdout: true
