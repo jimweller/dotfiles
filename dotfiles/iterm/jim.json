@@ -1,0 +1,65 @@
+{
+  "Profiles" : [
+    {
+      "Rewritable" : true,
+      "Bold Color (Light)" : {
+        "Red Component" : 0.062745098039215685,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.062745098039215685,
+        "Alpha Component" : 1,
+        "Green Component" : 0.062745098039215685
+      },
+      "Guid" : "F5529A8B-7EFF-4587-87C7-2410B4B51100",
+      "Name" : "JimTerm",
+      "Ansi 0 Color" : {
+        "Red Component" : 0.078431375324726105,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.11764705926179886,
+        "Alpha Component" : 1,
+        "Green Component" : 0.098039217293262482
+      },
+      "Bound Hosts" : [
+
+      ],
+      "Use Separate Colors for Light and Dark Mode" : true,
+      "Ansi 0 Color (Light)" : {
+        "Red Component" : 0.078431375324726105,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.11764705926179886,
+        "Alpha Component" : 1,
+        "Green Component" : 0.098039217293262482
+      },
+      "Bold Color" : {
+        "Red Component" : 0.062745101749897003,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.062745101749897003,
+        "Alpha Component" : 1,
+        "Green Component" : 0.062745101749897003
+      },
+      "Foreground Color" : {
+        "Red Component" : 0.062745101749897003,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.062745101749897003,
+        "Alpha Component" : 1,
+        "Green Component" : 0.062745101749897003
+      },
+      "Foreground Color (Light)" : {
+        "Red Component" : 0.062745098039215685,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.062745098039215685,
+        "Alpha Component" : 1,
+        "Green Component" : 0.062745098039215685
+      },
+      "Columns" : 200,
+      "Rows" : 50,
+      "Ansi 0 Color (Dark)" : {
+        "Red Component" : 0.078431375324726105,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.11764705926179886,
+        "Alpha Component" : 1,
+        "Green Component" : 0.098039217293262482
+      },
+      "Scrollback Lines" : 0
+    }
+  ]
+}

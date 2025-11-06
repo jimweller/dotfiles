@@ -7,7 +7,9 @@
 - link:
     ~/.granted/config: dotfiles/granted_config_macos
     "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode_settings.json
-    "~/Library/Application\ Support/Iterm2/DynamicProfiles/JimTerm.json": dotfiles/iterm2_profile
+    "~/Library/Application\ Support/Iterm2/DynamicProfiles/jim.json": dotfiles/iterm/jim.json
+    "~/Library/Application\ Support/Iterm2/DynamicProfiles/claude.json": dotfiles/iterm/claude.json
+    "~/Library/Application\ Support/Iterm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json
     # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
     # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template

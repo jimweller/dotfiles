@@ -437,7 +437,13 @@
     "/tmp/test-all-stacks.sh",
     "atmos list",
     "rg",
-    "tr"
+    "tr",
+    "PGHOST=127.0.0.1",
+    "source .venv/bin/activate",
+    "python scripts/generate_graphs.py",
+    "PGPASSWORD=7be3_4b5e_9647",
+    "python",
+    "env"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
