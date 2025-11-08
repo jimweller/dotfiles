@@ -51,6 +51,7 @@
         "Green Component" : 0.062745098039215685
       },
       "Columns" : 200,
+      "Unlimited Scrollback" : true,
       "Rows" : 50,
       "Ansi 0 Color (Dark)" : {
         "Red Component" : 0.078431375324726105,

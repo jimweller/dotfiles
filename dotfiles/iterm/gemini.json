@@ -10,15 +10,8 @@
         "Green Component" : 0.062745098039215685
       },
       "Guid" : "6EM1N1-B1D5-4E87-A987-98765FEDCBA2",
+      "Scrollback Lines" : 0,
       "Name" : "GeminiTerm",
-      "Tab Color" : {
-        "Red Component" : 0.2,
-        "Color Space" : "sRGB",
-        "Blue Component" : 0.8,
-        "Alpha Component" : 1,
-        "Green Component" : 0.4
-      },
-      "Use Tab Color" : true,
       "Ansi 0 Color" : {
         "Red Component" : 0.078431375324726105,
         "Color Space" : "sRGB",
@@ -51,6 +44,13 @@
         "Alpha Component" : 1,
         "Green Component" : 0.062745101749897003
       },
+      "Tab Color" : {
+        "Red Component" : 0.20000000000000001,
+        "Color Space" : "sRGB",
+        "Blue Component" : 0.80000000000000004,
+        "Alpha Component" : 1,
+        "Green Component" : 0.40000000000000002
+      },
       "Foreground Color (Light)" : {
         "Red Component" : 0.062745098039215685,
         "Color Space" : "sRGB",
@@ -59,6 +59,7 @@
         "Green Component" : 0.062745098039215685
       },
       "Columns" : 200,
+      "Unlimited Scrollback" : true,
       "Rows" : 50,
       "Ansi 0 Color (Dark)" : {
         "Red Component" : 0.078431375324726105,
@@ -67,7 +68,7 @@
         "Alpha Component" : 1,
         "Green Component" : 0.098039217293262482
       },
-      "Scrollback Lines" : 0
+      "Use Tab Color" : true
     }
   ]
 }
