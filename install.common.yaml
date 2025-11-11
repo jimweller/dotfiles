@@ -20,6 +20,7 @@
     ~/.aws/config: dotfiles/aws_config
     ~/.azure/config: dotfiles/azure_config
     ~/.bash_profile: dotfiles/bash_profile
+    ~/.config/bat/config: dotfiles/bat_config
     ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.docker/config.js: dotfiles/docker_config
     ~/.gitconfig-all: dotfiles/gitconfig-all

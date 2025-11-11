@@ -1,7 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
 is_macos() {
   [[ "$(uname)" == "Darwin" ]]
 }
@@ -11,11 +7,10 @@ is_linux() {
 }
 
 
-
-# Create an amazing Zsh config using antidote plugins.
+# Create zsh config using antidote plugins.
 source $HOME/.config/dotfiles/antidote/antidote.zsh
 
-# use short friendly names for antidoce downloads packages
+# use short friendly names for antidote downloads packages
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 # conveniences for some older OMZ plugins, that export the old 

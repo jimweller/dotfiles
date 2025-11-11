@@ -443,7 +443,12 @@
     "python scripts/generate_graphs.py",
     "PGPASSWORD=7be3_4b5e_9647",
     "python",
-    "env"
+    "env",
+    "./test-gitstatusd.sh",
+    "./test-gitstatus-oneshot.sh",
+    "./test-compare-gitstatus.sh",
+    "g++",
+    "./test_tilde_expansion"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
