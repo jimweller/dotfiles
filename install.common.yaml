@@ -24,6 +24,8 @@
     ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.docker/config.js: dotfiles/docker_config
     ~/.gitconfig-all: dotfiles/gitconfig-all
+    # this is a hack to make p10k work since it uses and outdated fork of libgit2 that doesn't honor GIT_CONFIG_GLOBAL
+    ~/.gitconfig: dotfiles/gitconfig-all
     ~/.gitconfig-jim: dotfiles/gitconfig-jim
     ~/.gitconfig-work: dotfiles/gitconfig-work
     ~/.config/gh/:
