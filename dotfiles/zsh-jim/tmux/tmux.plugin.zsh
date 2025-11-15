@@ -32,7 +32,7 @@ alias tkss='tmux kill-session -t'
 # Tmux states this should be screen, but you may need to change it on
 # systems without the proper terminfo
 : ${ZSH_TMUX_FIXTERM_WITHOUT_256COLOR:=screen}
-# The TERM to use for 256 color terminals.
+# The TERM to use for 256 color terminals.e
 # Tmux states this should be screen-256color, but you may need to change it on
 # systems without the proper terminfo
 : ${ZSH_TMUX_FIXTERM_WITH_256COLOR:=screen-256color}

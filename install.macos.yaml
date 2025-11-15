@@ -22,6 +22,8 @@
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)
       command: |
+        # to refresh dotfiles
+        #  cp -f ~/Library/Preferences/com.googlecode.iterm2.plist ~/.config/dotfiles/dotfiles/iterm/com.googlecode.iterm2.plist
         cp -f ~/.config/dotfiles/dotfiles/iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
         chmod 600 ~/Library/Preferences/com.googlecode.iterm2.plist
       stderr: true
