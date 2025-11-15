@@ -82,7 +82,7 @@
     "[*]": {
       "terminal.background": "#000000"
     },
-    "git.blame.editorDecorationForeground": "#1e6002",
+    "git.blame.editorDecorationForeground": "#1e6002"
   },
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.editor.enablePreview": false,
@@ -489,5 +489,4 @@
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
-
 }

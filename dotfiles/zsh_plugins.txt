@@ -91,6 +91,10 @@ mattmc3/zsh-safe-rm
 # terragrunts like terraform/tofu. tg, tgaa, tgd!, etc. Pending PR to OMZ
 jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
 
+# tmux aliases and wrapper
+jimweller/dotfiles path:dotfiles/zsh-jim/tmux
+
+
 # brew aliases, only load on macos
 jimweller/dotfiles path:dotfiles/zsh-jim/alehouse conditional:is_macos
 
