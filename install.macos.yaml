@@ -29,3 +29,9 @@
         chmod 600 ~/Library/Preferences/com.googlecode.iterm2.plist
       stderr: true
       stdout: true
+    - description: Set Finder to default to list view
+      command: |
+        defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+        killall Finder
+      stderr: true
+      stdout: true
