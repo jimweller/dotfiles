@@ -18,6 +18,7 @@
     #   path: dotfiles/roocode/*
     "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     "~/Library/LaunchAgents/com.user.refreshawstoken.plist": scripts/aws-refresh-token.plist
+    "~/Library/LaunchAgents/com.user.sync.plist": scripts/sync.plist
 
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Nightly encrypted backup to Google Drive sparse image
+  
+  Install:
+    cp scripts/sync.plist ~/Library/LaunchAgents/com.user.sync.plist
+    launchctl load ~/Library/LaunchAgents/com.user.sync.plist
+  
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.user.sync.plist
+    rm ~/Library/LaunchAgents/com.user.sync.plist
+  
+  Start immediately:
+    launchctl start com.user.sync
+  
+  Check status:
+    launchctl list | grep sync
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.sync</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/jimweller/.config/dotfiles/scripts/sync.sh</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true />
+
+    <!-- Runs daily at 2:00 AM -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>2</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jimweller/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup-log.txt</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jimweller/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup-err.txt</string>
+  </dict>
+</plist>

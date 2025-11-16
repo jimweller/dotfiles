@@ -448,7 +448,10 @@
     "./test-gitstatus-oneshot.sh",
     "./test-compare-gitstatus.sh",
     "g++",
-    "./test_tilde_expansion"
+    "./test_tilde_expansion",
+    "du",
+    "du -sh ~/work ~/personal ~/Library/CloudStorage/OneDrive 2 > /dev/null",
+    "sort -h"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [
