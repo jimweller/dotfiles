@@ -1,5 +1,6 @@
 alt-tab
 bartender
+basictex
 chatgpt
 claude-code
 codeql
@@ -16,17 +17,16 @@ google-drive
 hazeover
 insomnia
 iterm2
+keybase
 lens
 lm-studio
 macpass
-microsoft-remote-desktop
 obs
 obsidian
 openshot-video-editor
 pgadmin4
 postman
 postman-cli
-powershell
 raycast
 session-manager-plugin
 shottr
@@ -35,3 +35,4 @@ tigervnc-viewer
 ubar
 utc-menu-clock
 visual-studio-code
+windows-app
