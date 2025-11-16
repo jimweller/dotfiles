@@ -35,3 +35,13 @@
         killall Finder
       stderr: true
       stdout: true
+    - description: Load launchd agents from plist files
+      command: |
+        for plist in ~/Library/LaunchAgents/com.user.*.plist; do
+          if [ -f "$plist" ]; then
+            launchctl unload "$plist" 2>/dev/null || true
+            launchctl load "$plist"
+          fi
+        done
+      stderr: true
+      stdout: true
