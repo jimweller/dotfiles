@@ -41,6 +41,7 @@
     #   path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
     ~/.tool-versions: dotfiles/asdf-tool-versions
+    ~/.ripgreprc: dotfiles/ripgreprc
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist: scripts/aws-refresh-token.plist

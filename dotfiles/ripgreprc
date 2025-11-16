@@ -1,0 +1,12 @@
+# ripgrep configuration file
+
+# Smart case: case insensitive unless pattern contains uppercase
+# This is commonly recommended in ripgrep's documentation
+--smart-case
+
+# Limit line length to prevent terminal overflow
+--max-columns=150
+--max-columns-preview
+
+# Exclude Library directory (macOS system files)
+--glob=!Library/

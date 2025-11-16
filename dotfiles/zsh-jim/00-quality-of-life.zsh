@@ -89,6 +89,9 @@ else
     export PAGER=less
 fi
 
+# Set ripgrep config file location
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
 # JimContainer management alias (renamed from devcontainer to avoid VSCode conflict)
 alias jimcontainer='jimcontainer.sh'
 alias jimc='jimcontainer.sh'

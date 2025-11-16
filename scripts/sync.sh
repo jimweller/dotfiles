@@ -25,8 +25,8 @@ rsync -avL --delete \
   --exclude='.kube/http-cache' \
   --exclude='.terraform' \
   --exclude='.venv' \
-  ~/Projects/work \
-  ~/Projects/personal \
+  ~/work \
+  ~/personal \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
   ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
   ~/Library/Application\ Support/Code/User/settings.json \
