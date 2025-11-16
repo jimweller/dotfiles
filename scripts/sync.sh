@@ -33,9 +33,18 @@ if [[ ! -f "$DMG" ]]; then
   echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname Backup -fs APFS "$DMG"
 fi
 
+# Check if already mounted, unmount if so
+if mount | grep -q "$MOUNT"; then
+  echo "Volume already mounted, unmounting..."
+  hdiutil detach "$MOUNT" || true
+fi
+
 # Mount encrypted sparse image
 echo "Mounting encrypted backup volume..."
-echo "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT"
+echo "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT" -nobrowse
+
+# Ensure unmount happens even on error
+trap "hdiutil detach '$MOUNT' 2>/dev/null || true" EXIT INT TERM
 
 # Generate brew + extensions
 echo "Backing up Homebrew and VS Code extensions..."
@@ -84,9 +93,6 @@ rsync -avL --delete \
   "$TARGET_DIR/"
 
 echo "Sync complete."
-
-# Unmount encrypted volume
 echo "Unmounting backup volume..."
-hdiutil detach "$MOUNT"
-
+# Trap will handle unmounting
 echo "Encrypted backup complete: $DMG"
