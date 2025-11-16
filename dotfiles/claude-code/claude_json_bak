@@ -93,8 +93,37 @@
       ],
       "env": {
         "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
-        "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_SEARCH_ENGINE_ID}",
-        "GOOGLE_GEMINI_API_KEY": "${GEMINI_API_KEY}"
+        "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_SEARCH_ID}",
+        "GOOGLE_GEMINI_API_KEY": "${GOOGLE_GEMINI_API_KEY}"
+      }
+    },
+    "claude-flow": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "claude-flow@alpha",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "CLAUDE_FLOW_PROJECT_ROOT": "${workspaceFolder}",
+        "CLAUDE_FLOW_MEMORY_PATH": "${workspaceFolder}/.swarm/memory.db"
+      }
+    },
+    "agentdb": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "agentdb@latest",
+        "mcp",
+        "start"
+      ],
+      "env": {
+        "AGENTDB_PATH": "${workspaceFolder}/.agentdb/agentdb.db",
+        "AGENTDB_DIMENSION": "1536",
+        "AGENTDB_PRESET": "medium"
       }
     }
   },
