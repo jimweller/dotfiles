@@ -93,6 +93,7 @@ tlrc
 tree
 typescript
 up
+utf8proc
 virtualenv
 watch
 wget
