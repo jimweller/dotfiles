@@ -1,20 +1,20 @@
 act		https://github.com/gr1m0h/asdf-act.git
 
-atmos		https://github.com/cloudposse/asdf-atmos.git
+#atmos		https://github.com/cloudposse/asdf-atmos.git
 
-aws-nuke		https://github.com/bersalazar/asdf-aws-nuke.git
+#aws-nuke		https://github.com/bersalazar/asdf-aws-nuke.git
 
-aws-vault		https://github.com/karancode/asdf-aws-vault.git
+#aws-vault		https://github.com/karancode/asdf-aws-vault.git
 
 awscli		https://github.com/MetricMike/asdf-awscli.git
 
-awscli-local		https://github.com/paulo-ferraz-oliveira/asdf-awscli-local
+#awscli-local		https://github.com/paulo-ferraz-oliveira/asdf-awscli-local
 
 azure-cli		https://github.com/EcoMind/asdf-azure-cli.git
 
 bat		https://github.com/pauloedurezende/asdf-bat.git
 
-checkov		https://github.com/bosmak/asdf-checkov.git
+#checkov		https://github.com/bosmak/asdf-checkov.git
 
 cmake		https://github.com/asdf-community/asdf-cmake.git
 
@@ -26,7 +26,7 @@ dive		https://github.com/looztra/asdf-dive.git
 
 dotnet-core		https://github.com/emersonsoares/asdf-dotnet-core.git
 
-eksctl		https://github.com/elementalvoid/asdf-eksctl.git
+#eksctl		https://github.com/elementalvoid/asdf-eksctl.git
 
 eza		https://github.com/lwiechec/asdf-eza.git
 
@@ -36,7 +36,7 @@ git-lfs		https://github.com/DanieleIsoni/asdf-git-lfs.git
 
 glow		https://github.com/chessmango/asdf-glow.git
 
-granted		https://github.com/dex4er/asdf-granted.git
+#granted		https://github.com/dex4er/asdf-granted.git
 
 grype		https://github.com/poikilotherm/asdf-grype.git
 
@@ -46,21 +46,21 @@ helm-diff		https://github.com/dex4er/asdf-helm-diff.git
 
 helmfile		https://github.com/feniix/asdf-helmfile.git
 
-istioctl		https://github.com/virtualstaticvoid/asdf-istioctl.git
+#istioctl		https://github.com/virtualstaticvoid/asdf-istioctl.git
 
 jq		https://github.com/lsanwick/asdf-jq.git
 
 k3d		https://github.com/spencergilbert/asdf-k3d.git
 
-k9s		https://github.com/looztra/asdf-k9s.git
+#k9s		https://github.com/looztra/asdf-k9s.git
 
-kind		https://github.com/johnlayton/asdf-kind.git
+#kind		https://github.com/johnlayton/asdf-kind.git
 
-kops		https://github.com/Antiarchitect/asdf-kops.git
+#kops		https://github.com/Antiarchitect/asdf-kops.git
 
-krew		https://github.com/bjw-s/asdf-krew.git
+#krew		https://github.com/bjw-s/asdf-krew.git
 
-kubeconform		https://github.com/lirlia/asdf-kubeconform.git
+#kubeconform		https://github.com/lirlia/asdf-kubeconform.git
 
 kubectl		https://github.com/asdf-community/asdf-kubectl.git
 
@@ -68,7 +68,7 @@ kubectx		https://gitlab.com/wt0f/asdf-kubectx.git
 
 markdownlint-cli2		https://github.com/paulo-ferraz-oliveira/asdf-markdownlint-cli2
 
-minikube		https://github.com/alvarobp/asdf-minikube.git
+#minikube		https://github.com/alvarobp/asdf-minikube.git
 
 nodejs		https://github.com/asdf-vm/asdf-nodejs.git
 
@@ -76,19 +76,19 @@ ollama		https://github.com/virtualstaticvoid/asdf-ollama.git
 
 pandoc		https://github.com/Fbrisset/asdf-pandoc.git
 
-pipx		https://github.com/yozachar/asdf-pipx.git
+#pipx		https://github.com/yozachar/asdf-pipx.git
 
 pnpm		https://github.com/jonathanmorley/asdf-pnpm.git
 
-poetry		https://github.com/asdf-community/asdf-poetry.git
+#poetry		https://github.com/asdf-community/asdf-poetry.git
 
-popeye		https://github.com/nlamirault/asdf-popeye.git
+#popeye		https://github.com/nlamirault/asdf-popeye.git
 
 powershell-core		https://github.com/daveneeley/asdf-powershell-core.git
 
 pre-commit		https://github.com/jonathanmorley/asdf-pre-commit.git
 
-redis		https://github.com/smashedtoatoms/asdf-redis.git
+#redis		https://github.com/smashedtoatoms/asdf-redis.git
 
 ripgrep		https://gitlab.com/wt0f/asdf-ripgrep.git
 
@@ -98,29 +98,29 @@ sops		https://github.com/feniix/asdf-sops.git
 
 steampipe		https://github.com/carnei-ro/asdf-steampipe.git
 
-stern		https://github.com/looztra/asdf-stern.git
+#stern		https://github.com/looztra/asdf-stern.git
 
-terraform-docs		https://github.com/looztra/asdf-terraform-docs.git
+#terraform-docs		https://github.com/looztra/asdf-terraform-docs.git
 
-terrascan		https://github.com/hpdobrica/asdf-terrascan.git
+#terrascan		https://github.com/hpdobrica/asdf-terrascan.git
 
-tf-summarize		https://github.com/adamcrews/asdf-tf-summarize.git
+#tf-summarize		https://github.com/adamcrews/asdf-tf-summarize.git
 
-tflint		https://github.com/skyzyx/asdf-tflint.git
+#tflint		https://github.com/skyzyx/asdf-tflint.git
 
-tfsec		https://github.com/woneill/asdf-tfsec.git
+#tfsec		https://github.com/woneill/asdf-tfsec.git
 
-tfupdate		https://github.com/yuokada/asdf-tfupdate.git
+#tfupdate		https://github.com/yuokada/asdf-tfupdate.git
 
 tmux		https://github.com/pauloedurezende/asdf-tmux.git
 
 uv		https://github.com/asdf-community/asdf-uv.git
 
-websocat		https://github.com/bdellegrazie/asdf-websocat.git
+#websocat		https://github.com/bdellegrazie/asdf-websocat.git
 
-yamlfmt		https://github.com/mise-plugins/asdf-yamlfmt.git
+#yamlfmt		https://github.com/mise-plugins/asdf-yamlfmt.git
 
-yamllint		https://github.com/ericcornelissen/asdf-yamllint.git
+#yamllint		https://github.com/ericcornelissen/asdf-yamllint.git
 
 yarn		https://github.com/twuni/asdf-yarn.git
 
