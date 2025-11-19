@@ -438,6 +438,10 @@
     "atmos list",
     "rg",
     "tr",
+    "PGHOST=127.0.0.1",
+    "source .venv/bin/activate",
+    "python scripts/generate_graphs.py",
+    "PGPASSWORD=7be3_4b5e_9647",
     "python",
     "env",
     "./test-gitstatusd.sh",
@@ -446,7 +450,10 @@
     "g++",
     "./test_tilde_expansion",
     "du",
-    "comm"
+    "du -sh ~/work ~/personal ~/Library/CloudStorage/OneDrive 2 > /dev/null",
+    "sort -h",
+    "comm",
+    "npx claude-flow@alpha"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [

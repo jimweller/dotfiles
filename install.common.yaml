@@ -10,6 +10,8 @@
   - ~/tmp
   - ~/.ssh
   - ~/.colima/default
+  - ~/assets/postgres
+  - ~/assets/qdrant
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
@@ -39,12 +41,15 @@
     #   glob: true
     #   path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
+    ~/.tmux.conf: dotfiles/tmux.conf
     ~/.tool-versions: dotfiles/asdf-tool-versions
     ~/.ripgreprc: dotfiles/ripgreprc
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist: scripts/aws-refresh-token.plist
     # ~/Library/LaunchAgents/com.user.awsrefreshsso.plist: scripts/aws-refresh-sso.plist
+    ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
+    ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
 - shell:
     - description: Copy claude configuration files if not present

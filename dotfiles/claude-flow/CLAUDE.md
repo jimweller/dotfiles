@@ -86,9 +86,9 @@ Connected and verified:
 - **atl**: Jira/Confluence management
 
 ### Layer 3: NPX Subprocess (ORCHESTRATION)
-- `npx claude-flow swarm "<task>" --claude` - Opens Claude Code CLI
-- `npx claude-flow hive-mind spawn "<objective>" --claude` - Multi-instance coordination
-- `npx claude-flow memory store/query` - Memory operations
+- `npx claude-flow@alpha swarm "<task>" --claude` - Opens Claude Code CLI
+- `npx claude-flow@alpha hive-mind spawn "<objective>" --claude` - Multi-instance coordination
+- `npx claude-flow@alpha memory store/query` - Memory operations
 - Slash commands in `.claude/commands/`
 
 **KEY PRINCIPLE**: MCP coordinates strategy → Claude Code Task tool executes → Hooks enable coordination
@@ -881,11 +881,11 @@ Execute Task → AgentDB Reflexion → Pattern Recognition → Future Reuse
 ## 📚 DOCUMENT REFERENCES
 
 Subordinate documentation with detailed guides:
-- @docs/claude-flow.md - Complete Claude-Flow MCP tool reference (80+ tools)
-- @docs/context7.md - Context7 documentation retrieval patterns
-- @docs/googler.md - Googler research and analysis workflows
-- @docs/repomix.md - Repomix codebase packaging and analysis
-- @docs/atl.md - ATL Jira and Confluence management
+- @rules/claude-flow.md - Complete Claude-Flow MCP tool reference (80+ tools)
+- @rules/context7.md - Context7 documentation retrieval patterns
+- @rules/googler.md - Googler research and analysis workflows
+- @rules/repomix.md - Repomix codebase packaging and analysis
+- @rules/atl.md - ATL Jira and Confluence management
 
 ---
 

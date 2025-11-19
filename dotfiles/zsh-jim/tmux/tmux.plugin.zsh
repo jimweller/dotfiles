@@ -48,13 +48,13 @@ else
   export ZSH_TMUX_TERM=$ZSH_TMUX_FIXTERM_WITHOUT_256COLOR
 fi
 
-# Set the correct local config file to use.
-if [[ "$ZSH_TMUX_ITERM2" == "false" && -e "$ZSH_TMUX_CONFIG" ]]; then
-  export ZSH_TMUX_CONFIG
-  export _ZSH_TMUX_FIXED_CONFIG="${0:h:a}/tmux.extra.conf"
-else
-  export _ZSH_TMUX_FIXED_CONFIG="${0:h:a}/tmux.only.conf"
-fi
+# # Set the correct local config file to use.
+# if [[ "$ZSH_TMUX_ITERM2" == "false" && -e "$ZSH_TMUX_CONFIG" ]]; then
+#   export ZSH_TMUX_CONFIG
+#   export _ZSH_TMUX_FIXED_CONFIG="${0:h:a}/tmux.extra.conf"
+# else
+#   export _ZSH_TMUX_FIXED_CONFIG="${0:h:a}/tmux.only.conf"
+# fi
 
 # Wrapper function for tmux.
 function _zsh_tmux_plugin_run() {
