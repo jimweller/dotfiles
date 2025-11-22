@@ -44,6 +44,8 @@ kubernetes:
   # Default: traefik is disabled
   k3sArgs:
     - --disable=traefik
+    - --tls-san=192.168.5.2
+    - --tls-san=host.docker.internal
   
   # Kubernetes port to listen on
   # A common port is 6443, though left unbound to ensure no port conflicts

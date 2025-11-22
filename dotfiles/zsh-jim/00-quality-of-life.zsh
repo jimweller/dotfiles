@@ -144,3 +144,10 @@ pdt() {
     echo "❌ Invalid date format. Expected ISO 8601 (e.g., 2026-01-22T15:55:06Z)"
   fi
 }
+
+mkdir_and_cd() {
+  : "${1:?}"
+  mkdir $1 && cd $1
+}
+
+alias mkd='mkdir_and_cd'

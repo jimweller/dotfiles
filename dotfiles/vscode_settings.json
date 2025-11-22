@@ -76,7 +76,7 @@
 
   "breadcrumbs.enabled": false,
   "window.confirmSaveUntitledWorkspace": false,
-  "window.title": "${dirty}${rootName}:${activeEditorShort}",
+  "window.title": "${dirty}${rootName}",
   "workbench.activityBar.location": "bottom",
   "workbench.colorCustomizations": {
     "[*]": {
@@ -353,7 +353,6 @@
     "rm function-app/src/app.js",
     "mv",
     "jq",
-    "grep",
     "echo",
     "which",
     "dive",
@@ -453,7 +452,13 @@
     "du -sh ~/work ~/personal ~/Library/CloudStorage/OneDrive 2 > /dev/null",
     "sort -h",
     "comm",
-    "npx claude-flow@alpha"
+    "npx claude-flow@alpha",
+    "netstat",
+    "lsof",
+    "colima",
+    "grep",
+    "kubectl wait",
+    "kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=widgetapi -n test-mark --timeout=120s"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
   "roo-cline.deniedCommands": [

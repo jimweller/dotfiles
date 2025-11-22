@@ -160,12 +160,21 @@ run_0jimbox() {
         granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
     fi
     
+    # Check if host .kube directory exists
+    local host_kube_dir="${HOME}/.kube"
+    local kube_mount=""
+    
+    if [[ -d "$host_kube_dir" ]]; then
+        kube_mount="--mount type=bind,source=$host_kube_dir,target=/home/vscode/.kube"
+    fi
+    
     docker run -d \
         --name "$CONTAINER_NAME" \
         --restart unless-stopped \
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
         $granted_mounts \
+        $kube_mount \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
         --health-cmd="ps aux | grep -v grep | grep -q zsh" \
@@ -257,6 +266,14 @@ connect_container() {
         granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
     fi
     
+    # Check if host .kube directory exists
+    local host_kube_dir="${HOME}/.kube"
+    local kube_mount=""
+    
+    if [[ -d "$host_kube_dir" ]]; then
+        kube_mount="--mount type=bind,source=$host_kube_dir,target=/home/vscode/.kube"
+    fi
+    
     # Check if host assets directory exists for AWS credentials
     local host_assets_dir="${HOME}/assets"
     local assets_mount=""
@@ -271,6 +288,7 @@ connect_container() {
         --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
         --mount "type=bind,source=$(pwd),target=/workspace" \
         $granted_mounts \
+        $kube_mount \
         $assets_mount \
         --user "$(id -u):$(id -g)" \
         --workdir="/workspace" \
@@ -350,6 +368,14 @@ exec_container() {
         granted_mounts="--mount type=bind,source=$host_granted_dir/secure-storage,target=/home/vscode/.granted/secure-storage"
     fi
     
+    # Check if host .kube directory exists
+    local host_kube_dir="${HOME}/.kube"
+    local kube_mount=""
+    
+    if [[ -d "$host_kube_dir" ]]; then
+        kube_mount="--mount type=bind,source=$host_kube_dir,target=/home/vscode/.kube"
+    fi
+    
     # Check if host assets directory exists for AWS credentials
     local host_assets_dir="${HOME}/assets"
     local assets_mount=""
@@ -366,6 +392,7 @@ exec_container() {
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
+            $kube_mount \
             $assets_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
@@ -377,6 +404,7 @@ exec_container() {
             --mount "source=${CONTAINER_NAME}-homedir,target=/home/vscode" \
             --mount "type=bind,source=$(pwd),target=/workspace" \
             $granted_mounts \
+            $kube_mount \
             $assets_mount \
             --user "$(id -u):$(id -g)" \
             --workdir="/workspace" \
