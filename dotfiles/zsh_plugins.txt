@@ -83,7 +83,7 @@ birdhackor/zsh-eza-ls-plugin
 zsh-users/zsh-history-substring-search
 
 # TODO
-# ptavares/zsh-direnv
+ptavares/zsh-direnv
 
 # alias rm to move to trash instead of remove from disk
 mattmc3/zsh-safe-rm
