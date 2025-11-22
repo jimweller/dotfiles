@@ -43,10 +43,10 @@ ohmyzsh/ohmyzsh path:plugins/gitignore
 ohmyzsh/ohmyzsh path:plugins/gpg-agent
 
 # manage istio service mesh
-ohmyzsh/ohmyzsh path:plugins/istioctl
+#ohmyzsh/ohmyzsh path:plugins/istioctl
 
 # kops aliases
-ohmyzsh/ohmyzsh path:plugins/kops
+#ohmyzsh/ohmyzsh path:plugins/kops
 
 # Load Jim's custom PATH setup FIRST (includes asdf shims)
 jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
