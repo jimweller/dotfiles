@@ -44,6 +44,9 @@ FILE_PATTERNS=(
   "$HOME/.ssh/id*"
   "$HOME/.ssh/allowed_signers"
   "$HOME/.secrets/*.env"
+  "$HOME/.gnupg/openpgp-revocs.d/*"
+  "$HOME/.gnupg/private-keys-v1.d/*"
+  "$HOME/.gnupg/public-keys-v1.d/*"
 )
 
 FILES=$(find ${FILE_PATTERNS[@]} -type f 2>/dev/null)

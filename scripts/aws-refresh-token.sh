@@ -119,6 +119,12 @@ CREDS_FILE="$CREDS_DIR/aws-token.json"
 LOG_FILE="$CREDS_DIR/refresh.log"
 CLI_CACHE_DIR="$HOME/.aws/cli/cache"
 
+# kubernetes configuration
+KUBECTL_CMD="$($ASDF_CMD which kubectl 2>/dev/null)"
+K8S_CONTEXT="colima"
+K8S_NAMESPACE="davit"
+K8S_SECRET_NAME="aws-credentials"
+
 log() {
   echo "$($DATE_CMD +'%Y-%m-%d %T %Z'): $1" >> "$LOG_FILE"
 }
@@ -222,3 +228,36 @@ else
 fi
 
 log "[INFO] AWS Token Refresh Complete"
+
+# Step 4: Update Kubernetes secret in colima cluster (davit namespace)
+log "[INFO] Updating Kubernetes secret in colima cluster..."
+
+# Preflight check: Verify kubectl is available
+if [ -z "$KUBECTL_CMD" ] || [ ! -x "$KUBECTL_CMD" ]; then
+  log "[WARN] kubectl not found, skipping Kubernetes secret update"
+  exit 0
+fi
+
+# Preflight check: Verify colima cluster is accessible
+if ! $KUBECTL_CMD cluster-info --context="$K8S_CONTEXT" > /dev/null 2>&1; then
+  log "[WARN] Kubernetes context '$K8S_CONTEXT' is not accessible, skipping secret update"
+  exit 0
+fi
+
+# Preflight check: Verify davit namespace exists
+if ! $KUBECTL_CMD get namespace "$K8S_NAMESPACE" --context="$K8S_CONTEXT" > /dev/null 2>&1; then
+  log "[WARN] Kubernetes namespace '$K8S_NAMESPACE' does not exist, skipping secret update"
+  exit 0
+fi
+
+# Update the secret (idempotent: creates if missing, updates if exists)
+if $KUBECTL_CMD create secret generic "$K8S_SECRET_NAME" \
+  --from-file=aws-token.json="$CREDS_FILE" \
+  --namespace="$K8S_NAMESPACE" \
+  --context="$K8S_CONTEXT" \
+  --dry-run=client -o yaml 2>> "$LOG_FILE" | \
+  $KUBECTL_CMD apply --context="$K8S_CONTEXT" -f - >> "$LOG_FILE" 2>&1; then
+  log "[SUCCESS] Kubernetes secret '$K8S_SECRET_NAME' updated in $K8S_CONTEXT/$K8S_NAMESPACE"
+else
+  log "[ERROR] Failed to update Kubernetes secret (non-fatal, AWS credentials still refreshed)"
+fi

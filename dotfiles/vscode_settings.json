@@ -187,7 +187,7 @@
 
   "dev.containers.copyGitConfig": false,
   "dev.containers.defaultExtensions": [
-    "rooveterinaryinc.roo-cline",
+    //"rooveterinaryinc.roo-cline",
     // "anthropic.claude-code",
     // "bierner.github-markdown-preview",
     // "bierner.markdown-checkbox",
@@ -203,7 +203,7 @@
     // "mcsodbrenner.better-open-editors",
     // "mhutchie.git-graph",
     // "usernamehw.errorlens",
-    "esbenp.prettier-vscode"
+    // "esbenp.prettier-vscode"
   ],
   // "dev.containers.defaultFeatures": {
   //   "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
@@ -460,7 +460,7 @@
     "kubectl wait",
     "kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=widgetapi -n test-mark --timeout=120s"
   ],
-  "roo-cline.customStoragePath": "/Users/jimweller/.roo/",
+  // "roo-cline.customStoragePath": "~/.roo/",
   "roo-cline.deniedCommands": [
     "terragrunt apply",
     "terragrunt destroy",
