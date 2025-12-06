@@ -27,6 +27,18 @@
       <string>/Users/jimweller/.config/dotfiles/scripts/sync.sh</string>
     </array>
 
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/Users/jimweller/.asdf/shims:/Users/jimweller/.go/bin:/Users/jimweller/.config/dotfiles/scripts:/Users/jimweller/.local/bin:/Users/jimweller/bin:/nix/var/nix/profiles/default/bin:/opt/homebrew/opt/curl/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/jimweller/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      <key>HOME</key>
+      <string>/Users/jimweller</string>
+      <key>GOPATH</key>
+      <string>/Users/jimweller/.go</string>
+      <key>ASDF_DATA_DIR</key>
+      <string>/Users/jimweller/.asdf</string>
+    </dict>
+
     <key>RunAtLoad</key>
     <true />
 
