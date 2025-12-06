@@ -12,6 +12,8 @@
   - ~/.colima/default
   - ~/assets/postgres
   - ~/assets/qdrant
+  - ~/assets/colima
+  - ~/assets/steampipe
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

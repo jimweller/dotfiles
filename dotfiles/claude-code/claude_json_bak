@@ -1,69 +1,21 @@
 {
-  "numStartups": 95,
-  "installMethod": "unknown",
-  "autoUpdates": true,
-  "tipsHistory": {
-    "new-user-warmup": 1,
-    "memory-command": 80,
-    "shift-enter": 91,
-    "theme-command": 75,
-    "prompt-queue": 80,
-    "enter-to-steer-in-relatime": 80,
-    "todo-list": 90,
-    "# for memory": 91,
-    "install-github-app": 95,
-    "ide-hotkey": 94,
-    "status-line": 85,
-    "permissions": 90,
-    "drag-and-drop-images": 90,
-    "paste-images-mac": 88,
-    "double-esc": 88,
-    "continue": 91,
-    "custom-commands": 94,
-    "shift-tab": 91,
-    "custom-agents": 80,
-    "image-paste": 84,
-    "ide-upsell-external-terminal": 43,
-    "git-worktrees": 85,
-    "plan-mode-for-complex-tasks": 95
-  },
-  "promptQueueUseCount": 4,
-  "cachedStatsigGates": {
-    "tengu_disable_bypass_permissions_mode": false,
-    "tengu_use_file_checkpoints": false
-  },
-  "shiftEnterKeyBindingInstalled": true,
-  "hasCompletedOnboarding": true,
-  "subscriptionNoticeCount": 0,
-  "hasAvailableSubscription": false,
-  "changelogLastFetched": 1759326602648,
+  "autoCompactEnabled": false,
+  "autoConnectIde": false,
+  "autoInstallIdeExtension": false,
+  "autoUpdates": false,
   "bypassPermissionsModeAccepted": true,
   "hasAcknowledgedCostThreshold": true,
+  "hasAvailableSubscription": false,
+  "hasCompletedOnboarding": true,
+  "hasIdeAutoConnectDialogBeenShown": true,
+  "hasIdeOnboardingBeenShown": {
+    "vscode": true
+  },
+  "hasOpusPlanDefault": false,
+  "hasSeenTasksHint": true,
+  "hasUsedBackslashReturn": true,
   "isQualifiedForDataSharing": false,
-  "firstStartTime": "2025-08-10T08:28:30.762Z",
-  "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.0.1",
   "mcpServers": {
-    "atl": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--python",
-        "python3.10",
-        "--with",
-        "pydantic==2.11.0",
-        "mcp-atlassian",
-        "-v"
-      ],
-      "env": {
-        "CONFLUENCE_URL": "${CONFLUENCE_URL}",
-        "CONFLUENCE_USERNAME": "${JIRA_USERNAME}",
-        "CONFLUENCE_API_TOKEN": "${CONFLUENCE_API_TOKEN}",
-        "JIRA_URL": "${JIRA_URL}",
-        "JIRA_USERNAME": "${JIRA_USERNAME}",
-        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
-      }
-    },
     "context7": {
       "type": "stdio",
       "command": "npx",
@@ -96,44 +48,10 @@
         "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_SEARCH_ID}",
         "GOOGLE_GEMINI_API_KEY": "${GOOGLE_GEMINI_API_KEY}"
       }
-    },
-    "claude-flow": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "claude-flow@alpha",
-        "mcp",
-        "start"
-      ],
-      "env": {
-        "CLAUDE_FLOW_PROJECT_ROOT": "${workspaceFolder}",
-        "CLAUDE_FLOW_MEMORY_PATH": "${workspaceFolder}/.swarm/memory.db"
-      }
-    },
-    "agentdb": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "agentdb@latest",
-        "mcp",
-        "start"
-      ],
-      "env": {
-        "AGENTDB_PATH": "${workspaceFolder}/.agentdb/agentdb.db",
-        "AGENTDB_DIMENSION": "1536",
-        "AGENTDB_PRESET": "medium"
-      }
     }
   },
-  "hasIdeOnboardingBeenShown": {
-    "vscode": true
-  },
-  "iterm2SetupInProgress": false,
-  "iterm2BackupPath": "/Users/jimweller/Library/Preferences/com.googlecode.iterm2.plist.bak",
-  "hasOpusPlanDefault": false,
-  "sonnet45MigrationComplete": true,
-  "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1759518565289
+  "preferredNotifChannel": "notifications_disabled",
+  "shiftEnterKeyBindingInstalled": true,
+  "showExpandedTodos": true,
+  "terminalProgressBarEnabled": false
 }

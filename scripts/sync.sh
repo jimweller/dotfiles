@@ -53,7 +53,23 @@ brew list --cask > "$TARGET_DIR/brew-casks.txt"
 brew tap > "$TARGET_DIR/brew-taps.txt"
 code --list-extensions > "$TARGET_DIR/vscode-extensions.txt"
 
-# Rsync everything to target directory
+# Backup Confluence pages
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+echo ""
+echo "Backing up Confluence pages..."
+CONFLUENCE_BACKUP="$SCRIPT_DIR/confluence-backup.sh"
+if [[ -f "$CONFLUENCE_BACKUP" ]]; then
+    "$CONFLUENCE_BACKUP" "$TARGET_DIR/Confluence"
+    if [[ $? -eq 0 ]]; then
+        echo "✓ Confluence backup complete"
+    else
+        echo "⚠ Confluence backup failed (continuing with sync)"
+    fi
+else
+    echo "⚠ confluence-backup.sh not found at $CONFLUENCE_BACKUP, skipping Confluence backup"
+fi
+
+echo ""
 echo "Syncing files to encrypted volume..."
 rsync -avL --delete \
   --exclude='.Trash' \
@@ -84,12 +100,13 @@ rsync -avL --delete \
   ~/work \
   ~/personal \
   ~/tmp \
+  ~/assets \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
   ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
   ~/Library/Application\ Support/Code/User/settings.json \
   ~/Library/Application\ Support/Code/User/keybindings.json \
   ~/Library/Application\ Support/Google/Chrome/Profile\ 1/Bookmarks \
-  ~/Library/CloudStorage/OneDrive \
+  ~/Library/CloudStorage/OneDrive-Hearst \
   "$TARGET_DIR/"
 
 echo "Sync complete."

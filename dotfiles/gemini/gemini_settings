@@ -1,36 +1,12 @@
 {
-  "security": {
-    "auth": {
-      "selectedType": "gemini-api-key"
-    }
+  "ide": {
+    "enabled": false,
+    "hasSeenNudge": true
   },
   "mcpServers": {
-    "atl": {
-      "command": "uvx",
-      "args": [
-        "--python",
-        "python3.10",
-        "--with",
-        "pydantic==2.11.0",
-        "mcp-atlassian",
-        "-v"
-      ],
-      "trust": true,
-      "env": {
-        "CONFLUENCE_URL": "${CONFLUENCE_URL}",
-        "CONFLUENCE_USERNAME": "${JIRA_USERNAME}",
-        "CONFLUENCE_API_TOKEN": "${CONFLUENCE_API_TOKEN}",
-        "JIRA_URL": "${JIRA_URL}",
-        "JIRA_USERNAME": "${JIRA_USERNAME}",
-        "JIRA_API_TOKEN": "${JIRA_API_TOKEN}"
-      }
-    },
     "context7": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ],
+      "args": ["-y", "@upstash/context7-mcp"],
       "trust": true,
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
@@ -38,19 +14,12 @@
     },
     "repomix": {
       "command": "npx",
-      "args": [
-        "-y",
-        "repomix",
-        "--mcp"
-      ],
+      "args": ["-y", "repomix", "--mcp"],
       "trust": true
     },
     "googler": {
       "command": "npx",
-      "args": [
-        "-y",
-        "github:jimweller/google-research-mcp"
-      ],
+      "args": ["-y", "github:jimweller/google-research-mcp"],
       "trust": true,
       "env": {
         "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
@@ -59,8 +28,31 @@
       }
     }
   },
-  "hasSeenIdeIntegrationNudge": true,
-  "ide": {
-    "enabled": true
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "general": {
+    "previewFeatures": true,
+    "disableAutoUpdate": true,
+    "disableUpdateNag": true
+  },
+  "output": {
+    "format": "text"
+  },
+  "ui": {
+    "hideTips": true,
+    "hideBanner": true,
+    "showLineNumbers": false,
+    "hideWindowTitle": true,
+    "accessibility": {
+      "disableLoadingPhrases": true
+    }
+  },
+  "tools": {
+    "shell": {
+      "showColor": false
+    }
   }
 }

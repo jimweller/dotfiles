@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Steampipe Auto-Start LaunchAgent
+  
+  Install:
+    cp scripts/steampipe-start.plist ~/Library/LaunchAgents/com.user.steampipe.plist
+    launchctl load ~/Library/LaunchAgents/com.user.steampipe.plist
+  
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.user.steampipe.plist
+    rm ~/Library/LaunchAgents/com.user.steampipe.plist
+  
+  Check Status:
+    launchctl list | grep com.user.steampipe
+    
+  View Logs:
+    tail -f ~/assets/steampipe/launchd.log
+    tail -f ~/assets/steampipe/launchd.err
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.steampipe</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/jimweller/.asdf/shims/steampipe</string>
+      <string>service</string>
+      <string>start</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/Users/jimweller/.asdf/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      <key>HOME</key>
+      <string>/Users/jimweller</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true />
+
+    <key>StandardOutPath</key>
+    <string>/Users/jimweller/assets/steampipe/launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jimweller/assets/steampipe/launchd.err</string>
+  </dict>
+</plist>

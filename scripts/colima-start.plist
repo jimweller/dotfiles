@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Colima Auto-Start LaunchAgent
+  
+  Install:
+    cp scripts/colima-start.plist ~/Library/LaunchAgents/com.user.colima.plist
+    launchctl load ~/Library/LaunchAgents/com.user.colima.plist
+  
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.user.colima.plist
+    rm ~/Library/LaunchAgents/com.user.colima.plist
+  
+  Check Status:
+    launchctl list | grep com.user.colima
+    
+  View Logs:
+    tail -f ~/assets/colima/launchd.log
+    tail -f ~/assets/colima/launchd.err
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.colima</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/homebrew/bin/colima</string>
+      <string>start</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/Users/jimweller/.asdf/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true />
+
+    <key>StandardOutPath</key>
+    <string>/Users/jimweller/assets/colima/launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jimweller/assets/colima/launchd.err</string>
+  </dict>
+</plist>
