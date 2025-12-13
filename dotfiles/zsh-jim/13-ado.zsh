@@ -2,7 +2,7 @@
 
 ado() {
 
-    if ! _ado_check_prerequisites; then
+    if ! _ado_check_basic_prerequisites; then
         return 1
     fi
 
@@ -36,6 +36,9 @@ ado() {
 }
 
 ado_browse() {
+    if ! _ado_check_repository; then
+        return 1
+    fi
     
     local remote_url=$(git remote get-url origin 2>/dev/null)
     
@@ -132,6 +135,10 @@ ado_repo_create() {
 }
 
 ado_pr() {
+    if ! _ado_check_repository; then
+        return 1
+    fi
+    
     if [[ $# -eq 0 ]]; then
         echo "Usage: ado pr <command> [arguments]"
         echo "Available commands:"
@@ -419,7 +426,7 @@ _ado_get_base_url() {
     echo "https://dev.azure.com/${org}/${project}/_git/${repo}"
 }
 
-_ado_check_prerequisites() {
+_ado_check_basic_prerequisites() {
     if ! az extension list --query "[?name=='azure-devops']" --output tsv | grep -q azure-devops; then
         echo "Error: Azure DevOps CLI extension is not installed."
         echo "Install with: az extension add --name azure-devops"
@@ -432,12 +439,10 @@ _ado_check_prerequisites() {
         return 1
     fi
     
-    local command="${1:-}"
-    
-    if [[ "$command" == "repo" ]]; then
-        return 0
-    fi
-    
+    return 0
+}
+
+_ado_check_repository() {
     if ! git rev-parse --is-inside-work-tree &>/dev/null; then
         echo "Error: Not in a git repository."
         return 1
