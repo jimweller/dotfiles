@@ -149,14 +149,28 @@ ado_repo_delete() {
     local project="$2"
     local org="${3:-}"
 
-    local cmd=(az repos delete --id "$repo_name" --project "$project" --yes)
+    local show_cmd=(az repos show --repository "$repo_name" --project "$project")
     
     if [[ -n "$org" ]]; then
-        cmd+=(--org "$org")
+        show_cmd+=(--org "$org")
+    fi
+    
+    echo "Looking up repository '$repo_name' in project '$project'..."
+    local repo_id=$(${show_cmd[@]} --query id --output tsv 2>/dev/null)
+    
+    if [[ -z "$repo_id" ]]; then
+        echo "Error: Repository '$repo_name' not found in project '$project'"
+        return 1
     fi
 
-    echo "Deleting repository '$repo_name' from project '$project'..."
-    "${cmd[@]}"
+    local delete_cmd=(az repos delete --id "$repo_id" --project "$project" --yes)
+    
+    if [[ -n "$org" ]]; then
+        delete_cmd+=(--org "$org")
+    fi
+
+    echo "Deleting repository '$repo_name' (ID: $repo_id)..."
+    "${delete_cmd[@]}"
     
     if [[ $? -eq 0 ]]; then
         echo "Repository '$repo_name' deleted successfully"
