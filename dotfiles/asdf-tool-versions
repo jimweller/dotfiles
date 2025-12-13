@@ -7,7 +7,7 @@ sops 3.11.0
 kubectl 1.32.10
 # Cloud CLI
 awscli 2.31.22
-azure-cli 2.77.0
+azure-cli 2.81.0
 granted 0.38.0
 # Utilities
 jq 1.8.1
@@ -70,3 +70,4 @@ terragrunt 0.93.9
 opentofu 1.10.7
 fx 39.2.0
 node 22
+k9s 0.50.16

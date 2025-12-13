@@ -122,7 +122,7 @@ CLI_CACHE_DIR="$HOME/.aws/cli/cache"
 # kubernetes configuration
 KUBECTL_CMD="$($ASDF_CMD which kubectl 2>/dev/null)"
 K8S_CONTEXT="colima"
-K8S_NAMESPACE="davit"
+K8S_NAMESPACE="quiver"
 K8S_SECRET_NAME="aws-credentials"
 
 log() {

@@ -10,6 +10,7 @@ ado() {
         echo "Usage: ado <command> [arguments]"
         echo "Available commands:"
         echo "  browse  - Open repository in Azure DevOps web interface"
+        echo "  repo    - Repository operations"
         echo "  pr      - Pull request operations"
         return 1
     fi
@@ -20,6 +21,9 @@ ado() {
     case "$command" in
         browse)
             ado_browse "$@"
+            ;;
+        repo)
+            ado_repo "$@"
             ;;
         pr)
             ado_pr "$@"
@@ -79,6 +83,52 @@ ado_browse() {
         echo "Remote URL: $remote_url"
         return 1
     fi
+}
+
+ado_repo() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: ado repo <command> [arguments]"
+        echo "Available commands:"
+        echo "  create  - Create a new repository"
+        return 1
+    fi
+
+    local command="$1"
+    shift
+
+    case "$command" in
+        create)
+            ado_repo_create "$@"
+            ;;
+        *)
+            echo "Unknown repo command: $command"
+            echo "Run 'ado repo' for available commands"
+            return 1
+            ;;
+    esac
+}
+
+ado_repo_create() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: ado repo create <repo-name> <project-name> [org-url]"
+        echo "Example: ado repo create quiver \"Platform Engineering\" \"https://dev.azure.com/mcgsead\""
+        return 1
+    fi
+
+    local repo_name="$1"
+    local project="$2"
+    local org="${3:-}"
+
+    local cmd=(az repos create --name "$repo_name" --project "$project")
+    
+    if [[ -n "$org" ]]; then
+        cmd+=(--org "$org")
+    fi
+    
+    cmd+=(--output table --query "{Name:name,Project:project.name,URL:webUrl}")
+
+    echo "Creating repository '$repo_name' in project '$project'..."
+    "${cmd[@]}"
 }
 
 ado_pr() {
@@ -380,6 +430,12 @@ _ado_check_prerequisites() {
         echo "Error: Not authenticated with Azure CLI."
         echo "Login with: az login"
         return 1
+    fi
+    
+    local command="${1:-}"
+    
+    if [[ "$command" == "repo" ]]; then
+        return 0
     fi
     
     if ! git rev-parse --is-inside-work-tree &>/dev/null; then

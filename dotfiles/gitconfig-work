@@ -6,7 +6,7 @@
 	email = jim.weller@mcg.com
 	signingkey = /Users/jimweller/.ssh/id_mcg
 [credential]
-	helper = "!f() { echo \"username=$GIT_USERNAME\"; echo \"password=$AZURE_DEVOPS_EXT_PAT\"; }; f"
+	helper = "!f() { echo username=$GIT_USERNAME; echo password=$AZURE_DEVOPS_EXT_PAT; }; f"
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [url "https://dev.azure.com/mcgsead/Data%20Engineering/_git/"]
