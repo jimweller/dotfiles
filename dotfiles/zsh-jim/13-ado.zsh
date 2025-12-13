@@ -93,6 +93,7 @@ ado_repo() {
         echo "Usage: ado repo <command> [arguments]"
         echo "Available commands:"
         echo "  create  - Create a new repository"
+        echo "  delete  - Delete a repository"
         return 1
     fi
 
@@ -102,6 +103,9 @@ ado_repo() {
     case "$command" in
         create)
             ado_repo_create "$@"
+            ;;
+        delete)
+            ado_repo_delete "$@"
             ;;
         *)
             echo "Unknown repo command: $command"
@@ -132,6 +136,31 @@ ado_repo_create() {
 
     echo "Creating repository '$repo_name' in project '$project'..."
     "${cmd[@]}"
+}
+
+ado_repo_delete() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: ado repo delete <repo-name> <project-name> [org-url]"
+        echo "Example: ado repo delete quiver \"Platform Engineering\" \"https://dev.azure.com/mcgsead\""
+        return 1
+    fi
+
+    local repo_name="$1"
+    local project="$2"
+    local org="${3:-}"
+
+    local cmd=(az repos delete --id "$repo_name" --project "$project" --yes)
+    
+    if [[ -n "$org" ]]; then
+        cmd+=(--org "$org")
+    fi
+
+    echo "Deleting repository '$repo_name' from project '$project'..."
+    "${cmd[@]}"
+    
+    if [[ $? -eq 0 ]]; then
+        echo "Repository '$repo_name' deleted successfully"
+    fi
 }
 
 ado_pr() {
