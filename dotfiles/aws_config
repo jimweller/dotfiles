@@ -18,16 +18,16 @@ credential_process         = granted credential-process --profile mcgui
 granted_sso_registration_scopes = sso:account:access
 region = us-west-2
 
-[profile mcg]
-sso_session=bedrocksso
-sso_account_id = 493888979299
-sso_role_name = 493888979299-mcg-rockadm
-region = us-west-2
-
 [profile mcgrockuser]
 sso_session=bedrocksso
 sso_account_id = 493888979299
 sso_role_name = 493888979299-mcg-rockusr
+region = us-west-2
+
+[profile mcg]
+sso_session=bedrocksso
+sso_account_id = 493888979299
+sso_role_name = 493888979299-mcg-rockadm
 region = us-west-2
 
 [sso-session bedrocksso]

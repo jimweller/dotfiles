@@ -462,12 +462,19 @@
     "./scripts/confluence-export.py",
     "steampipe",
     "rsync",
-    "pandoc"
+    "pandoc",
+    "openssl",
+    "gpg",
+    "direnv",
+    "eval",
+    "./bootstrap.sh",
+    "./15-ado/scripts/07-build-agent-image.sh",
+    "./configure-acr.sh",
+    "./configure-webhooks.sh",
+    "./monitor-deployment.sh"
   ],
   "roo-cline.customStoragePath": "/Users/jimweller/.roo",
   "roo-cline.deniedCommands": [
-    "terragrunt apply",
-    "terragrunt destroy",
     "tofu apply",
     "tofu destroy",
     "terraform apply",

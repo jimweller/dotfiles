@@ -2,10 +2,10 @@
   "awsAuthRefresh": "~/.config/dotfiles/scripts/aws-refresh-token.sh",
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "true",
-    "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "us.anthropic.claude-opus-4-1-20250805-v1:0",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
     "CLAUDE_CODE_SUBAGENT_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
     "AWS_REGION": "us-west-2",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
@@ -13,7 +13,7 @@
     "DISABLE_ZOXIDE": "1"
   },
   "includeCoAuthoredBy": false,
-  "model": "sonnet",
+  "model": "opus",
   "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": false,
   "autoUpdates": false,
