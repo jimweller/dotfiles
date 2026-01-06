@@ -8,6 +8,10 @@ alias gitlock='git_lock'
 alias glock='git_lock'
 alias glk='git_lock'
 
+alias gitunlock='git_unlock'
+alias gunlock='git_unlock'
+alias gulk='git_unlock'
+
 switch_git_profile() {
   local profile=$1
   local env_file="$HOME/.secrets/git-${profile}.env"
@@ -53,6 +57,21 @@ git_lock() {
   echo "  Name: $GIT_USER"
   echo "  Email: $GIT_EMAIL"
   echo "  Signing key: $current_signingkey"
+}
+
+git_unlock() {
+  # Check if we're in a git repository
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
+  # Remove repository-specific config
+  git config --unset user.name 2>/dev/null
+  git config --unset user.email 2>/dev/null
+  git config --unset user.signingkey 2>/dev/null
+
+  echo "Repository unlocked - will use global profile config"
 }
 
 gj() {
