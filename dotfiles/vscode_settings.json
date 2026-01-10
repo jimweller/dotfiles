@@ -507,7 +507,8 @@
   },
   "git.blame.editorDecoration.template": "${subject}, ${authorName} ${authorDateAgo}",
   "todohighlight.isEnable": true,
-  "claudeCode.preferredLocation": "panel"
+  "claudeCode.preferredLocation": "panel",
+  "workbench.list.defaultFindMode": "filter"
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"

@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "plugins": {
+    "gopls-lsp@claude-plugins-official": [
+      {
+        "scope": "local",
+        "projectPath": "/Users/jimweller/tmp/_claude",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2025-12-29T06:47:45.642Z",
+        "lastUpdated": "2025-12-29T06:47:45.642Z"
+      }
+    ],
+    "ralph-wiggum@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/jimweller/tmp/platform-poc/threecluster",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-wiggum/unknown",
+        "version": "unknown",
+        "installedAt": "2026-01-07T02:11:04.876Z",
+        "lastUpdated": "2026-01-07T02:11:04.876Z"
+      }
+    ]
+  }
+}
