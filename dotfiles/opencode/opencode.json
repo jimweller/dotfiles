@@ -1,0 +1,65 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "amazon-bedrock/global.anthropic.claude-opus-4-5-20251101-v1:0",
+  "small_model": "amazon-bedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "us-west-2",
+        "profile": "default"
+      },
+      "models": {
+        "global.anthropic.claude-opus-4-5-20251101-v1:0": {
+          "name": "Claude Opus 4.5"
+        },
+        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
+          "name": "Claude Sonnet 4.5"
+        },
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "name": "Claude Haiku 4.5"
+        }
+      },
+      "whitelist": [
+        "global.anthropic.claude-opus-4-5-20251101-v1:0",
+        "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+      ]
+    },
+    "google": {
+      "options": {
+        "apiKey": "{env:GEMINI_API_KEY}"
+      },
+      "whitelist": [
+        "gemini-2.5-pro",
+        "gemini-2.5-flash",
+        "gemini-3-pro-preview"
+      ]
+    }
+  },
+  "enabled_providers": ["amazon-bedrock", "google"],
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "environment": {
+        "DEFAULT_MINIMUM_TOKENS": "10000"
+      },
+      "enabled": true
+    },
+    "repomix": {
+      "type": "local",
+      "command": ["npx", "-y", "repomix", "--mcp"],
+      "enabled": true
+    },
+    "googler": {
+      "type": "local",
+      "command": ["npx", "-y", "github:jimweller/google-research-mcp"],
+      "environment": {
+        "GOOGLE_CUSTOM_SEARCH_API_KEY": "{env:GOOGLE_SEARCH_API_KEY}",
+        "GOOGLE_CUSTOM_SEARCH_ID": "{env:GOOGLE_SEARCH_ID}",
+        "GOOGLE_GEMINI_API_KEY": "{env:GOOGLE_GEMINI_API_KEY}"
+      },
+      "enabled": true
+    }
+  }
+}

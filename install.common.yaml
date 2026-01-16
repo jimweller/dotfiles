@@ -48,6 +48,7 @@
     ~/.ripgreprc: dotfiles/ripgreprc
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
+    ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
     ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist: scripts/aws-refresh-token.plist
     # ~/Library/LaunchAgents/com.user.awsrefreshsso.plist: scripts/aws-refresh-sso.plist
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
