@@ -31,7 +31,7 @@
         "Authorization": "Bearer ${GITHUB_TOKEN}"
       }
     },
-    {
+    "repomix": {
       "command": "npx",
       "args": [
         "-y",
