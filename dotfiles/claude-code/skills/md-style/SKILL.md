@@ -1,5 +1,5 @@
 ---
-name: markdown-authoring
+name: md-style
 description: Guidelines for writing well-formed markdown files that pass linting.
 ---
 
@@ -21,7 +21,7 @@ Follow these rules when creating or editing markdown files.
 
 6. **First line should be H1** - Start files with `# Title`
 
-7. **Run markdown-lint skill before committing** - Use `/fix-markdown` to format and lint
+7. **Run md-lint skill before committing** - Use `/md-fix` to format and lint
 
 ## Examples
 

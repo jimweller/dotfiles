@@ -1,5 +1,5 @@
 ---
-name: markdown-lint
+name: md-lint
 description: Format and lint markdown files using prettier and markdownlint-cli2.
 allowed-tools: Bash
 ---
