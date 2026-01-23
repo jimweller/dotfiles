@@ -1,6 +1,6 @@
 ---
 name: markdown-lint
-description: Format and lint markdown files using prettier and markdownlint-cli2. Automatically finds config from git root.
+description: Format and lint markdown files using prettier and markdownlint-cli2.
 allowed-tools: Bash
 ---
 
@@ -15,14 +15,14 @@ To fix all markdown files in the repository, run from the git root:
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 cd "$PROJECT_ROOT"
-prettier --write "**/*.md" --ignore-path .gitignore && markdownlint-cli2 --config "$PROJECT_ROOT/.markdownlint-cli2.jsonc" --fix "**/*.md"
+prettier --write "**/*.md" --ignore-path .gitignore && markdownlint-cli2 --config ~/.config/markdownlint/.markdownlint-cli2.jsonc --fix "**/*.md"
 ```
 
 To fix a specific file (can run from any directory):
 
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-prettier --write "path/to/file.md" && markdownlint-cli2 --config "$PROJECT_ROOT/.markdownlint-cli2.jsonc" --fix "path/to/file.md"
+prettier --write "path/to/file.md" && markdownlint-cli2 --config ~/.config/markdownlint/.markdownlint-cli2.jsonc --fix "path/to/file.md"
 ```
 
 ## What It Does
@@ -32,12 +32,12 @@ prettier --write "path/to/file.md" && markdownlint-cli2 --config "$PROJECT_ROOT/
 
 ## Config Files
 
-- `.markdownlint-cli2.jsonc` - markdownlint rules and settings (in git root)
+- `~/.config/markdownlint/.markdownlint-cli2.jsonc` - global markdownlint config
   - `gitignore: true` - respects .gitignore to skip node_modules, .terraform, etc.
 - `.prettierrc` - prettier config if present (in git root)
 
 ## Notes
 
 - Prettier runs first because it handles table formatting (fixes MD060 issues)
-- markdownlint-cli2 does not search parent directories for config, so we explicitly pass the path
-- Some markdownlint rules (like MD060) are not auto-fixable, but prettier handles table formatting
+- Uses global config so linting works consistently across all projects
+- Some markdownlint rules (like MD060) are not auto-fixable, but prettier handles them

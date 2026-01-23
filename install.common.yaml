@@ -70,9 +70,7 @@
     ~/.claude/skills/:
       glob: true
       path: dotfiles/claude-code/skills/*
-    ~/.claude/agents/:
-      glob: true
-      path: dotfiles/claude-code/agents/*
+    ~/.config/markdownlint/.markdownlint-cli2.jsonc: /Users/jimweller/tmp/platform-poc/main/.markdownlint-cli2.jsonc
 
 - defaults:
     link:
