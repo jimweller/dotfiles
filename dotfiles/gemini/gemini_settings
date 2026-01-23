@@ -6,25 +6,13 @@
   "mcpServers": {
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
       "trust": true,
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
-      }
-    },
-    "repomix": {
-      "command": "npx",
-      "args": ["-y", "repomix", "--mcp"],
-      "trust": true
-    },
-    "googler": {
-      "command": "npx",
-      "args": ["-y", "github:jimweller/google-research-mcp"],
-      "trust": true,
-      "env": {
-        "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
-        "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_SEARCH_ID}",
-        "GOOGLE_GEMINI_API_KEY": "${GOOGLE_GEMINI_API_KEY}"
       }
     }
   },

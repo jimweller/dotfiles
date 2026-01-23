@@ -71,3 +71,4 @@ opentofu 1.10.7
 fx 39.2.0
 node 22
 k9s 0.50.16
+minikube 1.37.0

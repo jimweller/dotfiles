@@ -63,6 +63,14 @@
       stderr: true
       stdout: true
 
+- link:
+    ~/.claude/commands/:
+      glob: true
+      path: dotfiles/claude-code/commands/*
+    ~/.claude/skills/:
+      glob: true
+      path: dotfiles/claude-code/skills/*
+
 - defaults:
     link:
       force: true

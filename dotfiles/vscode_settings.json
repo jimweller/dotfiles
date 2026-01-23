@@ -508,7 +508,11 @@
   "git.blame.editorDecoration.template": "${subject}, ${authorName} ${authorDateAgo}",
   "todohighlight.isEnable": true,
   "claudeCode.preferredLocation": "panel",
-  "workbench.list.defaultFindMode": "filter"
+  "workbench.list.defaultFindMode": "filter",
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled"
+  },
+  "roo-cline.debug": false
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
