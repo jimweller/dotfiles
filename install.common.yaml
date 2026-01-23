@@ -70,6 +70,9 @@
     ~/.claude/skills/:
       glob: true
       path: dotfiles/claude-code/skills/*
+    ~/.claude/agents/:
+      glob: true
+      path: dotfiles/claude-code/agents/*
 
 - defaults:
     link:
