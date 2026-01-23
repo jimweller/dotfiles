@@ -29,14 +29,50 @@
       "options": {
         "apiKey": "{env:GEMINI_API_KEY}"
       },
+      "models": {
+        "gemini-2.5-pro": {
+          "name": "Gemini 2.5 Pro"
+        },
+        "gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash"
+        },
+        "gemini-3-pro-preview": {
+          "name": "Gemini 3 Pro"
+        }
+      },
       "whitelist": [
         "gemini-2.5-pro",
         "gemini-2.5-flash",
         "gemini-3-pro-preview"
       ]
+    },
+    "openai": {
+      "options": {
+        "apiKey": "{env:OPENAI_KEY}"
+      },
+      "models": {
+        "gpt-5.2": {
+          "name": "GPT-5.2"
+        },
+        "gpt-5.2-pro": {
+          "name": "GPT-5.2 Pro"
+        },
+        "gpt-5-mini": {
+          "name": "GPT-5 Mini"
+        },
+        "gpt-5-nano": {
+          "name": "GPT-5 Nano"
+        }
+      },
+      "whitelist": [
+        "gpt-5.2",
+        "gpt-5.2-pro",
+        "gpt-5-mini",
+        "gpt-5-nano"
+      ]
     }
   },
-  "enabled_providers": ["amazon-bedrock", "google"],
+  "enabled_providers": ["amazon-bedrock", "google", "openai"],
   "mcp": {
     "context7": {
       "type": "local",
@@ -44,11 +80,6 @@
       "environment": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       },
-      "enabled": true
-    },
-    "repomix": {
-      "type": "local",
-      "command": ["npx", "-y", "repomix", "--mcp"],
       "enabled": true
     },
     "googler": {
