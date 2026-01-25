@@ -1,12 +1,13 @@
 {
   "awsAuthRefresh": "~/.config/dotfiles/scripts/aws-refresh-token.sh",
+  "cleanupPeriodDays": 90,
   "env": {
     "CLAUDE_CODE_USE_BEDROCK": "true",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
     "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
     "AWS_REGION": "us-west-2",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true"
@@ -17,5 +18,7 @@
   "alwaysThinkingEnabled": false,
   "autoUpdates": false,
   "preferredNotifChannel": "notifications_disabled",
-  "cleanupPeriodDays": 90
+  "enabledPlugins": {
+    "ralph-wiggum@claude-plugins-official": true
+  }
 }

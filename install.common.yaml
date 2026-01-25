@@ -54,16 +54,9 @@
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
-- shell:
-    - description: Copy claude configuration files if not present
-      command: |
-        mkdir -p ~/.claude
-        [ -f ~/.claude/settings.json ] || cp ~/.config/dotfiles/dotfiles/claude-code/claude_settings_json_bak ~/.claude/settings.json || true
-        [ -f ~/.claude.json ] || cp ~/.config/dotfiles/dotfiles/claude-code/claude_json_bak ~/.claude.json || true
-      stderr: true
-      stdout: true
-
 - link:
+    ~/.claude.json: dotfiles/claude-code/claude_json
+    ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json
     ~/.claude/commands/:
       glob: true
       path: dotfiles/claude-code/commands/*
