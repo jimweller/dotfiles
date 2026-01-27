@@ -10,15 +10,20 @@
     "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
     "AWS_REGION": "us-west-2",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true"
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
+    "ENABLE_TOOL_SEARCH": "auto:1"
   },
   "includeCoAuthoredBy": false,
-  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "ralph-wiggum@claude-plugins-official": true
+  },
   "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": false,
   "autoUpdates": false,
   "preferredNotifChannel": "notifications_disabled",
-  "enabledPlugins": {
-    "ralph-wiggum@claude-plugins-official": true
-  }
+  "model": "sonnet"
 }

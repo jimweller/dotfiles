@@ -57,6 +57,7 @@
 - link:
     ~/.claude.json: dotfiles/claude-code/claude_json
     ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json
+    ~/.claude/statusline-command.sh: dotfiles/claude-code/statusline-command.sh
     ~/.claude/commands/:
       glob: true
       path: dotfiles/claude-code/commands/*
