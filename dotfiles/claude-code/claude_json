@@ -1,5 +1,5 @@
 {
-  "numStartups": 632,
+  "numStartups": 633,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -40,6 +40,7 @@
   },
   "memoryUsageCount": 1,
   "promptQueueUseCount": 19816,
+  "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -306,15 +307,15 @@
       ],
       "exampleFilesGeneratedAt": 1769190061261,
       "disabledMcpServers": [],
-      "lastCost": 6.921608799999999,
-      "lastAPIDuration": 906676,
+      "lastCost": 7.3426053,
+      "lastAPIDuration": 922957,
       "lastToolDuration": 404678,
-      "lastDuration": 127037686,
+      "lastDuration": 128721895,
       "lastLinesAdded": 42,
       "lastLinesRemoved": 183,
-      "lastTotalInputTokens": 220403,
-      "lastTotalOutputTokens": 44416,
-      "lastTotalCacheCreationInputTokens": 670794,
+      "lastTotalInputTokens": 233875,
+      "lastTotalOutputTokens": 44624,
+      "lastTotalCacheCreationInputTokens": 735692,
       "lastTotalCacheReadInputTokens": 4762690,
       "lastSessionId": "7f9546ce-353a-47b3-9ac1-d50db11b17c6",
       "reactVulnerabilityCache": {
@@ -324,15 +325,15 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 905669,
+      "lastAPIDurationWithoutRetries": 921948,
       "lastModelUsage": {
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 216694,
-          "outputTokens": 10923,
+          "inputTokens": 230163,
+          "outputTokens": 11088,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.2713089999999999
+          "costUSD": 0.2856029999999999
         },
         "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
           "inputTokens": 3027,
@@ -343,12 +344,12 @@
           "costUSD": 1.1690665500000001
         },
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 682,
-          "outputTokens": 19851,
+          "inputTokens": 685,
+          "outputTokens": 19894,
           "cacheReadInputTokens": 4321409,
-          "cacheCreationInputTokens": 451335,
+          "cacheCreationInputTokens": 516233,
           "webSearchRequests": 0,
-          "costUSD": 5.481233250000001
+          "costUSD": 5.8879357500000005
         }
       }
     },
@@ -2900,7 +2901,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1769439150664,
+  "lastPlanModeUse": 1769487249993,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [

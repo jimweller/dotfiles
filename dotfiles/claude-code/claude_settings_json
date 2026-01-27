@@ -23,7 +23,8 @@
   },
   "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": false,
-  "autoUpdates": false,
+  "autoUpdates": true,
+  "autoUpdatesChannel" : "latest",
   "preferredNotifChannel": "notifications_disabled",
   "model": "sonnet"
 }
