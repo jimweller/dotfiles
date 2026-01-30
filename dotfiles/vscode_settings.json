@@ -36,6 +36,12 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
+  "markdownlint.config": {
+    "MD013": false, // Line length
+    "MD024": false, // Multiple headings with same content
+    "MD025": false, // Multiple top-level H1 headings
+    "MD029": false  // Ordered list item prefix
+  },
   "[yaml]": {
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.autoIndent": "advanced",

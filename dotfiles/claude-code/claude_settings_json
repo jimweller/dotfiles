@@ -14,6 +14,7 @@
     "ENABLE_TOOL_SEARCH": "auto:1"
   },
   "includeCoAuthoredBy": false,
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline-command.sh"
@@ -23,8 +24,7 @@
   },
   "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": false,
+  "autoUpdatesChannel": "latest",
   "autoUpdates": true,
-  "autoUpdatesChannel" : "latest",
-  "preferredNotifChannel": "notifications_disabled",
-  "model": "sonnet"
+  "preferredNotifChannel": "notifications_disabled"
 }
