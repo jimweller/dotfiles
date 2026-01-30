@@ -18,7 +18,7 @@ fi
 
 # Sparse image variables
 PASSWORD="${DOTFILES_KEY}"
-DMG="$HOME/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup.dmg.sparseimage"
+DMG=$(eval echo "${DOTFILES_BACKUP_DMG:-\$HOME/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup.dmg.sparseimage}")
 MOUNT="/Volumes/Backup"
 SIZE="16g"
 TARGET_DIR="$MOUNT"

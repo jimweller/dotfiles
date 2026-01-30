@@ -52,9 +52,9 @@
     </dict>
 
     <key>StandardOutPath</key>
-    <string>/Users/jimweller/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup-log.txt</string>
+    <string>/Users/jimweller/.logs/backup-log.txt</string>
 
     <key>StandardErrorPath</key>
-    <string>/Users/jimweller/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup-err.txt</string>
+    <string>/Users/jimweller/.logs/backup-err.txt</string>
   </dict>
 </plist>
