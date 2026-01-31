@@ -1,5 +1,5 @@
 {
-  "numStartups": 671,
+  "numStartups": 674,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -307,16 +307,16 @@
       ],
       "exampleFilesGeneratedAt": 1769803517068,
       "disabledMcpServers": [],
-      "lastCost": 0.3338357,
-      "lastAPIDuration": 87745,
-      "lastToolDuration": 51238,
-      "lastDuration": 179749,
-      "lastLinesAdded": 5,
-      "lastLinesRemoved": 3,
-      "lastTotalInputTokens": 15313,
-      "lastTotalOutputTokens": 4347,
-      "lastTotalCacheCreationInputTokens": 20380,
-      "lastTotalCacheReadInputTokens": 328843,
+      "lastCost": 0.19568824999999998,
+      "lastAPIDuration": 10579,
+      "lastToolDuration": 3,
+      "lastDuration": 37647,
+      "lastLinesAdded": 1,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 151,
+      "lastTotalOutputTokens": 293,
+      "lastTotalCacheCreationInputTokens": 26115,
+      "lastTotalCacheReadInputTokens": 51011,
       "lastSessionId": "d91c361f-072c-4d23-b459-cc891f9fa091",
       "reactVulnerabilityCache": {
         "detected": false,
@@ -325,31 +325,23 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 87740,
+      "lastAPIDurationWithoutRetries": 10579,
       "lastModelUsage": {
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 15257,
-          "outputTokens": 208,
+          "inputTokens": 144,
+          "outputTokens": 27,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.016297
+          "costUSD": 0.000279
         },
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 16,
-          "outputTokens": 1825,
-          "cacheReadInputTokens": 184529,
-          "cacheCreationInputTokens": 10008,
+          "inputTokens": 7,
+          "outputTokens": 266,
+          "cacheReadInputTokens": 51011,
+          "cacheCreationInputTokens": 26115,
           "webSearchRequests": 0,
-          "costUSD": 0.2005195
-        },
-        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "inputTokens": 40,
-          "outputTokens": 2314,
-          "cacheReadInputTokens": 144314,
-          "cacheCreationInputTokens": 10372,
-          "webSearchRequests": 0,
-          "costUSD": 0.11701920000000002
+          "costUSD": 0.19540924999999998
         }
       }
     },
