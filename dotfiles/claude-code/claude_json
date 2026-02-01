@@ -1,5 +1,5 @@
 {
-  "numStartups": 677,
+  "numStartups": 694,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 19826,
+  "promptQueueUseCount": 19835,
   "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
@@ -1349,17 +1349,17 @@
       ],
       "exampleFilesGeneratedAt": 1769623838387,
       "lastTotalWebSearchRequests": 0,
-      "lastCost": 4.148410949999999,
-      "lastAPIDuration": 522934,
-      "lastToolDuration": 196130,
-      "lastDuration": 4191401,
-      "lastLinesAdded": 446,
-      "lastLinesRemoved": 12,
-      "lastTotalInputTokens": 58080,
-      "lastTotalOutputTokens": 23686,
-      "lastTotalCacheCreationInputTokens": 355823,
-      "lastTotalCacheReadInputTokens": 3714093,
-      "lastSessionId": "9de579b2-1beb-4a2f-beb0-79765965ab3d",
+      "lastCost": 0.038125,
+      "lastAPIDuration": 29091,
+      "lastToolDuration": 0,
+      "lastDuration": 31852928,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 424,
+      "lastTotalOutputTokens": 63,
+      "lastTotalCacheCreationInputTokens": 8,
+      "lastTotalCacheReadInputTokens": 74456,
+      "lastSessionId": "796f2201-b71c-489b-b780-44d7e2f86e30",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -1367,33 +1367,26 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 522883,
+      "lastAPIDurationWithoutRetries": 29091,
       "lastModelUsage": {
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 47541,
-          "outputTokens": 1934,
+          "inputTokens": 422,
+          "outputTokens": 58,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.057211
+          "costUSD": 0.0007120000000000001
         },
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 3544,
-          "outputTokens": 12749,
-          "cacheReadInputTokens": 2908729,
-          "cacheCreationInputTokens": 227366,
+          "inputTokens": 2,
+          "outputTokens": 5,
+          "cacheReadInputTokens": 74456,
+          "cacheCreationInputTokens": 8,
           "webSearchRequests": 0,
-          "costUSD": 3.211847
-        },
-        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "inputTokens": 6995,
-          "outputTokens": 9003,
-          "cacheReadInputTokens": 805364,
-          "cacheCreationInputTokens": 128457,
-          "webSearchRequests": 0,
-          "costUSD": 0.8793529499999999
+          "costUSD": 0.037413
         }
-      }
+      },
+      "hasCompletedProjectOnboarding": true
     },
     "/private/tmp/claude-flow-test": {
       "allowedTools": [],
@@ -2259,45 +2252,37 @@
         "packageManager": null
       },
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 136.6724498000002,
-      "lastAPIDuration": 13887096,
-      "lastAPIDurationWithoutRetries": 13879938,
-      "lastToolDuration": 736162,
-      "lastDuration": 299982377,
-      "lastLinesAdded": 5191,
-      "lastLinesRemoved": 2952,
-      "lastTotalInputTokens": 1693217,
-      "lastTotalOutputTokens": 561282,
-      "lastTotalCacheCreationInputTokens": 7151330,
-      "lastTotalCacheReadInputTokens": 154300718,
+      "lastCost": 16.333486750000002,
+      "lastAPIDuration": 1481541,
+      "lastAPIDurationWithoutRetries": 1468505,
+      "lastToolDuration": 240784,
+      "lastDuration": 64439159,
+      "lastLinesAdded": 321,
+      "lastLinesRemoved": 192,
+      "lastTotalInputTokens": 122882,
+      "lastTotalOutputTokens": 52359,
+      "lastTotalCacheCreationInputTokens": 558799,
+      "lastTotalCacheReadInputTokens": 22987448,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 1687182,
-          "outputTokens": 29091,
+          "inputTokens": 120529,
+          "outputTokens": 4700,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 1.832636999999998
-        },
-        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "inputTokens": 1215,
-          "outputTokens": 3464,
-          "cacheReadInputTokens": 27956,
-          "cacheCreationInputTokens": 119459,
-          "webSearchRequests": 0,
-          "costUSD": 0.51196305
+          "costUSD": 0.14402900000000013
         },
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 4820,
-          "outputTokens": 528727,
-          "cacheReadInputTokens": 154272762,
-          "cacheCreationInputTokens": 7031871,
+          "inputTokens": 2353,
+          "outputTokens": 47659,
+          "cacheReadInputTokens": 22987448,
+          "cacheCreationInputTokens": 558799,
           "webSearchRequests": 0,
-          "costUSD": 134.32784975000027
+          "costUSD": 16.189457749999995
         }
       },
-      "lastSessionId": "b253fff1-cd44-4761-802f-ef70ba6a4499",
+      "lastSessionId": "bc06b02b-d688-47eb-be76-ffc5383a83a9",
       "exampleFilesGeneratedAt": 1769524401388
     },
     "/Users/jimweller/tmp/_opencode": {
@@ -2997,6 +2982,72 @@
       "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "classifier.py",
+        "cli.py",
+        "graph_client.py",
+        "azure-rbac-reference-architecture.md",
+        "mcg-naming-conventions.md"
+      ],
+      "reactVulnerabilityCache": {
+        "detected": false,
+        "package": null,
+        "packageName": null,
+        "version": null,
+        "packageManager": null
+      },
+      "lastCost": 27.29649660000001,
+      "lastAPIDuration": 2461469,
+      "lastAPIDurationWithoutRetries": 2459948,
+      "lastToolDuration": 593012,
+      "lastDuration": 36451791,
+      "lastLinesAdded": 2958,
+      "lastLinesRemoved": 697,
+      "lastTotalInputTokens": 273153,
+      "lastTotalOutputTokens": 130507,
+      "lastTotalCacheCreationInputTokens": 1851462,
+      "lastTotalCacheReadInputTokens": 26227292,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "inputTokens": 249941,
+          "outputTokens": 6116,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.2805210000000002
+        },
+        "global.anthropic.claude-opus-4-5-20251101-v1:0": {
+          "inputTokens": 1820,
+          "outputTokens": 88471,
+          "cacheReadInputTokens": 25550510,
+          "cacheCreationInputTokens": 1708341,
+          "webSearchRequests": 0,
+          "costUSD": 25.673261250000007
+        },
+        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
+          "inputTokens": 21392,
+          "outputTokens": 35920,
+          "cacheReadInputTokens": 676782,
+          "cacheCreationInputTokens": 143121,
+          "webSearchRequests": 0,
+          "costUSD": 1.34271435
+        }
+      },
+      "lastSessionId": "22e03cf9-fc13-428f-bdb8-03fdd7a316a9",
+      "hasCompletedProjectOnboarding": true,
+      "exampleFilesGeneratedAt": 1769957963986
+    },
+    "/Users/jimweller/tmp/_crap": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "reactVulnerabilityCache": {
         "detected": false,
@@ -3004,7 +3055,21 @@
         "packageName": null,
         "version": null,
         "packageManager": null
-      }
+      },
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 142938,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {},
+      "lastSessionId": "d03778a9-4c00-4d16-95e4-6762f8a48d13"
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -3063,7 +3128,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1769880656141,
+  "lastPlanModeUse": 1769962112142,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -3114,8 +3179,8 @@
   "officialMarketplaceAutoInstalled": true,
   "skillUsage": {
     "init": {
-      "usageCount": 2,
-      "lastUsedAt": 1768239531749
+      "usageCount": 5,
+      "lastUsedAt": 1769917720172
     },
     "fix-markdown": {
       "usageCount": 8,
@@ -3166,24 +3231,32 @@
       "lastUsedAt": 1769495140272
     },
     "jc": {
-      "usageCount": 5,
-      "lastUsedAt": 1769524501342
+      "usageCount": 9,
+      "lastUsedAt": 1769925816287
     },
     "md-fix": {
-      "usageCount": 5,
-      "lastUsedAt": 1769884126035
+      "usageCount": 9,
+      "lastUsedAt": 1769960076563
     },
     "md-lint": {
       "usageCount": 2,
       "lastUsedAt": 1769524808163
     },
     "publish": {
-      "usageCount": 7,
-      "lastUsedAt": 1769796146291
+      "usageCount": 10,
+      "lastUsedAt": 1769962918536
     },
     "claude-search-resume": {
-      "usageCount": 1,
-      "lastUsedAt": 1769912602868
+      "usageCount": 2,
+      "lastUsedAt": 1769917427955
+    },
+    "update-docs": {
+      "usageCount": 8,
+      "lastUsedAt": 1769958420372
+    },
+    "confluence-publish": {
+      "usageCount": 4,
+      "lastUsedAt": 1769957781495
     }
   },
   "opusProMigrationComplete": true,

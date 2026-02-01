@@ -14,7 +14,7 @@
     "ENABLE_TOOL_SEARCH": "auto:1"
   },
   "includeCoAuthoredBy": false,
-  "model": "sonnet",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline-command.sh"
