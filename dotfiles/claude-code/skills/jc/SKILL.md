@@ -13,7 +13,7 @@ Apply these conventions when handling JIRA requests for the DEVX project.
 |-------|-------|
 | Project | DEVX |
 | Issue Type | Task |
-| Labels | Platform, Claude |
+| Labels | Platform |
 | Assignee on transition | jim.weller@mcg.com |
 
 ## Issue Key Recognition
@@ -39,7 +39,7 @@ h3. THE WORK HERE
 <bullet points of tasks to complete>
 
 h3. DETAILS
-<optional: technical information supporting the work - config values, Azure resources, IP addresses, etc.>
+<optional: technical information supporting the work - config values, Azure resources, IP addresses, command lines, data, etc.>
 ```
 
 ## Operations
@@ -49,7 +49,7 @@ h3. DETAILS
 - Draft summary from conversation if not provided
 - Build CONTEXT from conversation discussion
 - Extract work items from conversation
-- Apply labels: Platform, Claude
+- Apply labels: Platform
 - Output the issue URL after creation: `https://jira.mcg.com/browse/DEVX-XXX`
 - Parent field syntax: `"parent": "DEVX-XXX"` (string, not object)
 
