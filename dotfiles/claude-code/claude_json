@@ -1,5 +1,5 @@
 {
-  "numStartups": 722,
+  "numStartups": 723,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -307,17 +307,17 @@
       ],
       "exampleFilesGeneratedAt": 1769803517068,
       "disabledMcpServers": [],
-      "lastCost": 0.5721624999999999,
-      "lastAPIDuration": 108802,
-      "lastToolDuration": 43067,
-      "lastDuration": 298319,
-      "lastLinesAdded": 29,
-      "lastLinesRemoved": 3,
-      "lastTotalInputTokens": 132180,
-      "lastTotalOutputTokens": 5641,
-      "lastTotalCacheCreationInputTokens": 18924,
-      "lastTotalCacheReadInputTokens": 427797,
-      "lastSessionId": "823c3943-cc68-4175-b5fd-438bf0c48390",
+      "lastCost": 0.31072725,
+      "lastAPIDuration": 93792,
+      "lastToolDuration": 2547,
+      "lastDuration": 511088,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 11772,
+      "lastTotalOutputTokens": 2262,
+      "lastTotalCacheCreationInputTokens": 10333,
+      "lastTotalCacheReadInputTokens": 367248,
+      "lastSessionId": "f7e5e62c-c077-45df-bfe5-a72272cd0fa8",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -325,23 +325,23 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 108799,
+      "lastAPIDurationWithoutRetries": 93780,
       "lastModelUsage": {
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 131749,
-          "outputTokens": 1747,
+          "inputTokens": 11737,
+          "outputTokens": 297,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.14048400000000003
+          "costUSD": 0.013222
         },
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 431,
-          "outputTokens": 3894,
-          "cacheReadInputTokens": 427797,
-          "cacheCreationInputTokens": 18924,
+          "inputTokens": 35,
+          "outputTokens": 1965,
+          "cacheReadInputTokens": 367248,
+          "cacheCreationInputTokens": 10333,
           "webSearchRequests": 0,
-          "costUSD": 0.4316785
+          "costUSD": 0.29750525
         }
       }
     },
