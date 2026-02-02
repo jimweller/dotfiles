@@ -5,10 +5,12 @@ Write concise, direct README files for experienced engineers.
 ## Principles
 
 1. **No fluff** - Skip tables of contents, verbose explanations, development history
-2. **No roadmaps** - Document current state only, not plans or decisions
+2. **No roadmaps** - Document current state only, not plans or decisions. Readme is an engineering specification. Not a project plan or changelog.
 3. **No repetition** - Each fact appears once
-4. **No marketing language** - Avoid "next generation", "production ready", "powerful"
+4. **No marketing language** - Avoid "next generation", "production ready", "powerful", "comprehensive" and similar hyperbole
 5. **Direct voice** - State facts, not opinions
+6. **No AI slop** - Never use Emojis, glyphs or emdashes
+7. **No contrasting embellishments** - Avoid like "not just a thing, it's a better thing", "not only a thing, it's something", "more than a"
 
 ## Structure Template
 
@@ -75,6 +77,7 @@ component/
 - Code blocks for commands and examples
 - Bold for emphasis sparingly
 - No emojis unless explicitly requested
+- No emdashes
 
 ## Example Transformation
 
