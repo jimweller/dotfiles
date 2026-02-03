@@ -59,6 +59,7 @@
     ~/.claude.json: dotfiles/claude-code/claude_json
     ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json
     ~/.claude/statusline-command.sh: dotfiles/claude-code/statusline-command.sh
+    ~/.claude/CLAUDE.md: dotfiles/claude-code/CLAUDE.md
     ~/.claude/commands/:
       glob: true
       path: dotfiles/claude-code/commands/*
@@ -66,6 +67,7 @@
       glob: true
       path: dotfiles/claude-code/skills/*
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint-cli2.jsonc
+    ~/.prettierrc: dotfiles/prettierrc
 
 - defaults:
     link:
