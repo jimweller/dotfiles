@@ -26,6 +26,15 @@ Claude Code sessions.
 - Use semanic branch and PR style
 - Never force push without explicit permission
 
+## Development Workflow
+
+- Before writing any code, describe your approach and wait for approval
+- Always ask clarifying questions before writing any code if requirements are ambiguous
+- If a task requires changes to more than 3 files, stop and break it into smaller tasks first
+- After writing code, list what could break and suggest tests to cover it
+- When there's a bug, start by writing a test that reproduces it, then fix it until the test passes
+- Every time the user corrects you, add a new rule to the CLAUDE.md file so it never happens again
+
 ## Claude Skills
 
 ### STARTER_CHARACTER Rules
