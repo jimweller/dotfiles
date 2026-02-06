@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "amazon-bedrock/global.anthropic.claude-opus-4-5-20251101-v1:0",
+  "model": "amazon-bedrock/global.anthropic.claude-opus-4-6-v1",
   "small_model": "amazon-bedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0",
   "provider": {
     "amazon-bedrock": {
@@ -12,6 +12,9 @@
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
           "name": "Claude Opus 4.5"
         },
+        "global.anthropic.claude-opus-4-6-v1": {
+          "name": "Claude Opus 4.6"
+        },
         "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
           "name": "Claude Sonnet 4.5"
         },
@@ -20,6 +23,7 @@
         }
       },
       "whitelist": [
+        "global.anthropic.claude-opus-4-6-v1",
         "global.anthropic.claude-opus-4-5-20251101-v1:0",
         "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
         "global.anthropic.claude-haiku-4-5-20251001-v1:0"

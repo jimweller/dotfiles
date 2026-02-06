@@ -26,6 +26,12 @@ Claude Code sessions.
 - Use semanic branch and PR style
 - Never force push without explicit permission
 
+## Environment Sourcing
+
+- ALWAYS source .envrc using the project CLAUDE.md pattern: `PROJECT_ROOT=$(git rev-parse --show-toplevel) && source "$PROJECT_ROOT/.envrc"`
+- NEVER use `source .envrc` with a relative path
+- This must happen before any operation that depends on environment variables
+
 ## Development Workflow
 
 - Before writing any code, describe your approach and wait for approval
