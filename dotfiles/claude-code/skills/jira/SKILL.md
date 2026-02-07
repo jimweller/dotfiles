@@ -35,6 +35,8 @@ When calling tools, use correct data types for parameters:
 
 Incorrect types cause validation errors like: `'10' is not of type 'integer'`
 
+**Known bug:** `mcp__atl__jira_update_issue` cannot set numeric custom fields (e.g., story points). The `fields` dict gets serialized to a string by pydantic, causing either a validation error or a Jira rejection. Use the curl approach for numeric custom fields (see Story Points section below).
+
 ## Issue Key Recognition
 
 `{KEY}` refers to the normalized JIRA issue key in format `PROJ-###` (e.g., `DEVX-209`).
@@ -313,6 +315,8 @@ mcp__atl__jira_transition_issue(
 )
 ```
 
+**Rule:** When transitioning an issue to Done, always assign it to the current user (from `JIRA_EMAIL`) if unassigned. Use the curl approach for assignment since the MCP tool has serialization issues with the assignee field.
+
 # Comment
 
 ## add
@@ -462,3 +466,42 @@ mcp__atl__jira_get_issue(
 ```
 
 Labels are in the response at labels array.
+
+# Story Points
+
+Custom field: `customfield_10814` (Story point estimate)
+
+The MCP ATL tool cannot set this field due to a numeric type serialization bug. Use curl instead.
+
+## set
+
+```
+curl -s -X PUT \
+  -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{"fields":{"customfield_10814":0.5}}' \
+  "${JIRA_URL}rest/api/2/issue/PROJ-456"
+```
+
+## set with assignee (bulk pattern)
+
+```
+for KEY in DEVX-101 DEVX-102 DEVX-103; do
+  curl -s -X PUT \
+    -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{"fields":{"assignee":{"emailAddress":"user@example.com"},"customfield_10814":0.5}}' \
+    "${JIRA_URL}rest/api/2/issue/${KEY}"
+done
+```
+
+## get
+
+```
+mcp__atl__jira_get_issue(
+  issue_key="PROJ-456",
+  fields="summary,customfield_10814"
+)
+```
+
+The value is at customfield_10814 in the response. Common values: 0.5, 1, 2, 3, 5, 8, 13.
