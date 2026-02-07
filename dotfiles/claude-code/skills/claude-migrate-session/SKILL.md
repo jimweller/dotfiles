@@ -1,6 +1,6 @@
 ---
 name: claude-migrate-session
-description: Migrate a Claude Code session from another project folder to the current directory so claude --continue picks it up.
+description: Migrate a Claude Code session from another project folder to the current directory so claude --resume picks it up.
 argument-hint: "[keyword]"
 ---
 
@@ -17,31 +17,25 @@ Migrate a conversation from another project to the current working directory.
 
 ## Workflow
 
-1. **Search** — Run the search script with `--global` (always global since migration implies cross-folder). Pass the user's keyword argument if provided.
+1. **Search** — Run the search script with `--global` (always global since migration implies cross-folder). Pass the user's keyword argument if provided. Multiple words are automatically OR-matched.
 
 ```bash
 ~/.claude/skills/claude-search-resume/scripts/claude-search-resume --global
 ~/.claude/skills/claude-search-resume/scripts/claude-search-resume "keyword" --global
 ```
 
-2. **Display & Ask** — Show the search results to the user. Ask which session they want to migrate (by number or session ID).
+2. **Filter & Display** — From the search results, discard any sessions whose project path matches the current working directory (these are already local and can't be migrated). Also discard the current active session. Show only the remaining results to the user. If only one foreign session remains, auto-select it. If multiple remain, ask the user which one to migrate (by number or session ID). If none remain, tell the user no migratable sessions were found.
 
-3. **Guard** — Before migrating, check that the session's project path (shown in the search output) is NOT already the current working directory. If it is, tell the user the session is already local and there's nothing to migrate.
-
-4. **Migrate** — Run the migrate script with the chosen session ID:
+3. **Migrate** — Run the migrate script with the chosen session ID:
 
 ```bash
 ~/.claude/skills/claude-migrate-session/scripts/claude-migrate-session --session-id <uuid>
 ```
 
-5. **Instruct** — Tell the user to quit this session and run:
-
-```bash
-claude --continue
-```
+4. **Instruct** — The script prints the new session UUID and a `claude --resume <new-id>` command. Tell the user to quit this session and run that exact `--resume` command. Do NOT suggest `--continue` — the current session will be newer and `--continue` would pick it up instead of the migrated one.
 
 ## Notes
 
 - The migrate script copies (not moves) session files — the original session stays intact in the source project
-- No JSON rewriting is needed — just copying the files works
+- The destination gets a new UUID (via uuidgen) so source and destination sessions are fully independent
 - The script handles both the `.jsonl` file and any subagents directory

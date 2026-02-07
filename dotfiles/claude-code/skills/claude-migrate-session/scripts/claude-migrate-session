@@ -52,9 +52,9 @@ SOURCE_DIR=$(dirname "$SOURCE_FILE")
 
 # Derive target project folder from pwd
 # Claude uses realpath (resolves symlinks like /tmp → /private/tmp on macOS)
-# Encoding: /Users/jimweller/tmp/_crap → -Users-jimweller-tmp--crap (replace / with -)
+# Encoding: replace / and _ with - (e.g. /Users/jimweller/tmp/_crap → -Users-jimweller-tmp--crap)
 CURRENT_DIR=$(python3 -c "import os; print(os.path.realpath('.'))" 2>/dev/null || realpath "$(pwd)" 2>/dev/null || pwd)
-ENCODED_PATH=$(echo "$CURRENT_DIR" | sed 's|/|-|g')
+ENCODED_PATH=$(echo "$CURRENT_DIR" | sed 's|[/_]|-|g')
 TARGET_DIR="$PROJECTS_DIR/$ENCODED_PATH"
 
 # Guard: refuse if already in the target folder
@@ -85,4 +85,5 @@ if [ -d "$SUBAGENTS_SOURCE" ]; then
 fi
 
 echo ""
-echo "Migration complete. Run: claude --continue"
+echo "Migration complete."
+echo "  claude --resume $NEW_ID"

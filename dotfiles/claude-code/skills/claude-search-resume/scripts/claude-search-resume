@@ -78,6 +78,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# Convert multi-word keyword into OR regex: "elephant bob" → "elephant|bob"
+if [ -n "$KEYWORD" ]; then
+    KEYWORD=$(echo "$KEYWORD" | sed 's/  */ /g; s/ /|/g')
+fi
+
 CURRENT_DIR=$(pwd)
 RESULTS_FILE=$(mktemp)
 

@@ -1,5 +1,5 @@
 {
-  "numStartups": 815,
+  "numStartups": 828,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 19849,
+  "promptQueueUseCount": 19850,
   "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
@@ -108,17 +108,17 @@
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastTotalWebSearchRequests": 0,
-      "lastCost": 0.157401,
-      "lastAPIDuration": 19612,
-      "lastToolDuration": 0,
-      "lastDuration": 39463100,
+      "lastCost": 0.32555175,
+      "lastAPIDuration": 25544,
+      "lastToolDuration": 1296,
+      "lastDuration": 89190,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 1789,
-      "lastTotalOutputTokens": 673,
-      "lastTotalCacheCreationInputTokens": 22372,
-      "lastTotalCacheReadInputTokens": 0,
-      "lastSessionId": "6196f0d8-4b61-445f-9dc1-1bda97852c23",
+      "lastTotalInputTokens": 5194,
+      "lastTotalOutputTokens": 889,
+      "lastTotalCacheCreationInputTokens": 5837,
+      "lastTotalCacheReadInputTokens": 104102,
+      "lastSessionId": "a6b2933f-1a21-492a-a844-5b7917f7481d",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -126,31 +126,23 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 19313,
+      "lastAPIDurationWithoutRetries": 25544,
       "lastModelUsage": {
-        "us.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "inputTokens": 1617,
-          "outputTokens": 374,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.010461
-        },
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 170,
-          "outputTokens": 27,
+          "inputTokens": 5185,
+          "outputTokens": 172,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.00030500000000000004
+          "costUSD": 0.006045
         },
-        "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "inputTokens": 2,
-          "outputTokens": 272,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 22372,
+        "global.anthropic.claude-opus-4-6-v1": {
+          "inputTokens": 9,
+          "outputTokens": 717,
+          "cacheReadInputTokens": 104102,
+          "cacheCreationInputTokens": 5837,
           "webSearchRequests": 0,
-          "costUSD": 0.14663500000000002
+          "costUSD": 0.31950675
         }
       }
     },
@@ -3518,6 +3510,98 @@
         }
       },
       "lastSessionId": "bc9b6da5-2b9e-4eef-9d3e-16cf05b88b56"
+    },
+    "/Users/jimweller/tmp/_crap/dst": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "reactVulnerabilityCache": {
+        "detected": false,
+        "package": null,
+        "packageName": null,
+        "version": null,
+        "packageManager": null
+      },
+      "lastCost": 0.41683025,
+      "lastAPIDuration": 29472,
+      "lastAPIDurationWithoutRetries": 29469,
+      "lastToolDuration": 5657,
+      "lastDuration": 56439,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 7206,
+      "lastTotalOutputTokens": 1386,
+      "lastTotalCacheCreationInputTokens": 7617,
+      "lastTotalCacheReadInputTokens": 118809,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "inputTokens": 7198,
+          "outputTokens": 221,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.008303
+        },
+        "global.anthropic.claude-opus-4-6-v1": {
+          "inputTokens": 8,
+          "outputTokens": 1165,
+          "cacheReadInputTokens": 118809,
+          "cacheCreationInputTokens": 7617,
+          "webSearchRequests": 0,
+          "costUSD": 0.40852724999999995
+        }
+      },
+      "lastSessionId": "8238d020-4a86-4f80-9f64-fff902b48c94"
+    },
+    "/Users/jimweller/tmp/_crap/src": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "reactVulnerabilityCache": {
+        "detected": false,
+        "package": null,
+        "packageName": null,
+        "version": null,
+        "packageManager": null
+      },
+      "lastCost": 0.00022400000000000002,
+      "lastAPIDuration": 1195,
+      "lastAPIDurationWithoutRetries": 1195,
+      "lastToolDuration": 0,
+      "lastDuration": 4027,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 189,
+      "lastTotalOutputTokens": 7,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {
+        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+          "inputTokens": 189,
+          "outputTokens": 7,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.00022400000000000002
+        }
+      },
+      "lastSessionId": "d3e10918-1d1f-4949-be32-c3012f2d99e3"
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -3727,6 +3811,10 @@
     "ado": {
       "usageCount": 2,
       "lastUsedAt": 1770227066537
+    },
+    "claude-migrate-session": {
+      "usageCount": 10,
+      "lastUsedAt": 1770497464087
     }
   },
   "opusProMigrationComplete": true,
