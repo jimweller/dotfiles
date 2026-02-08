@@ -11,20 +11,28 @@
     "AWS_REGION": "us-west-2",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
-    "ENABLE_TOOL_SEARCH": "auto:1"
+    "ENABLE_TOOL_SEARCH": "auto:1",
+    "CLAUDE_CODE_SHELL": "bash",
+    "DISABLE_COST_WARNINGS": "1",
+    "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "DISABLE_TELEMETRY": "1"
   },
   "includeCoAuthoredBy": false,
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline-command.sh"
+    "command": "~/.claude/statusline-command.sh aws"
   },
   "enabledPlugins": {
     "ralph-wiggum@claude-plugins-official": true
   },
+  "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
   "spinnerTipsEnabled": false,
-  "alwaysThinkingEnabled": false,
   "autoUpdatesChannel": "latest",
   "autoUpdates": true,
-  "preferredNotifChannel": "notifications_disabled"
+  "preferredNotifChannel": "notifications_disabled",
+  "prefersReducedMotion": true
 }

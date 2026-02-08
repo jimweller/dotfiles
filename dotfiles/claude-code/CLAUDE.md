@@ -3,6 +3,10 @@
 This file contains user-level preferences and instructions that apply to all
 Claude Code sessions.
 
+## Dotfiles Project Context
+
+- This repo IS the dotfiles repo. When asked to change Claude Code settings, edit the files in `dotfiles/claude-code/` (both AWS and Azure variants), NOT the global `~/.claude/settings.json`.
+
 ## General Preferences
 
 - Prefer concise, direct responses, almost robotic

@@ -1,5 +1,5 @@
 {
-  "numStartups": 828,
+  "numStartups": 845,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 19850,
+  "promptQueueUseCount": 19851,
   "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
@@ -289,27 +289,27 @@
       "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "lastTotalWebSearchRequests": 0,
+      "lastTotalWebSearchRequests": 1,
       "exampleFiles": [
         "install.common.yaml",
-        "custom_modes.yaml",
-        "global-rules.json",
         "vscode_settings.json",
+        "custom_modes.yaml",
+        "global-rules.md",
         "devcontainer.sh"
       ],
-      "exampleFilesGeneratedAt": 1769803517068,
+      "exampleFilesGeneratedAt": 1770526345486,
       "disabledMcpServers": [],
-      "lastCost": 0.655681,
-      "lastAPIDuration": 37970,
-      "lastToolDuration": 5344,
-      "lastDuration": 50180,
-      "lastLinesAdded": 0,
-      "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 13263,
-      "lastTotalOutputTokens": 820,
-      "lastTotalCacheCreationInputTokens": 21906,
-      "lastTotalCacheReadInputTokens": 126147,
-      "lastSessionId": "0fcf5e84-5e69-4962-bb21-ade608fe6d07",
+      "lastCost": 4.047209749999999,
+      "lastAPIDuration": 182848,
+      "lastToolDuration": 49887,
+      "lastDuration": 1326005,
+      "lastLinesAdded": 31,
+      "lastLinesRemoved": 9,
+      "lastTotalInputTokens": 73566,
+      "lastTotalOutputTokens": 9647,
+      "lastTotalCacheCreationInputTokens": 115555,
+      "lastTotalCacheReadInputTokens": 827511,
+      "lastSessionId": "4911d8a3-906b-49fb-a9d8-c8d177a61170",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -317,23 +317,23 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 37968,
+      "lastAPIDurationWithoutRetries": 182841,
       "lastModelUsage": {
-        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 13248,
-          "outputTokens": 275,
+        "claude-haiku-4-5": {
+          "inputTokens": 69422,
+          "outputTokens": 3226,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.014623
+          "costUSD": 0.085552
         },
-        "global.anthropic.claude-opus-4-6-v1": {
-          "inputTokens": 15,
-          "outputTokens": 545,
-          "cacheReadInputTokens": 126147,
-          "cacheCreationInputTokens": 21906,
-          "webSearchRequests": 0,
-          "costUSD": 0.641058
+        "claude-opus-4-6": {
+          "inputTokens": 4144,
+          "outputTokens": 6421,
+          "cacheReadInputTokens": 827511,
+          "cacheCreationInputTokens": 115555,
+          "webSearchRequests": 1,
+          "costUSD": 3.9616577499999996
         }
       }
     },
@@ -3479,37 +3479,30 @@
         "version": null,
         "packageManager": null
       },
-      "lastCost": 16.752667499999998,
-      "lastAPIDuration": 779354,
-      "lastAPIDurationWithoutRetries": 779317,
-      "lastToolDuration": 399869,
-      "lastDuration": 1866659,
-      "lastLinesAdded": 113,
-      "lastLinesRemoved": 77,
-      "lastTotalInputTokens": 130759,
-      "lastTotalOutputTokens": 35768,
-      "lastTotalCacheCreationInputTokens": 102828,
-      "lastTotalCacheReadInputTokens": 8286673,
+      "lastCost": 0.000368,
+      "lastAPIDuration": 1394,
+      "lastAPIDurationWithoutRetries": 1394,
+      "lastToolDuration": 0,
+      "lastDuration": 438420,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 123,
+      "lastTotalOutputTokens": 49,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
-        "global.anthropic.claude-opus-4-6-v1": {
-          "inputTokens": 256,
-          "outputTokens": 29735,
-          "cacheReadInputTokens": 8286673,
-          "cacheCreationInputTokens": 102828,
-          "webSearchRequests": 0,
-          "costUSD": 16.591999499999996
-        },
-        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 130503,
-          "outputTokens": 6033,
+        "claude-haiku-4-5": {
+          "inputTokens": 123,
+          "outputTokens": 49,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.16066800000000003
+          "costUSD": 0.000368
         }
       },
-      "lastSessionId": "bc9b6da5-2b9e-4eef-9d3e-16cf05b88b56"
+      "lastSessionId": "16e90748-6af9-4f74-9a70-358fa1566a36",
+      "hasCompletedProjectOnboarding": true
     },
     "/Users/jimweller/tmp/_crap/dst": {
       "allowedTools": [],
@@ -3658,7 +3651,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1770445593148,
+  "lastPlanModeUse": 1770499454770,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -3773,8 +3766,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 12,
-      "lastUsedAt": 1770390935994
+      "usageCount": 13,
+      "lastUsedAt": 1770519391456
     },
     "publish": {
       "usageCount": 10,
@@ -3785,8 +3778,8 @@
       "lastUsedAt": 1770470282937
     },
     "update-docs": {
-      "usageCount": 20,
-      "lastUsedAt": 1770390873291
+      "usageCount": 22,
+      "lastUsedAt": 1770523746412
     },
     "confluence-publish": {
       "usageCount": 4,
@@ -3813,8 +3806,8 @@
       "lastUsedAt": 1770227066537
     },
     "claude-migrate-session": {
-      "usageCount": 10,
-      "lastUsedAt": 1770497464087
+      "usageCount": 11,
+      "lastUsedAt": 1770499012869
     }
   },
   "opusProMigrationComplete": true,

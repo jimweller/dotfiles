@@ -57,7 +57,9 @@
 
 - link:
     ~/.claude.json: dotfiles/claude-code/claude_json
-    ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json
+    ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json_azure
+    ~/.claude/settings-aws.json: dotfiles/claude-code/claude_settings_json_aws
+    ~/.claude/settings-azure.json: dotfiles/claude-code/claude_settings_json_azure
     ~/.claude/statusline-command.sh: dotfiles/claude-code/statusline-command.sh
     ~/.claude/CLAUDE.md: dotfiles/claude-code/CLAUDE.md
     ~/.claude/commands/:
