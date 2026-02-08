@@ -12,5 +12,5 @@ claude_regular() {
 alias c='claude_regular'
 
 # Cloud-specific Claude aliases using --settings flag
-alias claws='claude --settings ~/.claude/settings-aws.json'
-alias claz='claude --settings ~/.claude/settings-azure.json'
+alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-aws.json'
+alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json'

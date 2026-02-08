@@ -2,9 +2,9 @@
 
 CLOUD_ARG="${1:-}"
 case "$CLOUD_ARG" in
-  aws)   CLOUD=$'\xEF\x89\xB0' ;;
-  azure) CLOUD=$'\xEE\xAF\x98' ;;
-  *)     CLOUD="" ;;
+  aws)   CLOUD=$'\xEF\x89\xB0'; CLOUD_COLOR="\033[1;38;5;208m" ;;
+  azure) CLOUD=$'\xEE\xAF\x98'; CLOUD_COLOR="\033[1;94m" ;;
+  *)     CLOUD=""; CLOUD_COLOR="" ;;
 esac
 
 # Read JSON input from stdin
@@ -22,7 +22,9 @@ DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
 COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.2f", $1}')
 DURATION_MS=$(echo "$INPUT" | jq -r '.cost.total_duration_ms // 0')
 DURATION_SEC=$((DURATION_MS / 1000))
-MINS=$((DURATION_SEC / 60))
+DAYS=$((DURATION_SEC / 86400))
+HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
+MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
 CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
@@ -57,27 +59,37 @@ fi
 BAR_WIDTH=10
 FILLED=$((CTX_PCT * BAR_WIDTH / 100))
 EMPTY=$((BAR_WIDTH - FILLED))
-BAR=""
-[ "$FILLED" -gt 0 ] && BAR=$(printf "%${FILLED}s" | tr ' ' '▓')
-[ "$EMPTY" -gt 0 ] && BAR="${BAR}$(printf "%${EMPTY}s" | tr ' ' '░')"
+BAR_FILLED=""
+BAR_EMPTY=""
+[ "$FILLED" -gt 0 ] && BAR_FILLED=$(printf "%${FILLED}s" | tr ' ' '█')
+[ "$EMPTY" -gt 0 ] && BAR_EMPTY=$(printf "%${EMPTY}s" | tr ' ' '█')
 
 # Build statusline
-[ -n "$CLOUD" ] && printf "\033[1;94m${CLOUD}\033[0m | "
+[ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
 printf "📁 \033[36m$DIR\033[0m"
 if [ -n "$BRANCH" ]; then
   printf " | \033[33m🌿 $BRANCH\033[0m"
   # p10k-style git status indicators
-  [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[36m⇣$BEHIND\033[0m"
-  [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[36m⇡$AHEAD\033[0m"
-  [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[35m*$STASH\033[0m"
-  [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[31m~$CONFLICTS\033[0m"
-  [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[32m+$STAGED\033[0m"
-  [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[33m!$UNSTAGED\033[0m"
-  [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[34m?$UNTRACKED\033[0m"
+  [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[1;96m⇣$BEHIND\033[0m"
+  [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[1;96m⇡$AHEAD\033[0m"
+  [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[1;95m*$STASH\033[0m"
+  [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[1;91m~$CONFLICTS\033[0m"
+  [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[1;92m+$STAGED\033[0m"
+  [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[1;93m!$UNSTAGED\033[0m"
+  [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[1;97m?$UNTRACKED\033[0m"
 fi
 printf " | 🤖 \033[1m$MODEL\033[0m"
-printf " ${CTX_COLOR}${BAR} ${CTX_PCT}%%\033[0m"
+printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m ${CTX_COLOR}${CTX_PCT}%%\033[0m"
 printf " | 💵 \033[93m\$${COST}\033[0m"
-printf " | ⏱️ ${MINS}m ${SECS}s"
+if [ "$DAYS" -gt 0 ]; then
+  DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"
+elif [ "$HOURS" -gt 0 ]; then
+  DURATION="${HOURS}h ${MINS}m ${SECS}s"
+elif [ "$MINS" -gt 0 ]; then
+  DURATION="${MINS}m ${SECS}s"
+else
+  DURATION="${SECS}s"
+fi
+printf " | ⏱️ ${DURATION}"
 
 echo

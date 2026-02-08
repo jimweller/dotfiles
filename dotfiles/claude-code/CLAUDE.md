@@ -22,6 +22,7 @@ Claude Code sessions.
 - Prefer simple, readable solutions over clever ones
 - Avoid over-engineering or adding unnecessary abstractions
 - Do not add comments to production code. Keep it clean unless asked.
+- In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
 
 ## Git Workflow
 

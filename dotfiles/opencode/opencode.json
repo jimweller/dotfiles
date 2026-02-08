@@ -10,16 +10,16 @@
       },
       "models": {
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "name": "Claude Opus 4.5"
+          "name": "aws/Claude Opus 4.5"
         },
         "global.anthropic.claude-opus-4-6-v1": {
-          "name": "Claude Opus 4.6"
+          "name": "aws/Claude Opus 4.6"
         },
         "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "name": "Claude Sonnet 4.5"
+          "name": "aws/Claude Sonnet 4.5"
         },
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "name": "Claude Haiku 4.5"
+          "name": "aws/Claude Haiku 4.5"
         }
       },
       "whitelist": [
@@ -74,9 +74,47 @@
         "gpt-5-mini",
         "gpt-5-nano"
       ]
+    },
+    "az-anthropic": {
+      "npm": "@ai-sdk/anthropic",
+      "options": {
+        "baseURL": "https://mcg-dxclinical-fais.services.ai.azure.com/anthropic/v1",
+        "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}"
+      },
+      "models": {
+        "claude-opus-4-6": {
+          "name": "az/Claude Opus 4.6"
+        },
+        "claude-sonnet-4-5": {
+          "name": "az/Claude Sonnet 4.5"
+        },
+        "claude-haiku-4-5": {
+          "name": "az/Claude Haiku 4.5"
+        }
+      },
+      "whitelist": [
+        "claude-opus-4-6",
+        "claude-sonnet-4-5",
+        "claude-haiku-4-5"
+      ]
+    },
+    "az-foundry": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://mcg-dxclinical-fais.services.ai.azure.com/models",
+        "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}"
+      },
+      "models": {
+        "deepseek-3-2": {
+          "name": "az/DeepSeek V3.2"
+        }
+      },
+      "whitelist": [
+        "deepseek-3-2"
+      ]
     }
   },
-  "enabled_providers": ["amazon-bedrock", "google", "openai"],
+  "enabled_providers": ["amazon-bedrock", "google", "openai", "az-anthropic", "az-foundry"],
   "mcp": {
     "context7": {
       "type": "local",

@@ -28,9 +28,14 @@
   "enabledPlugins": {
     "ralph-wiggum@claude-plugins-official": true
   },
-  "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
   "spinnerTipsEnabled": false,
   "autoUpdatesChannel": "latest",
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working"
+    ]
+  },
   "autoUpdates": true,
   "preferredNotifChannel": "notifications_disabled",
   "prefersReducedMotion": true
