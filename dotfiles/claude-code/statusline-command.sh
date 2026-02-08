@@ -2,8 +2,8 @@
 
 CLOUD_ARG="${1:-}"
 case "$CLOUD_ARG" in
-  aws)   CLOUD=$'\xEF\x89\xB0'; CLOUD_COLOR="\033[1;38;5;208m" ;;
-  azure) CLOUD=$'\xEE\xAF\x98'; CLOUD_COLOR="\033[1;94m" ;;
+  aws)   CLOUD=$'\xEF\x89\xB0'; CLOUD_COLOR="\033[38;5;208m" ;;
+  azure) CLOUD=$'\xEE\xAF\x98'; CLOUD_COLOR="\033[94m" ;;
   *)     CLOUD=""; CLOUD_COLOR="" ;;
 esac
 
@@ -30,6 +30,14 @@ CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d.
 
 # Get git info
 if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
+  GIT_EMAIL=$(git config user.email 2>/dev/null)
+  case "$GIT_EMAIL" in
+    jim.weller@gmail.com) GIT_USER="jw";   GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;33m" ;;
+    jim.weller@mcg.com)   GIT_USER="work"; GIT_USER_ICON=$'\xEF\x91\xAE'; GIT_USER_COLOR="\033[38;5;196m" ;;
+    "")                   GIT_USER="" ;;
+    *)                    GIT_USER="$GIT_EMAIL"; GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;29m" ;;
+  esac
+
   BRANCH=$(git branch --show-current 2>/dev/null)
 
   # Ahead/behind remote
@@ -47,40 +55,43 @@ if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; the
   CONFLICTS=$(echo "$GIT_STATUS" | grep -c '^UU\|^AA\|^DD' 2>/dev/null || echo 0)
 fi
 
-# Color-code context bar (green <50%, yellow 50-80%, red >80%)
-if [ "$CTX_PCT" -ge 80 ]; then
-  CTX_COLOR="\033[31m"
-elif [ "$CTX_PCT" -ge 50 ]; then
-  CTX_COLOR="\033[33m"
-else
-  CTX_COLOR="\033[32m"
-fi
+CTX_COLOR="\033[38;5;114m"
 
-BAR_WIDTH=10
+BAR_WIDTH=12
+BUFFER_WIDTH=2
 FILLED=$((CTX_PCT * BAR_WIDTH / 100))
-EMPTY=$((BAR_WIDTH - FILLED))
+REMAINING=$((BAR_WIDTH - FILLED))
+if [ "$REMAINING" -lt "$BUFFER_WIDTH" ]; then
+  BUFFER_SHOW=$REMAINING
+else
+  BUFFER_SHOW=$BUFFER_WIDTH
+fi
+EMPTY=$((REMAINING - BUFFER_SHOW))
 BAR_FILLED=""
 BAR_EMPTY=""
+BAR_BUFFER=""
 [ "$FILLED" -gt 0 ] && BAR_FILLED=$(printf "%${FILLED}s" | tr ' ' '█')
 [ "$EMPTY" -gt 0 ] && BAR_EMPTY=$(printf "%${EMPTY}s" | tr ' ' '█')
+[ "$BUFFER_SHOW" -gt 0 ] && BAR_BUFFER=$(printf "%${BUFFER_SHOW}s" | tr ' ' '█')
 
 # Build statusline
 [ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
 printf "📁 \033[36m$DIR\033[0m"
+[ -n "$GIT_USER" ] && printf " | ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
 if [ -n "$BRANCH" ]; then
   printf " | \033[33m🌿 $BRANCH\033[0m"
   # p10k-style git status indicators
-  [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[1;96m⇣$BEHIND\033[0m"
-  [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[1;96m⇡$AHEAD\033[0m"
-  [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[1;95m*$STASH\033[0m"
-  [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[1;91m~$CONFLICTS\033[0m"
-  [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[1;92m+$STAGED\033[0m"
-  [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[1;93m!$UNSTAGED\033[0m"
-  [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[1;97m?$UNTRACKED\033[0m"
+  [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[96m⇣$BEHIND\033[0m"
+  [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[96m⇡$AHEAD\033[0m"
+  [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[95m*$STASH\033[0m"
+  [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[91m~$CONFLICTS\033[0m"
+  [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[92m+$STAGED\033[0m"
+  [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
+  [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | 🤖 \033[1m$MODEL\033[0m"
-printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m ${CTX_COLOR}${CTX_PCT}%%\033[0m"
-printf " | 💵 \033[93m\$${COST}\033[0m"
+printf " | 🤖 $MODEL"
+printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[91m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_PCT}%%\033[0m"
+printf " | 💵 \033[38;5;186m\$${COST}\033[0m"
 if [ "$DAYS" -gt 0 ]; then
   DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"
 elif [ "$HOURS" -gt 0 ]; then
@@ -90,6 +101,6 @@ elif [ "$MINS" -gt 0 ]; then
 else
   DURATION="${SECS}s"
 fi
-printf " | ⏱️ ${DURATION}"
+printf " | ⏱️  ${DURATION}"
 
 echo

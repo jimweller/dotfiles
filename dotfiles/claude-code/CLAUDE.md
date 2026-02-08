@@ -23,6 +23,7 @@ Claude Code sessions.
 - Avoid over-engineering or adding unnecessary abstractions
 - Do not add comments to production code. Keep it clean unless asked.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
+- In bash scripts, never use `$'\uNNNN'` for Unicode characters. Bash `$'...'` only supports `\xHH` byte escapes. Use UTF-8 byte sequences instead (e.g., `$'\xEF\x8A\xBB'` for U+F2BB).
 
 ## Git Workflow
 
