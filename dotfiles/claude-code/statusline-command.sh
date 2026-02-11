@@ -27,6 +27,7 @@ HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
 CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+CTX_USABLE=$(echo "$CTX_PCT" | awk '{v = $1 * 100 / 83.5; printf "%.0f", (v > 100 ? 100 : v)}')
 
 # Get git info
 if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
@@ -72,7 +73,7 @@ BAR_EMPTY=""
 BAR_BUFFER=""
 [ "$FILLED" -gt 0 ] && BAR_FILLED=$(printf "%${FILLED}s" | tr ' ' '█')
 [ "$EMPTY" -gt 0 ] && BAR_EMPTY=$(printf "%${EMPTY}s" | tr ' ' '█')
-[ "$BUFFER_SHOW" -gt 0 ] && BAR_BUFFER=$(printf "%${BUFFER_SHOW}s" | tr ' ' '█')
+[ "$BUFFER_SHOW" -gt 0 ] && BAR_BUFFER=$(printf "%${BUFFER_SHOW}s" | tr ' ' '░')
 
 # Build statusline
 [ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
@@ -90,7 +91,7 @@ if [ -n "$BRANCH" ]; then
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
 printf " | 🤖 $MODEL"
-printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[91m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_PCT}%%\033[0m"
+printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[2;90m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 printf " | 💵 \033[38;5;186m\$${COST}\033[0m"
 if [ "$DAYS" -gt 0 ]; then
   DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"

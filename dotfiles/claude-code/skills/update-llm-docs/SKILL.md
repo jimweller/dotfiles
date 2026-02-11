@@ -1,6 +1,6 @@
 ---
 name: update-docs
-description: Update project documentation (CLAUDE.md + docs/). Use after significant work to keep docs in sync.
+description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
 disable-model-invocation: true
 argument-hint: "[docs|all]"
 ---
@@ -9,9 +9,7 @@ argument-hint: "[docs|all]"
 
 Two responsibilities:
 1. **CLAUDE.md** — concise project overview (always loaded)
-2. **docs/** — detailed per-concept docs (loaded on demand)
-
-For todo management, use `/todos-update` (or `/close` which includes it).
+2. **.llmdocs/** — detailed per-concept docs (loaded on demand)
 
 ---
 
@@ -48,7 +46,7 @@ Target: **under 150 lines**. Every line must earn its place.
 <domain terms, business logic Claude must know>
 
 ## Docs
-Detailed docs in `docs/`:
+Detailed docs in `.llmdocs/`:
 - `architecture.md` — <1-line description>
 - `data-model.md` — <1-line description>
 
@@ -57,15 +55,15 @@ Detailed docs in `docs/`:
 ### CLAUDE.md Rules
 
 - NO verbose explanations — Claude infers
-- NO duplicating docs/ content — just reference with short description
-- The `## Docs` section MUST list all docs/ files with a 1-line description each
+- NO duplicating .llmdocs/ content — just reference with short description
+- The `## Docs` section MUST list all .llmdocs/ files with a 1-line description each
 - Preserve existing custom instructions (git workflow, env vars, etc.)
 - Ask before removing any existing content
-- Use `@docs/filename.md` import if a doc should always be loaded
+- Use `@.llmdocs/filename.md` import if a doc should always be loaded
 
 ---
 
-## 2. docs/ — The Territory
+## 2. .llmdocs/ — The Territory
 
 ### Process
 
@@ -79,14 +77,14 @@ If nothing changed that warrants doc updates, say so and move on.
 
 ### Location
 
-Use the path specified in existing CLAUDE.md, or default `docs/` at project root.
+Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at project root.
 
 ### Structure
 
 Flat, 1 file per concept:
 
 ```
-docs/
+.llmdocs/
   architecture.md    # Components, interactions, data flow
   api.md             # Endpoints, request/response
   data-model.md      # Schema, models, relationships
@@ -105,7 +103,7 @@ docs/
 <content: headers, tables, code blocks — no prose paragraphs>
 ```
 
-### docs/ Rules
+### .llmdocs/ Rules
 
 - Max 200 lines per file — split if larger
 - Include file paths with line refs where useful (`src/auth/login.ts:42`)

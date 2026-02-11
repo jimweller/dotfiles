@@ -14,7 +14,6 @@
     "ENABLE_TOOL_SEARCH": "auto:1",
     "CLAUDE_CODE_SHELL": "bash",
     "DISABLE_COST_WARNINGS": "1",
-    "DISABLE_AUTOUPDATER": "1",
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
@@ -32,7 +31,5 @@
   "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
   "spinnerTipsEnabled": false,
   "autoUpdatesChannel": "latest",
-  "autoUpdates": true,
-  "preferredNotifChannel": "notifications_disabled",
   "prefersReducedMotion": true
 }
