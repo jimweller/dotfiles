@@ -19,21 +19,18 @@
     "DISABLE_TELEMETRY": "1"
   },
   "includeCoAuthoredBy": false,
-  "model": "opus",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline-command.sh azure"
   },
-  "enabledPlugins": {
-    "ralph-wiggum@claude-plugins-official": true
-  },
   "spinnerTipsEnabled": false,
-  "autoUpdatesChannel": "latest",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
       "Working"
     ]
   },
+  "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true
 }

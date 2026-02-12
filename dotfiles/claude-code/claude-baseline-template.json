@@ -28,11 +28,14 @@
   "lastReleaseNotesSeen": "",
   "mcpServers": {
     "c7": {
-      "type": "http",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "${CONTEXT7_KEY}"
-      },
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "${CONTEXT7_KEY}"
+      ],
       "env": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       }
@@ -42,7 +45,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "github:jimweller/google-research-mcp"
+        "github:zoharbabin/google-research-mcp"
       ],
       "env": {
         "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
@@ -54,7 +57,10 @@
       "type": "stdio",
       "command": "uvx",
       "args": [
-        "mcp-atlassian"
+        "--python",
+        "python3.10",
+        "/Users/jimweller/tmp/mcp-atlassian",
+        "-v"
       ],
       "env": {
         "CONFLUENCE_URL": "${CONFLUENCE_URL}",
