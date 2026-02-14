@@ -24,7 +24,9 @@
   "general": {
     "previewFeatures": true,
     "disableAutoUpdate": true,
-    "disableUpdateNag": true
+    "disableUpdateNag": true,
+    "enableAutoUpdate": false,
+    "enableAutoUpdateNotification": false
   },
   "output": {
     "format": "text"
@@ -35,7 +37,8 @@
     "showLineNumbers": false,
     "hideWindowTitle": true,
     "accessibility": {
-      "disableLoadingPhrases": true
+      "disableLoadingPhrases": true,
+      "enableLoadingPhrases": false
     }
   },
   "tools": {

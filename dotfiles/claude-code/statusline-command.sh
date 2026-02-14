@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# prevent stale index.lock files. Blocks claude's commits https://github.com/anthropics/claude-code/issues/11005
+GIT_OPTIONAL_LOCKS=0
+
+ICON_FOLDER=$'\xF3\xB0\x9D\xB0'
+ICON_BRANCH=$'\xF3\xB0\x98\xAC'
+ICON_ROBOT=$'\xF3\xB0\x9A\xA9'
+ICON_CASH=$'\xF3\xB0\x84\x94'
+ICON_TIMER=$'\xF3\xB1\x8E\xAB'
+
 CLOUD_ARG="${1:-}"
 case "$CLOUD_ARG" in
   aws)   CLOUD=$'\xEF\x89\xB0'; CLOUD_COLOR="\033[38;5;208m" ;;
@@ -56,7 +65,15 @@ if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; the
   CONFLICTS=$(echo "$GIT_STATUS" | grep -c '^UU\|^AA\|^DD' 2>/dev/null || echo 0)
 fi
 
-CTX_COLOR="\033[38;5;114m"
+if [ "$CTX_USABLE" -ge 90 ]; then
+  CTX_COLOR="\033[38;5;196m"
+elif [ "$CTX_USABLE" -ge 75 ]; then
+  CTX_COLOR="\033[38;5;208m"
+elif [ "$CTX_USABLE" -ge 50 ]; then
+  CTX_COLOR="\033[38;5;186m"
+else
+  CTX_COLOR="\033[38;5;114m"
+fi
 
 BAR_WIDTH=12
 BUFFER_WIDTH=2
@@ -77,10 +94,10 @@ BAR_BUFFER=""
 
 # Build statusline
 [ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
-printf "📁 \033[36m$DIR\033[0m"
+printf "\033[38;5;117m${ICON_FOLDER} $DIR\033[0m"
 [ -n "$GIT_USER" ] && printf " | ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
 if [ -n "$BRANCH" ]; then
-  printf " | \033[33m🌿 $BRANCH\033[0m"
+  printf " | \033[33m${ICON_BRANCH} $BRANCH\033[0m"
   # p10k-style git status indicators
   [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[96m⇣$BEHIND\033[0m"
   [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[96m⇡$AHEAD\033[0m"
@@ -90,9 +107,9 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | 🤖 $MODEL"
+printf " | ${CTX_COLOR}${ICON_ROBOT} $MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[2;90m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
-printf " | 💵 \033[38;5;186m\$${COST}\033[0m"
+printf " | \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
 if [ "$DAYS" -gt 0 ]; then
   DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"
 elif [ "$HOURS" -gt 0 ]; then
@@ -102,6 +119,6 @@ elif [ "$MINS" -gt 0 ]; then
 else
   DURATION="${SECS}s"
 fi
-printf " | ⏱️  ${DURATION}"
+printf " | \033[38;5;250m${ICON_TIMER} ${DURATION}\033[0m"
 
 echo
