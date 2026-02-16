@@ -88,5 +88,3 @@ gpa()
     fi
   done  
 }
-
-switch_git_profile work

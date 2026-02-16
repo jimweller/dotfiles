@@ -10,6 +10,16 @@
         "installedAt": "2025-12-29T06:47:45.642Z",
         "lastUpdated": "2025-12-29T06:47:45.642Z"
       }
+    ],
+    "ralph-loop@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-15T00:45:49.408Z",
+        "lastUpdated": "2026-02-15T00:45:49.408Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
     ]
   }
 }

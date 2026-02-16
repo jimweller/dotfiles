@@ -7,6 +7,10 @@ Claude Code sessions.
 
 - This repo IS the dotfiles repo. When asked to change Claude Code settings, edit the files in `dotfiles/claude-code/` (both AWS and Azure variants), NOT the global `~/.claude/settings.json`.
 
+## Claude Project Key Format
+
+- Claude Code project keys are derived from the project directory path: `/` and `.` become `-`, and `_` is stripped entirely (e.g., `/Users/foo/my_project` becomes `-Users-foo-myproject`).
+
 ## General Preferences
 
 - Prefer concise, direct responses, almost robotic

@@ -21,6 +21,8 @@
     "~/Library/LaunchAgents/com.user.sync.plist": scripts/sync.plist
     "~/Library/LaunchAgents/com.user.colima.plist": scripts/colima-start.plist
     "~/Library/LaunchAgents/com.user.steampipe.plist": scripts/steampipe-start.plist
+    "~/Library/LaunchAgents/com.user.ccusagecacherefresh.plist": scripts/ccusage-cache-refresh.plist
+    ~/.claude/ccusage-cache-refresh.sh: dotfiles/claude-code/ccusage-cache-refresh.sh
 
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)

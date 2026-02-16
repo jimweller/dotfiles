@@ -28,5 +28,8 @@
   "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
   "spinnerTipsEnabled": false,
   "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true
+  "prefersReducedMotion": true,
+  "enabledPlugins": {
+    "ralph-loop@claude-plugins-official": true
+  }
 }

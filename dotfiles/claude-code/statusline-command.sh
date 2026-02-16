@@ -7,6 +7,9 @@ ICON_FOLDER=$'\xF3\xB0\x9D\xB0'
 ICON_BRANCH=$'\xF3\xB0\x98\xAC'
 ICON_ROBOT=$'\xF3\xB0\x9A\xA9'
 ICON_CASH=$'\xF3\xB0\x84\x94'
+ICON_INVOICE=$'\xF3\xB1\x89\x9F'
+ICON_CAL_RANGE=$'\xF3\xB0\x83\xB0'
+ICON_CAL_TODAY=$'\xF3\xB0\xB8\x97'
 ICON_TIMER=$'\xF3\xB1\x8E\xAB'
 
 CLOUD_ARG="${1:-}"
@@ -28,7 +31,7 @@ case "$MODEL_RAW" in
 esac
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
-COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.2f", $1}')
+COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.0f", $1}')
 DURATION_MS=$(echo "$INPUT" | jq -r '.cost.total_duration_ms // 0')
 DURATION_SEC=$((DURATION_MS / 1000))
 DAYS=$((DURATION_SEC / 86400))
@@ -109,7 +112,26 @@ if [ -n "$BRANCH" ]; then
 fi
 printf " | ${CTX_COLOR}${ICON_ROBOT} $MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[2;90m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
+PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
+CACHE="/tmp/ccusage-cache.json"
+COST_PROJECT=""
+COST_MONTH=""
+COST_MTD=""
+if [ -f "$CACHE" ] && [ -n "$PROJECT_KEY" ]; then
+  DATE_30D=$(date -v-30d +%Y-%m-%d 2>/dev/null)
+  DATE_MTD=$(date +%Y-%m-01 2>/dev/null)
+  if [ -n "$DATE_30D" ]; then
+    COST_PROJECT=$(jq -r --arg p "$PROJECT_KEY" '[.projects[$p][]? | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+    COST_MONTH=$(jq -r --arg d "$DATE_30D" '[.projects[][] | select(.date >= $d) | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  fi
+  if [ -n "$DATE_MTD" ]; then
+    COST_MTD=$(jq -r --arg d "$DATE_MTD" '[.projects[][] | select(.date >= $d) | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  fi
+fi
 printf " | \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
+[ -n "$COST_PROJECT" ] && printf " \033[38;5;186m${ICON_INVOICE} \$${COST_PROJECT}\033[0m"
+[ -n "$COST_MTD" ] && printf " \033[38;5;186m${ICON_CAL_TODAY} \$${COST_MTD}\033[0m"
+[ -n "$COST_MONTH" ] && printf " \033[38;5;186m${ICON_CAL_RANGE} \$${COST_MONTH}\033[0m"
 if [ "$DAYS" -gt 0 ]; then
   DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"
 elif [ "$HOURS" -gt 0 ]; then
