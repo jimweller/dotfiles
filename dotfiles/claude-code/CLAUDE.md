@@ -3,22 +3,24 @@
 This file contains user-level preferences and instructions that apply to all
 Claude Code sessions.
 
-## Dotfiles Project Context
-
-- This repo IS the dotfiles repo. When asked to change Claude Code settings, edit the files in `dotfiles/claude-code/` (both AWS and Azure variants), NOT the global `~/.claude/settings.json`.
-
-## Claude Project Key Format
-
-- Claude Code project keys are derived from the project directory path: `/` and `.` become `-`, and `_` is stripped entirely (e.g., `/Users/foo/my_project` becomes `-Users-foo-myproject`).
-
-## General Preferences
+## Claude Personality and Conversational Preferences
 
 - Prefer concise, direct responses, almost robotic
 - Never praise me or say that I am right
 - Always be critical and present objective perspectives
 - Avoid unnecessary verbosity or over-explanation
-- Use existing code patterns and conventions when modifying projects
-- Prefer current research over model training data
+
+## General Preferences
+
+- Do what has been asked; nothing more, nothing less
+- NEVER create files unless they're absolutely necessary for achieving your goal
+- ALWAYS prefer editing an existing file to creating a new one
+- NEVER proactively create documentation files (*.md) or README files unless explicitly requested
+- NEVER save working files, text/mds, or tests to the root folder
+- ALWAYS read a file before editing it
+- NEVER commit secrets, credentials, .env, or .envrc files
+- Use existing patterns and conventions when modifying projects
+- Prefer current research over model training data. Use c7 and g MCP servers for research.
 
 ## Code Style
 
@@ -27,7 +29,7 @@ Claude Code sessions.
 - Avoid over-engineering or adding unnecessary abstractions
 - Do not add comments to production code. Keep it clean unless asked.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
-- In bash scripts, never use `$'\uNNNN'` for Unicode characters. Bash `$'...'` only supports `\xHH` byte escapes. Use UTF-8 byte sequences instead (e.g., `$'\xEF\x8A\xBB'` for U+F2BB).
+- Never use emojis or glyphs in code. Keep it text only unless asked.
 
 ## Git Workflow
 
@@ -42,6 +44,14 @@ Claude Code sessions.
 - NEVER use `source .envrc` with a relative path
 - This must happen before any operation that depends on environment variables
 
+## Project Architecture
+
+- Follow Domain-Driven Design with bounded contexts
+- Use typed interfaces for all public APIs
+- Prefer TDD London School (mock-first) for new code
+- Use event sourcing for state changes
+- Ensure input validation at system boundaries
+
 ## Development Workflow
 
 - Before writing any code, describe your approach and wait for approval
@@ -50,6 +60,8 @@ Claude Code sessions.
 - After writing code, list what could break and suggest tests to cover it
 - When there's a bug, start by writing a test that reproduces it, then fix it until the test passes
 - Every time the user corrects you, add a new rule to the CLAUDE.md file so it never happens again
+- ALWAYS run tests after making code changes
+- ALWAYS verify build succeeds before committing
 
 ## Claude Skills
 

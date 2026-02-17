@@ -5,6 +5,9 @@ disable-model-invocation: true
 argument-hint: "[docs|all]"
 ---
 
+STARTER_CHARACTER = ✏️
+
+
 # Update Project Documentation
 
 Two responsibilities:

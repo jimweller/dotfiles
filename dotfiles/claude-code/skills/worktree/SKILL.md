@@ -18,23 +18,26 @@ Arguments: $ARGUMENTS
 
 ## Path Calculation
 
-All operations derive paths from git:
+All operations derive paths from git. Worktree directories use the `<repo>-<branch>` naming convention (e.g., `davit-main`, `davit-feature-x`).
 
 ```bash
 REPO_ROOT=$(git rev-parse --show-toplevel)
 PARENT_DIR=$(dirname "$REPO_ROOT")
-WORKTREE_DIR="$PARENT_DIR/$BRANCH_NAME"
+REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
+WORKTREE_DIR="$PARENT_DIR/$REPO_NAME-$BRANCH_NAME"
+MAIN_DIR="$PARENT_DIR/$REPO_NAME-main"
 ```
 
 ## Operations
 
 ### create <branch>
 
-Create a new worktree as a sibling directory with a new branch.
+Create a new worktree as a sibling directory with a new branch, using `<repo>-<branch>` naming.
 
 ```bash
 REPO_ROOT=$(git rev-parse --show-toplevel)
-git worktree add "$(dirname "$REPO_ROOT")/<branch>" -b <branch>
+REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
+git worktree add "$(dirname "$REPO_ROOT")/$REPO_NAME-<branch>" -b <branch>
 ```
 
 After creation, remind the user:
@@ -58,7 +61,8 @@ Merge the current worktree's branch into main. Run from the feature worktree.
 ```bash
 REPO_ROOT=$(git rev-parse --show-toplevel)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-MAIN_DIR="$(dirname "$REPO_ROOT")/main"
+REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
+MAIN_DIR="$(dirname "$REPO_ROOT")/$REPO_NAME-main"
 
 git -C "$MAIN_DIR" fetch origin && git -C "$MAIN_DIR" pull
 git -C "$MAIN_DIR" merge "$BRANCH"
@@ -89,7 +93,9 @@ Remove a worktree and delete its branch. Must be run from the main worktree.
 2. Verify the branch is merged into main using `git branch --merged`. If not merged, refuse and instruct the user to merge first.
 
 ```bash
-git worktree remove "$(dirname "$REPO_ROOT")/<branch>"
+REPO_ROOT=$(git rev-parse --show-toplevel)
+REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
+git worktree remove "$(dirname "$REPO_ROOT")/$REPO_NAME-<branch>"
 git branch -d <branch>
 ```
 
