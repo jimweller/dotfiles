@@ -116,7 +116,7 @@
   },
   "enabled_providers": ["amazon-bedrock", "google", "openai", "az-anthropic", "az-foundry"],
   "mcp": {
-    "context7": {
+    "c7": {
       "type": "local",
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "environment": {
@@ -124,7 +124,7 @@
       },
       "enabled": true
     },
-    "googler": {
+    "g": {
       "type": "local",
       "command": ["npx", "-y", "github:jimweller/google-research-mcp"],
       "environment": {
@@ -132,6 +132,11 @@
         "GOOGLE_CUSTOM_SEARCH_ID": "{env:GOOGLE_SEARCH_ID}",
         "GOOGLE_GEMINI_API_KEY": "{env:GOOGLE_GEMINI_API_KEY}"
       },
+      "enabled": true
+    },
+    "repomix": {
+      "type": "local",
+      "command": ["npx", "-y", "repomix", "--mcp"],
       "enabled": true
     }
   }

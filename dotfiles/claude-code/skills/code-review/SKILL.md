@@ -44,27 +44,20 @@ You are performing a code review of this project. Your job is to find problems, 
 
 ## Instructions
 
-- First, read README.md, CLAUDE.md, .llmdocs/architecture.md (if present) to understand the project purpose, architecture, and conventions.
-- Run `git ls-files` to discover tracked files. Only review git-tracked files. Skip anything in .gitignore.
-- You MUST read every source file from `git ls-files` individually and fully before writing any review.
-- Do NOT summarize, skim, or batch-read files. Read every file from `git ls-files`.
+- Use the repomix MCP tool to pack the repository into a single context. This gives you the full codebase in one call. Do NOT read files individually.
+- After packing, read CLAUDE.md and .llmdocs/architecture.md (if present) for project context.
 - Write the review file directly. Do NOT ask for permission or clarifying questions. This is a non-interactive code review.
 - Every finding MUST cite specific file, line number, and function name.
 - Rate each finding: High / Medium / Low. High are "must". Medium are "should". Low are "could".
 - ONLY report defects, flaws, risks, and recommendations for improvement.
-- ALWAYS write the review file as your FIRST action after analysis. 
+- ALWAYS write the review file as your FIRST action after analysis.
 - NEVER exit without writing a review file.
-- Do NOT use scripts or automated scanners. Read each file, reason about it, then write findings.
+- Do NOT use scripts or automated scanners. Reason about the code, then write findings.
 - Do NOT delegate to sub-agents. Do the review yourself.
-- Do NOT describe what works correctly. 
-- Do NOT praise existing code. 
+- Do NOT describe what works correctly.
+- Do NOT praise existing code.
 - Do NOT say things like "well-structured", "correctly implements", or "good use of". If something is fine, skip it silently.
 - If a component has no issues, omit it entirely rather than noting it has no findings.
-
-
-## Component Discovery
-
-Before reviewing, run `git ls-files` to get the list of tracked files. Only review tracked files. Do NOT read files or directories excluded by .gitignore. Do not rely on a hardcoded file list.
 
 ## Review Areas
 
