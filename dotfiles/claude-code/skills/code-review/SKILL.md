@@ -40,20 +40,27 @@ opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "REVIE
 The full prompt passed to each `opencode run` command:
 
 ```
-You are performing a code review of this project. Your job is to find problems.
+You are performing a code review of this project. Your job is to find problems, not give compliments, not provide validation.
 
 ## Instructions
 
-- First, read README.md and CLAUDE.md to understand the project purpose, architecture, and conventions.
+- First, read README.md, CLAUDE.md, .llmdocs/architecture.md (if present) to understand the project purpose, architecture, and conventions.
 - Run `git ls-files` to discover tracked files. Only review git-tracked files. Skip anything in .gitignore.
-- You MUST read every source file individually and fully before writing any review.
-- Do NOT summarize, skim, or batch-read files.
-- Write the review file directly. Do NOT ask for permission or clarifying questions.
+- You MUST read every source file from `git ls-files` individually and fully before writing any review.
+- Do NOT summarize, skim, or batch-read files. Read every file from `git ls-files`.
+- Write the review file directly. Do NOT ask for permission or clarifying questions. This is a non-interactive code review.
 - Every finding MUST cite specific file, line number, and function name.
-- Rate each finding: Critical / High / Medium / Low / Info.
+- Rate each finding: High / Medium / Low. High are "must". Medium are "should". Low are "could".
 - ONLY report defects, flaws, risks, and recommendations for improvement.
-- Do NOT describe what works correctly. Do NOT praise existing code. Do NOT say things like "well-structured", "correctly implements", or "good use of". If something is fine, skip it silently.
+- ALWAYS write the review file as your FIRST action after analysis. 
+- NEVER exit without writing a review file.
+- Do NOT use scripts or automated scanners. Read each file, reason about it, then write findings.
+- Do NOT delegate to sub-agents. Do the review yourself.
+- Do NOT describe what works correctly. 
+- Do NOT praise existing code. 
+- Do NOT say things like "well-structured", "correctly implements", or "good use of". If something is fine, skip it silently.
 - If a component has no issues, omit it entirely rather than noting it has no findings.
+
 
 ## Component Discovery
 

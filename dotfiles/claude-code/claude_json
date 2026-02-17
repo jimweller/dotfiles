@@ -1,5 +1,5 @@
 {
-  "numStartups": 985,
+  "numStartups": 986,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -4051,36 +4051,36 @@
         "packageManager": null
       },
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 15.045502500000005,
-      "lastAPIDuration": 2328655,
-      "lastAPIDurationWithoutRetries": 2328410,
-      "lastToolDuration": 1546946,
-      "lastDuration": 4493656,
+      "lastCost": 18.970200000000002,
+      "lastAPIDuration": 2563746,
+      "lastAPIDurationWithoutRetries": 2563475,
+      "lastToolDuration": 1547475,
+      "lastDuration": 5773529,
       "lastLinesAdded": 468,
       "lastLinesRemoved": 405,
-      "lastTotalInputTokens": 229195,
-      "lastTotalOutputTokens": 79040,
-      "lastTotalCacheCreationInputTokens": 834510,
-      "lastTotalCacheReadInputTokens": 15154588,
+      "lastTotalInputTokens": 252179,
+      "lastTotalOutputTokens": 85318,
+      "lastTotalCacheCreationInputTokens": 1240604,
+      "lastTotalCacheReadInputTokens": 17600876,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 5.14,
-      "lastFpsLow1Pct": 60.31,
+      "lastFpsAverage": 3.05,
+      "lastFpsLow1Pct": 56.56,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 183281,
-          "outputTokens": 4628,
+          "inputTokens": 206217,
+          "outputTokens": 5461,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 8754,
           "webSearchRequests": 0,
-          "costUSD": 0.21736350000000004
+          "costUSD": 0.2444645
         },
         "claude-opus-4-6": {
-          "inputTokens": 8109,
-          "outputTokens": 46708,
-          "cacheReadInputTokens": 13991766,
-          "cacheCreationInputTokens": 601834,
+          "inputTokens": 8157,
+          "outputTokens": 52153,
+          "cacheReadInputTokens": 16438054,
+          "cacheCreationInputTokens": 1007928,
           "webSearchRequests": 0,
-          "costUSD": 11.965590500000001
+          "costUSD": 15.863187000000003
         },
         "claude-sonnet-4-5": {
           "inputTokens": 37805,
@@ -4737,8 +4737,8 @@
       "lastUsedAt": 1771197414834
     },
     "code-review": {
-      "usageCount": 1,
-      "lastUsedAt": 1771339238653
+      "usageCount": 2,
+      "lastUsedAt": 1771340549115
     }
   },
   "opusProMigrationComplete": true,
@@ -4746,6 +4746,6 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1771339444543
+    "timestamp": 1771340539406
   }
 }
