@@ -1,5 +1,5 @@
 {
-  "numStartups": 988,
+  "numStartups": 989,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -4530,9 +4530,8 @@
       "command": "uvx",
       "args": [
         "--python",
-        "python3.10",
-        "/Users/jimweller/tmp/mcp-atlassian",
-        "-v"
+        "python3.12",
+        "git+https://github.com/sooperset/mcp-atlassian"
       ],
       "env": {
         "CONFLUENCE_URL": "${CONFLUENCE_URL}",
@@ -4756,6 +4755,6 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1771341867378
+    "timestamp": 1771342381242
   }
 }
