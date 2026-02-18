@@ -35,8 +35,6 @@ When calling tools, use correct data types for parameters:
 
 Incorrect types cause validation errors like: `'10' is not of type 'integer'`
 
-**Known bug:** `mcp__atl__jira_update_issue` cannot set numeric custom fields (e.g., story points). The `fields` dict gets serialized to a string by pydantic, causing either a validation error or a Jira rejection. Use the curl approach for numeric custom fields (see Story Points section below).
-
 ## Issue Key Recognition
 
 `{KEY}` refers to the normalized JIRA issue key in format `PROJ-###` (e.g., `DEVX-209`).
@@ -102,7 +100,6 @@ Passing wiki markup for regular content causes double-conversion bugs:
 
 ### Known Limitations
 
-- **Code blocks with `#`** - Fixed in [PR #894](https://github.com/sooperset/mcp-atlassian/pull/894), pending merge. Using local fork at `~/tmp/mcp-atlassian` until released.
 - Jira does not support syntax highlighting in code blocks
 
 ## Description Format
@@ -315,7 +312,7 @@ mcp__atl__jira_transition_issue(
 )
 ```
 
-**Rule:** When transitioning an issue to Done, always assign it to the current user (from `JIRA_EMAIL`) if unassigned. Use the curl approach for assignment since the MCP tool has serialization issues with the assignee field.
+**Rule:** When transitioning an issue to Done, always assign it to the current user (from `JIRA_EMAIL`) if unassigned. Use `jira_update_issue` with `fields={"assignee": "user@example.com"}` or `fields={"assignee": null}` to unassign.
 
 # Comment
 
@@ -325,6 +322,15 @@ mcp__atl__jira_transition_issue(
 mcp__atl__jira_add_comment(
   issue_key="PROJ-456",
   comment="Comment text here."
+)
+```
+
+Optional `visibility` parameter restricts comment to a role or group:
+```
+mcp__atl__jira_add_comment(
+  issue_key="PROJ-456",
+  comment="Internal note.",
+  visibility={"type": "role", "value": "Service Desk Team"}
 )
 ```
 
@@ -338,16 +344,16 @@ mcp__atl__jira_get_issue(
 )
 ```
 
-Note: The `comment` field must be included in `fields` to retrieve comments. The `comment_limit` parameter only limits how many are returned.
+Note: When `comment_limit > 0`, the comment field is auto-included in the response.
 
 ## update
 
 ```
-curl -X PUT \
-  -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{"body":"Updated comment text."}' \
-  "${JIRA_URL}rest/api/2/issue/PROJ-456/comment/12345"
+mcp__atl__jira_edit_comment(
+  issue_key="PROJ-456",
+  comment_id="12345",
+  comment="Updated comment text."
+)
 ```
 
 ## delete
@@ -385,10 +391,11 @@ The attachment ID is in the response at attachments array.
 
 ```
 mcp__atl__jira_download_attachments(
-  issue_key="PROJ-456",
-  download_path="/tmp/downloads"
+  issue_key="PROJ-456"
 )
 ```
+
+Returns attachment content as embedded base64 resources.
 
 ## delete
 
@@ -471,28 +478,14 @@ Labels are in the response at labels array.
 
 Custom field: `customfield_10814` (Story point estimate)
 
-The MCP ATL tool cannot set this field due to a numeric type serialization bug. Use curl instead.
-
 ## set
 
 ```
-curl -s -X PUT \
-  -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{"fields":{"customfield_10814":0.5}}' \
-  "${JIRA_URL}rest/api/2/issue/PROJ-456"
-```
-
-## set with assignee (bulk pattern)
-
-```
-for KEY in DEVX-101 DEVX-102 DEVX-103; do
-  curl -s -X PUT \
-    -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
-    -H "Content-Type: application/json" \
-    -d '{"fields":{"assignee":{"emailAddress":"user@example.com"},"customfield_10814":0.5}}' \
-    "${JIRA_URL}rest/api/2/issue/${KEY}"
-done
+mcp__atl__jira_update_issue(
+  issue_key="PROJ-456",
+  fields={},
+  additional_fields={"customfield_10814": 0.5}
+)
 ```
 
 ## get
@@ -505,3 +498,39 @@ mcp__atl__jira_get_issue(
 ```
 
 The value is at customfield_10814 in the response. Common values: 0.5, 1, 2, 3, 5, 8, 13.
+
+# Development Info
+
+## get
+
+```
+mcp__atl__jira_get_issue_development_info(
+  issue_key="PROJ-456"
+)
+```
+
+Returns linked branches, commits, and pull requests from connected source control.
+
+# Dates
+
+## get
+
+```
+mcp__atl__jira_jira_get_issue_dates(
+  issue_key="PROJ-456"
+)
+```
+
+Returns created, updated, due date, resolution date, and optionally status change history.
+
+# SLA
+
+## get
+
+```
+mcp__atl__jira_jira_get_issue_sla(
+  issue_key="PROJ-456"
+)
+```
+
+Returns cycle time, lead time, time in status, and due date compliance metrics.

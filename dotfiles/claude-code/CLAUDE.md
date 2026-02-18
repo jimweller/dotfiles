@@ -21,6 +21,7 @@ Claude Code sessions.
 - NEVER commit secrets, credentials, .env, or .envrc files
 - Use existing patterns and conventions when modifying projects
 - Prefer current research over model training data. Use c7 and g MCP servers for research.
+- When a dependency points to a git repo, NEVER switch it to a published package without first checking the latest release date and comparing it to recent commits. The git source is intentional when it contains unreleased changes.
 
 ## Code Style
 
