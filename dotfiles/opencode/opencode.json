@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "amazon-bedrock/global.anthropic.claude-opus-4-6-v1",
-  "small_model": "amazon-bedrock/global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+  "small_model": "amazon-bedrock/global.anthropic.claude-sonnet-4-6",
   "provider": {
     "amazon-bedrock": {
       "options": {
@@ -15,8 +15,8 @@
         "global.anthropic.claude-opus-4-6-v1": {
           "name": "aws/Claude Opus 4.6"
         },
-        "global.anthropic.claude-sonnet-4-5-20250929-v1:0": {
-          "name": "aws/Claude Sonnet 4.5"
+        "global.anthropic.claude-sonnet-4-6": {
+          "name": "aws/Claude Sonnet 4.6"
         },
         "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
           "name": "aws/Claude Haiku 4.5"
@@ -25,7 +25,7 @@
       "whitelist": [
         "global.anthropic.claude-opus-4-6-v1",
         "global.anthropic.claude-opus-4-5-20251101-v1:0",
-        "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+        "global.anthropic.claude-sonnet-4-6",
         "global.anthropic.claude-haiku-4-5-20251001-v1:0"
       ]
     },
@@ -34,20 +34,16 @@
         "apiKey": "{env:GEMINI_API_KEY}"
       },
       "models": {
-        "gemini-2.5-pro": {
-          "name": "Gemini 2.5 Pro"
+        "gemini-3.1-pro-preview": {
+          "name": "Gemini 3.1 Pro"
         },
-        "gemini-2.5-flash": {
-          "name": "Gemini 2.5 Flash"
-        },
-        "gemini-3-pro-preview": {
-          "name": "Gemini 3 Pro"
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash"
         }
       },
       "whitelist": [
-        "gemini-2.5-pro",
-        "gemini-2.5-flash",
-        "gemini-3-pro-preview"
+        "gemini-3.1-pro-preview",
+        "gemini-3-flash-preview"
       ]
     },
     "openai": {
@@ -85,8 +81,8 @@
         "claude-opus-4-6": {
           "name": "az/Claude Opus 4.6"
         },
-        "claude-sonnet-4-5": {
-          "name": "az/Claude Sonnet 4.5"
+        "claude-sonnet-4-6": {
+          "name": "az/Claude Sonnet 4.6"
         },
         "claude-haiku-4-5": {
           "name": "az/Claude Haiku 4.5"
@@ -94,7 +90,7 @@
       },
       "whitelist": [
         "claude-opus-4-6",
-        "claude-sonnet-4-5",
+        "claude-sonnet-4-6",
         "claude-haiku-4-5"
       ]
     },
