@@ -2,6 +2,7 @@
 name: code-review
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
 user-invocable: true
+argument-hint: "[custom review prompt or focus area]"
 ---
 
 STARTER_CHARACTER = 🕵️‍♂️
@@ -9,6 +10,11 @@ STARTER_CHARACTER = 🕵️‍♂️
 # Code Review Skill
 
 Launch parallel code reviews using three LLMs via `opencode run` as background bash tasks.
+
+Arguments: $ARGUMENTS
+
+- If `$ARGUMENTS` is provided, use it as the review prompt instead of the default.
+- If `$ARGUMENTS` is empty, use the Default Review Prompt below.
 
 ## Procedure
 
@@ -19,7 +25,7 @@ rm -f .llmdocs/review-openai.md .llmdocs/review-gemini.md .llmdocs/review-claude
 mkdir -p .llmdocs
 ```
 
-2. Launch all three reviews as background bash tasks using the structured review prompt below. Substitute `REVIEW_PROMPT` with the full prompt text.
+2. Launch all three reviews as background bash tasks. Substitute `REVIEW_PROMPT` with the user-provided prompt from `$ARGUMENTS`, or the Default Review Prompt if none was provided.
 
 ```bash
 opencode run -m openai/gpt-5.2-pro --title "OpenAI Code Review" "REVIEW_PROMPT Write your review to .llmdocs/review-openai.md"
@@ -35,9 +41,9 @@ opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "REVIE
 
 3. After launching, confirm the three background tasks are running and remind the user to check `.llmdocs/` for results.
 
-## Review Prompt
+## Default Review Prompt
 
-The full prompt passed to each `opencode run` command:
+Used when `$ARGUMENTS` is empty. This is the full prompt passed to each `opencode run` command:
 
 ```
 You are performing a code review of this project. Your job is to find problems, not give compliments, not provide validation.
