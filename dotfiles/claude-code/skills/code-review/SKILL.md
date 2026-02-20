@@ -13,8 +13,10 @@ Launch parallel code reviews using three LLMs via `opencode run` as background b
 
 Arguments: $ARGUMENTS
 
-- If `$ARGUMENTS` is provided, use it as the review prompt instead of the default.
-- If `$ARGUMENTS` is empty, use the Default Review Prompt below.
+- Every review prompt is constructed as: **Review Preamble** + **Review Focus**.
+- The Review Preamble is always included. It contains repomix usage, output rules, and non-interactive behavior.
+- If `$ARGUMENTS` is provided, use it as the Review Focus.
+- If `$ARGUMENTS` is empty, use the Default Review Focus below.
 
 ## Procedure
 
@@ -25,33 +27,38 @@ rm -f .llmdocs/review-openai.md .llmdocs/review-gemini.md .llmdocs/review-claude
 mkdir -p .llmdocs
 ```
 
-2. Launch all three reviews as background bash tasks. Substitute `REVIEW_PROMPT` with the user-provided prompt from `$ARGUMENTS`, or the Default Review Prompt if none was provided.
+2. Build `REVIEW_PROMPT` by concatenating the **Review Preamble** and the **Review Focus** (either `$ARGUMENTS` or the Default Review Focus).
+
+3. Launch all three reviews as background bash tasks. The prompt string for each command is `REVIEW_PROMPT` + the output file instruction.
 
 ```bash
-opencode run -m openai/gpt-5.2-pro --title "OpenAI Code Review" "REVIEW_PROMPT Write your review to .llmdocs/review-openai.md"
+opencode run -m openai/gpt-5.2-pro --title "OpenAI Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-openai.md"
 ```
 
 ```bash
-opencode run -m google/gemini-3-pro-preview --title "Gemini Code Review" "REVIEW_PROMPT Write your review to .llmdocs/review-gemini.md"
+opencode run -m google/gemini-3.1-pro-preview --title "Gemini Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-gemini.md"
 ```
 
 ```bash
-opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "REVIEW_PROMPT Write your review to .llmdocs/review-claude.md"
+opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-claude.md"
 ```
 
-3. After launching, confirm the three background tasks are running and remind the user to check `.llmdocs/` for results.
+4. After launching, confirm the three background tasks are running and remind the user to check `.llmdocs/` for results.
 
-## Default Review Prompt
+## Review Preamble
 
-Used when `$ARGUMENTS` is empty. This is the full prompt passed to each `opencode run` command:
+Always included in every review prompt, regardless of `$ARGUMENTS`:
 
 ```
 You are performing a code review of this project. Your job is to find problems, not give compliments, not provide validation.
 
-## Instructions
+## Setup
 
 - Use the repomix MCP tool to pack the repository into a single context. This gives you the full codebase in one call. Do NOT read files individually.
 - After packing, read CLAUDE.md and .llmdocs/architecture.md (if present) for project context.
+
+## Rules
+
 - Write the review file directly. Do NOT ask for permission or clarifying questions. This is a non-interactive code review.
 - Every finding MUST cite specific file, line number, and function name.
 - Rate each finding: High / Medium / Low. High are "must". Medium are "should". Low are "could".
@@ -64,7 +71,13 @@ You are performing a code review of this project. Your job is to find problems, 
 - Do NOT praise existing code.
 - Do NOT say things like "well-structured", "correctly implements", or "good use of". If something is fine, skip it silently.
 - If a component has no issues, omit it entirely rather than noting it has no findings.
+```
 
+## Default Review Focus
+
+Used when `$ARGUMENTS` is empty:
+
+```
 ## Review Areas
 
 For each area, report ONLY defects and recommendations. Skip areas with no findings.
