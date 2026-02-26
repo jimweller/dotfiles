@@ -35,5 +35,6 @@
     ]
   },
   "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true
+  "prefersReducedMotion": true,
+  "skipDangerousModePermissionPrompt": true
 }

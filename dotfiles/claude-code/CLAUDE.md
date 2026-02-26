@@ -18,7 +18,7 @@ Claude Code sessions.
 - NEVER proactively create documentation files (*.md) or README files unless explicitly requested
 - NEVER save working files, text/mds, or tests to the root folder
 - ALWAYS read a file before editing it
-- NEVER commit secrets, credentials, .env, or .envrc files
+- NEVER commit plaintext secrets, credentials, or .env files. SOPS-encrypted files (e.g. secrets.enc.env) and .envrc files with no secrets are safe to commit.
 - Use existing patterns and conventions when modifying projects
 - Prefer current research over model training data. Use c7 and g MCP servers for research.
 - When a dependency points to a git repo, NEVER switch it to a published package without first checking the latest release date and comparing it to recent commits. The git source is intentional when it contains unreleased changes.

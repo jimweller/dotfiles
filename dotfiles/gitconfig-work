@@ -52,3 +52,7 @@
 [url "https://dev.azure.com/mcgsead/"]
 	insteadOf = https://mcgsead.visualstudio.com/DefaultCollection/
 	insteadOf = https://mcgsead.visualstudio.com/
+[url "https://dev.azure.com/mcgsead/devx-internal/_git/"]
+	insteadOf = mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/devx-internal/
+	insteadOf = ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/devx-internal/
+	insteadOf = git@ssh.dev.azure.com:v3/mcgsead/devx-internal/
