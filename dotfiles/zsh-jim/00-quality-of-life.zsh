@@ -21,6 +21,38 @@ asdf-update() {
   echo "\nUpdate complete!"
 }
 
+asdf-bootstrap() {
+  if ! command -v asdf >/dev/null 2>&1; then
+    echo "asdf not found, skipping bootstrap"
+    return 1
+  fi
+
+  local manifest="$HOME/.config/dotfiles/manifests/asdf-tools.txt"
+  if [[ ! -f "$manifest" ]]; then
+    echo "Manifest not found: $manifest"
+    return 1
+  fi
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+
+    local plugin_name=$(echo "$line" | awk '{print $1}')
+    local cmd_name=$(echo "$line" | awk '{print $2}')
+    local plugin_url=$(echo "$line" | awk '{print $3}')
+
+    if command -v "$cmd_name" >/dev/null 2>&1; then
+      echo "  skip $plugin_name ($cmd_name found)"
+      continue
+    fi
+
+    echo "  installing $plugin_name"
+    asdf plugin list | grep -q "^${plugin_name}$" || asdf plugin add "$plugin_name" $plugin_url
+    asdf install "$plugin_name" latest
+    asdf set --home "$plugin_name" latest
+  done < "$manifest"
+}
+asdf-bootstrap
+
 ef() { sync.sh & }
 
 alias cbc='cb copy'

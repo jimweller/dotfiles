@@ -1,0 +1,9 @@
+# plugin              command
+bat                   bat
+direnv                direnv
+eza                   eza
+kubectl               kubectl
+kubectx               kubectx
+markdownlint-cli2     markdownlint-cli2
+ripgrep               rg
+sops                  sops
