@@ -135,9 +135,9 @@ alias secrets='secrets.sh'
 # eval "$(zoxide init --cmd cd zsh)"
 
 # This sad hack makes claude's bash tool not use zoxide
-if [[ "$CLAUDECODE" != "1" ]]; then
-    eval "$(zoxide init --cmd cd zsh)"
-fi
+# if [[ "$CLAUDECODE" != "1" ]]; then
+#     eval "$(zoxide init --cmd cd zsh)"
+# fi
 
 
 # HISTORY_SUBSTRING_SEARCH_PREFIXED is a global variable that defines how the
