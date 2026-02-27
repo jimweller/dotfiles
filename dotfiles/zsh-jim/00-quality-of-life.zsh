@@ -40,12 +40,15 @@ asdf-bootstrap() {
     local cmd_name=$(echo "$line" | awk '{print $2}')
     local plugin_url=$(echo "$line" | awk '{print $3}')
 
-    command -v "$cmd_name" >/dev/null 2>&1 && continue
-
-    echo "  installing $plugin_name"
-    asdf plugin list | grep -q "^${plugin_name}$" || asdf plugin add "$plugin_name" $plugin_url
-    asdf install "$plugin_name" latest
-    asdf set --home "$plugin_name" latest
+    if ! asdf plugin list 2>/dev/null | grep -q "^${plugin_name}$"; then
+      command -v "$cmd_name" >/dev/null 2>&1 && continue
+      echo "  installing $plugin_name"
+      asdf plugin add "$plugin_name" $plugin_url
+      asdf install "$plugin_name" latest
+      asdf set --home "$plugin_name" latest
+    elif ! grep -q "^${plugin_name} " "$HOME/.tool-versions" 2>/dev/null; then
+      asdf set --home "$plugin_name" latest
+    fi
   done < "$manifest"
 }
 asdf-bootstrap
