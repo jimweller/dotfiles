@@ -1,4 +1,4 @@
-# plugin              command           url
+# plugin[:version]    command           url
 bat                   bat               https://github.com/s3than/asdf-bat.git
 direnv                direnv
 eza                   eza
@@ -8,3 +8,9 @@ markdownlint-cli2     markdownlint-cli2
 ripgrep               rg
 sops                  sops
 zoxide                zoxide            https://github.com/hpcsc/asdf-zoxide.git
+helm                  helm
+helm-diff             helm-diff
+helmfile              helmfile
+opentofu              tofu
+terragrunt:0.93.9     terragrunt
+uv                    uv

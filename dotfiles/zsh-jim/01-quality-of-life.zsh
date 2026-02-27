@@ -36,18 +36,24 @@ asdf-bootstrap() {
   while IFS= read -r line || [[ -n "$line" ]]; do
     [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
 
-    local plugin_name=$(echo "$line" | awk '{print $1}')
+    local plugin_field=$(echo "$line" | awk '{print $1}')
     local cmd_name=$(echo "$line" | awk '{print $2}')
     local plugin_url=$(echo "$line" | awk '{print $3}')
 
+    local plugin_name="${plugin_field%%:*}"
+    local pin_version="${plugin_field#*:}"
+    [[ "$pin_version" == "$plugin_name" ]] && pin_version=""
+    local version="${pin_version:-latest}"
+
     if ! asdf plugin list 2>/dev/null | grep -q "^${plugin_name}$"; then
       command -v "$cmd_name" >/dev/null 2>&1 && continue
-      echo "  installing $plugin_name"
+      echo "  installing $plugin_name $version"
       asdf plugin add "$plugin_name" $plugin_url
-      asdf install "$plugin_name" latest
-      asdf set --home "$plugin_name" latest
+      asdf install "$plugin_name" "$version"
+      asdf set --home "$plugin_name" "$version"
     elif ! grep -q "^${plugin_name} " "$HOME/.tool-versions" 2>/dev/null; then
-      asdf set --home "$plugin_name" latest
+      asdf install "$plugin_name" "$version"
+      asdf set --home "$plugin_name" "$version"
     fi
   done < "$manifest"
 
