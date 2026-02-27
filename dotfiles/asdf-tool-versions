@@ -1,9 +1,0 @@
-bat latest
-direnv latest
-eza latest
-kubectl latest
-kubectx latest
-markdownlint-cli2 latest
-ripgrep latest
-sops latest
-zoxide latest
