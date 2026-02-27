@@ -10,10 +10,8 @@
   - ~/.logs
   - ~/tmp
   - ~/.ssh
-  - ~/.colima/default
   - ~/assets/postgres
   - ~/assets/qdrant
-  - ~/assets/colima
   - ~/assets/steampipe
 
 - shell:
@@ -25,7 +23,6 @@
     ~/.azure/config: dotfiles/azure_config
     ~/.bash_profile: dotfiles/bash_profile
     ~/.config/bat/config: dotfiles/bat_config
-    ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.docker/config.js: dotfiles/docker_config
     ~/.gitconfig-all: dotfiles/gitconfig-all
     # this is a hack to make p10k work since it uses and outdated fork of libgit2 that doesn't honor GIT_CONFIG_GLOBAL
@@ -49,8 +46,6 @@
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
-    ~/Library/LaunchAgents/com.user.awsrefreshtoken.plist: scripts/aws-refresh-token.plist
-    # ~/Library/LaunchAgents/com.user.awsrefreshsso.plist: scripts/aws-refresh-sso.plist
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 

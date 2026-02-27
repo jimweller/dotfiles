@@ -3,7 +3,7 @@ Host *
   IgnoreUnknown UseKeychain
 
 # macOS-specific includes (only exists on macOS)
-Include /Users/jimweller/.colima/ssh_config
+Include ~/.colima/ssh_config
 
 # DevPod Start vscode-remote-try-cpp.devpod
 Host vscode-remote-try-cpp.devpod

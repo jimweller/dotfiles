@@ -1,6 +1,8 @@
 
 # alias to clear all the granted session credentials from the mac keychain
-alias granted-clear='while security delete-generic-password -l "granted-aws-session-credentials"; do true; done'
+if [[ "$(uname)" == "Darwin" ]]; then
+  alias granted-clear='while security delete-generic-password -l "granted-aws-session-credentials"; do true; done'
+fi
 
 # don't open aws output in less
 export AWS_PAGER=""

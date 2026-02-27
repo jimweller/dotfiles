@@ -6,8 +6,6 @@ RPROMPT='$(aws_prompt_info)$(kube_ps1)'
 
 #alias kns="kubens"
 #alias kctx="kubectx"
-alias upgrade="bubo && bugbc"
-
 alias hxns='k config set-context --current --namespace'
 
 

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+_ado_open() {
+  if [ "$(uname)" = "Darwin" ]; then
+    open "$1"
+  else
+    echo "Open: $1"
+  fi
+}
+
 ado() {
 
     if ! _ado_check_basic_prerequisites; then
@@ -49,7 +57,7 @@ ado_browse() {
     
     if [[ "$remote_url" =~ ^https://dev\.azure\.com/ ]]; then
         echo "Opening Azure DevOps repository: $remote_url"
-        open "$remote_url"
+        _ado_open "$remote_url"
     elif [[ "$remote_url" =~ ^https://.*\.visualstudio\.com ]]; then
         local clean_url=$(echo "$remote_url" | sed 's|https://[^@]*@|https://|')
         local org=$(echo "$clean_url" | sed -n 's|^https://\([^.]*\)\..*|\1|p')
@@ -60,7 +68,7 @@ ado_browse() {
             project=$(printf '%s\n' "$project" | sed 's/ /%20/g')
             local web_url="https://dev.azure.com/${org}/${project}/_git/${repo}"
             echo "Opening Azure DevOps repository: $web_url"
-            open "$web_url"
+            _ado_open "$web_url"
         else
             echo "Error: Could not parse Azure DevOps URL format"
             echo "Remote URL: $remote_url"
@@ -75,7 +83,7 @@ ado_browse() {
             project=$(printf '%s\n' "$project" | sed 's/ /%20/g')
             local web_url="https://dev.azure.com/${org}/${project}/_git/${repo}"
             echo "Opening Azure DevOps repository: $web_url"
-            open "$web_url"
+            _ado_open "$web_url"
         else
             echo "Error: Could not parse SSH Azure DevOps URL format"
             echo "Remote URL: $remote_url"
@@ -387,11 +395,11 @@ ado_pr_browse() {
         local org=$(echo "$remote_url" | sed -n 's|https://dev\.azure\.com/\([^/]*\)/.*|\1|p')
         local project=$(echo "$remote_url" | sed -n 's|https://dev\.azure\.com/[^/]*/\([^/]*\)/_git/.*|\1|p')
         local repo=$(echo "$remote_url" | sed -n 's|.*/_git/\(.*\)|\1|p')
-        
+
         if [[ -n "$org" && -n "$project" && -n "$repo" ]]; then
             local pr_url="https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}"
             echo "Opening PR #${pr_id}: $pr_url"
-            open "$pr_url"
+            _ado_open "$pr_url"
         else
             echo "Error: Could not parse repository information"
             return 1
@@ -405,7 +413,7 @@ ado_pr_browse() {
         if [[ -n "$org" && -n "$project" && -n "$repo" ]]; then
             local pr_url="https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}"
             echo "Opening PR #${pr_id}: $pr_url"
-            open "$pr_url"
+            _ado_open "$pr_url"
         else
             echo "Error: Could not parse repository information"
             return 1
@@ -418,7 +426,7 @@ ado_pr_browse() {
         if [[ -n "$org" && -n "$project" && -n "$repo" ]]; then
             local pr_url="https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr_id}"
             echo "Opening PR #${pr_id}: $pr_url"
-            open "$pr_url"
+            _ado_open "$pr_url"
         else
             echo "Error: Could not parse SSH repository information"
             return 1
