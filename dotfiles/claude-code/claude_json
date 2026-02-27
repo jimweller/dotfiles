@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 20103,
+  "promptQueueUseCount": 20106,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -5358,7 +5358,7 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1772152743842
+    "timestamp": 1772153842971
   },
   "sonnet1m45MigrationComplete": true,
   "effortCalloutDismissed": true,
