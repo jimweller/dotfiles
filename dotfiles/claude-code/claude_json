@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 20096,
+  "promptQueueUseCount": 20098,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -5157,7 +5157,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1772135082067,
+  "lastPlanModeUse": 1772149332127,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -5358,7 +5358,7 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1772141110266
+    "timestamp": 1772151721821
   },
   "sonnet1m45MigrationComplete": true,
   "effortCalloutDismissed": true,
