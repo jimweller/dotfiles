@@ -40,10 +40,7 @@ asdf-bootstrap() {
     local cmd_name=$(echo "$line" | awk '{print $2}')
     local plugin_url=$(echo "$line" | awk '{print $3}')
 
-    if command -v "$cmd_name" >/dev/null 2>&1; then
-      echo "  skip $plugin_name ($cmd_name found)"
-      continue
-    fi
+    command -v "$cmd_name" >/dev/null 2>&1 && continue
 
     echo "  installing $plugin_name"
     asdf plugin list | grep -q "^${plugin_name}$" || asdf plugin add "$plugin_name" $plugin_url
