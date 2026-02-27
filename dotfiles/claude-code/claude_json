@@ -1,5 +1,5 @@
 {
-  "numStartups": 1055,
+  "numStartups": 1057,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -39,7 +39,7 @@
     "shift-enter-setup": 287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 20106,
+  "promptQueueUseCount": 20110,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -5089,6 +5089,90 @@
         "hook_duration_ms_p95": 44.65,
         "hook_duration_ms_p99": 46.53
       }
+    },
+    "/Users/jimweller/work/platform-poc/platform-poc-main": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [
+        "DESIGN.md",
+        "PLAN.md",
+        "ado_test.go",
+        "atlantis_test.go",
+        "kratix_test.go"
+      ],
+      "exampleFilesGeneratedAt": 1772155477068,
+      "hasCompletedProjectOnboarding": true,
+      "lastCost": 0.7819850000000002,
+      "lastAPIDuration": 63849,
+      "lastAPIDurationWithoutRetries": 63818,
+      "lastToolDuration": 28072,
+      "lastDuration": 183570,
+      "lastLinesAdded": 36,
+      "lastLinesRemoved": 3,
+      "lastTotalInputTokens": 1320,
+      "lastTotalOutputTokens": 3128,
+      "lastTotalCacheCreationInputTokens": 82670,
+      "lastTotalCacheReadInputTokens": 371891,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 1.13,
+      "lastFpsLow1Pct": 73.39,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 1007,
+          "outputTokens": 71,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001362
+        },
+        "claude-opus-4-6": {
+          "inputTokens": 305,
+          "outputTokens": 1491,
+          "cacheReadInputTokens": 227183,
+          "cacheCreationInputTokens": 50803,
+          "webSearchRequests": 0,
+          "costUSD": 0.46991025
+        },
+        "claude-sonnet-4-6": {
+          "inputTokens": 8,
+          "outputTokens": 1566,
+          "cacheReadInputTokens": 144708,
+          "cacheCreationInputTokens": 31867,
+          "webSearchRequests": 0,
+          "costUSD": 0.31071275
+        }
+      },
+      "lastSessionId": "ad3eede7-1e24-43f7-87f2-b83b30fb28cb",
+      "lastSessionMetrics": {
+        "frame_duration_ms_count": 80,
+        "frame_duration_ms_min": 0.31999999999970896,
+        "frame_duration_ms_max": 13.62495800000005,
+        "frame_duration_ms_avg": 1.9557260000001002,
+        "frame_duration_ms_p50": 1.3797909999993863,
+        "frame_duration_ms_p95": 4.906729150002502,
+        "frame_duration_ms_p99": 8.119777429998909,
+        "pre_tool_hook_duration_ms_count": 1,
+        "pre_tool_hook_duration_ms_min": 2,
+        "pre_tool_hook_duration_ms_max": 2,
+        "pre_tool_hook_duration_ms_avg": 2,
+        "pre_tool_hook_duration_ms_p50": 2,
+        "pre_tool_hook_duration_ms_p95": 2,
+        "pre_tool_hook_duration_ms_p99": 2,
+        "hook_duration_ms_count": 2,
+        "hook_duration_ms_min": 0,
+        "hook_duration_ms_max": 40,
+        "hook_duration_ms_avg": 20,
+        "hook_duration_ms_p50": 20,
+        "hook_duration_ms_p95": 38,
+        "hook_duration_ms_p99": 39.6
+      }
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -5157,7 +5241,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1772149332127,
+  "lastPlanModeUse": 1772155649086,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -5358,7 +5442,7 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1772153842971
+    "timestamp": 1772156181442
   },
   "sonnet1m45MigrationComplete": true,
   "effortCalloutDismissed": true,
