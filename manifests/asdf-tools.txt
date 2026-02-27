@@ -1,5 +1,5 @@
-# plugin              command
-bat                   bat
+# plugin              command           url
+bat                   bat               https://github.com/s3than/asdf-bat.git
 direnv                direnv
 eza                   eza
 kubectl               kubectl
@@ -7,3 +7,4 @@ kubectx               kubectx
 markdownlint-cli2     markdownlint-cli2
 ripgrep               rg
 sops                  sops
+zoxide                zoxide            https://github.com/hpcsc/asdf-zoxide.git
