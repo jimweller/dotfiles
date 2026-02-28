@@ -53,5 +53,7 @@ export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
 
-# asdf - add shims to PATH (v0.16+ Go version)
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# asdf - add shims to PATH when available (containers, project .tool-versions)
+if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]; then
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fi

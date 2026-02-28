@@ -7,10 +7,7 @@ fi
 # don't open aws output in less
 export AWS_PAGER=""
 
-# Granted shell integration for asdf
-# Source the actual assume script, not the shim - per official asdf-granted docs
-# https://github.com/dex4er/asdf-granted#configuration
-alias assume='source $(asdf which assume)'
+alias assume='source $(which assume)'
 
 alias asar='assume -ar'
 

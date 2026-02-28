@@ -1,20 +1,5 @@
 # plugin[:version]    command           url
-bat                   bat               https://github.com/s3than/asdf-bat.git
-direnv                direnv
-eza                   eza
-kubectl               kubectl
-kubectx               kubectx
-markdownlint-cli2     markdownlint-cli2
-ripgrep               rg
-sops                  sops
-zoxide                zoxide            https://github.com/hpcsc/asdf-zoxide.git
-helm                  helm
-helm-diff             helm-diff
-helmfile              helmfile
-opentofu              tofu
-terragrunt            terragrunt
-uv                    uv
-# --- previously installed ---
+# --- previously installed (use brew on macOS, asdf in containers) ---
 #act                   act
 #atmos                 atmos
 #aws-nuke              aws-nuke
@@ -22,18 +7,24 @@ uv                    uv
 #awscli                aws
 #awscli-local          awslocal
 #azure-cli             az
+#bat                   bat               https://github.com/s3than/asdf-bat.git
 #checkov               checkov
 #cmake                 cmake
 #cosign                cosign
+#direnv                direnv
 #dive                  dive
 #dotnet-core           dotnet
 #eksctl                eksctl
+#eza                   eza
 #fzf                   fzf
 #fx                    fx
 #git-lfs               git-lfs
 #glow                  glow
 #granted               granted
 #grype                 grype
+#helm                  helm
+#helm-diff             helm-diff
+#helmfile              helmfile
 #istioctl              istioctl
 #jq                    jq
 #k3d                   k3d
@@ -41,10 +32,13 @@ uv                    uv
 #kind                  kind
 #kops                  kops
 #krew                  krew
+#kubectl               kubectl
 #kubeconform           kubeconform
+#markdownlint-cli2     markdownlint-cli2
 #minikube              minikube
 #nodejs                node
 #ollama                ollama
+#opentofu              tofu
 #pandoc                pandoc
 #pipx                  pipx
 #pnpm                  pnpm
@@ -53,20 +47,25 @@ uv                    uv
 #powershell-core       pwsh
 #pre-commit            pre-commit
 #redis                 redis-server
+#ripgrep               rg
 #rust                  rustc
+#sops                  sops
 #steampipe             steampipe
 #stern                 stern
 #terraform:1.5.7       terraform
 #terraform-docs        terraform-docs
+#terragrunt            terragrunt
 #terrascan             terrascan
 #tf-summarize          tf-summarize
 #tflint                tflint
 #tfsec                 tfsec
 #tfupdate              tfupdate
 #tmux                  tmux
+#uv                    uv
 #websocat              websocat
 #yamlfmt               yamlfmt
 #yamllint              yamllint
 #yarn                  yarn
 #yor                   yor
 #yq                    yq
+#zoxide                zoxide            https://github.com/hpcsc/asdf-zoxide.git

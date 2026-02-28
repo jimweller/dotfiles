@@ -108,10 +108,9 @@
 #
 
 # configuration - must use full paths for launchd
-ASDF_CMD="/opt/homebrew/bin/asdf"
-AWS_CMD="$($ASDF_CMD which aws)"
-JQ_CMD="$($ASDF_CMD which jq)"
-DATE_CMD="/opt/homebrew/bin/gdate" # use gnu date for portability (brew install coreutils)
+AWS_CMD="/opt/homebrew/bin/aws"
+JQ_CMD="/opt/homebrew/bin/jq"
+DATE_CMD="/opt/homebrew/bin/gdate"
 
 AWS_PROFILE_NAME="mcg"
 CREDS_DIR="$HOME/assets/aws"
@@ -120,7 +119,7 @@ LOG_FILE="$CREDS_DIR/refresh.log"
 CLI_CACHE_DIR="$HOME/.aws/cli/cache"
 
 # kubernetes configuration
-KUBECTL_CMD="$($ASDF_CMD which kubectl 2>/dev/null)"
+KUBECTL_CMD="/opt/homebrew/bin/kubectl"
 K8S_CONTEXT="colima"
 K8S_NAMESPACE="quiver"
 K8S_SECRET_NAME="aws-credentials"

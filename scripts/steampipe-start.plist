@@ -25,7 +25,7 @@
 
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/jimweller/.asdf/shims/steampipe</string>
+      <string>/opt/homebrew/bin/steampipe</string>
       <string>service</string>
       <string>start</string>
     </array>
@@ -33,7 +33,7 @@
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
-      <string>/Users/jimweller/.asdf/shims:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
       <key>HOME</key>
       <string>/Users/jimweller</string>
     </dict>
