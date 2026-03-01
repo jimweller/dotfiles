@@ -14,5 +14,6 @@ alias c='claude_regular'
 # Cloud-specific Claude aliases using --settings flag
 alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-aws.json'
 alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json'
+alias claude='claude --dangerously-skip-permissions --no-chrome'
 
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'

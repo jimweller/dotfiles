@@ -9,14 +9,9 @@ STARTER_CHARACTER = 🕵️‍♂️
 
 # Code Review Skill
 
-Launch parallel code reviews using three LLMs via `opencode run` as background bash tasks.
+Launch parallel multi-pass code reviews using three LLMs via `opencode run` as background bash tasks. Each model spawns 8 focused subagent reviewers (one per area) for thorough coverage.
 
 Arguments: $ARGUMENTS
-
-- Every review prompt is constructed as: **Review Preamble** + **Review Focus**.
-- The Review Preamble is always included. It contains repomix usage, output rules, and non-interactive behavior.
-- If `$ARGUMENTS` is provided, use it as the Review Focus.
-- If `$ARGUMENTS` is empty, use the Default Review Focus below.
 
 ## Procedure
 
@@ -27,7 +22,7 @@ rm -f .llmdocs/_review-openai.md .llmdocs/_review-gemini.md .llmdocs/_review-cla
 mkdir -p .llmdocs
 ```
 
-2. Build `REVIEW_PROMPT` by concatenating the **Review Preamble** and the **Review Focus** (either `$ARGUMENTS` or the Default Review Focus).
+2. Build `REVIEW_PROMPT` by concatenating the **Orchestrator Prompt** with the **Additional Context** (if `$ARGUMENTS` is provided).
 
 3. Launch all three reviews as background bash tasks. The prompt string for each command is `REVIEW_PROMPT` + the output file instruction.
 
@@ -45,94 +40,51 @@ opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "<REVI
 
 4. After launching, confirm the three background tasks are running and remind the user to check `.llmdocs/` for results.
 
-## Review Preamble
+## Orchestrator Prompt
 
-Always included in every review prompt, regardless of `$ARGUMENTS`:
+Always included in every review prompt:
 
 ```
-You are performing a code review of this project. Your job is to find problems, not give compliments, not provide validation.
+You are a code review orchestrator. Your job is to coordinate a thorough multi-pass review.
 
 ## Setup
-
 - Use the repomix MCP tool to pack the repository into a single context. This gives you the full codebase in one call. Do NOT read files directly.
 - After packing, read CLAUDE.md and .llmdocs/architecture.md (if present) for project context.
 
+## Procedure
+1. Spawn ALL of the following review subagents in PARALLEL using the Task tool:
+   - review-security
+   - review-architecture
+   - review-solid
+   - review-correctness
+   - review-testing
+   - review-ops
+   - review-performance
+   - review-quality
+
+   For each, use Task with subagent_type set to the agent name and a prompt of:
+   "Review this project. Return your findings as markdown."
+
+2. Collect the text output from all 8 subagents.
+3. Combine them into a single review file with each area as a section header.
+4. Write the combined review to the output file specified below.
+
 ## Rules
-
-- Write the review file directly. Do NOT ask for permission or clarifying questions. This is a non-interactive code review.
-- Every finding MUST cite specific file, line number, and function name.
-- Rate each finding: High / Medium / Low. High are "must". Medium are "should". Low are "could".
-- ONLY report defects, flaws, risks, and recommendations for improvement.
-- ALWAYS write the review file as your FIRST action after analysis.
+- Do NOT review code yourself. Delegate ALL review work to subagents.
+- Do NOT skip any subagent. Launch all 8.
+- Do NOT ask questions. This is non-interactive.
+- If a subagent returns "No findings", omit that section.
+- Write the review file directly. Do NOT ask for permission.
+- ALWAYS write the review file as your FIRST action after collecting subagent results.
 - NEVER exit without writing a review file.
-- Do NOT use scripts or automated scanners. Reason about the code, then write findings.
-- Do NOT delegate to sub-agents. Do the review yourself.
-- Do NOT describe what works correctly.
-- Do NOT praise existing code.
-- Do NOT say things like "well-structured", "correctly implements", or "good use of". If something is fine, skip it silently.
-- If a component has no issues, omit it entirely rather than noting it has no findings.
 ```
 
-## Default Review Focus
+## Additional Context
 
-Used when `$ARGUMENTS` is empty:
+When `$ARGUMENTS` is provided, append the following to each subagent's prompt:
 
 ```
-## Review Areas
-
-For each area, report ONLY defects and recommendations. Skip areas with no findings.
-
-### Security
-- [ ] Authentication and authorization
-- [ ] Secret handling (env vars, config files, key management)
-- [ ] Input validation and injection risks (SQL, command, template, XSS)
-- [ ] RBAC scope and least-privilege
-- [ ] Network policies and ingress configuration
-- [ ] Container security context
-
-### Architecture & Design
-- [ ] Component boundaries and separation of concerns
-- [ ] Interface design and dependency injection
-- [ ] Error propagation patterns
-- [ ] State management
-- [ ] Isolation model
-
-### SOLID Principles
-
-- [ ] Single Responsibility: each module/class has one reason to change
-- [ ] Open/Closed: extensible without modifying existing code
-- [ ] Liskov Substitution: implementations are substitutable for their interfaces
-- [ ] Interface Segregation: clients depend only on methods they use
-- [ ] Dependency Inversion: depend on abstractions, not concretions
-
-### Correctness & Bugs
-- [ ] Race conditions and concurrency issues
-- [ ] Nil pointer / index-out-of-bounds risks
-- [ ] Resource leaks (goroutines, connections, file handles)
-- [ ] Edge cases in lifecycle operations (partial rollback, concurrent mutations)
-
-### Testing
-- [ ] Test coverage gaps
-- [ ] Mock correctness vs real behavior
-- [ ] Missing negative / error path tests
-- [ ] Integration test completeness
-
-### Operational Readiness
-- [ ] Health checks and readiness probes
-- [ ] Graceful shutdown
-- [ ] Resource limits and requests
-- [ ] Logging and structured observability
-- [ ] Deployment upgrade/rollback safety
-
-### Performance
-- [ ] N+1 queries or excessive API calls
-- [ ] Connection pooling
-- [ ] Template parsing and caching
-- [ ] Timeout configuration
-
-### Code Quality
-- [ ] Dead code and unused exports
-- [ ] Naming consistency
-- [ ] Duplicated logic
-- [ ] Language idioms and error handling patterns
+Additional review context from the user: $ARGUMENTS
 ```
+
+When `$ARGUMENTS` is empty, subagents use their built-in focus area checklists with no additional context.

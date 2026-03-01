@@ -46,6 +46,9 @@
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
+    ~/.config/opencode/agents/:
+      glob: true
+      path: dotfiles/opencode/agents/*
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
