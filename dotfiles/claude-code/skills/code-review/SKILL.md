@@ -23,7 +23,7 @@ Arguments: $ARGUMENTS
 1. Delete previous review files:
 
 ```bash
-rm -f .llmdocs/review-openai.md .llmdocs/review-gemini.md .llmdocs/review-claude.md
+rm -f .llmdocs/_review-openai.md .llmdocs/_review-gemini.md .llmdocs/_review-claude.md
 mkdir -p .llmdocs
 ```
 
@@ -32,15 +32,15 @@ mkdir -p .llmdocs
 3. Launch all three reviews as background bash tasks. The prompt string for each command is `REVIEW_PROMPT` + the output file instruction.
 
 ```bash
-opencode run -m openai/gpt-5.2-pro --title "OpenAI Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-openai.md"
+opencode run -m openai/gpt-5.2-pro --title "OpenAI Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/_review-openai.md"
 ```
 
 ```bash
-opencode run -m google/gemini-3.1-pro-preview --title "Gemini Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-gemini.md"
+opencode run -m google/gemini-3.1-pro-preview --title "Gemini Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/_review-gemini.md"
 ```
 
 ```bash
-opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/review-claude.md"
+opencode run -m az-anthropic/claude-opus-4-6 --title "Claude Code Review" "<REVIEW_PROMPT> Write your review to .llmdocs/_review-claude.md"
 ```
 
 4. After launching, confirm the three background tasks are running and remind the user to check `.llmdocs/` for results.
@@ -54,7 +54,7 @@ You are performing a code review of this project. Your job is to find problems, 
 
 ## Setup
 
-- Use the repomix MCP tool to pack the repository into a single context. This gives you the full codebase in one call. Do NOT read files individually.
+- Use the repomix MCP tool to pack the repository into a single context. This gives you the full codebase in one call. Do NOT read files directly.
 - After packing, read CLAUDE.md and .llmdocs/architecture.md (if present) for project context.
 
 ## Rules
@@ -96,6 +96,14 @@ For each area, report ONLY defects and recommendations. Skip areas with no findi
 - [ ] Error propagation patterns
 - [ ] State management
 - [ ] Isolation model
+
+### SOLID Principles
+
+- [ ] Single Responsibility: each module/class has one reason to change
+- [ ] Open/Closed: extensible without modifying existing code
+- [ ] Liskov Substitution: implementations are substitutable for their interfaces
+- [ ] Interface Segregation: clients depend only on methods they use
+- [ ] Dependency Inversion: depend on abstractions, not concretions
 
 ### Correctness & Bugs
 - [ ] Race conditions and concurrency issues

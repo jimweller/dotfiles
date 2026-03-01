@@ -110,6 +110,11 @@
       ]
     }
   },
+  "permission": {
+    "skill": {
+      "*": "allow"
+    }
+  },
   "enabled_providers": ["amazon-bedrock", "google", "openai", "az-anthropic", "az-foundry"],
   "mcp": {
     "c7": {
