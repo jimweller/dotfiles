@@ -1,5 +1,5 @@
 ---
-name: update-docs
+name: update-llm-docs
 description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
 disable-model-invocation: true
 argument-hint: "[docs|all]"
@@ -59,7 +59,7 @@ Detailed docs in `.llmdocs/`:
 
 - NO verbose explanations — Claude infers
 - NO duplicating .llmdocs/ content — just reference with short description
-- The `## Docs` section MUST list all .llmdocs/ files with a 1-line description each
+- The `## Docs` section MUST list all non-ignored .llmdocs/ files with a 1-line description each
 - Preserve existing custom instructions (git workflow, env vars, etc.)
 - Ask before removing any existing content
 - Use `@.llmdocs/filename.md` import if a doc should always be loaded
@@ -84,16 +84,22 @@ Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at project 
 
 ### Structure
 
-Flat, 1 file per concept:
+Flat, 1 file per concept. The first 5 files are **required** and must always exist. Additional concept files are created as needed.
 
 ```
 .llmdocs/
-  architecture.md    # Components, interactions, data flow
-  api.md             # Endpoints, request/response
-  data-model.md      # Schema, models, relationships
-  deployment.md      # Deploy process, environments
+  architecture.md    # Components, interactions, data flow (required)
+  api.md             # Endpoints, request/response, authentication, authorization (required)
+  data-model.md      # Schema, models, relationships (required)
+  deployment.md      # Deploy process, environments (required)
+  ops.md             # Maintenance, operations, runbooks (required)
   <concept>.md       # Domain-specific as needed
+  _*.md              # ignored. do not read, update, or reference
 ```
+
+### Ignored Files
+
+Never read, update, list, or reference files in `.llmdocs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this skill. Do not include them in the `## Docs` section of CLAUDE.md.
 
 ### Doc File Format
 
