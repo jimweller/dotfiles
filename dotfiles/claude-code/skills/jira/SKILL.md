@@ -35,6 +35,24 @@ When calling tools, use correct data types for parameters:
 
 Incorrect types cause validation errors like: `'10' is not of type 'integer'`
 
+## Issue Creation Defaults
+
+When creating issues, apply these defaults unless the conversation explicitly specifies otherwise:
+
+| Field        | Default Value                   | Custom Field         |
+| ------------ | ------------------------------- | -------------------- |
+| Story Points | `0.5`                           | `customfield_10814`  |
+| Parent       | none                            |                      |
+| Assignee     | none                            |                      |
+| Label        | `Platform`                      |                      |
+| Reporter     | `JIRA_EMAIL` env var value      |                      |
+
+- **Story Points**: Always set to `0.5` via `additional_fields={"customfield_10814": 0.5}` unless a different value is specified.
+- **Parent**: Do not set a parent unless explicitly provided.
+- **Assignee**: Leave unassigned unless someone is explicitly designated to perform the work (e.g., "assign to X", "X will handle this"). The person requesting work, sending an email, or filing a request is the reporter, not the assignee. Being mentioned in the conversation does not imply assignment.
+- **Label**: Always include `Platform` in the labels array. Merge with any additional labels requested.
+- **Reporter**: Defaults to the current user (`JIRA_EMAIL`). If the work request originates from someone else (e.g., an email author, a requestor), set the reporter to that person. **Reporter cannot be set during creation via `additional_fields`. It is silently ignored.** After creating the issue, immediately call `mcp__atl__jira_update_issue` with `fields={"reporter": "user@example.com"}` to set the reporter. The value must be a plain email string, not an object.
+
 ## Issue Key Recognition
 
 `{KEY}` refers to the normalized JIRA issue key in format `PROJ-###` (e.g., `DEVX-209`).
@@ -173,12 +191,25 @@ jira issue list -q "parent = PROJ-123" -p PROJ --plain
 
 ## create
 
+Step 1: Create the issue.
+
 ```
 mcp__atl__jira_create_issue(
   project_key="PROJ",
   issue_type="Task",
   summary="Task title",
-  description="{panel:bgColor=#deebff}\n### Context\nBackground and why this matters.\n{panel}\n\n### The Work\n- First task\n- Second task\n\n### Details\nTechnical information."
+  description="{panel:bgColor=#deebff}\n### Context\nBackground and why this matters.\n{panel}\n\n### The Work\n- First task\n- Second task\n\n### Details\nTechnical information.",
+  labels=["Platform"],
+  additional_fields={"customfield_10814": 0.5}
+)
+```
+
+Step 2: Set the reporter if different from current user (reporter cannot be set during creation).
+
+```
+mcp__atl__jira_update_issue(
+  issue_key="PROJ-456",
+  fields={"reporter": "requester@example.com"}
 )
 ```
 

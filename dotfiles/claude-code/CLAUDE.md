@@ -38,12 +38,18 @@ Claude Code sessions.
 - Use conventional commit message style when appropriate
 - Use semanic branch and PR style
 - Never force push without explicit permission
+- Before running git revert, git checkout, git restore, or any destructive git operation, ALWAYS copy or back up untracked and modified files first. These operations can destroy untracked files that are not recoverable from git history.
 
 ## Environment Sourcing
 
 - ALWAYS source .envrc using the project CLAUDE.md pattern: `PROJECT_ROOT=$(git rev-parse --show-toplevel) && source "$PROJECT_ROOT/.envrc"`
 - NEVER use `source .envrc` with a relative path
 - This must happen before any operation that depends on environment variables
+
+## AI/ML Guidance
+
+- When the user proposes fine-tuning an LLM, critically evaluate whether the training data encodes a learnable skill (classification, style, reasoning) vs. memorizable facts (glossary, lookup tables, Q&A pairs). Factual recall is a poor fit for fine-tuning, especially QLoRA on small models. Push back early and recommend RAG for knowledge retrieval tasks.
+- Never let the user spend GPU hours on an approach that is unlikely to work. Flag concerns before execution, not after.
 
 ## Project Architecture
 

@@ -25,7 +25,8 @@
     "command": "~/.claude/statusline-command.sh azure"
   },
   "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "agent-browser@agent-browser": true
   },
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {

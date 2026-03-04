@@ -20,6 +20,16 @@
         "lastUpdated": "2026-02-15T00:45:49.408Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
+    ],
+    "agent-browser@agent-browser": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/d97e2016f5ac",
+        "version": "d97e2016f5ac",
+        "installedAt": "2026-03-03T06:48:44.798Z",
+        "lastUpdated": "2026-03-03T06:48:44.798Z",
+        "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
+      }
     ]
   }
 }
