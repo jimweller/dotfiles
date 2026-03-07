@@ -31,6 +31,7 @@ Claude Code sessions.
 - Do not add comments to production code. Keep it clean unless asked.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
 - Never use emojis or glyphs in code. Keep it text only unless asked.
+- Do not assume fallbacks are needed. Fallbacks like "|| or true", trying a different package, or generic try:catch will mask errors that should be explicitly managed.
 
 ## Git Workflow
 
@@ -45,11 +46,6 @@ Claude Code sessions.
 - ALWAYS source .envrc using the project CLAUDE.md pattern: `PROJECT_ROOT=$(git rev-parse --show-toplevel) && source "$PROJECT_ROOT/.envrc"`
 - NEVER use `source .envrc` with a relative path
 - This must happen before any operation that depends on environment variables
-
-## AI/ML Guidance
-
-- When the user proposes fine-tuning an LLM, critically evaluate whether the training data encodes a learnable skill (classification, style, reasoning) vs. memorizable facts (glossary, lookup tables, Q&A pairs). Factual recall is a poor fit for fine-tuning, especially QLoRA on small models. Push back early and recommend RAG for knowledge retrieval tasks.
-- Never let the user spend GPU hours on an approach that is unlikely to work. Flag concerns before execution, not after.
 
 ## Project Architecture
 
