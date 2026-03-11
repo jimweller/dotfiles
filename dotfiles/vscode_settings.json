@@ -518,7 +518,8 @@
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "disabled"
   },
-  "roo-cline.debug": false
+  "roo-cline.debug": false,
+  "jupyter.askForKernelRestart": false
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"

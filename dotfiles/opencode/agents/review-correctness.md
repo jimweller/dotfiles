@@ -1,9 +1,9 @@
 ---
 description: Reviews code for Correctness & Bugs
 mode: subagent
-steps: 25
+steps: 100
 tools:
-  write: false
+  write: true
   edit: false
   bash: false
 ---

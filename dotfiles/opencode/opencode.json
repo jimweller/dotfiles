@@ -117,7 +117,9 @@
   "permission": {
     "skill": {
       "*": "allow"
-    }
+    },
+    "question": "deny",
+    "plan_enter": "deny"
   },
   "enabled_providers": ["amazon-bedrock", "google", "openai", "az-anthropic", "az-foundry"],
   "mcp": {
@@ -127,7 +129,7 @@
       "environment": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       },
-      "enabled": true
+      "enabled": false
     },
     "g": {
       "type": "local",
@@ -137,12 +139,12 @@
         "GOOGLE_CUSTOM_SEARCH_ID": "{env:GOOGLE_SEARCH_ID}",
         "GOOGLE_GEMINI_API_KEY": "{env:GOOGLE_GEMINI_API_KEY}"
       },
-      "enabled": true
+      "enabled": false
     },
     "repomix": {
       "type": "local",
       "command": ["npx", "-y", "repomix", "--mcp"],
-      "enabled": true
+      "enabled": false
     }
   }
 }

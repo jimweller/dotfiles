@@ -1,7 +1,0 @@
-auth-flow:password|passwd|credential|authenticate|login|logout|session|cookie|token|api_key|apikey|secret|oauth|jwt|bearer
-data-access:SELECT|INSERT|UPDATE|DELETE|query|execute|cursor|prepare|bind|parameterize
-crypto:encrypt|decrypt|hash|salt|md5|sha1|sha256|base64|serialize|deserialize|pickle|marshal|private_key|public_key|certificate
-error-handling:catch|except|rescue|recover|throw|raise|panic|finally|ensure
-config-security:debug|verbose|insecure|disable|skip_verify|allow_all|wildcard|0\.0\.0\.0|localhost|connection_string|connectionstring
-dependency-arch:inject|container|factory|locator|singleton|registry|resolve|bind
-codebase-hygiene:TODO|FIXME|HACK|XXX|DEPRECATED|OBSOLETE|NotImplemented|noop|stub|temporary|workaround
