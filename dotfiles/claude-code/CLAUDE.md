@@ -43,9 +43,9 @@ Claude Code sessions.
 
 ## Environment Sourcing
 
-- ALWAYS source .envrc using the project CLAUDE.md pattern: `PROJECT_ROOT=$(git rev-parse --show-toplevel) && source "$PROJECT_ROOT/.envrc"`
+- Not every working directory is a git repo or has a .envrc. Check before attempting to source.
 - NEVER use `source .envrc` with a relative path
-- This must happen before any operation that depends on environment variables
+- When sourcing: `PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd) && [[ -f "$PROJECT_ROOT/.envrc" ]] && source "$PROJECT_ROOT/.envrc"`
 
 ## Project Architecture
 
