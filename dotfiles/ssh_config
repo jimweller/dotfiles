@@ -39,6 +39,12 @@ Host jimweller.com
   IdentityFile ~/.ssh/id_jim
   IdentitiesOnly yes
 
+Host ssh.dev.azure.com
+  HostName ssh.dev.azure.com
+  User git
+  IdentityFile ~/.ssh/id_mcg
+  IdentitiesOnly yes
+
 Host vs-ssh.visualstudio.com
   HostName vs-ssh.visualstudio.com
   User mcgsead
