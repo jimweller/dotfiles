@@ -39,15 +39,19 @@ Incorrect types cause validation errors like: `'10' is not of type 'integer'`
 
 When creating issues, apply these defaults unless the conversation explicitly specifies otherwise:
 
-| Field        | Default Value                   | Custom Field         |
-| ------------ | ------------------------------- | -------------------- |
-| Story Points | `0.5`                           | `customfield_10814`  |
-| Parent       | none                            |                      |
-| Assignee     | none                            |                      |
-| Label        | `Platform`                      |                      |
-| Reporter     | `JIRA_EMAIL` env var value      |                      |
+| Field             | Default Value                              | Custom Field         |
+| ----------------- | ------------------------------------------ | -------------------- |
+| Work Type         | `Feature` (Task), `Overhead` (OpsTask) | `customfield_11096`  |
+| Story Points      | `0.5`                                      | `customfield_10123`  |
+| Engineering Owner | matches assignee                           | `customfield_12165`  |
+| Parent            | none                                       |                      |
+| Assignee          | none                                       |                      |
+| Label             | `Platform`                                 |                      |
+| Reporter          | `JIRA_EMAIL` env var value                 |                      |
 
-- **Story Points**: Always set to `0.5` via `additional_fields={"customfield_10814": 0.5}` unless a different value is specified.
+- **Work Type**: Set via `additional_fields={"customfield_11096": {"value": "Feature"}}`. Default is `Feature` for Task, `Overhead` for OpsTask. Valid values include Feature, Overhead, and others defined in the project.
+- **Story Points**: `customfield_10123` ("Story Points") is displayed in the board UI. Always set to `0.5` via `additional_fields={"customfield_10123": 0.5}` unless a different value is specified.
+- **Engineering Owner**: Do not set by default. Only set when the issue has an assignee. When set, it must match the assignee. Use `"customfield_12165": {"accountId": "<account_id>"}` in `additional_fields`. On every create or update, check if assignee is present and set Engineering Owner accordingly.
 - **Parent**: Do not set a parent unless explicitly provided.
 - **Assignee**: Leave unassigned unless someone is explicitly designated to perform the work (e.g., "assign to X", "X will handle this"). The person requesting work, sending an email, or filing a request is the reporter, not the assignee. Being mentioned in the conversation does not imply assignment.
 - **Label**: Always include `Platform` in the labels array. Merge with any additional labels requested.
@@ -200,11 +204,20 @@ mcp__atl__jira_create_issue(
   summary="Task title",
   description="{panel:bgColor=#deebff}\n### Context\nBackground and why this matters.\n{panel}\n\n### The Work\n- First task\n- Second task\n\n### Details\nTechnical information.",
   labels=["Platform"],
-  additional_fields={"customfield_10814": 0.5}
+  additional_fields={"customfield_10123": 0.5, "customfield_11096": {"value": "Feature"}}
 )
 ```
 
-Step 2: Set the reporter if different from current user (reporter cannot be set during creation).
+Step 2: If the issue has an assignee, set Engineering Owner to match.
+
+```
+mcp__atl__jira_update_issue(
+  issue_key="PROJ-456",
+  additional_fields={"customfield_12165": {"accountId": "<assignee_account_id>"}}
+)
+```
+
+Step 3: Set the reporter if different from current user (reporter cannot be set during creation).
 
 ```
 mcp__atl__jira_update_issue(
@@ -221,7 +234,7 @@ mcp__atl__jira_create_issue(
   issue_type="Task",
   summary="Task title",
   description="{panel:bgColor=#deebff}\n### Context\nBackground and why this matters.\n{panel}\n\n### The Work\n- First task\n- Second task\n\n### Details\nTechnical information.",
-  additional_fields={"parent": "PROJ-123"}
+  additional_fields={"parent": "PROJ-123", "customfield_10123": 0.5, "customfield_11096": {"value": "Feature"}}
 )
 ```
 
@@ -507,7 +520,7 @@ Labels are in the response at labels array.
 
 # Story Points
 
-Custom field: `customfield_10814` (Story point estimate)
+Custom field: `customfield_10123` (Story Points, displayed in the board UI)
 
 ## set
 
@@ -515,7 +528,7 @@ Custom field: `customfield_10814` (Story point estimate)
 mcp__atl__jira_update_issue(
   issue_key="PROJ-456",
   fields={},
-  additional_fields={"customfield_10814": 0.5}
+  additional_fields={"customfield_10123": 0.5}
 )
 ```
 
@@ -524,11 +537,11 @@ mcp__atl__jira_update_issue(
 ```
 mcp__atl__jira_get_issue(
   issue_key="PROJ-456",
-  fields="summary,customfield_10814"
+  fields="summary,customfield_10123"
 )
 ```
 
-The value is at customfield_10814 in the response. Common values: 0.5, 1, 2, 3, 5, 8, 13.
+The value is at customfield_10123 in the response. Common values: 0.5, 1, 2, 3, 5, 8, 13.
 
 # Development Info
 

@@ -4,8 +4,8 @@
     "gopls-lsp@claude-plugins-official": [
       {
         "scope": "local",
-        "projectPath": "/Users/jimweller/tmp/_claude",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
+        "projectPath": "/home/users/random/tmp/_claude",
+        "installPath": "/home/users/random/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
         "version": "1.0.0",
         "installedAt": "2025-12-29T06:47:45.642Z",
         "lastUpdated": "2025-12-29T06:47:45.642Z"
@@ -14,7 +14,7 @@
     "ralph-loop@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/2cd88e7947b7",
+        "installPath": "/home/users/random/.claude/plugins/cache/claude-plugins-official/ralph-loop/2cd88e7947b7",
         "version": "2cd88e7947b7",
         "installedAt": "2026-02-15T00:45:49.408Z",
         "lastUpdated": "2026-02-15T00:45:49.408Z",
@@ -24,7 +24,7 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/d97e2016f5ac",
+        "installPath": "/home/users/random/.claude/plugins/cache/agent-browser/agent-browser/d97e2016f5ac",
         "version": "d97e2016f5ac",
         "installedAt": "2026-03-03T06:48:44.798Z",
         "lastUpdated": "2026-03-03T06:48:44.798Z",

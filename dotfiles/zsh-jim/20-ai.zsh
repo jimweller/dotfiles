@@ -1,4 +1,11 @@
 
+# Fix hardcoded home paths in Claude plugin JSON files (portability across machines)
+for f in ~/.claude/plugins/known_marketplaces.json ~/.claude/plugins/installed_plugins.json; do
+  real=$(readlink -f "$f" 2>/dev/null || readlink "$f" 2>/dev/null) || continue
+  [[ -f "$real" ]] && grep -vq "\"$HOME/" "$real" 2>/dev/null && \
+    sed -i.bak -E "s|\"[^\"]*(/\.claude/)|\"${HOME}\1|g" "$real" && rm -f "$real.bak"
+done
+
 # AI-related functions and aliases
 
 # Launch Claude CLI tool in dev container with permissions bypass

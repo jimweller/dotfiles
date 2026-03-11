@@ -4,7 +4,7 @@
 [user]
 	name = Jim Weller
 	email = jim.weller@mcg.com
-	signingkey = /Users/jimweller/.ssh/id_mcg
+	signingkey = ~/.ssh/id_mcg
 [credential]
 	helper = "!f() { echo username=$GIT_USERNAME; echo password=$AZURE_DEVOPS_EXT_PAT; }; f"
 [credential "https://dev.azure.com"]
