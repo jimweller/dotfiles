@@ -1,5 +1,5 @@
 {
-  "numStartups": 1216,
+  "numStartups": 1217,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -6512,7 +6512,7 @@
   "autoUpdatesProtectedForNative": true,
   "clientDataCache": {
     "data": null,
-    "timestamp": 1773247762530
+    "timestamp": 1773248768460
   },
   "sonnet1m45MigrationComplete": true,
   "effortCalloutDismissed": true,
