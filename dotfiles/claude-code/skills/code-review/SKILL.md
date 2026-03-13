@@ -249,6 +249,17 @@ rm -rf "$STATE_DIR"
 rm -f /tmp/review-prompt.txt
 ```
 
+### Step 9: Synthesize Reviews
+
+Read all successfully produced review files (`.llmdocs/_review-<TARGET_NAME>-*.md`). Compare findings across models and report:
+
+1. **Quorum findings (3/3)** — issues flagged by all three models. List each with the area, severity, and finding.
+2. **Quorum findings (2/3)** — issues flagged by two models. List each with the area, severity, which models agreed, and which did not.
+3. **Single-model findings** — issues flagged by only one model. List all of them. Note which model raised each.
+4. **Conflicting assessments** — areas where models disagree (e.g., one flags a risk, another says it's fine).
+
+Include every finding. Do not skip or summarize away any items.
+
 ## Expected Output Files
 
 3 files total, one per model:
@@ -330,8 +341,8 @@ grep -E "^(ERROR|WARN)" "$LOGFILE"
 
 ## Rules
 
-- Claude Code is ONLY a launcher. All review work happens inside the opencode processes.
-- Do NOT perform any review analysis directly. The opencode processes handle reviewing.
+- Claude Code is a launcher and synthesizer. All review work happens inside the opencode processes. Claude Code reads the finished review files and synthesizes a cross-model comparison.
+- Do NOT perform any review analysis during Steps 1-8. Only analyze review outputs in Step 9.
 - Do NOT ask questions during execution. This is non-interactive.
 - Launch all 3 processes in parallel. Do not wait for one to finish before starting another.
 - Use plain message invocation, not `--command`. The `--command` flag has a known issue with the c7 MCP server.
