@@ -1,3 +1,5 @@
+# Raise opencode's hard output-token cap (default 32K) so models can use their full output limit                                                                                       
+OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX=131072
 
 # Fix hardcoded home paths in Claude plugin JSON files (portability across machines)
 for f in ~/.claude/plugins/known_marketplaces.json ~/.claude/plugins/installed_plugins.json; do
