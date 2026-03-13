@@ -1,7 +1,7 @@
 ---
 name: code-review
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
-user-invokable: true
+user-invocable: true
 argument-hint: "<path>"
 ---
 
@@ -18,7 +18,7 @@ Arguments: $ARGUMENTS
 | Label   | Model ID                        |
 |---------|---------------------------------|
 | openai  | openai/gpt-5.3-codex            |
-| gemini  | google/gemini-3-flash-preview   |
+| gemini  | google/gemini-3.1-pro-preview   |
 | claude  | az-anthropic/claude-opus-4-6    |
 
 ## Procedure
@@ -53,7 +53,7 @@ triggers a confusing truncation error in Claude Code's UI on large repos.
 
 ```bash
 REPOMIX_FILE="/tmp/repomix-review-$TARGET_NAME.xml"
-npx repomix -o "$REPOMIX_FILE" --quiet "$TARGET_PATH"
+npx repomix -o "$REPOMIX_FILE" --quiet "$PROJECT_ROOT/$TARGET_PATH"
 ```
 
 Repomix reads `.repomixignore` from the project root automatically.
@@ -65,7 +65,7 @@ Verify the file was created, then confirm `REPOMIX_FILE` to the user before proc
 Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`, and `<REPOMIX_FILE>` with the resolved values.
 
 ```
-PROMPT="You are a code review orchestrator. Execute this procedure non-interactively. Do not ask questions.
+PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input. You MUST write the review output file before exiting.
 
 TARGET_PATH: <TARGET_PATH>
 TARGET_NAME: <TARGET_NAME>
@@ -74,7 +74,7 @@ REPOMIX_FILE: <REPOMIX_FILE>
 CRITICAL: The repository is ALREADY packed. Do NOT call pack_codebase or repomix yourself.
 The file at REPOMIX_FILE is ready to use. Pass it to subagents as repomix_file.
 
-## Step 1: Spawn Review Agents
+## A. Spawn Review Agents
 
 Spawn ALL 8 review-* subagents in PARALLEL, one per area.
 Each agent prompt MUST include: repomix_file=<REPOMIX_FILE>
@@ -89,18 +89,18 @@ Each agent will:
 Agents are read-only (write: false). They return text output, not files.
 Do NOT pack the repository. Do NOT call pack_codebase. It is already packed.
 
-## Step 2: Collect Results
+## B. Collect Results
 
 After all 8 agents complete, collect their text output.
 
-## Step 3: Determine Model Label
+## C. Determine Model Label
 
 Derive a short lowercase label for your model identity:
 - Claude variants: claude
 - GPT variants: openai
 - Gemini variants: gemini
 
-## Step 4: Write Combined Review
+## D. Write Combined Review
 
 Write ONE combined markdown file containing all 8 agents' findings:
 
@@ -118,64 +118,133 @@ Area titles: Security, Architecture & Design, SOLID Principles, Correctness & Bu
 
 If an agent returned 'No findings.', include that under its section.
 
-## Step 5: Report
+## E. Report
 
 List the output file created."
 ```
 
-### Step 4: Launch 3 Background Processes
+### Step 4: Write Prompt to File
 
-Launch all 3 opencode processes in parallel using background Bash tasks. Each writes NDJSON output to a log file.
+Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
 STATE_DIR="$PROJECT_ROOT/.llmdocs/multi_review_state"
 mkdir -p "$STATE_DIR"
+cat > /tmp/review-prompt.txt <<'PROMPT_EOF'
+<the prompt from step 3>
+PROMPT_EOF
 ```
 
+### Step 5: Launch 3 Separate Background Bash Tasks
+
+Launch each opencode process as its own separate background Bash task. Do NOT launch all 3 in a single shell — child processes get killed when the parent shell exits.
+
+Each is a separate Bash call with `run_in_background`:
+
+**OpenAI:**
 ```bash
+STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
 opencode run \
-  -m openai/gpt-5.3-codex\
+  -m openai/gpt-5.3-codex \
   --format json \
+  --print-logs \
+  --log-level INFO \
+  --dir "<PROJECT_ROOT>" \
   --title "Review - OpenAI" \
-  "$PROMPT" \
-  > "$STATE_DIR/openai.ndjson" 2>&1 &
-echo $!
+  "$(cat /tmp/review-prompt.txt)" \
+  > "$STATE_DIR/openai.ndjson" 2>"$STATE_DIR/openai.log"
 ```
 
+**Gemini:**
 ```bash
+STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
 opencode run \
-  -m google/gemini-3-flash-preview \
+  -m google/gemini-3.1-pro-preview \
   --format json \
+  --print-logs \
+  --log-level INFO \
+  --dir "<PROJECT_ROOT>" \
   --title "Review - Gemini" \
-  "$PROMPT" \
-  > "$STATE_DIR/gemini.ndjson" 2>&1 &
-echo $!
+  "$(cat /tmp/review-prompt.txt)" \
+  > "$STATE_DIR/gemini.ndjson" 2>"$STATE_DIR/gemini.log"
 ```
 
+**Claude:**
 ```bash
+STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
 opencode run \
   -m az-anthropic/claude-opus-4-6 \
   --format json \
+  --print-logs \
+  --log-level INFO \
+  --dir "<PROJECT_ROOT>" \
   --title "Review - Claude" \
-  "$PROMPT" \
-  > "$STATE_DIR/claude.ndjson" 2>&1 &
-echo $!
+  "$(cat /tmp/review-prompt.txt)" \
+  > "$STATE_DIR/claude.ndjson" 2>"$STATE_DIR/claude.log"
 ```
 
-Capture the 3 PIDs.
+All 3 must be launched in parallel as separate background tasks. Do NOT use `&` in a single shell.
 
-### Step 5: Wait and Report
+#### Output Streams
 
-Wait for all 3 PIDs to exit. Use `wait $PID1 $PID2 $PID3` or poll with `kill -0`.
+Each opencode process produces two output files:
+
+- **`<label>.ndjson`** (stdout): Structured NDJSON events from `--format json`. Use for programmatic progress tracking (step counts, cost, tool calls, completion detection).
+- **`<label>.log`** (stderr): Plain-text info-level logs from `--print-logs --log-level INFO`. Use for diagnosing startup failures, permission issues, MCP server errors, and plugin loading problems.
+
+Log lines are structured text, one per line:
+```
+INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating instance
+```
+
+### Step 6: Monitor and Wait
+
+Poll each background task until all 3 complete.
+
+**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`):
+
+```bash
+# Count completed steps for a model
+grep -c '"type":"step_finish"' "$NDJSON" 2>/dev/null || echo 0
+
+# Check if the model finished (last step_finish has reason: "stop")
+tail -1 "$NDJSON" 2>/dev/null | jq -r '.part.reason // empty'
+
+# Check for errors in NDJSON events
+grep '"type":"error"' "$NDJSON" 2>/dev/null
+
+# Get total cost so far
+grep '"type":"step_finish"' "$NDJSON" | jq -s '[.[].part.cost] | add'
+
+# Check tool use activity (subagent spawns, file writes)
+grep '"type":"tool_use"' "$NDJSON" | jq -r '.part.tool + " -> " + .part.state.status'
+```
+
+**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
+
+```bash
+# Check for errors or warnings in text logs
+grep -E "^(ERROR|WARN)" "$LOGFILE" 2>/dev/null
+
+# Tail recent log activity
+tail -5 "$LOGFILE" 2>/dev/null
+```
+
+### Step 7: Report Results
 
 For each model, check if its expected output file exists at `.llmdocs/_review-<TARGET_NAME>-<label>.md`.
 
-Report which models succeeded (file present) and which failed (file missing).
+Report per model:
+- Success/failure (output file present or not)
+- Total cost (sum of `cost` from all `step_finish` events)
+- Total tokens (from the last `step_finish` event's `tokens.total`)
+- Whether any errors occurred
 
-### Step 6: Cleanup
+### Step 8: Cleanup
 
 ```bash
 rm -rf "$STATE_DIR"
+rm -f /tmp/review-prompt.txt
 ```
 
 ## Expected Output Files
@@ -190,13 +259,72 @@ Where `<TARGET_NAME>` is derived from the path's last segment (or `repo` for roo
 
 ## NDJSON Log Format Reference
 
-Each opencode process writes NDJSON to `$STATE_DIR/<label>.ndjson`. Each line is a JSON object. Key event types:
+Each opencode process writes NDJSON to `$STATE_DIR/<label>.ndjson`. One JSON object per line. Skip lines that fail to parse (partial writes).
 
-- `{"type": "step_finish", "part": {"cost": 0.0012, "tokens": {"total": 17311}, "reason": "stop"|"tool-calls"}}` -- step completed; `reason: "stop"` on the final event means the model finished.
-- `{"type": "tool_use", "part": {"tool": "bash", "state": {"status": "completed"|"error"}}}` -- tool invocation.
-- `{"type": "error", "error": {"data": {"message": "..."}}}` -- error occurred.
+### Event Types
 
-Skip lines that fail to parse (partial writes).
+**step_start** - A new LLM turn begins.
+```json
+{"type":"step_start","timestamp":1773360681884,"sessionID":"ses_...","part":{"type":"step-start","snapshot":"..."}}
+```
+
+**text** - Model emitted text output.
+```json
+{"type":"text","timestamp":1773360682061,"sessionID":"ses_...","part":{"type":"text","text":"some output"}}
+```
+
+**tool_use** - Model called a tool. Key fields: `tool` (tool name), `state.status` ("completed" or "error"), `state.input`, `state.output`, `state.metadata.exit` (for bash).
+```json
+{"type":"tool_use","timestamp":1773360682369,"sessionID":"ses_...","part":{"tool":"bash","state":{"status":"completed","input":{"command":"echo hello"},"output":"hello\n","metadata":{"exit":0}}}}
+```
+
+For subagent spawns, `tool` is "task" and `state.output` contains the agent's result text:
+```json
+{"type":"tool_use","timestamp":...,"part":{"tool":"task","state":{"status":"completed","input":{"description":"...","prompt":"..."},"output":"<task_result>...</task_result>"}}}
+```
+
+**step_finish** - An LLM turn completed. Key fields: `reason` ("stop" = done, "tool-calls" = continuing), `cost`, `tokens`.
+```json
+{"type":"step_finish","timestamp":1773360682446,"sessionID":"ses_...","part":{"reason":"tool-calls","cost":0,"tokens":{"total":13494,"input":2,"output":77,"reasoning":0,"cache":{"read":0,"write":13415}}}}
+```
+
+The final `step_finish` with `"reason":"stop"` means the model is done.
+
+**error** - An error occurred at the session level.
+```json
+{"type":"error","timestamp":...,"sessionID":"ses_...","error":{"name":"UnknownError","data":{"message":"Model not found: ..."}}}
+```
+
+### Useful jq Queries
+
+Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`).
+
+```bash
+# Is the process done? (last step_finish reason is "stop")
+tail -1 "$NDJSON" | jq -r 'select(.type=="step_finish") | .part.reason'
+
+# Total cost
+jq -s '[.[] | select(.type=="step_finish") | .part.cost] | add' "$NDJSON"
+
+# Total tokens from final step
+tac "$NDJSON" | jq -s 'first(.[] | select(.type=="step_finish")) | .part.tokens.total'
+
+# All tool calls and their status
+jq -r 'select(.type=="tool_use") | "\(.part.tool): \(.part.state.status)"' "$NDJSON"
+
+# All errors from NDJSON events
+jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
+
+# Count subagent spawns
+jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
+```
+
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
+
+```bash
+# All errors and warnings from text logs
+grep -E "^(ERROR|WARN)" "$LOGFILE"
+```
 
 ## Rules
 

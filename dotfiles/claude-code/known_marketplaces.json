@@ -4,7 +4,7 @@
       "source": "github",
       "repo": "anthropics/claude-plugins-official"
     },
-    "installLocation": "/home/users/random/.claude/plugins/marketplaces/claude-plugins-official",
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
     "lastUpdated": "2026-02-08T03:24:53.458Z"
   },
   "agent-browser": {
@@ -12,7 +12,7 @@
       "source": "github",
       "repo": "vercel-labs/agent-browser"
     },
-    "installLocation": "/home/users/random/.claude/plugins/marketplaces/agent-browser",
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
     "lastUpdated": "2026-03-11T22:05:54.911Z"
   }
 }

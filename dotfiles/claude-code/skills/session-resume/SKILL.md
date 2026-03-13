@@ -1,5 +1,5 @@
 ---
-name: claude-search-resume
+name: session-resume
 description: Search and load previous Claude Code conversations. Use when user wants to find or resume a past session.
 ---
 
@@ -21,16 +21,16 @@ Run the script `scripts/claude-search-resume`:
 
 ```bash
 # Search in current project
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume
+~/.claude/skills/session-resume/scripts/claude-search-resume
 
 # Search globally (all projects)
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume --global
+~/.claude/skills/session-resume/scripts/claude-search-resume --global
 
 # Search by keyword
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume "deploy" --global
+~/.claude/skills/session-resume/scripts/claude-search-resume "deploy" --global
 
 # Search by date range
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume --from "2026-01-13 00:00" --to "2026-01-13 23:59"
+~/.claude/skills/session-resume/scripts/claude-search-resume --from "2026-01-13 00:00" --to "2026-01-13 23:59"
 ```
 
 ## Output

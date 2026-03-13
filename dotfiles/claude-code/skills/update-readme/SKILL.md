@@ -1,5 +1,5 @@
 ---
-name: readme
+name: update-readme
 description: Write documentation based on conversation history and folder contents
 user-invocable: true
 ---

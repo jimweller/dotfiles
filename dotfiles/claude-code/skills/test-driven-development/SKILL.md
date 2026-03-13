@@ -1,16 +1,15 @@
 ---
 name: test-driven-development
 description: "Use when implementing any feature or bugfix, before writing implementation code"
-risk: unknown
-source: community
-date_added: "2026-02-27"
 ---
 
-# Test-Driven Development (TDD)
+# Test-Driven Development (TDD) - London School
 
 ## Overview
 
 Write the test first. Watch it fail. Write minimal code to pass.
+
+**School:** London (mock-first). Mock collaborators to isolate the unit under test. Let test doubles drive interface discovery.
 
 **Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
 
@@ -24,7 +23,7 @@ Write the test first. Watch it fail. Write minimal code to pass.
 - Refactoring
 - Behavior changes
 
-**Exceptions (ask your human partner):**
+**Exceptions (ask the user):**
 - Throwaway prototypes
 - Generated code
 - Configuration files
@@ -47,79 +46,70 @@ Write code before the test? Delete it. Start over.
 
 Implement fresh from tests. Period.
 
+## London School Mocking
+
+Mock collaborators by default. The unit under test is real. Everything it talks to is a test double.
+
+**Why:** Mocks drive interface design. When you mock a collaborator, you define the contract the unit expects. This discovers interfaces before implementing them.
+
+**What to mock:**
+- Collaborator objects (services, repositories, clients)
+- External systems (APIs, databases, filesystems)
+- Anything the unit delegates to
+
+**What NOT to mock:**
+- The unit under test itself
+- Value objects and data structures
+- Language/stdlib primitives
+
+**Mock quality matters:** Mocks must reflect real collaborator contracts. Incomplete or invented mock behavior is worse than no mock. See @testing-anti-patterns.md.
+
 ## Red-Green-Refactor
 
-```dot
-digraph tdd_cycle {
-    rankdir=LR;
-    red [label="RED\nWrite failing test", shape=box, style=filled, fillcolor="#ffcccc"];
-    verify_red [label="Verify fails\ncorrectly", shape=diamond];
-    green [label="GREEN\nMinimal code", shape=box, style=filled, fillcolor="#ccffcc"];
-    verify_green [label="Verify passes\nAll green", shape=diamond];
-    refactor [label="REFACTOR\nClean up", shape=box, style=filled, fillcolor="#ccccff"];
-    next [label="Next", shape=ellipse];
-
-    red -> verify_red;
-    verify_red -> green [label="yes"];
-    verify_red -> red [label="wrong\nfailure"];
-    green -> verify_green;
-    verify_green -> refactor [label="yes"];
-    verify_green -> green [label="no"];
-    refactor -> verify_green [label="stay\ngreen"];
-    verify_green -> next;
-    next -> red;
-}
-```
+RED (failing test) -> verify fails correctly -> GREEN (minimal code) -> verify passes -> REFACTOR (clean up) -> repeat
 
 ### RED - Write Failing Test
 
-Write one minimal test showing what should happen.
+Write one minimal test showing what should happen. Mock collaborators to isolate the unit.
 
 <Good>
 ```typescript
 test('retries failed operations 3 times', async () => {
-  let attempts = 0;
-  const operation = () => {
-    attempts++;
-    if (attempts < 3) throw new Error('fail');
-    return 'success';
-  };
+  const mockClient = { send: vi.fn() };
+  mockClient.send
+    .mockRejectedValueOnce(new Error('fail'))
+    .mockRejectedValueOnce(new Error('fail'))
+    .mockResolvedValueOnce('success');
 
-  const result = await retryOperation(operation);
+  const result = await retryOperation(mockClient.send);
 
   expect(result).toBe('success');
-  expect(attempts).toBe(3);
+  expect(mockClient.send).toHaveBeenCalledTimes(3);
 });
 ```
-Clear name, tests real behavior, one thing
+Clear name, mocks the collaborator, tests unit behavior
 </Good>
 
 <Bad>
 ```typescript
 test('retry works', async () => {
-  const mock = jest.fn()
-    .mockRejectedValueOnce(new Error())
-    .mockRejectedValueOnce(new Error())
-    .mockResolvedValueOnce('success');
-  await retryOperation(mock);
-  expect(mock).toHaveBeenCalledTimes(3);
+  await retryOperation(realHttpClient.send);
+  // Depends on network, slow, flaky
 });
 ```
-Vague name, tests mock not code
+Vague name, no isolation, tests infrastructure
 </Bad>
 
 **Requirements:**
 - One behavior
 - Clear name
-- Real code (no mocks unless unavoidable)
+- Mock collaborators, test the unit
 
 ### Verify RED - Watch It Fail
 
 **MANDATORY. Never skip.**
 
-```bash
-npm test path/to/test.test.ts
-```
+Run the project's test command targeting the specific test file.
 
 Confirm:
 - Test fails (not errors)
@@ -172,9 +162,7 @@ Don't add features, refactor other code, or "improve" beyond the test.
 
 **MANDATORY.**
 
-```bash
-npm test path/to/test.test.ts
-```
+Run the project's test command targeting the specific test file.
 
 Confirm:
 - Test passes
@@ -205,6 +193,7 @@ Next failing test for next feature.
 | **Minimal** | One thing. "and" in name? Split it. | `test('validates email and domain and whitespace')` |
 | **Clear** | Name describes behavior | `test('test1')` |
 | **Shows intent** | Demonstrates desired API | Obscures what code should do |
+| **Isolated** | Mocks collaborators, tests unit | Tests entire call chain |
 
 ## Why Order Matters
 
@@ -224,7 +213,7 @@ Manual testing is ad-hoc. You think you tested everything but:
 - No record of what you tested
 - Can't re-run when code changes
 - Easy to forget cases under pressure
-- "It worked when I tried it" ≠ comprehensive
+- "It worked when I tried it" does not equal comprehensive
 
 Automated tests are systematic. They run the same way every time.
 
@@ -254,7 +243,7 @@ Tests-after are biased by your implementation. You test what you built, not what
 
 Tests-first force edge case discovery before implementing. Tests-after verify you remembered everything (you didn't).
 
-30 minutes of tests after ≠ TDD. You get coverage, lose proof tests work.
+30 minutes of tests after does not equal TDD. You get coverage, lose proof tests work.
 
 ## Common Rationalizations
 
@@ -263,7 +252,7 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 | "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
 | "I'll test after" | Tests passing immediately prove nothing. |
 | "Tests after achieve same goals" | Tests-after = "what does this do?" Tests-first = "what should this do?" |
-| "Already manually tested" | Ad-hoc ≠ systematic. No record, can't re-run. |
+| "Already manually tested" | Ad-hoc does not equal systematic. No record, can't re-run. |
 | "Deleting X hours is wasteful" | Sunk cost fallacy. Keeping unverified code is technical debt. |
 | "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
 | "Need to explore first" | Fine. Throw away exploration, start with TDD. |
@@ -297,20 +286,18 @@ Tests-first force edge case discovery before implementing. Tests-after verify yo
 **RED**
 ```typescript
 test('rejects empty email', async () => {
-  const result = await submitForm({ email: '' });
+  const mockRepo = { save: vi.fn() };
+  const result = await submitForm({ email: '' }, mockRepo);
   expect(result.error).toBe('Email required');
+  expect(mockRepo.save).not.toHaveBeenCalled();
 });
 ```
 
-**Verify RED**
-```bash
-$ npm test
-FAIL: expected 'Email required', got undefined
-```
+**Verify RED** - Run tests, confirm failure: expected 'Email required', got undefined.
 
 **GREEN**
 ```typescript
-function submitForm(data: FormData) {
+function submitForm(data: FormData, repo: UserRepo) {
   if (!data.email?.trim()) {
     return { error: 'Email required' };
   }
@@ -318,14 +305,9 @@ function submitForm(data: FormData) {
 }
 ```
 
-**Verify GREEN**
-```bash
-$ npm test
-PASS
-```
+**Verify GREEN** - Run tests, confirm pass.
 
-**REFACTOR**
-Extract validation for multiple fields if needed.
+**REFACTOR** - Extract validation for multiple fields if needed.
 
 ## Verification Checklist
 
@@ -337,7 +319,7 @@ Before marking work complete:
 - [ ] Wrote minimal code to pass each test
 - [ ] All tests pass
 - [ ] Output pristine (no errors, warnings)
-- [ ] Tests use real code (mocks only if unavoidable)
+- [ ] Collaborators mocked, unit tested in isolation
 - [ ] Edge cases and errors covered
 
 Can't check all boxes? You skipped TDD. Start over.
@@ -346,9 +328,9 @@ Can't check all boxes? You skipped TDD. Start over.
 
 | Problem | Solution |
 |---------|----------|
-| Don't know how to test | Write wished-for API. Write assertion first. Ask your human partner. |
+| Don't know how to test | Write wished-for API. Write assertion first. Ask the user. |
 | Test too complicated | Design too complicated. Simplify interface. |
-| Must mock everything | Code too coupled. Use dependency injection. |
+| Too many mocks | Code too coupled. Use dependency injection. |
 | Test setup huge | Extract helpers. Still complex? Simplify design. |
 
 ## Debugging Integration
@@ -367,8 +349,8 @@ When adding mocks or test utilities, read @testing-anti-patterns.md to avoid com
 ## Final Rule
 
 ```
-Production code → test exists and failed first
-Otherwise → not TDD
+Production code -> test exists and failed first
+Otherwise -> not TDD
 ```
 
-No exceptions without your human partner's permission.
+No exceptions without the user's permission.

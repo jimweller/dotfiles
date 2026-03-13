@@ -1,5 +1,5 @@
 ---
-name: claude-migrate-session
+name: session-migrate
 description: Migrate a Claude Code session from another project folder to the current directory so claude --resume picks it up.
 argument-hint: "[keyword]"
 ---
@@ -20,8 +20,8 @@ Migrate a conversation from another project to the current working directory.
 1. **Search** — Run the search script with `--global` (always global since migration implies cross-folder). Pass the user's keyword argument if provided. Multiple words are automatically OR-matched.
 
 ```bash
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume --global
-~/.claude/skills/claude-search-resume/scripts/claude-search-resume "keyword" --global
+~/.claude/skills/session-resume/scripts/claude-search-resume --global
+~/.claude/skills/session-resume/scripts/claude-search-resume "keyword" --global
 ```
 
 2. **Filter & Display** — From the search results, discard any sessions whose project path matches the current working directory (these are already local and can't be migrated). Also discard the current active session. Show only the remaining results to the user. If only one foreign session remains, auto-select it. If multiple remain, ask the user which one to migrate (by number or session ID). If none remain, tell the user no migratable sessions were found.
@@ -29,7 +29,7 @@ Migrate a conversation from another project to the current working directory.
 3. **Migrate** — Run the migrate script with the chosen session ID:
 
 ```bash
-~/.claude/skills/claude-migrate-session/scripts/claude-migrate-session --session-id <uuid>
+~/.claude/skills/session-migrate/scripts/claude-migrate-session --session-id <uuid>
 ```
 
 4. **Instruct** — The script prints the new session UUID and a `claude --resume <new-id>` command. Tell the user to quit this session and run that exact `--resume` command. Do NOT suggest `--continue` — the current session will be newer and `--continue` would pick it up instead of the migrated one.
