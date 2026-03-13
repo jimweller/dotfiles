@@ -193,6 +193,9 @@ Write the prompt string to a temp file. This avoids shell interpolation issues w
 ```bash
 STATE_DIR="$PROJECT_ROOT/.llmdocs/ralph_review_state"
 mkdir -p "$STATE_DIR"
+OPENAI_DIR=$(mktemp -d)
+GEMINI_DIR=$(mktemp -d)
+CLAUDE_DIR=$(mktemp -d)
 cat > /tmp/ralph-review-prompt.txt <<'PROMPT_EOF'
 <the prompt from step 4>
 PROMPT_EOF
@@ -212,7 +215,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<OPENAI_DIR>" \
   --title "Ralph Review - OpenAI" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/openai.ndjson" 2>"$STATE_DIR/openai.log"
@@ -226,7 +229,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<GEMINI_DIR>" \
   --title "Ralph Review - Gemini" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/gemini.ndjson" 2>"$STATE_DIR/gemini.log"
@@ -240,7 +243,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<CLAUDE_DIR>" \
   --title "Ralph Review - Claude" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/claude.ndjson" 2>"$STATE_DIR/claude.log"

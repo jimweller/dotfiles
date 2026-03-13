@@ -170,6 +170,9 @@ Write the prompt string to a temp file. This avoids shell interpolation issues w
 ```bash
 STATE_DIR="$PROJECT_ROOT/.llmdocs/multi_review_state"
 mkdir -p "$STATE_DIR"
+OPENAI_DIR=$(mktemp -d)
+GEMINI_DIR=$(mktemp -d)
+CLAUDE_DIR=$(mktemp -d)
 cat > /tmp/review-prompt.txt <<'PROMPT_EOF'
 <the prompt from step 3>
 PROMPT_EOF
@@ -189,7 +192,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<OPENAI_DIR>" \
   --title "Review - OpenAI" \
   "$(cat /tmp/review-prompt.txt)" \
   > "$STATE_DIR/openai.ndjson" 2>"$STATE_DIR/openai.log"
@@ -203,7 +206,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<GEMINI_DIR>" \
   --title "Review - Gemini" \
   "$(cat /tmp/review-prompt.txt)" \
   > "$STATE_DIR/gemini.ndjson" 2>"$STATE_DIR/gemini.log"
@@ -217,7 +220,7 @@ opencode run \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<PROJECT_ROOT>" \
+  --dir "<CLAUDE_DIR>" \
   --title "Review - Claude" \
   "$(cat /tmp/review-prompt.txt)" \
   > "$STATE_DIR/claude.ndjson" 2>"$STATE_DIR/claude.log"
