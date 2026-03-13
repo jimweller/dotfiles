@@ -102,6 +102,8 @@ Derive a short lowercase label for your model identity:
 
 ## D. Write Combined Review
 
+CRITICAL: This is the most important step. You MUST write this file. Do NOT stop or exit before writing. Use the bash tool to write the file.
+
 Write ONE combined markdown file containing all 8 agents' findings:
 
 <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-\$MODEL_LABEL.md

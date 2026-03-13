@@ -128,6 +128,8 @@ For each area, list specific findings with severity (high/medium/low) and action
 
 ## Output
 
+CRITICAL: This is the most important step. You MUST write this file. Do NOT stop or exit before writing. Use the bash tool to write the file.
+
 Determine your model label:
 - Claude variants: claude
 - GPT variants: openai
