@@ -61,7 +61,9 @@ For each file, wrap it as:
 Build the prompt that each opencode process will execute. Replace `<PROJECT_ROOT>` with the resolved value and `<CONTEXT>` with the concatenated file contents from step 3.
 
 ```
-PROMPT="You are a plan reviewer running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input. You MUST write the review output file before exiting.
+PROMPT="You are a plan reviewer running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
+
+YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. After completing your review, your VERY NEXT action must be a bash tool call that writes the output file using cat with a heredoc. Do not summarize, do not reflect, do not plan — write the file immediately.
 
 PROJECT_ROOT: <PROJECT_ROOT>
 
@@ -126,9 +128,9 @@ Evaluate the plan across these areas:
 
 For each area, list specific findings with severity (high/medium/low) and actionable recommendations.
 
-## Output
+## Output — DO THIS IMMEDIATELY AFTER COMPLETING YOUR REVIEW
 
-CRITICAL: This is the most important step. You MUST write this file. Do NOT stop or exit before writing. Use the bash tool to write the file.
+Your VERY NEXT action after finishing the review must be a bash call that writes the file. No intermediate steps.
 
 Determine your model label:
 - Claude variants: claude
@@ -137,31 +139,51 @@ Determine your model label:
 
 Write your review to: <PROJECT_ROOT>/.llmdocs/_review-ralph-\$MODEL_LABEL.md
 
-Format:
+Use bash with a heredoc. Follow this template exactly:
 
+```
+cat > '<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md' <<'REVIEW_EOF'
 # Ralph Loop Review
-**Model**: \$MODEL_LABEL
+**Model**: <MODEL_LABEL>
 
 ## Goal Clarity
-<findings>
+
+- **[medium]** Short title. Explanation of the finding...
 
 ## Task Decomposition
-<findings>
+
+- **[high]** Short title. Explanation...
+- **[low]** Short title. Explanation...
 
 ## Sequencing and Dependencies
-<findings>
+
+- **[medium]** Short title. Explanation...
 
 ## Instructions Completeness
-<findings>
+
+- **[low]** Short title. Explanation...
 
 ## Risk and Gaps
-<findings>
+
+- **[high]** Short title. Explanation...
 
 ## Feasibility
-<findings>
+
+- **[medium]** Short title. Explanation...
 
 ## Summary
-<overall assessment and top 3 recommendations>"
+
+<overall assessment and top 3 recommendations>
+REVIEW_EOF
+```
+
+Finding format: `- **[severity]** Title. Description.`
+
+Every section must be present. If no findings for an area, write 'No findings.' under its heading.
+
+Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md'
+
+If the file does not exist, write it again. Do not exit without the file."
 ```
 
 ### Step 5: Write Prompt to File

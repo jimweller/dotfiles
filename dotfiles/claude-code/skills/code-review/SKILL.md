@@ -65,7 +65,9 @@ Verify the file was created, then confirm `REPOMIX_FILE` to the user before proc
 Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`, and `<REPOMIX_FILE>` with the resolved values.
 
 ```
-PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input. You MUST write the review output file before exiting.
+PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
+
+YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. If you complete the subagent work but fail to write the output file, the entire session is a failure. After collecting subagent results, your VERY NEXT action must be a bash tool call that writes the output file using cat with a heredoc. Do not summarize, do not reflect, do not plan — write the file immediately.
 
 TARGET_PATH: <TARGET_PATH>
 TARGET_NAME: <TARGET_NAME>
@@ -100,29 +102,65 @@ Derive a short lowercase label for your model identity:
 - GPT variants: openai
 - Gemini variants: gemini
 
-## D. Write Combined Review
+## D. Write Combined Review — DO THIS IMMEDIATELY AFTER COLLECTING RESULTS
 
-CRITICAL: This is the most important step. You MUST write this file. Do NOT stop or exit before writing. Use the bash tool to write the file.
+Your VERY NEXT action after collecting subagent results must be a bash call that writes the file. No intermediate steps.
 
 Write ONE combined markdown file containing all 8 agents' findings:
 
 <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-\$MODEL_LABEL.md
 
-Format:
+Use bash with a heredoc. Follow this template exactly:
+
+```
+cat > '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md' <<'REVIEW_EOF'
 # Code Review: <TARGET_NAME>
-**Model**: \$MODEL_LABEL
+**Model**: <MODEL_LABEL>
 
-Then for each area, include a section:
-## <Area Title>
-<agent findings>
+## Security
 
-Area titles: Security, Architecture & Design, SOLID Principles, Correctness & Bugs, Testing, Operational Readiness, Performance, Code Quality.
+- **[high]** `path/to/file:line` — Short title. Explanation of the finding...
+- **[low]** `path/to/file:line` — Short title. Explanation...
 
-If an agent returned 'No findings.', include that under its section.
+## Architecture & Design
 
-## E. Report
+- **[medium]** `path/to/file:line` — Short title. Explanation...
 
-List the output file created."
+## SOLID Principles
+
+- **[medium]** `path/to/file:line` — Short title. Explanation...
+
+## Correctness & Bugs
+
+- **[high]** `path/to/file:line` — Short title. Explanation...
+
+## Testing
+
+- **[medium]** `path/to/file:line` — Short title. Explanation...
+
+## Operational Readiness
+
+- **[low]** `path/to/file:line` — Short title. Explanation...
+
+## Performance
+
+- **[medium]** `path/to/file:line` — Short title. Explanation...
+
+## Code Quality
+
+- **[low]** `path/to/file:line` — Short title. Explanation...
+REVIEW_EOF
+```
+
+Finding format: `- **[severity]** \`file:line\` — Title. Description.`
+
+Every section must be present. If an agent returned no findings for an area, write 'No findings.' under its heading.
+
+## E. Verify File Was Written
+
+Run: ls -la '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md'
+
+If the file does not exist, write it again. Do not exit without the file."
 ```
 
 ### Step 4: Write Prompt to File
