@@ -53,7 +53,7 @@ triggers a confusing truncation error in Claude Code's UI on large repos.
 
 ```bash
 REPOMIX_FILE="/tmp/repomix-review-$TARGET_NAME.xml"
-npx repomix -o "$REPOMIX_FILE" --quiet "$PROJECT_ROOT/$TARGET_PATH"
+npx repomix -o "$REPOMIX_FILE" --quiet --output-show-line-numbers "$PROJECT_ROOT/$TARGET_PATH"
 ```
 
 Repomix reads `.repomixignore` from the project root automatically.
