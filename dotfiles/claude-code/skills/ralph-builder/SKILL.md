@@ -48,12 +48,16 @@ task lists describes what steps to take, not how to do them. The HOW should come
 Format:
 
 ```markdown
+- [ ] Create git tag RALPH-YYYYMMDD-BEGIN
 - [ ] First task
 - [ ] Second task
 - [ ] Third task
+- [ ] Create git tag RALPH-YYYYMMDD-END
 ```
 
 Rules:
+- The first task is always: `Create git tag RALPH-YYYYMMDD-BEGIN` (use today's date)
+- The last task is always: `Create git tag RALPH-YYYYMMDD-END` (use today's date)
 - Each task is a single, independently-completable unit of work
 - Tasks are ordered by dependency (earlier tasks unblock later ones)
 - Use imperative voice
@@ -84,14 +88,28 @@ Format:
 
 <repo-specific patterns, tools, test commands, build commands, commit style>
 
+## Git Workflow
+
+Before starting the first task, create a BEGIN tag on the current HEAD:
+  git tag RALPH-YYYYMMDD-BEGIN
+
+After completing each task (tests pass, linter clean), commit:
+  git add <changed files>
+  git commit -m "<conventional commit message describing the task>"
+
+After completing the last task and its commit, create an END tag:
+  git tag RALPH-YYYYMMDD-END
+
+Use the actual date (YYYYMMDD) when creating tags. Use conventional commit style.
+
 ## Per-Task Workflow
 
 For each task, follow London TDD (mock-first):
 1. Write a failing test that defines the expected behavior
 2. Write the minimum code to make the test pass
 3. Refactor if needed while keeping tests green
+4. Commit the changes with a conventional commit message
 
-Do NOT commit. The user will commit after reviewing changes.
 Mark the task [x] in _ralph-tasks.md when complete.
 
 ## References
@@ -102,7 +120,6 @@ Mark the task [x] in _ralph-tasks.md when complete.
 Rules:
 - Ground instructions in the actual repo structure and tooling
 - Include build, test, and lint commands if known
-- Explicitly state that ralph must NOT commit
 - Reference the project's CLAUDE.md rules
 - Define what "done" means for a task (tests pass, linter clean, etc.)
 
