@@ -1,7 +1,6 @@
 ---
 description: Reviews code for SOLID Principles
 mode: subagent
-steps: 100
 tools:
   write: true
   edit: false

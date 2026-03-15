@@ -1,7 +1,6 @@
 ---
 description: Reviews code for Testing
 mode: subagent
-steps: 100
 tools:
   write: true
   edit: false
