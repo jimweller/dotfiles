@@ -14,5 +14,21 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
     "lastUpdated": "2026-03-11T22:05:54.911Z"
+  },
+  "sead-claude-marketplace": {
+    "source": {
+      "source": "git",
+      "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
+    "lastUpdated": "2026-03-14T20:14:12.513Z"
+  },
+  "understand-anything": {
+    "source": {
+      "source": "github",
+      "repo": "Lum1104/Understand-Anything"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/understand-anything",
+    "lastUpdated": "2026-03-15T15:09:56.071Z"
   }
 }
