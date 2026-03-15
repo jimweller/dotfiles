@@ -50,8 +50,8 @@ Target: **under 150 lines**. Every line must earn its place.
 
 ## Docs
 Detailed docs in `.llmdocs/`:
-- `architecture.md` — <1-line description>
-- `data-model.md` — <1-line description>
+- @.llmdocs/architecture.md — <1-line description>
+- @.llmdocs/data-model.md — <1-line description>
 
 ```
 
