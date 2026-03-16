@@ -67,9 +67,9 @@ Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>
 ```
 PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
 
-YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. If you complete the subagent work but fail to write the output file, the entire session is a failure. After collecting subagent results, your VERY NEXT action must be a bash tool call that writes the output file using cat with a heredoc. Do not summarize, do not reflect, do not plan — write the file immediately.
+YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. If you complete the subagent work but fail to write the output file, the entire session is a failure. After collecting subagent results, your VERY NEXT action must be writing the output file. Do not summarize, do not reflect, do not plan — write the file immediately.
 
-OUTPUT RULES: You are running headless. Keep text responses to one short sentence. Your primary job is making tool calls. ALL review content goes into the output file via a bash heredoc tool call. You MUST make tool calls to complete this task. The bash heredoc write is mandatory and is your most important action.
+OUTPUT RULES: You are running headless. Keep text responses to one short sentence. Your primary job is making tool calls. ALL review content goes into the output file. You MUST make tool calls to complete this task. Writing the file is mandatory and is your most important action.
 
 TARGET_PATH: <TARGET_PATH>
 TARGET_NAME: <TARGET_NAME>
@@ -112,10 +112,11 @@ Write ONE combined markdown file containing all 8 agents' findings:
 
 <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-\$MODEL_LABEL.md
 
-Use bash with a heredoc. Follow this template exactly:
+Write the file with this content:
 
-```
-cat > '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md' <<'REVIEW_EOF'
+File path: `<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md`
+
+```markdown
 # Code Review: <TARGET_NAME>
 **Model**: <MODEL_LABEL>
 
@@ -151,7 +152,6 @@ cat > '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md' <<'REVIEW
 ## Code Quality
 
 - **[low]** `path/to/file:line` — Short title. Explanation...
-REVIEW_EOF
 ```
 
 Finding format: `- **[severity]** \`file:line\` — Title. Description.`
