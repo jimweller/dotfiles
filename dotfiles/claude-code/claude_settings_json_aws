@@ -31,6 +31,12 @@
   "prefersReducedMotion": true,
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
-    "agent-browser@agent-browser": true
+    "agent-browser@agent-browser": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true
   }
 }
