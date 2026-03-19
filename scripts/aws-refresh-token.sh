@@ -2,109 +2,75 @@
 
 # AWS SSO Session and Credential Refresh Script
 #
-# This script provides a self-healing mechanism to maintain a nearly continuous AWS session
-# for up to 90 days, leveraging the trusted device registration of AWS SSO.
+# Self-healing mechanism to maintain near-continuous AWS credentials for up to
+# 90 days, leveraging the trusted device registration of AWS SSO.
 #
 # How this script works:
-# 1. Refreshes the SSO Session: It runs 'aws sso login'. If the 8-hour SSO session
-#    is expired, this command uses the 90-day trusted device registration to
-#    non-interactively start a new 8-hour session. If the session is still valid,
-#    it does nothing.
-# 2. Mints Fresh Temporary Credentials: It then runs 'aws configure export-credentials'
-#    to generate a new set of 12-hour temporary IAM credentials.
-# 3. Exports for Applications: The new credentials are saved to a custom file, making
-#    them available to other applications via the 'credential_process' in ~/.aws/config.
+# 1. Refreshes the SSO session via 'aws sso login'. If the 8-hour session is
+#    expired, the 90-day device registration allows non-interactive renewal.
+# 2. Mints fresh 12-hour temporary IAM credentials via 'aws configure export-credentials'.
+# 3. Writes credentials to an export file for consumption via credential_process.
 #
-# This creates a resilient cycle: the 12-hour temporary token remains valid even
-# during the brief window when the 8-hour SSO session is expired, ensuring that
-# the 'credential_process' helper can always serve valid credentials. The next
-# scheduled run then automatically re-establishes the SSO session.
+# The 12-hour temporary token remains valid even during the brief window when
+# the 8-hour SSO session is expired, ensuring credential_process can always
+# serve valid credentials. The next scheduled run re-establishes the SSO session.
 #
-# Scheduling with launchd on MacOS:
-#  - Use StartCalendarInterval for reliability, as it runs missed jobs on wake.
-#  - A schedule of 00:00, 09:00, and 18:00 is recommended. This ensures the 8-hour
-#    SSO session is renewed shortly after it expires, providing continuous coverage.
+# Scheduling (launchd on macOS, cron on Linux):
+#   00:00, 09:00, 18:00 recommended. Use StartCalendarInterval on macOS for
+#   reliability (runs missed jobs on wake).
 #
-# How AWS SSO Authentication Works
+# AWS SSO Authentication Layers
 #
-# AWS SSO authentication involves three distinct expiration windows that must be understood
-# to properly manage credentials. This script leverages all three layers to provide a
-# long-running, automated session.
+# Layer 1: Device Registration (90 days) - OIDC Trusted Client
+#   Admin-controlled OAuth 2.0 OIDC client registration period.
+#   Location: ~/.aws/sso/cache/*.json (clientId/clientSecret fields)
+#   Created by: aws sso login
+#   Marks the AWS CLI as a trusted OAuth 2.0 client.
+#   This is the device trust window, not the login session.
+#   If expired: all cached tokens become invalid, must run 'aws sso login'
+#   interactively and complete the browser authentication flow.
 #
-# Layer 1: Client Registration (90 days typical) - OIDC "Trusted Device" Registration
-#    Duration: 90 days for AWS SSO (12 hours for granted, varies by system)
-#    Admin-configured: Yes - configurable OAuth 2.0 OIDC client registration period
-#    Location: ~/.aws/sso/cache/*.json (separate file with clientId/clientSecret)
-#    Created by: aws sso login
-#    Key fields:
-#       - registrationExpiresAt: Date when client registration expires
-#       - clientId: OAuth client identifier
-#       - clientSecret: OAuth client secret
-#    Purpose: Marks AWS CLI as a trusted OAuth 2.0 client for 90 days
-#    Behavior: This is NOT your login session - it's the device trust window
-#    Impact if expires: All cached tokens become invalid, must run 'aws sso login'
-#    Note: The 90 days does NOT mean your credentials last 90 days
+# Layer 2: SSO Session (8 hours) - Refresh Token
+#   Admin-controlled via IAM Identity Center session duration policy.
+#   Location: ~/.aws/sso/cache/*.json (refreshToken field)
+#   Created by: aws sso login
+#   Used to automatically renew the Layer 3 access token.
+#   If expired: 'aws sso login' creates a new session non-interactively
+#   using the Layer 1 device registration.
 #
-# Layer 2: SSO Session (8-12 hours typical) - YOUR ACTUAL LOGIN SESSION
-#    Duration: 8-12 hours (commonly 8 hours, configured by AWS administrator)
-#    Admin-configured: Yes - set via IAM Identity Center session duration policy
-#    Location: ~/.aws/sso/cache/*.json (same file as client registration)
-#    Created by: aws sso login
-#    Key fields:
-#       - refreshToken: Valid for SSO session duration (NOT 90 days!)
-#       - accessToken: Short-lived (~1 hour), auto-renewed by refreshToken
-#       - expiresAt: When current accessToken expires (~1 hour from now)
-#    Purpose: Proves you are authenticated and authorized to request temporary credentials
-#    Behavior:
-#       - When accessToken expires (~1 hour), AWS CLI auto-renews it using refreshToken
-#       - When refreshToken expires (SSO session timeout), renewal fails
-#       - refreshToken lifetime is tied to SSO session, NOT client registration
-#    Impact if expires: The next step in this script ('aws sso login') will automatically
-#                       create a new session.
+# Layer 3: SSO Access Token (~1 hour) - Bearer Token
+#   Auto-renewed by the Layer 2 refresh token.
+#   Location: ~/.aws/sso/cache/*.json (accessToken/expiresAt fields)
+#   Used to call sso:GetRoleCredentials to obtain Layer 4 IAM credentials.
+#   If expired: AWS CLI silently renews it using the refresh token.
+#   If the refresh token is also expired: renewal fails, 'aws sso login' required.
 #
-# Layer 3: Temporary IAM Credentials (12 hours typical) - WHAT THIS SCRIPT MANAGES
-#    Duration: 12 hours (configured by AWS administrator for permission set)
-#    Admin-configured: Yes - set via IAM Identity Center permission set configuration
-#    Location: ~/.aws/cli/cache/*.json
-#    Created by: aws configure export-credentials (called by this script)
-#    Contains:
-#       - AccessKeyId: Temporary AWS access key
-#       - SecretAccessKey: Temporary AWS secret key
-#       - SessionToken: Session token for temporary credentials
-#       - Expiration: When these credentials expire
-#       - AccountId: AWS account number
-#    Purpose: Short-lived AWS API credentials for making AWS service calls
-#    Behavior:
-#       - This script requests fresh credentials on a fixed schedule (e.g., every 9 hours).
-#       - AWS mints new 12-hour credentials using the just-refreshed SSO session.
-#       - These are the credentials actually used by AWS CLI/SDK commands.
-#    Impact if expires: The 'credential_process' continues to serve the previous, still-valid
-#                       token until the next scheduled run mints a new one.
+# Layer 4: Temporary IAM Credentials (12 hours) - STS Credentials
+#   Admin-controlled via IAM Identity Center permission set configuration.
+#   Location: ~/.aws/cli/cache/*.json
+#   Created by: 'aws configure export-credentials', which internally calls
+#   sso:GetRoleCredentials using the Layer 3 access token to mint STS credentials.
+#   Contains AccessKeyId, SecretAccessKey, SessionToken, Expiration.
+#   These are the credentials used by AWS CLI/SDK for actual AWS API calls.
+#   If expired: AWS API calls fail until new credentials are minted.
 #
-# Layer 4: Custom Export File (This script's output)
-#    Location: ~/assets/aws/aws-token.json (configurable)
-#    Purpose: Makes temporary IAM credentials available to applications via credential_process
-#    Format: JSON with AccessKeyId, SecretAccessKey, SessionToken, Expiration fields
-#    Updated: Every time this script successfully runs
+# Layer 5: Export File (refresh schedule) - Script Output
+#   Not part of standard AWS SSO. Customization provided by this script.
+#   Duration: refreshed by job schedule every 9 hours (00:00, 09:00, 18:00)
+#   Location: ~/assets/aws/aws-token.json (configurable)
+#   Makes Layer 4 credentials available to applications via credential_process.
+#   Decouples credential consumers from the credential source.
 #
-# Example Timeline (8-hour SSO session with 00:00, 09:00, 18:00 schedule):
-#    18:00: Script runs. SSO session is expired.
-#           → 'aws sso login' creates a NEW 8-hour session (valid until 02:00).
-#           → 'export-credentials' creates a NEW 12-hour token (valid until 06:00).
+# Example Timeline (8-hour SSO session, 12am/9am/6pm schedule):
 #
-#    00:00: Script runs. SSO session is still valid (expires at 02:00).
-#           → 'aws sso login' does nothing, session still expires at 02:00.
-#           → 'export-credentials' creates a NEW 12-hour token (valid until 12:00).
-#
-#    02:00: The 8-hour SSO session expires.
-#           → From 02:00 to 09:00, any new process uses the still-valid temporary
-#             token from 00:00 via the 'credential_process' helper.
-#
-#    09:00: Script runs. SSO session is expired.
-#           → 'aws sso login' creates a NEW 8-hour session (valid until 17:00).
-#           → 'export-credentials' creates a NEW 12-hour token (valid until 21:00).
-#
-# This cycle continues, providing uninterrupted credential availability.
+#   6pm  - Layer 2 expired. 'aws sso login' creates new refresh token (8h, until 2am).
+#          'export-credentials' mints new IAM credentials (12h, until 6am).
+#   12am - Layer 2 still valid (expires 2am). New IAM credentials (12h, until 12pm).
+#   2am  - Layer 2 expires. Layer 4 from 12am still valid (until 12pm).
+#          credential_process continues serving Layer 5 export file.
+#   9am  - Layer 2 expired. New refresh token (8h, until 5pm).
+#          New IAM credentials (12h, until 9pm).
+#   6pm  - Cycle repeats.
 #
 
 # configuration - must use full paths for launchd

@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: code-reviews
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
 user-invocable: true
 argument-hint: "<path>"
@@ -65,11 +65,11 @@ Verify the file was created, then confirm `REPOMIX_FILE` to the user before proc
 Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`, and `<REPOMIX_FILE>` with the resolved values.
 
 ```
-PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
+PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation.
 
-YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. If you complete the subagent work but fail to write the output file, the entire session is a failure. After collecting subagent results, your VERY NEXT action must be writing the output file. Do not summarize, do not reflect, do not plan — write the file immediately.
+This task has TWO PHASES. Both are mandatory. Completing Phase 1 without Phase 2 is a failure.
 
-OUTPUT RULES: You are running headless. Keep text responses to one short sentence. Your primary job is making tool calls. ALL review content goes into the output file. You MUST make tool calls to complete this task. Writing the file is mandatory and is your most important action.
+OUTPUT RULES: Keep text responses to one short sentence. Your primary job is making tool calls.
 
 TARGET_PATH: <TARGET_PATH>
 TARGET_NAME: <TARGET_NAME>
@@ -78,9 +78,11 @@ REPOMIX_FILE: <REPOMIX_FILE>
 CRITICAL: The repository is ALREADY packed. Do NOT call pack_codebase or repomix yourself.
 The file at REPOMIX_FILE is ready to use. Pass it to subagents as repomix_file.
 
-## A. Spawn Review Agents
+---
 
-Spawn ALL 8 review-* subagents in PARALLEL, one per area.
+# PHASE 1: COLLECT
+
+Spawn ALL 8 review subagents in PARALLEL, one per area.
 Each agent prompt MUST include: repomix_file=<REPOMIX_FILE>
 
 Areas: security, architecture, solid, correctness, testing, ops, performance, quality.
@@ -93,76 +95,48 @@ Each agent will:
 Agents are read-only (write: false). They return text output, not files.
 Do NOT pack the repository. Do NOT call pack_codebase. It is already packed.
 
-## B. Collect Results
+After all 8 agents complete, collect their text output. Then print exactly:
 
-After all 8 agents complete, collect their text output.
+PHASE_1_COMPLETE
 
-## C. Determine Model Label
+Do NOT stop here. Phase 2 is next.
+
+---
+
+# PHASE 2: WRITE FILE
+
+You are NOT done. Phase 1 collected the data. Phase 2 writes it to disk.
+If you stop before writing the file, the entire session is a failure.
+
+## Step A: Determine Model Label
 
 Derive a short lowercase label for your model identity:
 - Claude variants: claude
 - GPT variants: openai
 - Gemini variants: gemini
 
-## D. Write Combined Review — DO THIS IMMEDIATELY AFTER COLLECTING RESULTS
+## Step B: Write the File
 
-Your VERY NEXT action after collecting subagent results must be a bash call that writes the file. No intermediate steps.
+Your NEXT action must be writing the file. No summarizing, no reflecting.
 
-Write ONE combined markdown file containing all 8 agents' findings:
+File path: <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md
 
-<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-\$MODEL_LABEL.md
+Content structure:
 
-Write the file with this content:
-
-File path: `<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md`
-
-```markdown
 # Code Review: <TARGET_NAME>
 **Model**: <MODEL_LABEL>
 
-## Security
+One H2 section per review area (Security, Architecture & Design, SOLID Principles,
+Correctness & Bugs, Testing, Operational Readiness, Performance, Code Quality).
+Every section must be present. Use 'No findings.' if an area had none.
 
-- **[high]** `path/to/file:line` — Short title. Explanation of the finding...
-- **[low]** `path/to/file:line` — Short title. Explanation...
+Finding format: - **[severity]** `file:line` -- Title. Description.
 
-## Architecture & Design
+## Step C: Verify
 
-- **[medium]** `path/to/file:line` — Short title. Explanation...
+Confirm the file exists. If not, write it again. Do not exit without the file.
 
-## SOLID Principles
-
-- **[medium]** `path/to/file:line` — Short title. Explanation...
-
-## Correctness & Bugs
-
-- **[high]** `path/to/file:line` — Short title. Explanation...
-
-## Testing
-
-- **[medium]** `path/to/file:line` — Short title. Explanation...
-
-## Operational Readiness
-
-- **[low]** `path/to/file:line` — Short title. Explanation...
-
-## Performance
-
-- **[medium]** `path/to/file:line` — Short title. Explanation...
-
-## Code Quality
-
-- **[low]** `path/to/file:line` — Short title. Explanation...
-```
-
-Finding format: `- **[severity]** \`file:line\` — Title. Description.`
-
-Every section must be present. If an agent returned no findings for an area, write 'No findings.' under its heading.
-
-## E. Verify File Was Written
-
-Run: ls -la '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<MODEL_LABEL>.md'
-
-If the file does not exist, write it again. Do not exit without the file."
+Print exactly: PHASE_2_COMPLETE"
 ```
 
 ### Step 4: Write Prompt to File
