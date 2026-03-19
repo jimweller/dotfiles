@@ -1,256 +1,205 @@
-<mxfile host="app.diagrams.net" agent="Claude" version="26.0.0">
-  <diagram id="token-lifecycle" name="AWS SSO Token Lifecycle">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-
-        <!-- Title -->
-        <mxCell id="title" value="AWS SSO Token Lifecycle" style="text;html=1;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="500" y="20" width="400" height="40" as="geometry" />
-        </mxCell>
-
-        <!-- launchd trigger -->
-        <mxCell id="launchd" value="&lt;b&gt;launchd&lt;/b&gt;&lt;br&gt;00:00 / 09:00 / 18:00&lt;br&gt;&lt;i&gt;RunAtLoad: true&lt;/i&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="80" y="120" width="200" height="80" as="geometry" />
-        </mxCell>
-
-        <!-- Script box -->
-        <mxCell id="script" value="&lt;b&gt;aws-refresh-token.sh&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
-          <mxGeometry x="400" y="130" width="220" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: launchd -> script -->
-        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="launchd" target="script" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e1label" value="triggers" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=11;" vertex="1" connectable="0" parent="e1">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Layer 1: Client Registration -->
-        <mxCell id="layer1" value="&lt;b&gt;Layer 1: Client Registration&lt;/b&gt;&lt;br&gt;Duration: 90 days&lt;br&gt;OIDC trusted device registration&lt;br&gt;&lt;br&gt;&lt;i&gt;~/.aws/sso/cache/*.json&lt;/i&gt;&lt;br&gt;Fields: clientId, clientSecret,&lt;br&gt;registrationExpiresAt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="80" y="290" width="260" height="140" as="geometry" />
-        </mxCell>
-
-        <!-- Layer 2: SSO Session -->
-        <mxCell id="layer2" value="&lt;b&gt;Layer 2: SSO Session&lt;/b&gt;&lt;br&gt;Duration: 8 hours (admin-configured)&lt;br&gt;Your actual login session&lt;br&gt;&lt;br&gt;&lt;i&gt;~/.aws/sso/cache/*.json&lt;/i&gt;&lt;br&gt;Fields: accessToken (~1hr, auto-renewed),&lt;br&gt;refreshToken (8hr lifetime)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=center;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="440" y="290" width="280" height="140" as="geometry" />
-        </mxCell>
-
-        <!-- Layer 3: Temporary IAM Credentials -->
-        <mxCell id="layer3" value="&lt;b&gt;Layer 3: Temporary IAM Credentials&lt;/b&gt;&lt;br&gt;Duration: 12 hours (admin-configured)&lt;br&gt;Actual AWS API credentials&lt;br&gt;&lt;br&gt;&lt;i&gt;~/.aws/cli/cache/*.json&lt;/i&gt;&lt;br&gt;Fields: AccessKeyId, SecretAccessKey,&lt;br&gt;SessionToken, Expiration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="820" y="290" width="280" height="140" as="geometry" />
-        </mxCell>
-
-        <!-- Layer 4: Export File -->
-        <mxCell id="layer4" value="&lt;b&gt;Layer 4: Custom Export File&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;~/assets/aws/aws-token.json&lt;/i&gt;&lt;br&gt;Served by credential_process&lt;br&gt;in ~/.aws/config" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
-          <mxGeometry x="1200" y="290" width="240" height="140" as="geometry" />
-        </mxCell>
-
-        <!-- Step 1: aws sso login -->
-        <mxCell id="step1" value="&lt;b&gt;Step 1&lt;/b&gt;&lt;br&gt;aws sso login" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;size=20;" vertex="1" parent="1">
-          <mxGeometry x="170" y="500" width="200" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Step 2: Clear cache -->
-        <mxCell id="step2" value="&lt;b&gt;Step 2&lt;/b&gt;&lt;br&gt;Clear CLI cache" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;size=20;" vertex="1" parent="1">
-          <mxGeometry x="470" y="500" width="200" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Step 3: Export credentials -->
-        <mxCell id="step3" value="&lt;b&gt;Step 3&lt;/b&gt;&lt;br&gt;aws configure&lt;br&gt;export-credentials" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;size=20;" vertex="1" parent="1">
-          <mxGeometry x="770" y="500" width="200" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Step 4: Write export file -->
-        <mxCell id="step4" value="&lt;b&gt;Step 4&lt;/b&gt;&lt;br&gt;Write aws-token.json" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;size=20;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="500" width="200" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: script -> step1 -->
-        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="script" target="step1" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: step1 -> layer1 (uses) -->
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1;dashed=1;strokeColor=#b85450;" edge="1" source="step1" target="layer1" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e3label" value="uses 90-day&lt;br&gt;registration to&lt;br&gt;renew session" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e3">
-          <mxGeometry x="-0.2" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: step1 -> layer2 (creates/renews) -->
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#d6b656;" edge="1" source="step1" target="layer2" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e4label" value="creates/renews&lt;br&gt;8hr session" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e4">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: step3 -> layer2 (reads) -->
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1;dashed=1;strokeColor=#d6b656;" edge="1" source="step3" target="layer2" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e5label" value="reads SSO session" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e5">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: step3 -> layer3 (creates) -->
-        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;" edge="1" source="step3" target="layer3" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e6label" value="mints 12hr&lt;br&gt;credentials" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e6">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: step4 -> layer4 (writes) -->
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#9673a6;" edge="1" source="step4" target="layer4" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e7label" value="writes JSON" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e7">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Consumer: AWS CLI/SDK -->
-        <mxCell id="consumer" value="&lt;b&gt;AWS CLI / SDK&lt;/b&gt;&lt;br&gt;reads via credential_process" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="500" width="240" height="60" as="geometry" />
-        </mxCell>
-
-        <!-- Arrow: layer4 -> consumer -->
-        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#9673a6;" edge="1" source="layer4" target="consumer" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e8label" value="serves credentials" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e8">
-          <mxGeometry x="-0.1" relative="1" as="geometry" />
-        </mxCell>
-
-        <!-- Timeline bar -->
-        <mxCell id="timeline_title" value="&lt;b&gt;Example Timeline (8hr SSO session, 12hr temp creds, 9hr schedule)&lt;/b&gt;" style="text;html=1;fontSize=13;fontStyle=0;align=left;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="80" y="620" width="600" height="30" as="geometry" />
-        </mxCell>
-
-        <!-- Timeline axis -->
-        <mxCell id="axis" value="" style="endArrow=classic;html=1;strokeWidth=2;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="80" y="720" as="sourcePoint" />
-            <mxPoint x="1440" y="720" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Time markers -->
-        <mxCell id="t18" value="18:00" style="text;html=1;fontSize=11;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="80" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t00" value="00:00" style="text;html=1;fontSize=11;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="310" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t02" value="02:00" style="text;html=1;fontSize=11;fontStyle=0;align=center;fontColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="390" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t06" value="06:00" style="text;html=1;fontSize=11;fontStyle=0;align=center;fontColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="540" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t09" value="09:00" style="text;html=1;fontSize=11;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="660" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t12" value="12:00" style="text;html=1;fontSize=11;fontStyle=0;align=center;fontColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="770" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t17" value="17:00" style="text;html=1;fontSize=11;fontStyle=0;align=center;fontColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="970" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t18b" value="18:00" style="text;html=1;fontSize=11;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1010" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="t21" value="21:00" style="text;html=1;fontSize=11;fontStyle=0;align=center;fontColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="1130" y="725" width="50" height="20" as="geometry" />
-        </mxCell>
-
-        <!-- Script run markers (triangles on timeline) -->
-        <mxCell id="run1" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="95" y="705" width="20" height="15" as="geometry" />
-        </mxCell>
-        <mxCell id="run2" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="325" y="705" width="20" height="15" as="geometry" />
-        </mxCell>
-        <mxCell id="run3" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="675" y="705" width="20" height="15" as="geometry" />
-        </mxCell>
-        <mxCell id="run4" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="1025" y="705" width="20" height="15" as="geometry" />
-        </mxCell>
-
-        <!-- SSO Session bars (yellow) -->
-        <mxCell id="sso1" value="SSO Session (8hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="100" y="660" width="310" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="sso2" value="SSO Session (8hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="680" y="660" width="310" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="sso3" value="SSO Session (8hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="1030" y="660" width="310" height="25" as="geometry" />
-        </mxCell>
-
-        <!-- Temp credential bars (green) -->
-        <mxCell id="cred1" value="Temp Creds (12hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="100" y="690" width="460" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="cred2" value="Temp Creds (12hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="330" y="690" width="460" height="25" as="geometry" />
-        </mxCell>
-        <mxCell id="cred3" value="Temp Creds (12hr)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="680" y="690" width="460" height="25" as="geometry" />
-        </mxCell>
-
-        <!-- Gap annotation -->
-        <mxCell id="gap" value="&lt;font color=&quot;#b85450&quot;&gt;SSO expired,&lt;br&gt;temp creds&lt;br&gt;still valid&lt;/font&gt;" style="text;html=1;fontSize=10;align=center;verticalAlign=bottom;" vertex="1" parent="1">
-          <mxGeometry x="400" y="630" width="90" height="45" as="geometry" />
-        </mxCell>
-        <mxCell id="gap_arrow" value="" style="endArrow=classic;html=1;strokeColor=#b85450;dashed=1;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="445" y="675" as="sourcePoint" />
-            <mxPoint x="445" y="695" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Legend -->
-        <mxCell id="legend_title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;fontSize=11;align=left;" vertex="1" parent="1">
-          <mxGeometry x="80" y="770" width="60" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="leg1" value="" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="80" y="795" width="20" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="leg1t" value="Layer 1: Client Registration (90 days)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
-          <mxGeometry x="105" y="791" width="250" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="leg2" value="" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="80" y="815" width="20" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="leg2t" value="Layer 2: SSO Session (8 hours)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
-          <mxGeometry x="105" y="811" width="250" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="leg3" value="" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="80" y="835" width="20" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="leg3t" value="Layer 3: Temporary IAM Credentials (12 hours)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
-          <mxGeometry x="105" y="831" width="300" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="leg4" value="" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="80" y="855" width="20" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="leg4t" value="Layer 4: Export File (aws-token.json)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
-          <mxGeometry x="105" y="851" width="250" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="leg5" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="82" y="875" width="16" height="12" as="geometry" />
-        </mxCell>
-        <mxCell id="leg5t" value="Script execution (launchd trigger)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
-          <mxGeometry x="105" y="871" width="250" height="20" as="geometry" />
-        </mxCell>
-
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram id="token-lifecycle" name="AWS SSO Token Lifecycle">
+        <mxGraphModel dx="6020" dy="2829" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="680" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="L1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;opacity=40;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="-2606" y="-1243" width="750" height="860" as="geometry"/>
+                </mxCell>
+                <mxCell id="L1label" value="&lt;b&gt;Device App Registration&lt;/b&gt;&lt;br&gt;90 days" style="text;html=1;fontSize=36;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="-2586" y="-1233" width="300" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="L2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="-2496" y="-1093" width="620" height="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="L2label" value="&lt;b&gt;SSO Session&lt;/b&gt;&lt;br&gt;8 hours" style="text;html=1;fontSize=36;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="-2476" y="-1083" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="L3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=50;arcSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-2376" y="-943" width="470" height="490" as="geometry"/>
+                </mxCell>
+                <mxCell id="L3label" value="&lt;b&gt;IAM Creds&lt;/b&gt;&lt;br&gt;12 hours" style="text;html=1;fontSize=36;align=left;verticalAlign=top;fillColor=none;strokeColor=none;fontColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="-2326" y="-933" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="d_label" value="Device Reg 90d" style="text;html=1;fontSize=36;align=right;fontColor=#b85450;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="-3340" y="-96" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="d1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;opacity=70;" parent="1" vertex="1">
+                    <mxGeometry x="-2980" y="-96" width="1780" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="s_label" value="SSO Session 8hr" style="text;html=1;fontSize=36;align=right;fontColor=#d6b656;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="-3340" y="-28" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="-2980" y="-28" width="440" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="-2156" y="-28" width="440" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="s3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="-1660" y="-28" width="440" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_label" value="Access Token 1hr" style="text;html=1;fontSize=36;align=right;fontColor=#e6941a;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="-3350" y="40" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="a1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2980" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2925" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2870" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2815" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2760" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2705" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2650" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2595" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a9" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2156" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2101" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-2046" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1991" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a13" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1936" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a14" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1881" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1826" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a16" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1771" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1660" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a18" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1605" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a19" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1550" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a20" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1495" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1440" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a22" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1385" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a23" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1330" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="a24" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#e6941a;" parent="1" vertex="1">
+                    <mxGeometry x="-1275" y="40" width="55" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_label" value="IAM Creds 12hr" style="text;html=1;fontSize=36;align=right;fontColor=#82b366;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="-3340" y="138" width="320" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="c1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=70;" parent="1" vertex="1">
+                    <mxGeometry x="-2980" y="108" width="660" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=70;" parent="1" vertex="1">
+                    <mxGeometry x="-2650" y="160" width="660" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=70;" parent="1" vertex="1">
+                    <mxGeometry x="-2156" y="108" width="660" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="c4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=70;" parent="1" vertex="1">
+                    <mxGeometry x="-1660" y="160" width="460" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="axis" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#333333;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-2980" y="254" as="sourcePoint"/>
+                        <mxPoint x="-1180" y="254" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="r1" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="-2994" y="230" width="28" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="r2" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="-2664" y="230" width="28" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="r3" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="-2170" y="230" width="28" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="r4" value="" style="shape=triangle;direction=south;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="-1674" y="230" width="28" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="t18a" value="&lt;b&gt;18:00&lt;/b&gt;" style="text;html=1;fontSize=36;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="-3020" y="260" width="80" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="t00" value="&lt;b&gt;00:00&lt;/b&gt;" style="text;html=1;fontSize=36;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="-2690" y="260" width="80" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="t09" value="&lt;b&gt;09:00&lt;/b&gt;" style="text;html=1;fontSize=36;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="-2196" y="260" width="80" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="t18b" value="&lt;b&gt;18:00&lt;/b&gt;" style="text;html=1;fontSize=36;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="-1700" y="260" width="80" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#858585;strokeColor=#A50040;opacity=70;fillStyle=auto;gradientDirection=west;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-2650" y="108" width="330" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#858585;strokeColor=none;opacity=70;fillStyle=solid;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-1660" y="108" width="164" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#858585;strokeColor=none;opacity=70;fillStyle=solid;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-2160" y="160" width="170" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=timer;" parent="1" vertex="1">
+                    <mxGeometry x="-3010" y="310" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=timer;" parent="1" vertex="1">
+                    <mxGeometry x="-2670" y="310" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=timer;" parent="1" vertex="1">
+                    <mxGeometry x="-2180" y="310" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=timer;" parent="1" vertex="1">
+                    <mxGeometry x="-1690" y="310" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="😀" style="text;whiteSpace=wrap;fontSize=64;" vertex="1" parent="1">
+                    <mxGeometry x="-3370" y="120" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="aws-token.json" style="dashed=0;outlineConnect=0;html=1;align=left;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.json;aspect=fixed;fontSize=37;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="-2226" y="-703" width="117.33" height="127.05" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/8653/8653969.png;" vertex="1" parent="1">
+                    <mxGeometry x="-3017" y="380" width="64" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/8653/8653969.png;" vertex="1" parent="1">
+                    <mxGeometry x="-2677" y="380" width="64" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/8653/8653969.png;" vertex="1" parent="1">
+                    <mxGeometry x="-2187" y="380" width="64" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn-icons-png.flaticon.com/512/8653/8653969.png;" vertex="1" parent="1">
+                    <mxGeometry x="-1697" y="380" width="64" height="64" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>

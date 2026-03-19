@@ -31,19 +31,17 @@ All files go in `<PROJECT_ROOT>/.llmdocs/`. Create the directory if it does not 
 
 Read these files to understand the repo:
 
-1. `CLAUDE.md` (project root)
-2. `README.md` (project root)
-3. All non-underscore `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, ops, etc.)
-4. Any file referenced in $ARGUMENTS
+1. `README.md` (project root)
+2. All non-underscore `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, testing, ops, etc.)
+3. Any file referenced in $ARGUMENTS
 
 If `.llmdocs/` does not exist, create it.
 
 If `_ralph-tasks.md`, `_ralph-instructions.md`, or `_ralph-prompt.md` already exist, read them before overwriting.
 
-### Step 2: Build _ralph-tasks.md
+### Step 2: Build \_ralph-tasks.md
 
-Create a checklist of discrete, sequentially-ordered tasks derived from the goal and repo context. The 
-task lists describes what steps to take, not how to do them. The HOW should come from other referenced documents.
+Create a checklist of discrete, sequentially-ordered tasks derived from the goal and repo context. The task list describes what steps to take, not how to do them. The HOW should come from other referenced documents.
 
 Format:
 
@@ -56,6 +54,7 @@ Format:
 ```
 
 Rules:
+
 - The first task is always: `Create git tag RALPH-YYYYMMDD-BEGIN` (use today's date)
 - The last task is always: `Create git tag RALPH-YYYYMMDD-END` (use today's date)
 - Each task is a single, independently-completable unit of work
@@ -66,15 +65,22 @@ Rules:
 - Do not include meta-tasks like "read the codebase" or "understand the architecture"
 - ONLY put checkbox items in the task file. No other headings or prose.
 - ONLY put task descriptions. Say *what* to do, not *how* to do it.
+- Place documentation tasks (CLAUDE.md, .llmdocs/ updates) immediately after the code they document, not at the end of the task list
 
-### Step 3: Build _ralph-instructions.md
+### Step 3: Build \_ralph-instructions.md
 
 Write instructions that tell Claude how to accomplish the overall goal within this specific repo.
 
 Format:
 
+<!-- prettier-ignore-start -->
 ```markdown
 # Ralph Instructions
+
+## References
+
+- @.llmdocs/architecture.md
+- @.llmdocs/<other relevant docs>
 
 ## Goal
 
@@ -82,7 +88,7 @@ Format:
 
 ## Approach
 
-<strategy and sequencing>
+<strategy specific to this goal — reference @.llmdocs docs, do not duplicate their content>
 
 ## Conventions
 
@@ -90,51 +96,49 @@ Format:
 
 ## Git Workflow
 
-Before starting the first task, create a BEGIN tag on the current HEAD:
+Before the first task:
+  git checkout -b ralph/YYYYMMDD-<short-goal-slug>
   git tag RALPH-YYYYMMDD-BEGIN
 
-After completing each task (tests pass, linter clean), commit:
-  git add <changed files>
-  git commit -m "<conventional commit message describing the task>"
-
-After completing the last task and its commit, create an END tag:
+After the last commit:
   git tag RALPH-YYYYMMDD-END
 
-Use the actual date (YYYYMMDD) when creating tags. Use conventional commit style.
+Never commit to main. All ralph work happens on the ralph/ branch.
 
 ## Per-Task Workflow
 
-For each task, follow London TDD (mock-first):
+MANDATORY for every task without exception:
 1. Write a failing test that defines the expected behavior
 2. Write the minimum code to make the test pass
 3. Refactor if needed while keeping tests green
-4. Commit the changes with a conventional commit message
+4. git add and git commit with a conventional commit message
+5. Mark the task [x] in _ralph-tasks.md
 
-Mark the task [x] in _ralph-tasks.md when complete.
-
-## References
-
-<list of key files and docs to consult>
+Never batch commits. Never skip the test step. Never skip the commit step.
 ```
+<!-- prettier-ignore-end -->
 
 Rules:
+
 - Ground instructions in the actual repo structure and tooling
 - Include build, test, and lint commands if known
-- Reference the project's CLAUDE.md rules
+- Do not duplicate the project's CLAUDE.md rules
 - Define what "done" means for a task (tests pass, linter clean, etc.)
+- Use `@path/file` syntax for all file references in the References section
+- Do not duplicate content from existing .llmdocs/ files — reference them with @ syntax instead
 
-### Step 4: Build _ralph-prompt.md
+### Step 4: Build \_ralph-prompt.md
 
-Write exactly this static invocation. Only adjust `--max-iterations`.
+Write exactly this static invocation. Do not modify it.
 
 ```markdown
 /ralph-loop:ralph-loop "Read @.llmdocs/_ralph-instructions.md and follow its instructions. Work through @.llmdocs/_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
 ```
 
 Rules:
-- The prompt text is fixed. Do not add `@` file references beyond `_ralph-instructions.md` and `_ralph-tasks.md`. All other file references belong in `_ralph-instructions.md`.
-- Set `--max-iterations` proportional to task count (roughly 2-3x the number of tasks, minimum 20, maximum 100)
-- Always use `--completion-promise ALLDONE`
+
+- The prompt text is fixed. Do not modify any part of it.
+- Do not add `@` file references beyond `_ralph-instructions.md` and `_ralph-tasks.md`. All other file references belong in `_ralph-instructions.md`.
 
 ### Step 5: Report
 

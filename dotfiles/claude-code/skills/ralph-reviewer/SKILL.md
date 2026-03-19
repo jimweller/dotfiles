@@ -63,9 +63,9 @@ Build the prompt that each opencode process will execute. Replace `<PROJECT_ROOT
 ```
 PROMPT="You are a plan reviewer running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
 
-YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. After completing your review, your VERY NEXT action must be a bash tool call that writes the output file using cat with a heredoc. Do not summarize, do not reflect, do not plan — write the file immediately.
+YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. After completing your review, your VERY NEXT action must be a tool call that writes the output file. Do not summarize, do not reflect, do not plan — write the file immediately.
 
-OUTPUT RULES: You are running headless. Nobody reads your text responses. NEVER print findings, analysis, or review content as text output. ALL review content goes exclusively into the file via bash heredoc. Any text you generate outside of a tool call is wasted tokens and risks hitting the output token limit before you can write the file. Keep text responses to one short sentence at most.
+OUTPUT RULES: You are running headless. Nobody reads your text responses. ALL review content goes exclusively into the output file via tool calls. Any text you generate outside of a tool call is wasted tokens and risks hitting the output token limit before you can write the file. Keep text responses to one short sentence at most.
 
 PROJECT_ROOT: <PROJECT_ROOT>
 
@@ -80,12 +80,21 @@ A ralph loop is an autonomous, iterative execution mechanism for Claude. Underst
 - **One task per iteration.** Claude picks the next unchecked `[ ]` item, completes it, marks it `[x]`, and the loop advances. Fine-grained tasks are intentional.
 - **Resumable.** If the loop hits max-iterations, the user re-runs it. Partial completion is expected and normal. The checklist is the progress bookmark.
 - **Checklist is the state machine.** `[x]` marks are how the loop knows where to resume. This is not bookkeeping overhead; it is the core mechanism.
-- **No commits.** Ralph does not commit. The user reviews and commits after the loop completes or pauses.
+- **Never commit to main.** Ralph must create a `ralph/` feature branch before the first task. All commits happen on that branch, never on main.
+- **Commits per task.** Ralph commits after each completed task with a conventional commit message. This is mandatory and must not be skipped.
 - **Environment is a precondition.** Credentials, network, toolchain, and runtime dependencies are the user's responsibility. Ralph assumes they are present. Do not flag missing environment setup as a gap.
-- **London TDD granularity is correct.** Failing test, code, passing test per task is the intended workflow. Do not recommend collapsing these into larger bundles.
+- **London TDD granularity is correct.** Failing test, code, passing test per task is the intended workflow. Do not recommend collapsing these into larger bundles. TDD must not be skipped even after context compaction.
 - **Iterations are cheap.** Do not recommend reducing task count to fit within max-iterations. The user adjusts max-iterations or re-runs.
+- **@ references for docs.** Instructions must use `@path/file` syntax to reference existing docs, not duplicate their content inline.
+- **Documentation tasks interleaved.** Doc update tasks belong immediately after the code they document, not deferred to the end of the task list.
+- **References first.** The References section with @ file reads must be the first subsection in `_ralph-instructions.md` so docs load into context immediately.
+- **BEGIN/END git tags.** The first task must be `Create git tag RALPH-YYYYMMDD-BEGIN` and the last task must be `Create git tag RALPH-YYYYMMDD-END`.
+- **Task file is checkboxes only.** `_ralph-tasks.md` contains only `- [ ]` / `- [x]` items. No headings, no prose, no other content.
+- **Prompt is fixed.** `_ralph-prompt.md` is a static invocation that must not be modified.
 
-Do NOT recommend: collapsing tasks into bundles, adding commit policies, adding environment preflight checks, reducing granularity to avoid iteration exhaustion, or treating partial completion as a risk.
+Do NOT recommend: collapsing tasks into bundles, adding environment preflight checks, reducing granularity to avoid iteration exhaustion, treating partial completion as a risk, or changing the prompt invocation text.
+
+Flag as HIGH severity if: instructions allow committing to main, branch creation is missing from the git workflow, or TDD/commit steps are absent from the per-task workflow.
 
 ## Your Task
 
@@ -105,6 +114,8 @@ Evaluate the plan across these areas:
 - Is each task independently completable?
 - Are there missing tasks needed to achieve the goal?
 - Are there unnecessary or redundant tasks?
+- Is the first task `Create git tag RALPH-YYYYMMDD-BEGIN` and the last `Create git tag RALPH-YYYYMMDD-END`?
+- Does the task file contain only checkbox items with no headings or prose?
 
 ### 3. Sequencing and Dependencies
 - Are tasks ordered correctly by dependency?
@@ -116,6 +127,12 @@ Evaluate the plan across these areas:
 - Are build/test/lint commands accurate?
 - Is the per-task workflow clear (what to do, how to verify, how to mark done)?
 - Are the file references in the instructions accurate and sufficient?
+- Do the instructions require creating a `ralph/` feature branch before the first task?
+- Are critical instructions (branch, commit, TDD, @ refs) embedded in the Git/Per-Task Workflow, not just prose?
+- Is the References section the first subsection in `_ralph-instructions.md`?
+- Are documentation tasks interleaved with code tasks rather than deferred to the end?
+- Does the instructions file reference existing docs via @ syntax instead of duplicating content?
+- Is the prompt invocation in `_ralph-prompt.md` unmodified from the standard template?
 
 ### 5. Risk and Gaps
 - What could go wrong during autonomous execution?
@@ -125,14 +142,13 @@ Evaluate the plan across these areas:
 
 ### 6. Feasibility
 - Can Claude realistically complete each task within a single ralph loop iteration?
-- Is the max-iterations setting appropriate for the task count?
 - Are there tasks that exceed what Claude can do autonomously?
 
 For each area, list specific findings with severity (high/medium/low) and actionable recommendations.
 
 ## Output — DO THIS IMMEDIATELY AFTER COMPLETING YOUR REVIEW
 
-Your VERY NEXT action after finishing the review must be a bash call that writes the file. No intermediate steps.
+Your VERY NEXT action after finishing the review must be a tool call that writes the file. No intermediate steps.
 
 Determine your model label:
 - Claude variants: claude
@@ -141,10 +157,9 @@ Determine your model label:
 
 Write your review to: <PROJECT_ROOT>/.llmdocs/_review-ralph-\$MODEL_LABEL.md
 
-Use bash with a heredoc. Follow this template exactly:
+Write the file to `<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md` using the template below:
 
-```
-cat > '<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md' <<'REVIEW_EOF'
+```markdown
 # Ralph Loop Review
 **Model**: <MODEL_LABEL>
 
@@ -176,7 +191,6 @@ cat > '<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md' <<'REVIEW_EOF'
 ## Summary
 
 <overall assessment and top 3 recommendations>
-REVIEW_EOF
 ```
 
 Finding format: `- **[severity]** Title. Description.`
