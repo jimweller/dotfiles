@@ -69,6 +69,9 @@ PROMPT="You are a code review orchestrator running headless in a non-interactive
 
 This task has TWO PHASES. Both are mandatory. Completing Phase 1 without Phase 2 is a failure.
 
+PHASE 1: Collect subagent findings
+PHASE 2: Coallate findings to a file.
+
 OUTPUT RULES: Keep text responses to one short sentence. Your primary job is making tool calls.
 
 TARGET_PATH: <TARGET_PATH>
