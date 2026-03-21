@@ -1,44 +1,94 @@
 # Jim's Dotfiles
 
-Dotfiles allow your profile to roam between machines. I'm setup
-for Linux/Mac, but people do Windows too. It's a mess, but
-it's my beautiful mess that makes a new machine (or container)
-a breeze.
+Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooling, cloud CLI preferences, secrets, and git identity switching across machines and devcontainers.
 
-## Features
+## Architecture
 
-- dotbot for managing installation (git submodule)
-- antidote for managing zsh plugins and fast loading (git submodule)
-- macos/linux auto detection
-- linux docker image with lots of utils for me and devcontainer ready (git submodule)
-- tons of personal zsh conveniences
-- lots of software tweaks the way I like it (AI, iterm2, vscode, granted etc.)
-- secrets management and encryptions with .env files and gpg
-- git profile switching between work and personal
-- custom prompts for git identities, cloud providers, etc.
-- boatloads of zsh plugins
+- dotbot -- symlink and install orchestration (git submodule)
+- antidote -- zsh plugin manager (git submodule)
+- devcontainer -- Linux Docker image with utilities (git submodule)
+- zsh-jim -- numbered zsh modules loaded in order (path, quality-of-life, gpg, git, iac, aws, azure, ado, docker, k8s, ai, macos, linux)
+- scripts -- launchd plists, container helpers, cloud token refresh, sync
 
-## Adapting for Yourself
+## Project Structure
 
-This setup is pretty opinonated. There's a lot of moving parts
-that work together to make an idempotent setup, but for a few
-things that don't lend themselves to it (claude code). A lot
-of it is hard coded for where I keep my dotfiles, YMMV.
+```text
+dotfiles/
+├── dotbot/                                        # Installer engine (submodule)
+├── antidote/                                      # Zsh plugin manager (submodule)
+├── devcontainer/                                  # Linux container image (submodule)
+├── dotfiles/
+│   ├── zshrc, bash_profile                        # Shell entry points
+│   ├── zsh_plugins.txt                            # Antidote plugin list
+│   ├── zsh-jim/                                   # Numbered zsh modules
+│   ├── p10k.zsh                                   # Powerlevel10k prompt theme
+│   ├── gitconfig-*, gitignore_global              # Git identity and ignore
+│   ├── ssh_config, tmux.conf                      # SSH and tmux
+│   ├── aws_config, azure_config, granted_config_* # Cloud CLIs
+│   ├── colima_default, docker_config              # Containers
+│   ├── bat_config, ripgreprc                      # CLI tool config
+│   ├── prettierrc, markdownlint-cli2.jsonc        # Linting and formatting
+│   ├── vscode_settings.json, asdfrc               # Editor and runtime versions
+│   ├── claude-code/                               # Claude Code config, skills, commands
+│   ├── claude-flow/                               # Claude Flow CLAUDE.md and MCP rules
+│   ├── gemini/                                    # Gemini CLI settings
+│   ├── github/                                    # GitHub CLI config
+│   ├── opencode/                                  # OpenCode CLI config and agents
+│   ├── roocode/                                   # Roo Code modes and MCP settings
+│   ├── iterm/                                     # iTerm2 preferences plist
+│   ├── macos/                                     # macOS Automator workflows
+│   └── assets/                                    # Static assets (md.css)
+├── scripts/                                       # Launchd plists, container scripts, sync
+└── manifests/                                     # Package lists (brew, apt, asdf) and GPG archive
+```
 
-These files "explain" most of it.
+## Installation
 
-- look at install script and install.*.conf dotbot files
-- look at dotfiles/zsh_plugins.txt
-- look at dotfiles/zsh-jim/*
-- look at scripts/*
+```bash
+git clone --recursive https://github.com/jimweller/dotfiles.git ~/.config/dotfiles
+cd ~/.config/dotfiles
+./install
+```
 
-Links
+The installer runs dotbot with platform detection:
 
-- Dotfiles standard [dotfiles](https://dotfiles.github.io/)
-- Dotbot to install dotfiles from github [dotbot](https://github.com/anishathalye/dotbot)
-- Antidote to manage zsh plugins, fast [antidote](https://github.com/mattmc3/antidote)
-- [Awesome Zsh Plugins](https://github.com/unixorn/awesome-zsh-plugins?tab=readme-ov-file#plugins) replace oh-my-zsh for me
-- Oh My Zsh. Mostly replaced by antidote. I use some omz plugins still. [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
-- Powerlevel 10k Zsh Theme [p10k](https://github.com/romkatv/powerlevel10k). See p10k.zsh.
-- Devcontainers in general [devcontainers](https://containers.dev/)
-- VSCode Devcontainers, configure to use dotfiles automatically [vscode settings](https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories)
+- `install.common.yaml` -- cross-platform symlinks and directories
+- `install.macos.yaml` -- macOS-specific (iTerm2, launchd agents, Finder)
+- `install.linux.yaml` -- Linux-specific paths
+
+## Configuration
+
+| File             | Target                             | Purpose                                          |
+| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| `zshrc`          | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim    |
+| `p10k.zsh`       | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
+| `gitconfig-all`  | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff) |
+| `gitconfig-jim`  | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all        |
+| `gitconfig-work` | `~/.gitconfig-work`                | Work identity, includes gitconfig-all            |
+| `ssh_config`     | `~/.ssh/config`                    | SSH host configurations                          |
+| `tmux.conf`      | `~/.tmux.conf`                     | Tmux preferences                                 |
+
+## AI Tooling
+
+| Directory      | Tool            | Key files                              |
+| -------------- | --------------- | -------------------------------------- |
+| `claude-code/` | Claude Code CLI | Settings, skills, commands, statusline |
+| `claude-flow/` | Claude Flow     | CLAUDE.md, MCP tool rules              |
+| `opencode/`    | OpenCode CLI    | opencode.json, review agents           |
+| `roocode/`     | Roo Code        | custom_modes.yaml, mcp_settings.json   |
+| `gemini/`      | Gemini CLI      | gemini_settings                        |
+
+See `dotfiles/claude-code/README.md` for skills vs commands details.
+
+## Secrets
+
+Secrets managed via GPG-encrypted archives. `scripts/secrets.sh` decrypts a GPG archive containing SSH keys, credentials, and env files. Accepts a password via `DOTFILES_KEY` env var or CLI argument. Plaintext secrets are never committed.
+
+## Links
+
+- [dotfiles standard](https://dotfiles.github.io/)
+- [dotbot](https://github.com/anishathalye/dotbot)
+- [antidote](https://github.com/mattmc3/antidote)
+- [Awesome Zsh Plugins](https://github.com/unixorn/awesome-zsh-plugins?tab=readme-ov-file#plugins)
+- [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- [VSCode devcontainer dotfiles](https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories)
