@@ -6897,7 +6897,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1774099270720,
+  "lastPlanModeUse": 1774124736937,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -7180,16 +7180,16 @@
       "lastUsedAt": 1774076846406
     },
     "handoff": {
-      "usageCount": 3,
-      "lastUsedAt": 1774069238621
+      "usageCount": 4,
+      "lastUsedAt": 1774124541057
     },
     "mcg-confluence-prefs": {
       "usageCount": 12,
       "lastUsedAt": 1774076185725
     },
     "commit": {
-      "usageCount": 8,
-      "lastUsedAt": 1774122393295
+      "usageCount": 9,
+      "lastUsedAt": 1774122943718
     }
   },
   "opusProMigrationComplete": true,

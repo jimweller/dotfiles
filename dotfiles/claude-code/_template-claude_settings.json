@@ -1,18 +1,17 @@
 {
-  "awsAuthRefresh": "~/.config/dotfiles/scripts/aws-refresh-token.ps1",
   "cleanupPeriodDays": 90,
   "env": {
-    "CLAUDE_CODE_USE_BEDROCK": "true",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-6-v1",
-    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-6-v1",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6",
-    "AWS_REGION": "us-west-2",
+    "CLAUDE_CODE_USE_FOUNDRY": "CHANGE_ME",
+    "CLAUDE_CODE_USE_BEDROCK": "CHANGE_ME",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "ANTHROPIC_MODEL": "claude-opus-4-6[1m]",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6[1M]",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
     "ENABLE_TOOL_SEARCH": "auto:1",
-    "CLAUDE_CODE_SHELL": "powershell",
+    "CLAUDE_CODE_SHELL": "bash",
     "DISABLE_COST_WARNINGS": "1",
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_ERROR_REPORTING": "1",
@@ -20,15 +19,11 @@
     "DISABLE_TELEMETRY": "1"
   },
   "includeCoAuthoredBy": false,
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline-command.sh aws"
+    "command": "~/.claude/statusline-command.sh CHANGE_ME"
   },
-  "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
-  "spinnerTipsEnabled": false,
-  "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true,
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
     "agent-browser@agent-browser": true,
@@ -38,5 +33,15 @@
     "csharp-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true
-  }
+  },
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working"
+    ]
+  },
+  "autoUpdatesChannel": "latest",
+  "prefersReducedMotion": true,
+  "skipDangerousModePermissionPrompt": true
 }
