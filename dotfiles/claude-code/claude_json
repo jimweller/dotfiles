@@ -54,7 +54,6 @@
   },
   "memoryUsageCount": 1,
   "promptQueueUseCount": 156569,
-  "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -7164,8 +7163,8 @@
       "lastUsedAt": 1774071738834
     },
     "commit": {
-      "usageCount": 3,
-      "lastUsedAt": 1774072881718
+      "usageCount": 4,
+      "lastUsedAt": 1774073105360
     }
   },
   "opusProMigrationComplete": true,
