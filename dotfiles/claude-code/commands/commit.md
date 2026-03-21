@@ -52,7 +52,7 @@ refactor(isolation): simplify worktree resolution order
 tag(scope): concise description of what changed
 
 [Optional body explaining WHY this change was made,
-not just what changed. Include context that isn't
+not just what changed. Include context changes that aren't
 obvious from the diff.]
 
 [Optional: Fixes #123, Closes #456]
@@ -80,7 +80,7 @@ Fixes #482
 - `.claude/rules/` -- on-demand conventions added, updated, or removed
 - `.claude/commands/` -- slash commands created or modified
 - `.claude/skills/` -- slash commands created or modified
-- `.claude/docs/` -- reference docs added or updated
+- `.llmdocs/` -- reference docs added or updated
 - `CLAUDE.md` -- global rules changes
 - `**/CLAUDE.md` -- folder local rules changes
 

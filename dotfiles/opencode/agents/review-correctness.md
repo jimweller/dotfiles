@@ -13,7 +13,7 @@ You are performing a focused code review. Your ONLY area is Correctness & Bugs.
 
 - Use the `attach_packed_output` MCP tool with the `repomix_file` path from your prompt. Do NOT call `pack_codebase`.
 - Do NOT read files individually.
-- After packing/attaching, read CLAUDE.md and .claude/docs/architecture.md (if present).
+- After packing/attaching, read CLAUDE.md and .llmdocs/architecture.md (if present).
 
 ## Rules
 

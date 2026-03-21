@@ -1,6 +1,6 @@
 ---
 name: ralph-builder
-description: Build or update Ralph Wiggum loop files in .claude/docs for autonomous task execution.
+description: Build or update Ralph Wiggum loop files in .llmdocs for autonomous task execution.
 user-invocable: true
 argument-hint: "<goal or filename>"
 ---
@@ -9,7 +9,7 @@ STARTER_CHARACTER = 🔁
 
 # Ralph Builder
 
-Build or update the three Ralph Wiggum loop files in `.claude/docs/` so a ralph loop can execute autonomously against the current repo.
+Build or update the three Ralph Wiggum loop files in `.llmdocs/` so a ralph loop can execute autonomously against the current repo.
 
 Arguments: $ARGUMENTS
 
@@ -17,7 +17,7 @@ The argument is a goal description. It may reference a file containing a PRD, pl
 
 ## Output Files
 
-All files go in `<PROJECT_ROOT>/.claude/docs/`. Create the directory if it does not exist.
+All files go in `<PROJECT_ROOT>/.llmdocs/`. Create the directory if it does not exist.
 
 | File                     | Purpose                                              |
 | ------------------------ | ---------------------------------------------------- |
@@ -32,10 +32,10 @@ All files go in `<PROJECT_ROOT>/.claude/docs/`. Create the directory if it does 
 Read these files to understand the repo:
 
 1. `README.md` (project root)
-2. All non-underscore `.md` files in `.claude/docs/` (architecture, api, data-model, deployment, testing, ops, etc.)
+2. All non-underscore `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, testing, ops, etc.)
 3. Any file referenced in $ARGUMENTS
 
-If `.claude/docs/` does not exist, create it.
+If `.llmdocs/` does not exist, create it.
 
 If `_ralph-tasks.md`, `_ralph-instructions.md`, or `_ralph-prompt.md` already exist, read them before overwriting.
 
@@ -65,7 +65,7 @@ Rules:
 - Do not include meta-tasks like "read the codebase" or "understand the architecture"
 - ONLY put checkbox items in the task file. No other headings or prose.
 - ONLY put task descriptions. Say *what* to do, not *how* to do it.
-- Place documentation tasks (CLAUDE.md, .claude/docs/ updates) immediately after the code they document, not at the end of the task list
+- Place documentation tasks (CLAUDE.md, .llmdocs/ updates) immediately after the code they document, not at the end of the task list
 
 ### Step 3: Build \_ralph-instructions.md
 
@@ -79,8 +79,8 @@ Format:
 
 ## References
 
-- @.claude/docs/architecture.md
-- @.claude/docs/<other relevant docs>
+- @.llmdocs/architecture.md
+- @.llmdocs/<other relevant docs>
 
 ## Goal
 
@@ -88,7 +88,7 @@ Format:
 
 ## Approach
 
-<strategy specific to this goal — reference @.claude/docs docs, do not duplicate their content>
+<strategy specific to this goal — reference @.llmdocs docs, do not duplicate their content>
 
 ## Conventions
 
@@ -125,14 +125,14 @@ Rules:
 - Do not duplicate the project's CLAUDE.md rules
 - Define what "done" means for a task (tests pass, linter clean, etc.)
 - Use `@path/file` syntax for all file references in the References section
-- Do not duplicate content from existing .claude/docs/ files — reference them with @ syntax instead
+- Do not duplicate content from existing .llmdocs/ files — reference them with @ syntax instead
 
 ### Step 4: Build \_ralph-prompt.md
 
 Write exactly this static invocation. Do not modify it.
 
 ```markdown
-/ralph-loop:ralph-loop "Read @.claude/docs/_ralph-instructions.md and follow its instructions. Work through @.claude/docs/_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
+/ralph-loop:ralph-loop "Read @.llmdocs/_ralph-instructions.md and follow its instructions. Work through @.llmdocs/_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
 ```
 
 Rules:
