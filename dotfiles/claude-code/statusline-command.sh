@@ -11,6 +11,8 @@ ICON_INVOICE=$'\xF3\xB1\x89\x9F'
 ICON_CAL_RANGE=$'\xF3\xB0\x83\xB0'
 ICON_CAL_TODAY=$'\xF3\xB0\xB8\x97'
 ICON_TIMER=$'\xF3\xB1\x8E\xAB'
+ICON_DUMB=$'\xF3\xB0\x94\xB7'
+ICON_DEATH=$'\xF3\xB0\x9A\x8C'
 
 CLOUD_ARG="${1:-}"
 case "$CLOUD_ARG" in
@@ -39,7 +41,7 @@ HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
 CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-CTX_USABLE=$(echo "$CTX_PCT" | awk '{v = $1 * 100 / 83.5; printf "%.0f", (v > 100 ? 100 : v)}')
+CTX_USABLE=$(echo "$CTX_PCT" | awk '{v = $1 * 100 / 96.7; printf "%.0f", (v > 100 ? 100 : v)}')
 
 # Get git info
 if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
@@ -69,13 +71,17 @@ if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; the
 fi
 
 if [ "$CTX_USABLE" -ge 90 ]; then
-  CTX_COLOR="\033[38;5;196m"
+  CTX_COLOR="\033[38;5;124m"
+  CTX_ICON=$ICON_DEATH
 elif [ "$CTX_USABLE" -ge 75 ]; then
-  CTX_COLOR="\033[38;5;208m"
-elif [ "$CTX_USABLE" -ge 50 ]; then
-  CTX_COLOR="\033[38;5;186m"
+  CTX_COLOR="\033[38;5;213m"
+  CTX_ICON=$ICON_DEATH
+elif [ "$CTX_USABLE" -ge 40 ]; then
+  CTX_COLOR="\033[38;5;220m"
+  CTX_ICON=$ICON_DUMB
 else
-  CTX_COLOR="\033[38;5;114m"
+  CTX_COLOR="\033[38;5;67m"
+  CTX_ICON=$ICON_ROBOT
 fi
 
 BAR_WIDTH=12
@@ -110,7 +116,7 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}${ICON_ROBOT} $MODEL\033[0m"
+printf " | ${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[2;90m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CACHE="/tmp/ccusage-cache.json"
