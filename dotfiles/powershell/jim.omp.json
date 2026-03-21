@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "palette": {
+    "bg": "#1c1c1c",
+    "os-fg": "#ffffff",
+    "dir-fg": "#5fafff",
+    "vcs-clean": "#5fd700",
+    "vcs-modified": "#d7af00",
+    "separator-fg": "#6c6c6c",
+    "prompt-ok": "#5fd700",
+    "prompt-err": "#ff0000"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b1",
+          "foreground": "p:os-fg",
+          "background": "p:bg",
+          "template": " \uebc7 "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b1",
+          "foreground": "p:dir-fg",
+          "background": "p:bg",
+          "template": " \uea83 {{ .Path }} ",
+          "options": {
+            "style": "full",
+            "folder_separator_icon": " \ue0b1 "
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "p:vcs-clean",
+          "background": "p:bg",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:vcs-modified{{ end }}"
+          ],
+          "template": " \ue725 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "options": {
+            "branch_max_length": 25,
+            "fetch_status": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:prompt-ok",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:prompt-err{{ end }}"
+          ],
+          "template": "\u276f "
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "foreground": "p:prompt-ok",
+    "foreground_templates": [
+      "{{ if gt .Code 0 }}p:prompt-err{{ end }}"
+    ],
+    "template": "\u276f "
+  }
+}

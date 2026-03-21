@@ -1,5 +1,5 @@
 {
-  "numStartups": 1361,
+  "numStartups": 1363,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -53,7 +53,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 156579,
+  "promptQueueUseCount": 156595,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -3363,53 +3363,61 @@
         "version": null,
         "packageManager": null
       },
-      "lastCost": 0.49611250000000007,
-      "lastAPIDuration": 197290,
-      "lastAPIDurationWithoutRetries": 197286,
-      "lastToolDuration": 22489,
-      "lastDuration": 656237,
+      "lastCost": 0.1042565,
+      "lastAPIDuration": 7843,
+      "lastAPIDurationWithoutRetries": 7841,
+      "lastToolDuration": 0,
+      "lastDuration": 5484317,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 914,
-      "lastTotalOutputTokens": 4690,
-      "lastTotalCacheCreationInputTokens": 33258,
-      "lastTotalCacheReadInputTokens": 332860,
+      "lastTotalInputTokens": 351,
+      "lastTotalOutputTokens": 146,
+      "lastTotalCacheCreationInputTokens": 15732,
+      "lastTotalCacheReadInputTokens": 4373,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
-        "claude-opus-4-6": {
-          "inputTokens": 914,
-          "outputTokens": 4690,
-          "cacheReadInputTokens": 332860,
-          "cacheCreationInputTokens": 33258,
+        "claude-haiku-4-5": {
+          "inputTokens": 345,
+          "outputTokens": 14,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.49611250000000007
+          "costUSD": 0.000415
+        },
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 6,
+          "outputTokens": 132,
+          "cacheReadInputTokens": 4373,
+          "cacheCreationInputTokens": 15732,
+          "webSearchRequests": 0,
+          "costUSD": 0.1038415
         }
       },
-      "lastSessionId": "4fa2f140-96c4-44ed-b9c8-ebf224c56d35",
-      "lastFpsAverage": 0.81,
-      "lastFpsLow1Pct": 260.09,
+      "lastSessionId": "998ed4f5-4717-43cc-9862-f4adabf1bb4f",
+      "lastFpsAverage": 0.01,
+      "lastFpsLow1Pct": 138.53,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 529,
-        "frame_duration_ms_min": 0.024541999999200925,
-        "frame_duration_ms_max": 12.583207999938168,
-        "frame_duration_ms_avg": 0.7335802495275535,
-        "frame_duration_ms_p50": 0.5178750000050059,
-        "frame_duration_ms_p95": 1.9984664000105106,
-        "frame_duration_ms_p99": 3.7946087199926892,
-        "hook_duration_ms_count": 4,
-        "hook_duration_ms_min": 33,
-        "hook_duration_ms_max": 44,
-        "hook_duration_ms_avg": 38.25,
-        "hook_duration_ms_p50": 38,
-        "hook_duration_ms_p95": 43.4,
-        "hook_duration_ms_p99": 43.879999999999995,
-        "pre_tool_hook_duration_ms_count": 12,
+        "frame_duration_ms_count": 62,
+        "frame_duration_ms_min": 0.0664160000000038,
+        "frame_duration_ms_max": 7.218417000025511,
+        "frame_duration_ms_avg": 0.9320288709786176,
+        "frame_duration_ms_p50": 0.5169164999998657,
+        "frame_duration_ms_p95": 3.719954150001467,
+        "frame_duration_ms_p99": 5.47386763000901,
+        "pre_tool_hook_duration_ms_count": 1,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 1,
-        "pre_tool_hook_duration_ms_avg": 0.16666666666666666,
+        "pre_tool_hook_duration_ms_max": 0,
+        "pre_tool_hook_duration_ms_avg": 0,
         "pre_tool_hook_duration_ms_p50": 0,
-        "pre_tool_hook_duration_ms_p95": 1,
-        "pre_tool_hook_duration_ms_p99": 1
+        "pre_tool_hook_duration_ms_p95": 0,
+        "pre_tool_hook_duration_ms_p99": 0,
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 56,
+        "hook_duration_ms_max": 56,
+        "hook_duration_ms_avg": 56,
+        "hook_duration_ms_p50": 56,
+        "hook_duration_ms_p95": 56,
+        "hook_duration_ms_p99": 56
       }
     },
     "/Users/jimweller/tmp/platform-poc/claude-test": {
@@ -6897,7 +6905,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1774124736937,
+  "lastPlanModeUse": 1774134272897,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -7068,8 +7076,8 @@
       "lastUsedAt": 1773898131505
     },
     "jira": {
-      "usageCount": 283,
-      "lastUsedAt": 1774076846395
+      "usageCount": 309,
+      "lastUsedAt": 1774136381217
     },
     "readme": {
       "usageCount": 19,
@@ -7112,8 +7120,8 @@
       "lastUsedAt": 1772117382375
     },
     "update-llm-docs": {
-      "usageCount": 30,
-      "lastUsedAt": 1774073452193
+      "usageCount": 31,
+      "lastUsedAt": 1774134024525
     },
     "review": {
       "usageCount": 1,
@@ -7152,8 +7160,8 @@
       "lastUsedAt": 1774077600636
     },
     "mcg-atlassian:jira": {
-      "usageCount": 116,
-      "lastUsedAt": 1774098411976
+      "usageCount": 145,
+      "lastUsedAt": 1774136601649
     },
     "understand": {
       "usageCount": 1,
@@ -7164,8 +7172,8 @@
       "lastUsedAt": 1773588839299
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 131,
-      "lastUsedAt": 1774098715658
+      "usageCount": 178,
+      "lastUsedAt": 1774136383415
     },
     "code-reviews": {
       "usageCount": 3,
@@ -7176,20 +7184,20 @@
       "lastUsedAt": 1773982607055
     },
     "mcg-jira-prefs": {
-      "usageCount": 18,
-      "lastUsedAt": 1774076846406
+      "usageCount": 23,
+      "lastUsedAt": 1774136263427
     },
     "handoff": {
       "usageCount": 4,
       "lastUsedAt": 1774124541057
     },
     "mcg-confluence-prefs": {
-      "usageCount": 12,
-      "lastUsedAt": 1774076185725
+      "usageCount": 16,
+      "lastUsedAt": 1774125592032
     },
     "commit": {
-      "usageCount": 9,
-      "lastUsedAt": 1774122943718
+      "usageCount": 11,
+      "lastUsedAt": 1774136695039
     }
   },
   "opusProMigrationComplete": true,

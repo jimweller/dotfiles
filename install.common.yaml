@@ -43,6 +43,9 @@
     ~/.ssh/config: dotfiles/ssh_config
     ~/.tmux.conf: dotfiles/tmux.conf
     ~/.ripgreprc: dotfiles/ripgreprc
+    ~/.config/powershell/:
+      glob: true
+      path: dotfiles/powershell/*
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
