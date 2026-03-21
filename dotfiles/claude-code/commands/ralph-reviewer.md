@@ -1,7 +1,5 @@
 ---
-name: ralph-reviewer
 description: Review Ralph Wiggum loop files using three models in parallel via opencode run.
-user-invocable: true
 ---
 
 STARTER_CHARACTER = 🔍

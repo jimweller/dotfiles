@@ -17,7 +17,7 @@ Follow these rules when creating or editing markdown files.
 - **Use headings, not bold for section titles** - Use proper heading levels (`##`, `###`, etc.) not `**Bold**` on its own line
 - **One H1 per file** - Only one `# Title` at the top
 - **First line should be H1** - Start files with `# Title`
-- **Run md-lint skill** - Use `/md-lint` to format and lint after writing the file
+- **Run md-lint command** - Use `/md-lint` to format and lint after writing the file
 
 ## Examples
 

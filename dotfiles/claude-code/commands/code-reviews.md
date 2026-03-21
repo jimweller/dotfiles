@@ -1,13 +1,11 @@
 ---
-name: code-reviews
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
-user-invocable: true
 argument-hint: "<path>"
 ---
 
 STARTER_CHARACTER = 🕵️‍♂️
 
-# Code Review Skill
+# Code Review Command
 
 Launch 3 independent code reviews in parallel using different models via `opencode run`. Claude Code packs repomix once, then each model spawns 8 review-* subagents that navigate the packed output via MCP. Each model produces one combined review file.
 

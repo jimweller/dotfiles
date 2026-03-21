@@ -1,5 +1,4 @@
 ---
-name: update-llm-docs
 description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
 disable-model-invocation: true
 argument-hint: "[docs|all]"
@@ -99,7 +98,7 @@ Flat, 1 file per concept. The first 5 files are **required** and must always exi
 
 ### Ignored Files
 
-Never read, update, list, or reference files in `.llmdocs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this skill. Do not include them in the `## Docs` section of CLAUDE.md.
+Never read, update, list, or reference files in `.llmdocs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this command. Do not include them in the `## Docs` section of CLAUDE.md.
 
 ### Doc File Format
 

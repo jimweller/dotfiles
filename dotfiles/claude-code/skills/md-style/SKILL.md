@@ -1,7 +1,7 @@
 ---
 name: md-style
 description: Writing style when writing readme documentation. Always use when creating or updating README.md files.
-user-invocable: no
+user-invocable: false
 ---
 
 STARTER_CHARACTER = 📝

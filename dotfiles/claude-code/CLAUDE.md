@@ -94,20 +94,21 @@ guidance. This is the prime directive.
 - ALWAYS run tests after making code changes
 - ALWAYS verify build succeeds before committing
 
-## Claude Skills
+## Claude Skills and Commands
 
 ### STARTER_CHARACTER Rules
 
 - EVERY response must begin with STARTER_CHARACTER - NO EXCEPTIONS
 - Default STARTER_CHARACTER is ✳️
-- When a skill defines its own STARTER_CHARACTER, concatenate it after the default with a space (e.g., ✳️ 🎟️ when Jira skill is loaded)
-- A skill is "active" when:
-  - Invoked via the Skill tool
-  - Its SKILL.md file is read to follow its guidelines
-- Multiple skills can be active simultaneously (e.g., ✳️ 🎟️ 📝 for Jira + readme)
+- When a skill or command defines its own STARTER_CHARACTER, concatenate it after the default with a space (e.g., ✳️ 🎟️ when Jira skill is loaded)
+- A skill or command is "active" when:
+  - Invoked via the Skill tool or slash command
+  - Its SKILL.md or command .md file is read to follow its guidelines
+- Multiple skills and commands can be active simultaneously (e.g., ✳️ 🎟️ 📝 for Jira + readme)
 - This applies to ALL responses including:
   - After tool calls complete
   - Error messages
   - Follow-up questions
   - Acknowledgments
   - Short replies (e.g., "Done." becomes "✳️ Done.")
+- ALWAYS show the starter character when a skill or command is active.

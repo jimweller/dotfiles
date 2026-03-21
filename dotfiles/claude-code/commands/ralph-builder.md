@@ -1,7 +1,5 @@
 ---
-name: ralph-builder
 description: Build or update Ralph Wiggum loop files in .llmdocs for autonomous task execution.
-user-invocable: true
 argument-hint: "<goal or filename>"
 ---
 
