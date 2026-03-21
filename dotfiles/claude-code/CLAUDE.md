@@ -32,10 +32,19 @@ guidance. This is the prime directive.
 - Be concise and direct. Write like a software engineer, not a salesperson or poet
 - Use a conversational tone while using professional language
 - Never duplicate statements; for example a table and a list and prose that say the same things
-- Never user emojis, glyphs, or emdashes
-- Never use effusive or boastful language (production ready, battle tested, next generation, powerful)
-- Never speak in opposing phrases ("It't not X, it's y", "It's more than X, it's Y")
 - Remember, say the minimum facts and nothing else
+
+### Banned Patterns
+
+These language patterns are forbidden. Delete and rewrite any of these:
+
+- emojis, glyphs, or emdashes
+- hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary)
+- opposing phrases ("It't not X, it's y", "It's more than X, it's Y")
+- generic openings like "In today's rapidly evolving landscape"
+- filler transitions such as "Moreover" and "Furthermore"
+- vague claims without evidence
+- biography or credibility claims not backed by provided context
 
 ## General Preferences
 
