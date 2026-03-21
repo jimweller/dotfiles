@@ -1,6 +1,6 @@
 ---
 name: update-llm-docs
-description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
+description: Update project documentation (CLAUDE.md + .claude/docs/). Use after significant work to keep docs in sync.
 disable-model-invocation: true
 argument-hint: "[docs|all]"
 ---
@@ -12,7 +12,7 @@ STARTER_CHARACTER = ✏️
 
 Two responsibilities:
 1. **CLAUDE.md** — concise project overview (always loaded)
-2. **.llmdocs/** — detailed per-concept docs (loaded on demand)
+2. **.claude/docs/** — detailed per-concept docs (loaded on demand)
 
 ---
 
@@ -49,24 +49,24 @@ Target: **under 150 lines**. Every line must earn its place.
 <domain terms, business logic Claude must know>
 
 ## Docs
-Detailed docs in `.llmdocs/`:
-- @.llmdocs/architecture.md — <1-line description>
-- @.llmdocs/data-model.md — <1-line description>
+Detailed docs in `.claude/docs/`:
+- @.claude/docs/architecture.md — <1-line description>
+- @.claude/docs/data-model.md — <1-line description>
 
 ```
 
 ### CLAUDE.md Rules
 
 - NO verbose explanations — Claude infers
-- NO duplicating .llmdocs/ content — just reference with short description
-- The `## Docs` section MUST list all non-ignored .llmdocs/ files with a 1-line description each
+- NO duplicating .claude/docs/ content — just reference with short description
+- The `## Docs` section MUST list all non-ignored .claude/docs/ files with a 1-line description each
 - Preserve existing custom instructions (git workflow, env vars, etc.)
 - Ask before removing any existing content
-- Use `@.llmdocs/filename.md` import if a doc should always be loaded
+- Use `@.claude/docs/filename.md` import if a doc should always be loaded
 
 ---
 
-## 2. .llmdocs/ — The Territory
+## 2. .claude/docs/ — The Territory
 
 ### Process
 
@@ -80,14 +80,14 @@ If nothing changed that warrants doc updates, say so and move on.
 
 ### Location
 
-Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at project root.
+Use the path specified in existing CLAUDE.md, or default `.claude/docs/` at project root.
 
 ### Structure
 
 Flat, 1 file per concept. The first 5 files are **required** and must always exist. Additional concept files are created as needed.
 
 ```
-.llmdocs/
+.claude/docs/
   architecture.md    # Components, interactions, data flow (required)
   api.md             # Endpoints, request/response, authentication, authorization (required)
   data-model.md      # Schema, models, relationships (required)
@@ -99,7 +99,7 @@ Flat, 1 file per concept. The first 5 files are **required** and must always exi
 
 ### Ignored Files
 
-Never read, update, list, or reference files in `.llmdocs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this skill. Do not include them in the `## Docs` section of CLAUDE.md.
+Never read, update, list, or reference files in `.claude/docs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this skill. Do not include them in the `## Docs` section of CLAUDE.md.
 
 ### Doc File Format
 
@@ -112,7 +112,7 @@ Never read, update, list, or reference files in `.llmdocs/` that are prefixed wi
 <content: headers, tables, code blocks — no prose paragraphs>
 ```
 
-### .llmdocs/ Rules
+### .claude/docs/ Rules
 
 - Max 200 lines per file — split if larger
 - Include file paths with line refs where useful (`src/auth/login.ts:42`)

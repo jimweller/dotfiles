@@ -40,10 +40,10 @@ Delete previous review files and ensure output directory:
 
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-rm -f "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-openai.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-gemini.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-claude.md
-mkdir -p "$PROJECT_ROOT/.llmdocs"
+rm -f "$PROJECT_ROOT"/.claude/docs/_review-"$TARGET_NAME"-openai.md \
+      "$PROJECT_ROOT"/.claude/docs/_review-"$TARGET_NAME"-gemini.md \
+      "$PROJECT_ROOT"/.claude/docs/_review-"$TARGET_NAME"-claude.md
+mkdir -p "$PROJECT_ROOT/.claude/docs"
 ```
 
 ### Step 2: Pack Repomix
@@ -122,7 +122,7 @@ Derive a short lowercase label for your model identity:
 
 Your NEXT action must be writing the file. No summarizing, no reflecting.
 
-File path: <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md
+File path: <PROJECT_ROOT>/.claude/docs/_review-<TARGET_NAME>-$MODEL_LABEL.md
 
 Content structure:
 
@@ -137,7 +137,11 @@ Finding format: - **[severity]** `file:line` -- Title. Description.
 
 ## Step C: Verify
 
-Confirm the file exists. If not, write it again. Do not exit without the file.
+Run: ls -la '<PROJECT_ROOT>/.claude/docs/_review-<TARGET_NAME>-$MODEL_LABEL.md'
+Run: head -5 '<PROJECT_ROOT>/.claude/docs/_review-<TARGET_NAME>-$MODEL_LABEL.md'
+
+Both commands must succeed. If the file does not exist or is empty, write it again.
+Do not exit without the file on disk.
 
 Print exactly: PHASE_2_COMPLETE"
 ```
@@ -147,7 +151,7 @@ Print exactly: PHASE_2_COMPLETE"
 Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
-STATE_DIR="$PROJECT_ROOT/.llmdocs/multi_review_state"
+STATE_DIR="$PROJECT_ROOT/.claude/docs/multi_review_state"
 mkdir -p "$STATE_DIR"
 OPENAI_DIR=$(mktemp -d)
 GEMINI_DIR=$(mktemp -d)
@@ -165,7 +169,7 @@ Each is a separate Bash call with `run_in_background`:
 
 **OpenAI:**
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.claude/docs/multi_review_state" && \
 opencode run \
   -m openai/gpt-5.3-codex \
   --format json \
@@ -179,7 +183,7 @@ opencode run \
 
 **Gemini:**
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.claude/docs/multi_review_state" && \
 opencode run \
   -m google/gemini-3.1-pro-preview \
   --format json \
@@ -193,7 +197,7 @@ opencode run \
 
 **Claude:**
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.claude/docs/multi_review_state" && \
 opencode run \
   -m az-anthropic/claude-opus-4-6 \
   --format json \
@@ -223,7 +227,7 @@ INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating i
 
 Poll each background task until all 3 complete.
 
-**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`):
+**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.claude/docs/multi_review_state/openai.ndjson`):
 
 ```bash
 # Count completed steps for a model
@@ -242,7 +246,7 @@ grep '"type":"step_finish"' "$NDJSON" | jq -s '[.[].part.cost] | add'
 grep '"type":"tool_use"' "$NDJSON" | jq -r '.part.tool + " -> " + .part.state.status'
 ```
 
-**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
+**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.claude/docs/multi_review_state/openai.log`):
 
 ```bash
 # Check for errors or warnings in text logs
@@ -254,7 +258,7 @@ tail -5 "$LOGFILE" 2>/dev/null
 
 ### Step 7: Report Results
 
-For each model, check if its expected output file exists at `.llmdocs/_review-<TARGET_NAME>-<label>.md`.
+For each model, check if its expected output file exists at `.claude/docs/_review-<TARGET_NAME>-<label>.md`.
 
 Report per model:
 - Success/failure (output file present or not)
@@ -271,7 +275,7 @@ rm -f /tmp/review-prompt.txt
 
 ### Step 9: Synthesize Reviews
 
-Read all successfully produced review files (`.llmdocs/_review-<TARGET_NAME>-*.md`). Compare findings across models and report:
+Read all successfully produced review files (`.claude/docs/_review-<TARGET_NAME>-*.md`). Compare findings across models and report:
 
 1. **Quorum findings (3/3)** — issues flagged by all three models. List each with the area, severity, and finding.
 2. **Quorum findings (2/3)** — issues flagged by two models. List each with the area, severity, which models agreed, and which did not.
@@ -284,9 +288,9 @@ Include every finding. Do not skip or summarize away any items.
 
 3 files total, one per model:
 
-- `.llmdocs/_review-<TARGET_NAME>-openai.md`
-- `.llmdocs/_review-<TARGET_NAME>-gemini.md`
-- `.llmdocs/_review-<TARGET_NAME>-claude.md`
+- `.claude/docs/_review-<TARGET_NAME>-openai.md`
+- `.claude/docs/_review-<TARGET_NAME>-gemini.md`
+- `.claude/docs/_review-<TARGET_NAME>-claude.md`
 
 Where `<TARGET_NAME>` is derived from the path's last segment (or `repo` for root).
 
@@ -330,7 +334,7 @@ The final `step_finish` with `"reason":"stop"` means the model is done.
 
 ### Useful jq Queries
 
-Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`).
+Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.claude/docs/multi_review_state/openai.ndjson`).
 
 ```bash
 # Is the process done? (last step_finish reason is "stop")
@@ -352,7 +356,7 @@ jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
 ```
 
-Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.claude/docs/multi_review_state/openai.log`):
 
 ```bash
 # All errors and warnings from text logs
