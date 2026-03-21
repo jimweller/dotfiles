@@ -22,10 +22,10 @@
     "ralph-loop@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/2cd88e7947b7",
-        "version": "2cd88e7947b7",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/61c0597779bd",
+        "version": "61c0597779bd",
         "installedAt": "2026-02-15T00:45:49.408Z",
-        "lastUpdated": "2026-02-15T00:45:49.408Z",
+        "lastUpdated": "2026-03-21T01:04:30.932Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
