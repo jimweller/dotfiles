@@ -34,14 +34,14 @@ Derive TARGET_NAME from last path segment, or "repo" if root.
 
 Validate the target directory exists. Abort if not.
 
-Delete previous review files and ensure output directory:
+Delete previous final review files and ensure output directories. Do NOT delete per-area files, NDJSON, or logs.
 
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 rm -f "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-openai.md \
       "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-gemini.md \
       "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-claude.md
-mkdir -p "$PROJECT_ROOT/.llmdocs"
+mkdir -p "$PROJECT_ROOT/.llmdocs" "$PROJECT_ROOT/.llmdocs/code-reviews"
 ```
 
 ### Step 2: Pack Repomix
@@ -50,9 +50,12 @@ Pack the target using the repomix CLI. This avoids the MCP tool's large result p
 triggers a confusing truncation error in Claude Code's UI on large repos.
 
 ```bash
-REPOMIX_FILE="/tmp/repomix-review-$TARGET_NAME.xml"
+REVIEW_TMPDIR=$(mktemp -d "/tmp/code-review-XXXXXX")
+REPOMIX_FILE="$REVIEW_TMPDIR/repomix.xml"
 npx repomix -o "$REPOMIX_FILE" --quiet --output-show-line-numbers "$PROJECT_ROOT/$TARGET_PATH"
 ```
+
+`REVIEW_TMPDIR` is unique per run and used for all temp files in this session.
 
 Repomix reads `.repomixignore` from the project root automatically.
 
@@ -65,83 +68,71 @@ Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>
 ```
 PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation.
 
-This task has TWO PHASES. Both are mandatory. Completing Phase 1 without Phase 2 is a failure.
+You have 4 steps. You are NOT done until the file is written and verified in Step 4.
+Stopping before Step 4 is a failure. Do not print any completion markers until Step 4.
 
-PHASE 1: Collect subagent findings
-PHASE 2: Coallate findings to a file.
-
-OUTPUT RULES: Keep text responses to one short sentence. Your primary job is making tool calls.
+OUTPUT RULES: Keep interactive text responses to one short sentence. Your primary job is making tool calls and writing to files.
 
 TARGET_PATH: <TARGET_PATH>
 TARGET_NAME: <TARGET_NAME>
 REPOMIX_FILE: <REPOMIX_FILE>
 
 CRITICAL: The repository is ALREADY packed. Do NOT call pack_codebase or repomix yourself.
-The file at REPOMIX_FILE is ready to use. Pass it to subagents as repomix_file.
 
----
+MODEL_LABEL: Derive from your model identity (claude, openai, or gemini).
+OUTPUT_FILE: <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md
 
-# PHASE 1: COLLECT
+# Step 1: Attach the packed output
 
-Spawn ALL 8 review subagents in PARALLEL, one per area.
-Each agent prompt MUST include: repomix_file=<REPOMIX_FILE>
+YOU (the orchestrator) must call the attach_packed_output MCP tool DIRECTLY with filePath=REPOMIX_FILE.
+Do NOT delegate this to a subagent. Do NOT use the task tool for this step.
+Record the returned outputId string. This is the ONLY way to access the codebase.
+Do NOT read REPOMIX_FILE directly.
 
-Areas: security, architecture, solid, correctness, testing, ops, performance, quality.
+# Step 2: Spawn review agents
 
-Each agent will:
-1. Call attach_packed_output with REPOMIX_FILE to get an outputId
-2. Use read_repomix_output and grep_repomix_output to navigate the codebase
-3. Return findings as text
+Spawn ALL 8 review agents. Note: opencode executes task calls sequentially (known issue #14195), so agents will run one at a time regardless of how they are requested.
+Use the agent name `review-<area>` for each. Each agent prompt MUST include:
+- outputId=<the outputId from Step 1>
+- OUTPUT_PATH=<STATE_DIR>/<MODEL_LABEL>-<area>.md
 
-Agents are read-only (write: false). They return text output, not files.
-Do NOT pack the repository. Do NOT call pack_codebase. It is already packed.
+STATE_DIR: <PROJECT_ROOT>/.llmdocs/code-reviews
 
-After all 8 agents complete, collect their text output. Then print exactly:
+Areas and agent names:
+- review-security -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-security.md
+- review-architecture -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-architecture.md
+- review-solid -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-solid.md
+- review-correctness -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-correctness.md
+- review-testing -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-testing.md
+- review-ops -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-ops.md
+- review-performance -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-performance.md
+- review-quality -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-quality.md
 
-PHASE_1_COMPLETE
+Each agent writes its own per-area file. The agent definitions handle the review logic.
 
-Do NOT stop here. Phase 2 is next.
+# Step 3: Assemble the review file
 
----
+After all 8 agents return, assemble the per-area files into the final review file using bash:
 
-# PHASE 2: WRITE FILE
+```bash
+echo "# Code Review: <TARGET_NAME>" > OUTPUT_FILE
+echo "**Model**: MODEL_LABEL" >> OUTPUT_FILE
+echo "" >> OUTPUT_FILE
+for area in security architecture solid correctness testing ops performance quality; do
+  cat "<STATE_DIR>/<MODEL_LABEL>-$area.md" >> OUTPUT_FILE
+  echo "" >> OUTPUT_FILE
+done
+```
 
-You are NOT done. Phase 1 collected the data. Phase 2 writes it to disk.
-If you stop before writing the file, the entire session is a failure.
+# Step 4: Verify
 
-## Step A: Determine Model Label
+Run: ls -la 'OUTPUT_FILE'
+Run: head -5 'OUTPUT_FILE'
 
-Derive a short lowercase label for your model identity:
-- Claude variants: claude
-- GPT variants: openai
-- Gemini variants: gemini
-
-## Step B: Write the File
-
-Your NEXT action must be writing the file. No summarizing, no reflecting.
-
-File path: <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md
-
-Content structure:
-
-# Code Review: <TARGET_NAME>
-**Model**: <MODEL_LABEL>
-
-One H2 section per review area (Security, Architecture & Design, SOLID Principles,
-Correctness & Bugs, Testing, Operational Readiness, Performance, Code Quality).
-Every section must be present. Use 'No findings.' if an area had none.
-
-Finding format: - **[severity]** `file:line` -- Title. Description.
-
-## Step C: Verify
-
-Run: ls -la '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md'
-Run: head -5 '<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md'
-
-Both commands must succeed. If the file does not exist or is empty, write it again.
+Both commands must succeed. If the file does not exist or is empty, re-run the assembly step.
 Do not exit without the file on disk.
 
-Print exactly: PHASE_2_COMPLETE"
+Print exactly: REVIEW_COMPLETE"
 ```
 
 ### Step 4: Write Prompt to File
@@ -149,65 +140,74 @@ Print exactly: PHASE_2_COMPLETE"
 Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
-STATE_DIR="$PROJECT_ROOT/.llmdocs/multi_review_state"
+STATE_DIR="$PROJECT_ROOT/.llmdocs/code-reviews"
 mkdir -p "$STATE_DIR"
 OPENAI_DIR=$(mktemp -d)
 GEMINI_DIR=$(mktemp -d)
 CLAUDE_DIR=$(mktemp -d)
-cat > /tmp/review-prompt.txt <<'PROMPT_EOF'
+PROMPT_FILE="$REVIEW_TMPDIR/review-prompt.txt"
+cat > "$PROMPT_FILE" <<'PROMPT_EOF'
 <the prompt from step 3>
 PROMPT_EOF
 ```
 
-### Step 5: Launch 3 Separate Background Bash Tasks
+### Step 5: Launch 3 Agents in Parallel
 
-Launch each opencode process as its own separate background Bash task. Do NOT launch all 3 in a single shell — child processes get killed when the parent shell exits.
+Use the Agent tool to spawn 3 agents simultaneously. Each agent launches one opencode process, monitors it to completion, and reports the result. This ensures true parallel execution.
 
-Each is a separate Bash call with `run_in_background`:
+Each agent receives the same instruction template with its model-specific values substituted. The agent's job is:
 
-**OpenAI:**
-```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
+1. Launch the opencode process as a background Bash task (`run_in_background`)
+2. Poll NDJSON progress every 30 seconds until the process finishes (reason: "stop") or errors out
+3. Report success/failure, cost, token count, and whether the output file exists
+
+**Agent prompt template** (substitute `<LABEL>`, `<MODEL_ID>`, `<TEMP_DIR>`, `<STATE_DIR>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`):
+
+```
+Launch and monitor an opencode code review process. Do not ask questions.
+
+Run this command in the background:
+
+STATE_DIR="<STATE_DIR>" && \
 opencode run \
-  -m openai/gpt-5.3-codex \
+  -m <MODEL_ID> \
   --format json \
   --print-logs \
   --log-level INFO \
-  --dir "<OPENAI_DIR>" \
-  --title "Review - OpenAI" \
-  "$(cat /tmp/review-prompt.txt)" \
-  > "$STATE_DIR/openai.ndjson" 2>"$STATE_DIR/openai.log"
+  --dir "<TEMP_DIR>" \
+  --title "Review - <LABEL>" \
+  "$(cat "$PROMPT_FILE")" \
+  > "$STATE_DIR/<LABEL>.ndjson" 2>"$STATE_DIR/<LABEL>.log"
+
+Then poll every 30 seconds using:
+  grep -c '"type":"step_finish"' "$STATE_DIR/<LABEL>.ndjson"
+  tail -1 "$STATE_DIR/<LABEL>.ndjson" | jq -r '.part.reason // empty'
+  grep -c '"type":"error"' "$STATE_DIR/<LABEL>.ndjson"
+
+Stop polling when the last step_finish reason is "stop" or the background task exits.
+
+When done:
+
+1. Check if <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md exists.
+2. If NOT, check for per-area files: ls "$STATE_DIR/<LABEL>-*.md"
+3. If per-area files exist, assemble the final review file:
+   echo "# Code Review: <TARGET_NAME>" > "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+   echo "**Model**: <LABEL>" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+   echo "" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+   for area in security architecture solid correctness testing ops performance quality; do
+     cat "$STATE_DIR/<LABEL>-$area.md" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md" 2>/dev/null
+     echo "" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+   done
+
+Report:
+- Whether the final review file exists (and whether fallback assembly was used)
+- How many per-area files were found: ls "$STATE_DIR/<LABEL>-*.md" 2>/dev/null | wc -l
+- Total cost: jq -s '[.[] | select(.type=="step_finish") | .part.cost] | add' "$STATE_DIR/<LABEL>.ndjson"
+- Total tokens: grep '"type":"step_finish"' "$STATE_DIR/<LABEL>.ndjson" | tail -1 | jq '.part.tokens.total'
+- Any errors from: grep '"type":"error"' "$STATE_DIR/<LABEL>.ndjson"
 ```
 
-**Gemini:**
-```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
-opencode run \
-  -m google/gemini-3.1-pro-preview \
-  --format json \
-  --print-logs \
-  --log-level INFO \
-  --dir "<GEMINI_DIR>" \
-  --title "Review - Gemini" \
-  "$(cat /tmp/review-prompt.txt)" \
-  > "$STATE_DIR/gemini.ndjson" 2>"$STATE_DIR/gemini.log"
-```
-
-**Claude:**
-```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/multi_review_state" && \
-opencode run \
-  -m az-anthropic/claude-opus-4-6 \
-  --format json \
-  --print-logs \
-  --log-level INFO \
-  --dir "<CLAUDE_DIR>" \
-  --title "Review - Claude" \
-  "$(cat /tmp/review-prompt.txt)" \
-  > "$STATE_DIR/claude.ndjson" 2>"$STATE_DIR/claude.log"
-```
-
-All 3 must be launched in parallel as separate background tasks. Do NOT use `&` in a single shell.
+Launch all 3 Agent calls in a single tool-call batch (openai, gemini, claude).
 
 #### Output Streams
 
@@ -221,57 +221,19 @@ Log lines are structured text, one per line:
 INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating instance
 ```
 
-### Step 6: Monitor and Wait
+### Step 6: Wait for Agents
 
-Poll each background task until all 3 complete.
-
-**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`):
-
-```bash
-# Count completed steps for a model
-grep -c '"type":"step_finish"' "$NDJSON" 2>/dev/null || echo 0
-
-# Check if the model finished (last step_finish has reason: "stop")
-tail -1 "$NDJSON" 2>/dev/null | jq -r '.part.reason // empty'
-
-# Check for errors in NDJSON events
-grep '"type":"error"' "$NDJSON" 2>/dev/null
-
-# Get total cost so far
-grep '"type":"step_finish"' "$NDJSON" | jq -s '[.[].part.cost] | add'
-
-# Check tool use activity (subagent spawns, file writes)
-grep '"type":"tool_use"' "$NDJSON" | jq -r '.part.tool + " -> " + .part.state.status'
-```
-
-**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
-
-```bash
-# Check for errors or warnings in text logs
-grep -E "^(ERROR|WARN)" "$LOGFILE" 2>/dev/null
-
-# Tail recent log activity
-tail -5 "$LOGFILE" 2>/dev/null
-```
+The 3 agents from Step 5 handle monitoring. Wait for all 3 Agent tool calls to return. Each agent reports its model's success/failure, cost, tokens, and errors.
 
 ### Step 7: Report Results
 
-For each model, check if its expected output file exists at `.llmdocs/_review-<TARGET_NAME>-<label>.md`.
-
-Report per model:
+Collect the reports from each agent. Summarize per model:
 - Success/failure (output file present or not)
-- Total cost (sum of `cost` from all `step_finish` events)
-- Total tokens (from the last `step_finish` event's `tokens.total`)
-- Whether any errors occurred
+- Total cost
+- Total tokens
+- Any errors
 
-### Step 8: Cleanup
-
-```bash
-rm -rf "$STATE_DIR"
-rm -f /tmp/review-prompt.txt
-```
-
-### Step 9: Synthesize Reviews
+### Step 8: Synthesize Reviews
 
 Read all successfully produced review files (`.llmdocs/_review-<TARGET_NAME>-*.md`). Compare findings across models and report:
 
@@ -332,7 +294,7 @@ The final `step_finish` with `"reason":"stop"` means the model is done.
 
 ### Useful jq Queries
 
-Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.ndjson`).
+Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmdocs/code-reviews/openai.ndjson`).
 
 ```bash
 # Is the process done? (last step_finish reason is "stop")
@@ -354,7 +316,7 @@ jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
 ```
 
-Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/multi_review_state/openai.log`):
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/code-reviews/openai.log`):
 
 ```bash
 # All errors and warnings from text logs
@@ -364,9 +326,9 @@ grep -E "^(ERROR|WARN)" "$LOGFILE"
 ## Rules
 
 - Claude Code is a launcher and synthesizer. All review work happens inside the opencode processes. Claude Code reads the finished review files and synthesizes a cross-model comparison.
-- Do NOT perform any review analysis during Steps 1-8. Only analyze review outputs in Step 9.
+- Do NOT perform any review analysis during Steps 1-7. Only analyze review outputs in Step 8.
 - Do NOT ask questions during execution. This is non-interactive.
-- Launch all 3 processes in parallel. Do not wait for one to finish before starting another.
+- Launch all 3 agents in a single parallel Agent tool-call batch. NEVER launch sequentially.
 - Use plain message invocation, not `--command`. The `--command` flag has a known issue with the c7 MCP server.
-- Clean up the state directory after reporting results.
+- Do NOT clean up per-area files, NDJSON logs, or text logs. All intermediate artifacts persist for debugging and evals.
 - If a model fails, still wait for and report the others.

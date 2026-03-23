@@ -123,7 +123,7 @@
       "environment": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       },
-      "enabled": false
+      "enabled": true
     },
     "g": {
       "type": "local",
@@ -133,12 +133,12 @@
         "GOOGLE_CUSTOM_SEARCH_ID": "{env:GOOGLE_SEARCH_ID}",
         "GOOGLE_GEMINI_API_KEY": "{env:GOOGLE_GEMINI_API_KEY}"
       },
-      "enabled": false
+      "enabled": true
     },
     "repomix": {
       "type": "local",
       "command": ["npx", "-y", "repomix", "--mcp"],
-      "enabled": false
+      "enabled": true
     }
   }
 }

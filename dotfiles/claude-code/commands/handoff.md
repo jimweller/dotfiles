@@ -41,7 +41,7 @@ git branch --show-current
 
 ### 3. Write the Handoff Document
 
-Save to: `HANDOFF.md` in the current working directory (or the worktree root if in a worktree).
+Save to: `.llmdocs/_handoff.md` in the current working directory (or the worktree root if in a worktree).
 
 **Use this exact structure:**
 
@@ -108,7 +108,7 @@ After writing the handoff:
 1. Confirm the file was written with its full path
 2. Suggest the next session command:
    ```
-   Read HANDOFF.md and continue from where the previous session left off.
+   Read .llmdocs/_handoff.md and continue from where the previous session left off.
    ```
 3. If there are uncommitted changes, suggest committing first:
    ```
