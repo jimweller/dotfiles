@@ -39,17 +39,6 @@
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
-    "mcg-atlassian@sead-claude-marketplace": [
-      {
-        "scope": "local",
-        "projectPath": "/private/var/folders/zk/ln6mhgmx7h13kjzxw86pq6sh0000gp/T/tmp.s49aR6Ugsp",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.3.0",
-        "version": "0.3.0",
-        "installedAt": "2026-03-14T20:14:15.309Z",
-        "lastUpdated": "2026-03-14T20:14:15.309Z",
-        "gitCommitSha": "5cfe408c8da72429652d2417950ee43b840c32f3"
-      }
-    ],
     "understand-anything@understand-anything": [
       {
         "scope": "local",
@@ -109,6 +98,16 @@
         "installedAt": "2026-03-16T07:15:59.715Z",
         "lastUpdated": "2026-03-16T07:15:59.715Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "mcg-atlassian@sead-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.6.7",
+        "version": "0.6.7",
+        "installedAt": "2026-03-23T04:50:27.524Z",
+        "lastUpdated": "2026-03-23T07:14:28.638Z",
+        "gitCommitSha": "b79e4c9c1482c054244022c89915886db9c34997"
       }
     ]
   }
