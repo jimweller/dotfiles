@@ -40,8 +40,8 @@ guidance. This is the prime directive.
 These language patterns are forbidden. Delete and rewrite any of these:
 
 - emojis, glyphs, or emdashes
-- hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary)
-- opposing phrases ("It't not X, it's y", "It's more than X, it's Y")
+- hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary, comprehensive)
+- opposing phrases ("It't not X, it's y", "It's more than X, it's Y", "It's not just a X, it's a Y")
 - generic openings like "In today's rapidly evolving landscape"
 - filler transitions such as "Moreover" and "Furthermore"
 - vague claims without evidence
