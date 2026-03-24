@@ -1,6 +1,7 @@
 ---
 description: Build or update Ralph Wiggum loop files in .llmdocs for autonomous task execution.
 argument-hint: "<goal or filename>"
+context: fork
 ---
 
 STARTER_CHARACTER = 🔁

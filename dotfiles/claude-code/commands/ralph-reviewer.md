@@ -1,5 +1,6 @@
 ---
 description: Review Ralph Wiggum loop files using three models in parallel via opencode run.
+context: fork
 ---
 
 STARTER_CHARACTER = 🔍

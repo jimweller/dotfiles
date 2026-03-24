@@ -1,6 +1,7 @@
 ---
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
 argument-hint: "<path>"
+context: fork
 ---
 
 STARTER_CHARACTER = 🕵️‍♂️
