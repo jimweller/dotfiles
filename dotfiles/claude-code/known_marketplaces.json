@@ -18,10 +18,10 @@
   "sead-claude-marketplace": {
     "source": {
       "source": "git",
-      "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace.git"
+      "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-03-23T07:14:25.923Z"
+    "lastUpdated": "2026-03-23T21:10:47.811Z"
   },
   "understand-anything": {
     "source": {

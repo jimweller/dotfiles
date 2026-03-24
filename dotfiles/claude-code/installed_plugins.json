@@ -103,11 +103,11 @@
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.6.7",
-        "version": "0.6.7",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.6.9",
+        "version": "0.6.9",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-03-23T07:14:28.638Z",
-        "gitCommitSha": "b79e4c9c1482c054244022c89915886db9c34997"
+        "lastUpdated": "2026-03-23T21:10:50.520Z",
+        "gitCommitSha": "2c14da2bc57bb9712e0cca599acb96d08dee0975"
       }
     ]
   }
