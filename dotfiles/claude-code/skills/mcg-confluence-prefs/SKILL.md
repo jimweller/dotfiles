@@ -1,6 +1,6 @@
 ---
 name: mcg-confluence-prefs
-description: Confluence team defaults, space configuration. Apply these defaults when creating or managing Confluence pages.
+description: mcg-atlassian:confluence skill c-cli Confluence team defaults, space configuration. Apply these defaults when working with Confluence pages.
 user-invocable: true
 ---
 

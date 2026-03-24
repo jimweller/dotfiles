@@ -1,6 +1,6 @@
 ---
 name: mcg-jira-prefs
-description: Jira team defaults, custom fields, creation rules. Apply these defaults when creating or cloning Jira issues.
+description: mcg-atlassian:jira skill j-cli Jira team defaults, custom fields, creation rules. Apply these defaults when working with Jira issues, tickets, epics, stories.
 user-invocable: true
 ---
 
