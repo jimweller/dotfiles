@@ -12,6 +12,7 @@
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
     "ENABLE_TOOL_SEARCH": "auto:1",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_SHELL": "bash",
     "DISABLE_COST_WARNINGS": "1",
     "DISABLE_BUG_COMMAND": "1",
@@ -39,5 +40,37 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "prompt_input_exit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

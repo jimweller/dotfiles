@@ -38,5 +38,37 @@
     "rust-analyzer-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "prompt_input_exit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/save-transcript.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

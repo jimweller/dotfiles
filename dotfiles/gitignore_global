@@ -81,4 +81,5 @@ $RECYCLE.BIN/
 .devcontainer/
 .roo-audit/
 .llmdocs/code-reviews/
+.llmdocs/transcripts/
 .llmdocs/_*

@@ -70,6 +70,9 @@
     ~/.claude/skills/:
       glob: true
       path: dotfiles/claude-code/skills/*
+    ~/.claude/hooks/:
+      glob: true
+      path: dotfiles/claude-code/hooks/*
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint-cli2.jsonc
     ~/.prettierrc: dotfiles/prettierrc
 
