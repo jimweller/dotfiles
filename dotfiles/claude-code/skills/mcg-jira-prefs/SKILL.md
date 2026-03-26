@@ -1,7 +1,7 @@
 ---
 name: mcg-jira-prefs
 description: mcg-atlassian:jira skill j-cli Jira team defaults, custom fields, creation rules. Apply these defaults when working with Jira issues, tickets, epics, stories.
-user-invocable: true
+user-invocable: false
 ---
 
 # Local Jira Configuration
@@ -16,7 +16,7 @@ Apply unless the conversation specifies otherwise.
 | ----------------- | -------------------------------------- | ----------------- |
 | Work Type         | `Feature` (Task), `Overhead` (OpsTask) | customfield_11096 |
 | Story Points      | `0.5`                                  | customfield_10123 |
-| Engineering Owner | matches assignee                       | customfield_12165 |
+| Engineering Owner | matches assignee (use accountId)       | customfield_12165 |
 | Label             | `Platform`                             |                   |
 | Reporter          | `JIRA_EMAIL` value                     |                   |
 
@@ -39,7 +39,7 @@ Apply unless the conversation specifies otherwise.
 - Leave unassigned unless someone is explicitly designated to do the work
 - Requester = reporter, not assignee
 - Mentioned in conversation does not imply assignment
-- When assignee is set, CLI auto-syncs engineering_owner (customfield_12165) to match
+
 
 ## Description Template
 
