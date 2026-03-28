@@ -24,9 +24,9 @@
     "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
     "~/Library/LaunchAgents/com.user.refreshawstoken.plist": scripts/aws-refresh-token.plist
     "~/Library/LaunchAgents/com.user.sync.plist": scripts/sync.plist
-    "~/Library/LaunchAgents/com.user.colima.plist": scripts/colima-start.plist
     "~/Library/LaunchAgents/com.user.steampipe.plist": scripts/steampipe-start.plist
     "~/Library/LaunchAgents/com.user.ccusagecacherefresh.plist": scripts/ccusage-cache-refresh.plist
+    "~/Library/LaunchAgents/com.user.totalrecallbackfill.plist": scripts/total-recall-backfill.plist
     ~/.claude/ccusage-cache-refresh.sh: dotfiles/claude-code/ccusage-cache-refresh.sh
 
 - shell:

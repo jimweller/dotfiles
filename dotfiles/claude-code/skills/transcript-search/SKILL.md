@@ -5,7 +5,8 @@ description: Search saved session transcripts for past decisions, actions, error
 
 # Transcript Search
 
-Search `.llmdocs/transcripts/*.jsonl` files to answer questions about past sessions.
+Search the global session memory database for past conversations using hybrid
+FTS5 + vector retrieval.
 
 ## When to use
 
@@ -13,93 +14,47 @@ Search `.llmdocs/transcripts/*.jsonl` files to answer questions about past sessi
 - User references a past decision, error, action, or discussion no longer in context
 - User asks "what did we do about X", "when did we fix Y", "what error did we get"
 
-## Transcript location
+## Database location
 
-Transcripts are saved to `.llmdocs/transcripts/` in the current project directory. Each session produces:
-- `transcript-{datetime}-{session_id}.jsonl` (full conversation data)
-- `transcript-{datetime}-{session_id}.md` (human-readable summary)
+`~/.claude/session_memory.db` (global, all projects)
 
-## JSONL record types
+## Retrieval tool
 
-| type | role | contains | jq selector for text content |
-|------|------|----------|------------------------------|
-| user | user prompt (string content) | what the user asked | `.message.content` |
-| user | tool_result (array content) | command output, file contents, errors | `.message.content[].content` |
-| assistant | text | Claude's responses and analysis | `.message.content[] \| select(.type == "text") \| .text` |
-| assistant | tool_use | tool calls (name, input) | `.message.content[] \| select(.type == "tool_use") \| .name, .input` |
-| assistant | thinking | Claude's reasoning and decision rationale | `.message.content[] \| select(.type == "thinking") \| .thinking` |
+```bash
+TR=~/.config/dotfiles/dotfiles/claude-code/tools/total-recall
+$TR/.venv/bin/python $TR/retrieve.py "QUERY" --db ~/.claude/session_memory.db
+```
+
+Default output is `--format context` which produces XML-tagged conversation
+excerpts ready to read directly.
+
+## Common flags
+
+| Flag | Purpose |
+|------|---------|
+| `--project NAME` | Restrict to a specific project |
+| `--top-k N` | Number of seed matches before expansion (default: 5) |
+| `--window N` | Context window +/- N around each match (default: 2) |
+| `--budget N` | Max chunks in final output (default: 20) |
+| `--tokens N` | Max tokens in final output (default: 6000) |
+| `--session ID` | Restrict to a specific session_id |
+| `--no-tools` | Exclude tool_use/tool_result chunks |
+| `--no-vectors` | FTS5 keyword search only (skip embeddings) |
+| `--format json` | JSON array output for programmatic use |
+| `--roles user,assistant` | Filter by role |
 
 ## Search procedure
 
-### Step 1: Find matching files
-
-Use the Grep tool to identify which transcript files contain the keyword:
-
-```
-Grep pattern="keyword" path=".llmdocs/transcripts" glob="*.jsonl" output_mode="files_with_matches"
-```
-
-### Step 2: Get line numbers by content type
-
-Choose which content types to search based on the question:
-
-- "what did we decide" / "what was the plan" -> assistant text + thinking
-- "what error did we get" / "what was the output" -> tool_result
-- "what did I ask about" -> user prompts
-- unclear -> search all types
-
-```bash
-F=".llmdocs/transcripts/<matched_file>.jsonl"
-
-# User prompts
-rg -n --no-filename '"type":"user".*keyword' "$F" | cut -d: -f1
-
-# Assistant text responses
-rg -n --no-filename '"type":"text".*keyword' "$F" | cut -d: -f1
-
-# Tool results (command output, file contents, errors)
-rg -n --no-filename '"type":"tool_result".*keyword' "$F" | cut -d: -f1
-
-# Thinking/reasoning
-rg -n --no-filename '"type":"thinking".*keyword' "$F" | cut -d: -f1
-```
-
-### Step 3: Extract and chunk content
-
-For each matching line, extract the text field with jq and pipe to the chunker.
-The chunker shows 400-char windows around each keyword match, merging overlaps, capped at 5 chunks.
-
-**User prompts:**
-```bash
-sed -n '${LINE}p' "$F" | jq -r '.message.content' | python3 ~/.claude/hooks/chunk-search.py "keyword"
-```
-
-**Assistant text:**
-```bash
-sed -n '${LINE}p' "$F" | jq -r '.message.content[] | select(.type == "text") | .text' | python3 ~/.claude/hooks/chunk-search.py "keyword"
-```
-
-**Tool results:**
-```bash
-sed -n '${LINE}p' "$F" | jq -r '.message.content[] | select(.type == "tool_result") | .content' | python3 ~/.claude/hooks/chunk-search.py "keyword"
-```
-
-**Thinking:**
-```bash
-sed -n '${LINE}p' "$F" | jq -r '.message.content[] | select(.type == "thinking") | .thinking' | python3 ~/.claude/hooks/chunk-search.py "keyword"
-```
-
-### Step 4: Get timestamp context
-
-To understand when something happened, extract the timestamp from the same line:
-```bash
-sed -n '${LINE}p' "$F" | jq -r '.timestamp'
-```
+1. Run retrieve.py with the user's query
+2. Read the returned context block
+3. If results are too broad, narrow with `--project` or `--session`
+4. If results are too sparse, increase `--top-k` or `--budget`
+5. For keyword-exact searches, use `--no-vectors` to restrict to FTS5
 
 ## Tips
 
-- Search multiple keywords if the first yields too many or too few results
-- If a tool_result is relevant, check the preceding assistant message (line - 1 or - 2) to see what tool call produced it
-- The `.md` transcript files are useful for quick browsing but lack tool results and thinking blocks
-- Multiple transcript files may exist; search all of them when the user is unsure which session
-- Combine results across content types to build a complete picture
+- The retrieval pipeline uses RRF fusion of keyword + vector search, window
+  expansion, ancestor backtracking, and cross-session semantic links
+- Use `--no-tools` when searching for decisions or discussion (skips noisy
+  tool output)
+- Use `--format json` when you need to process results programmatically

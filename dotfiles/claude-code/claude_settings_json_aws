@@ -47,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/save-transcript.sh"
+            "command": "~/.claude/hooks/ingest-transcript.sh"
           }
         ]
       }
@@ -58,7 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/save-transcript.sh"
+            "command": "~/.claude/hooks/ingest-transcript.sh"
           }
         ]
       },
@@ -67,7 +67,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/save-transcript.sh"
+            "command": "~/.claude/hooks/ingest-transcript.sh"
           }
         ]
       }

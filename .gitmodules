@@ -15,3 +15,6 @@
   ignore = dirty
   branch = main
   shallow = true
+[submodule "dotfiles/claude-code/tools/total-recall"]
+	path = dotfiles/claude-code/tools/total-recall
+	url = git@github.com:aguywithcode/total-recall
