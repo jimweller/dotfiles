@@ -55,7 +55,7 @@ Format:
 Rules:
 
 - The first task is always: `Create git tag RALPH-YYYYMMDD-BEGIN` (use today's date)
-- The last task is always: `Create git tag RALPH-YYYYMMDD-END` (use today's date)
+- The last task is always: `Create git tag RALPH-YYYYMMDD-END` (use same date as the RALPH BEGIN tag)
 - Each task is a single, independently-completable unit of work
 - Tasks are ordered by dependency (earlier tasks unblock later ones)
 - Use imperative voice

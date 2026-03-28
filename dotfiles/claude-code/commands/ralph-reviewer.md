@@ -26,6 +26,7 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 ```
 
 Verify these files exist in `$PROJECT_ROOT/.llmdocs/`:
+
 - `_ralph-prompt.md`
 - `_ralph-tasks.md`
 - `_ralph-instructions.md`
@@ -35,9 +36,9 @@ Abort if any are missing.
 ### Step 2: Clean Up Previous Reviews
 
 ```bash
-rm -f "$PROJECT_ROOT"/.llmdocs/_review-ralph-openai.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-ralph-gemini.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-ralph-claude.md
+rm -f "$PROJECT_ROOT"/.llmdocs/_ralph-review-openai.md \
+      "$PROJECT_ROOT"/.llmdocs/_ralph-review-gemini.md \
+      "$PROJECT_ROOT"/.llmdocs/_ralph-review-claude.md
 ```
 
 ### Step 3: Read Files and Build Prompt Content
@@ -154,9 +155,9 @@ Determine your model label:
 - GPT variants: openai
 - Gemini variants: gemini
 
-Write your review to: <PROJECT_ROOT>/.llmdocs/_review-ralph-\$MODEL_LABEL.md
+Write your review to: <PROJECT_ROOT>/.llmdocs/_\$MODEL_LABEL.md
 
-Write the file to `<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md` using the template below:
+Write the file to `<PROJECT_ROOT>/.llmdocs/_ralph-review<MODEL_LABEL>.md` using the template below:
 
 ```markdown
 # Ralph Loop Review
@@ -196,9 +197,10 @@ Finding format: `- **[severity]** Title. Description.`
 
 Every section must be present. If no findings for an area, write 'No findings.' under its heading.
 
-Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/_review-ralph-<MODEL_LABEL>.md'
+Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/_ralph-review<MODEL_LABEL>.md'
 
 If the file does not exist, write it again. Do not exit without the file."
+
 ```
 
 ### Step 5: Write Prompt to File
@@ -223,6 +225,7 @@ Launch each opencode process as its own separate background Bash task. Do NOT la
 Each is a separate Bash call with `run_in_background`:
 
 **OpenAI:**
+
 ```bash
 STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
 opencode run \
@@ -237,6 +240,7 @@ opencode run \
 ```
 
 **Gemini:**
+
 ```bash
 STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
 opencode run \
@@ -251,6 +255,7 @@ opencode run \
 ```
 
 **Claude:**
+
 ```bash
 STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
 opencode run \
@@ -274,6 +279,7 @@ Each opencode process produces two output files:
 - **`<label>.log`** (stderr): Plain-text info-level logs from `--print-logs --log-level INFO`. Use for diagnosing startup failures, permission issues, MCP server errors, and plugin loading problems.
 
 Log lines are structured text, one per line:
+
 ```
 INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating instance
 ```
@@ -307,9 +313,10 @@ tail -5 "$LOGFILE" 2>/dev/null
 
 ### Step 8: Report Results
 
-For each model, check if its expected output file exists at `.llmdocs/_review-ralph-<label>.md`.
+For each model, check if its expected output file exists at `.llmdocs/_ralph-review<label>.md`.
 
 Report per model:
+
 - Success/failure (output file present or not)
 - Total cost (sum of `cost` from all `step_finish` events)
 - Whether any errors occurred
@@ -325,9 +332,9 @@ rm -f /tmp/ralph-review-prompt.txt
 
 3 files total, one per model:
 
-- `.llmdocs/_review-ralph-openai.md`
-- `.llmdocs/_review-ralph-gemini.md`
-- `.llmdocs/_review-ralph-claude.md`
+- `.llmdocs/_ralph-reviewopenai.md`
+- `.llmdocs/_ralph-reviewgemini.md`
+- `.llmdocs/_ralph-reviewclaude.md`
 
 ## NDJSON Log Format Reference
 
