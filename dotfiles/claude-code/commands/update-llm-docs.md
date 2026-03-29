@@ -1,6 +1,5 @@
 ---
 description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
-disable-model-invocation: true
 argument-hint: "[optional guidance]"
 ---
 

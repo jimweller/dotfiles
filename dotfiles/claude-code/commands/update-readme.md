@@ -1,6 +1,6 @@
 ---
 description: Write documentation based on conversation history and folder contents
-context: fork
+argument-hint: "[optional guidance]"
 ---
 
 STARTER_CHARACTER = 📓
