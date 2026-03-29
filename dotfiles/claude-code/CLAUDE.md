@@ -72,6 +72,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 
 ## Git Workflow
 
+- Before any git commit, verify `git config user.name` and `git config user.email` are set. If either is empty, ask the user to configure them before proceeding.
 - Only commit when explicitly asked
 - Use conventional commit message style when appropriate
 - Use semanic branch and PR style
