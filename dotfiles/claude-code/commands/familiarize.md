@@ -165,8 +165,10 @@ List all files that were read (filenames only, grouped by step).
 A concise summary of the project based on everything read. Cover:
 - What the project does
 - Tech stack and key dependencies
+- How to build it (build system, compile steps, dependency install)
+- How to run or install it (entry points, startup commands, deploy method)
+- How to test it (test framework, test commands, test location)
 - How the code is organized (key directories and their roles)
-- Entry points and how the application starts
 - Conventions or patterns observed in the code
 - Anything notable, missing, or unclear
 
