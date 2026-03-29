@@ -9,6 +9,7 @@ STARTER_CHARACTER = 📓
 
 Write markdown content based on the current conversation context and folder contents.
 
+README is current state specification for a human user, not a changelog or decision log or historical record.
 
 ## Claude Skills
 
@@ -16,15 +17,33 @@ Write markdown content based on the current conversation context and folder cont
 - use the /md-style skill for authoring conventions and writing style
 - After writing, use /md-lint on the file to format and lint
 
-Arguments: $ARGUMENTS
+## Scope
 
-- First argument is the target file path. Additional text is guidance.
-- If $ARGUMENTS is empty use README.md in the current directory as the file name
-- Folder contents are at file argument level and below (siblings and subfolder), never above (parents)
+Find all README.md files in the project and update each.
+Folder contents are at the README's level and below (siblings and subfolders), never above (parents).
+Pay attention to subfolder layers, scope and bounded contexts. Do not leak
+concepts between documents at different layers. Each README covers its own
+directory level and below, never parent concerns.
+
+$ARGUMENTS
+
+## Gather Diff
+
+Before writing each README, compute what changed since it was last touched.
+Use the target file's directory to scope the diff:
+
+```bash
+TARGET_DIR=$(dirname <target-readme-path>)
+BASELINE=$(git log -1 --format=%H -- <target-readme-path>)
+git diff ${BASELINE}..HEAD --stat -- "$TARGET_DIR"
+git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
+```
+
+Use this diff to identify what sections need updating. Verify code against docs and docs against code.
 
 ## README.md Outline
 
-Example document structure for README.md. Not required for non-readmes that might need a different structure.
+Example document structure for README.md.
 
 ```markdown
 # Title
@@ -41,6 +60,10 @@ High level components and purpose
 - Component - purpose
 - Component - purpose
 
+## Prerequisites
+
+- Prerequisite - description and reason (accounts, keys, credentials, tools, runtimes, CLIs)
+
 ## Project Structure
 
 Show folder structure. Don't include files.
@@ -55,14 +78,6 @@ davit/
 ├── scripts/                    # Build and deployment scripts
 └── tests/                      # Test suites
 \`\`\`
-
-## Prerequisites
-
-- Docker 20.10+ with BuildKit enabled (included by default)
-- Kubernetes cluster - Local (Colima/Kind/Minikube) or remote
-- kubectl 1.28+ - Configured for your cluster
-- GNU Make 3.81+ - Build automation
-- direnv 2.32+ - Environment variable management
 
 ## Installation
 
@@ -93,11 +108,5 @@ make test-api
 make test-pod
 make test-integration
 \`\`\`
-
-## Contributing (optional it CONTRIBUTING.md present)
-
-## Acknowledgements (optional)
-
-## License (optional if LICENSE present)
 
 ```

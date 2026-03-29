@@ -1,42 +1,62 @@
 ---
 description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
 disable-model-invocation: true
-argument-hint: "[docs|all]"
+argument-hint: "[optional guidance]"
 ---
 
-STARTER_CHARACTER = ✏️
+STARTER_CHARACTER = 📐
 
 
 # Update Project Documentation
 
 Two responsibilities:
 1. **CLAUDE.md** — concise project overview (always loaded)
-2. **.llmdocs/** — detailed per-concept docs (loaded on demand)
+2. **.llmdocs/** — detailed per-concept docs (loaded on demand). EXCLUDE files that start with underscore, `_*`.
 
 ---
 
 ## 1. CLAUDE.md — The Map
 
+### Scope
+
+Find all CLAUDE.md and .llmdocs/ directories in the project and update each.
+Pay attention to subfolder layers, scope and bounded contexts. Do not leak
+concepts between documents at different layers. Each CLAUDE.md and .llmdocs/
+covers its own directory level and below, never parent concerns.
+
+$ARGUMENTS
+
 ### Gather Context
 
-- Read current `CLAUDE.md` (if exists)
-- Explore codebase: directories, config files, key modules
-- Review conversation history to identify what changed this session
+For each CLAUDE.md/.llmdocs/ pair found, scoped to its directory:
+
+1. Read current `CLAUDE.md` (if exists)
+2. Compute what changed since docs were last touched:
+
+```bash
+TARGET_DIR=<directory containing CLAUDE.md and .llmdocs/>
+BASELINE=$(git log -1 --format=%H -- "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.llmdocs/")
+git diff ${BASELINE}..HEAD --stat -- "$TARGET_DIR"
+git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
+```
+
+3. Explore codebase at that directory level and below
+4. Use the diff to identify what changed. Docs are current state specification, not a changelog or decision log. Verify code against docs.
 
 ### Write/Update CLAUDE.md
 
 Target: **under 500 lines**. Every line must earn its place.
 
 ```markdown
-# <Project Name>
+# <Name>
 
-<1-2 line purpose>
+<1-2 line purpose of this directory/component>
 
 ## Stack
-<bullet list: language, frameworks, key deps>
+<bullet list: language, frameworks, key deps relevant to this level>
 
 ## Architecture
-<key dirs and what they contain>
+<key dirs and what they contain at this level>
 
 ## Commands
 <build, test, lint, deploy — commands only>
@@ -45,7 +65,7 @@ Target: **under 500 lines**. Every line must earn its place.
 <style, naming, patterns — only what prevents mistakes>
 
 ## Key Concepts
-<domain terms, business logic Claude must know>
+<domain terms, business logic Claude must know at this level>
 
 ## Docs
 Detailed docs in `.llmdocs/`:
@@ -69,7 +89,7 @@ Detailed docs in `.llmdocs/`:
 
 ### Process
 
-1. **Assess**: review what was done this session (conversation history, git diff)
+1. **Assess**: use the diff from Gather Context to identify which docs are affected
 2. **Identify**: determine which existing docs are affected, or if a new doc is needed
 3. **Propose**: tell the user which docs you plan to update/create and what changes
 4. **Validate**: get user approval before writing
@@ -79,7 +99,7 @@ If nothing changed that warrants doc updates, say so and move on.
 
 ### Location
 
-Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at project root.
+Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at the target directory level. CLAUDE.md and .llmdocs/ can exist at any directory level in the project.
 
 ### Structure
 

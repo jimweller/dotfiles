@@ -53,7 +53,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 156935,
+  "promptQueueUseCount": 156936,
   "btwUseCount": 2,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
@@ -7155,7 +7155,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1774742252418,
+  "lastPlanModeUse": 1774818341379,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -7311,8 +7311,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 74,
-      "lastUsedAt": 1774627643858
+      "usageCount": 76,
+      "lastUsedAt": 1774817366106
     },
     "publish": {
       "usageCount": 11,
@@ -7331,8 +7331,8 @@
       "lastUsedAt": 1769957781495
     },
     "md-style": {
-      "usageCount": 30,
-      "lastUsedAt": 1774627610988
+      "usageCount": 32,
+      "lastUsedAt": 1774817063382
     },
     "jira": {
       "usageCount": 315,
@@ -7343,8 +7343,8 @@
       "lastUsedAt": 1773407775996
     },
     "md-syntax": {
-      "usageCount": 26,
-      "lastUsedAt": 1774627610981
+      "usageCount": 28,
+      "lastUsedAt": 1774817063374
     },
     "ado": {
       "usageCount": 4,
@@ -7379,8 +7379,8 @@
       "lastUsedAt": 1772117382375
     },
     "update-llm-docs": {
-      "usageCount": 45,
-      "lastUsedAt": 1774550456090
+      "usageCount": 49,
+      "lastUsedAt": 1774816526094
     },
     "review": {
       "usageCount": 1,
@@ -7415,8 +7415,8 @@
       "lastUsedAt": 1774583184861
     },
     "update-readme": {
-      "usageCount": 30,
-      "lastUsedAt": 1774627604492
+      "usageCount": 33,
+      "lastUsedAt": 1774817628641
     },
     "mcg-atlassian:jira": {
       "usageCount": 276,
@@ -7455,8 +7455,8 @@
       "lastUsedAt": 1774729485621
     },
     "commit": {
-      "usageCount": 60,
-      "lastUsedAt": 1774814133583
+      "usageCount": 61,
+      "lastUsedAt": 1774818009080
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
