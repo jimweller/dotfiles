@@ -53,8 +53,9 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 156936,
+  "promptQueueUseCount": 156937,
   "btwUseCount": 2,
+  "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -7455,8 +7456,8 @@
       "lastUsedAt": 1774729485621
     },
     "commit": {
-      "usageCount": 61,
-      "lastUsedAt": 1774818009080
+      "usageCount": 62,
+      "lastUsedAt": 1774822063881
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,

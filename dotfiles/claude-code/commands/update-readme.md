@@ -27,10 +27,12 @@ directory level and below, never parent concerns.
 
 $ARGUMENTS
 
-## Gather Diff
+## Gather Context
 
-Before writing each README, compute what changed since it was last touched.
-Use the target file's directory to scope the diff:
+For each README found, scoped to its directory:
+
+1. Read current README (if exists)
+2. Compute what changed since it was last touched:
 
 ```bash
 TARGET_DIR=$(dirname <target-readme-path>)
@@ -39,7 +41,9 @@ git diff ${BASELINE}..HEAD --stat -- "$TARGET_DIR"
 git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
 ```
 
-Use this diff to identify what sections need updating. Verify code against docs and docs against code.
+3. Explore codebase at that directory level and below
+4. Review conversation history for relevant decisions, changes, or lessons learned
+5. Use the diff and conversation context to identify what sections need updating. Verify code against docs and docs against code.
 
 ## README.md Outline
 

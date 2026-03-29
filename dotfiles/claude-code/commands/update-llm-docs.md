@@ -41,7 +41,8 @@ git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
 ```
 
 3. Explore codebase at that directory level and below
-4. Use the diff to identify what changed. Docs are current state specification, not a changelog or decision log. Verify code against docs.
+4. Review conversation history for relevant decisions, changes, or lessons learned
+5. Use the diff and conversation context to identify what changed. Docs are current state specification, not a changelog or decision log. Verify code against docs.
 
 ### Write/Update CLAUDE.md
 
