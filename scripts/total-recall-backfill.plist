@@ -7,10 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/jimweller/.config/dotfiles/dotfiles/claude-code/tools/total-recall/.venv/bin/python</string>
-      <string>/Users/jimweller/.config/dotfiles/dotfiles/claude-code/tools/total-recall/backfill_embeddings.py</string>
-      <string>--db</string>
-      <string>/Users/jimweller/.claude/session_memory.db</string>
+      <string>/Users/jimweller/.config/dotfiles/scripts/total-recall-backfill.sh</string>
     </array>
 
     <key>StartCalendarInterval</key>

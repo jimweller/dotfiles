@@ -77,6 +77,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Use semanic branch and PR style
 - Never force push without explicit permission
 - Before running git revert, git checkout, git restore, or any destructive git operation, ALWAYS copy or back up untracked and modified files first. These operations can destroy untracked files that are not recoverable from git history.
+- Before `git reset --hard`, check for files that are tracked but should be gitignored (force-added in the past). Use `git ls-files` + `git check-ignore` to detect conflicts. A reset overwrites tracked files regardless of gitignore rules.
 
 ## Environment Sourcing
 

@@ -519,7 +519,8 @@
     "vs-kubernetes.crd-code-completion": "disabled"
   },
   // "roo-cline.debug": false,
-  "jupyter.askForKernelRestart": false
+  "jupyter.askForKernelRestart": false,
+  "remote.autoForwardPortsSource": "hybrid"
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
