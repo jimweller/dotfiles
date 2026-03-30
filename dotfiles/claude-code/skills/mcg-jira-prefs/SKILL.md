@@ -4,6 +4,8 @@ description: mcg-atlassian:jira skill j-cli Jira team defaults, custom fields, c
 user-invocable: false
 ---
 
+STARTER_CHARACTER = 🎫
+
 # Local Jira Configuration
 
 Default project: DEVX

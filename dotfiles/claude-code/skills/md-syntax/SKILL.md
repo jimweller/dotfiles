@@ -4,7 +4,7 @@ description: Guidelines for markdown syntax and formatting rules
 user-invocable: false
 ---
 
-STARTER_CHARACTER = 🔏
+STARTER_CHARACTER = 📏
 
 # Markdown Authoring Guidelines
 

@@ -4,6 +4,8 @@ description: Write a session handoff document for the next agent or session
 disable-model-invocation: true
 ---
 
+STARTER_CHARACTER = 🪃
+
 # Handoff: Capture Session State for Continuation
 
 ## Objective

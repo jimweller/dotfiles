@@ -3,6 +3,8 @@ name: session-resume
 description: Search and load previous Claude Code conversations. Use when user wants to find or resume a past session.
 ---
 
+STARTER_CHARACTER = 🔖
+
 # Claude Search & Resume
 
 Search past conversations and help user resume them.

@@ -4,6 +4,8 @@ description: mcg-atlassian:confluence skill c-cli Confluence team defaults, spac
 user-invocable: false
 ---
 
+STARTER_CHARACTER = 📄
+
 # Local Confluence Configuration
 
 Default space: DevX

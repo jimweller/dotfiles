@@ -3,6 +3,8 @@ name: commit
 description: Create an atomic conventional commit with AI context tracking
 ---
 
+STARTER_CHARACTER = 📌
+
 # Commit Changes
 
 ## Process

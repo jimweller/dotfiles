@@ -3,6 +3,8 @@ name: transcript-search
 description: Search saved session transcripts for past decisions, actions, errors, and context that has left the current conversation window.
 ---
 
+STARTER_CHARACTER = 🗃️
+
 # Transcript Search
 
 Search the global session memory database for past conversations using hybrid

@@ -3,6 +3,8 @@ name: test-driven-development
 description: "Use London Test Driven Development (TDD) when implementing any feature or bugfix, before writing implementation code"
 ---
 
+STARTER_CHARACTER = 🧪
+
 # Test-Driven Development (TDD) - London School
 
 ## Overview
