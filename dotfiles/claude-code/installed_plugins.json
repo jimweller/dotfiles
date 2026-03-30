@@ -22,10 +22,10 @@
     "ralph-loop@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/61c0597779bd",
-        "version": "61c0597779bd",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/ralph-loop/1.0.0",
+        "version": "1.0.0",
         "installedAt": "2026-02-15T00:45:49.408Z",
-        "lastUpdated": "2026-03-21T01:04:30.932Z",
+        "lastUpdated": "2026-03-30T04:57:44.285Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
@@ -108,6 +108,16 @@
         "installedAt": "2026-03-23T04:50:27.524Z",
         "lastUpdated": "2026-03-24T16:14:33.270Z",
         "gitCommitSha": "2a84f13284a26914beb603cea3ea2e9ccf26a9a7"
+      }
+    ],
+    "claude-mem@thedotmack": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/10.6.3",
+        "version": "10.6.3",
+        "installedAt": "2026-03-30T05:30:52.876Z",
+        "lastUpdated": "2026-03-30T05:30:52.876Z",
+        "gitCommitSha": "d06882126fe24f6ebcbe433385daeb8322ba8009"
       }
     ]
   }

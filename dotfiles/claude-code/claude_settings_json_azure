@@ -21,31 +21,6 @@
   },
   "includeCoAuthoredBy": false,
   "model": "opus[1m]",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline-command.sh azure"
-  },
-  "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true,
-    "agent-browser@agent-browser": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "csharp-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
-    "mcg-atlassian@sead-claude-marketplace": true
-  },
-  "spinnerTipsEnabled": false,
-  "spinnerVerbs": {
-    "mode": "replace",
-    "verbs": [
-      "Working"
-    ]
-  },
-  "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PreCompact": [
       {
@@ -77,5 +52,39 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh azure"
+  },
+  "enabledPlugins": {
+    "ralph-loop@claude-plugins-official": true,
+    "agent-browser@agent-browser": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "mcg-atlassian@sead-claude-marketplace": true,
+    "claude-mem@thedotmack": true
+  },
+  "extraKnownMarketplaces": {
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    }
+  },
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working"
+    ]
+  },
+  "autoUpdatesChannel": "latest",
+  "prefersReducedMotion": true,
+  "skipDangerousModePermissionPrompt": true
 }

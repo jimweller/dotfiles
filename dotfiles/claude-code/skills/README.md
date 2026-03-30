@@ -63,3 +63,36 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 | `md-style` | README writing conventions |
 | `md-syntax` | Markdown syntax and formatting rules |
 | `python` | Python development conventions (uv, src layout, pytest) |
+
+## claude-mem Plugin
+
+The `claude-mem` plugin (thedotmack/claude-mem) provides persistent cross-session memory. It captures tool usage observations during sessions, generates AI summaries, and injects relevant context into future sessions automatically.
+
+### Install
+
+```bash
+claude plugin marketplace add thedotmack/claude-mem
+claude plugin install claude-mem
+```
+
+Requires Bun (`~/.local/bin/bun`). Runs a worker daemon on port 37777.
+
+### Bedrock/Vertex Auth Patch
+
+claude-mem v10.6.0+ has a known bug (issue #1496) where the SDK subprocess strips `CLAUDE_CODE_USE_BEDROCK` and `CLAUDE_CODE_USE_VERTEX` env vars, causing "Not logged in" errors for non-subscription auth setups.
+
+Patch `~/.claude/plugins/cache/thedotmack/claude-mem/<version>/scripts/worker-service.cjs`:
+
+Find:
+```
+N0.some(i=>r.startsWith(i))||(e[r]=n)}return e}
+```
+
+Replace with:
+```
+N0.some(i=>r.startsWith(i))&&r!=="CLAUDE_CODE_USE_BEDROCK"&&r!=="CLAUDE_CODE_USE_VERTEX"&&r!=="CLAUDE_CODE_USE_FOUNDRY"||(e[r]=n)}return e}
+```
+
+Then kill the worker (`pkill -f "worker-service.cjs --daemon"`). It restarts automatically on next session.
+
+The patch must be reapplied after plugin updates until the upstream fix lands.

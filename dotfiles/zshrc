@@ -30,3 +30,5 @@ fi
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+alias claude-mem='bun "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/10.6.3/scripts/worker-service.cjs"'
