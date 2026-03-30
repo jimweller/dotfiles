@@ -1,6 +1,8 @@
 ---
+name: ralph-reviewer
 description: Review Ralph Wiggum loop files using three models in parallel via opencode run.
 context: fork
+disable-model-invocation: true
 ---
 
 STARTER_CHARACTER = 🔍

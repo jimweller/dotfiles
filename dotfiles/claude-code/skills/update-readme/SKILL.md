@@ -1,4 +1,5 @@
 ---
+name: update-readme
 description: Write documentation based on conversation history and folder contents
 argument-hint: "[optional guidance]"
 ---

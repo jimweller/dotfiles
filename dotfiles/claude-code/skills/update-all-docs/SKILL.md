@@ -1,4 +1,5 @@
 ---
+name: update-all-docs
 description: Update all project docs (README.md + CLAUDE.md + .llmdocs/) in parallel.
 disable-model-invocation: true
 context: fork

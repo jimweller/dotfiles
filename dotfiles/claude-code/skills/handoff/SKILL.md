@@ -1,5 +1,7 @@
 ---
+name: handoff
 description: Write a session handoff document for the next agent or session
+disable-model-invocation: true
 ---
 
 # Handoff: Capture Session State for Continuation

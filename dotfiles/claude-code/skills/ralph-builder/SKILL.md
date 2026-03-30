@@ -1,7 +1,9 @@
 ---
+name: ralph-builder
 description: Build or update Ralph Wiggum loop files for autonomous task execution.
 argument-hint: "<goal or filename>"
 context: fork
+disable-model-invocation: true
 ---
 
 STARTER_CHARACTER = 🔁

@@ -1,4 +1,5 @@
 ---
+name: familiarize
 description: Orient in a new or unfamiliar repo by reading docs, config, and code structure.
 argument-hint: "[optional: subdirectory to focus on]"
 disable-model-invocation: true

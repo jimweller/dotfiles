@@ -1,4 +1,5 @@
 ---
+name: md-lint
 description: Format and lint markdown files using prettier and markdownlint-cli2. Always use after writing markdown files (*.md) intended for humans.
 context: fork
 ---

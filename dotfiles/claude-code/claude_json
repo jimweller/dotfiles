@@ -1,5 +1,5 @@
 {
-  "numStartups": 1465,
+  "numStartups": 1468,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -55,7 +55,6 @@
   "memoryUsageCount": 1,
   "promptQueueUseCount": 156938,
   "btwUseCount": 2,
-  "showExpandedTodos": true,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -351,16 +350,16 @@
       ],
       "exampleFilesGeneratedAt": 1774254712973,
       "disabledMcpServers": [],
-      "lastCost": 5.896779950000001,
-      "lastAPIDuration": 1050454,
-      "lastToolDuration": 357279,
-      "lastDuration": 4872707,
-      "lastLinesAdded": 867,
-      "lastLinesRemoved": 84,
-      "lastTotalInputTokens": 19683,
-      "lastTotalOutputTokens": 47502,
-      "lastTotalCacheCreationInputTokens": 513487,
-      "lastTotalCacheReadInputTokens": 5525962,
+      "lastCost": 8.970565950000003,
+      "lastAPIDuration": 1239808,
+      "lastToolDuration": 406396,
+      "lastDuration": 6545012,
+      "lastLinesAdded": 1044,
+      "lastLinesRemoved": 129,
+      "lastTotalInputTokens": 32824,
+      "lastTotalOutputTokens": 54303,
+      "lastTotalCacheCreationInputTokens": 785261,
+      "lastTotalCacheReadInputTokens": 8073142,
       "lastSessionId": "3ab9793a-2d1e-40e9-b914-cd7637b9daea",
       "reactVulnerabilityCache": {
         "detected": false,
@@ -369,15 +368,15 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 1047505,
+      "lastAPIDurationWithoutRetries": 1236124,
       "lastModelUsage": {
         "claude-sonnet-4-6[1m]": {
-          "inputTokens": 14205,
-          "outputTokens": 26679,
-          "cacheReadInputTokens": 1465389,
-          "cacheCreationInputTokens": 307756,
+          "inputTokens": 19742,
+          "outputTokens": 28884,
+          "cacheReadInputTokens": 1510989,
+          "cacheCreationInputTokens": 344507,
           "webSearchRequests": 0,
-          "costUSD": 2.0365017
+          "costUSD": 2.23768395
         },
         "claude-haiku-4-5": {
           "inputTokens": 828,
@@ -388,38 +387,38 @@
           "costUSD": 0.000948
         },
         "claude-opus-4-6[1m]": {
-          "inputTokens": 4650,
-          "outputTokens": 20799,
-          "cacheReadInputTokens": 4060573,
-          "cacheCreationInputTokens": 205731,
+          "inputTokens": 12254,
+          "outputTokens": 25395,
+          "cacheReadInputTokens": 6562153,
+          "cacheCreationInputTokens": 440754,
           "webSearchRequests": 0,
-          "costUSD": 3.859330249999999
+          "costUSD": 6.731934
         }
       },
-      "lastFpsAverage": 0.62,
-      "lastFpsLow1Pct": 136.78,
+      "lastFpsAverage": 0.79,
+      "lastFpsLow1Pct": 35.44,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 3031,
-        "frame_duration_ms_min": 0.05387500000142609,
-        "frame_duration_ms_max": 32.01624999940395,
-        "frame_duration_ms_avg": 1.400208931703458,
-        "frame_duration_ms_p50": 1.0987915000878274,
-        "frame_duration_ms_p95": 2.993289349711266,
-        "frame_duration_ms_p99": 7.8492048401152585,
-        "hook_duration_ms_count": 121,
+        "hook_duration_ms_count": 24,
         "hook_duration_ms_min": 0,
-        "hook_duration_ms_max": 465,
-        "hook_duration_ms_avg": 8.396694214876034,
+        "hook_duration_ms_max": 341,
+        "hook_duration_ms_avg": 26.041666666666668,
         "hook_duration_ms_p50": 0,
-        "hook_duration_ms_p95": 46,
-        "hook_duration_ms_p99": 78,
-        "pre_tool_hook_duration_ms_count": 178,
+        "hook_duration_ms_p95": 83.1,
+        "hook_duration_ms_p99": 281.8899999999999,
+        "frame_duration_ms_count": 1324,
+        "frame_duration_ms_min": 0.5360839997883886,
+        "frame_duration_ms_max": 46.28758300000004,
+        "frame_duration_ms_avg": 2.906118649545281,
+        "frame_duration_ms_p50": 1.9860000000044238,
+        "frame_duration_ms_p95": 7.900256249937224,
+        "frame_duration_ms_p99": 28.210959089989775,
+        "pre_tool_hook_duration_ms_count": 31,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 3,
-        "pre_tool_hook_duration_ms_avg": 0.3539325842696629,
+        "pre_tool_hook_duration_ms_max": 1,
+        "pre_tool_hook_duration_ms_avg": 0.25806451612903225,
         "pre_tool_hook_duration_ms_p50": 0,
-        "pre_tool_hook_duration_ms_p95": 2,
-        "pre_tool_hook_duration_ms_p99": 2
+        "pre_tool_hook_duration_ms_p95": 1,
+        "pre_tool_hook_duration_ms_p99": 1
       },
       "hasCompletedProjectOnboarding": true
     },
@@ -4956,10 +4955,10 @@
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
         "server_multitenant.go",
-        "kubernetes.go",
-        "auth_multitenant.go",
+        "Makefile",
+        "index.html",
         "dashboard.go",
-        "auth.go"
+        "Dockerfile"
       ],
       "reactVulnerabilityCache": {
         "detected": false,
@@ -4968,71 +4967,55 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1773239373318,
+      "exampleFilesGeneratedAt": 1774829077234,
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 107.31935900000006,
-      "lastAPIDuration": 12529143,
-      "lastAPIDurationWithoutRetries": 11934749,
-      "lastToolDuration": 11679067,
-      "lastDuration": 661574679,
-      "lastLinesAdded": 2888,
-      "lastLinesRemoved": 1154,
-      "lastTotalInputTokens": 946494,
-      "lastTotalOutputTokens": 454190,
-      "lastTotalCacheCreationInputTokens": 6613584,
-      "lastTotalCacheReadInputTokens": 109236212,
+      "lastCost": 0.8457190000000001,
+      "lastAPIDuration": 84510,
+      "lastAPIDurationWithoutRetries": 84262,
+      "lastToolDuration": 670,
+      "lastDuration": 145621,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 16620,
+      "lastTotalOutputTokens": 4055,
+      "lastTotalCacheCreationInputTokens": 74384,
+      "lastTotalCacheReadInputTokens": 392688,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0,
-      "lastFpsLow1Pct": 28.52,
+      "lastFpsAverage": 1.6,
+      "lastFpsLow1Pct": 211.98,
       "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 749688,
-          "outputTokens": 38969,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 188547,
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 16620,
+          "outputTokens": 4055,
+          "cacheReadInputTokens": 392688,
+          "cacheCreationInputTokens": 74384,
           "webSearchRequests": 0,
-          "costUSD": 1.1802167499999996
-        },
-        "claude-opus-4-6": {
-          "inputTokens": 94292,
-          "outputTokens": 354711,
-          "cacheReadInputTokens": 103558749,
-          "cacheCreationInputTokens": 5509125,
-          "webSearchRequests": 0,
-          "costUSD": 95.55064075000001
-        },
-        "claude-sonnet-4-6": {
-          "inputTokens": 102514,
-          "outputTokens": 60510,
-          "cacheReadInputTokens": 5677463,
-          "cacheCreationInputTokens": 915912,
-          "webSearchRequests": 0,
-          "costUSD": 10.588501500000007
+          "costUSD": 0.8457190000000001
         }
       },
-      "lastSessionId": "95725041-e254-4c9e-8ec2-f4b3eeadee94",
+      "lastSessionId": "6e39dcb4-3411-49b4-bf31-e1ba265c557e",
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 60918,
-        "frame_duration_ms_min": 0.06787502765655518,
-        "frame_duration_ms_max": 1155.4552919864655,
-        "frame_duration_ms_avg": 8.617867268051818,
-        "frame_duration_ms_p50": 1.563604012131691,
-        "frame_duration_ms_p95": 47.33018124699587,
-        "frame_duration_ms_p99": 76.8763927489519,
-        "pre_tool_hook_duration_ms_count": 1295,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 13,
-        "pre_tool_hook_duration_ms_avg": 2.7536679536679536,
-        "pre_tool_hook_duration_ms_p50": 2,
-        "pre_tool_hook_duration_ms_p95": 7,
-        "pre_tool_hook_duration_ms_p99": 10,
-        "hook_duration_ms_count": 724,
+        "frame_duration_ms_count": 231,
+        "frame_duration_ms_min": 0.06070799999997689,
+        "frame_duration_ms_max": 9.099541000003228,
+        "frame_duration_ms_avg": 0.7875600779224866,
+        "frame_duration_ms_p50": 0.43254200000228593,
+        "frame_duration_ms_p95": 2.661396000001332,
+        "frame_duration_ms_p99": 4.656575099999279,
+        "hook_duration_ms_count": 33,
         "hook_duration_ms_min": 0,
-        "hook_duration_ms_max": 111,
-        "hook_duration_ms_avg": 10.002762430939226,
+        "hook_duration_ms_max": 526,
+        "hook_duration_ms_avg": 18.757575757575758,
         "hook_duration_ms_p50": 0,
-        "hook_duration_ms_p95": 66.85000000000002,
-        "hook_duration_ms_p99": 97.76999999999998
+        "hook_duration_ms_p95": 36.99999999999987,
+        "hook_duration_ms_p99": 386.7999999999999,
+        "pre_tool_hook_duration_ms_count": 35,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 2,
+        "pre_tool_hook_duration_ms_avg": 0.6,
+        "pre_tool_hook_duration_ms_p50": 1,
+        "pre_tool_hook_duration_ms_p95": 1.2999999999999972,
+        "pre_tool_hook_duration_ms_p99": 2
       }
     },
     "/Users/jimweller/work/data-spelunking": {
@@ -6299,53 +6282,53 @@
         "__init__.py",
         "test_issue_cli.py"
       ],
-      "lastCost": 1.70466825,
-      "lastAPIDuration": 90123,
-      "lastAPIDurationWithoutRetries": 89894,
-      "lastToolDuration": 1695,
-      "lastDuration": 253055,
+      "lastCost": 0.83166175,
+      "lastAPIDuration": 80245,
+      "lastAPIDurationWithoutRetries": 80037,
+      "lastToolDuration": 1984,
+      "lastDuration": 889225,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 39528,
-      "lastTotalOutputTokens": 5006,
-      "lastTotalCacheCreationInputTokens": 184219,
-      "lastTotalCacheReadInputTokens": 461019,
+      "lastTotalInputTokens": 17725,
+      "lastTotalOutputTokens": 4122,
+      "lastTotalCacheCreationInputTokens": 81155,
+      "lastTotalCacheReadInputTokens": 265536,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 1.02,
-      "lastFpsLow1Pct": 136.03,
+      "lastFpsAverage": 0.23,
+      "lastFpsLow1Pct": 169.54,
       "lastModelUsage": {
         "claude-opus-4-6[1m]": {
-          "inputTokens": 39528,
-          "outputTokens": 5006,
-          "cacheReadInputTokens": 461019,
-          "cacheCreationInputTokens": 184219,
+          "inputTokens": 17725,
+          "outputTokens": 4122,
+          "cacheReadInputTokens": 265536,
+          "cacheCreationInputTokens": 81155,
           "webSearchRequests": 0,
-          "costUSD": 1.70466825
+          "costUSD": 0.83166175
         }
       },
-      "lastSessionId": "f5f43188-0071-46f5-976b-ae64097a18b9",
+      "lastSessionId": "1327ed33-8391-40fb-bcfb-ddb74ba15cb2",
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 257,
-        "frame_duration_ms_min": 0.052792000002227724,
-        "frame_duration_ms_max": 8.167792000007466,
-        "frame_duration_ms_avg": 0.6350082957198331,
-        "frame_duration_ms_p50": 0.39295799999672454,
-        "frame_duration_ms_p95": 1.936416599997028,
-        "frame_duration_ms_p99": 7.071340040002832,
-        "hook_duration_ms_count": 45,
+        "frame_duration_ms_count": 206,
+        "frame_duration_ms_min": 0.037000000000261934,
+        "frame_duration_ms_max": 11.754833000013605,
+        "frame_duration_ms_avg": 0.7457200388352595,
+        "frame_duration_ms_p50": 0.39041649999899164,
+        "frame_duration_ms_p95": 2.567427250002652,
+        "frame_duration_ms_p99": 5.8715336500037605,
+        "hook_duration_ms_count": 40,
         "hook_duration_ms_min": 0,
-        "hook_duration_ms_max": 345,
-        "hook_duration_ms_avg": 9.311111111111112,
+        "hook_duration_ms_max": 364,
+        "hook_duration_ms_avg": 11.2,
         "hook_duration_ms_p50": 0,
-        "hook_duration_ms_p95": 1,
-        "hook_duration_ms_p99": 224.88000000000062,
-        "pre_tool_hook_duration_ms_count": 46,
+        "hook_duration_ms_p95": 4.199999999999761,
+        "hook_duration_ms_p99": 254.79999999999984,
+        "pre_tool_hook_duration_ms_count": 41,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 3,
-        "pre_tool_hook_duration_ms_avg": 0.7608695652173914,
+        "pre_tool_hook_duration_ms_max": 2,
+        "pre_tool_hook_duration_ms_avg": 0.8780487804878049,
         "pre_tool_hook_duration_ms_p50": 1,
         "pre_tool_hook_duration_ms_p95": 2,
-        "pre_tool_hook_duration_ms_p99": 2.549999999999997
+        "pre_tool_hook_duration_ms_p99": 2
       },
       "hasCompletedProjectOnboarding": true,
       "exampleFilesGeneratedAt": 1774827199796
@@ -7086,7 +7069,71 @@
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true
+      "hasCompletedProjectOnboarding": true,
+      "lastCost": 19.899461450000008,
+      "lastAPIDuration": 1392971,
+      "lastAPIDurationWithoutRetries": 1385696,
+      "lastToolDuration": 67467,
+      "lastDuration": 154106857,
+      "lastLinesAdded": 178,
+      "lastLinesRemoved": 17,
+      "lastTotalInputTokens": 22558,
+      "lastTotalOutputTokens": 36545,
+      "lastTotalCacheCreationInputTokens": 1252037,
+      "lastTotalCacheReadInputTokens": 22168374,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.04,
+      "lastFpsLow1Pct": 31.98,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 878,
+          "outputTokens": 28,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.0010179999999999998
+        },
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 21640,
+          "outputTokens": 36072,
+          "cacheReadInputTokens": 22145575,
+          "cacheCreationInputTokens": 1242753,
+          "webSearchRequests": 0,
+          "costUSD": 19.849993750000014
+        },
+        "claude-sonnet-4-6[1m]": {
+          "inputTokens": 40,
+          "outputTokens": 445,
+          "cacheReadInputTokens": 22799,
+          "cacheCreationInputTokens": 9284,
+          "webSearchRequests": 0,
+          "costUSD": 0.0484497
+        }
+      },
+      "lastSessionId": "ad3cef40-0de7-4892-8feb-e5ce1b884705",
+      "lastSessionMetrics": {
+        "frame_duration_ms_count": 6568,
+        "frame_duration_ms_min": 0.05474999999569263,
+        "frame_duration_ms_max": 595.2320000082254,
+        "frame_duration_ms_avg": 2.760416289727978,
+        "frame_duration_ms_p50": 1.2952079996466637,
+        "frame_duration_ms_p95": 8.768912450410424,
+        "frame_duration_ms_p99": 29.054580657482145,
+        "hook_duration_ms_count": 108,
+        "hook_duration_ms_min": 0,
+        "hook_duration_ms_max": 621,
+        "hook_duration_ms_avg": 47.861111111111114,
+        "hook_duration_ms_p50": 1,
+        "hook_duration_ms_p95": 122.54999999999994,
+        "hook_duration_ms_p99": 239.8099999999999,
+        "pre_tool_hook_duration_ms_count": 139,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 2,
+        "pre_tool_hook_duration_ms_avg": 0.16546762589928057,
+        "pre_tool_hook_duration_ms_p50": 0,
+        "pre_tool_hook_duration_ms_p95": 1,
+        "pre_tool_hook_duration_ms_p99": 2
+      }
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -7138,7 +7185,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1774825542133,
+  "lastPlanModeUse": 1774830274611,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -7342,12 +7389,12 @@
       "lastUsedAt": 1772306584759
     },
     "ralph-loop:ralph-loop": {
-      "usageCount": 55,
-      "lastUsedAt": 1774807700041
+      "usageCount": 57,
+      "lastUsedAt": 1774828588990
     },
     "ralph-loop:cancel-ralph": {
-      "usageCount": 39,
-      "lastUsedAt": 1774814077211
+      "usageCount": 40,
+      "lastUsedAt": 1774829693536
     },
     "ralph-loop:help": {
       "usageCount": 6,
@@ -7362,8 +7409,8 @@
       "lastUsedAt": 1772117382375
     },
     "update-llm-docs": {
-      "usageCount": 51,
-      "lastUsedAt": 1774822909304
+      "usageCount": 52,
+      "lastUsedAt": 1774830780456
     },
     "review": {
       "usageCount": 1,
@@ -7398,8 +7445,8 @@
       "lastUsedAt": 1774583184861
     },
     "update-readme": {
-      "usageCount": 36,
-      "lastUsedAt": 1774822909312
+      "usageCount": 37,
+      "lastUsedAt": 1774830780473
     },
     "mcg-atlassian:jira": {
       "usageCount": 277,
@@ -7438,8 +7485,8 @@
       "lastUsedAt": 1774729485621
     },
     "commit": {
-      "usageCount": 66,
-      "lastUsedAt": 1774827909023
+      "usageCount": 69,
+      "lastUsedAt": 1774831960356
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -7462,12 +7509,16 @@
       "lastUsedAt": 1774680392739
     },
     "update-all-docs": {
-      "usageCount": 3,
-      "lastUsedAt": 1774822903253
+      "usageCount": 4,
+      "lastUsedAt": 1774830774420
     },
     "familiarize": {
+      "usageCount": 3,
+      "lastUsedAt": 1774829079015
+    },
+    "sage": {
       "usageCount": 2,
-      "lastUsedAt": 1774827704939
+      "lastUsedAt": 1774829577891
     }
   },
   "opusProMigrationComplete": true,

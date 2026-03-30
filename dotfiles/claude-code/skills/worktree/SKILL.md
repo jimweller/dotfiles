@@ -1,6 +1,8 @@
 ---
+name: worktree
 description: Git worktree management for parallel branch development. Use for creating, merging, rebasing, and removing worktrees.
 argument-hint: "[create|list|merge|rebase|remove] [branch-name]"
+disable-model-invocation: true
 ---
 
 STARTER_CHARACTER = 🎋

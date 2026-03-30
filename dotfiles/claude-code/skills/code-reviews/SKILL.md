@@ -1,7 +1,9 @@
 ---
+name: code-reviews
 description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
 argument-hint: "<path>"
 context: fork
+disable-model-invocation: true
 ---
 
 STARTER_CHARACTER = 🕵️‍♂️
