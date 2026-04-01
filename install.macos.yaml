@@ -8,6 +8,13 @@
     - ~/.colima/default
     - ~/assets/colima
 
+- shell:
+    - description: Create ~/bak symlink to Google Drive
+      command: |
+        test -L "$HOME/bak" || ln -s "$HOME/jim.weller@gmail.com - Google Drive/My Drive" "$HOME/bak"
+      stderr: true
+      stdout: true
+
 - link:
     ~/.colima/default/colima.yaml: dotfiles/colima_default
     ~/.granted/config: dotfiles/granted_config_macos

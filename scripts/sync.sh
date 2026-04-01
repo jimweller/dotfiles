@@ -18,7 +18,7 @@ fi
 
 # Sparse image variables
 PASSWORD="${DOTFILES_KEY}"
-DMG=$(eval echo "${DOTFILES_BACKUP_DMG:-\$HOME/jim.weller@gmail.com - Google Drive/My Drive/PortfolioJim/current/backup.dmg.sparseimage}")
+DMG=$(eval echo "${DOTFILES_BACKUP_DMG:-\$HOME/bak/PortfolioJim/current/backup.dmg.sparseimage}")
 MOUNT="/Volumes/Backup"
 SIZE="16g"
 TARGET_DIR="$MOUNT"
@@ -97,15 +97,17 @@ rsync -avL --delete \
   --exclude='.terragrunt-cache' \
   --exclude='.kube/cache' \
   --exclude='.kube/http-cache' \
+  --exclude='assets/qdrant' \
+  --exclude='assets/postgres' \
+  --exclude='kics/test/fixtures' \
+  --filter=':- .gitignore' \
   ~/work \
   ~/personal \
-  ~/tmp \
   ~/assets \
   ~/Library/Preferences/com.microsoft.VSCode.plist \
-  ~/Library/Saved\ Application\ State/com.microsoft.VSCode.savedState \
   ~/Library/Application\ Support/Code/User/settings.json \
   ~/Library/Application\ Support/Code/User/keybindings.json \
-  ~/Library/Application\ Support/Google/Chrome/Profile\ 1/Bookmarks \
+  ~/Library/Application\ Support/Google/Chrome/Default/Bookmarks \
   ~/Library/CloudStorage/OneDrive-Hearst \
   "$TARGET_DIR/"
 

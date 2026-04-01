@@ -9,6 +9,9 @@
   - ~/.secrets
   - ~/.logs
   - ~/tmp
+  - ~/scratch
+  - ~/work
+  - ~/personal
   - ~/.ssh
   - ~/assets/postgres
   - ~/assets/qdrant
