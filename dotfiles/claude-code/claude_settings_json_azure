@@ -20,7 +20,7 @@
     "DISABLE_TELEMETRY": "1"
   },
   "includeCoAuthoredBy": false,
-  "model": "opus[1m]",
+  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {

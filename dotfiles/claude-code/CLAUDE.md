@@ -95,6 +95,13 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Use event sourcing for state changes
 - Ensure input validation at system boundaries
 
+## Jira, Confluence and mcg-atlassian plugin
+
+- Use mcg-atlassian:confluence skill and mcg-confluence-prefs skill working with atlassian confluence.
+- Use mcg-atlassian:jira skill and mcg-jira-prefs skill working with atlassian jira.
+- Always load the prefs skill after the main skill: mcg-atlassian:confluence->mcg-confluence-prefs, mcg-atlassian:jira->mcg-jira-prefs
+- Do not use direct atlassian api (curl, python, etc.) without trying the mcg-atlassian skills first
+
 ## Development Workflow
 
 - Before writing any code, describe your approach and wait for approval
@@ -106,9 +113,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - ALWAYS run tests after making code changes
 - ALWAYS verify build succeeds before committing
 
-## Claude Skills and Commands
-
-### STARTER_CHARACTER Rules
+## STARTER_CHARACTER Rules for Skills and Commands
 
 - EVERY response must begin with STARTER_CHARACTER - NO EXCEPTIONS
 - Default STARTER_CHARACTER is ✳️
