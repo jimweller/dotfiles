@@ -26,7 +26,7 @@
     "type": "command",
     "command": "~/.claude/statusline-command.sh aws"
   },
-  "spinnerVerbs": {"mode": "replace", "verbs": ["Working"]},
+  "spinnerVerbs": {"mode": "replace", "verbs": ["CLANKING"]},
   "spinnerTipsEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
