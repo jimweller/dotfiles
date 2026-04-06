@@ -103,11 +103,11 @@
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.7.0",
-        "version": "0.7.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.7.1",
+        "version": "0.7.1",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-03-31T23:44:17.797Z",
-        "gitCommitSha": "cb95769778da1caa71f4b755d455a5bfa5f430cd"
+        "lastUpdated": "2026-04-03T18:03:49.863Z",
+        "gitCommitSha": "4401d4c0f8d8c11d7968b7d3a4068c535cb01a9c"
       }
     ],
     "claude-mem@thedotmack": [
@@ -118,6 +118,17 @@
         "installedAt": "2026-03-30T05:30:52.876Z",
         "lastUpdated": "2026-03-30T05:30:52.876Z",
         "gitCommitSha": "d06882126fe24f6ebcbe433385daeb8322ba8009"
+      }
+    ],
+    "summarizing-slack-messages@sead-claude-marketplace": [
+      {
+        "scope": "project",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/summarizing-slack-messages/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-03T18:04:42.752Z",
+        "lastUpdated": "2026-04-03T18:04:42.752Z",
+        "gitCommitSha": "957bcc5c46f72ba62021d2254a12fdecce8ac0a3",
+        "projectPath": "/Users/jimweller/scratch/_crap"
       }
     ]
   }
