@@ -94,12 +94,12 @@ echo "  Keyboard configured"
 # --- Trackpad ---
 
 # Enable natural scroll direction (content follows finger)
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Enable tap-to-click on the trackpad
 # defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
-# Enable tap-to-click for the login screen
+# Enable tap-to-click for the login screen 
 # defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 echo "  Trackpad configured"

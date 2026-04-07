@@ -7,4 +7,3 @@ bluetooth-restart()
 {
     sudo pkill bluetoothd
 }
-hello my name is johanna
