@@ -11,8 +11,9 @@ ICON_INVOICE=$'\xF3\xB1\x89\x9F'
 ICON_CAL_RANGE=$'\xF3\xB0\x83\xB0'
 ICON_CAL_TODAY=$'\xF3\xB0\xB8\x97'
 ICON_TIMER=$'\xF3\xB1\x8E\xAB'
-ICON_DUMB=$'\xF3\xB0\x94\xB7'
-ICON_DEATH=$'\xF3\xB0\x9A\x8C'
+ICON_DUMB=$'\U000F002A'
+ICON_DEATH=$'\U000F0238'
+ICON_SKULL=$'\U0000EF0E'
 
 CLOUD_ARG="${1:-}"
 case "$CLOUD_ARG" in
@@ -72,9 +73,9 @@ fi
 
 if [ "$CTX_USABLE" -ge 90 ]; then
   CTX_COLOR="\033[38;5;124m"
-  CTX_ICON=$ICON_DEATH
+  CTX_ICON=$ICON_SKULL
 elif [ "$CTX_USABLE" -ge 75 ]; then
-  CTX_COLOR="\033[38;5;213m"
+  CTX_COLOR="\033[38;5;202m"
   CTX_ICON=$ICON_DEATH
 elif [ "$CTX_USABLE" -ge 40 ]; then
   CTX_COLOR="\033[38;5;220m"
@@ -117,7 +118,7 @@ BAR_BUFFER=""
 #   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 # fi
 printf "${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
-printf " ${CTX_COLOR}${BAR_FILLED}\033[2;90m${BAR_EMPTY}\033[0m\033[2;90m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
+printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CACHE="/tmp/ccusage-cache.json"
 COST_PROJECT=""
