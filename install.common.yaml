@@ -45,6 +45,7 @@
     #   path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
     ~/.tmux.conf: dotfiles/tmux.conf
+    ~/.gitmux.yml: dotfiles/gitmux.yml
     ~/.ripgreprc: dotfiles/ripgreprc
     ~/.config/powershell/:
       glob: true

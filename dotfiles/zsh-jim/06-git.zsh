@@ -23,6 +23,9 @@ switch_git_profile() {
   
   # Set GIT_CONFIG_GLOBAL to point to profile-specific config
   export GIT_CONFIG_GLOBAL="$HOME/.gitconfig-${profile}"
+
+  # Propagate to tmux server environment so status bar scripts can read it
+  [[ -n "$TMUX" ]] && tmux set-environment GIT_CONFIG_GLOBAL "$GIT_CONFIG_GLOBAL"
   
   # For work profile, export Azure DevOps credentials
   if [[ "$profile" == "work" ]]; then
