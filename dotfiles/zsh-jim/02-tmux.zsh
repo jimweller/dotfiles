@@ -3,3 +3,4 @@ export ZSH_TMUX_FIXTERM=false
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_TMUX_AUTOQUIT=false
+export ZSH_TMUX_DEFAULT_SESSION_NAME=jim
