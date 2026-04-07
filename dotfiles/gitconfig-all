@@ -34,9 +34,6 @@
 
 [user]
 	useConfigOnly = true
-	signingkey = /Users/jimweller/.ssh/id_mcg.pub
-	email = jim.weller@mcg.com
-	name = Jim Weller
 
 [pager]
 	branch = false
