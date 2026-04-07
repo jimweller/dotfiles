@@ -520,7 +520,10 @@
   },
   // "roo-cline.debug": false,
   "jupyter.askForKernelRestart": false,
-  "remote.autoForwardPortsSource": "hybrid"
+  "remote.autoForwardPortsSource": "hybrid",
+  "terminal.integrated.shellIntegration.quickFixEnabled": false,
+  "terminal.integrated.macOptionClickForcesSelection": true,
+  "claudeCode.disableLoginPrompt": true
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"
