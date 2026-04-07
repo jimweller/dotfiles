@@ -45,6 +45,7 @@
     #   path: dotfiles/roocode/rules/**
     ~/.ssh/config: dotfiles/ssh_config
     ~/.tmux.conf: dotfiles/tmux.conf
+    ~/.config/ghostty/config: dotfiles/ghostty_config
     ~/.gitmux.yml: dotfiles/gitmux.yml
     ~/.ripgreprc: dotfiles/ripgreprc
     ~/.config/powershell/:
