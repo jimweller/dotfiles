@@ -1,0 +1,1 @@
+export ZSH_TMUX_ITERM2=false
