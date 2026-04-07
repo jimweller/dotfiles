@@ -1,5 +1,5 @@
 {
-  "numStartups": 1636,
+  "numStartups": 1643,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -53,7 +53,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157114,
+  "promptQueueUseCount": 157122,
   "btwUseCount": 2,
   "autoConnectIde": true,
   "autoInstallIdeExtension": false,
@@ -121,17 +121,17 @@
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastTotalWebSearchRequests": 0,
-      "lastCost": 0.25347475,
-      "lastAPIDuration": 32410,
-      "lastToolDuration": 29627,
-      "lastDuration": 124100,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 21493,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 995,
-      "lastTotalOutputTokens": 683,
-      "lastTotalCacheCreationInputTokens": 29269,
-      "lastTotalCacheReadInputTokens": 100811,
-      "lastSessionId": "5ffaabff-c7c3-4144-8c00-372412347715",
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastSessionId": "4e7199f1-7ac6-4250-aac5-9970c46f7b48",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -139,49 +139,25 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 32316,
-      "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 393,
-          "outputTokens": 17,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.000478
-        },
-        "claude-opus-4-6[1m]": {
-          "inputTokens": 602,
-          "outputTokens": 666,
-          "cacheReadInputTokens": 100811,
-          "cacheCreationInputTokens": 29269,
-          "webSearchRequests": 0,
-          "costUSD": 0.25299675
-        }
-      },
-      "lastFpsAverage": 1.55,
-      "lastFpsLow1Pct": 137.6,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastModelUsage": {},
+      "lastFpsAverage": 3.12,
+      "lastFpsLow1Pct": 144.03,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 191,
-        "frame_duration_ms_min": 0.0858330000000933,
-        "frame_duration_ms_max": 8.038125000006403,
-        "frame_duration_ms_avg": 0.6638830052354562,
-        "frame_duration_ms_p50": 0.46604100000695325,
-        "frame_duration_ms_p95": 1.7792499999977736,
-        "frame_duration_ms_p99": 4.560616400000003,
-        "hook_duration_ms_count": 8,
-        "hook_duration_ms_min": 175,
-        "hook_duration_ms_max": 1882,
-        "hook_duration_ms_avg": 400.625,
-        "hook_duration_ms_p50": 188,
-        "hook_duration_ms_p95": 1296.799999999999,
-        "hook_duration_ms_p99": 1764.9599999999996,
-        "pre_tool_hook_duration_ms_count": 4,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 0,
-        "pre_tool_hook_duration_ms_avg": 0,
-        "pre_tool_hook_duration_ms_p50": 0,
-        "pre_tool_hook_duration_ms_p95": 0,
-        "pre_tool_hook_duration_ms_p99": 0
+        "frame_duration_ms_count": 65,
+        "frame_duration_ms_min": 0.07041700000002038,
+        "frame_duration_ms_max": 6.942874999999958,
+        "frame_duration_ms_avg": 0.6621968307692503,
+        "frame_duration_ms_p50": 0.4668330000004062,
+        "frame_duration_ms_p95": 1.1752088000000178,
+        "frame_duration_ms_p99": 4.507328119999991,
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 601,
+        "hook_duration_ms_max": 601,
+        "hook_duration_ms_avg": 601,
+        "hook_duration_ms_p50": 601,
+        "hook_duration_ms_p95": 601,
+        "hook_duration_ms_p99": 601
       },
       "hasCompletedProjectOnboarding": true
     },
@@ -365,16 +341,16 @@
       ],
       "exampleFilesGeneratedAt": 1775570168770,
       "disabledMcpServers": [],
-      "lastCost": 44.6150875,
-      "lastAPIDuration": 3045271,
-      "lastToolDuration": 117163,
-      "lastDuration": 89301370,
-      "lastLinesAdded": 429,
-      "lastLinesRemoved": 246,
-      "lastTotalInputTokens": 48214,
-      "lastTotalOutputTokens": 78206,
-      "lastTotalCacheCreationInputTokens": 865508,
-      "lastTotalCacheReadInputTokens": 74030829,
+      "lastCost": 39.69534250000002,
+      "lastAPIDuration": 1263655,
+      "lastToolDuration": 21733,
+      "lastDuration": 32043856,
+      "lastLinesAdded": 98,
+      "lastLinesRemoved": 48,
+      "lastTotalInputTokens": 13291,
+      "lastTotalOutputTokens": 23885,
+      "lastTotalCacheCreationInputTokens": 2982484,
+      "lastTotalCacheReadInputTokens": 40782475,
       "lastSessionId": "d2904e23-42b7-44e6-b4ef-974e01c8888a",
       "reactVulnerabilityCache": {
         "detected": false,
@@ -383,49 +359,41 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 3029179,
+      "lastAPIDurationWithoutRetries": 1258453,
       "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 1403,
-          "outputTokens": 18,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.001493
-        },
         "claude-opus-4-6[1m]": {
-          "inputTokens": 46811,
-          "outputTokens": 78188,
-          "cacheReadInputTokens": 74030829,
-          "cacheCreationInputTokens": 865508,
+          "inputTokens": 13291,
+          "outputTokens": 23885,
+          "cacheReadInputTokens": 40782475,
+          "cacheCreationInputTokens": 2982484,
           "webSearchRequests": 0,
-          "costUSD": 44.6135945
+          "costUSD": 39.69534250000002
         }
       },
-      "lastFpsAverage": 0.19,
-      "lastFpsLow1Pct": 37.45,
+      "lastFpsAverage": 3.63,
+      "lastFpsLow1Pct": 84.48,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 15230,
-        "frame_duration_ms_min": 0.06954099999995833,
-        "frame_duration_ms_max": 182.788708999753,
-        "frame_duration_ms_avg": 2.305738358680044,
-        "frame_duration_ms_p50": 1.1424374990165234,
-        "frame_duration_ms_p95": 6.352377700060595,
-        "frame_duration_ms_p99": 25.75360499598085,
-        "hook_duration_ms_count": 605,
-        "hook_duration_ms_min": 158,
-        "hook_duration_ms_max": 1597,
-        "hook_duration_ms_avg": 204.45123966942148,
+        "hook_duration_ms_count": 5,
+        "hook_duration_ms_min": 164,
+        "hook_duration_ms_max": 505,
+        "hook_duration_ms_avg": 250.4,
         "hook_duration_ms_p50": 200,
-        "hook_duration_ms_p95": 239,
-        "hook_duration_ms_p99": 249,
-        "pre_tool_hook_duration_ms_count": 307,
+        "hook_duration_ms_p95": 445.79999999999995,
+        "hook_duration_ms_p99": 493.15999999999997,
+        "frame_duration_ms_count": 283,
+        "frame_duration_ms_min": 0.4712089999993623,
+        "frame_duration_ms_max": 46.048,
+        "frame_duration_ms_avg": 2.4118979681980037,
+        "frame_duration_ms_p50": 2.0242919999982405,
+        "frame_duration_ms_p95": 4.911745799999878,
+        "frame_duration_ms_p99": 9.340946320001697,
+        "pre_tool_hook_duration_ms_count": 2,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 3,
-        "pre_tool_hook_duration_ms_avg": 0.06188925081433225,
+        "pre_tool_hook_duration_ms_max": 0,
+        "pre_tool_hook_duration_ms_avg": 0,
         "pre_tool_hook_duration_ms_p50": 0,
         "pre_tool_hook_duration_ms_p95": 0,
-        "pre_tool_hook_duration_ms_p99": 1
+        "pre_tool_hook_duration_ms_p99": 0
       },
       "hasCompletedProjectOnboarding": true
     },
@@ -7675,7 +7643,7 @@
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.81",
+  "lastReleaseNotesSeen": "2.1.92",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -7730,7 +7698,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1775593940468,
+  "lastPlanModeUse": 1775596936608,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -7925,8 +7893,8 @@
       "lastUsedAt": 1772117382375
     },
     "update-llm-docs": {
-      "usageCount": 59,
-      "lastUsedAt": 1775537735690
+      "usageCount": 60,
+      "lastUsedAt": 1775598648407
     },
     "review": {
       "usageCount": 1,
@@ -7961,8 +7929,8 @@
       "lastUsedAt": 1774583184861
     },
     "update-readme": {
-      "usageCount": 48,
-      "lastUsedAt": 1775537735899
+      "usageCount": 49,
+      "lastUsedAt": 1775598648625
     },
     "mcg-atlassian:jira": {
       "usageCount": 289,
@@ -8001,8 +7969,8 @@
       "lastUsedAt": 1775575970792
     },
     "commit": {
-      "usageCount": 135,
-      "lastUsedAt": 1775595986742
+      "usageCount": 138,
+      "lastUsedAt": 1775602881414
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -8025,16 +7993,16 @@
       "lastUsedAt": 1774680392739
     },
     "update-all-docs": {
-      "usageCount": 10,
-      "lastUsedAt": 1775537731003
+      "usageCount": 11,
+      "lastUsedAt": 1775598643283
     },
     "familiarize": {
       "usageCount": 5,
       "lastUsedAt": 1774973918653
     },
     "sage": {
-      "usageCount": 31,
-      "lastUsedAt": 1775594953208
+      "usageCount": 33,
+      "lastUsedAt": 1775602291227
     },
     "update-config": {
       "usageCount": 1,
@@ -8075,5 +8043,6 @@
   "effortCalloutV2Dismissed": true,
   "opus1mMergeNoticeSeenCount": 6,
   "migrationVersion": 11,
-  "ideHintShownCount": 4
+  "ideHintShownCount": 5,
+  "deepLinkTerminal": "Ghostty"
 }
