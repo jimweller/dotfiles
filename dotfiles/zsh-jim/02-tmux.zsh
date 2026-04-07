@@ -1,1 +1,2 @@
 export ZSH_TMUX_ITERM2=false
+export ZSH_TMUX_FIXTERM=false
