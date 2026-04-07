@@ -1,2 +1,5 @@
 export ZSH_TMUX_ITERM2=false
 export ZSH_TMUX_FIXTERM=false
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOCONNECT=true
+export ZSH_TMUX_AUTOQUIT=false
