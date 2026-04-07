@@ -97,10 +97,13 @@ These language patterns are forbidden. Delete and rewrite any of these:
 
 ## Jira, Confluence and mcg-atlassian plugin
 
+- ALWAYS load the confluence skill and the jira skill
 - Use mcg-atlassian:confluence skill and mcg-confluence-prefs skill working with atlassian confluence.
 - Use mcg-atlassian:jira skill and mcg-jira-prefs skill working with atlassian jira.
 - Always load the prefs skill after the main skill: mcg-atlassian:confluence->mcg-confluence-prefs, mcg-atlassian:jira->mcg-jira-prefs
-- Do not use direct atlassian api (curl, python, etc.) without trying the mcg-atlassian skills first
+- Do not use direct atlassian api (curl, python etc.) without trying the mcg-atlassian skills first
+- The `c` and `j` CLI commands are provided by the mcg-atlassian skills. NEVER run `c` or `j` directly in Bash. Always invoke the corresponding skill first (mcg-atlassian:confluence for `c`, mcg-atlassian:jira for `j`), then follow the skill's instructions for executing CLI commands.
+- When other skills (e.g. /standup, /wins) reference `c` or `j` CLI commands in their instructions, those commands must still be routed through the mcg-atlassian skills, not executed as raw Bash commands.
 
 ## Development Workflow
 
