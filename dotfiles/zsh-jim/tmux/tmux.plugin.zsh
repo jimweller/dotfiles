@@ -80,7 +80,9 @@ function _zsh_tmux_plugin_run() {
       tmux_cmd+=(-f "$ZSH_TMUX_CONFIG")
     fi
     if [[ -n "$ZSH_TMUX_DEFAULT_SESSION_NAME" ]]; then
-        $tmux_cmd new-session -s $ZSH_TMUX_DEFAULT_SESSION_NAME
+        local -a session_args=(-s $ZSH_TMUX_DEFAULT_SESSION_NAME)
+        (( ${+ZSH_TMUX_DEFAULT_WINDOW_NAME} )) && session_args+=(-n "$ZSH_TMUX_DEFAULT_WINDOW_NAME")
+        $tmux_cmd new-session "${session_args[@]}"
     else
         $tmux_cmd new-session
     fi
