@@ -116,10 +116,12 @@
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.automationProfile.osx": null,
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.osx": "tmux",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "terminal.integrated.env.osx": {
-    "Q_NEW_SESSION": "1"
+    "Q_NEW_SESSION": "1",
+    "TMUX": "",
+    "TMUX_PANE": ""
   },
   "terminal.integrated.environmentChangesRelaunch": false,
   "terminal.integrated.fontFamily": "Hack Nerd Font",
@@ -154,7 +156,8 @@
     },
     "tmux": {
       "icon": "terminal-tmux",
-      "path": "tmux"
+      "path": "/bin/zsh",
+      "args": ["-l", "-c", "tmux new-session -A -s \"${PWD##*/}-vsc\" \\; set destroy-unattached on"]
     },
     "zsh": {
       "args": ["-l"],
