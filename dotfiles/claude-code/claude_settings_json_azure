@@ -84,8 +84,8 @@
       "CLANKING"
     ]
   },
+  "effortLevel": "high",
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "skipDangerousModePermissionPrompt": true
 }
