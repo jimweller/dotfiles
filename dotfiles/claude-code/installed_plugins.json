@@ -130,6 +130,16 @@
         "lastUpdated": "2026-04-03T18:04:42.752Z",
         "gitCommitSha": "957bcc5c46f72ba62021d2254a12fdecce8ac0a3"
       }
+    ],
+    "mcg-status-updates@devx-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-04-08T23:16:14.925Z",
+        "lastUpdated": "2026-04-08T23:16:14.925Z",
+        "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
+      }
     ]
   }
 }
