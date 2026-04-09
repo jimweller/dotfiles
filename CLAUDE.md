@@ -38,11 +38,12 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 - Profile switching via `GIT_CONFIG_GLOBAL` env var
 - Secrets never committed in plaintext; only GPG-encrypted archive in `manifests/`
 - `dotfiles/claude-code/` is user-level Claude Code config, not repo metadata
+- When committing, always stage all changed and untracked files with `git add -A`. This is a personal, high-velocity repo where all files are intentional.
 
 ## Key Concepts
 
 - **antidote plugin manifest**: `dotfiles/zsh_plugins.txt` lists all zsh plugins in load order
-- **zsh-jim**: self-referential antidote plugin pointing back into this repo's `dotfiles/zsh-jim/`
+- **zsh-jim**: antidote plugin loaded from local path `$HOME/.config/dotfiles/dotfiles/zsh-jim/`
 - **git profile switching**: `work`/`personal` aliases set `GIT_CONFIG_GLOBAL` and load profile secrets
 - **LaunchAgents**: macOS scheduled tasks for AWS token refresh, backup, steampipe, ccusage, total-recall
 - **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and env files
