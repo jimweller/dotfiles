@@ -30,7 +30,7 @@ alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 claump() {
   local ids
   ids=$(claude plugin list --json | jq -r '.[].id') || return 1
-  for id in $ids; do
+  for id in ${(f)ids}; do
     echo "Updating $id ..."
     claude plugin update "$id"
   done
