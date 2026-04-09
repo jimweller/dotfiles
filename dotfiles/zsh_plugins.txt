@@ -49,7 +49,7 @@ ohmyzsh/ohmyzsh path:plugins/gpg-agent
 #ohmyzsh/ohmyzsh path:plugins/kops
 
 # Load Jim's custom PATH setup FIRST (includes asdf shims)
-jimweller/dotfiles path:dotfiles/zsh-jim # load Jim's personal tools
+$HOME/.config/dotfiles/dotfiles/zsh-jim # load Jim's personal tools
 
 # kubektl shorthands. k, kgp, etc. (AFTER PATH is set)
 Dbz/kube-aliases
@@ -89,14 +89,14 @@ ptavares/zsh-direnv
 mattmc3/zsh-safe-rm
 
 # terragrunts like terraform/tofu. tg, tgaa, tgd!, etc. Pending PR to OMZ
-jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
+$HOME/.config/dotfiles/dotfiles/zsh-jim/terragrunt
 
 # tmux aliases and wrapper
-jimweller/dotfiles path:dotfiles/zsh-jim/tmux
+$HOME/.config/dotfiles/dotfiles/zsh-jim/tmux
 
 
 # brew aliases, only load on macos
-jimweller/dotfiles path:dotfiles/zsh-jim/alehouse conditional:is_macos
+$HOME/.config/dotfiles/dotfiles/zsh-jim/alehouse conditional:is_macos
 
 
 
