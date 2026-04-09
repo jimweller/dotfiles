@@ -27,7 +27,6 @@ palette = 14=#5ffdff
 palette = 15=#feffff
 
 bold-is-bright = false
-keybind = shift+enter=text:\n
 scrollback-limit = 200000
 cursor-style-blink = false
 bell-features = no-system,no-audio,no-attention,no-title,no-border
