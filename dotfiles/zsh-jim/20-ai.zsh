@@ -27,4 +27,7 @@ alias claude='claude --dangerously-skip-permissions --no-chrome'
 
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 
-alias claump='claude plugin update mcg-atlassian@sead-claude-marketplace && claude plugin update mcg-atlassian@sead-claude-marketplace'
+claump() {
+  claude plugin update sead-claude-marketplace
+  claude plugin update devx-claude-marketplace
+}
