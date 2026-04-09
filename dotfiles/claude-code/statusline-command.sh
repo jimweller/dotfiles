@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # prevent stale index.lock files. Blocks claude's commits https://github.com/anthropics/claude-code/issues/11005
 GIT_OPTIONAL_LOCKS=0
 
 ICON_FOLDER=$'\xF3\xB0\x9D\xB0'
 ICON_BRANCH=$'\xF3\xB0\x98\xAC'
-ICON_ROBOT=$'\xF3\xB0\x9A\xA9'
+ICON_ROBOT=$'\U0000EE0D'
 ICON_CASH=$'\xF3\xB0\x84\x94'
 ICON_INVOICE=$'\xF3\xB1\x89\x9F'
 ICON_CAL_RANGE=$'\xF3\xB0\x83\xB0'
@@ -15,23 +15,59 @@ ICON_DUMB=$'\U000F002A'
 ICON_DEATH=$'\U000F0238'
 ICON_SKULL=$'\U0000EF0E'
 
-CLOUD_ARG="${1:-}"
-case "$CLOUD_ARG" in
-  aws)   CLOUD=$'\xEF\x89\xB0'; CLOUD_COLOR="\033[38;5;208m" ;;
-  azure) CLOUD=$'\xEE\xAF\x98'; CLOUD_COLOR="\033[94m" ;;
-  *)     CLOUD=""; CLOUD_COLOR="" ;;
-esac
-
 # Read JSON input from stdin
 INPUT=$(cat)
 echo "$INPUT" > ~/tmp/status.json
-MODEL_RAW=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
-case "$MODEL_RAW" in
-  *opus*|*Opus*) MODEL="opus" ;;
-  *sonnet*|*Sonnet*) MODEL="sonnet" ;;
-  *haiku*|*Haiku*) MODEL="haiku" ;;
-  *) MODEL="$MODEL_RAW" ;;
-esac
+
+MODEL=""
+MODEL_ID=""
+CLOUD=""
+CLOUD_COLOR=""
+if [ -n "$ANTHROPIC_BASE_URL" ] && [[ "$ANTHROPIC_BASE_URL" != *"anthropic.com"* ]]; then
+  MODELS_JSON=$(curl -sf --max-time 1 "$ANTHROPIC_BASE_URL/v1/models" 2>/dev/null)
+  if [ -n "$MODELS_JSON" ]; then
+    MODEL_ID=$(echo "$MODELS_JSON" | jq -r '.data[0].id // empty' 2>/dev/null)
+    if [ -n "$MODEL_ID" ]; then
+      FAMILY=$(echo "$MODEL_ID" | sed -E 's|.*/||; s/[-_][0-9].*//' | tr '[:upper:]' '[:lower:]' | tr -d '-')
+      SIZE=$(echo "$MODEL_ID" | grep -oiE '[Ee][0-9]+[Bb]|[0-9]+[Bb][-_]?[Aa][0-9]+[Bb]|[0-9]+[Bb]' | head -1 | tr '[:upper:]' '[:lower:]')
+      QUANT=$(echo "$MODEL_ID" | grep -oiE '[Qq][0-9]+_[0-9]+|[Qq][0-9]+[Kk]_[A-Za-z]+' | head -1 | tr '[:upper:]' '[:lower:]')
+      MODEL="${FAMILY}"
+      [ -n "$SIZE" ] && MODEL="${MODEL}-${SIZE}"
+      [ -n "$QUANT" ] && MODEL="${MODEL} ${QUANT}"
+    fi
+  fi
+  case "$MODEL_ID" in
+    *gemma*|*Gemma*)   CLOUD=$'\xEE\x9F\xB0'; CLOUD_COLOR="\033[38;5;33m" ;;
+    *)                 CLOUD=$'\xEE\xB9\x8B'; CLOUD_COLOR="\033[38;5;118m" ;;
+  esac
+  {
+    echo "ANTHROPIC_BASE_URL=$ANTHROPIC_BASE_URL"
+    echo "MODEL_ID=$MODEL_ID"
+    echo "FAMILY=$FAMILY"
+    echo "SIZE=$SIZE"
+    echo "QUANT=$QUANT"
+    echo "MODEL=$MODEL"
+    echo "MODELS_JSON=$MODELS_JSON"
+  } > ~/tmp/status-model-debug.txt
+elif [ "$CLAUDE_CODE_USE_FOUNDRY" = "1" ]; then
+  CLOUD=$'\xEE\xAF\x98'
+  CLOUD_COLOR="\033[94m"
+elif [ "$CLAUDE_CODE_USE_BEDROCK" = "1" ]; then
+  CLOUD=$'\xEF\x89\xB0'
+  CLOUD_COLOR="\033[38;5;208m"
+else
+  CLOUD=$'\xF3\xB0\xA8\xB9'
+  CLOUD_COLOR="\033[38;5;245m"
+fi
+if [ -z "$MODEL" ]; then
+  MODEL_RAW=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
+  case "$MODEL_RAW" in
+    *opus*|*Opus*)     MODEL="opus" ;;
+    *sonnet*|*Sonnet*) MODEL="sonnet" ;;
+    *haiku*|*Haiku*)   MODEL="haiku" ;;
+    *)                 MODEL="$MODEL_RAW" ;;
+  esac
+fi
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
 COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.0f", $1}')
@@ -117,7 +153,7 @@ BAR_BUFFER=""
 #   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
 #   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 # fi
-printf "${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
+printf "${CTX_COLOR}$MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CACHE="/tmp/ccusage-cache.json"
