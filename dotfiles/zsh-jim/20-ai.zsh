@@ -28,6 +28,10 @@ alias claude='claude --dangerously-skip-permissions --no-chrome'
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 
 claump() {
-  claude plugin update sead-claude-marketplace
-  claude plugin update devx-claude-marketplace
+  local ids
+  ids=$(claude plugin list --json | jq -r '.[].id') || return 1
+  for id in $ids; do
+    echo "Updating $id ..."
+    claude plugin update "$id"
+  done
 }
