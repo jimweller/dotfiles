@@ -1,5 +1,5 @@
 {
-  "numStartups": 1679,
+  "numStartups": 1681,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -122,17 +122,17 @@
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastTotalWebSearchRequests": 0,
-      "lastCost": 0.000392,
-      "lastAPIDuration": 1631,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
       "lastToolDuration": 0,
-      "lastDuration": 14049,
+      "lastDuration": 12664,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 337,
-      "lastTotalOutputTokens": 11,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
       "lastTotalCacheCreationInputTokens": 0,
       "lastTotalCacheReadInputTokens": 0,
-      "lastSessionId": "3c7af3a6-0832-4224-bf94-4704eb6af24e",
+      "lastSessionId": "b92186c1-5fcb-432f-b013-e77f99605302",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -140,34 +140,25 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 1624,
-      "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 337,
-          "outputTokens": 11,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.000392
-        }
-      },
-      "lastFpsAverage": 3.53,
-      "lastFpsLow1Pct": 114.42,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastModelUsage": {},
+      "lastFpsAverage": 4.09,
+      "lastFpsLow1Pct": 121.39,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 47,
-        "frame_duration_ms_min": 0.067416000000037,
-        "frame_duration_ms_max": 8.739458000000013,
-        "frame_duration_ms_avg": 0.8414086808511148,
-        "frame_duration_ms_p50": 0.22966700000006313,
-        "frame_duration_ms_p95": 3.015850099999896,
-        "frame_duration_ms_p99": 6.419007320000013,
-        "hook_duration_ms_count": 2,
-        "hook_duration_ms_min": 224,
-        "hook_duration_ms_max": 640,
-        "hook_duration_ms_avg": 432,
-        "hook_duration_ms_p50": 432,
-        "hook_duration_ms_p95": 619.2,
-        "hook_duration_ms_p99": 635.8399999999999
+        "frame_duration_ms_count": 49,
+        "frame_duration_ms_min": 0.06695799999999963,
+        "frame_duration_ms_max": 8.237792000000013,
+        "frame_duration_ms_avg": 0.6264795918367415,
+        "frame_duration_ms_p50": 0.4196670000001177,
+        "frame_duration_ms_p95": 1.0122501999998341,
+        "frame_duration_ms_p99": 5.735372,
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 615,
+        "hook_duration_ms_max": 615,
+        "hook_duration_ms_avg": 615,
+        "hook_duration_ms_p50": 615,
+        "hook_duration_ms_p95": 615,
+        "hook_duration_ms_p99": 615
       },
       "hasCompletedProjectOnboarding": true
     },
@@ -8118,8 +8109,8 @@
       "lastUsedAt": 1775690200443
     },
     "commit": {
-      "usageCount": 149,
-      "lastUsedAt": 1775694254172
+      "usageCount": 150,
+      "lastUsedAt": 1775695922369
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -8150,8 +8141,8 @@
       "lastUsedAt": 1775646242214
     },
     "sage": {
-      "usageCount": 43,
-      "lastUsedAt": 1775690535340
+      "usageCount": 44,
+      "lastUsedAt": 1775695504614
     },
     "update-config": {
       "usageCount": 1,
