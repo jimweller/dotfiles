@@ -70,7 +70,13 @@ function _zsh_tmux_plugin_run() {
   [[ "$ZSH_TMUX_UNICODE" == "true" ]] && tmux_cmd+=(-u)
 
   # Try to connect to an existing session.
-  [[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]] && $tmux_cmd attach
+  if [[ "$ZSH_TMUX_AUTOCONNECT" == "true" ]]; then
+    if [[ -n "$ZSH_TMUX_DEFAULT_SESSION_NAME" ]]; then
+      $tmux_cmd attach -t "$ZSH_TMUX_DEFAULT_SESSION_NAME"
+    else
+      $tmux_cmd attach
+    fi
+  fi
 
   # If failed, just run tmux, fixing the TERM variable if requested.
   if [[ $? -ne 0 ]]; then
@@ -80,7 +86,7 @@ function _zsh_tmux_plugin_run() {
       tmux_cmd+=(-f "$ZSH_TMUX_CONFIG")
     fi
     if [[ -n "$ZSH_TMUX_DEFAULT_SESSION_NAME" ]]; then
-        local -a session_args=(-s $ZSH_TMUX_DEFAULT_SESSION_NAME)
+        local -a session_args=(-A -s $ZSH_TMUX_DEFAULT_SESSION_NAME)
         (( ${+ZSH_TMUX_DEFAULT_WINDOW_NAME} )) && session_args+=(-n "$ZSH_TMUX_DEFAULT_WINDOW_NAME")
         $tmux_cmd new-session "${session_args[@]}"
     else
