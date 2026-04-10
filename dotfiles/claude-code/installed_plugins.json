@@ -3,12 +3,11 @@
   "plugins": {
     "gopls-lsp@claude-plugins-official": [
       {
-        "scope": "local",
-        "projectPath": "/home/users/random/tmp/_claude",
+        "scope": "user",
         "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
         "version": "1.0.0",
         "installedAt": "2025-12-29T06:47:45.642Z",
-        "lastUpdated": "2025-12-29T06:47:45.642Z"
+        "lastUpdated": "2026-04-10T04:11:29.957Z"
       },
       {
         "scope": "user",
@@ -139,6 +138,16 @@
         "installedAt": "2026-04-08T23:16:14.925Z",
         "lastUpdated": "2026-04-09T00:24:47.749Z",
         "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
+      }
+    ],
+    "mcg-lookup@sead-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-lookup/1.0.1",
+        "version": "1.0.1",
+        "installedAt": "2026-04-09T13:55:16.568Z",
+        "lastUpdated": "2026-04-09T13:55:16.568Z",
+        "gitCommitSha": "b563d0ae75ee8eac38ba25f2d064befea2bd5b8c"
       }
     ]
   }

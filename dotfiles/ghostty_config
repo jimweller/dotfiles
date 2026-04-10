@@ -2,7 +2,7 @@ font-family = "Hack Nerd Font"
 font-size = 14
 font-thicken = true
 
-background = #000000
+background = #121212
 foreground = #dbdbdb
 cursor-color = #fefffe
 cursor-text = #000000
@@ -31,4 +31,5 @@ scrollback-limit = 200000
 cursor-style-blink = false
 bell-features = no-system,no-audio,no-attention,no-title,no-border
 macos-option-as-alt = false
+window-theme = dark
 background-opacity = 1.0

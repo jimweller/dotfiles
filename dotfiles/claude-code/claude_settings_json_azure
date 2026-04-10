@@ -68,7 +68,8 @@
     "jdtls-lsp@claude-plugins-official": true,
     "mcg-atlassian@sead-claude-marketplace": true,
     "claude-mem@thedotmack": true,
-    "mcg-status-updates@devx-claude-marketplace": true
+    "mcg-status-updates@devx-claude-marketplace": true,
+    "mcg-lookup@sead-claude-marketplace": true
   },
   "extraKnownMarketplaces": {
     "thedotmack": {

@@ -1,7 +1,7 @@
 ---
 name: sage
 argument-hint: "<library or topic to research>"
-description: This skill should be used when the user asks to "research", "look up docs", "check the latest documentation", "find best practices", "google this", "web search", "what does the documentation say", "is this still current", or mentions needing up-to-date information about a library, framework, CLI tool, API, or cloud service.
+description: This skill should be used when the user asks to "research", "look up docs", "check the latest documentation", "find best practices", "google this", "web search", "what does the documentation say", "is this still current", "google" or mentions needing up-to-date information about a library, framework, CLI tool, API, or cloud service.
 ---
 
 STARTER_CHARACTER = 🧑‍🎓
@@ -10,13 +10,17 @@ STARTER_CHARACTER = 🧑‍🎓
 
 Research skill using c7 (Context7) and g (Google) MCP servers to fetch current documentation and best practices. Never present training data as current when this skill is active. Always verify via c7 or g first.
 
+NEVER use the native WebSearch or WebFetch tools when this skill is active. Always use c7 or g MCP tools instead. The g MCP server provides richer results with quality scoring, caching, and document extraction that the native tools lack.
+
 ---
 
 ## Decision Logic
 
-1. If the question targets a specific library, framework, SDK, API, or CLI tool: use c7 first
-2. If the question is about best practices, patterns, comparisons, troubleshooting, or general topics: use c7 and g
-3. For complex research spanning multiple queries: use `sequential_search` to track state
+1. Specific library, framework, SDK, API, or CLI tool: use c7 first
+2. Best practices, patterns, comparisons, troubleshooting, general topics: use c7 and g
+3. Time-sensitive topics (releases, incidents, breaking changes): use `google_news_search`
+4. Academic or peer-reviewed research: use `academic_search`
+5. Complex research spanning 3+ queries: use `sequential_search` to track state
 
 ---
 
@@ -69,7 +73,18 @@ This applies to all `query` fields sent to g tools.
 
 ### Tool Selection
 
-**`search_and_scrape` (preferred)** -- search + retrieve content in one call:
+| Task | Tool | Notes |
+|---|---|---|
+| Research a topic | `search_and_scrape` | Preferred. Searches and retrieves content in one call. Quality-scored results. |
+| Read a specific URL | `scrape_page` | Also extracts YouTube transcripts and parses PDF, DOCX, PPTX. |
+| Get URLs to selectively scrape | `google_search` | Use when you need to pick which pages to read. |
+| Recent news or releases | `google_news_search` | Use `freshness` param: `hour`, `day`, `week`, `month`. |
+| Academic papers | `academic_search` | Searches arXiv, PubMed, IEEE, Springer. Returns citations. |
+| Multi-step investigation | `sequential_search` | Tracks progress across 3+ searches. Supports branching. |
+
+### Tool Examples
+
+**`search_and_scrape` (preferred for most queries):**
 
 ```
 mcp__g__search_and_scrape
@@ -79,7 +94,24 @@ mcp__g__search_and_scrape
 
 Use 3 results for quick lookups, 5-8 for thorough research.
 
-**`google_search` then `scrape_page`** -- when selective reading is needed:
+**`google_news_search` (time-sensitive topics):**
+
+```
+mcp__g__google_news_search
+  query: "<topic>"
+  freshness: "week"
+  num_results: 5
+```
+
+**`academic_search` (peer-reviewed sources):**
+
+```
+mcp__g__academic_search
+  query: "<research topic>"
+  num_results: 5
+```
+
+**`google_search` then `scrape_page` (selective reading):**
 
 ```
 mcp__g__google_search
@@ -89,7 +121,7 @@ mcp__g__google_search
 
 Then scrape only the most relevant URLs from the results.
 
-**`sequential_search`** -- for multi-step research across 3+ queries:
+**`sequential_search` (complex multi-step):**
 
 ```
 mcp__g__sequential_search
@@ -104,7 +136,10 @@ Track findings across steps. Record sources with quality scores.
 
 - Always append year strings to queries (current year and prior year)
 - Prefer `search_and_scrape` over separate search + scrape calls
+- `scrape_page` handles web pages, YouTube transcripts, and documents (PDF, DOCX, PPTX)
 - Use `scrape_page` with `mode: "preview"` first on large pages to check size before full fetch
+- Results are cached (30 min for search, 1 hr for scrape). Repeated queries are free.
+- Responses include `estimatedTokens` and `truncated` metadata for size awareness
 - Cite source URLs in findings
 - State clearly when information could not be found
 

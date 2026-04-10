@@ -132,3 +132,6 @@ These language patterns are forbidden. Delete and rewrite any of these:
   - Acknowledgments
   - Short replies (e.g., "Done." becomes "✳️ Done.")
 - ALWAYS show the starter character when a skill or command is active.
+# graphify
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.

@@ -32,10 +32,10 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    #os_icon                 # os identifier (redundant with tmux status bar)
-    #gituser                 # git/gh user name (redundant with tmux status bar)
-    #dir                     # current directory (redundant with tmux status bar)
-    #vcs                     # git status (redundant with tmux status bar)
+    os_icon                 # os identifier
+    dir                     # current directory
+    gituser                 # git/gh user name
+    vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol

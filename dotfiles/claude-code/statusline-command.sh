@@ -140,20 +140,19 @@ BAR_BUFFER=""
 
 # Build statusline
 [ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
-# dir and git info hidden -- redundant with tmux status bar + p10k prompt
-# printf "\033[38;5;117m${ICON_FOLDER} $DIR\033[0m"
-# [ -n "$GIT_USER" ] && printf " | ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
-# if [ -n "$BRANCH" ]; then
-#   printf " | \033[33m${ICON_BRANCH} $BRANCH\033[0m"
-#   [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[96m⇣$BEHIND\033[0m"
-#   [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[96m⇡$AHEAD\033[0m"
-#   [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[95m*$STASH\033[0m"
-#   [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[91m~$CONFLICTS\033[0m"
-#   [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[92m+$STAGED\033[0m"
-#   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
-#   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
-# fi
-printf "${CTX_COLOR}$MODEL\033[0m"
+printf "\033[38;5;117m${ICON_FOLDER} $DIR\033[0m"
+[ -n "$GIT_USER" ] && printf " | ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
+if [ -n "$BRANCH" ]; then
+  printf " | \033[33m${ICON_BRANCH} $BRANCH\033[0m"
+  [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[96m⇣$BEHIND\033[0m"
+  [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[96m⇡$AHEAD\033[0m"
+  [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[95m*$STASH\033[0m"
+  [ "$CONFLICTS" -gt 0 ] 2>/dev/null && printf " \033[91m~$CONFLICTS\033[0m"
+  [ "$STAGED" -gt 0 ] 2>/dev/null && printf " \033[92m+$STAGED\033[0m"
+  [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
+  [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
+fi
+printf " | ${CTX_COLOR}$MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CACHE="/tmp/ccusage-cache.json"
