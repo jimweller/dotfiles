@@ -155,21 +155,23 @@ fi
 printf " | ${CTX_COLOR}$MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
-CACHE="/tmp/ccusage-cache.json"
+CCUSAGE_CACHE="/tmp/ccusage-cache.json"
+AZURE_CACHE="/tmp/azure-cost-cache.json"
 COST_PROJECT=""
 COST_MONTH=""
 COST_MTD=""
-if [ -f "$CACHE" ] && [ -n "$PROJECT_KEY" ]; then
-  DATE_30D=$(date -v-30d +%Y-%m-%d 2>/dev/null)
-  DATE_MTD=$(date +%Y-%m-01 2>/dev/null)
-  if [ -n "$DATE_30D" ]; then
-    COST_PROJECT=$(jq -r --arg p "$PROJECT_KEY" '[.projects[$p][]? | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
-    COST_MONTH=$(jq -r --arg d "$DATE_30D" '[.projects[][] | select(.date >= $d) | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
-  fi
-  if [ -n "$DATE_MTD" ]; then
-    COST_MTD=$(jq -r --arg d "$DATE_MTD" '[.projects[][] | select(.date >= $d) | .totalCost] | add // empty' "$CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
-  fi
+if [ -f "$CCUSAGE_CACHE" ] && [ -n "$PROJECT_KEY" ]; then
+  COST_PROJECT=$(jq -r --arg p "$PROJECT_KEY" '[.projects[$p][]? | .totalCost] | add // empty' "$CCUSAGE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
 fi
+if [ -f "$AZURE_CACHE" ]; then
+  COST_MTD=$(jq -r '.mtd // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  COST_MONTH=$(jq -r '.rolling30d // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+fi
+fmtc() { LC_ALL=en_US.UTF-8 printf "%'d" "${1:-0}" 2>/dev/null || echo "${1:-0}"; }
+COST=$(fmtc "$COST")
+[ -n "$COST_PROJECT" ] && COST_PROJECT=$(fmtc "$COST_PROJECT")
+[ -n "$COST_MTD" ] && COST_MTD=$(fmtc "$COST_MTD")
+[ -n "$COST_MONTH" ] && COST_MONTH=$(fmtc "$COST_MONTH")
 printf " | \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
 [ -n "$COST_PROJECT" ] && printf " \033[38;5;186m${ICON_INVOICE} \$${COST_PROJECT}\033[0m"
 [ -n "$COST_MTD" ] && printf " \033[38;5;186m${ICON_CAL_TODAY} \$${COST_MTD}\033[0m"

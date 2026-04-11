@@ -10,7 +10,8 @@ STARTER_CHARACTER = 📓
 
 Write markdown content based on the current conversation context and folder contents.
 
-README is current state specification for a human user, not a changelog or decision log or historical record.
+README is current state specification for a human user, not a changelog, not a decision log, not historical record. Never record
+historical information or choices made, only the specification as it stands at the time of writing the README.
 
 ## Claude Skills
 

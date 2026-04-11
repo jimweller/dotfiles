@@ -42,7 +42,10 @@ git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
 
 3. Explore codebase at that directory level and below
 4. Review conversation history for relevant decisions, changes, or lessons learned
-5. Use the diff and conversation context to identify what changed. Docs are current state specification, not a changelog or decision log. Verify code against docs.
+5. Use the diff and conversation context to identify what changed. llmdocs are current state specification, not a change log, not a decision log, not a historical record. Never record historical information or choices made, only the specification as it stands at the time of writing the llmdocs.
+
+README is current state specification for a human user, not a changelog, not a decision log, not historical record. Never record
+historical information or choices made, only the specification as it stands at the time of writing the README.
 
 ### Write/Update CLAUDE.md
 
