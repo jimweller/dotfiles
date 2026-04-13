@@ -7,6 +7,8 @@ tools:
   bash: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 You are performing a focused code review. Your ONLY area is Testing.
 
 ## Setup
@@ -23,7 +25,7 @@ You are performing a focused code review. Your ONLY area is Testing.
 
 ## Rules
 
-- Every finding MUST cite specific file, line number, and function name. The packed output includes original source line numbers prefixed as `N | ` at the start of each line within each file section. Use these line numbers.
+- Every finding MUST cite specific file, line number, and function name. The packed output includes original source line numbers prefixed as `N |` at the start of each line within each file section. Use these line numbers.
 - Rate each finding: High / Medium / Low.
 - ONLY report defects, flaws, risks, and recommendations.
 - Do NOT delegate to sub-agents.

@@ -27,11 +27,11 @@ Symlinked to `~/.claude/` via dotbot. The `CLAUDE.md` file is loaded automatical
 
 ## MCP Servers
 
-| Server      | Purpose                                       |
-| ----------- | --------------------------------------------- |
-| claude-flow | Multi-agent orchestration, memory, swarm      |
-| context7    | Official library documentation retrieval      |
-| googler     | Web research, scraping, AI analysis           |
-| agentdb     | Reinforcement learning, experience replay     |
-| repomix     | Codebase analysis and packaging               |
-| atl         | Jira and Confluence management                |
+| Server      | Purpose                                   |
+| ----------- | ----------------------------------------- |
+| claude-flow | Multi-agent orchestration, memory, swarm  |
+| context7    | Official library documentation retrieval  |
+| googler     | Web research, scraping, AI analysis       |
+| agentdb     | Reinforcement learning, experience replay |
+| repomix     | Codebase analysis and packaging           |
+| atl         | Jira and Confluence management            |

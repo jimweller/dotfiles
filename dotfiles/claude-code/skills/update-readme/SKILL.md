@@ -4,6 +4,8 @@ description: Write documentation based on conversation history and folder conten
 argument-hint: "[optional guidance]"
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 📓
 
 # Documentation Creation
@@ -77,28 +79,33 @@ Show folder structure. Don't include files.
 \`\`\`text
 davit/
 ├── src/
-│   ├── davit-api/              # Go API server (k8s client) - see src/davit-api/README.md
-│   ├── davit-ui/               # Go web UI server - see src/davit-ui/README.md
-│   ├── davit-dinghy/           # Alpine dinghy container - see src/davit-dinghy/README.md
-│   └── macos-proto-handler/    # macOS VSCode integration - see src/macos-proto-handler/README.md
-├── scripts/                    # Build and deployment scripts
-└── tests/                      # Test suites
+│ ├── davit-api/ # Go API server (k8s client) - see src/davit-api/README.md
+│ ├── davit-ui/ # Go web UI server - see src/davit-ui/README.md
+│ ├── davit-dinghy/ # Alpine dinghy container - see src/davit-dinghy/README.md
+│ └── macos-proto-handler/ # macOS VSCode integration - see src/macos-proto-handler/README.md
+├── scripts/ # Build and deployment scripts
+└── tests/ # Test suites
 \`\`\`
 
 ## Installation
 
 \`\`\`bash
+
 # install manifest
+
 kubectl apply manifest.yaml
 \`\`\`
 
 ## Usage
 
 \`\`\`bash
+
 # Build all components
+
 make all
 
 # Or build individually
+
 make build-api
 make build-dinghy
 \`\`\`
@@ -106,13 +113,15 @@ make build-dinghy
 ## Testing (optional if tests present)
 
 \`\`\`bash
+
 # Run all tests (placeholder)
+
 make test
 
 # Run specific test suites
+
 make test-api
 make test-pod
 make test-integration
 \`\`\`
-
 ```

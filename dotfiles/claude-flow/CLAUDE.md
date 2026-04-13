@@ -9,6 +9,7 @@
 ## 🚨 CRITICAL: CONCURRENT EXECUTION & FILE MANAGEMENT
 
 **ABSOLUTE RULES**:
+
 1. ALL operations MUST be concurrent/parallel in a single message
 2. **NEVER save working files, text/mds and tests to the root folder**
 3. ALWAYS organize files in appropriate subdirectories
@@ -17,6 +18,7 @@
 ### ⚡ GOLDEN RULE: "1 MESSAGE = ALL RELATED OPERATIONS"
 
 **MANDATORY PATTERNS:**
+
 - **TodoWrite**: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)
 - **Task tool (Claude Code)**: ALWAYS spawn ALL agents in ONE message with full instructions
 - **File operations**: ALWAYS batch ALL reads/writes/edits in ONE message
@@ -26,6 +28,7 @@
 ### 🎯 CRITICAL: Claude Code Task Tool for Agent Execution
 
 **Claude Code's Task tool is the PRIMARY way to spawn agents:**
+
 ```javascript
 // ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
 [Single Message]:
@@ -34,9 +37,10 @@
   Task("Tester agent", "Create comprehensive tests...", "tester")
   Task("Reviewer agent", "Review code quality...", "reviewer")
   Task("Architect agent", "Design system architecture...", "system-architect")
-```
+```text
 
 **MCP tools are ONLY for coordination setup:**
+
 - `mcp__claude-flow__swarm_init` - Initialize coordination topology
 - `mcp__claude-flow__agent_spawn` - Define agent types for coordination
 - `mcp__claude-flow__task_orchestrate` - Orchestrate high-level workflows
@@ -44,6 +48,7 @@
 ### 📁 File Organization Rules
 
 **NEVER save to root folder. Use these directories:**
+
 - `/src` - Source code files
 - `/tests` - Test files
 - `/docs` - Documentation and markdown files
@@ -56,6 +61,7 @@
 ## 📚 AVAILABLE MCP SERVERS
 
 Connected and verified:
+
 - `claude-flow` - Multi-agent orchestration, memory, swarm coordination
 - `context7` - Official library documentation retrieval
 - `googler` - Web research, scraping, AI analysis
@@ -69,6 +75,7 @@ Connected and verified:
 ## 🎯 TOOL EXECUTION HIERARCHY
 
 ### Layer 1: Claude Code Task Tool (PRIMARY - Actual Work)
+
 - Spawns real agents that execute tasks concurrently
 - File operations (Read, Write, Edit, Glob, Grep)
 - Code generation and programming
@@ -78,6 +85,7 @@ Connected and verified:
 - TodoWrite and task management
 
 ### Layer 2: MCP Tools (COORDINATION)
+
 - **claude-flow**: Swarm coordination, memory, neural features
 - **context7**: Official library documentation
 - **googler**: Web research and analysis
@@ -86,6 +94,7 @@ Connected and verified:
 - **atl**: Jira/Confluence management
 
 ### Layer 3: NPX Subprocess (ORCHESTRATION)
+
 - `npx claude-flow@alpha swarm "<task>" --claude` - Opens Claude Code CLI
 - `npx claude-flow@alpha hive-mind spawn "<objective>" --claude` - Multi-instance coordination
 - `npx claude-flow@alpha memory store/query` - Memory operations
@@ -100,62 +109,65 @@ Connected and verified:
 ### Claude-Flow Native Tools
 
 **Coordination:**
-```
+
+```text
 mcp__claude-flow__swarm_init(topology, maxAgents, strategy)
 mcp__claude-flow__agent_spawn(type, name?, capabilities?, swarmId?)
 mcp__claude-flow__task_orchestrate(task, strategy?, priority?, dependencies?)
 mcp__claude-flow__swarm_status(swarmId?)
 mcp__claude-flow__agent_list(swarmId?)
-```
+```text
 
 **Memory & Neural:**
-```
+
+```text
 mcp__claude-flow__memory_usage(action, key?, value?, namespace?, ttl?)
 mcp__claude-flow__memory_search(pattern, namespace?, limit?)
 mcp__claude-flow__neural_train(pattern_type, training_data, epochs?)
 mcp__claude-flow__neural_patterns(action, operation?, outcome?, metadata?)
-```
+```text
 
 **Performance:**
-```
+
+```text
 mcp__claude-flow__performance_report(format?, timeframe?)
 mcp__claude-flow__bottleneck_analyze(component?, metrics?)
 mcp__claude-flow__agent_metrics(agentId)
-```
+```text
 
 ### Context7 Tools (Official Documentation)
 
-```
+```text
 mcp__context7__resolve-library-id({ libraryName: string })
 mcp__context7__get-library-docs({
   context7CompatibleLibraryID: string,
   topic?: string,
   tokens?: number
 })
-```
+```text
 
 **Use for:** Official API docs, library references, SDK usage
 
 ### Googler Tools (Web Research)
 
-```
+```text
 mcp__googler__google_search({ query: string, num_results?: number })
 mcp__googler__scrape_page({ url: string })
 mcp__googler__analyze_with_gemini({ text: string, model?: string })
 mcp__googler__research_topic({ query: string, num_results?: number })
-```
+```text
 
 **Use for:** Best practices, comparisons, trends, tutorials, real-world examples
 
 ### AgentDB Tools (AI Learning)
 
-```
+```text
 mcp__agentdb__agentdb_init({ db_path?: string, reset?: boolean })
 mcp__agentdb__agentdb_insert({ text: string, metadata?, tags?, session_id? })
 mcp__agentdb__agentdb_search({ query: string, k?: number, filters? })
 mcp__agentdb__reflexion_store({ session_id, task, reward, success, critique? })
 mcp__agentdb__learning_start_session({ user_id, session_type, config })
-```
+```text
 
 **Use for:** Experience replay, pattern learning, reinforcement learning
 
@@ -165,7 +177,7 @@ mcp__agentdb__learning_start_session({ user_id, session_type, config })
 
 ### SOP-1: Feature Development with Research
 
-```
+```text
 STEP 1: Research (if needed)
   IF need official docs:
     USE: mcp__context7__resolve-library-id → mcp__context7__get-library-docs
@@ -203,11 +215,11 @@ STEP 5: Store Knowledge
     reward: 0.9,
     success: true
   })
-```
+```text
 
 ### SOP-2: Documentation Research Pattern
 
-```
+```text
 FOR official_library_docs:
   STEP 1: mcp__context7__resolve-library-id({ libraryName: "library" })
   STEP 2: mcp__context7__get-library-docs({
@@ -228,11 +240,11 @@ COMBINED APPROACH (Recommended):
   STEP 2: Get official docs (Context7)
   STEP 3: Store synthesized knowledge (Claude-Flow)
   STEP 4: Implement with Task tool
-```
+```text
 
 ### SOP-3: Bug Investigation with Learning
 
-```
+```text
 STEP 1: Search Existing Solutions
   USE: mcp__claude-flow__memory_search({ pattern: "bug_keywords", namespace: "bugs" })
   USE: mcp__agentdb__agentdb_search({ query: "error_description", k: 5 })
@@ -254,13 +266,13 @@ STEP 4: Store Solution and Learning
     success: true,
     critique: "lessons_learned"
   })
-```
+```text
 
 ---
 
 ## 🎯 AGENT EXECUTION PATTERN
 
-### Complete Workflow Example:
+### Complete Workflow Example
 
 ```javascript
 // SINGLE MESSAGE - All operations together
@@ -324,7 +336,7 @@ mcp__claude-flow__memory_usage({
   value: "Express JWT authentication with bcrypt",
   namespace: "api"
 })
-```
+```text
 
 ---
 
@@ -339,89 +351,110 @@ mcp__claude-flow__memory_usage({
 mcp__repomix__pack_codebase({
   directory: "/path/to/project",
   style: "xml",
-  includePatterns: "src/**/*.{js,ts}"
-})
+  includePatterns: "src/**/*.{js,ts}",
+});
 
 mcp__repomix__grep_repomix_output({
   outputId: "out_123",
   pattern: "class.*Service|interface.*Repository",
-  contextLines: 2
-})
+  contextLines: 2,
+});
 
 // 2. Research best practices (Googler)
 mcp__googler__research_topic({
   query: "microservices authentication patterns 2024",
-  num_results: 3
-})
+  num_results: 3,
+});
 
 // 3. Get official library docs (Context7)
-mcp__context7__resolve-library-id({ libraryName: "nestjs" })
-mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/nestjs/nest",
-  topic: "authentication"
-})
+mcp__context7__resolve - library - id({ libraryName: "nestjs" });
+mcp__context7__get -
+  library -
+  docs({
+    context7CompatibleLibraryID: "/nestjs/nest",
+    topic: "authentication",
+  });
 
 // 4. Create Jira epic and tasks (ATL)
 mcp__atl__jira_create_issue({
   project_key: "PROJ",
   summary: "Implement microservices authentication",
   issue_type: "Epic",
-  description: "Based on research and codebase analysis..."
-})
+  description: "Based on research and codebase analysis...",
+});
 
 mcp__atl__jira_batch_create_issues({
   issues: JSON.stringify([
-    { project_key: "PROJ", summary: "Task 1: Setup auth service", issue_type: "Task" },
-    { project_key: "PROJ", summary: "Task 2: Implement JWT", issue_type: "Task" },
-    { project_key: "PROJ", summary: "Task 3: Write tests", issue_type: "Task" }
-  ])
-})
+    {
+      project_key: "PROJ",
+      summary: "Task 1: Setup auth service",
+      issue_type: "Task",
+    },
+    {
+      project_key: "PROJ",
+      summary: "Task 2: Implement JWT",
+      issue_type: "Task",
+    },
+    { project_key: "PROJ", summary: "Task 3: Write tests", issue_type: "Task" },
+  ]),
+});
 
 // 5. Initialize coordination (Claude-Flow MCP)
-mcp__claude-flow__swarm_init({ topology: "hierarchical", maxAgents: 6 })
+mcp__claude - flow__swarm_init({ topology: "hierarchical", maxAgents: 6 });
 
 // 6. Spawn agents for execution (Task Tool - PRIMARY)
-Task("Backend Developer", `
+Task(
+  "Backend Developer",
+  `
 Implement NestJS authentication service.
 CONTEXT: Check memory for researched patterns.
 CODEBASE: Use repomix output_id out_123 for existing patterns.
 COORDINATION: Use hooks for pre/post operations.
-`, "backend-dev")
+`,
+  "backend-dev",
+);
 
-Task("Test Engineer", `
+Task(
+  "Test Engineer",
+  `
 Create comprehensive test suite.
 CONTEXT: Check memory for test patterns.
 COORDINATION: Monitor backend agent via hooks.
-`, "tester")
+`,
+  "tester",
+);
 
 // 7. Batch todos
-TodoWrite({ todos: [
-  {content: "Analyze codebase architecture", status: "completed"},
-  {content: "Research authentication patterns", status: "completed"},
-  {content: "Get NestJS docs", status: "completed"},
-  {content: "Create Jira epic and tasks", status: "completed"},
-  {content: "Implement auth service", status: "in_progress"},
-  {content: "Write unit tests", status: "pending"},
-  {content: "Integration tests", status: "pending"},
-  {content: "Update Confluence docs", status: "pending"}
-]})
+TodoWrite({
+  todos: [
+    { content: "Analyze codebase architecture", status: "completed" },
+    { content: "Research authentication patterns", status: "completed" },
+    { content: "Get NestJS docs", status: "completed" },
+    { content: "Create Jira epic and tasks", status: "completed" },
+    { content: "Implement auth service", status: "in_progress" },
+    { content: "Write unit tests", status: "pending" },
+    { content: "Integration tests", status: "pending" },
+    { content: "Update Confluence docs", status: "pending" },
+  ],
+});
 
 // 8. Store integrated knowledge (Claude-Flow + AgentDB)
-mcp__claude-flow__memory_usage({
-  action: "store",
-  key: "auth_implementation",
-  value: "NestJS microservices auth with JWT, based on 2024 best practices",
-  namespace: "features"
-})
+mcp__claude -
+  flow__memory_usage({
+    action: "store",
+    key: "auth_implementation",
+    value: "NestJS microservices auth with JWT, based on 2024 best practices",
+    namespace: "features",
+  });
 
 mcp__agentdb__reflexion_store({
   session_id: "feature-dev",
   task: "microservices authentication",
   reward: 0.85,
   success: true,
-  critique: "Successfully integrated research, docs, and codebase analysis"
-})
-```
+  critique: "Successfully integrated research, docs, and codebase analysis",
+});
+```text
 
 ### Pattern 2: Code Review with Issue Tracking
 
@@ -432,28 +465,28 @@ mcp__agentdb__reflexion_store({
 mcp__repomix__pack_codebase({
   directory: "/path/to/feature-branch",
   style: "xml",
-  ignorePatterns: "test/**,*.test.js"
-})
+  ignorePatterns: "test/**,*.test.js",
+});
 
 // 2. Search for issues (Repomix)
 mcp__repomix__grep_repomix_output({
   outputId: "out_456",
   pattern: "TODO|FIXME|XXX|HACK",
   ignoreCase: true,
-  contextLines: 3
-})
+  contextLines: 3,
+});
 
 mcp__repomix__grep_repomix_output({
   outputId: "out_456",
   pattern: "console\\.log|debugger",
-  contextLines: 1
-})
+  contextLines: 1,
+});
 
 mcp__repomix__grep_repomix_output({
   outputId: "out_456",
   pattern: "eval\\(|innerHTML|dangerouslySetInnerHTML",
-  contextLines: 2
-})
+  contextLines: 2,
+});
 
 // 3. Create Jira issues for findings (ATL)
 mcp__atl__jira_create_issue({
@@ -461,32 +494,33 @@ mcp__atl__jira_create_issue({
   summary: "Code Review: Remove debug statements",
   issue_type: "Bug",
   priority: { name: "Medium" },
-  description: "Found console.log statements in production code..."
-})
+  description: "Found console.log statements in production code...",
+});
 
 mcp__atl__jira_create_issue({
   project_key: "PROJ",
   summary: "Code Review: XSS vulnerability in user input",
   issue_type: "Bug",
   priority: { name: "High" },
-  labels: ["security"]
-})
+  labels: ["security"],
+});
 
 // 4. Document in Confluence (ATL)
 mcp__atl__confluence_create_page({
   space_key: "DEV",
   title: "Code Review - Feature Branch XYZ",
   content: `# Code Review Results\n\n## Security Issues\n...\n\n## Code Quality\n...`,
-  content_format: "markdown"
-})
+  content_format: "markdown",
+});
 
 // 5. Store review patterns (AgentDB)
 mcp__agentdb__agentdb_pattern_store({
   taskType: "code_review",
-  approach: "Automated security and quality scanning with Repomix + Jira integration",
-  successRate: 0.95
-})
-```
+  approach:
+    "Automated security and quality scanning with Repomix + Jira integration",
+  successRate: 0.95,
+});
+```text
 
 ### Pattern 3: Architecture Documentation Workflow
 
@@ -497,56 +531,59 @@ mcp__agentdb__agentdb_pattern_store({
 mcp__repomix__pack_codebase({
   directory: "/path/to/project",
   style: "xml",
-  topFilesLength: 20
-})
+  topFilesLength: 20,
+});
 
 mcp__repomix__grep_repomix_output({
   outputId: "out_789",
   pattern: "class\\s+\\w+Controller|class\\s+\\w+Service",
-  contextLines: 5
-})
+  contextLines: 5,
+});
 
 // 2. Research architecture patterns (Googler)
 mcp__googler__research_topic({
   query: "microservices architecture patterns best practices 2024",
-  num_results: 4
-})
+  num_results: 4,
+});
 
 // 3. Get framework docs (Context7)
-mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/nestjs/nest",
-  topic: "architecture"
-})
+mcp__context7__get -
+  library -
+  docs({
+    context7CompatibleLibraryID: "/nestjs/nest",
+    topic: "architecture",
+  });
 
 // 4. Create architecture documentation (ATL Confluence)
 mcp__atl__confluence_create_page({
   space_key: "ARCH",
   title: "System Architecture Overview",
   content: `# System Architecture\n\n## Components\n...\n\n## Patterns\n...`,
-  content_format: "markdown"
-})
+  content_format: "markdown",
+});
 
 // 5. Link to Jira epic (ATL)
 mcp__atl__jira_create_issue({
   project_key: "PROJ",
   summary: "Architecture Documentation",
-  issue_type: "Epic"
-})
+  issue_type: "Epic",
+});
 
 mcp__atl__jira_create_remote_issue_link({
   issue_key: "PROJ-123",
   url: "https://confluence.example.com/display/ARCH/System+Architecture",
-  title: "Architecture Documentation"
-})
+  title: "Architecture Documentation",
+});
 
 // 6. Store architecture decisions (Claude-Flow)
-mcp__claude-flow__memory_usage({
-  action: "store",
-  key: "architecture_overview",
-  value: "Microservices with NestJS, event-driven communication...",
-  namespace: "architecture"
-})
-```
+mcp__claude -
+  flow__memory_usage({
+    action: "store",
+    key: "architecture_overview",
+    value: "Microservices with NestJS, event-driven communication...",
+    namespace: "architecture",
+  });
+```text
 
 ### Pattern 4: Sprint Planning with Research
 
@@ -556,35 +593,37 @@ mcp__claude-flow__memory_usage({
 // 1. Get current sprint status (ATL)
 mcp__atl__jira_get_agile_boards({
   project_key: "PROJ",
-  board_type: "scrum"
-})
+  board_type: "scrum",
+});
 
 mcp__atl__jira_get_sprints_from_board({
   board_id: "1000",
-  state: "active"
-})
+  state: "active",
+});
 
 // 2. Analyze codebase for technical debt (Repomix)
 mcp__repomix__pack_codebase({
-  directory: "/path/to/project"
-})
+  directory: "/path/to/project",
+});
 
 mcp__repomix__grep_repomix_output({
   outputId: "out_abc",
   pattern: "TODO|FIXME|DEPRECATED",
-  ignoreCase: true
-})
+  ignoreCase: true,
+});
 
 // 3. Research new technologies (Googler + Context7)
 mcp__googler__research_topic({
   query: "GraphQL vs REST API 2024 comparison",
-  num_results: 3
-})
+  num_results: 3,
+});
 
-mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/apollographql/apollo-server",
-  topic: "getting started"
-})
+mcp__context7__get -
+  library -
+  docs({
+    context7CompatibleLibraryID: "/apollographql/apollo-server",
+    topic: "getting started",
+  });
 
 // 4. Create sprint (ATL)
 mcp__atl__jira_create_sprint({
@@ -592,26 +631,31 @@ mcp__atl__jira_create_sprint({
   sprint_name: "Sprint 25",
   start_date: "2025-01-20T09:00:00.000+0000",
   end_date: "2025-02-03T17:00:00.000+0000",
-  goal: "GraphQL API implementation and technical debt reduction"
-})
+  goal: "GraphQL API implementation and technical debt reduction",
+});
 
 // 5. Create tasks (ATL)
 mcp__atl__jira_batch_create_issues({
   issues: JSON.stringify([
-    { project_key: "PROJ", summary: "Research GraphQL implementation", issue_type: "Story" },
+    {
+      project_key: "PROJ",
+      summary: "Research GraphQL implementation",
+      issue_type: "Story",
+    },
     { project_key: "PROJ", summary: "Refactor TODO items", issue_type: "Task" },
-    { project_key: "PROJ", summary: "Setup Apollo Server", issue_type: "Task" }
-  ])
-})
+    { project_key: "PROJ", summary: "Setup Apollo Server", issue_type: "Task" },
+  ]),
+});
 
 // 6. Store sprint context (Claude-Flow)
-mcp__claude-flow__memory_usage({
-  action: "store",
-  key: "sprint25_context",
-  value: "Focus: GraphQL migration + tech debt. Research completed.",
-  namespace: "project"
-})
-```
+mcp__claude -
+  flow__memory_usage({
+    action: "store",
+    key: "sprint25_context",
+    value: "Focus: GraphQL migration + tech debt. Research completed.",
+    namespace: "project",
+  });
+```text
 
 ### Pattern 5: Learning from Experience
 
@@ -622,42 +666,49 @@ mcp__claude-flow__memory_usage({
 mcp__agentdb__agentdb_pattern_search({
   task: "API authentication implementation",
   threshold: 0.7,
-  k: 5
-})
+  k: 5,
+});
 
 mcp__agentdb__reflexion_retrieve({
   task: "authentication",
   min_reward: 0.8,
   k: 3,
-  only_successes: true
-})
+  only_successes: true,
+});
 
 // 2. Check project memory (Claude-Flow)
-mcp__claude-flow__memory_search({
-  pattern: "authentication patterns",
-  namespace: "patterns"
-})
+mcp__claude -
+  flow__memory_search({
+    pattern: "authentication patterns",
+    namespace: "patterns",
+  });
 
 // 3. Get latest docs and research (Context7 + Googler)
-mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/passportjs/passport",
-  topic: "strategies"
-})
+mcp__context7__get -
+  library -
+  docs({
+    context7CompatibleLibraryID: "/passportjs/passport",
+    topic: "strategies",
+  });
 
 mcp__googler__research_topic({
   query: "OAuth2 implementation best practices 2024",
-  num_results: 3
-})
+  num_results: 3,
+});
 
 // 4. Spawn learning agent (Task Tool)
-Task("Smart Developer", `
+Task(
+  "Smart Developer",
+  `
 Implement OAuth2 authentication.
 LEARNING: Use patterns from agentdb with >0.8 reward.
 MEMORY: Check swarm memory for prior auth implementations.
 DOCS: Reference passport.js strategy patterns.
 RESEARCH: Apply 2024 OAuth2 best practices.
 RECORD: Store implementation in agentdb for future learning.
-`, "coder")
+`,
+  "coder",
+);
 
 // 5. Record new experience (AgentDB)
 mcp__agentdb__experience_record({
@@ -666,40 +717,44 @@ mcp__agentdb__experience_record({
   action: "implement passport oauth2 strategy",
   outcome: "Successfully implemented with refresh tokens",
   reward: 0.92,
-  success: true
-})
-```
+  success: true,
+});
+```text
 
 ---
 
 ## 📋 AGENT COORDINATION PROTOCOL
 
-### Every Agent Spawned via Task Tool MUST:
+### Every Agent Spawned via Task Tool MUST
 
 **1️⃣ BEFORE Work:**
+
 ```bash
 npx claude-flow@alpha hooks pre-task --description "[task]"
 npx claude-flow@alpha hooks session-restore --session-id "swarm-[id]"
-```
+```text
 
 **2️⃣ DURING Work:**
+
 ```bash
 npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
 npx claude-flow@alpha hooks notify --message "[what was done]"
-```
+```text
 
 **3️⃣ AFTER Work:**
+
 ```bash
 npx claude-flow@alpha hooks post-task --task-id "[task]"
 npx claude-flow@alpha hooks session-end --export-metrics true
-```
+```text
 
 ---
 
 ## 💾 MEMORY ORGANIZATION
 
 ### Namespace Structure
-```
+
+```text
 project       - Project-wide context, decisions, stack
 architecture  - Architectural patterns, decisions, rationale
 api           - API contracts, endpoints, specifications
@@ -710,10 +765,11 @@ library_docs  - Documentation summaries (from Context7)
 features      - Feature-specific implementation details
 sessions      - AgentDB session data
 learning      - AgentDB reflexion and patterns
-```
+```text
 
 ### Storage Pattern
-```
+
+```text
 // Claude-Flow Memory (project context)
 mcp__claude-flow__memory_usage({
   action: "store",
@@ -739,7 +795,7 @@ mcp__agentdb__reflexion_store({
   success: true/false,
   critique: "self_reflection"
 })
-```
+```text
 
 ---
 
@@ -747,7 +803,7 @@ mcp__agentdb__reflexion_store({
 
 ### Decision Matrix
 
-```
+```text
 NEED: official_api_docs
   → USE: Context7
   → PATTERN: resolve-library-id → get-library-docs
@@ -765,7 +821,7 @@ COMBINED RESEARCH:
   2. Context7: Official documentation
   3. AgentDB: Past experience and learned patterns
   4. Claude-Flow Memory: Store synthesized knowledge
-```
+```text
 
 ### Example: Implementing Stripe Payments
 
@@ -775,68 +831,82 @@ COMBINED RESEARCH:
 // Research best practices
 mcp__googler__research_topic({
   query: "Stripe payment integration best practices 2024",
-  num_results: 3
-})
+  num_results: 3,
+});
 
 // Get official Stripe docs
-mcp__context7__resolve-library-id({ libraryName: "stripe" })
-mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/stripe/stripe-node",
-  topic: "payment intents"
-})
+mcp__context7__resolve - library - id({ libraryName: "stripe" });
+mcp__context7__get -
+  library -
+  docs({
+    context7CompatibleLibraryID: "/stripe/stripe-node",
+    topic: "payment intents",
+  });
 
 // Check past experience
 mcp__agentdb__agentdb_search({
   query: "payment integration patterns",
   k: 5,
-  filters: { session_id: "dev" }
-})
+  filters: { session_id: "dev" },
+});
 
 // Store combined knowledge
-mcp__claude-flow__memory_usage({
-  action: "store",
-  key: "stripe_integration",
-  value: `
+mcp__claude -
+  flow__memory_usage({
+    action: "store",
+    key: "stripe_integration",
+    value: `
 Best practices: Use Payment Intents API, implement webhooks
 Official docs: Create PaymentIntent with amount+currency
 Past experience: Handle async webhook events, store customer IDs
 Decision: Server-side confirmation with webhook handling
 `,
-  namespace: "research"
-})
+    namespace: "research",
+  });
 
 // Execute with Task tool
-Task("Payment Engineer", `
+Task(
+  "Payment Engineer",
+  `
 Implement Stripe payment integration using researched patterns.
 Check memory namespace 'research' for stripe_integration guide.
 Store implementation patterns in agentdb for future reference.
 Use hooks for coordination.
-`, "backend-dev")
-```
+`,
+  "backend-dev",
+);
+```text
 
 ---
 
 ## 🚀 AVAILABLE AGENTS (64 Total)
 
 ### Core Development
+
 `coder`, `reviewer`, `tester`, `planner`, `researcher`, `backend-dev`, `code-analyzer`, `system-architect`
 
 ### Swarm Coordination
+
 `hierarchical-coordinator`, `mesh-coordinator`, `adaptive-coordinator`, `collective-intelligence-coordinator`, `swarm-memory-manager`
 
 ### Consensus & Distributed
+
 `byzantine-coordinator`, `raft-manager`, `gossip-coordinator`, `consensus-builder`, `crdt-synchronizer`, `quorum-manager`
 
 ### Performance & Optimization
+
 `perf-analyzer`, `performance-benchmarker`, `task-orchestrator`, `memory-coordinator`, `smart-agent`
 
 ### GitHub & Repository
+
 `github-modes`, `pr-manager`, `code-review-swarm`, `issue-tracker`, `release-manager`, `workflow-automation`, `repo-architect`
 
 ### SPARC Methodology
+
 `sparc-coord`, `sparc-coder`, `specification`, `pseudocode`, `architecture`, `refinement`
 
 ### Testing & Validation
+
 `tdd-london-swarm`, `production-validator`
 
 ---
@@ -846,41 +916,46 @@ Use hooks for coordination.
 ### Most Used Patterns
 
 **1. Feature Development:**
-```
+
+```text
 Research (Googler/Context7) → Memory Search → Task Tool → Memory Store
-```
+```text
 
 **2. Bug Fix:**
-```
+
+```text
 Memory/AgentDB Search → Research Solution → Task Tool → Reflexion Store
-```
+```text
 
 **3. Documentation:**
-```
+
+```text
 Context7 → Synthesize → Task Tool → Memory Store
-```
+```text
 
 **4. Learning:**
-```
+
+```text
 Execute Task → AgentDB Reflexion → Pattern Recognition → Future Reuse
-```
+```text
 
 ### Tool Selection
 
-| Need | Primary Tool | Secondary Tool | Tertiary Tool |
-|------|--------------|----------------|---------------|
-| **Official docs** | Context7 | - | - |
-| **Best practices** | Googler | Context7 | AgentDB |
-| **Agent execution** | Task Tool | - | - |
-| **Coordination** | MCP claude-flow | NPX subprocess | - |
-| **Memory** | Claude-Flow | AgentDB | - |
-| **Learning** | AgentDB | Claude-Flow | - |
+| Need                | Primary Tool    | Secondary Tool | Tertiary Tool |
+| ------------------- | --------------- | -------------- | ------------- |
+| **Official docs**   | Context7        | -              | -             |
+| **Best practices**  | Googler         | Context7       | AgentDB       |
+| **Agent execution** | Task Tool       | -              | -             |
+| **Coordination**    | MCP claude-flow | NPX subprocess | -             |
+| **Memory**          | Claude-Flow     | AgentDB        | -             |
+| **Learning**        | AgentDB         | Claude-Flow    | -             |
 
 ---
 
 ## 📚 DOCUMENT REFERENCES
 
 Subordinate documentation with detailed guides:
+
 - @rules/claude-flow.md - Complete Claude-Flow MCP tool reference (80+ tools)
 - @rules/context7.md - Context7 documentation retrieval patterns
 - @rules/googler.md - Googler research and analysis workflows
@@ -915,7 +990,7 @@ Subordinate documentation with detailed guides:
 - Do what has been asked; nothing more, nothing less
 - NEVER create files unless absolutely necessary
 - ALWAYS prefer editing existing files to creating new ones
-- NEVER proactively create documentation files (*.md) or README files
+- NEVER proactively create documentation files (\*.md) or README files
 - Never save working files, text/mds and tests to the root folder
 - ALWAYS organize files in appropriate subdirectories
 

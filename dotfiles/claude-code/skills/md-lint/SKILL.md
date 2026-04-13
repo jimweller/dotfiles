@@ -4,8 +4,9 @@ description: Format and lint markdown files using prettier and markdownlint-cli2
 context: fork
 ---
 
-STARTER_CHARACTER = 🔏
+<!-- markdownlint-disable-file MD041 -->
 
+STARTER_CHARACTER = 🔏
 
 # Markdown Lint
 
@@ -15,7 +16,6 @@ Format and lint markdown files with auto-fix enabled.
 
 if $ARGUMENTS is empty, process all markdown files in the repository
 if $ARGUMENTS is not empty, process only the markdown files specified as arguments
-
 
 To fix all markdown files in the repository, run from the git root:
 

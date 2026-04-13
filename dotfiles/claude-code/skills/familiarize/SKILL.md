@@ -5,11 +5,13 @@ argument-hint: "[optional: subdirectory to focus on]"
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🗺️
 
 # Familiarize
 
-Read-only command. Do not write any files. Do not create any documents. Do not use the Agent tool or subagents. All reads must happen in the current context window. After completing all steps, list what files were read and await instructions.
+Read-only. No writes. No agents. List files read when done.
 
 $ARGUMENTS
 
@@ -55,7 +57,7 @@ ls "$LLMDOCS_DIR"/*.md | grep -v '/_[^/]*$'
 
 Read each matching file.
 
-If no CLAUDE.md or .llmdocs/ are found, skip silently and continue. Most repos will not have these.
+Skip silently if not found.
 
 ### 2c. Recent commits
 
@@ -70,12 +72,14 @@ git log --oneline -20
 Check for and read each of these files if they exist at `SCAN_ROOT`. Skip any that do not exist without comment.
 
 ### Config files
+
 - `.envrc`
 - `.env.example`
 - `.gitignore`
 - `.gitattributes`
 
 ### Package manifests
+
 - `package.json`
 - `pyproject.toml`
 - `Cargo.toml`
@@ -86,27 +90,32 @@ Check for and read each of these files if they exist at `SCAN_ROOT`. Skip any th
 - `build.gradle`
 
 ### Build and task configs
+
 - `Makefile`
 - `Taskfile.yml`
 - `justfile`
 - `Rakefile`
 
 ### Container
+
 - `Dockerfile` (and variants like `Dockerfile.*`)
 - `docker-compose*.yml`
 
 ### IaC (list filenames only, do not read contents)
+
 - `terraform/*.tf`
 - `serverless.yml`
 - `sam-template.yaml`
 
 ### CI/CD (list filenames only, do not read contents)
+
 - `.github/workflows/*.yml`
 - `.gitlab-ci.yml`
 - `Jenkinsfile`
 - `.circleci/config.yml`
 
 ### Documentation
+
 - `README.md` at scan root
 
 ---
@@ -136,6 +145,7 @@ find "$SCAN_ROOT" -maxdepth 3 \
 ### 4b. Entry points
 
 Search for these filename patterns under `SCAN_ROOT`:
+
 - `main.*`, `index.*`, `app.*`, `cli.*`
 - `__main__.py`
 - `cmd/*/main.go`
@@ -149,6 +159,7 @@ Read the first 50 lines of up to 5 matches. Prefer files closer to the scan root
 For each source directory identified (directories containing source files, not config), read the first 50 lines of up to 3 representative files per directory.
 
 Skip:
+
 - Test files (`*_test.*`, `*.test.*`, `*.spec.*`, `test_*`)
 - Generated files (`*.min.js`, `*_pb.go`, `*.generated.*`, `*.g.dart`)
 - Lock files (`package-lock.json`, `yarn.lock`, `poetry.lock`, `Cargo.lock`)
@@ -160,10 +171,13 @@ Skip:
 Output two sections:
 
 ### Files read
+
 List all files that were read (filenames only, grouped by step).
 
 ### Overview
+
 A concise summary of the project based on everything read. Cover:
+
 - What the project does
 - Tech stack and key dependencies
 - How to build it (build system, compile steps, dependency install)
@@ -173,6 +187,6 @@ A concise summary of the project based on everything read. Cover:
 - Conventions or patterns observed in the code
 - Anything notable, missing, or unclear
 
-Keep the overview to 5-7 short paragraphs. No bullet lists, no headings within the overview, no structured template. Write it as plain prose a developer would skim before starting work.
+5-7 paragraphs of prose. No bullets or headings in overview.
 
 After the report, await instructions.

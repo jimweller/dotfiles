@@ -4,6 +4,8 @@ description: Migrate a Claude Code session from another project folder to the cu
 argument-hint: "[keyword]"
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🚚
 
 # Claude Migrate Session

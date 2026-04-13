@@ -4,7 +4,7 @@ Install process, platform detection, and environment setup.
 
 ## Install Flow
 
-```
+```text
 ./install
   -> bootstrap python3 (apt or brew)
   -> git submodule update --init --recursive dotbot
@@ -12,19 +12,21 @@ Install process, platform detection, and environment setup.
   -> detect OS
      -> macOS: dotbot -d . -c install.macos.yaml
      -> Linux: dotbot -d . -c install.linux.yaml
-```
+```text
 
 ## Platform Detection
 
 The installer checks `uname`:
+
 - `Darwin` -> macOS path
 - Otherwise -> Linux path
 
 Zsh modules use helper functions:
+
 ```zsh
 is_macos() { [[ "$(uname)" == "Darwin" ]] }
 is_linux()  { [[ "$(uname)" == "Linux" ]] }
-```
+```text
 
 Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 
@@ -52,15 +54,17 @@ Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 ## Devcontainer Integration
 
 The `devcontainer/` submodule is a Docker image. VSCode links it as a dotfiles extension:
+
 ```yaml
 ~/.vscode/extensions/.../0jimbox -> devcontainer
-```
+```text
 
 VSCode devcontainer settings reference this repo for dotfiles injection into dev containers.
 
 ## Post-Install Steps
 
 Not automated by the installer:
+
 - `scripts/secrets.sh open` to decrypt SSH keys and credentials
 - `switch_git_profile work` or `switch_git_profile personal` to set git identity
 - `asdf-bootstrap` if using asdf-managed tools
@@ -68,9 +72,9 @@ Not automated by the installer:
 
 ## Prerequisites
 
-| Platform | Required | Bootstrapped by installer |
-|----------|----------|--------------------------|
-| macOS | git, bash | Homebrew, Python3 |
-| Linux | git, bash, apt | Python3 |
+| Platform | Required       | Bootstrapped by installer |
+| -------- | -------------- | ------------------------- |
+| macOS    | git, bash      | Homebrew, Python3         |
+| Linux    | git, bash, apt | Python3                   |
 
 Homebrew is installed automatically on macOS if missing.

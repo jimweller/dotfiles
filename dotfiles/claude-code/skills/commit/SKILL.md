@@ -3,6 +3,8 @@ name: commit
 description: Create an atomic conventional commit with AI context tracking
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 📌
 
 # Commit Changes
@@ -15,18 +17,20 @@ STARTER_CHARACTER = 📌
 git status
 git diff HEAD
 git diff --stat HEAD
-```
+```text
 
 Check for new untracked files:
+
 ```bash
 git ls-files --others --exclude-standard
-```
+```text
 
 ### 2. Stage Files
 
 Add the untracked and changed files relevant to the current work.
 
 **Do NOT stage:**
+
 - `.env` or credential files
 - Large binary files
 - Files unrelated to the current task
@@ -44,14 +48,16 @@ Write an atomic commit message with a conventional commit tag:
 - `perf:` -- Performance improvement
 
 **For monorepo changes spanning multiple packages**, note the primary package in the scope:
-```
+
+```text
 feat(workflows): add DAG condition evaluator
 fix(web): resolve SSE reconnection on navigation
 refactor(isolation): simplify worktree resolution order
-```
+```text
 
 **Commit message format:**
-```
+
+```text
 tag(scope): concise description of what changed
 
 [Optional body explaining WHY this change was made,
@@ -59,13 +65,13 @@ not just what changed. Include context changes that aren't
 obvious from the diff.]
 
 [Optional: Fixes #123, Closes #456]
-```
+```text
 
 ### 4. Capture AI Context Changes
 
 If any AI context assets were modified in this commit, add a `Context:` section to the commit body:
 
-```
+```text
 feat(orchestrator): add retry logic for session recovery
 
 Added exponential backoff when SDK subprocess crashes mid-session.
@@ -77,9 +83,10 @@ Context:
 - Surfaced issue: mock.module() in retry tests needs isolated batch
 
 Fixes #482
-```
+```text
 
 **What counts as AI context changes:**
+
 - `.claude/rules/` -- on-demand conventions added, updated, or removed
 - `.claude/commands/` -- slash commands created or modified
 - `.claude/skills/` -- slash commands created or modified
@@ -87,4 +94,4 @@ Fixes #482
 - `CLAUDE.md` -- global rules changes
 - `**/CLAUDE.md` -- folder local rules changes
 
-**Why this matters:** The git log is long-term memory. Future agents and sessions use `git log` to understand project history. When context modifications are not documented in commits, the evolution of the AI layer becomes difficult to trace and understand over time.
+Git log is long-term memory for future sessions.

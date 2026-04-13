@@ -177,4 +177,5 @@ write_to_file(".roo-audit/activity-logs/$(date +%Y-%m-%d-%H%M%S)-orchestrator.md
 **Escalation**: [Summary of the escalation to the orchestrator]
 ")
 ```
+
 - `[x]` Completed - Fully finished with validation and approval

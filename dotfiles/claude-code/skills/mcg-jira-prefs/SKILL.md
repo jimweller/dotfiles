@@ -4,6 +4,8 @@ description: mcg-atlassian:jira skill j-cli Jira team defaults, custom fields, c
 user-invocable: false
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🎫
 
 # Local Jira Configuration
@@ -41,7 +43,6 @@ Apply unless the conversation specifies otherwise.
 - Leave unassigned unless someone is explicitly designated to do the work
 - Requester = reporter, not assignee
 - Mentioned in conversation does not imply assignment
-
 
 ## Description Template
 

@@ -38,6 +38,7 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 - Profile switching via `GIT_CONFIG_GLOBAL` env var
 - Secrets never committed in plaintext; only GPG-encrypted archive in `manifests/`
 - `dotfiles/claude-code/` is user-level Claude Code config, not repo metadata
+- `dotfiles/claude-code/claude_settings_json_azure` is the active settings file (symlinked to `~/.claude/settings.json`). Make changes there first, then copy into `dotfiles/claude-code/claude_settings_json_aws` and `dotfiles/claude-code/claude_settings_json_jim`. The only difference between azure and aws is the env block: azure uses `CLAUDE_CODE_USE_FOUNDRY=1`, aws uses `CLAUDE_CODE_USE_BEDROCK=1`. When syncing, preserve that difference.
 - When committing, always stage all changed and untracked files with `git add -A`. This is a personal, high-velocity repo where all files are intentional.
 
 ## Key Concepts
@@ -51,6 +52,7 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 ## Docs
 
 Detailed docs in `.llmdocs/`:
+
 - @.llmdocs/architecture.md -- component layout, symlink topology, zsh module system, submodules
 - @.llmdocs/api.md -- CLI entry points, scripts, shell functions, antidote plugin format
 - @.llmdocs/data-model.md -- dotbot YAML schema, git config layering, manifest formats, plist schema

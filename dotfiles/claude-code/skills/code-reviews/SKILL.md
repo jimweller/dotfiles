@@ -6,34 +6,36 @@ context: fork
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🕵️‍♂️
 
 # Code Review Command
 
-Launch 3 independent code reviews in parallel using different models via `opencode run`. Claude Code packs repomix once, then each model spawns 8 review-* subagents that navigate the packed output via MCP. Each model produces one combined review file.
+Launch 3 independent code reviews in parallel using different models via `opencode run`. Claude Code packs repomix once, then each model spawns 8 review-\* subagents that navigate the packed output via MCP. Each model produces one combined review file.
 
 Arguments: $ARGUMENTS
 
 ## Models
 
-| Label   | Model ID                        |
-|---------|---------------------------------|
-| openai  | openai/gpt-5.3-codex            |
-| gemini  | google/gemini-3.1-pro-preview   |
-| claude  | az-anthropic/claude-opus-4-6    |
+| Label  | Model ID                      |
+| ------ | ----------------------------- |
+| openai | openai/gpt-5.3-codex          |
+| gemini | google/gemini-3.1-pro-preview |
+| claude | az-anthropic/claude-opus-4-6  |
 
 ## Procedure
 
 ### Step 1: Resolve Target and Clean Up
 
-```
+```text
 TARGET_PATH = $ARGUMENTS (or repo root if empty)
 
 If TARGET_PATH is empty or not provided: use git repo root.
 Otherwise: resolve as relative path from repo root.
 
 Derive TARGET_NAME from last path segment, or "repo" if root.
-```
+```text
 
 Validate the target directory exists. Abort if not.
 
@@ -45,7 +47,7 @@ rm -f "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-openai.md \
       "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-gemini.md \
       "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-claude.md
 mkdir -p "$PROJECT_ROOT/.llmdocs" "$PROJECT_ROOT/.llmdocs/code-reviews"
-```
+```text
 
 ### Step 2: Pack Repomix
 
@@ -56,7 +58,7 @@ triggers a confusing truncation error in Claude Code's UI on large repos.
 REVIEW_TMPDIR=$(mktemp -d "/tmp/code-review-XXXXXX")
 REPOMIX_FILE="$REVIEW_TMPDIR/repomix.xml"
 npx repomix -o "$REPOMIX_FILE" --quiet --output-show-line-numbers "$PROJECT_ROOT/$TARGET_PATH"
-```
+```text
 
 `REVIEW_TMPDIR` is unique per run and used for all temp files in this session.
 
@@ -68,7 +70,7 @@ Verify the file was created, then confirm `REPOMIX_FILE` to the user before proc
 
 Build the prompt that each opencode process will execute. Replace `<TARGET_PATH>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`, and `<REPOMIX_FILE>` with the resolved values.
 
-```
+````text
 PROMPT="You are a code review orchestrator running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation.
 
 You have 4 steps. You are NOT done until the file is written and verified in Step 4.
@@ -125,7 +127,7 @@ for area in security architecture solid correctness testing ops performance qual
   cat "<STATE_DIR>/<MODEL_LABEL>-$area.md" >> OUTPUT_FILE
   echo "" >> OUTPUT_FILE
 done
-```
+````text
 
 # Step 4: Verify
 
@@ -136,7 +138,8 @@ Both commands must succeed. If the file does not exist or is empty, re-run the a
 Do not exit without the file on disk.
 
 Print exactly: REVIEW_COMPLETE"
-```
+
+````text
 
 ### Step 4: Write Prompt to File
 
@@ -152,7 +155,7 @@ PROMPT_FILE="$REVIEW_TMPDIR/review-prompt.txt"
 cat > "$PROMPT_FILE" <<'PROMPT_EOF'
 <the prompt from step 3>
 PROMPT_EOF
-```
+````text
 
 ### Step 5: Launch 3 Agents in Parallel
 
@@ -166,7 +169,7 @@ Each agent receives the same instruction template with its model-specific values
 
 **Agent prompt template** (substitute `<LABEL>`, `<MODEL_ID>`, `<TEMP_DIR>`, `<STATE_DIR>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`):
 
-```
+```text
 Launch and monitor an opencode code review process. Do not ask questions.
 
 Run this command in the background:
@@ -208,7 +211,7 @@ Report:
 - Total cost: jq -s '[.[] | select(.type=="step_finish") | .part.cost] | add' "$STATE_DIR/<LABEL>.ndjson"
 - Total tokens: grep '"type":"step_finish"' "$STATE_DIR/<LABEL>.ndjson" | tail -1 | jq '.part.tokens.total'
 - Any errors from: grep '"type":"error"' "$STATE_DIR/<LABEL>.ndjson"
-```
+```text
 
 Launch all 3 Agent calls in a single tool-call batch (openai, gemini, claude).
 
@@ -220,9 +223,10 @@ Each opencode process produces two output files:
 - **`<label>.log`** (stderr): Plain-text info-level logs from `--print-logs --log-level INFO`. Use for diagnosing startup failures, permission issues, MCP server errors, and plugin loading problems.
 
 Log lines are structured text, one per line:
-```
+
+```text
 INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating instance
-```
+```text
 
 ### Step 6: Wait for Agents
 
@@ -231,6 +235,7 @@ The 3 agents from Step 5 handle monitoring. Wait for all 3 Agent tool calls to r
 ### Step 7: Report Results
 
 Collect the reports from each agent. Summarize per model:
+
 - Success/failure (output file present or not)
 - Total cost
 - Total tokens
@@ -264,36 +269,80 @@ Each opencode process writes NDJSON to `$STATE_DIR/<label>.ndjson`. One JSON obj
 ### Event Types
 
 **step_start** - A new LLM turn begins.
+
 ```json
-{"type":"step_start","timestamp":1773360681884,"sessionID":"ses_...","part":{"type":"step-start","snapshot":"..."}}
-```
+{
+  "type": "step_start",
+  "timestamp": 1773360681884,
+  "sessionID": "ses_...",
+  "part": { "type": "step-start", "snapshot": "..." }
+}
+```text
 
 **text** - Model emitted text output.
+
 ```json
-{"type":"text","timestamp":1773360682061,"sessionID":"ses_...","part":{"type":"text","text":"some output"}}
-```
+{
+  "type": "text",
+  "timestamp": 1773360682061,
+  "sessionID": "ses_...",
+  "part": { "type": "text", "text": "some output" }
+}
+```text
 
 **tool_use** - Model called a tool. Key fields: `tool` (tool name), `state.status` ("completed" or "error"), `state.input`, `state.output`, `state.metadata.exit` (for bash).
+
 ```json
-{"type":"tool_use","timestamp":1773360682369,"sessionID":"ses_...","part":{"tool":"bash","state":{"status":"completed","input":{"command":"echo hello"},"output":"hello\n","metadata":{"exit":0}}}}
-```
+{
+  "type": "tool_use",
+  "timestamp": 1773360682369,
+  "sessionID": "ses_...",
+  "part": {
+    "tool": "bash",
+    "state": {
+      "status": "completed",
+      "input": { "command": "echo hello" },
+      "output": "hello\n",
+      "metadata": { "exit": 0 }
+    }
+  }
+}
+```text
 
 For subagent spawns, `tool` is "task" and `state.output` contains the agent's result text:
+
 ```json
 {"type":"tool_use","timestamp":...,"part":{"tool":"task","state":{"status":"completed","input":{"description":"...","prompt":"..."},"output":"<task_result>...</task_result>"}}}
-```
+```text
 
 **step_finish** - An LLM turn completed. Key fields: `reason` ("stop" = done, "tool-calls" = continuing), `cost`, `tokens`.
+
 ```json
-{"type":"step_finish","timestamp":1773360682446,"sessionID":"ses_...","part":{"reason":"tool-calls","cost":0,"tokens":{"total":13494,"input":2,"output":77,"reasoning":0,"cache":{"read":0,"write":13415}}}}
-```
+{
+  "type": "step_finish",
+  "timestamp": 1773360682446,
+  "sessionID": "ses_...",
+  "part": {
+    "reason": "tool-calls",
+    "cost": 0,
+    "tokens": {
+      "total": 13494,
+      "input": 2,
+      "output": 77,
+      "reasoning": 0,
+      "cache": { "read": 0, "write": 13415 }
+    }
+  }
+}
+```text
 
 The final `step_finish` with `"reason":"stop"` means the model is done.
 
 **error** - An error occurred at the session level.
+
 ```json
 {"type":"error","timestamp":...,"sessionID":"ses_...","error":{"name":"UnknownError","data":{"message":"Model not found: ..."}}}
-```
+```text
 
 ### Useful jq Queries
 
@@ -317,14 +366,14 @@ jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 
 # Count subagent spawns
 jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
-```
+```text
 
 Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/code-reviews/openai.log`):
 
 ```bash
 # All errors and warnings from text logs
 grep -E "^(ERROR|WARN)" "$LOGFILE"
-```
+```text
 
 ## Rules
 

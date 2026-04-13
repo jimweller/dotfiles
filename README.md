@@ -72,14 +72,14 @@ The installer runs dotbot with platform detection:
 
 ## AI Tooling
 
-| Directory                       | Tool            | Key files                                    |
-| ------------------------------- | --------------- | -------------------------------------------- |
-| `claude-code/`                  | Claude Code CLI | Settings, skills, commands, hooks, statusline|
-| `claude-code/tools/total-recall`| Total Recall    | SQLite-backed session memory for Claude Code |
-| `claude-flow/`                  | Claude Flow     | CLAUDE.md, MCP tool rules                   |
-| `opencode/`                     | OpenCode CLI    | opencode.json, review agents                 |
-| `roocode/`                      | Roo Code        | custom_modes.yaml, mcp_settings.json         |
-| `gemini/`                       | Gemini CLI      | gemini_settings                              |
+| Directory                        | Tool            | Key files                                     |
+| -------------------------------- | --------------- | --------------------------------------------- |
+| `claude-code/`                   | Claude Code CLI | Settings, skills, commands, hooks, statusline |
+| `claude-code/tools/total-recall` | Total Recall    | SQLite-backed session memory for Claude Code  |
+| `claude-flow/`                   | Claude Flow     | CLAUDE.md, MCP tool rules                     |
+| `opencode/`                      | OpenCode CLI    | opencode.json, review agents                  |
+| `roocode/`                       | Roo Code        | custom_modes.yaml, mcp_settings.json          |
+| `gemini/`                        | Gemini CLI      | gemini_settings                               |
 
 See `dotfiles/claude-code/README.md` for skills vs commands details.
 

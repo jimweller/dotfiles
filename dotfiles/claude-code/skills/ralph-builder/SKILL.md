@@ -6,6 +6,8 @@ context: fork
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🔁
 
 # Ralph Builder
@@ -20,11 +22,11 @@ The argument is a goal description. It may reference a file containing a PRD, pl
 
 All files go in `<PROJECT_ROOT>/.llmdocs/`. Create the directory if it does not exist.
 
-| File                     | Purpose                                              |
-| ------------------------ | ---------------------------------------------------- |
-| `_ralph-prompt.md`       | The `/ralph-loop:ralph-loop` invocation command      |
-| `_ralph-tasks.md`        | Checklist of discrete tasks                          |
-| `_ralph-plan.md` | Execution plan for accomplishing the goal     |
+| File               | Purpose                                         |
+| ------------------ | ----------------------------------------------- |
+| `_ralph-prompt.md` | The `/ralph-loop:ralph-loop` invocation command |
+| `_ralph-tasks.md`  | Checklist of discrete tasks                     |
+| `_ralph-plan.md`   | Execution plan for accomplishing the goal       |
 
 ## Procedure
 
@@ -57,6 +59,7 @@ Format:
 ```
 
 BAD -- leaks implementation details into the task list:
+
 ```markdown
 - [ ] Create lib/Test-Helpers.psm1 with Test-VmPath function
 - [ ] Add Test-VmLogContains to lib/Test-Helpers.psm1
@@ -65,6 +68,7 @@ BAD -- leaks implementation details into the task list:
 ```
 
 GOOD -- names the deliverable, leaves technique to instructions:
+
 ```markdown
 - [ ] Create lib/Test-Helpers.psm1
 - [ ] Create lib/Test-Helpers.Tests.ps1
@@ -94,11 +98,13 @@ The plan describes the target state and constraints, not the implementation. Whe
 The plan is an execution guide, not a decision record. No rationale, changelogs, or "this replaces X" prose. State what exists and what to do with it. Each iteration doesn't care why a decision was made, only what the current state is and how to proceed.
 
 BAD -- decision records and changelogs:
+
 - SQL Server 2025 is GA and installs natively on Windows ARM64 without hacks. This replaces Docker SQL on macOS.
 - The connectivity test changes from $SQL_SERVER (10.0.2.2 Docker gateway) to localhost.
 - Finding 61: Get-WebBinding stringifies to type name.
 
 GOOD -- current facts only:
+
 - SQL Server 2025 runs natively on the VM. SQL_SERVER=localhost.
 - Get-WebBinding returns an object. Access .bindingInformation or .protocol directly.
 
@@ -167,7 +173,7 @@ Before writing the files, verify the separation:
 Write exactly this static invocation. Do not modify it.
 
 ```markdown
-/ralph-loop:ralph-loop "Read @.llmdocs/_ralph-plan.md and follow its instructions. Work through @.llmdocs/_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
+/ralph-loop:ralph-loop "Read @.llmdocs/\_ralph-plan.md and follow its instructions. Work through @.llmdocs/\_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
 ```
 
 Rules:

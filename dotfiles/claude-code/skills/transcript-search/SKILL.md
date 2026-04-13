@@ -3,6 +3,8 @@ name: transcript-search
 description: Search saved session transcripts for past decisions, actions, errors, and context that has left the current conversation window.
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🗃️
 
 # Transcript Search
@@ -32,18 +34,18 @@ excerpts ready to read directly.
 
 ## Common flags
 
-| Flag | Purpose |
-|------|---------|
-| `--project NAME` | Restrict to a specific project |
-| `--top-k N` | Number of seed matches before expansion (default: 5) |
-| `--window N` | Context window +/- N around each match (default: 2) |
-| `--budget N` | Max chunks in final output (default: 20) |
-| `--tokens N` | Max tokens in final output (default: 6000) |
-| `--session ID` | Restrict to a specific session_id |
-| `--no-tools` | Exclude tool_use/tool_result chunks |
-| `--no-vectors` | FTS5 keyword search only (skip embeddings) |
-| `--format json` | JSON array output for programmatic use |
-| `--roles user,assistant` | Filter by role |
+| Flag                     | Purpose                                              |
+| ------------------------ | ---------------------------------------------------- |
+| `--project NAME`         | Restrict to a specific project                       |
+| `--top-k N`              | Number of seed matches before expansion (default: 5) |
+| `--window N`             | Context window +/- N around each match (default: 2)  |
+| `--budget N`             | Max chunks in final output (default: 20)             |
+| `--tokens N`             | Max tokens in final output (default: 6000)           |
+| `--session ID`           | Restrict to a specific session_id                    |
+| `--no-tools`             | Exclude tool_use/tool_result chunks                  |
+| `--no-vectors`           | FTS5 keyword search only (skip embeddings)           |
+| `--format json`          | JSON array output for programmatic use               |
+| `--roles user,assistant` | Filter by role                                       |
 
 ## Search procedure
 

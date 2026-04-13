@@ -3,6 +3,8 @@ name: session-resume
 description: Search and load previous Claude Code conversations. Use when user wants to find or resume a past session.
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🔖
 
 # Claude Search & Resume
@@ -33,28 +35,29 @@ Run the script `scripts/claude-search-resume`:
 
 # Search by date range
 ~/.claude/skills/session-resume/scripts/claude-search-resume --from "2026-01-13 00:00" --to "2026-01-13 23:59"
-```
+```text
 
 ## Output
 
-```
+```text
 1. [2026-01-14 10:27] /data/alexis/claude-tools (118 msgs)
    💬 j'aimerais ajouter au site front une librairie...
    ▶ claude --resume b8c31c5f-2739-4179-94ea-5b63ef4cabee
-```
+```text
 
 ## Resume
 
 Tell user to run:
+
 ```bash
 claude --resume <session-id>
-```
+```text
 
 ## Examples
 
-| User says | Command |
-|-----------|---------|
-| "find my recent conversations" | `scripts/claude-search-resume` |
-| "find conversations about auth" | `scripts/claude-search-resume "auth" --global` |
+| User says                        | Command                                                     |
+| -------------------------------- | ----------------------------------------------------------- |
+| "find my recent conversations"   | `scripts/claude-search-resume`                              |
+| "find conversations about auth"  | `scripts/claude-search-resume "auth" --global`              |
 | "what did we work on yesterday?" | `scripts/claude-search-resume --global --from "2026-01-13"` |
-| "find my CRM sessions" | `scripts/claude-search-resume "crm" --global` |
+| "find my CRM sessions"           | `scripts/claude-search-resume "crm" --global`               |

@@ -4,21 +4,13 @@ description: Write a session handoff document for the next agent or session
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🪃
 
 # Handoff: Capture Session State for Continuation
 
-## Objective
-
-Create a structured handoff document that captures everything the next session (or agent) needs to seamlessly continue this work. This is the **Write + Compress** pattern — you're externalizing the session's memory into a persistent file AND compressing it into just the essentials.
-
-## When to Use
-
-- Before ending a long session where work will continue later
-- Before hitting context limits (proactive, not reactive)
-- When switching from one phase to another (research → implementation)
-- When handing off between human and AI, or between AI sessions
-- Instead of relying on `/compact` for critical ongoing work
+Capture session state for the next session to continue.
 
 ## Process
 
@@ -41,7 +33,7 @@ git status
 git diff --stat HEAD
 git log --oneline -5
 git branch --show-current
-```
+```text
 
 ### 3. Write the Handoff Document
 
@@ -103,7 +95,7 @@ Document WHY choices were made, not just what was chosen:
 [2-4 sentences: the MOST IMPORTANT thing the next agent needs to know. What's the current situation? What's the biggest risk? What should they do first?]
 
 **Recommended first action:** [Exact command or step to take first]
-```
+```text
 
 ### 4. Confirm and Advise
 
@@ -111,17 +103,21 @@ After writing the handoff:
 
 1. Confirm the file was written with its full path
 2. Suggest the next session command:
-   ```
+
+   ```text
    Read .llmdocs/_handoff.md and continue from where the previous session left off.
    ```
+
 3. If there are uncommitted changes, suggest committing first:
-   ```
+
+   ```text
    /commit
    ```
 
 ## Quality Criteria
 
 A good handoff document should:
+
 - Let a fresh agent continue without asking any clarifying questions
 - Be under 100 lines (concise, not comprehensive — link to files rather than duplicating content)
 - Include enough "why" context that the next agent makes the same decisions

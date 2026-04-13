@@ -1,3 +1,5 @@
+<!-- markdownlint-disable-file MD046 -->
+
 # Rules
 
 This document contains a description of all rules, what they are checking for,
@@ -77,10 +79,9 @@ atx) are used in the same document:
 ```markdown
 # ATX style H1
 
-## Closed ATX style H2 ##
+## Closed ATX style H2
 
-Setext style H1
-===============
+# Setext style H1
 ```
 
 Be consistent with the style of header used in a document:
@@ -95,11 +96,9 @@ The setext_with_atx doc style allows atx-style headers of level 3 or more in
 documents with setext style headers:
 
 ```markdown
-Setext style H1
-===============
+# Setext style H1
 
-Setext style H2
----------------
+## Setext style H2
 
 ### ATX style H3
 ```
@@ -121,8 +120,10 @@ This rule is triggered when the symbols used in the document for unordered
 list items do not match the configured unordered list style:
 
 ```markdown
-* Item 1
-+ Item 2
+- Item 1
+
+* Item 2
+
 - Item 3
 ```
 
@@ -130,9 +131,9 @@ To fix this issue, use the configured style for list items throughout the
 document:
 
 ```markdown
-* Item 1
-* Item 2
-* Item 3
+- Item 1
+- Item 2
+- Item 3
 ```
 
 Note: the configured list style can be a specific symbol to use (asterisk,
@@ -143,28 +144,28 @@ For sublist, each level must be consistent within a document, even if they
 are separate lists. So this is allowed:
 
 ```markdown
-* Item 1
-* Item 2
+- Item 1
+- Item 2
   - Item 2a
-    + Item 2a1
+    - Item 2a1
   - Item 2b
-* Item 3
+- Item 3
 
 Other stuff
 
-* Item 1
-* Item 2
+- Item 1
+- Item 2
 ```
 
 But this is not allowed:
 
 ```markdown
-* Item 1
-* Item 2
+- Item 1
+- Item 2
   - Item 2a
-    + Item 2a1
+    - Item 2a1
   - Item 2b
-* Item 3
+- Item 3
 
 Other stuff
 
@@ -182,20 +183,20 @@ This rule is triggered when list items are parsed as being at the same level,
 but don't have the same indentation:
 
 ```markdown
-* Item 1
-    * Nested Item 1
-    * Nested Item 2
-   * A misaligned item
+- Item 1
+  - Nested Item 1
+  - Nested Item 2
+  - A misaligned item
 ```
 
 Usually this rule will be triggered because of a typo. Correct the indentation
 for the list to fix it:
 
 ```markdown
-* Item 1
-  * Nested Item 1
-  * Nested Item 2
-  * Nested Item 3
+- Item 1
+  - Nested Item 1
+  - Nested Item 2
+  - Nested Item 3
 ```
 
 ## MD006 - Consider starting bulleted lists at the beginning of the line
@@ -210,8 +211,8 @@ line:
 ```markdown
 Some text
 
-  * List item
-  * List item
+- List item
+- List item
 ```
 
 To fix, ensure that top level list items are not indented:
@@ -219,8 +220,8 @@ To fix, ensure that top level list items are not indented:
 ```markdown
 Some test
 
-* List item
-* List item
+- List item
+- List item
 ```
 
 Rationale: Starting lists at the beginning of the line means that nested list
@@ -243,15 +244,15 @@ number of spaces (default: 3).
 Example:
 
 ```markdown
-* List item
-  * Nested list item indented by 2 spaces
+- List item
+  - Nested list item indented by 2 spaces
 ```
 
 Corrected Example:
 
 ```markdown
-* List item
-   * Nested list item indented by 3 spaces
+- List item
+  - Nested list item indented by 3 spaces
 ```
 
 Rationale (3 space indent): This matches the minimum possible indentation
@@ -309,7 +310,7 @@ Example:
 ```markdown
 Some text
 
-	* hard tab character used to indent the list item
+    * hard tab character used to indent the list item
 ```
 
 Corrected example:
@@ -355,7 +356,6 @@ document:
 ```markdown
 Some text here
 
-
 Some more text here
 ```
 
@@ -390,7 +390,7 @@ being forced to break them in the middle.
 
 You also have the option to exclude this rule for code blocks. To
 do this, set the `ignore_code_blocks` parameter to true. To exclude this rule
-for tables set the `tables` parameters to false.  Setting the parameter
+for tables set the `tables` parameters to false. Setting the parameter
 `code_blocks` to false to exclude the rule for code blocks is deprecated and
 will be removed in a future release.
 
@@ -408,9 +408,9 @@ This rule is triggered when there are code blocks showing shell commands to be
 typed, and the shell commands are preceded by dollar signs ($):
 
 ```markdown
-$ ls
-$ cat foo
-$ less bar
+ls
+cat foo
+less bar
 ```
 
 The dollar signs are unnecessary in the above situation, and should not be
@@ -473,9 +473,9 @@ This rule is triggered when more than one space is used to separate the
 header text from the hash characters in an atx style header:
 
 ```markdown
-#  Header 1
+# Header 1
 
-##  Header 2
+## Header 2
 ```
 
 To fix this, separate the header text from the hash character by a single
@@ -506,9 +506,9 @@ To fix this, separate the header text from the hash character by a single
 space:
 
 ```markdown
-# Header 1 #
+# Header 1
 
-## Header 2 ##
+## Header 2
 ```
 
 Note: this rule will fire if either side of the header is missing spaces.
@@ -523,18 +523,18 @@ This rule is triggered when more than one space is used to separate the
 header text from the hash characters in a closed atx style header:
 
 ```markdown
-#  Header 1  #
+# Header 1
 
-##  Header 2  ##
+## Header 2
 ```
 
 To fix this, separate the header text from the hash character by a single
 space:
 
 ```markdown
-# Header 1 #
+# Header 1
 
-## Header 2 ##
+## Header 2
 ```
 
 Note: this rule will fire if either side of the header contains multiple
@@ -551,9 +551,11 @@ followed by a blank line:
 
 ```markdown
 # Header 1
+
 Some text
 
 Some more text
+
 ## Header 2
 ```
 
@@ -585,7 +587,7 @@ This rule is triggered when a header is indented by one or more spaces:
 ```markdown
 Some text
 
-  # Indented header
+# Indented header
 ```
 
 To fix this, ensure that all headers start at the beginning of the line:
@@ -719,8 +721,8 @@ This rule is triggered when blockquotes have more than one space after the
 blockquote (`>`) symbol:
 
 ```markdown
->  This is a block quote with bad indentation
->  there should only be one.
+> This is a block quote with bad indentation
+> there should only be one.
 ```
 
 To fix, remove any extraneous space:
@@ -814,16 +816,16 @@ The number of spaces checked for depends on the document style in use, but the
 default is 1 space after any list marker:
 
 ```markdown
-* Foo
-* Bar
-* Baz
+- Foo
+- Bar
+- Baz
 
 1. Foo
 1. Bar
 1. Baz
 
 1. Foo
-   * Bar
+   - Bar
 1. Baz
 ```
 
@@ -840,19 +842,19 @@ and unordered lists respectively) if there are multiple paragraphs of content
 inside the list:
 
 ```markdown
-* Foo
-* Bar
-* Baz
+- Foo
+- Bar
+- Baz
 ```
 
 vs.
 
 ```markdown
-*   Foo
+- Foo
 
-    Second paragraph
+  Second paragraph
 
-*   Bar
+- Bar
 ```
 
 or
@@ -916,12 +918,13 @@ followed by a blank line:
 
 ```markdown
 Some text
-* Some
-* List
+
+- Some
+- List
 
 1. Some
 2. List
-Some text
+   Some text
 ```
 
 To fix this, ensure that all lists have a blank line both before and after
@@ -930,8 +933,8 @@ To fix this, ensure that all lists have a blank line both before and after
 ```markdown
 Some text
 
-* Some
-* List
+- Some
+- List
 
 1. Some
 2. List
@@ -946,10 +949,10 @@ Note: List items without hanging indents are a violation of this rule; list
 items with hanging indents are okay:
 
 ```markdown
-* This is
-not okay
+- This is
+  not okay
 
-* This is
+- This is
   okay
 ```
 
@@ -1019,7 +1022,7 @@ Tags: hr
 
 Aliases: hr-style
 
-Parameters: style (`:consistent`, "---", "***", or other string specifying the
+Parameters: style (`:consistent`, "---", "\*\*\*", or other string specifying the
 horizontal rule; default `:consistent`)
 
 This rule is triggered when inconsistent styles of horizontal rules are used
@@ -1028,13 +1031,13 @@ in the document:
 ```markdown
 ---
 
-- - -
+---
 
-***
+---
 
-* * *
+---
 
-****
+---
 ```
 
 To fix this, ensure any horizontal rules used in the document are consistent,
@@ -1042,7 +1045,6 @@ or match the given style if the rule is so configured:
 
 ```markdown
 ---
-
 ---
 ```
 
@@ -1088,7 +1090,7 @@ Consectetur adipiscing elit, sed do eiusmod.
 ```
 
 Note: this rule looks for single line paragraphs that consist entirely of
-emphasized text.  It won't fire on emphasis used within regular text,
+emphasized text. It won't fire on emphasis used within regular text,
 multi-line emphasized paragraphs, and paragraphs ending in punctuation.
 Similarly to rule MD026, you can configure what characters are recognized as
 punctuation.
@@ -1105,9 +1107,9 @@ have spaces between the markers and the text:
 ```markdown
 Here is some ** bold ** text.
 
-Here is some * italic * text.
+Here is some _ italic _ text.
 
-Here is some more __ bold __ text.
+Here is some more ** bold ** text.
 
 Here is some more _ italic _ text.
 ```
@@ -1117,9 +1119,9 @@ To fix this, remove the spaces around the emphasis markers:
 ```markdown
 Here is some **bold** text.
 
-Here is some *italic* text.
+Here is some _italic_ text.
 
-Here is some more __bold__ text.
+Here is some more **bold** text.
 
 Here is some more _italic_ text.
 ```
@@ -1139,7 +1141,7 @@ This rule is triggered on code span elements that have spaces right inside the
 backticks:
 
 ```markdown
-` some text `
+`some text`
 
 `some text `
 

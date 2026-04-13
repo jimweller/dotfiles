@@ -12,7 +12,7 @@
 
 #### pack_codebase
 
-```
+```text
 mcp__repomix__pack_codebase({
   directory: string,
   style?: string,
@@ -21,12 +21,13 @@ mcp__repomix__pack_codebase({
   includePatterns?: string,
   ignorePatterns?: string
 })
-```
+```text
 
 **Purpose:** Package local directory into consolidated AI-readable format
 **Returns:** Packed output with metrics, file tree, formatted code
 
 **Parameters:**
+
 - `directory` (required): Absolute path to directory
 - `style` (optional): "xml" (default), "markdown", "json", "plain"
 - `compress` (optional): Enable Tree-sitter compression (default: false, ~70% reduction)
@@ -35,32 +36,35 @@ mcp__repomix__pack_codebase({
 - `ignorePatterns` (optional): Comma-separated fast-glob patterns
 
 **Style Formats:**
-```
+
+```text
 xml      - Structured <file> tags (default, best for parsing)
 markdown - Human-readable with ## headers and code blocks
 json     - Machine-readable key-value pairs
 plain    - Simple text with separators
-```
+```text
 
 **Pattern Examples:**
-```
+
+```text
 includePatterns: "**/*.{js,ts}" - Only JS/TS files
 includePatterns: "src/**,docs/**" - Multiple directories
 ignorePatterns: "test/**,*.spec.js" - Exclude tests
 ignorePatterns: "node_modules/**,dist/**" - Exclude builds
-```
+```text
 
 **Compression:**
-```
+
+```text
 compress: false - Full code content (default)
 compress: true  - Extract signatures, remove implementation (~70% smaller)
                   Use only for large repos when you need full codebase
                   Generally not needed since grep_repomix_output allows incremental retrieval
-```
+```text
 
 #### pack_remote_repository
 
-```
+```text
 mcp__repomix__pack_remote_repository({
   remote: string,
   style?: string,
@@ -69,12 +73,13 @@ mcp__repomix__pack_remote_repository({
   includePatterns?: string,
   ignorePatterns?: string
 })
-```
+```text
 
 **Purpose:** Clone and package GitHub repository
 **Returns:** Packed output with metrics, file tree, formatted code
 
 **Parameters:**
+
 - `remote` (required): GitHub URL or user/repo format
 - `style` (optional): "xml" (default), "markdown", "json", "plain"
 - `compress` (optional): Enable compression (default: false)
@@ -83,43 +88,48 @@ mcp__repomix__pack_remote_repository({
 - `ignorePatterns` (optional): Fast-glob patterns
 
 **Remote Formats:**
-```
+
+```text
 "yamadashy/repomix"
 "https://github.com/user/repo"
 "https://github.com/user/repo/tree/branch"
 "https://github.com/user/repo/tree/main/subdirectory"
-```
+```text
 
 **Security:**
+
 - Automatic .gitignore processing
 - Sensitive file detection (.env, credentials, keys)
 - Safe handling of private repositories
 
 #### attach_packed_output
 
-```
+```text
 mcp__repomix__attach_packed_output({
   path: string,
   topFilesLength?: number
 })
-```
+```text
 
 **Purpose:** Attach existing Repomix output file for analysis
 **Returns:** Output ID and content preview
 
 **Parameters:**
+
 - `path` (required): Path to directory with repomix file OR direct file path
 - `topFilesLength` (optional): Number of largest files in metrics (default: 10)
 
 **Supported Formats:**
-```
+
+```text
 .xml  - XML formatted output
 .md   - Markdown formatted output
 .txt  - Plain text output
 .json - JSON formatted output
-```
+```text
 
 **Notes:**
+
 - Calling again with same path refreshes content
 - Returns new output ID if file updated
 - Useful for pre-generated outputs
@@ -130,33 +140,35 @@ mcp__repomix__attach_packed_output({
 
 #### read_repomix_output
 
-```
+```text
 mcp__repomix__read_repomix_output({
   outputId: string,
   startLine?: number,
   endLine?: number
 })
-```
+```text
 
 **Purpose:** Read content from packed output (full or partial)
 **Returns:** File contents with specified line range
 
 **Parameters:**
+
 - `outputId` (required): ID from pack/attach operation
 - `startLine` (optional): Starting line (1-based inclusive)
 - `endLine` (optional): Ending line (1-based inclusive)
 
 **Usage:**
-```
+
+```text
 Full read: { outputId: "xxx" }
 Partial:   { outputId: "xxx", startLine: 100, endLine: 200 }
 From line: { outputId: "xxx", startLine: 500 }
 To line:   { outputId: "xxx", endLine: 1000 }
-```
+```text
 
 #### grep_repomix_output
 
-```
+```text
 mcp__repomix__grep_repomix_output({
   outputId: string,
   pattern: string,
@@ -165,12 +177,13 @@ mcp__repomix__grep_repomix_output({
   beforeLines?: number,
   afterLines?: number
 })
-```
+```text
 
 **Purpose:** Search packed output with regex (JavaScript syntax)
 **Returns:** Matching lines with optional context
 
 **Parameters:**
+
 - `outputId` (required): ID from pack/attach operation
 - `pattern` (required): JavaScript RegExp pattern
 - `ignoreCase` (optional): Case-insensitive match (default: false)
@@ -179,21 +192,23 @@ mcp__repomix__grep_repomix_output({
 - `afterLines` (optional): Context after (overrides contextLines)
 
 **Pattern Examples:**
-```
+
+```text
 "function\\s+createUser"     - Find function definitions
 "class\\s+\\w+Controller"    - Find controller classes
 "import.*from.*react"        - Find React imports
 "TODO|FIXME"                 - Find code comments
 "export\\s+default"          - Find default exports
 "\\berror\\b"                - Find exact word "error"
-```
+```text
 
 **Context Examples:**
-```
+
+```text
 { contextLines: 3 }              - 3 lines before and after
 { beforeLines: 5, afterLines: 2 } - Asymmetric context
 { contextLines: 0 }              - Match lines only (default)
-```
+```text
 
 ---
 
@@ -201,43 +216,48 @@ mcp__repomix__grep_repomix_output({
 
 #### file_system_read_file
 
-```
+```text
 mcp__repomix__file_system_read_file({
   path: string
 })
-```
+```text
 
 **Purpose:** Read file from absolute path (with security validation)
 **Returns:** File contents
 
 **Parameters:**
+
 - `path` (required): Absolute path to file
 
 **Security:**
+
 - Detects sensitive files (API keys, passwords, secrets)
 - Prevents access to credentials
 - Safe for general file reading
 
 **Use When:**
+
 - Need to read files outside packed output
 - Accessing configuration files
 - Reading supplementary documentation
 
 #### file_system_read_directory
 
-```
+```text
 mcp__repomix__file_system_read_directory({
   path: string
 })
-```
+```text
 
 **Purpose:** List directory contents with [FILE]/[DIR] indicators
 **Returns:** Formatted directory listing
 
 **Parameters:**
+
 - `path` (required): Absolute path to directory
 
 **Use When:**
+
 - Exploring project structure
 - Understanding codebase organization
 - Finding specific directories
@@ -248,7 +268,7 @@ mcp__repomix__file_system_read_directory({
 
 ### Pattern: Analyze Local Codebase
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/Users/dev/projects/myapp",
   style: "xml",
@@ -269,11 +289,11 @@ STEP 3: mcp__repomix__read_repomix_output({
   endLine: 600
 })
 RETURNS: Specific code section
-```
+```text
 
 ### Pattern: Analyze GitHub Repository
 
-```
+```text
 STEP 1: mcp__repomix__pack_remote_repository({
   remote: "facebook/react",
   style: "xml",
@@ -289,11 +309,11 @@ STEP 2: mcp__repomix__grep_repomix_output({
 RETURNS: All hook functions
 
 STEP 3: ANALYZE findings
-```
+```text
 
 ### Pattern: Code Review Workflow
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/feature-branch",
   style: "xml",
@@ -320,11 +340,11 @@ STEP 4: mcp__atl__jira_create_issue({
   summary: "Code review findings",
   description: "Findings from automated review..."
 })
-```
+```text
 
 ### Pattern: Architecture Analysis
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/project",
   style: "xml",
@@ -352,11 +372,11 @@ STEP 4: mcp__claude-flow__memory_usage({
   value: "Architecture findings...",
   namespace: "architecture"
 })
-```
+```text
 
 ### Pattern: Security Audit
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/project",
   style: "xml",
@@ -384,11 +404,11 @@ STEP 4: mcp__repomix__grep_repomix_output({
   contextLines: 3
 })
 CHECK: SQL injection risks
-```
+```text
 
 ### Pattern: Documentation Generation
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/project/src/api",
   style: "markdown",
@@ -408,11 +428,11 @@ STEP 3: mcp__atl__confluence_create_page({
   content: "Generated API docs from codebase analysis...",
   content_format: "markdown"
 })
-```
+```text
 
 ### Pattern: Attach Pre-Generated Output
 
-```
+```text
 STEP 1: mcp__repomix__attach_packed_output({
   path: "/path/to/output/repomix-output-1234.xml"
 })
@@ -428,13 +448,13 @@ STEP 3: mcp__repomix__read_repomix_output({
   startLine: 100,
   endLine: 200
 })
-```
+```text
 
 ---
 
 ## WHEN TO USE
 
-```
+```text
 USE REPOMIX FOR:
   ✅ Analyzing codebases (local or GitHub)
   ✅ Code review automation
@@ -452,7 +472,7 @@ DO NOT USE FOR:
   ❌ File modifications (use Edit/Write tools)
   ❌ Git operations (use Bash/git commands)
   ❌ Package management (use Bash/npm/pip)
-```
+```text
 
 ---
 
@@ -460,7 +480,7 @@ DO NOT USE FOR:
 
 ### With Claude-Flow Memory
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/project",
   style: "xml"
@@ -477,11 +497,11 @@ STEP 3: mcp__claude-flow__memory_usage({
   value: "Project uses repository pattern for data access...",
   namespace: "patterns"
 })
-```
+```text
 
 ### With Googler Research
 
-```
+```text
 STEP 1: mcp__googler__research_topic({
   query: "Node.js best practices error handling 2024",
   num_results: 3
@@ -500,11 +520,11 @@ STEP 3: mcp__repomix__grep_repomix_output({
 AUDIT: Current error handling
 
 STEP 4: COMPARE findings with best practices
-```
+```text
 
 ### With Context7 Documentation
 
-```
+```text
 STEP 1: mcp__context7__get-library-docs({
   context7CompatibleLibraryID: "/expressjs/express",
   topic: "middleware"
@@ -523,11 +543,11 @@ STEP 3: mcp__repomix__grep_repomix_output({
 AUDIT: Current middleware usage
 
 STEP 4: IDENTIFY improvements based on docs
-```
+```text
 
 ### With ATL Issue Tracking
 
-```
+```text
 STEP 1: mcp__repomix__pack_codebase({
   directory: "/path/to/project"
 })
@@ -546,11 +566,11 @@ STEP 3: FOR each TODO:
     issue_type: "Task",
     description: "Code location and context..."
   })
-```
+```text
 
 ### Complete Analysis Workflow
 
-```
+```text
 STEP 1: RESEARCH (Googler)
 mcp__googler__research_topic({
   query: "microservices architecture patterns 2024",
@@ -594,80 +614,92 @@ mcp__atl__confluence_create_page({
   title: "Microservices Migration Plan",
   content: "Analysis and migration strategy..."
 })
-```
+```text
 
 ---
 
 ## PATTERN LIBRARY
 
 ### Find All Function Definitions
-```
+
+```text
 pattern: "function\\s+\\w+\\s*\\(|const\\s+\\w+\\s*=\\s*\\("
-```
+```text
 
 ### Find All Class Definitions
-```
+
+```text
 pattern: "class\\s+\\w+|interface\\s+\\w+"
-```
+```text
 
 ### Find All Imports
-```
+
+```text
 pattern: "import.*from|require\\("
-```
+```text
 
 ### Find All Exports
-```
+
+```text
 pattern: "export\\s+(default|const|function|class)"
-```
+```text
 
 ### Find API Routes
-```
+
+```text
 pattern: "app\\.(get|post|put|delete)\\(|router\\.(get|post|put|delete)\\("
-```
+```text
 
 ### Find Database Queries
-```
+
+```text
 pattern: "SELECT|INSERT|UPDATE|DELETE|FROM|WHERE"
 ignoreCase: true
-```
+```text
 
 ### Find Error Handling
-```
+
+```text
 pattern: "try\\s*\\{|catch\\s*\\(|throw\\s+new"
-```
+```text
 
 ### Find Async Operations
-```
+
+```text
 pattern: "async\\s+function|await\\s+|Promise\\."
-```
+```text
 
 ### Find Configuration
-```
+
+```text
 pattern: "config\\.|process\\.env\\.|dotenv"
-```
+```text
 
 ### Find Authentication
-```
+
+```text
 pattern: "auth|login|logout|token|jwt|session"
 ignoreCase: true
-```
+```text
 
 ### Find Security Issues
-```
+
+```text
 pattern: "eval\\(|innerHTML|dangerouslySetInnerHTML|document\\.write"
-```
+```text
 
 ### Find Hardcoded Values
-```
+
+```text
 pattern: "password\\s*=\\s*['\"]|api[_-]?key\\s*=\\s*['\"]"
 ignoreCase: true
-```
+```text
 
 ---
 
 ## STYLE SELECTION GUIDE
 
-```
+```text
 xml (default)
   - Structured <file> tags
   - Best for programmatic parsing
@@ -691,13 +723,13 @@ plain
   - File separators
   - Minimal formatting
   - Fastest processing
-```
+```text
 
 ---
 
 ## COMPRESSION GUIDE
 
-```
+```text
 compress: false (default)
   - Full code content
   - Best for most use cases
@@ -712,14 +744,15 @@ compress: true
     - When you need full codebase overview
     - Initial architecture understanding
   - NOT needed if using grep_repomix_output
-```
+```text
 
 ---
 
 ## PERFORMANCE OPTIMIZATION
 
 ### Minimize Packed Size
-```
+
+```text
 EFFICIENT:
   - Use includePatterns to focus on relevant files
   - Exclude test files, build artifacts
@@ -730,10 +763,11 @@ INEFFICIENT:
   - Packing entire repository without filters
   - Including generated/compiled code
   - Including large binary files
-```
+```text
 
 ### Incremental Analysis
-```
+
+```text
 EFFICIENT:
   - Pack once, grep multiple times
   - Use grep_repomix_output for targeted searches
@@ -744,10 +778,11 @@ INEFFICIENT:
   - Re-packing for each search
   - Reading full output repeatedly
   - Not using grep for searches
-```
+```text
 
 ### Pattern Efficiency
-```
+
+```text
 EFFICIENT:
   - Specific patterns that match target code
   - Use ignoreCase only when needed
@@ -757,47 +792,50 @@ INEFFICIENT:
   - Overly broad patterns (e.g., ".*")
   - Always requesting large context
   - Case-insensitive when not needed
-```
+```text
 
 ---
 
 ## ERROR HANDLING
 
 ### Pack Failures
-```
+
+```text
 IF pack_codebase fails:
   1. VERIFY directory path is absolute
   2. CHECK directory exists and is accessible
   3. VERIFY includePatterns syntax
   4. CHECK ignorePatterns don't exclude everything
   5. ENSURE sufficient disk space
-```
+```text
 
 ### Remote Repository Failures
-```
+
+```text
 IF pack_remote_repository fails:
   1. VERIFY GitHub URL format
   2. CHECK repository exists and is accessible
   3. CHECK network connectivity
   4. VERIFY authentication for private repos
   5. TRY alternative URL format
-```
+```text
 
 ### Grep No Results
-```
+
+```text
 IF grep_repomix_output returns no matches:
   1. VERIFY pattern syntax (JavaScript RegExp)
   2. TRY ignoreCase: true
   3. SIMPLIFY pattern to test
   4. CHECK if files were included in pack
   5. VERIFY outputId is correct
-```
+```text
 
 ---
 
 ## DECISION TREE
 
-```
+```text
 START
   |
   ├─ Need to analyze local codebase? → YES → pack_codebase
@@ -811,13 +849,13 @@ START
   ├─ Need specific code section? → YES → read_repomix_output
   |
   └─ Need to read single file? → YES → file_system_read_file
-```
+```text
 
 ---
 
 ## QUICK REFERENCE
 
-```
+```text
 PACK LOCAL:
   mcp__repomix__pack_codebase({
     directory: "/absolute/path",
@@ -851,7 +889,7 @@ WHEN TO USE:
 
 WHEN NOT TO USE:
   Single file reading, code execution, file modifications, git operations
-```
+```text
 
 ---
 

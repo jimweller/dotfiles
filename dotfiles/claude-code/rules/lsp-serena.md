@@ -1,22 +1,16 @@
 # LSP-First Navigation: Serena Provider
 
-When the Serena MCP server is connected, use Serena tools for semantic code navigation before falling back to Grep, Glob, or Read.
+ALWAYS prefer Serena over Grep/Glob/Read for code navigation.
 
 ## Serena Tool Mapping
 
-| Task | Serena Tool | Instead of |
-|------|-------------|------------|
-| Find definition | `mcp__serena__find_symbol` | Grep for function name |
-| Find references | `mcp__serena__find_referencing_symbols` | Grep for usages |
-| Understand a file | `mcp__serena__get_symbols_overview` | Read entire file |
-| Find callers | `mcp__serena__find_referencing_symbols` | Grep for callers |
-| Search symbols | `mcp__serena__find_symbol` | Glob + Grep |
-
-## When to Use Serena
-
-- Navigating definitions, references, or call sites in supported languages
-- Understanding file structure before reading the full file
-- Start with `get_symbols_overview` when exploring an unfamiliar file
+| Task              | Serena Tool                             | Instead of             |
+| ----------------- | --------------------------------------- | ---------------------- |
+| Find definition   | `mcp__serena__find_symbol`              | Grep for function name |
+| Find references   | `mcp__serena__find_referencing_symbols` | Grep for usages        |
+| Understand a file | `mcp__serena__get_symbols_overview`     | Read entire file       |
+| Find callers      | `mcp__serena__find_referencing_symbols` | Grep for callers       |
+| Search symbols    | `mcp__serena__find_symbol`              | Glob + Grep            |
 
 ## When to Fall Back to Grep/Glob/Read
 

@@ -5,6 +5,8 @@ context: fork
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🔍
 
 # Ralph Reviewer
@@ -13,19 +15,19 @@ Launch 3 independent plan reviews of the Ralph Wiggum loop files in parallel usi
 
 ## Models
 
-| Label   | Model ID                        |
-|---------|---------------------------------|
-| openai  | openai/gpt-5.3-codex            |
-| gemini  | google/gemini-3.1-pro-preview   |
-| claude  | az-anthropic/claude-opus-4-6    |
+| Label  | Model ID                      |
+| ------ | ----------------------------- |
+| openai | openai/gpt-5.3-codex          |
+| gemini | google/gemini-3.1-pro-preview |
+| claude | az-anthropic/claude-opus-4-6  |
 
 ## Procedure
 
 ### Step 1: Validate Ralph Files Exist
 
-```
+```text
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-```
+```text
 
 Verify these files exist in `$PROJECT_ROOT/.llmdocs/`:
 
@@ -41,7 +43,7 @@ Abort if any are missing.
 rm -f "$PROJECT_ROOT"/.llmdocs/_ralph-review-openai.md \
       "$PROJECT_ROOT"/.llmdocs/_ralph-review-gemini.md \
       "$PROJECT_ROOT"/.llmdocs/_ralph-review-claude.md
-```
+```text
 
 ### Step 3: Read Files and Build Prompt Content
 
@@ -53,16 +55,16 @@ Read these files and concatenate their contents into a single `CONTEXT` string:
 
 For each file, wrap it as:
 
-```
+```text
 === <relative-path> ===
 <file contents>
-```
+```text
 
 ### Step 4: Construct the Review Prompt
 
 Build the prompt that each opencode process will execute. Replace `<PROJECT_ROOT>` with the resolved value and `<CONTEXT>` with the concatenated file contents from step 3.
 
-```
+````text
 PROMPT="You are a plan reviewer running headless in a non-interactive session. There is no user present. Do not ask questions. Do not prompt for confirmation. Do not stop to wait for input.
 
 YOUR PRIMARY OBJECTIVE IS TO WRITE A FILE. Everything else is preparation. After completing your review, your VERY NEXT action must be a tool call that writes the output file. Do not summarize, do not reflect, do not plan — write the file immediately.
@@ -193,17 +195,17 @@ Write the file to `<PROJECT_ROOT>/.llmdocs/_ralph-review<MODEL_LABEL>.md` using 
 ## Summary
 
 <overall assessment and top 3 recommendations>
-```
+````text
 
 Finding format: `- **[severity]** Title. Description.`
 
 Every section must be present. If no findings for an area, write 'No findings.' under its heading.
 
-Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/_ralph-review<MODEL_LABEL>.md'
+Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/\_ralph-review<MODEL_LABEL>.md'
 
 If the file does not exist, write it again. Do not exit without the file."
 
-```
+````text
 
 ### Step 5: Write Prompt to File
 
@@ -218,7 +220,7 @@ CLAUDE_DIR=$(mktemp -d)
 cat > /tmp/ralph-review-prompt.txt <<'PROMPT_EOF'
 <the prompt from step 4>
 PROMPT_EOF
-```
+````text
 
 ### Step 6: Launch 3 Separate Background Bash Tasks
 
@@ -239,7 +241,7 @@ opencode run \
   --title "Ralph Review - OpenAI" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/openai.ndjson" 2>"$STATE_DIR/openai.log"
-```
+```text
 
 **Gemini:**
 
@@ -254,7 +256,7 @@ opencode run \
   --title "Ralph Review - Gemini" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/gemini.ndjson" 2>"$STATE_DIR/gemini.log"
-```
+```text
 
 **Claude:**
 
@@ -269,7 +271,7 @@ opencode run \
   --title "Ralph Review - Claude" \
   "$(cat /tmp/ralph-review-prompt.txt)" \
   > "$STATE_DIR/claude.ndjson" 2>"$STATE_DIR/claude.log"
-```
+```text
 
 All 3 must be launched in parallel as separate background tasks. Do NOT use `&` in a single shell.
 
@@ -282,9 +284,9 @@ Each opencode process produces two output files:
 
 Log lines are structured text, one per line:
 
-```
+```text
 INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating instance
-```
+```text
 
 ### Step 7: Monitor and Wait
 
@@ -301,7 +303,7 @@ tail -1 "$NDJSON" 2>/dev/null | jq -r '.part.reason // empty'
 
 # Check for errors in NDJSON events
 grep '"type":"error"' "$NDJSON" 2>/dev/null
-```
+```text
 
 **Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.log`):
 
@@ -311,7 +313,7 @@ grep -E "^(ERROR|WARN)" "$LOGFILE" 2>/dev/null
 
 # Tail recent log activity
 tail -5 "$LOGFILE" 2>/dev/null
-```
+```text
 
 ### Step 8: Report Results
 
@@ -328,7 +330,7 @@ Report per model:
 ```bash
 rm -rf "$STATE_DIR"
 rm -f /tmp/ralph-review-prompt.txt
-```
+```text
 
 ## Expected Output Files
 
@@ -360,14 +362,14 @@ tail -1 "$NDJSON" | jq -r 'select(.type=="step_finish") | .part.reason'
 jq -s '[.[] | select(.type=="step_finish") | .part.cost] | add' "$NDJSON"
 # All errors from NDJSON events
 jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
-```
+```text
 
 Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.log`):
 
 ```bash
 # All errors and warnings from text logs
 grep -E "^(ERROR|WARN)" "$LOGFILE"
-```
+```text
 
 ## Rules
 

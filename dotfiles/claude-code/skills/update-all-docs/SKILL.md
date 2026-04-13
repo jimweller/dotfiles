@@ -5,6 +5,8 @@ disable-model-invocation: true
 context: fork
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 📚
 
 # Update All Documentation

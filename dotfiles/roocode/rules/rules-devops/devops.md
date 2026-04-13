@@ -69,3 +69,4 @@ write_to_file(".roo-audit/activity-logs/$(date +%Y-%m-%d-%H%M%S)-devops.md", "
 **Results**: [Summary of the results]
 **Escalation**: [Summary of the escalation to the orchestrator]
 ")
+```

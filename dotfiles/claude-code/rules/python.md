@@ -39,7 +39,7 @@ Virtual environment lives at `.venv/` at the project root. Never `venv/` or `env
 
 ## pyproject.toml Template
 
-Use `uv init --lib` defaults for `[build-system]`. Do not override the build backend.
+Use `uv init --lib` defaults for `[build-system]`.
 
 ```toml
 [project]
@@ -69,7 +69,7 @@ fail_under = 90
 line-length = 100
 ```
 
-Use `[dependency-groups]` for dev deps. Older projects may use `[project.optional-dependencies]` but new projects use dependency-groups.
+New projects use `[dependency-groups]` for dev deps.
 
 Pytest config lives in `pyproject.toml`. Never create a separate `pytest.ini`.
 
@@ -79,15 +79,15 @@ Set `.python-version` at the project root. Match `requires-python` in `pyproject
 
 ## Testing
 
-| Directory | Purpose |
-|-----------|---------|
-| tests/unit/ | Isolated unit tests with mocks |
-| tests/integration/ | Tests across real subsystems |
-| tests/contract/ | Interface contract verification |
-| tests/property/ | Property-based tests |
-| tests/regression/ | Bug regression coverage |
-| tests/smoke/ | Minimal viability verification |
-| tests/e2e/ | Full end-to-end workflow tests |
+| Directory          | Purpose                         |
+| ------------------ | ------------------------------- |
+| tests/unit/        | Isolated unit tests with mocks  |
+| tests/integration/ | Tests across real subsystems    |
+| tests/contract/    | Interface contract verification |
+| tests/property/    | Property-based tests            |
+| tests/regression/  | Bug regression coverage         |
+| tests/smoke/       | Minimal viability verification  |
+| tests/e2e/         | Full end-to-end workflow tests  |
 
 Run tests: `uv run pytest`
 
@@ -106,11 +106,3 @@ Line length is 100 for both ruff and black.
 ## New Project
 
 Use `uv init --lib <name>` to scaffold. Edit `pyproject.toml` to add dependency-groups and tool config per the template above. Run `uv sync` to create `.venv` and install deps.
-
-## Environment
-
-Source `.envrc` before running scripts when present:
-
-```bash
-PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd) && [[ -f "$PROJECT_ROOT/.envrc" ]] && source "$PROJECT_ROOT/.envrc"
-```

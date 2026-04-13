@@ -102,10 +102,12 @@ structure. AI slop is NEVER allowed.
   repetition of the syntax. Only add comments for critical, complex or nuanced
   code blocks. Obvious comments are unprofessional, distracting, and wasteful.
   For example this is an obvious comment.
-  
+
   ```
-// connect to server"
-"connect(server);"
+  // connect to server"
+  "connect(server);"
+  ```
+
 ```
 
 - ALWAYS remove unused code blocks. Variables, functions, methods, and code
@@ -114,11 +116,12 @@ structure. AI slop is NEVER allowed.
 
 ## Research Rules
 
-The assistant has access to advanced research tools. 
+The assistant has access to advanced research tools.
 
-The googler MCP tool can be used to discover content and scrape pages. 
+The googler MCP tool can be used to discover content and scrape pages.
 
 The context7 MCP tool can be used to research technical documenatation.
 
 ALWAYS use advanced tools for research
 ALWAYS verify technical information with the latest documentation
+```

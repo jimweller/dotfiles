@@ -4,12 +4,14 @@ description: Update project documentation (CLAUDE.md + .llmdocs/). Use after sig
 argument-hint: "[optional guidance]"
 ---
 
-STARTER_CHARACTER = 📐
+<!-- markdownlint-disable-file MD041 -->
 
+STARTER_CHARACTER = 📐
 
 # Update Project Documentation
 
 Two responsibilities:
+
 1. **CLAUDE.md** — concise project overview (always loaded)
 2. **.llmdocs/** — detailed per-concept docs (loaded on demand). EXCLUDE files that start with underscore, `_*`.
 
@@ -38,7 +40,7 @@ TARGET_DIR=<directory containing CLAUDE.md and .llmdocs/>
 BASELINE=$(git log -1 --format=%H -- "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.llmdocs/")
 git diff ${BASELINE}..HEAD --stat -- "$TARGET_DIR"
 git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
-```
+```text
 
 3. Explore codebase at that directory level and below
 4. Review conversation history for relevant decisions, changes, or lessons learned
@@ -57,26 +59,32 @@ Target: **under 500 lines**. Every line must earn its place.
 <1-2 line purpose of this directory/component>
 
 ## Stack
+
 <bullet list: language, frameworks, key deps relevant to this level>
 
 ## Architecture
+
 <key dirs and what they contain at this level>
 
 ## Commands
+
 <build, test, lint, deploy — commands only>
 
 ## Conventions
+
 <style, naming, patterns — only what prevents mistakes>
 
 ## Key Concepts
+
 <domain terms, business logic Claude must know at this level>
 
 ## Docs
+
 Detailed docs in `.llmdocs/`:
+
 - @.llmdocs/architecture.md — <1-line description>
 - @.llmdocs/data-model.md — <1-line description>
-
-```
+```text
 
 ### CLAUDE.md Rules
 
@@ -109,7 +117,7 @@ Use the path specified in existing CLAUDE.md, or default `.llmdocs/` at the targ
 
 Flat, 1 file per concept. The first 5 files are **required** and must always exist. Additional concept files are created as needed.
 
-```
+```text
 .llmdocs/
   architecture.md    # Components, interactions, data flow (required)
   api.md             # Endpoints, request/response, authentication, authorization (required)
@@ -118,7 +126,7 @@ Flat, 1 file per concept. The first 5 files are **required** and must always exi
   ops.md             # Maintenance, operations, runbooks (required)
   <concept>.md       # Domain-specific as needed
   _*.md              # ignored. do not read, update, or reference
-```
+```text
 
 ### Ignored Files
 
@@ -132,8 +140,9 @@ Never read, update, list, or reference files in `.llmdocs/` that are prefixed wi
 <1-line purpose>
 
 ## <Section>
+
 <content: headers, tables, code blocks — no prose paragraphs>
-```
+```text
 
 ### .llmdocs/ Rules
 
@@ -148,6 +157,7 @@ Never read, update, list, or reference files in `.llmdocs/` that are prefixed wi
 ## 3. Summary Output
 
 After running, output:
+
 - Files created/modified
 - CLAUDE.md changes (sections added/updated/removed)
 - Docs updated/created (or "no doc changes needed")

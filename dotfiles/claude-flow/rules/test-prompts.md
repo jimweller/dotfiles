@@ -19,7 +19,7 @@ cp -r /path/to/docs ~/test-claude-flow-app/
 
 # Navigate to new directory
 cd ~/test-claude-flow-app
-```
+```text
 
 ### Step 2: Verify MCP Servers
 
@@ -34,7 +34,7 @@ claude mcp list
 # - agentdb ✓
 # - repomix ✓
 # - atl ✓ (optional)
-```
+```text
 
 ### Step 3: Initialize Claude-Flow
 
@@ -44,7 +44,7 @@ npx -y claude-flow@latest init --force
 
 # Verify initialization
 npx claude-flow@alpha status
-```
+```text
 
 ---
 
@@ -54,7 +54,7 @@ npx claude-flow@alpha status
 
 **Prompt:**
 
-```
+```text
 Build a REST API authentication service with the following requirements:
 
 REQUIREMENTS:
@@ -84,9 +84,10 @@ DELIVERABLES:
 - Test suite with >80% coverage
 - API documentation
 - Stored knowledge in memory for future reference
-```
+```text
 
 **Expected Behavior:**
+
 - ✅ Googler researches authentication best practices 2024
 - ✅ Context7 fetches Express.js, jsonwebtoken, bcrypt docs
 - ✅ Claude-Flow initializes hierarchical swarm
@@ -102,7 +103,7 @@ DELIVERABLES:
 
 **Prompt:**
 
-```
+```text
 Build a complete microservices-based task management system with the following architecture:
 
 PROJECT: TaskFlow - Microservices Task Management Platform
@@ -151,9 +152,10 @@ DELIVERABLES:
 - Architecture documentation (Confluence if ATL available)
 - Stored knowledge in memory across namespaces (architecture, api, patterns)
 - AgentDB patterns for future microservices projects
-```
+```text
 
 **Expected Behavior:**
+
 - ✅ Repomix packs any relevant repos (if provided)
 - ✅ Googler researches microservices + Docker + testing patterns (3-4 sources)
 - ✅ Context7 fetches docs for 5+ libraries in parallel
@@ -172,7 +174,7 @@ DELIVERABLES:
 
 **Prompt:**
 
-```
+```text
 I need to build a production-ready SaaS platform for team collaboration. This is a multi-week project requiring comprehensive planning and execution.
 
 PROJECT: CollabHub - Enterprise Team Collaboration Platform
@@ -248,9 +250,10 @@ OUTPUT REQUIREMENTS:
 - Demonstrate concurrent execution patterns
 - Explain memory organization strategy
 - Show AgentDB learning patterns stored
-```
+```text
 
 **Expected Behavior:**
+
 - ✅ Repomix analyzes 2-3 GitHub repos for SaaS patterns
 - ✅ Googler performs 5+ research queries (multi-tenant, real-time, payments, auth, RBAC)
 - ✅ Context7 fetches 10+ library documentation sets in parallel
@@ -271,6 +274,7 @@ OUTPUT REQUIREMENTS:
 ### After Running Test Prompt
 
 **Verify Concurrent Execution:**
+
 - [ ] All research/doc fetching happened in SAME message
 - [ ] All agents spawned in SAME message
 - [ ] TodoWrite called ONCE with 8+ todos
@@ -278,6 +282,7 @@ OUTPUT REQUIREMENTS:
 - [ ] Memory operations batched by namespace
 
 **Verify Tool Integration:**
+
 - [ ] Googler: Research queries executed
 - [ ] Context7: Library docs fetched
 - [ ] Repomix: Codebases analyzed (if applicable)
@@ -287,6 +292,7 @@ OUTPUT REQUIREMENTS:
 - [ ] Task Tool: Agents spawned (PRIMARY execution)
 
 **Verify File Organization:**
+
 - [ ] NO files in root directory (except CLAUDE.md, package.json, etc.)
 - [ ] Source files in /src or /services
 - [ ] Tests in /tests
@@ -294,12 +300,14 @@ OUTPUT REQUIREMENTS:
 - [ ] Config in /config
 
 **Verify Memory & Learning:**
+
 - [ ] Memory stored in appropriate namespaces
 - [ ] AgentDB patterns recorded
 - [ ] Hooks executed (check output for hook calls)
 - [ ] Session created for resumable work
 
 **Verify Code Quality:**
+
 - [ ] Working implementation
 - [ ] Tests pass (if tests written)
 - [ ] Code follows best practices from research
@@ -312,23 +320,27 @@ OUTPUT REQUIREMENTS:
 ### If Tools Not Used
 
 **Check CLAUDE.md is in directory:**
+
 ```bash
 ls -la CLAUDE.md docs/
-```
+```text
 
 **Check MCP servers connected:**
+
 ```bash
 claude mcp list
-```
+```text
 
 **Verify claude-flow initialized:**
+
 ```bash
 npx claude-flow@alpha status
-```
+```text
 
 ### If Execution Not Concurrent
 
 **Check prompt explicitly states:**
+
 - "in SINGLE message"
 - "ALL operations together"
 - "batch ALL todos"
@@ -337,6 +349,7 @@ npx claude-flow@alpha status
 ### If Files in Root
 
 **Reminder in prompt:**
+
 - "NEVER save to root folder"
 - "Organize in /src, /tests, /docs"
 - "Follow file organization rules"
@@ -346,6 +359,7 @@ npx claude-flow@alpha status
 ## 📊 SUCCESS METRICS
 
 ### Level 1 (Simple Feature)
+
 - ✅ 3+ MCP tools used
 - ✅ 3+ agents spawned
 - ✅ Files organized correctly
@@ -353,6 +367,7 @@ npx claude-flow@alpha status
 - ✅ Memory stored
 
 ### Level 2 (Complex Application)
+
 - ✅ 5+ MCP tools used
 - ✅ 6+ agents spawned
 - ✅ Microservices architecture
@@ -361,6 +376,7 @@ npx claude-flow@alpha status
 - ✅ AgentDB patterns stored
 
 ### Level 3 (Real-World System)
+
 - ✅ ALL MCP tools used
 - ✅ 8+ agents spawned
 - ✅ Hive-Mind session created
@@ -374,7 +390,8 @@ npx claude-flow@alpha status
 ## 💡 TIPS FOR BEST RESULTS
 
 ### Prompt Engineering
-```
+
+```text
 GOOD PROMPT ELEMENTS:
 - Explicit tool mentions: "USE Googler to research..."
 - Concurrent execution: "in SINGLE message"
@@ -387,17 +404,18 @@ AVOID:
 - No tool guidance: assuming Claude will auto-select
 - Sequential language: "first do X, then do Y"
 - Root file mentions: "create README.md" (should be /docs/README.md)
-```
+```text
 
 ### Verification
-```
+
+```text
 AFTER EXECUTION:
 1. Check file structure: ls -R
 2. Check memory: npx claude-flow@alpha memory list --reasoningbank
 3. Check AgentDB: Look for pattern storage confirmations
 4. Check git history: git log (if initialized)
 5. Run tests: npm test (if created)
-```
+```text
 
 ---
 

@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 90,
   "env": {
     "CLAUDE_CODE_USE_FOUNDRY": "1",
@@ -10,7 +11,9 @@
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6[1M]",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "ENABLE_TOOL_SEARCH": "auto:1",
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_SHELL": "bash",
     "DISABLE_COST_WARNINGS": "1",
@@ -20,6 +23,10 @@
     "DISABLE_TELEMETRY": "1"
   },
   "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "defaultMode": "default"
   },
@@ -100,6 +107,24 @@
             "command": "node ~/.claude/hooks/lsp-pre-delegation.js"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/command-safety-scanner.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -120,6 +145,17 @@
           {
             "type": "command",
             "command": "node ~/.claude/hooks/lsp-session-reset.js"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/stop-phrase-guard.sh"
           }
         ]
       }

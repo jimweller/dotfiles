@@ -5,6 +5,8 @@ argument-hint: "[create|list|merge|rebase|remove] [branch-name]"
 disable-model-invocation: true
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 STARTER_CHARACTER = 🎋
 
 # Git Worktree Management
@@ -41,6 +43,7 @@ git worktree add "$(dirname "$REPO_ROOT")/$REPO_NAME-<branch>" -b <branch>
 ```
 
 After creation, remind the user:
+
 - Run `/worktree-secrets` in the new worktree to copy `.envrc` and GPG keys
 - Open a new terminal in the worktree directory
 
@@ -89,6 +92,7 @@ If there are conflicts, help the user resolve them. After successful rebase, rem
 Remove a worktree and delete its branch. Must be run from the main worktree.
 
 **Pre-checks:**
+
 1. Verify the current worktree is the main branch. If not, refuse.
 2. Verify the branch is merged into main using `git branch --merged`. If not merged, refuse and instruct the user to merge first.
 
