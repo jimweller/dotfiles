@@ -17,18 +17,26 @@ set -euo pipefail
 
 Never use `#!/bin/bash`. Never omit `set` flags in scripts.
 
-## Environment Sourcing
+## Finding Project Root
 
-- Not every working directory is a git repo or has a .envrc. Check before attempting to source.
-- NEVER use `source .envrc` with a relative path
-- When sourcing: `PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd) && [[ -f "$PROJECT_ROOT/.envrc" ]] && source "$PROJECT_ROOT/.envrc"`
-
-## Script Directory
-
-To find the directory a script is running from:
+In a git repo:
 
 ```bash
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+```
+
+In a non-git directory (script-relative):
+
+```bash
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+```
+
+## Environment Sourcing
+
+NEVER use `source .envrc` with a relative path. Resolve `PROJECT_ROOT` using the methods above, then source from it using fully qualified paths:
+
+```bash
+source "$PROJECT_ROOT/.envrc"
 ```
 
 ## Quoting

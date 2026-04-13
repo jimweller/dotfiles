@@ -8517,7 +8517,63 @@
         "schema.test.ts"
       ],
       "exampleFilesGeneratedAt": 1775949748062,
-      "hasCompletedProjectOnboarding": true
+      "hasCompletedProjectOnboarding": true,
+      "lastCost": 1.93692325,
+      "lastAPIDuration": 191504,
+      "lastAPIDurationWithoutRetries": 191181,
+      "lastToolDuration": 574,
+      "lastDuration": 134433845,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 394,
+      "lastTotalOutputTokens": 6694,
+      "lastTotalCacheCreationInputTokens": 153631,
+      "lastTotalCacheReadInputTokens": 1618035,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.01,
+      "lastFpsLow1Pct": 259.14,
+      "lastModelUsage": {
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 52,
+          "outputTokens": 6682,
+          "cacheReadInputTokens": 1618035,
+          "cacheCreationInputTokens": 153631,
+          "webSearchRequests": 0,
+          "costUSD": 1.9365212499999997
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 342,
+          "outputTokens": 12,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.000402
+        }
+      },
+      "lastSessionId": "8f5474b9-30c5-47d1-8a0c-14480a799d94",
+      "lastSessionMetrics": {
+        "frame_duration_ms_count": 973,
+        "frame_duration_ms_min": 0.07100000000002638,
+        "frame_duration_ms_max": 6.589042000006884,
+        "frame_duration_ms_avg": 0.7253677358666386,
+        "frame_duration_ms_p50": 0.5514580000017304,
+        "frame_duration_ms_p95": 2.721975200029555,
+        "frame_duration_ms_p99": 3.785938039978357,
+        "hook_duration_ms_count": 73,
+        "hook_duration_ms_min": 175,
+        "hook_duration_ms_max": 776,
+        "hook_duration_ms_avg": 235.21917808219177,
+        "hook_duration_ms_p50": 200,
+        "hook_duration_ms_p95": 666.199999999999,
+        "hook_duration_ms_p99": 770.96,
+        "pre_tool_hook_duration_ms_count": 41,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 218,
+        "pre_tool_hook_duration_ms_avg": 108.09756097560975,
+        "pre_tool_hook_duration_ms_p50": 179,
+        "pre_tool_hook_duration_ms_p95": 208,
+        "pre_tool_hook_duration_ms_p99": 214
+      }
     },
     "/Users/jimweller/scratch/Sunset": {
       "allowedTools": [],
@@ -9013,8 +9069,8 @@
       "lastUsedAt": 1775830554860
     },
     "commit": {
-      "usageCount": 164,
-      "lastUsedAt": 1776081438155
+      "usageCount": 165,
+      "lastUsedAt": 1776086619369
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
