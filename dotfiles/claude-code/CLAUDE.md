@@ -68,7 +68,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Do not add comments to production code. Keep it clean unless asked.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
 - Never use emojis or glyphs in code. Keep it text only unless asked.
-- Do not assume fallbacks are needed. Fallbacks like "|| or true", trying a different package, or generic try:catch will mask errors that should be explicitly managed.
+- Do not add fallbacks that hide failures. No `|| true`, no silent catch-all exception handlers, no automatic package substitution. Errors should surface, not be swallowed.
 
 ## Git Workflow
 
@@ -80,12 +80,6 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Before running git revert, git checkout, git restore, or any destructive git operation, ALWAYS copy or back up untracked and modified files first. These operations can destroy untracked files that are not recoverable from git history.
 - Before `git reset --hard`, check for files that are tracked but should be gitignored (force-added in the past). Use `git ls-files` + `git check-ignore` to detect conflicts. A reset overwrites tracked files regardless of gitignore rules.
 
-## Environment Sourcing
-
-- Not every working directory is a git repo or has a .envrc. Check before attempting to source.
-- NEVER use `source .envrc` with a relative path
-- When sourcing: `PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd) && [[ -f "$PROJECT_ROOT/.envrc" ]] && source "$PROJECT_ROOT/.envrc"`
-- Do not attempt to source
 
 ## Project Architecture
 
