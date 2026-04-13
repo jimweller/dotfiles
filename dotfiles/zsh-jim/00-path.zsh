@@ -38,10 +38,17 @@ if [ -d "$HOME/.config/dotfiles/scripts" ]; then
   export PATH="$HOME/.config/dotfiles/scripts:$PATH"
 fi
 
+# dotnet
+if [ -d "$HOME/.dotnet/tools" ]; then
+  export PATH="$HOME/.dotnet/tools:$PATH"
+fi
+
+
 # Add pipx install of az
 if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

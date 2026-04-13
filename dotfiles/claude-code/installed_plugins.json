@@ -1,23 +1,6 @@
 {
   "version": 2,
   "plugins": {
-    "gopls-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2025-12-29T06:47:45.642Z",
-        "lastUpdated": "2026-04-10T04:11:29.957Z"
-      },
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/gopls-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-15T21:00:45.440Z",
-        "lastUpdated": "2026-03-15T21:00:45.440Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
-      }
-    ],
     "ralph-loop@claude-plugins-official": [
       {
         "scope": "user",
@@ -40,63 +23,20 @@
     ],
     "understand-anything@understand-anything": [
       {
-        "scope": "local",
-        "projectPath": "/Users/jimweller/work/cwqi-sunset",
+        "scope": "user",
         "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/1.0.2",
         "version": "1.0.2",
         "installedAt": "2026-03-15T15:10:25.342Z",
-        "lastUpdated": "2026-03-15T15:10:25.342Z",
+        "lastUpdated": "2026-04-13T06:32:28.250Z",
         "gitCommitSha": "4e9539b20db5a8ceeec712c37ddcb44be9622d22"
-      }
-    ],
-    "typescript-lsp@claude-plugins-official": [
+      },
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-16T07:15:01.889Z",
-        "lastUpdated": "2026-03-16T07:15:01.889Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
-      }
-    ],
-    "pyright-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/pyright-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-16T07:15:13.803Z",
-        "lastUpdated": "2026-03-16T07:15:13.803Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
-      }
-    ],
-    "csharp-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/csharp-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-16T07:15:27.292Z",
-        "lastUpdated": "2026-03-16T07:15:27.292Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
-      }
-    ],
-    "rust-analyzer-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-16T07:15:37.965Z",
-        "lastUpdated": "2026-03-16T07:15:37.965Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
-      }
-    ],
-    "jdtls-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/jdtls-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-03-16T07:15:59.715Z",
-        "lastUpdated": "2026-03-16T07:15:59.715Z",
-        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+        "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/04972b63f6d0",
+        "version": "04972b63f6d0",
+        "installedAt": "2026-04-11T23:23:07.097Z",
+        "lastUpdated": "2026-04-11T23:23:07.097Z",
+        "gitCommitSha": "04972b63f6d0684447f8fe6fd2281ebb2f2c75e6"
       }
     ],
     "mcg-atlassian@sead-claude-marketplace": [

@@ -52,6 +52,7 @@
       glob: true
       path: dotfiles/powershell/*
     ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
+    ~/.serena/serena_config.yml: dotfiles/serena/serena_config.yml
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
     ~/.config/opencode/agents/:
@@ -75,6 +76,15 @@
     ~/.claude/hooks/:
       glob: true
       path: dotfiles/claude-code/hooks/*
+    ~/.claude/hooks/:
+      glob: true
+      path: dotfiles/claude-code/tools/lsp-enforcement-kit/hooks/*.js
+    ~/.claude/hooks/lib/:
+      glob: true
+      path: dotfiles/claude-code/tools/lsp-enforcement-kit/hooks/lib/*.js
+    ~/.claude/rules/:
+      glob: true
+      path: dotfiles/claude-code/rules/*
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint-cli2.jsonc
     ~/.prettierrc: dotfiles/prettierrc
 

@@ -1,10 +1,8 @@
 ---
-name: python
-description: Python development. Auto-load when working in Python projects (pyproject.toml, .py files, uv.lock, .python-version detected, pip, poetry, venv).
-user-invocable: false
+paths:
+  - "**/*.py"
+  - "**/pyproject.toml"
 ---
-
-STARTER_CHARACTER = 🐍
 
 # Python Development
 

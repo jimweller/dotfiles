@@ -16,7 +16,8 @@
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-    "DISABLE_TELEMETRY": "1"
+    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"
   },
   "includeCoAuthoredBy": false,
   "model": "opus",
@@ -36,8 +37,27 @@
     "pyright-lsp@claude-plugins-official": true,
     "csharp-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true
+    "jdtls-lsp@claude-plugins-official": true,
+    "mcg-atlassian@sead-claude-marketplace": true,
+    "claude-mem@thedotmack": true,
+    "mcg-status-updates@devx-claude-marketplace": true,
+    "mcg-lookup@sead-claude-marketplace": true
   },
+  "extraKnownMarketplaces": {
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    },
+    "devx-claude-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
+      }
+    }
+  },
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PreCompact": [
