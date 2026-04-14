@@ -50,6 +50,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - filler transitions such as "Moreover" and "Furthermore"
 - vague claims without evidence
 - biography or credibility claims not backed by provided context
+- leading prepositional or adverbial phrases ("To avoid X, ...", "When a thing Y, ...") -- put the subject first. If/then conditionals are exempt.
 
 ## General Preferences
 
