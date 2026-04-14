@@ -67,7 +67,7 @@
     ~/.claude/settings-aws.json: dotfiles/claude-code/claude_settings_json_aws
     ~/.claude/settings-azure.json: dotfiles/claude-code/claude_settings_json_azure
     ~/.claude/statusline-command.sh: dotfiles/claude-code/statusline-command.sh
-    ~/.claude/CLAUDE.md: dotfiles/claude-code/CLAUDE.md
+    ~/.claude/CLAUDE.md: dotfiles/claude-code/claude_md.md
     ~/.claude/plugins/known_marketplaces.json: dotfiles/claude-code/known_marketplaces.json
     ~/.claude/plugins/installed_plugins.json: dotfiles/claude-code/installed_plugins.json
     ~/.claude/skills/:

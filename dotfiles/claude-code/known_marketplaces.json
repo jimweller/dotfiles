@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-04-13T14:24:28.367Z"
+    "lastUpdated": "2026-04-14T11:45:36.515Z"
   },
   "agent-browser": {
     "source": {
@@ -13,7 +13,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-04-09T00:16:54.344Z"
+    "lastUpdated": "2026-04-13T15:42:34.129Z"
   },
   "sead-claude-marketplace": {
     "source": {
@@ -21,7 +21,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-04-03T18:04:15.091Z"
+    "lastUpdated": "2026-04-13T15:42:37.225Z"
   },
   "understand-anything": {
     "source": {
@@ -29,7 +29,7 @@
       "repo": "Lum1104/Understand-Anything"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/understand-anything",
-    "lastUpdated": "2026-04-09T00:16:57.622Z"
+    "lastUpdated": "2026-04-13T15:42:45.495Z"
   },
   "thedotmack": {
     "source": {
@@ -37,7 +37,7 @@
       "repo": "thedotmack/claude-mem"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
-    "lastUpdated": "2026-04-09T00:17:08.448Z"
+    "lastUpdated": "2026-04-13T15:42:36.417Z"
   },
   "devx-claude-marketplace": {
     "source": {
@@ -45,6 +45,6 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-04-08T23:16:03.704Z"
+    "lastUpdated": "2026-04-13T15:42:42.035Z"
   }
 }

@@ -14,20 +14,20 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/e4e2fe8633be",
-        "version": "e4e2fe8633be",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/2114bdf84751",
+        "version": "2114bdf84751",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-09T00:24:42.083Z",
+        "lastUpdated": "2026-04-13T15:39:59.561Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
     "understand-anything@understand-anything": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/1.0.2",
-        "version": "1.0.2",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/2.3.1",
+        "version": "2.3.1",
         "installedAt": "2026-03-15T15:10:25.342Z",
-        "lastUpdated": "2026-04-13T06:32:28.250Z",
+        "lastUpdated": "2026-04-13T15:40:10.690Z",
         "gitCommitSha": "4e9539b20db5a8ceeec712c37ddcb44be9622d22"
       },
       {
@@ -52,10 +52,10 @@
     "claude-mem@thedotmack": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/12.0.1",
-        "version": "12.0.1",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/12.1.0",
+        "version": "12.1.0",
         "installedAt": "2026-03-30T05:30:52.876Z",
-        "lastUpdated": "2026-04-09T00:24:42.260Z",
+        "lastUpdated": "2026-04-13T15:40:02.909Z",
         "gitCommitSha": "d06882126fe24f6ebcbe433385daeb8322ba8009"
       }
     ],
@@ -73,20 +73,20 @@
     "mcg-status-updates@devx-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.1.1",
-        "version": "0.1.1",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.1.2",
+        "version": "0.1.2",
         "installedAt": "2026-04-08T23:16:14.925Z",
-        "lastUpdated": "2026-04-09T00:24:47.749Z",
+        "lastUpdated": "2026-04-13T15:40:25.958Z",
         "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
       }
     ],
     "mcg-lookup@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-lookup/1.0.1",
-        "version": "1.0.1",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-lookup/1.0.2",
+        "version": "1.0.2",
         "installedAt": "2026-04-09T13:55:16.568Z",
-        "lastUpdated": "2026-04-09T13:55:16.568Z",
+        "lastUpdated": "2026-04-13T15:42:41.232Z",
         "gitCommitSha": "b563d0ae75ee8eac38ba25f2d064befea2bd5b8c"
       }
     ]

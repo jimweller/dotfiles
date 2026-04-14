@@ -78,7 +78,8 @@ HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
 CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-CTX_USABLE=$(echo "$CTX_PCT" | awk '{v = $1 * 100 / 96.7; printf "%.0f", (v > 100 ? 100 : v)}')
+COMPACT_PCT=${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-96.7}
+CTX_USABLE=$(echo "$CTX_PCT" | awk -v cap="$COMPACT_PCT" '{v = $1 * 100 / cap; printf "%.0f", (v > 100 ? 100 : v)}')
 
 # Get git info
 if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
@@ -107,13 +108,13 @@ if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; the
   CONFLICTS=$(echo "$GIT_STATUS" | grep -c '^UU\|^AA\|^DD' 2>/dev/null || echo 0)
 fi
 
-if [ "$CTX_USABLE" -ge 90 ]; then
+if [ "$CTX_USABLE" -gt 90 ]; then
   CTX_COLOR="\033[38;5;124m"
   CTX_ICON=$ICON_SKULL
-elif [ "$CTX_USABLE" -ge 75 ]; then
+elif [ "$CTX_USABLE" -ge 80 ]; then
   CTX_COLOR="\033[38;5;202m"
   CTX_ICON=$ICON_DEATH
-elif [ "$CTX_USABLE" -ge 40 ]; then
+elif [ "$CTX_USABLE" -ge 70 ]; then
   CTX_COLOR="\033[38;5;220m"
   CTX_ICON=$ICON_DUMB
 else
@@ -123,7 +124,7 @@ fi
 
 BAR_WIDTH=12
 BUFFER_WIDTH=2
-FILLED=$((CTX_PCT * BAR_WIDTH / 100))
+FILLED=$((CTX_USABLE * BAR_WIDTH / 100))
 REMAINING=$((BAR_WIDTH - FILLED))
 if [ "$REMAINING" -lt "$BUFFER_WIDTH" ]; then
   BUFFER_SHOW=$REMAINING
@@ -152,7 +153,7 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}$MODEL\033[0m"
+printf " | ${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CCUSAGE_CACHE="/tmp/ccusage-cache.json"

@@ -40,6 +40,8 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 - `dotfiles/claude-code/` is user-level Claude Code config, not repo metadata
 - `dotfiles/claude-code/claude_settings_json_azure` is the active settings file (symlinked to `~/.claude/settings.json`). Make changes there first, then copy into `dotfiles/claude-code/claude_settings_json_aws` and `dotfiles/claude-code/claude_settings_json_jim`. The only difference between azure and aws is the env block: azure uses `CLAUDE_CODE_USE_FOUNDRY=1`, aws uses `CLAUDE_CODE_USE_BEDROCK=1`. When syncing, preserve that difference.
 - When committing, always stage all changed and untracked files with `git add -A`. This is a personal, high-velocity repo where all files are intentional.
+- NEVER edit files directly in the home directory (`~/`). All config files are managed by this repo. Edit the source file here and let dotbot handle symlinking.
+- Two CLAUDE.md files exist in this repo: `./CLAUDE.md` is repo-level instructions for the dotfiles project. `dotfiles/claude-code/claude_md.md` is the global user CLAUDE.md symlinked to `~/.claude/CLAUDE.md` by dotbot, containing personality and conversation rules applied to all projects.
 
 ## Key Concepts
 

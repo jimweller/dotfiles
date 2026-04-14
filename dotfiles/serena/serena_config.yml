@@ -80,6 +80,7 @@ projects:
 - /Users/jimweller/.config/dotfiles
 - /Users/jimweller/scratch/Sunset
 - /Users/jimweller/scratch/claude-code-lsp-enforcement-kit
+- /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
 
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.
@@ -101,6 +102,10 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
