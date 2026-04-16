@@ -46,5 +46,13 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
     "lastUpdated": "2026-04-16T13:46:18.894Z"
+  },
+  "thedotmack": {
+    "source": {
+      "source": "github",
+      "repo": "thedotmack/claude-mem"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
+    "lastUpdated": "2026-04-16T18:07:00.243Z"
   }
 }
