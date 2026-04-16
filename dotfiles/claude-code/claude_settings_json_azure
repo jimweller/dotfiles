@@ -10,24 +10,29 @@
     "ANTHROPIC_MODEL": "claude-opus-4-6[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6[1M]",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "0",
+    "DISABLE_AUTOUPDATER": "0",
+    "FORCE_AUTOUPDATE_PLUGINS": "0",
+    "DISABLE_FEEDBACK_COMMAND": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_TELEMETRY": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "DISABLE_COST_WARNINGS": "1",
     "ENABLE_TOOL_SEARCH": "auto:1",
     "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+    "MAX_THINKING_TOKENS": "63999",
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_SHELL": "bash",
-    "DISABLE_COST_WARNINGS": "1",
-    "DISABLE_BUG_COMMAND": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-    "DISABLE_TELEMETRY": "1",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40"
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max"
   },
-  "includeCoAuthoredBy": false,
   "attribution": {
     "commit": "",
     "pr": ""
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "default"
   },
@@ -170,22 +175,23 @@
     "ralph-loop@claude-plugins-official": true,
     "agent-browser@agent-browser": true,
     "mcg-atlassian@sead-claude-marketplace": true,
-    "claude-mem@thedotmack": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
-    "understand-anything@understand-anything": true
+    "understand-anything@understand-anything": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "claude-mem@jimweller": true
   },
   "extraKnownMarketplaces": {
-    "thedotmack": {
-      "source": {
-        "source": "github",
-        "repo": "thedotmack/claude-mem"
-      }
-    },
     "devx-claude-marketplace": {
       "source": {
         "source": "git",
         "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
+      }
+    },
+    "jimweller": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/jimweller/claude-mem.git"
       }
     }
   },
@@ -196,7 +202,6 @@
       "CLANKING"
     ]
   },
-  "effortLevel": "high",
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
   "skipDangerousModePermissionPrompt": true

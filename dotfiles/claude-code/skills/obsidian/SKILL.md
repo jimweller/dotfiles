@@ -1,10 +1,6 @@
 ---
 name: obsidian
-description: >
-  Obsidian vault operations via CLI: read, write, append, prepend, create, move,
-  rename, delete notes. Daily notes. Search. Properties, tags, tasks, backlinks,
-  orphans, templates, bookmarks, plugins, sync, themes, bases, history, workspace,
-  dev tools, eval.
+description: Obsidian vault operations using the obsidian cli
 ---
 
 # Obsidian CLI
@@ -190,6 +186,27 @@ obsidian commands | grep "graph"
 obsidian command id="graph:open"
 obsidian command id="app:open-settings"
 ```
+
+## Direct File Editing
+
+`obsidian vault` returns the filesystem path of the active vault. Use this path with Read, Edit, and Write tools to modify markdown files directly instead of delete/recreate cycles through the CLI.
+
+```bash
+obsidian vault          # returns: path /Users/.../ObsidianVault/MCG
+```
+
+Frontmatter (properties, tags, dates) is plain YAML between `---` fences. No special format. Default frontmatter for new notes:
+
+```yaml
+---
+tags:
+  - topic-a
+  - topic-b
+created: 2026-04-14
+---
+```
+
+Tags should be lowercase, hyphenated. Created date is ISO 8601 (YYYY-MM-DD). Read/Edit/Write handles everything including metadata. Use the CLI for search, vault operations, and commands that interact with the Obsidian app (sync, plugins, templates, eval).
 
 ## Tips
 

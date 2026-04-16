@@ -14,10 +14,10 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/2114bdf84751",
-        "version": "2114bdf84751",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/4f9edf933769",
+        "version": "4f9edf933769",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-13T15:39:59.561Z",
+        "lastUpdated": "2026-04-16T13:46:08.582Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
@@ -49,16 +49,6 @@
         "gitCommitSha": "3d5dd7e87f4ca740cef70781a20a0042cd91d0e9"
       }
     ],
-    "claude-mem@thedotmack": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/12.1.0",
-        "version": "12.1.0",
-        "installedAt": "2026-03-30T05:30:52.876Z",
-        "lastUpdated": "2026-04-13T15:40:02.909Z",
-        "gitCommitSha": "d06882126fe24f6ebcbe433385daeb8322ba8009"
-      }
-    ],
     "summarizing-slack-messages@sead-claude-marketplace": [
       {
         "scope": "project",
@@ -73,10 +63,10 @@
     "mcg-status-updates@devx-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.1.2",
-        "version": "0.1.2",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.1.4",
+        "version": "0.1.4",
         "installedAt": "2026-04-08T23:16:14.925Z",
-        "lastUpdated": "2026-04-13T15:40:25.958Z",
+        "lastUpdated": "2026-04-16T13:46:26.394Z",
         "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
       }
     ],
@@ -88,6 +78,25 @@
         "installedAt": "2026-04-09T13:55:16.568Z",
         "lastUpdated": "2026-04-13T15:42:41.232Z",
         "gitCommitSha": "b563d0ae75ee8eac38ba25f2d064befea2bd5b8c"
+      }
+    ],
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-15T01:11:11.528Z",
+        "lastUpdated": "2026-04-15T01:11:11.528Z"
+      }
+    ],
+    "claude-mem@jimweller": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j3",
+        "version": "12.1.5-j3",
+        "installedAt": "2026-04-16T06:16:39.220Z",
+        "lastUpdated": "2026-04-16T12:03:39.971Z",
+        "gitCommitSha": "a7f673879e597a8abd280795a6ec06568478a61a"
       }
     ]
   }

@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-04-14T20:13:28.117Z"
+    "lastUpdated": "2026-04-16T13:46:12.038Z"
   },
   "agent-browser": {
     "source": {
@@ -13,7 +13,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-04-13T15:42:34.129Z"
+    "lastUpdated": "2026-04-16T13:46:08.358Z"
   },
   "sead-claude-marketplace": {
     "source": {
@@ -21,7 +21,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-04-13T15:42:37.225Z"
+    "lastUpdated": "2026-04-16T13:46:19.591Z"
   },
   "understand-anything": {
     "source": {
@@ -29,15 +29,7 @@
       "repo": "Lum1104/Understand-Anything"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/understand-anything",
-    "lastUpdated": "2026-04-13T15:42:45.495Z"
-  },
-  "thedotmack": {
-    "source": {
-      "source": "github",
-      "repo": "thedotmack/claude-mem"
-    },
-    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
-    "lastUpdated": "2026-04-13T15:42:36.417Z"
+    "lastUpdated": "2026-04-16T13:46:29.200Z"
   },
   "devx-claude-marketplace": {
     "source": {
@@ -45,6 +37,14 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-04-13T15:42:42.035Z"
+    "lastUpdated": "2026-04-16T13:46:25.142Z"
+  },
+  "jimweller": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/jimweller/claude-mem.git"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
+    "lastUpdated": "2026-04-16T13:46:18.894Z"
   }
 }

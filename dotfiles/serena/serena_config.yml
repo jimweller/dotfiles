@@ -78,9 +78,12 @@ token_count_estimator: CHAR_COUNT
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
+- /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/scratch/Sunset
 - /Users/jimweller/scratch/claude-code-lsp-enforcement-kit
+- /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/cwqi-windows
+- /Users/jimweller/work/mcg-status-update-plugin
 - /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
 
@@ -103,6 +106,22 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.

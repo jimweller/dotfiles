@@ -85,6 +85,7 @@
     ~/.claude/rules/:
       glob: true
       path: dotfiles/claude-code/rules/*
+    ~/.claude/tools/humble-master: dotfiles/claude-code/tools/humble-master
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint-cli2.jsonc
     ~/.prettierrc: dotfiles/prettierrc
 
