@@ -83,3 +83,4 @@ $RECYCLE.BIN/
 .llmdocs/code-reviews/
 .llmdocs/transcripts/
 .llmdocs/_*
+.serena/

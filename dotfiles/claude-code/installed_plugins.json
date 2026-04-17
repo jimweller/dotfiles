@@ -14,10 +14,10 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/4f9edf933769",
-        "version": "4f9edf933769",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/717d1b09e1c8",
+        "version": "717d1b09e1c8",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-16T13:46:08.582Z",
+        "lastUpdated": "2026-04-17T12:29:59.881Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
