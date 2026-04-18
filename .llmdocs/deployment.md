@@ -67,7 +67,6 @@ Not automated by the installer:
 
 - `scripts/secrets.sh open` to decrypt SSH keys and credentials
 - `switch_git_profile work` or `switch_git_profile personal` to set git identity
-- `asdf-bootstrap` if using asdf-managed tools
 - Load LaunchAgents (macOS installer does this automatically)
 
 ## Prerequisites

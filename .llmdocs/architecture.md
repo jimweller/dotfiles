@@ -29,7 +29,7 @@ dotfiles/                  # Source dotfiles (symlinked to home)
   iterm/                   # iTerm2 dynamic profiles
   macos/                   # macOS Automator workflows
   assets/                  # Static assets (md.css)
-manifests/                 # Package lists (brew, apt, asdf) and GPG archive
+manifests/                 # Package lists (brew, apt) and GPG archive
 scripts/                   # Launchd plists, container helpers, sync
 install                    # Entry point installer script
 install.common.yaml        # Cross-platform dotbot config

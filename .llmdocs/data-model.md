@@ -63,7 +63,6 @@ Profile switching via `GIT_CONFIG_GLOBAL` env var set by `switch_git_profile()`.
 | `manifests/brew-casks.txt`       | One cask per line             | Homebrew casks (38 apps)           |
 | `manifests/brew-taps.txt`        | One tap per line              | Homebrew taps (19 taps)            |
 | `manifests/apt.txt`              | One package per line          | Linux apt packages (6 packages)    |
-| `manifests/asdf-tools.txt`       | `<plugin> <version>` per line | Reference only (all commented out) |
 | `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | Encrypted secrets tar archive      |
 
 ## Secrets Model

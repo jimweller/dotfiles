@@ -48,7 +48,7 @@ ohmyzsh/ohmyzsh path:plugins/gpg-agent
 # kops aliases
 #ohmyzsh/ohmyzsh path:plugins/kops
 
-# Load Jim's custom PATH setup FIRST (includes asdf shims)
+# Load Jim's custom PATH setup FIRST (includes mise activation)
 $HOME/.config/dotfiles/dotfiles/zsh-jim # load Jim's personal tools
 
 # kubektl shorthands. k, kgp, etc. (AFTER PATH is set)
@@ -81,9 +81,6 @@ birdhackor/zsh-eza-ls-plugin
 
 # searches history for matches base on what is typed on the command line
 zsh-users/zsh-history-substring-search
-
-# TODO
-ptavares/zsh-direnv
 
 # alias rm to move to trash instead of remove from disk
 mattmc3/zsh-safe-rm

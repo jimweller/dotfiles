@@ -119,11 +119,12 @@ zs   # alias: runs ./install, antidote update, source ~/.zshrc
 brewup   # full cycle: update, upgrade, cleanup, doctor
 ```
 
-### asdf tools
+### mise tools
 
 ```bash
-asdf-update      # update asdf + all plugins + reshim
-asdf-bootstrap   # install missing plugins from manifests/asdf-tools.txt
+brew upgrade mise                         # update mise itself
+mise upgrade                              # upgrade installed tool versions
+mise install                              # install tools from nearest mise.toml / .tool-versions
 ```
 
 ## Git Profile Switching

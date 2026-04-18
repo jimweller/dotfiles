@@ -5,62 +5,6 @@ otp() { if [ -z $1 ]; then echo "Missing parameter, TOTP seed\nUsage: otp [seed]
 cj() { vsc -n ~/.config/dotfiles }
 dotfiles() { cd ~/.config/dotfiles && gl && ./install }
 
-# Update asdf, plugins, and tool versions
-asdf-update() {
-  if command -v brew >/dev/null 2>&1; then
-    echo "Updating asdf via Homebrew..."
-    brew upgrade asdf
-  fi
-  
-  echo "\nUpdating asdf plugins..."
-  asdf plugin update --all
-  
-  echo "\nReinstalling tools to latest versions..."
-  asdf install
-  
-  echo "\nUpdate complete!"
-}
-
-asdf-bootstrap() {
-  if ! command -v asdf >/dev/null 2>&1; then
-    echo "asdf not found, skipping bootstrap"
-    return 1
-  fi
-
-  local manifest="$HOME/.config/dotfiles/manifests/asdf-tools.txt"
-  if [[ ! -f "$manifest" ]]; then
-    echo "Manifest not found: $manifest"
-    return 1
-  fi
-
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
-
-    local plugin_field=$(echo "$line" | awk '{print $1}')
-    local cmd_name=$(echo "$line" | awk '{print $2}')
-    local plugin_url=$(echo "$line" | awk '{print $3}')
-
-    local plugin_name="${plugin_field%%:*}"
-    local pin_version="${plugin_field#*:}"
-    [[ "$pin_version" == "$plugin_name" ]] && pin_version=""
-    local version="${pin_version:-latest}"
-
-    if ! asdf plugin list 2>/dev/null | grep -q "^${plugin_name}$"; then
-      command -v "$cmd_name" >/dev/null 2>&1 && continue
-      echo "  installing $plugin_name $version"
-      asdf plugin add "$plugin_name" $plugin_url
-      asdf install "$plugin_name" "$version"
-      asdf set --home "$plugin_name" "$version"
-    elif ! grep -q "^${plugin_name} " "$HOME/.tool-versions" 2>/dev/null; then
-      asdf install "$plugin_name" "$version"
-      asdf set --home "$plugin_name" "$version"
-    fi
-  done < "$manifest"
-
-  asdf reshim 2>/dev/null
-}
-asdf-bootstrap
-
 ef() { sync.sh & }
 
 alias cbc='cb copy'

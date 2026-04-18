@@ -48,7 +48,6 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 | `activate_pim()`              | `12-azure.zsh`           | Azure PIM role elevation                        |
 | `ec2session()`                | `10-aws.zsh`             | SSM port-forward + password retrieval           |
 | `ado`                         | `13-ado.zsh`             | Azure DevOps CLI (browse, repo, pr subcommands) |
-| `asdf-bootstrap()`            | `01-quality-of-life.zsh` | Install asdf plugins from manifest              |
 | `secret()`                    | `01-quality-of-life.zsh` | Load named secrets env file                     |
 | `loadenv()`                   | `01-quality-of-life.zsh` | Source env file with `set -a`                   |
 | `otp()`                       | `01-quality-of-life.zsh` | Generate TOTP from seed                         |

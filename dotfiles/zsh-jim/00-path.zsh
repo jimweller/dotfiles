@@ -60,7 +60,7 @@ export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
 
-# asdf - add shims to PATH when available (containers, project .tool-versions)
-if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]; then
-  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# mise - polyglot tool version manager, env, and task runner (replaces asdf + direnv)
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
 fi

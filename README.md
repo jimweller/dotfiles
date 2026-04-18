@@ -28,7 +28,7 @@ dotfiles/
 │   ├── colima_default, docker_config              # Containers
 │   ├── bat_config, ripgreprc                      # CLI tool config
 │   ├── prettierrc, markdownlint-cli2.jsonc        # Linting and formatting
-│   ├── vscode_settings.json, asdfrc               # Editor and runtime versions
+│   ├── vscode_settings.json                      # Editor settings
 │   ├── claude-code/                               # Claude Code config, skills, commands
 │   ├── claude-flow/                               # Claude Flow CLAUDE.md and MCP rules
 │   ├── gemini/                                    # Gemini CLI settings
@@ -41,7 +41,7 @@ dotfiles/
 │   ├── macos/                                     # macOS Automator workflows
 │   └── assets/                                    # Static assets (md.css)
 ├── scripts/                                       # Launchd plists, container scripts, sync
-└── manifests/                                     # Package lists (brew, apt, asdf) and GPG archive
+└── manifests/                                     # Package lists (brew, apt) and GPG archive
 ```
 
 ## Installation
