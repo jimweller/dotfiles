@@ -23,14 +23,6 @@
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
     "lastUpdated": "2026-04-17T12:30:09.673Z"
   },
-  "understand-anything": {
-    "source": {
-      "source": "github",
-      "repo": "Lum1104/Understand-Anything"
-    },
-    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/understand-anything",
-    "lastUpdated": "2026-04-17T12:30:18.387Z"
-  },
   "devx-claude-marketplace": {
     "source": {
       "source": "git",
@@ -46,13 +38,5 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
     "lastUpdated": "2026-04-17T12:30:00.408Z"
-  },
-  "thedotmack": {
-    "source": {
-      "source": "github",
-      "repo": "thedotmack/claude-mem"
-    },
-    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
-    "lastUpdated": "2026-04-16T18:07:00.243Z"
   }
 }

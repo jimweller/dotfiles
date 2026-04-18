@@ -73,7 +73,7 @@ default_max_tool_answer_chars: 150000
 # You can configure this to TIKTOKEN_GPT4 to use a local tiktoken-based estimator for GPT-4 (will download tiktoken
 # data files on first run), or ANTHROPIC_CLAUDE_SONNET_4 which will use the (free of cost) Anthropic API to
 # estimate the token count using the Claude Sonnet 4 tokenizer.
-token_count_estimator: CHAR_COUNT
+token_count_estimator: TIKTOKEN_GPT4
 
 # the list of registered project paths (updated automatically).
 projects:
@@ -81,6 +81,7 @@ projects:
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/scratch/Sunset
 - /Users/jimweller/scratch/claude-code-lsp-enforcement-kit
+- /Users/jimweller/scratch/claude-hooks
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/cwqi-windows
 - /Users/jimweller/work/data-spelunking
@@ -107,6 +108,10 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.

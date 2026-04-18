@@ -36,7 +36,7 @@
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {
@@ -177,8 +177,6 @@
     "mcg-atlassian@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
-    "understand-anything@understand-anything": true,
-    "typescript-lsp@claude-plugins-official": true,
     "claude-mem@jimweller": true
   },
   "extraKnownMarketplaces": {

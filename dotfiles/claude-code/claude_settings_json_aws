@@ -8,7 +8,7 @@
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
     "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-7[1m]",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6[1M]",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "0",
     "DISABLE_AUTOUPDATER": "0",
@@ -27,15 +27,15 @@
     "CLAUDE_CODE_SHELL": "bash",
     "CLAUDE_CODE_EFFORT_LEVEL": "max"
   },
-  "includeCoAuthoredBy": false,
   "attribution": {
     "commit": "",
     "pr": ""
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {
@@ -174,22 +174,21 @@
     "ralph-loop@claude-plugins-official": true,
     "agent-browser@agent-browser": true,
     "mcg-atlassian@sead-claude-marketplace": true,
-    "claude-mem@thedotmack": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
-    "understand-anything@understand-anything": true
+    "claude-mem@jimweller": true
   },
   "extraKnownMarketplaces": {
-    "thedotmack": {
-      "source": {
-        "source": "github",
-        "repo": "thedotmack/claude-mem"
-      }
-    },
     "devx-claude-marketplace": {
       "source": {
         "source": "git",
         "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
+      }
+    },
+    "jimweller": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/jimweller/claude-mem.git"
       }
     }
   },
@@ -200,7 +199,7 @@
       "CLANKING"
     ]
   },
-"autoUpdatesChannel": "latest",
+  "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
   "skipDangerousModePermissionPrompt": true
 }

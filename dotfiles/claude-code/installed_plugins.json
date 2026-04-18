@@ -21,24 +21,6 @@
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
-    "understand-anything@understand-anything": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/2.3.1",
-        "version": "2.3.1",
-        "installedAt": "2026-03-15T15:10:25.342Z",
-        "lastUpdated": "2026-04-13T15:40:10.690Z",
-        "gitCommitSha": "4e9539b20db5a8ceeec712c37ddcb44be9622d22"
-      },
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/understand-anything/understand-anything/04972b63f6d0",
-        "version": "04972b63f6d0",
-        "installedAt": "2026-04-11T23:23:07.097Z",
-        "lastUpdated": "2026-04-11T23:23:07.097Z",
-        "gitCommitSha": "04972b63f6d0684447f8fe6fd2281ebb2f2c75e6"
-      }
-    ],
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
@@ -78,15 +60,6 @@
         "installedAt": "2026-04-09T13:55:16.568Z",
         "lastUpdated": "2026-04-13T15:42:41.232Z",
         "gitCommitSha": "b563d0ae75ee8eac38ba25f2d064befea2bd5b8c"
-      }
-    ],
-    "typescript-lsp@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
-        "version": "1.0.0",
-        "installedAt": "2026-04-15T01:11:11.528Z",
-        "lastUpdated": "2026-04-15T01:11:11.528Z"
       }
     ],
     "claude-mem@jimweller": [
