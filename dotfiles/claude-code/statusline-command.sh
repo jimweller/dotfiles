@@ -60,13 +60,23 @@ else
   CLOUD_COLOR="\033[38;5;245m"
 fi
 if [ -z "$MODEL" ]; then
-  MODEL_RAW=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
-  case "$MODEL_RAW" in
-    *opus*|*Opus*)     MODEL="opus" ;;
-    *sonnet*|*Sonnet*) MODEL="sonnet" ;;
-    *haiku*|*Haiku*)   MODEL="haiku" ;;
-    *)                 MODEL="$MODEL_RAW" ;;
-  esac
+  MODEL_ID_IN=$(echo "$INPUT" | jq -r '.model.id // empty')
+  if [ -n "$MODEL_ID_IN" ]; then
+    MODEL=$(echo "$MODEL_ID_IN" | sed -E '
+      s|^global\.anthropic\.||;
+      s|^claude-||;
+      s|-v[0-9]+||;
+      s|^([a-z]+)-([0-9]+)-([0-9]+)|\1 \2.\3|
+    ')
+  else
+    MODEL_RAW=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
+    case "$MODEL_RAW" in
+      *opus*|*Opus*)     MODEL="opus" ;;
+      *sonnet*|*Sonnet*) MODEL="sonnet" ;;
+      *haiku*|*Haiku*)   MODEL="haiku" ;;
+      *)                 MODEL="$MODEL_RAW" ;;
+    esac
+  fi
 fi
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
@@ -78,6 +88,8 @@ HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
 CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+CTX_TOKENS=$(echo "$INPUT" | jq -r '[.context_window.current_usage.input_tokens, .context_window.current_usage.cache_creation_input_tokens, .context_window.current_usage.cache_read_input_tokens] | map(. // 0) | add')
+CTX_TOKENS_K=$(awk -v t="$CTX_TOKENS" 'BEGIN { printf "%dk", (t + 500) / 1000 }')
 COMPACT_PCT=${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-96.7}
 CTX_USABLE=$(echo "$CTX_PCT" | awk -v cap="$COMPACT_PCT" '{v = $1 * 100 / cap; printf "%.0f", (v > 100 ? 100 : v)}')
 
@@ -153,8 +165,8 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
-printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%%\033[0m"
+printf " | ${CTX_COLOR}${CTX_ICON}  $MODEL\033[0m"
+printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%% ${CTX_TOKENS_K}\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CCUSAGE_CACHE="/tmp/ccusage-cache.json"
 AZURE_CACHE="/tmp/azure-cost-cache.json"
