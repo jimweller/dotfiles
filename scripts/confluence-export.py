@@ -77,8 +77,12 @@ def get_space_pages(client, space_key):
             'limit': limit
         }
         
-        response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params)
-        
+        try:
+            response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params, timeout=30)
+        except requests.RequestException as e:
+            print(f"Error fetching pages from space {space_key}: {e}")
+            break
+
         if response.status_code != 200:
             print(f"Error fetching pages from space {space_key}: {response.status_code}")
             print(response.text)
@@ -105,8 +109,12 @@ def get_page_by_title(client, space_key, title):
         'expand': 'version,space,body.export_view,ancestors'
     }
     
-    response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params)
-    
+    try:
+        response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params, timeout=30)
+    except requests.RequestException as e:
+        print(f"Error fetching page '{title}' from space {space_key}: {e}")
+        return None
+
     if response.status_code != 200:
         print(f"Error fetching page '{title}' from space {space_key}: {response.status_code}")
         return None
@@ -124,12 +132,16 @@ def get_page_by_id(client, page_id):
         'expand': 'version,space,body.export_view,ancestors'
     }
     
-    response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params)
-    
+    try:
+        response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params, timeout=30)
+    except requests.RequestException as e:
+        print(f"Error fetching page ID {page_id}: {e}")
+        return None
+
     if response.status_code != 200:
         print(f"Error fetching page ID {page_id}: {response.status_code}")
         return None
-    
+
     return response.json()
 
 
@@ -147,11 +159,15 @@ def get_child_pages(client, page_id):
             'expand': 'version,space,body.export_view,ancestors'
         }
         
-        response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params)
-        
+        try:
+            response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params, timeout=30)
+        except requests.RequestException as e:
+            print(f"      Error fetching child pages of {page_id}: {e}")
+            break
+
         if response.status_code != 200:
             break
-        
+
         data = response.json()
         children.extend(data['results'])
         
@@ -229,8 +245,12 @@ def get_page_attachments(client, page_id):
         if cursor:
             params['cursor'] = cursor
         
-        response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params)
-        
+        try:
+            response = requests.get(api_url, auth=client['auth'], headers=client['headers'], params=params, timeout=30)
+        except requests.RequestException as e:
+            print(f"      Attachment API error: {e}")
+            break
+
         if response.status_code != 200:
             print(f"      Attachment API error: HTTP {response.status_code}")
             break
