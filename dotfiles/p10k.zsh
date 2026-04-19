@@ -75,9 +75,8 @@
     #phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     #scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     #haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    terraform_ver          # terraform version (integrates with Oh My Zsh terraform plugin)
-    tofu_version            # opentofu version
-    terragrunt_version      # terragrunt version
+    mise_env                # mise project active indicator
+    mise                    # mise-managed tool versions (https://mise.jdx.dev)
     azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
     aws_jim                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
@@ -121,7 +120,7 @@
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
   # icon overlap when using non-monospace fonts. When set to `none`, spaces are not added.
-  typeset -g POWERLEVEL9K_ICON_PADDING=1
+  typeset -g POWERLEVEL9K_ICON_PADDING=none
 
   # When set to true, icons appear before content on both sides of the prompt. When set
   # to false, icons go after content. If empty or not set, icons go before content in the left
@@ -357,6 +356,8 @@
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
+  # Custom icon for Azure DevOps git repos.
+  typeset -g POWERLEVEL9K_VCS_GIT_AZURE_ICON='\uebe8 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -504,6 +505,8 @@
   # using them. If you do, your prompt may become slow even when your current directory
   # isn't in an svn or hg reposotiry.
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
+  # Suppress the default " " separator between vcs and the next left segment.
+  typeset -g POWERLEVEL9K_VCS_LEFT_SEPARATOR=''
 
   # These settings are used for repositories other than Git or when gitstatusd fails and
   # Powerlevel10k has to fall back to using vcs_info.
@@ -568,152 +571,6 @@
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=37
   # Custom icon.
   # typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  #######################[ direnv: direnv status (https://direnv.net/) ]########################
-  # Direnv color.
-  typeset -g POWERLEVEL9K_DIRENV_FOREGROUND=178
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  ###############[ asdf: asdf version manager (https://github.com/asdf-vm/asdf) ]###############
-  # Default asdf color. Only used to display tools for which there is no color override (see below).
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_FOREGROUND.
-  typeset -g POWERLEVEL9K_ASDF_FOREGROUND=66
-
-  # There are four parameters that can be used to hide asdf tools. Each parameter describes
-  # conditions under which a tool gets hidden. Parameters can hide tools but not unhide them. If at
-  # least one parameter decides to hide a tool, that tool gets hidden. If no parameter decides to
-  # hide a tool, it gets shown.
-  #
-  # Special note on the difference between POWERLEVEL9K_ASDF_SOURCES and
-  # POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW. Consider the effect of the following commands:
-  #
-  #   asdf local  python 3.8.1
-  #   asdf global python 3.8.1
-  #
-  # After running both commands the current python version is 3.8.1 and its source is "local" as
-  # it takes precedence over "global". If POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW is set to false,
-  # it'll hide python version in this case because 3.8.1 is the same as the global version.
-  # POWERLEVEL9K_ASDF_SOURCES will hide python version only if the value of this parameter doesn't
-  # contain "local".
-
-  # Hide tool versions that don't come from one of these sources.
-  #
-  # Available sources:
-  #
-  # - shell   `asdf current` says "set by ASDF_${TOOL}_VERSION environment variable"
-  # - local   `asdf current` says "set by /some/not/home/directory/file"
-  # - global  `asdf current` says "set by /home/username/file"
-  #
-  # Note: If this parameter is set to (shell local global), it won't hide tools.
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SOURCES.
-  typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local global)
-
-  # If set to false, hide tool versions that are the same as global.
-  #
-  # Note: The name of this parameter doesn't reflect its meaning at all.
-  # Note: If this parameter is set to true, it won't hide tools.
-  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_PROMPT_ALWAYS_SHOW.
-  typeset -g POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW=false
-
-  # If set to false, hide tool versions that are equal to "system".
-  #
-  # Note: If this parameter is set to true, it won't hide tools.
-  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SHOW_SYSTEM.
-  typeset -g POWERLEVEL9K_ASDF_SHOW_SYSTEM=true
-
-  # If set to non-empty value, hide tools unless there is a file matching the specified file pattern
-  # in the current directory, or its parent directory, or its grandparent directory, and so on.
-  #
-  # Note: If this parameter is set to empty value, it won't hide tools.
-  # Note: SHOW_ON_UPGLOB isn't specific to asdf. It works with all prompt segments.
-  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SHOW_ON_UPGLOB.
-  #
-  # Example: Hide nodejs version when there is no package.json and no *.js files in the current
-  # directory, in `..`, in `../..` and so on.
-  #
-  #   typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.js|package.json'
-  typeset -g POWERLEVEL9K_ASDF_SHOW_ON_UPGLOB=
-
-  # Ruby version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_RUBY_FOREGROUND=168
-  # typeset -g POWERLEVEL9K_ASDF_RUBY_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_RUBY_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Python version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Go version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_GOLANG_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_ASDF_GOLANG_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Node.js version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_NODEJS_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Rust version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_RUST_FOREGROUND=37
-  # typeset -g POWERLEVEL9K_ASDF_RUST_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_RUST_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # .NET Core version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_DOTNET_CORE_FOREGROUND=134
-  # typeset -g POWERLEVEL9K_ASDF_DOTNET_CORE_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_DOTNET_CORE_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Flutter version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_FLUTTER_FOREGROUND=38
-  # typeset -g POWERLEVEL9K_ASDF_FLUTTER_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_FLUTTER_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Lua version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_LUA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_ASDF_LUA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_LUA_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Java version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_JAVA_FOREGROUND=32
-  # typeset -g POWERLEVEL9K_ASDF_JAVA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_JAVA_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Perl version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_PERL_FOREGROUND=67
-  # typeset -g POWERLEVEL9K_ASDF_PERL_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_PERL_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Erlang version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_ERLANG_FOREGROUND=125
-  # typeset -g POWERLEVEL9K_ASDF_ERLANG_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_ERLANG_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Elixir version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_ELIXIR_FOREGROUND=129
-  # typeset -g POWERLEVEL9K_ASDF_ELIXIR_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_ELIXIR_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Postgres version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_POSTGRES_FOREGROUND=31
-  # typeset -g POWERLEVEL9K_ASDF_POSTGRES_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_POSTGRES_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # PHP version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_PHP_FOREGROUND=99
-  # typeset -g POWERLEVEL9K_ASDF_PHP_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_PHP_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Haskell version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_HASKELL_FOREGROUND=172
-  # typeset -g POWERLEVEL9K_ASDF_HASKELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_HASKELL_SHOW_ON_UPGLOB='*.foo|*.bar'
-
-  # Julia version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_JULIA_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_ASDF_JULIA_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_JULIA_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   ##########[ nordvpn: nordvpn connection status, linux only (https://nordvpn.com/) ]###########
   # NordVPN connection indicator color.
@@ -1272,31 +1129,6 @@
   # Custom terraform icon.
   typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION=$'\uE8BD'
 
-# Custom terraform version segment that integrates with Oh My Zsh terraform plugin
-typeset -g POWERLEVEL9K_TERRAFORM_VER_ICON=$'\uE8BD'
-typeset -g POWERLEVEL9K_TERRAFORM_VER_COLOR=38
-typeset -g POWERLEVEL9K_TERRAFORM_VER_SHOW_ON_COMMAND='terraform|tf'
-
-function prompt_terraform_ver() {
-  local terraform=${commands[terraform]}
-  [[ -n $terraform ]] || return
-  
-  # Use the Oh My Zsh terraform plugin function
-  local version_info
-  version_info="$(tf_version_prompt_info 2>/dev/null)"
-  [[ -n $version_info ]] || return
-  
-  # Remove brackets that the plugin adds
-  version_info="${version_info#\[}"
-  version_info="${version_info%\]}"
-  
-  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TERRAFORM_VER_COLOR TERRAFORM_VER_ICON 0 '' ${version_info//\%/%%}
-}
-
-function _p9k_prompt_terraform_ver_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[terraform]'
-}
-
   #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
   # Show kubecontext only when the command you are typing invokes one of these tools.
   # Tip: Remove the next line to always show kubecontext.
@@ -1719,173 +1551,11 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 
 
-# Jim's custom
-
-
-typeset -g POWERLEVEL9K_TOFU_VERSION_ICON=$'\U000f07c8'
-typeset -g POWERLEVEL9K_TOFU_VERSION_COLOR=220
-typeset -g POWERLEVEL9K_TOFU_VERSION_SHOW_ON_COMMAND='tofu|opentofu|tt'
-
-function prompt_tofu_version() {
-  local tofu=${commands[tofu]} v cfg
-  _p9k_upglob .terraform-version -. || cfg=$_p9k__parent_dirs[$?]/.terraform-version
-  if _p9k_cache_stat_get $0.$TOFU_VERSION $tofu $cfg; then
-    v=$_p9k__cache_val[1]
-  else
-    v=${${"$(tofu version 2>/dev/null)"%%$'\n'*}##*v}
-    _p9k_cache_stat_set "$v"
-  fi
-  [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TOFU_VERSION_COLOR TOFU_VERSION_ICON 0 '' ${v//\%/%%}
-}
-
-function _p9k_prompt_tofu_version_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[tofu]'
-}
-
-# Terragrunt version segment
-typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_ICON=$'\U000f0b22'
-typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_COLOR=214
-typeset -g POWERLEVEL9K_TERRAGRUNT_VERSION_SHOW_ON_COMMAND='terragrunt|tg'
-
-function prompt_terragrunt_version() {
-  local terragrunt=${commands[terragrunt]} v
-  if _p9k_cache_stat_get $0 $terragrunt; then
-    v=$_p9k__cache_val[1]
-  else
-    # Extract version using same logic as your plugin: get 3rd word from terragrunt --version
-    v=${${(s: :)$(terragrunt --version 2>/dev/null)}[3]}
-    _p9k_cache_stat_set "$v"
-  fi
-  [[ -n $v ]] || return
-  _p9k_prompt_segment $0 $_p9k_color1 $POWERLEVEL9K_TERRAGRUNT_VERSION_COLOR TERRAGRUNT_VERSION_ICON 0 '' ${v//\%/%%}
-}
-
-function _p9k_prompt_terragrunt_version_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$commands[terragrunt]'
-}
-
-
-typeset -gA AWS_REGION_ALIASES=(
-  us-east-1    use1
-  us-east-2    use2
-  us-west-1    usw1
-  us-west-2    usw2
-  af-south-1   afs1
-  ap-east-1    aep1
-  ap-south-1   aps1
-  ap-northeast-1 apn1
-  ap-northeast-2 apn2
-  ap-northeast-3 apn3
-  ap-southeast-1 aps1
-  ap-southeast-2 aps2
-  ca-central-1 cac1
-  eu-central-1 euc1
-  eu-west-1    euw1
-  eu-west-2    euw2
-  eu-west-3    euw3
-  eu-north-1   eun1
-  sa-east-1    sae1
-)
-
-typeset -g POWERLEVEL9K_AWS_JIM_SHOW_ON_COMMAND='aws|awless|terraform|tf|pulumi|terragrunt|tg|aws-nuke|assume|granted|tofu|tt'
-typeset -g POWERLEVEL9K_AWS_JIM_ICON='\uF270'
-typeset -g POWERLEVEL9K_AWS_JIM_COLOR=214
-
-
-prompt_aws_jim() {
-  typeset -g P9K_AWS_PROFILE="${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}"
-  local pat class state
-  for pat class in "${_POWERLEVEL9K_AWS_CLASSES[@]}"; do
-    if [[ $P9K_AWS_PROFILE == ${~pat} ]]; then
-      [[ -n $class ]] && state=_${${(U)class}//İ/I}
-      break
-    fi
-  done
-
-  local region="${AWS_REGION:-$AWS_DEFAULT_REGION}"
-  if [[ -z $region ]]; then
-    local cfg=${AWS_CONFIG_FILE:-~/.aws/config}
-    if ! _p9k_cache_stat_get $0 $cfg; then
-      local -a reply
-      _p9k_parse_aws_config $cfg
-      _p9k_cache_stat_set $reply
-    fi
-    local prefix=$#P9K_AWS_PROFILE:$P9K_AWS_PROFILE:
-    local kv=$_p9k__cache_val[(r)${(b)prefix}*]
-    region=${kv#$prefix}
-  fi
-
-  typeset -g P9K_AWS_REGION=$region
-  local alias=${AWS_REGION_ALIASES[$region]:-$region}
-
-  _p9k_prompt_segment "$0$state" $_p9k_color1 $POWERLEVEL9K_AWS_JIM_COLOR AWS_JIM_ICON 0 '' "${P9K_AWS_PROFILE//\%/%%} ${alias}"
-}
-
-function _p9k_prompt_aws_jim_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='${AWS_SSO_PROFILE:-${AWS_VAULT:-${AWSUME_PROFILE:-${AWS_PROFILE:-$AWS_DEFAULT_PROFILE}}}}'
-}
-
-
-typeset -gA GIT_USERNAME_ALIASES=(
-  jim.weller@gmail.com  jw
-  jim.weller@mcg.com    work
-)
-
-
-typeset -g POWERLEVEL9K_GIT_USER_ICON='\uf2bb '
-typeset -g POWERLEVEL9K_GIT_USER_COLOR=33
-typeset -g POWERLEVEL9K_VCS_LEFT_SEPARATOR=''
-
-function prompt_gituser() {
-  # Read current git user from actual git config instead of environment variable
-  local git_user
-  git_user=$(git config user.email 2>/dev/null)
-  [[ -n $git_user ]] || return
-
-  # Look up alias directly using email address
-  local alias=${GIT_USERNAME_ALIASES[$git_user]:-$git_user}
-
-  if [[ -z $alias ]]; then
-    alias=$'\u2205'
-  fi
-
-  # Set icon based on email address
-  local icon
-  local color
-  case "$git_user" in
-    jim.weller@gmail.com)
-      icon=$'\uF2BB '  # personal icon
-      color=33
-      ;;
-    jim.weller@mcg.com)
-      icon=$'\Uf46e '  # work profile icon
-      color=196
-      ;;
-    *)
-      icon=$'\uF2BB '  # default to personal icon
-      color=33
-      ;;
-  esac
-
-  _p9k_prompt_segment "$0" $_p9k_color1 $color '' 0 '' "$icon $alias"
-}
-
-
-# Devbox environment indicator
-typeset -g POWERLEVEL9K_DEVBOX_FOREGROUND=172
-
-function prompt_devbox() {
-  [[ "$DEVBOX_SHELL_ENABLED" == "1" ]] || return
-  _p9k_prompt_segment "$0" $_p9k_color1 $POWERLEVEL9K_DEVBOX_FOREGROUND '' 0 '' $'\ued95 devbox'
-}
-
-function _p9k_prompt_devbox_init() {
-  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$DEVBOX_SHELL_ENABLED'
-}
-
-
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
 
-typeset -g POWERLEVEL9K_VCS_GIT_AZURE_ICON='\uebe8 '
+# Load supplemental p10k config (custom segments, local overrides).
+# Glob matches sibling files like p10k.mise.zsh but not p10k.zsh itself.
+for f in ${0:A:h}/p10k.*.zsh(N); do
+  source $f
+done

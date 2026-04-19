@@ -124,7 +124,7 @@
     "TMUX_PANE": ""
   },
   "terminal.integrated.environmentChangesRelaunch": false,
-  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.profiles.linux": {
     "bash": {

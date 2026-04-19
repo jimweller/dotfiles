@@ -165,7 +165,7 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}${CTX_ICON}  $MODEL\033[0m"
+printf " | ${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%% ${CTX_TOKENS_K}\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CCUSAGE_CACHE="/tmp/ccusage-cache.json"
