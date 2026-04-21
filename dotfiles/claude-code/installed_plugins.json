@@ -14,21 +14,21 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/717d1b09e1c8",
-        "version": "717d1b09e1c8",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/57405f93614f",
+        "version": "57405f93614f",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-17T12:29:59.881Z",
+        "lastUpdated": "2026-04-21T14:26:58.876Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.7.2",
-        "version": "0.7.2",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.8.0",
+        "version": "0.8.0",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-04-06T20:12:53.536Z",
-        "gitCommitSha": "3d5dd7e87f4ca740cef70781a20a0042cd91d0e9"
+        "lastUpdated": "2026-04-21T14:27:04.202Z",
+        "gitCommitSha": "8b13265477a4b9ed277397484f0f92d5e461a52a"
       }
     ],
     "summarizing-slack-messages@sead-claude-marketplace": [

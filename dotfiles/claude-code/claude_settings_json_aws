@@ -35,7 +35,6 @@
   "permissions": {
     "defaultMode": "default"
   },
-  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {
@@ -201,5 +200,6 @@
   },
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "awaySummaryEnabled": false
 }

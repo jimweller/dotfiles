@@ -80,7 +80,5 @@ $RECYCLE.BIN/
 .vscode/
 .devcontainer/
 .roo-audit/
-.llmdocs/code-reviews/
-.llmdocs/transcripts/
-.llmdocs/_*
+.llmtmp/
 .serena/

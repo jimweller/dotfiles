@@ -12,7 +12,7 @@ STARTER_CHARACTER = 🔁
 
 # Ralph Builder
 
-Build or update the three Ralph Wiggum loop files in `.llmdocs/` so a ralph loop can execute autonomously against the current repo.
+Build or update the three Ralph Wiggum loop files in `.llmtmp/` so a ralph loop can execute autonomously against the current repo.
 
 Arguments: $ARGUMENTS
 
@@ -20,13 +20,13 @@ The argument is a goal description. It may reference a file containing a PRD, pl
 
 ## Output Files
 
-All files go in `<PROJECT_ROOT>/.llmdocs/`. Create the directory if it does not exist.
+All files go in `<PROJECT_ROOT>/.llmtmp/`. Create the directory if it does not exist.
 
 | File               | Purpose                                         |
 | ------------------ | ----------------------------------------------- |
-| `_ralph-prompt.md` | The `/ralph-loop:ralph-loop` invocation command |
-| `_ralph-tasks.md`  | Checklist of discrete tasks                     |
-| `_ralph-plan.md`   | Execution plan for accomplishing the goal       |
+| `ralph-prompt.md` | The `/ralph-loop:ralph-loop` invocation command |
+| `ralph-tasks.md`  | Checklist of discrete tasks                     |
+| `ralph-plan.md`   | Execution plan for accomplishing the goal       |
 
 ## Procedure
 
@@ -35,18 +35,18 @@ All files go in `<PROJECT_ROOT>/.llmdocs/`. Create the directory if it does not 
 Read these files to understand the repo:
 
 1. `README.md` (project root)
-2. All non-underscore `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, testing, ops, etc.)
+2. All `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, testing, ops, etc.)
 3. Any file referenced in $ARGUMENTS
 
-If `.llmdocs/` does not exist, create it.
+If `.llmtmp/` does not exist, create it.
 
-If `_ralph-tasks.md`, `_ralph-plan.md`, or `_ralph-prompt.md` already exist, read them before overwriting.
+If `ralph-tasks.md`, `ralph-plan.md`, or `ralph-prompt.md` already exist, read them before overwriting.
 
-### Step 2: Build \_ralph-tasks.md
+### Step 2: Build ralph-tasks.md
 
 This file is a progress-tracking checklist for a loop that reads it cold each iteration with zero memory of previous runs. Each ralph-loop iteration scans this file to find the first unchecked `[ ]` item and works on it. Checked `[x]` items are the only signal of prior progress.
 
-Each item names a deliverable or outcome. The task file answers "what's left?" -- never "how do I do it?" All implementation details (commands, patterns, techniques, function names) belong in `_ralph-plan.md`.
+Each item names a deliverable or outcome. The task file answers "what's left?" -- never "how do I do it?" All implementation details (commands, patterns, techniques, function names) belong in `ralph-plan.md`.
 
 Format:
 
@@ -84,14 +84,14 @@ Rules:
 - The list is processed strictly top-to-bottom. Each iteration works the first unchecked `[ ]` item only, then marks it `[x]`. Order every task so that item N never depends on an uncompleted item below it
 - Use imperative voice
 - Reference specific files, modules, or components by name when it clarifies scope, but do not include commands, flags, config values, or implementation techniques
-- Each task names a deliverable. If the item contains a shell command, a flag, a config value, or names a function/method, move that detail to `_ralph-plan.md`
+- Each task names a deliverable. If the item contains a shell command, a flag, a config value, or names a function/method, move that detail to `ralph-plan.md`
 - Do not include meta-tasks like "read the codebase" or "understand the architecture"
 - Only checkbox items in the task file. No headings, prose, or blank lines between items.
 - Place documentation tasks (CLAUDE.md, .llmdocs/ updates) immediately after the code they document, not at the end of the task list
 
-### Step 3: Build \_ralph-plan.md
+### Step 3: Build ralph-plan.md
 
-Each ralph-loop iteration reads this file cold with no memory of previous iterations. It must be fully self-contained: every command, pattern, convention, and technique needed to execute any task in `_ralph-tasks.md` belongs here. Dense, repo-specific detail is correct. Sparse, generic instructions cause each iteration to reinvent the approach.
+Each ralph-loop iteration reads this file cold with no memory of previous iterations. It must be fully self-contained: every command, pattern, convention, and technique needed to execute any task in `ralph-tasks.md` belongs here. Dense, repo-specific detail is correct. Sparse, generic instructions cause each iteration to reinvent the approach.
 
 The plan describes the target state and constraints, not the implementation. When existing code serves as a model, reference it by path. The model generates code through red-green-refactor during execution.
 
@@ -139,14 +139,14 @@ Never commit to main. All ralph work happens on the ralph/ branch.
 
 ## Per-Task Workflow
 
-Each iteration: find the first unchecked `[ ]` item in _ralph-tasks.md. Work only that item. Do not skip ahead or batch multiple tasks.
+Each iteration: find the first unchecked `[ ]` item in ralph-tasks.md. Work only that item. Do not skip ahead or batch multiple tasks.
 
 MANDATORY for every task without exception:
 1. Write a failing test that defines the expected behavior
 2. Write the minimum code to make the test pass
 3. Refactor if needed while keeping tests green
 4. git add and git commit with a conventional commit message
-5. Mark the task [x] in _ralph-tasks.md
+5. Mark the task [x] in ralph-tasks.md
 
 Never batch commits. Never skip the test step. Never skip the commit step.
 ```
@@ -164,22 +164,22 @@ Rules:
 
 Before writing the files, verify the separation:
 
-- For every task in `_ralph-tasks.md`, the instructions file must contain enough context to execute it (commands, patterns, file locations, conventions)
-- If a task requires a specific command, pattern, or technique to execute, that detail lives in `_ralph-plan.md`, not on the task line
+- For every task in `ralph-tasks.md`, the instructions file must contain enough context to execute it (commands, patterns, file locations, conventions)
+- If a task requires a specific command, pattern, or technique to execute, that detail lives in `ralph-plan.md`, not on the task line
 - If removing the task text and replacing it with just the deliverable name loses no actionable information, the task is correctly scoped. If it does lose information, move that information to the instructions file.
 
-### Step 4: Build \_ralph-prompt.md
+### Step 4: Build ralph-prompt.md
 
 Write exactly this static invocation. Do not modify it.
 
 ```markdown
-/ralph-loop:ralph-loop "Read @.llmdocs/\_ralph-plan.md and follow its instructions. Work through @.llmdocs/\_ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
+/ralph-loop:ralph-loop "Read @.llmtmp/ralph-plan.md and follow its instructions. Work through @.llmtmp/ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
 ```
 
 Rules:
 
 - The prompt text is fixed. Do not modify any part of it.
-- Do not add `@` file references beyond `_ralph-plan.md` and `_ralph-tasks.md`. All other file references belong in `_ralph-plan.md`.
+- Do not add `@` file references beyond `ralph-plan.md` and `ralph-tasks.md`. All other file references belong in `ralph-plan.md`.
 
 ### Step 5: Report
 

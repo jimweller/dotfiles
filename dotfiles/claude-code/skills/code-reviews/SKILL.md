@@ -43,10 +43,10 @@ Delete previous final review files and ensure output directories. Do NOT delete 
 
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
-rm -f "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-openai.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-gemini.md \
-      "$PROJECT_ROOT"/.llmdocs/_review-"$TARGET_NAME"-claude.md
-mkdir -p "$PROJECT_ROOT/.llmdocs" "$PROJECT_ROOT/.llmdocs/code-reviews"
+rm -f "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-openai.md \
+      "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-gemini.md \
+      "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-claude.md
+mkdir -p "$PROJECT_ROOT/.llmtmp" "$PROJECT_ROOT/.llmtmp/code-reviews"
 ```text
 
 ### Step 2: Pack Repomix
@@ -85,7 +85,7 @@ REPOMIX_FILE: <REPOMIX_FILE>
 CRITICAL: The repository is ALREADY packed. Do NOT call pack_codebase or repomix yourself.
 
 MODEL_LABEL: Derive from your model identity (claude, openai, or gemini).
-OUTPUT_FILE: <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-$MODEL_LABEL.md
+OUTPUT_FILE: <PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-$MODEL_LABEL.md
 
 # Step 1: Attach the packed output
 
@@ -101,7 +101,7 @@ Use the agent name `review-<area>` for each. Each agent prompt MUST include:
 - outputId=<the outputId from Step 1>
 - OUTPUT_PATH=<STATE_DIR>/<MODEL_LABEL>-<area>.md
 
-STATE_DIR: <PROJECT_ROOT>/.llmdocs/code-reviews
+STATE_DIR: <PROJECT_ROOT>/.llmtmp/code-reviews
 
 Areas and agent names:
 - review-security -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-security.md
@@ -146,7 +146,7 @@ Print exactly: REVIEW_COMPLETE"
 Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
-STATE_DIR="$PROJECT_ROOT/.llmdocs/code-reviews"
+STATE_DIR="$PROJECT_ROOT/.llmtmp/code-reviews"
 mkdir -p "$STATE_DIR"
 OPENAI_DIR=$(mktemp -d)
 GEMINI_DIR=$(mktemp -d)
@@ -194,15 +194,15 @@ Stop polling when the last step_finish reason is "stop" or the background task e
 
 When done:
 
-1. Check if <PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md exists.
+1. Check if <PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md exists.
 2. If NOT, check for per-area files: ls "$STATE_DIR/<LABEL>-*.md"
 3. If per-area files exist, assemble the final review file:
-   echo "# Code Review: <TARGET_NAME>" > "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
-   echo "**Model**: <LABEL>" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
-   echo "" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+   echo "# Code Review: <TARGET_NAME>" > "<PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md"
+   echo "**Model**: <LABEL>" >> "<PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md"
+   echo "" >> "<PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md"
    for area in security architecture solid correctness testing ops performance quality; do
-     cat "$STATE_DIR/<LABEL>-$area.md" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md" 2>/dev/null
-     echo "" >> "<PROJECT_ROOT>/.llmdocs/_review-<TARGET_NAME>-<LABEL>.md"
+     cat "$STATE_DIR/<LABEL>-$area.md" >> "<PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md" 2>/dev/null
+     echo "" >> "<PROJECT_ROOT>/.llmtmp/review-<TARGET_NAME>-<LABEL>.md"
    done
 
 Report:
@@ -243,7 +243,7 @@ Collect the reports from each agent. Summarize per model:
 
 ### Step 8: Synthesize Reviews
 
-Read all successfully produced review files (`.llmdocs/_review-<TARGET_NAME>-*.md`). Compare findings across models and report:
+Read all successfully produced review files (`.llmtmp/review-<TARGET_NAME>-*.md`). Compare findings across models and report:
 
 1. **Quorum findings (3/3)** — issues flagged by all three models. List each with the area, severity, and finding.
 2. **Quorum findings (2/3)** — issues flagged by two models. List each with the area, severity, which models agreed, and which did not.
@@ -256,9 +256,9 @@ Include every finding. Do not skip or summarize away any items.
 
 3 files total, one per model:
 
-- `.llmdocs/_review-<TARGET_NAME>-openai.md`
-- `.llmdocs/_review-<TARGET_NAME>-gemini.md`
-- `.llmdocs/_review-<TARGET_NAME>-claude.md`
+- `.llmtmp/review-<TARGET_NAME>-openai.md`
+- `.llmtmp/review-<TARGET_NAME>-gemini.md`
+- `.llmtmp/review-<TARGET_NAME>-claude.md`
 
 Where `<TARGET_NAME>` is derived from the path's last segment (or `repo` for root).
 
@@ -346,7 +346,7 @@ The final `step_finish` with `"reason":"stop"` means the model is done.
 
 ### Useful jq Queries
 
-Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmdocs/code-reviews/openai.ndjson`).
+Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmtmp/code-reviews/openai.ndjson`).
 
 ```bash
 # Is the process done? (last step_finish reason is "stop")
@@ -368,7 +368,7 @@ jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
 ```text
 
-Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/code-reviews/openai.log`):
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmtmp/code-reviews/openai.log`):
 
 ```bash
 # All errors and warnings from text logs

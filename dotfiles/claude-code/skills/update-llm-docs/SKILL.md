@@ -13,7 +13,7 @@ STARTER_CHARACTER = 📐
 Two responsibilities:
 
 1. **CLAUDE.md** — concise project overview (always loaded)
-2. **.llmdocs/** — detailed per-concept docs (loaded on demand). EXCLUDE files that start with underscore, `_*`.
+2. **.llmdocs/** — detailed per-concept docs (loaded on demand). All files here are persistent design docs.
 
 ---
 
@@ -90,7 +90,7 @@ Detailed docs in `.llmdocs/`:
 
 - NO verbose explanations — Claude infers
 - NO duplicating .llmdocs/ content — just reference with short description
-- The `## Docs` section MUST list all non-ignored .llmdocs/ files with a 1-line description each
+- The `## Docs` section MUST list all .llmdocs/ files with a 1-line description each
 - Preserve existing custom instructions (git workflow, env vars, etc.)
 - Ask before removing any existing content
 - Use `@.llmdocs/filename.md` import if a doc should always be loaded
@@ -125,12 +125,7 @@ Flat, 1 file per concept. The first 5 files are **required** and must always exi
   deployment.md      # Deploy process, environments (required)
   ops.md             # Maintenance, operations, runbooks (required)
   <concept>.md       # Domain-specific as needed
-  _*.md              # ignored. do not read, update, or reference
 ```text
-
-### Ignored Files
-
-Never read, update, list, or reference files in `.llmdocs/` that are prefixed with `_` (e.g., `_ralph.md`, `_notes.md`). These files are managed outside this command. Do not include them in the `## Docs` section of CLAUDE.md.
 
 ### Doc File Format
 

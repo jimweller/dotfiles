@@ -37,7 +37,7 @@ git branch --show-current
 
 ### 3. Write the Handoff Document
 
-Save to: `.llmdocs/_handoff.md` in the current working directory (or the worktree root if in a worktree).
+Save to: `.llmtmp/handoff.md` in the current working directory (or the worktree root if in a worktree).
 
 **Use this exact structure:**
 
@@ -105,7 +105,7 @@ After writing the handoff:
 2. Suggest this resume command:
 
    ```text
-   Read .llmdocs/_handoff.md and continue from where the previous session left off.
+   Read .llmtmp/handoff.md and continue from where the previous session left off.
    ```
 
 3. If there are uncommitted changes, suggest committing first:

@@ -29,29 +29,29 @@ Launch 3 independent plan reviews of the Ralph Wiggum loop files in parallel usi
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 ```text
 
-Verify these files exist in `$PROJECT_ROOT/.llmdocs/`:
+Verify these files exist in `$PROJECT_ROOT/.llmtmp/`:
 
-- `_ralph-prompt.md`
-- `_ralph-tasks.md`
-- `_ralph-instructions.md`
+- `ralph-prompt.md`
+- `ralph-tasks.md`
+- `ralph-instructions.md`
 
 Abort if any are missing.
 
 ### Step 2: Clean Up Previous Reviews
 
 ```bash
-rm -f "$PROJECT_ROOT"/.llmdocs/_ralph-review-openai.md \
-      "$PROJECT_ROOT"/.llmdocs/_ralph-review-gemini.md \
-      "$PROJECT_ROOT"/.llmdocs/_ralph-review-claude.md
+rm -f "$PROJECT_ROOT"/.llmtmp/ralph-review-openai.md \
+      "$PROJECT_ROOT"/.llmtmp/ralph-review-gemini.md \
+      "$PROJECT_ROOT"/.llmtmp/ralph-review-claude.md
 ```text
 
 ### Step 3: Read Files and Build Prompt Content
 
 Read these files and concatenate their contents into a single `CONTEXT` string:
 
-1. The three ralph files (underscore-prefixed but explicitly included): `.llmdocs/_ralph-prompt.md`, `.llmdocs/_ralph-tasks.md`, `.llmdocs/_ralph-instructions.md`
+1. The three ralph files: `.llmtmp/ralph-prompt.md`, `.llmtmp/ralph-tasks.md`, `.llmtmp/ralph-instructions.md`
 2. `CLAUDE.md` and `README.md` from project root (if they exist)
-3. All other `.md` files in `.llmdocs/` that do NOT start with `_` (architecture, api, data-model, etc.)
+3. All `.md` files in `.llmdocs/` (architecture, api, data-model, etc.)
 
 For each file, wrap it as:
 
@@ -91,10 +91,10 @@ A ralph loop is an autonomous, iterative execution mechanism for Claude. Underst
 - **Iterations are cheap.** Do not recommend reducing task count to fit within max-iterations. The user adjusts max-iterations or re-runs.
 - **@ references for docs.** Instructions must use `@path/file` syntax to reference existing docs, not duplicate their content inline.
 - **Documentation tasks interleaved.** Doc update tasks belong immediately after the code they document, not deferred to the end of the task list.
-- **References first.** The References section with @ file reads must be the first subsection in `_ralph-instructions.md` so docs load into context immediately.
+- **References first.** The References section with @ file reads must be the first subsection in `ralph-instructions.md` so docs load into context immediately.
 - **BEGIN/END git tags.** The first task must be `Create git tag RALPH-YYYYMMDD-BEGIN` and the last task must be `Create git tag RALPH-YYYYMMDD-END`.
-- **Task file is checkboxes only.** `_ralph-tasks.md` contains only `- [ ]` / `- [x]` items. No headings, no prose, no other content.
-- **Prompt is fixed.** `_ralph-prompt.md` is a static invocation that must not be modified.
+- **Task file is checkboxes only.** `ralph-tasks.md` contains only `- [ ]` / `- [x]` items. No headings, no prose, no other content.
+- **Prompt is fixed.** `ralph-prompt.md` is a static invocation that must not be modified.
 
 Do NOT recommend: collapsing tasks into bundles, adding environment preflight checks, reducing granularity to avoid iteration exhaustion, treating partial completion as a risk, or changing the prompt invocation text.
 
@@ -103,9 +103,9 @@ Flag as HIGH severity if: instructions allow committing to main, branch creation
 ## Your Task
 
 Review the Ralph Wiggum loop plan defined by three files:
-- _ralph-prompt.md (the loop invocation command)
-- _ralph-tasks.md (the task checklist)
-- _ralph-instructions.md (execution instructions)
+- ralph-prompt.md (the loop invocation command)
+- ralph-tasks.md (the task checklist)
+- ralph-instructions.md (execution instructions)
 
 Evaluate the plan across these areas:
 
@@ -133,10 +133,10 @@ Evaluate the plan across these areas:
 - Are the file references in the instructions accurate and sufficient?
 - Do the instructions require creating a `ralph/` feature branch before the first task?
 - Are critical instructions (branch, commit, TDD, @ refs) embedded in the Git/Per-Task Workflow, not just prose?
-- Is the References section the first subsection in `_ralph-instructions.md`?
+- Is the References section the first subsection in `ralph-instructions.md`?
 - Are documentation tasks interleaved with code tasks rather than deferred to the end?
 - Does the instructions file reference existing docs via @ syntax instead of duplicating content?
-- Is the prompt invocation in `_ralph-prompt.md` unmodified from the standard template?
+- Is the prompt invocation in `ralph-prompt.md` unmodified from the standard template?
 
 ### 5. Risk and Gaps
 - What could go wrong during autonomous execution?
@@ -159,9 +159,9 @@ Determine your model label:
 - GPT variants: openai
 - Gemini variants: gemini
 
-Write your review to: <PROJECT_ROOT>/.llmdocs/_\$MODEL_LABEL.md
+Write your review to: <PROJECT_ROOT>/.llmtmp/ralph-review-$MODEL_LABEL.md
 
-Write the file to `<PROJECT_ROOT>/.llmdocs/_ralph-review<MODEL_LABEL>.md` using the template below:
+Write the file to `<PROJECT_ROOT>/.llmtmp/ralph-review<MODEL_LABEL>.md` using the template below:
 
 ```markdown
 # Ralph Loop Review
@@ -201,7 +201,7 @@ Finding format: `- **[severity]** Title. Description.`
 
 Every section must be present. If no findings for an area, write 'No findings.' under its heading.
 
-Then verify: ls -la '<PROJECT_ROOT>/.llmdocs/\_ralph-review<MODEL_LABEL>.md'
+Then verify: ls -la '<PROJECT_ROOT>/.llmtmp/ralph-review<MODEL_LABEL>.md'
 
 If the file does not exist, write it again. Do not exit without the file."
 
@@ -212,7 +212,7 @@ If the file does not exist, write it again. Do not exit without the file."
 Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
-STATE_DIR="$PROJECT_ROOT/.llmdocs/ralph_review_state"
+STATE_DIR="$PROJECT_ROOT/.llmtmp/ralph_review_state"
 mkdir -p "$STATE_DIR"
 OPENAI_DIR=$(mktemp -d)
 GEMINI_DIR=$(mktemp -d)
@@ -231,7 +231,7 @@ Each is a separate Bash call with `run_in_background`:
 **OpenAI:**
 
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.llmtmp/ralph_review_state" && \
 opencode run \
   -m openai/gpt-5.3-codex \
   --format json \
@@ -246,7 +246,7 @@ opencode run \
 **Gemini:**
 
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.llmtmp/ralph_review_state" && \
 opencode run \
   -m google/gemini-3.1-pro-preview \
   --format json \
@@ -261,7 +261,7 @@ opencode run \
 **Claude:**
 
 ```bash
-STATE_DIR="<PROJECT_ROOT>/.llmdocs/ralph_review_state" && \
+STATE_DIR="<PROJECT_ROOT>/.llmtmp/ralph_review_state" && \
 opencode run \
   -m az-anthropic/claude-opus-4-6 \
   --format json \
@@ -292,7 +292,7 @@ INFO  2026-03-13T00:54:25 +4ms service=default directory=/private/tmp creating i
 
 Poll each background task until all 3 complete.
 
-**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.ndjson`):
+**NDJSON progress** — replace `$NDJSON` with the actual path (e.g., `<PROJECT_ROOT>/.llmtmp/ralph_review_state/openai.ndjson`):
 
 ```bash
 # Count completed steps for a model
@@ -305,7 +305,7 @@ tail -1 "$NDJSON" 2>/dev/null | jq -r '.part.reason // empty'
 grep '"type":"error"' "$NDJSON" 2>/dev/null
 ```text
 
-**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.log`):
+**Text logs** — replace `$LOGFILE` with the actual path (e.g., `<PROJECT_ROOT>/.llmtmp/ralph_review_state/openai.log`):
 
 ```bash
 # Check for errors or warnings in text logs
@@ -317,7 +317,7 @@ tail -5 "$LOGFILE" 2>/dev/null
 
 ### Step 8: Report Results
 
-For each model, check if its expected output file exists at `.llmdocs/_ralph-review<label>.md`.
+For each model, check if its expected output file exists at `.llmtmp/ralph-review<label>.md`.
 
 Report per model:
 
@@ -336,9 +336,9 @@ rm -f /tmp/ralph-review-prompt.txt
 
 3 files total, one per model:
 
-- `.llmdocs/_ralph-reviewopenai.md`
-- `.llmdocs/_ralph-reviewgemini.md`
-- `.llmdocs/_ralph-reviewclaude.md`
+- `.llmtmp/ralph-reviewopenai.md`
+- `.llmtmp/ralph-reviewgemini.md`
+- `.llmtmp/ralph-reviewclaude.md`
 
 ## NDJSON Log Format Reference
 
@@ -352,10 +352,10 @@ Key event types:
 - **step_finish** - Turn completed: `{"type":"step_finish","part":{"reason":"stop","cost":0,"tokens":{"total":13494}}}`. `reason: "stop"` = done, `reason: "tool-calls"` = continuing.
 - **error** - Session error: `{"type":"error","error":{"data":{"message":"..."}}}`
 
-Useful jq queries (replace `$NDJSON` with actual path, e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.ndjson`):
+Useful jq queries (replace `$NDJSON` with actual path, e.g., `<PROJECT_ROOT>/.llmtmp/ralph_review_state/openai.ndjson`):
 
 ```bash
-NDJSON="<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.ndjson"
+NDJSON="<PROJECT_ROOT>/.llmtmp/ralph_review_state/openai.ndjson"
 # Is done?
 tail -1 "$NDJSON" | jq -r 'select(.type=="step_finish") | .part.reason'
 # Total cost
@@ -364,7 +364,7 @@ jq -s '[.[] | select(.type=="step_finish") | .part.cost] | add' "$NDJSON"
 jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 ```text
 
-Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmdocs/ralph_review_state/openai.log`):
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmtmp/ralph_review_state/openai.log`):
 
 ```bash
 # All errors and warnings from text logs

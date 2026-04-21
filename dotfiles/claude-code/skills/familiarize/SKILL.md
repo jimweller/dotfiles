@@ -43,7 +43,7 @@ find "$SCAN_ROOT" -name "CLAUDE.md" -not -path "*/.git/*" -not -path "*/node_mod
 
 ### 2b. .llmdocs/ directories
 
-Find all `.llmdocs/` directories under `SCAN_ROOT`. For each, read every `.md` file excluding files prefixed with `_`.
+Find all `.llmdocs/` directories under `SCAN_ROOT`. For each, read every `.md` file.
 
 ```bash
 find "$SCAN_ROOT" -type d -name ".llmdocs" -not -path "*/.git/*"
@@ -52,7 +52,7 @@ find "$SCAN_ROOT" -type d -name ".llmdocs" -not -path "*/.git/*"
 Then for each directory found:
 
 ```bash
-ls "$LLMDOCS_DIR"/*.md | grep -v '/_[^/]*$'
+ls "$LLMDOCS_DIR"/*.md
 ```
 
 Read each matching file.
