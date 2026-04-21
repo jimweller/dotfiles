@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Write a session handoff document for the next agent or session
+description: Write a session handoff document for a follow-up agent
 disable-model-invocation: true
 ---
 
@@ -10,7 +10,7 @@ STARTER_CHARACTER = 🪃
 
 # Handoff: Capture Session State for Continuation
 
-Capture session state for the next session to continue.
+Capture session state so a follow-up run can continue.
 
 ## Process
 
@@ -24,7 +24,7 @@ Review everything that happened in this conversation:
 - What key decisions were made and WHY?
 - What files were read, created, or modified?
 - What errors were encountered and how were they resolved?
-- What dead ends were explored (so the next session doesn't repeat them)?
+- What dead ends were explored (so a follow-up run doesn't repeat them)?
 
 ### 2. Gather Current State
 
@@ -90,7 +90,7 @@ Document WHY choices were made, not just what was chosen:
 - **Build:** [working/broken]
 - **Manual verification:** [what was tested manually, results]
 
-## Context for Next Session
+## Handoff Context
 
 [2-4 sentences: the MOST IMPORTANT thing the next agent needs to know. What's the current situation? What's the biggest risk? What should they do first?]
 
@@ -102,7 +102,7 @@ Document WHY choices were made, not just what was chosen:
 After writing the handoff:
 
 1. Confirm the file was written with its full path
-2. Suggest the next session command:
+2. Suggest this resume command:
 
    ```text
    Read .llmdocs/_handoff.md and continue from where the previous session left off.

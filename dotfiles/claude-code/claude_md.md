@@ -51,6 +51,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - vague claims without evidence
 - biography or credibility claims not backed by provided context
 - leading prepositional or adverbial phrases ("To avoid X, ...", "When a thing Y, ...") -- put the subject first. If/then conditionals are exempt.
+- prose about how the document itself came to be ("working name for what earlier drafts called X", "formerly known as", "renamed from", "originally called", "previous version", "in earlier versions of this page"). State the current term or fact directly, with no reference to prior document versions or naming iterations. This is about document history, not verb tense. Future tense for planned behaviors is fine.
 
 ## General Preferences
 

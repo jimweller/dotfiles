@@ -64,7 +64,6 @@ postgresql@15
 postgresql@17
 prips
 pwgen
-pyenv
 pygments
 python-packaging
 python@3.10
@@ -94,7 +93,6 @@ tree
 typescript
 up
 utf8proc
-virtualenv
 watch
 wget
 xmlstarlet
