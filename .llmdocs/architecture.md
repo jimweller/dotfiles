@@ -6,9 +6,9 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 | Component    | Path                                      | Role                                                  |
 | ------------ | ----------------------------------------- | ----------------------------------------------------- |
-| dotbot       | `dotbot/`                                 | Symlink and install orchestration (git submodule)     |
-| antidote     | `antidote/`                               | Zsh plugin manager (git submodule)                    |
-| devcontainer | `devcontainer/`                           | Linux Docker dev image (git submodule)                |
+| dotbot       | `submodules/dotbot/`                      | Symlink and install orchestration (git submodule)     |
+| antidote     | `submodules/antidote/`                    | Zsh plugin manager (git submodule)                    |
+| devcontainer | `submodules/devcontainer/`                | Linux Docker dev image (git submodule)                |
 | total-recall | `dotfiles/claude-code/tools/total-recall` | SQLite session memory for Claude Code (git submodule) |
 
 ## Directory Layout

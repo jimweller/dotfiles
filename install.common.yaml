@@ -35,7 +35,7 @@
       glob: true
       path: dotfiles/github/*
     ~/.roo/settings/mcp_settings.json: dotfiles/roocode/mcp_settings.json
-    ~/.vscode/extensions/andrewmitchell.devcontainer-template-manager-0.2.2/templates/0jimbox: devcontainer
+    ~/.vscode/extensions/andrewmitchell.devcontainer-template-manager-0.2.2/templates/0jimbox: submodules/devcontainer
     ~/.roo/settings/custom_modes.yaml: dotfiles/roocode/custom_modes.yaml
     ~/.roo/rules/global-rules.md: dotfiles/roocode/rules/rules/global-rules.md
     ~/.roo/rules/markdown-rules.md: dotfiles/roocode/rules/rules/markdown-rules.md

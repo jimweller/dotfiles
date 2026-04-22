@@ -8,7 +8,7 @@ is_linux() {
 
 
 # Create zsh config using antidote plugins.
-source $HOME/.config/dotfiles/antidote/antidote.zsh
+source $HOME/.config/dotfiles/submodules/antidote/antidote.zsh
 
 # use short friendly names for antidote downloads packages
 zstyle ':antidote:bundle' use-friendly-names 'yes'

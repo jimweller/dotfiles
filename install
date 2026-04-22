@@ -5,7 +5,7 @@ set -e
 CONFIG="install.common.yaml"
 CONFIG_MACOS="install.macos.yaml"
 CONFIG_LINUX="install.linux.yaml"
-DOTBOT_DIR="dotbot"
+DOTBOT_DIR="submodules/dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

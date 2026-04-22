@@ -9368,7 +9368,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1776828267812,
+  "lastPlanModeUse": 1776829284236,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -9668,8 +9668,8 @@
       "lastUsedAt": 1776780999596
     },
     "commit": {
-      "usageCount": 194,
-      "lastUsedAt": 1776828990695
+      "usageCount": 195,
+      "lastUsedAt": 1776829605031
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,

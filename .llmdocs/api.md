@@ -7,7 +7,7 @@ CLI entry points, scripts, and module interface conventions.
 `./install` -- main installer script.
 
 1. Bootstraps Python3 (apt on Linux, Homebrew on macOS)
-2. Runs `git submodule update --init --recursive dotbot`
+2. Runs `git submodule update --init --recursive submodules/dotbot`
 3. Executes dotbot with `install.common.yaml`
 4. Detects OS, runs `install.macos.yaml` or `install.linux.yaml`
 

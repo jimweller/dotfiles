@@ -14,7 +14,7 @@ RANDOM_SUFFIX="$(openssl rand -hex 1)"
 CONTAINER_NAME="${DEVC_NAME:-0jimbox-${PROJECT_NAME}-${RANDOM_SUFFIX}}"
 IMAGE_NAME="${DEVC_IMAGE:-0jimbox}"
 DOCKERFILE_DIR="${DEVC_DOCKERFILE_DIR:-${HOME}/.config/dotfiles}"
-DOCKERFILE_PATH="${DOCKERFILE_DIR}/devcontainer/Dockerfile"
+DOCKERFILE_PATH="${DOCKERFILE_DIR}/submodules/devcontainer/Dockerfile"
 BUILD_CONTEXT="${DOCKERFILE_DIR}"
 
 # Dotfiles configuration
@@ -433,7 +433,7 @@ cleanup_docker() {
 install_devcontainer() {
     local target_dir=".devcontainer"
     local devcontainer_file="$target_dir/devcontainer.json"
-    local source_file="$DOCKERFILE_DIR/devcontainer/devcontainer.json"
+    local source_file="$DOCKERFILE_DIR/submodules/devcontainer/devcontainer.json"
     
     # Check if source file exists
     if [[ ! -f "$source_file" ]]; then
@@ -486,7 +486,7 @@ Configuration (environment variables):
   DEVC_DEBUG                   Enable debug output (default: false)
   DEVC_NAME                    Container name (default: 0jimbox-<project>-<xx>)
   DEVC_IMAGE                   Image name (default: 0jimbox)
-  DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/.config/dotfiles/devcontainer)
+  DEVC_DOCKERFILE_PATH         Dockerfile directory (default: \$HOME/.config/dotfiles/submodules/devcontainer)
   DEVC_DOTFILES_REPO          Dotfiles git repository (default: https://github.com/jimweller/dotfiles)
   DEVC_DOTFILES_INSTALL       Install command (default: ~/.config/dotfiles/install)
   DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)

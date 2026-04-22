@@ -12,9 +12,9 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 
 ## Architecture
 
-- `dotbot/` -- installer engine (submodule)
-- `antidote/` -- zsh plugin manager (submodule)
-- `devcontainer/` -- Linux container image (submodule)
+- `submodules/dotbot/` -- installer engine (submodule)
+- `submodules/antidote/` -- zsh plugin manager (submodule)
+- `submodules/devcontainer/` -- Linux container image (submodule)
 - `dotfiles/` -- source dotfiles symlinked to home
 - `dotfiles/zsh-jim/` -- numbered zsh modules (00-93), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh

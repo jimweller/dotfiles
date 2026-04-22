@@ -7,7 +7,7 @@ Install process, platform detection, and environment setup.
 ```text
 ./install
   -> bootstrap python3 (apt or brew)
-  -> git submodule update --init --recursive dotbot
+  -> git submodule update --init --recursive submodules/dotbot
   -> dotbot -d . -c install.common.yaml
   -> detect OS
      -> macOS: dotbot -d . -c install.macos.yaml
@@ -53,10 +53,10 @@ Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 
 ## Devcontainer Integration
 
-The `devcontainer/` submodule is a Docker image. VSCode links it as a dotfiles extension:
+The `submodules/devcontainer/` submodule is a Docker image. VSCode links it as a dotfiles extension:
 
 ```yaml
-~/.vscode/extensions/.../0jimbox -> devcontainer
+~/.vscode/extensions/.../0jimbox -> submodules/devcontainer
 ```text
 
 VSCode devcontainer settings reference this repo for dotfiles injection into dev containers.

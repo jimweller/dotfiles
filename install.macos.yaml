@@ -24,7 +24,7 @@
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json
     # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
     # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
-    # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": devcontainer/vscode_template
+    # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": submodules/devcontainer/vscode_template
     # "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/":
     #   glob: true
     #   path: dotfiles/roocode/*
