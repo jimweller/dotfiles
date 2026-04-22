@@ -18,8 +18,8 @@ dotfiles/                  # Source dotfiles (symlinked to home)
   zshrc                    # Shell entry, loads antidote
   zsh-jim/                 # Numbered zsh modules (00-93)
   zsh_plugins.txt          # Antidote plugin manifest
-  p10k.zsh                 # Powerlevel10k prompt theme
-  gitconfig-all/jim/work   # Layered git identity
+  p10k/                    # Powerlevel10k prompt theme and segments
+  git/                     # Layered git identity and ignore
   claude-code/             # Claude Code config, skills, commands, hooks
   claude-flow/             # Claude Flow multi-agent CLAUDE.md + MCP rules
   opencode/                # OpenCode CLI config + agents

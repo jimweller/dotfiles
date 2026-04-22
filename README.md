@@ -18,17 +18,23 @@ dotfiles/
 ├── antidote/                                      # Zsh plugin manager (submodule)
 ├── devcontainer/                                  # Linux container image (submodule)
 ├── dotfiles/
-│   ├── zshrc, bash_profile                        # Shell entry points
-│   ├── zsh_plugins.txt                            # Antidote plugin list
+│   ├── zsh/                                       # Shell entry points and plugin manifests
 │   ├── zsh-jim/                                   # Numbered zsh modules
-│   ├── p10k.zsh                                   # Powerlevel10k prompt theme
-│   ├── gitconfig-*, gitignore_global              # Git identity and ignore
-│   ├── ssh_config, tmux.conf                      # SSH and tmux
-│   ├── aws_config, azure_config, granted_config_* # Cloud CLIs
-│   ├── colima_default, docker_config              # Containers
-│   ├── bat_config, ripgreprc                      # CLI tool config
-│   ├── prettierrc, markdownlint-cli2.jsonc        # Linting and formatting
-│   ├── vscode_settings.json                      # Editor settings
+│   ├── p10k/                                      # Powerlevel10k prompt theme and segments
+│   ├── git/                                       # Git identity and ignore
+│   ├── ssh/                                       # SSH host config
+│   ├── tmux/                                      # Tmux config
+│   ├── aws/                                       # AWS CLI config
+│   ├── azure/                                     # Azure CLI config
+│   ├── granted/                                   # Granted cloud role switcher
+│   ├── colima/                                    # Colima VM config
+│   ├── docker/                                    # Docker CLI config
+│   ├── bat/                                       # bat pager config
+│   ├── ripgrep/                                   # ripgrep config
+│   ├── prettier/                                  # Prettier formatter config
+│   ├── markdownlint/                              # markdownlint-cli2 config
+│   ├── ghostty/                                   # Ghostty terminal config
+│   ├── vscode/                                    # VS Code settings
 │   ├── claude-code/                               # Claude Code config, skills, commands
 │   ├── claude-flow/                               # Claude Flow CLAUDE.md and MCP rules
 │   ├── gemini/                                    # Gemini CLI settings
@@ -62,13 +68,13 @@ The installer runs dotbot with platform detection:
 
 | File             | Target                             | Purpose                                          |
 | ---------------- | ---------------------------------- | ------------------------------------------------ |
-| `zshrc`          | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim    |
-| `p10k.zsh`       | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
-| `gitconfig-all`  | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff) |
-| `gitconfig-jim`  | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all        |
-| `gitconfig-work` | `~/.gitconfig-work`                | Work identity, includes gitconfig-all            |
-| `ssh_config`     | `~/.ssh/config`                    | SSH host configurations                          |
-| `tmux.conf`      | `~/.tmux.conf`                     | Tmux preferences                                 |
+| `zsh/zshrc`          | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim    |
+| `p10k/p10k.zsh`     | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
+| `git/gitconfig-all`  | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff) |
+| `git/gitconfig-jim`  | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all        |
+| `git/gitconfig-work` | `~/.gitconfig-work`                | Work identity, includes gitconfig-all            |
+| `ssh/ssh_config`     | `~/.ssh/config`                    | SSH host configurations                          |
+| `tmux/tmux.conf`     | `~/.tmux.conf`                     | Tmux preferences                                 |
 
 ## AI Tooling
 

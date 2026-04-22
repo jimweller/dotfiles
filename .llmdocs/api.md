@@ -54,7 +54,7 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 ## Antidote Plugin Manifest
 
-`dotfiles/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
+`dotfiles/zsh/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
 
 ```text
 <github-org>/<repo> [path:<subpath>] [kind:fpath] [conditional:<func>]

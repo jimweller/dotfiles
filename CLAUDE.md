@@ -45,7 +45,7 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 
 ## Key Concepts
 
-- **antidote plugin manifest**: `dotfiles/zsh_plugins.txt` lists all zsh plugins in load order
+- **antidote plugin manifest**: `dotfiles/zsh/zsh_plugins.txt` lists all zsh plugins in load order
 - **zsh-jim**: antidote plugin loaded from local path `$HOME/.config/dotfiles/dotfiles/zsh-jim/`
 - **git profile switching**: `work`/`personal` aliases set `GIT_CONFIG_GLOBAL` and load profile secrets
 - **LaunchAgents**: macOS scheduled tasks for AWS token refresh, backup, steampipe, ccusage, total-recall

@@ -4,10 +4,10 @@
   "env": {
     "CLAUDE_CODE_USE_FOUNDRY": "1",
     "CLAUDE_CODE_USE_BEDROCK": "0",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-7[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
-    "ANTHROPIC_MODEL": "claude-opus-4-7[1m]",
+    "ANTHROPIC_MODEL": "claude-opus-4-6[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "0",
@@ -21,8 +21,6 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
     "DISABLE_COST_WARNINGS": "1",
     "ENABLE_TOOL_SEARCH": "auto:1",
-    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
-    "MAX_THINKING_TOKENS": "63999",
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_SHELL": "bash",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
@@ -31,6 +29,10 @@
   "attribution": {
     "commit": "",
     "pr": ""
+  },
+  "thinking": {
+    "type": "enabled", 
+    "budget_tokens": 63999
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -199,8 +201,9 @@
       "CLANKING"
     ]
   },
+  "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
   "skipDangerousModePermissionPrompt": true,
-  "awaySummaryEnabled": false
+  "model": "sonnet"
 }

@@ -16,9 +16,9 @@
       stdout: true
 
 - link:
-    ~/.colima/default/colima.yaml: dotfiles/colima_default
-    ~/.granted/config: dotfiles/granted_config_macos
-    "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode_settings.json
+    ~/.colima/default/colima.yaml: dotfiles/colima/colima_default
+    ~/.granted/config: dotfiles/granted/granted_config_macos
+    "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode/vscode_settings.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/jim.json": dotfiles/iterm/jim.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/claude.json": dotfiles/iterm/claude.json
     "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json

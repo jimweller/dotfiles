@@ -21,9 +21,12 @@ claude_regular() {
 alias c='claude_regular'
 
 # Cloud-specific Claude aliases using --settings flag
-alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-aws.json --append-system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
-alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json --append-system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
-alias claude='claude --dangerously-skip-permissions --no-chrome --append-system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
+
+# overwrite system prompt with humble master persona
+# https://thezvi.substack.com/p/opus-47-part-2-capabilities-and-reactions#:~:text=Consider%20changing%20your%20custom%20instructions%2C%20and%20even%20removing%20as%20much%20of%20the%20default%20prompt%20as%20possible
+alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-aws.json --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
+alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
+alias claude='claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
 
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 

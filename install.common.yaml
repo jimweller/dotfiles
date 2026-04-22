@@ -21,16 +21,16 @@
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
-    ~/.aws/config: dotfiles/aws_config
-    ~/.azure/config: dotfiles/azure_config
-    ~/.bash_profile: dotfiles/bash_profile
-    ~/.config/bat/config: dotfiles/bat_config
-    ~/.docker/config.js: dotfiles/docker_config
-    ~/.gitconfig-all: dotfiles/gitconfig-all
+    ~/.aws/config: dotfiles/aws/aws_config
+    ~/.azure/config: dotfiles/azure/azure_config
+    ~/.bash_profile: dotfiles/zsh/bash_profile
+    ~/.config/bat/config: dotfiles/bat/bat_config
+    ~/.docker/config.js: dotfiles/docker/docker_config
+    ~/.gitconfig-all: dotfiles/git/gitconfig-all
     # this is a hack to make p10k work since it uses and outdated fork of libgit2 that doesn't honor GIT_CONFIG_GLOBAL
-    ~/.gitconfig: dotfiles/gitconfig-all
-    ~/.gitconfig-jim: dotfiles/gitconfig-jim
-    ~/.gitconfig-work: dotfiles/gitconfig-work
+    ~/.gitconfig: dotfiles/git/gitconfig-all
+    ~/.gitconfig-jim: dotfiles/git/gitconfig-jim
+    ~/.gitconfig-work: dotfiles/git/gitconfig-work
     ~/.config/gh/:
       glob: true
       path: dotfiles/github/*
@@ -42,15 +42,14 @@
     # ~/.roo/:
     #   glob: true
     #   path: dotfiles/roocode/rules/**
-    ~/.ssh/config: dotfiles/ssh_config
-    ~/.tmux.conf: dotfiles/tmux.conf
-    ~/.config/ghostty/config: dotfiles/ghostty_config
-    ~/.gitmux.yml: dotfiles/gitmux.yml
-    ~/.ripgreprc: dotfiles/ripgreprc
+    ~/.ssh/config: dotfiles/ssh/ssh_config
+    ~/.tmux.conf: dotfiles/tmux/tmux.conf
+    ~/.config/ghostty/config: dotfiles/ghostty/ghostty_config
+    ~/.ripgreprc: dotfiles/ripgrep/ripgreprc
     ~/.config/powershell/:
       glob: true
       path: dotfiles/powershell/*
-    ~/.zsh_plugins.txt: dotfiles/zsh_plugins.txt
+    ~/.zsh_plugins.txt: dotfiles/zsh/zsh_plugins.txt
     ~/.serena/serena_config.yml: dotfiles/serena/serena_config.yml
     ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
     ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
@@ -85,8 +84,8 @@
       glob: true
       path: dotfiles/claude-code/rules/*
     ~/.claude/tools/humble-master: dotfiles/claude-code/tools/humble-master
-    ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint-cli2.jsonc
-    ~/.prettierrc: dotfiles/prettierrc
+    ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint/markdownlint-cli2.jsonc
+    ~/.prettierrc: dotfiles/prettier/prettierrc
 
 - defaults:
     link:
@@ -94,7 +93,7 @@
       create: true
 
 - link:
-    ~/.p10k.zsh: dotfiles/p10k.zsh
-    ~/.zshrc: dotfiles/zshrc
+    ~/.p10k.zsh: dotfiles/p10k/p10k.zsh
+    ~/.zshrc: dotfiles/zsh/zshrc
 
 

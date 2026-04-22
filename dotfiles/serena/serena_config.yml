@@ -84,6 +84,7 @@ projects:
 - /Users/jimweller/scratch/openfang
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/mcg-atlassian-plugin
+- /Users/jimweller/work/mcg-pe-az-infra
 - /Users/jimweller/work/mcg-status-update-plugin
 - /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
@@ -107,6 +108,10 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.

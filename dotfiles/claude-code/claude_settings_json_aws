@@ -4,10 +4,10 @@
   "env": {
     "CLAUDE_CODE_USE_FOUNDRY": "0",
     "CLAUDE_CODE_USE_BEDROCK": "1",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-7[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-6[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
-    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-7[1m]",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-6[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6",
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "true",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "0",
@@ -25,7 +25,7 @@
     "MAX_THINKING_TOKENS": "63999",
     "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
     "CLAUDE_CODE_SHELL": "bash",
-    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+    "CLAUDE_CODE_EFFORT_LEVEL": "high"
   },
   "attribution": {
     "commit": "",
