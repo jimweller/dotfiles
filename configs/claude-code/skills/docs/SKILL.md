@@ -1,5 +1,5 @@
 ---
-name: update-all-docs
+name: docs
 description: Update all project docs (README.md + CLAUDE.md + .llmdocs/) in parallel.
 disable-model-invocation: true
 context: fork
@@ -17,8 +17,8 @@ Arguments: $ARGUMENTS
 
 Spawn two subagents using the Agent tool:
 
-**Agent 1:** Run /update-llm-docs $ARGUMENTS
-**Agent 2:** Run /update-readme $ARGUMENTS
+**Agent 1:** Run /llmdocs $ARGUMENTS
+**Agent 2:** Run /readme $ARGUMENTS
 
 ## Step 2: Report
 

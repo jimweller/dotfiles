@@ -67,8 +67,8 @@ Automation consolidated into [skills](https://docs.anthropic.com/en/docs/claude-
 
 | Mode          | Frontmatter                      | Skills                                                                                                                             |
 | ------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Human + Model | default                          | commit, md-lint, update-llm-docs, update-readme, session-migrate, session-resume, test-driven-development, transcript-search, sage |
-| Human-only    | `disable-model-invocation: true` | familiarize, worktree, handoff, code-reviews, ralph-builder, ralph-reviewer, update-all-docs                                       |
+| Human + Model | default                          | commit, md-lint, llmdocs, readme, session-migrate, session-resume, test-driven-development, transcript-search, sage |
+| Human-only    | `disable-model-invocation: true` | familiarize, worktree, handoff, code-reviews, ralph-builder, ralph-reviewer, docs                                       |
 | Model-only    | `user-invocable: false`          | ado, mcg-confluence-prefs, mcg-jira-prefs                                                                                          |
 
 ## Tools
@@ -129,9 +129,9 @@ claude-code/
 │   ├── session-resume/
 │   ├── test-driven-development/
 │   ├── transcript-search/
-│   ├── update-all-docs/
-│   ├── update-llm-docs/
-│   ├── update-readme/
+│   ├── docs/
+│   ├── llmdocs/
+│   ├── readme/
 │   └── worktree/
 └── tools/
     ├── lsp-enforcement-kit/

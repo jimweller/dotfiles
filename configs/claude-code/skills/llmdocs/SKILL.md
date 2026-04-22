@@ -1,5 +1,5 @@
 ---
-name: update-llm-docs
+name: llmdocs
 description: Update project documentation (CLAUDE.md + .llmdocs/). Use after significant work to keep docs in sync.
 argument-hint: "[optional guidance]"
 ---

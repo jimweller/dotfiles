@@ -81,7 +81,9 @@ projects:
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/cwqi-windows
+- /Users/jimweller/scratch/google-researcher-mcp
 - /Users/jimweller/scratch/openfang
+- /Users/jimweller/scratch/serena
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/mcg-atlassian-plugin
 - /Users/jimweller/work/mcg-pe-az-infra
@@ -108,6 +110,14 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
