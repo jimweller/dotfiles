@@ -53,6 +53,7 @@
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
     ~/.gemini/settings.json: configs/gemini/gemini_settings
     ~/.config/opencode/opencode.json: configs/opencode/opencode.json
+    ~/.config/opencode/tui.json: configs/opencode/tui.json
     ~/.config/opencode/agents/:
       glob: true
       path: configs/opencode/agents/*

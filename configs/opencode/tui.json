@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "mouse": true,
+  "diff_style": "auto",
+  "keybinds": {
+    "display_thinking": "<leader>d",
+    "plugin_manager": "<leader>p",
+    "scrollbar_toggle": "<leader>o",
+    "tool_details": "<leader>i",
+    "session_fork": "<leader>f",
+    "session_share": "none",
+    "session_unshare": "none"
+  }
+}

@@ -10,10 +10,16 @@
       },
       "models": {
         "global.anthropic.claude-opus-4-5-20251101-v1:0": {
-          "name": "aws/Claude Opus 4.5"
+          "name": "aws/Claude Opus 4.5",
+          "options": {
+            "thinking": { "type": "enabled", "budgetTokens": 63999 }
+          }
         },
         "global.anthropic.claude-opus-4-6-v1": {
-          "name": "aws/Claude Opus 4.6"
+          "name": "aws/Claude Opus 4.6",
+          "options": {
+            "thinking": { "type": "enabled", "budgetTokens": 63999 }
+          }
         },
         "global.anthropic.claude-sonnet-4-6": {
           "name": "aws/Claude Sonnet 4.6"
@@ -83,7 +89,10 @@
       },
       "models": {
         "claude-opus-4-6": {
-          "name": "az/Claude Opus 4.6"
+          "name": "az/Claude Opus 4.6",
+          "options": {
+            "thinking": { "type": "enabled", "budgetTokens": 63999 }
+          }
         },
         "claude-sonnet-4-6": {
           "name": "az/Claude Sonnet 4.6"
@@ -138,6 +147,11 @@
     "repomix": {
       "type": "local",
       "command": ["npx", "-y", "repomix", "--mcp"],
+      "enabled": true
+    },
+    "serena": {
+      "type": "local",
+      "command": ["serena", "start-mcp-server", "--context=claude-code", "--project-from-cwd"],
       "enabled": true
     }
   }
