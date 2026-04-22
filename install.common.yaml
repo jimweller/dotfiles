@@ -21,71 +21,73 @@
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
-    ~/.aws/config: dotfiles/aws/aws_config
-    ~/.azure/config: dotfiles/azure/azure_config
-    ~/.bash_profile: dotfiles/zsh/bash_profile
-    ~/.config/bat/config: dotfiles/bat/bat_config
-    ~/.docker/config.js: dotfiles/docker/docker_config
-    ~/.gitconfig-all: dotfiles/git/gitconfig-all
+    ~/.aws/config: configs/aws/aws_config
+    ~/.azure/config: configs/azure/azure_config
+    ~/.bash_profile: configs/zsh/bash_profile
+    ~/.config/bat/config: configs/bat/bat_config
+    ~/.docker/config.js: configs/docker/docker_config
+    ~/.gitconfig-all: configs/git/gitconfig-all
     # this is a hack to make p10k work since it uses and outdated fork of libgit2 that doesn't honor GIT_CONFIG_GLOBAL
-    ~/.gitconfig: dotfiles/git/gitconfig-all
-    ~/.gitconfig-jim: dotfiles/git/gitconfig-jim
-    ~/.gitconfig-work: dotfiles/git/gitconfig-work
+    ~/.gitconfig: configs/git/gitconfig-all
+    ~/.gitconfig-jim: configs/git/gitconfig-jim
+    ~/.gitconfig-work: configs/git/gitconfig-work
     ~/.config/gh/:
       glob: true
-      path: dotfiles/github/*
-    ~/.roo/settings/mcp_settings.json: dotfiles/roocode/mcp_settings.json
+      path: configs/github/*
+    ~/.roo/settings/mcp_settings.json: configs/roocode/mcp_settings.json
     ~/.vscode/extensions/andrewmitchell.devcontainer-template-manager-0.2.2/templates/0jimbox: submodules/devcontainer
-    ~/.roo/settings/custom_modes.yaml: dotfiles/roocode/custom_modes.yaml
-    ~/.roo/rules/global-rules.md: dotfiles/roocode/rules/rules/global-rules.md
-    ~/.roo/rules/markdown-rules.md: dotfiles/roocode/rules/rules/markdown-rules.md
+    ~/.roo/settings/custom_modes.yaml: configs/roocode/custom_modes.yaml
+    ~/.roo/rules/global-rules.md: configs/roocode/rules/rules/global-rules.md
+    ~/.roo/rules/markdown-rules.md: configs/roocode/rules/rules/markdown-rules.md
     # ~/.roo/:
     #   glob: true
-    #   path: dotfiles/roocode/rules/**
-    ~/.ssh/config: dotfiles/ssh/ssh_config
-    ~/.tmux.conf: dotfiles/tmux/tmux.conf
-    ~/.config/ghostty/config: dotfiles/ghostty/ghostty_config
-    ~/.ripgreprc: dotfiles/ripgrep/ripgreprc
+    #   path: configs/roocode/rules/**
+    ~/.ssh/config: configs/ssh/ssh_config
+    ~/.tmux.conf: configs/tmux/tmux.conf
+    ~/.config/ghostty/config: configs/ghostty/ghostty_config
+    ~/.ripgreprc: configs/ripgrep/ripgreprc
     ~/.config/powershell/:
       glob: true
-      path: dotfiles/powershell/*
-    ~/.zsh_plugins.txt: dotfiles/zsh/zsh_plugins.txt
-    ~/.serena/serena_config.yml: dotfiles/serena/serena_config.yml
-    ~/.gemini/settings.json: dotfiles/gemini/gemini_settings
-    ~/.config/opencode/opencode.json: dotfiles/opencode/opencode.json
+      path: configs/powershell/*
+    ~/.zsh_plugins.txt: configs/zsh/zsh_plugins.txt
+    ~/.serena/serena_config.yml: configs/serena/serena_config.yml
+    ~/.gemini/settings.json: configs/gemini/gemini_settings
+    ~/.config/opencode/opencode.json: configs/opencode/opencode.json
     ~/.config/opencode/agents/:
       glob: true
-      path: dotfiles/opencode/agents/*
+      path: configs/opencode/agents/*
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
 - link:
-    ~/.claude.json: dotfiles/claude-code/claude_json
-    ~/.claude/settings.json: dotfiles/claude-code/claude_settings_json_azure
-    ~/.claude/settings-aws.json: dotfiles/claude-code/claude_settings_json_aws
-    ~/.claude/settings-azure.json: dotfiles/claude-code/claude_settings_json_azure
-    ~/.claude/statusline-command.sh: dotfiles/claude-code/statusline-command.sh
-    ~/.claude/CLAUDE.md: dotfiles/claude-code/claude_md.md
-    ~/.claude/plugins/known_marketplaces.json: dotfiles/claude-code/known_marketplaces.json
-    ~/.claude/plugins/installed_plugins.json: dotfiles/claude-code/installed_plugins.json
+    ~/.claude.json: configs/claude-code/claude_json
+    ~/.claude/settings.json: configs/claude-code/claude_settings_json_azure
+    ~/.claude/settings-aws.json: configs/claude-code/claude_settings_json_aws
+    ~/.claude/settings-azure.json: configs/claude-code/claude_settings_json_azure
+    ~/.claude/statusline-command.sh: configs/claude-code/statusline-command.sh
+    ~/.claude/CLAUDE.md: configs/claude-code/claude_md.md
+    ~/.claude/plugins/known_marketplaces.json: configs/claude-code/known_marketplaces.json
+    ~/.claude/plugins/installed_plugins.json: configs/claude-code/installed_plugins.json
     ~/.claude/skills/:
       glob: true
-      path: dotfiles/claude-code/skills/*
+      path: configs/claude-code/skills/*
     ~/.claude/hooks/:
       glob: true
-      path: dotfiles/claude-code/hooks/*
-    ~/.claude/hooks/:
-      glob: true
-      path: dotfiles/claude-code/tools/lsp-enforcement-kit/hooks/*.js
-    ~/.claude/hooks/lib/:
-      glob: true
-      path: dotfiles/claude-code/tools/lsp-enforcement-kit/hooks/lib/*.js
+      path: configs/claude-code/hooks/*
     ~/.claude/rules/:
       glob: true
-      path: dotfiles/claude-code/rules/*
-    ~/.claude/tools/humble-master: dotfiles/claude-code/tools/humble-master
-    ~/.config/markdownlint/.markdownlint-cli2.jsonc: dotfiles/markdownlint/markdownlint-cli2.jsonc
-    ~/.prettierrc: dotfiles/prettier/prettierrc
+      path: configs/claude-code/rules/*
+    ~/.claude/tools/humble-master: configs/claude-code/tools/humble-master
+    ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
+    ~/.prettierrc: configs/prettier/prettierrc
+
+- link:
+    ~/.claude/hooks/:
+      glob: true
+      path: configs/claude-code/tools/lsp-enforcement-kit/hooks/*.js
+    ~/.claude/hooks/lib/:
+      glob: true
+      path: configs/claude-code/tools/lsp-enforcement-kit/hooks/lib/*.js
 
 - defaults:
     link:
@@ -93,7 +95,7 @@
       create: true
 
 - link:
-    ~/.p10k.zsh: dotfiles/p10k/p10k.zsh
-    ~/.zshrc: dotfiles/zsh/zshrc
+    ~/.p10k.zsh: configs/p10k/p10k.zsh
+    ~/.zshrc: configs/zsh/zshrc
 
 

@@ -25,7 +25,7 @@ FTS5 + vector retrieval.
 ## Retrieval tool
 
 ```bash
-TR=~/.config/dotfiles/dotfiles/claude-code/tools/total-recall
+TR=~/.config/dotfiles/configs/claude-code/tools/total-recall
 $TR/.venv/bin/python $TR/retrieve.py "QUERY" --db ~/.claude/session_memory.db
 ```
 

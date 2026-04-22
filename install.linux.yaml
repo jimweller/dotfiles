@@ -5,7 +5,7 @@
       relink: true
 
 - link:
-    ~/.granted/config: dotfiles/granted/granted_config_linux
+    ~/.granted/config: configs/granted/granted_config_linux
 
 - shell:
     - description: Copy claude configuration files if not present

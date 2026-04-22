@@ -103,7 +103,7 @@ Both use `--restart always`/`unless-stopped`.
 - Updates vector DB
 - Runs semantic linker
 
-Operates on `~/.claude/session_memory.db` using venv at `dotfiles/claude-code/tools/total-recall/.venv`.
+Operates on `~/.claude/session_memory.db` using venv at `configs/claude-code/tools/total-recall/.venv`.
 
 ## Shell Config Reload
 

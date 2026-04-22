@@ -18,7 +18,7 @@ dotfiles/
 │   ├── dotbot/                                    # Installer engine (submodule)
 │   ├── antidote/                                  # Zsh plugin manager (submodule)
 │   └── devcontainer/                              # Linux container image (submodule)
-├── dotfiles/
+├── configs/
 │   ├── zsh/                                       # Shell entry points and plugin manifests
 │   ├── zsh-jim/                                   # Numbered zsh modules
 │   ├── p10k/                                      # Powerlevel10k prompt theme and segments
@@ -88,7 +88,7 @@ The installer runs dotbot with platform detection:
 | `roocode/`                       | Roo Code        | custom_modes.yaml, mcp_settings.json          |
 | `gemini/`                        | Gemini CLI      | gemini_settings                               |
 
-See `dotfiles/claude-code/README.md` for skills vs commands details.
+See `configs/claude-code/README.md` for skills vs commands details.
 
 ## Secrets
 

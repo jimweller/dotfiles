@@ -54,17 +54,17 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 ## Antidote Plugin Manifest
 
-`dotfiles/zsh/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
+`configs/zsh/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
 
 ```text
 <github-org>/<repo> [path:<subpath>] [kind:fpath] [conditional:<func>]
 ```text
 
-Self-referential entries load zsh-jim modules:
+Self-referential entries load zsh-jim modules using absolute paths:
 
 ```text
-jimweller/dotfiles path:dotfiles/zsh-jim
-jimweller/dotfiles path:dotfiles/zsh-jim/terragrunt
-jimweller/dotfiles path:dotfiles/zsh-jim/tmux
-jimweller/dotfiles path:dotfiles/zsh-jim/alehouse conditional:is_macos
+$HOME/.config/dotfiles/configs/zsh-jim
+$HOME/.config/dotfiles/configs/zsh-jim/terragrunt
+$HOME/.config/dotfiles/configs/zsh-jim/tmux
+$HOME/.config/dotfiles/configs/zsh-jim/alehouse conditional:is_macos
 ```text

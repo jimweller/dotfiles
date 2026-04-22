@@ -16,32 +16,32 @@
       stdout: true
 
 - link:
-    ~/.colima/default/colima.yaml: dotfiles/colima/colima_default
-    ~/.granted/config: dotfiles/granted/granted_config_macos
-    "~/Library/Application\ Support/Code/User/settings.json": dotfiles/vscode/vscode_settings.json
-    "~/Library/Application\ Support/iTerm2/DynamicProfiles/jim.json": dotfiles/iterm/jim.json
-    "~/Library/Application\ Support/iTerm2/DynamicProfiles/claude.json": dotfiles/iterm/claude.json
-    "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": dotfiles/iterm/gemini.json
-    # "~/.roo/settings/mcp_settings.json": dotfiles/roocode/mcp_settings.json
-    # "~/.roo/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
+    ~/.colima/default/colima.yaml: configs/colima/colima_default
+    ~/.granted/config: configs/granted/granted_config_macos
+    "~/Library/Application\ Support/Code/User/settings.json": configs/vscode/vscode_settings.json
+    "~/Library/Application\ Support/iTerm2/DynamicProfiles/jim.json": configs/iterm/jim.json
+    "~/Library/Application\ Support/iTerm2/DynamicProfiles/claude.json": configs/iterm/claude.json
+    "~/Library/Application\ Support/iTerm2/DynamicProfiles/gemini.json": configs/iterm/gemini.json
+    # "~/.roo/settings/mcp_settings.json": configs/roocode/mcp_settings.json
+    # "~/.roo/settings/custom_modes.yaml": configs/roocode/custom_modes.yaml
     # "~/Library/Application\ Support/vscode-dev-containers/templates/0jimbox/": submodules/devcontainer/vscode_template
     # "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/":
     #   glob: true
-    #   path: dotfiles/roocode/*
-    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": dotfiles/roocode/custom_modes.yaml
+    #   path: configs/roocode/*
+    "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": configs/roocode/custom_modes.yaml
     "~/Library/LaunchAgents/com.user.refreshawstoken.plist": scripts/aws-refresh-token.plist
     "~/Library/LaunchAgents/com.user.sync.plist": scripts/sync.plist
     "~/Library/LaunchAgents/com.user.steampipe.plist": scripts/steampipe-start.plist
     "~/Library/LaunchAgents/com.user.ccusagecacherefresh.plist": scripts/ccusage-cache-refresh.plist
     "~/Library/LaunchAgents/com.user.totalrecallbackfill.plist": scripts/total-recall-backfill.plist
-    ~/.claude/ccusage-cache-refresh.sh: dotfiles/claude-code/ccusage-cache-refresh.sh
+    ~/.claude/ccusage-cache-refresh.sh: configs/claude-code/ccusage-cache-refresh.sh
 
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)
       command: |
         # to refresh dotfiles
-        #  cp -f ~/Library/Preferences/com.googlecode.iterm2.plist ~/.config/dotfiles/dotfiles/iterm/com.googlecode.iterm2.plist
-        cp -f ~/.config/dotfiles/dotfiles/iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+        #  cp -f ~/Library/Preferences/com.googlecode.iterm2.plist ~/.config/dotfiles/configs/iterm/com.googlecode.iterm2.plist
+        cp -f ~/.config/dotfiles/configs/iterm/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
         chmod 600 ~/Library/Preferences/com.googlecode.iterm2.plist
       stderr: true
       stdout: true

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-TR="/Users/jimweller/.config/dotfiles/dotfiles/claude-code/tools/total-recall"
+TR="/Users/jimweller/.config/dotfiles/configs/claude-code/tools/total-recall"
 PY="$TR/.venv/bin/python"
 DB="/Users/jimweller/.claude/session_memory.db"
 

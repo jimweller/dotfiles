@@ -4,17 +4,19 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 ## Core Components
 
-| Component    | Path                                      | Role                                                  |
-| ------------ | ----------------------------------------- | ----------------------------------------------------- |
-| dotbot       | `submodules/dotbot/`                      | Symlink and install orchestration (git submodule)     |
-| antidote     | `submodules/antidote/`                    | Zsh plugin manager (git submodule)                    |
-| devcontainer | `submodules/devcontainer/`                | Linux Docker dev image (git submodule)                |
-| total-recall | `dotfiles/claude-code/tools/total-recall` | SQLite session memory for Claude Code (git submodule) |
+| Component          | Path                                         | Role                                                  |
+| ------------------ | -------------------------------------------- | ----------------------------------------------------- |
+| dotbot             | `submodules/dotbot/`                         | Symlink and install orchestration (git submodule)     |
+| antidote           | `submodules/antidote/`                       | Zsh plugin manager (git submodule)                    |
+| devcontainer       | `submodules/devcontainer/`                   | Linux Docker dev image (git submodule)                |
+| total-recall       | `configs/claude-code/tools/total-recall/`    | SQLite session memory for Claude Code (git submodule) |
+| lsp-enforcement-kit| `configs/claude-code/tools/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule) |
+| humble-master      | `configs/claude-code/tools/humble-master/`   | Daneel persona injection for Claude Code (git submodule) |
 
 ## Directory Layout
 
 ```text
-dotfiles/                  # Source dotfiles (symlinked to home)
+configs/                  # Source dotfiles (symlinked to home)
   zshrc                    # Shell entry, loads antidote
   zsh-jim/                 # Numbered zsh modules (00-93)
   zsh_plugins.txt          # Antidote plugin manifest
@@ -51,12 +53,13 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.clau
 
 ## Zsh Module System
 
-`dotfiles/zsh-jim/zsh-jim.plugin.zsh` is the entrypoint, loaded via antidote. It sources numbered modules in order:
+`configs/zsh-jim/zsh-jim.plugin.zsh` is the entrypoint, loaded via antidote. It sources numbered modules in order:
 
 | Module                   | Scope                                                            |
 | ------------------------ | ---------------------------------------------------------------- |
 | `00-path.zsh`            | PATH construction from scratch                                   |
 | `01-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide, secrets loading        |
+| `02-tmux.zsh`            | Tmux session helpers                                             |
 | `04-gpg.zsh`             | GPG_TTY                                                          |
 | `06-git.zsh`             | Git profile switching (work/personal), lock/unlock, quick commit |
 | `08-iac.zsh`             | tenv auto-install                                                |
@@ -83,11 +86,13 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Four submodules defined in `.gitmodules`:
+Six submodules defined in `.gitmodules`:
 
-| Submodule    | Shallow | Branch  |
-| ------------ | ------- | ------- |
-| dotbot       | yes     | default |
-| devcontainer | yes     | main    |
-| antidote     | yes     | main    |
-| total-recall | no      | default |
+| Submodule           | Shallow | Branch  |
+| ------------------- | ------- | ------- |
+| dotbot              | yes     | default |
+| devcontainer        | yes     | main    |
+| antidote            | yes     | main    |
+| total-recall        | no      | default |
+| lsp-enforcement-kit | no      | default |
+| humble-master       | no      | default |

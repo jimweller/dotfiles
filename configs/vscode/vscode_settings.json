@@ -219,7 +219,7 @@
     // "esbenp.prettier-vscode"
   ],
   // "dev.containers.defaultFeatures": {
-  //   "https://raw.githubusercontent.com/jimweller/dotfiles/main/dotfiles/devcontainer-feature-fix-zsh-feature.tgz": {}
+  //   "https://raw.githubusercontent.com/jimweller/dotfiles/main/configs/devcontainer-feature-fix-zsh-feature.tgz": {}
   // },
   "dev.containers.dockerCredentialHelper": false,
   "dev.containers.gitCredentialHelperConfigLocation": "none",

@@ -53,12 +53,12 @@ AFTER creating a markdown file, the assistant MUST assess the document for compl
 If assistant detects markdown rule violations IMMEDIATELY edit the markdown to document to bring it into compliance.
 
 ALWAYS validate markdown with a markdown linter. Use the Bash tool to run the linter. The markdownlint-cli2 configuration
-file will always be at ~/.config/dotfiles/dotfiles/roocode/rules/.markdownlint.yaml.
+file will always be at ~/.config/dotfiles/configs/roocode/rules/.markdownlint.yaml.
 
 Example:
 
 ```bash
-markdownlint-cli2 --config ~/.config/dotfiles/dotfiles/roocode/rules/.markdownlint.yaml global-rules.md
+markdownlint-cli2 --config ~/.config/dotfiles/configs/roocode/rules/.markdownlint.yaml global-rules.md
 ```
 
 ## Writing Style Rules
