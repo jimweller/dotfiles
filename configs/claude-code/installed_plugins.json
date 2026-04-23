@@ -71,6 +71,16 @@
         "lastUpdated": "2026-04-16T12:03:39.971Z",
         "gitCommitSha": "a7f673879e597a8abd280795a6ec06568478a61a"
       }
+    ],
+    "employee-termination@devx-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/employee-termination/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-04-23T01:08:23.821Z",
+        "lastUpdated": "2026-04-23T01:08:23.821Z",
+        "gitCommitSha": "609d4bbfa788a8be774f719088a6e1185d8fd038"
+      }
     ]
   }
 }

@@ -30,14 +30,11 @@
     "commit": "",
     "pr": ""
   },
-  "thinking": {
-    "type": "enabled", 
-    "budget_tokens": 63999
-  },
   "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "default"
   },
+  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {
@@ -178,7 +175,8 @@
     "mcg-atlassian@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
-    "claude-mem@jimweller": true
+    "claude-mem@jimweller": true,
+    "employee-termination@devx-claude-marketplace": true
   },
   "extraKnownMarketplaces": {
     "devx-claude-marketplace": {
@@ -205,5 +203,8 @@
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
   "skipDangerousModePermissionPrompt": true,
-  "model": "sonnet"
+  "thinking": {
+    "type": "enabled",
+    "budget_tokens": 63999
+  }
 }
