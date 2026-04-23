@@ -530,7 +530,8 @@
   "remote.autoForwardPortsSource": "hybrid",
   "terminal.integrated.shellIntegration.quickFixEnabled": false,
   "terminal.integrated.macOptionClickForcesSelection": true,
-  "claudeCode.disableLoginPrompt": true
+  "claudeCode.disableLoginPrompt": true,
+  "chat.disableAIFeatures": true
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"

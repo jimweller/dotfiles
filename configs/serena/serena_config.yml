@@ -86,6 +86,7 @@ projects:
 - /Users/jimweller/scratch/opencode
 - /Users/jimweller/scratch/openfang
 - /Users/jimweller/scratch/serena
+- /Users/jimweller/work/2026-devx-survey-results
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/employee-termination-skill
 - /Users/jimweller/work/mcg-atlassian-plugin
@@ -93,6 +94,7 @@ projects:
 - /Users/jimweller/work/mcg-status-update-plugin
 - /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
+- /Users/jimweller/work/setup-claude
 
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.
 # This cannot be combined with non-empty excluded_tools or included_optional_tools.
@@ -113,6 +115,14 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
