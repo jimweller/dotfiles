@@ -46,7 +46,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - emojis, glyphs, emdashes, or double-hyphens (` -- ` is just a sneaky emdash)
 - hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary, comprehensive)
 - opposing phrases ("It't not X, it's y", "It's more than X, it's Y", "It's not just a X, it's a Y")
-- generic openings like "In today's rapidly evolving landscape"
+- generic openings like "In today's rapidly evolving landscape,"
 - filler transitions such as "Moreover" and "Furthermore"
 - vague claims without evidence
 - biography or credibility claims not backed by provided context
@@ -63,7 +63,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - ALWAYS read a file before editing it
 - NEVER commit plaintext secrets, credentials, or .env files. SOPS-encrypted files (e.g. secrets.enc.env) and .envrc files with no secrets are safe to commit.
 - Use existing patterns and conventions when modifying projects
-- Prefer current research over model training data. Use c7 and g MCP servers for research.
+- Prefer current research over model training data. Use c7 and g MCP servers for research. Prefer c7 and g over the builtin WebSearch() and WebFetch().
 - When a dependency points to a git repo, NEVER switch it to a published package without first checking the latest release date and comparing it to recent commits. The git source is intentional when it contains unreleased changes.
 
 ## Code Style
@@ -74,7 +74,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Do not add comments to production code. Keep it clean unless asked.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
 - Never use emojis or glyphs in code. Keep it text only unless asked.
-- Do not add fallbacks that hide failures. No `|| true`, no silent catch-all exception handlers, no automatic package substitution. Errors should surface, not be swallowed.
+- Do not add fallbacks that hide failures. No `|| true`. No `try { x } catch { }`. No silent catch-all exception handlers. No automatic package substitution. Errors should surface, not be swallowed.
 
 ## Git Workflow
 
@@ -89,8 +89,8 @@ These language patterns are forbidden. Delete and rewrite any of these:
 ## Jira, Confluence and mcg-atlassian plugin
 
 - ALWAYS load the confluence skill and the jira skill
-- Use mcg-atlassian:confluence skill and mcg-confluence-prefs skill working with atlassian confluence.
-- Use mcg-atlassian:jira skill and mcg-jira-prefs skill working with atlassian jira.
+- Use mcg-atlassian:confluence skill and mcg-confluence-prefs skill working with atlassian confluence. Both skills are required.
+- Use mcg-atlassian:jira skill and mcg-jira-prefs skill working with atlassian jira. Both skills are required.
 - Always load the prefs skill after the main skill: mcg-atlassian:confluence->mcg-confluence-prefs, mcg-atlassian:jira->mcg-jira-prefs
 - Do not use direct atlassian api (curl, python etc.) without trying the mcg-atlassian skills first
 - `c` and `j` are NOT in PATH. ALWAYS invoke mcg-atlassian skill first, then run CLI per skill instructions.
@@ -115,7 +115,6 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - Always ask clarifying questions before writing any code if requirements are ambiguous
 - If a task requires changes to more than 3 files, stop and break it into smaller tasks first
 - After writing code, list what could break and suggest tests to cover it
-- Every time the user corrects you, add a new rule to the CLAUDE.md file so it never happens again
 - ALWAYS run tests after making code changes
 - ALWAYS verify 100% passing tests before committing
 - ALWAYS verify build succeeds before committing
@@ -125,5 +124,5 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - EVERY response MUST begin with STARTER_CHARACTER. NO EXCEPTIONS.
 - Default: ✳️
 - When a skill defines its own STARTER_CHARACTER, concatenate after default with space (e.g., ✳️ 🎟️)
-- A skill is "active" when invoked via Skill tool or its SKILL.md is read
+- A skill is "active" when invoked via Skill tool or its SKILL.md is read or it is visible in context
 - Multiple active skills concatenate (e.g., ✳️ 🎟️ 📝)
