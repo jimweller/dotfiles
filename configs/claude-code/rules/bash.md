@@ -33,11 +33,7 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ## Environment Sourcing
 
-NEVER use `source .envrc` with a relative path. Resolve `PROJECT_ROOT` using the methods above, then source from it using fully qualified paths:
-
-```bash
-source "$PROJECT_ROOT/.envrc"
-```
+Environment sourcing is handled automatically with `mise` for variables, secrets, and pinned tool versions. Not asdf, direnv, or any other polyglot tools.
 
 ## Quoting
 
