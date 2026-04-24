@@ -58,7 +58,6 @@
   "memoryUsageCount": 1,
   "promptQueueUseCount": 157419,
   "btwUseCount": 2,
-  "showExpandedTodos": true,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
   "cachedStatsigGates": {
@@ -10041,8 +10040,8 @@
       "lastUsedAt": 1777001616653
     },
     "commit": {
-      "usageCount": 206,
-      "lastUsedAt": 1777009765955
+      "usageCount": 207,
+      "lastUsedAt": 1777012183007
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
