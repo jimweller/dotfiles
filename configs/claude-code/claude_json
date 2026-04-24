@@ -1,5 +1,5 @@
 {
-  "numStartups": 2863,
+  "numStartups": 2869,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157412,
+  "promptQueueUseCount": 157419,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -83,11 +83,12 @@
     }
   },
   "respectGitignore": false,
+  "unpinOpus47LaunchEffort": true,
   "shiftEnterKeyBindingInstalled": true,
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1774061504422,
+  "changelogLastFetched": 1777007254118,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -369,17 +370,17 @@
       ],
       "exampleFilesGeneratedAt": 1776821271590,
       "disabledMcpServers": [],
-      "lastCost": 1.1025825,
-      "lastAPIDuration": 163386,
-      "lastToolDuration": 2953,
-      "lastDuration": 679384,
-      "lastLinesAdded": 1,
+      "lastCost": 15.311765399999997,
+      "lastAPIDuration": 1260803,
+      "lastToolDuration": 398445,
+      "lastDuration": 35245982,
+      "lastLinesAdded": 58,
       "lastLinesRemoved": 1,
-      "lastTotalInputTokens": 191,
-      "lastTotalOutputTokens": 6194,
-      "lastTotalCacheCreationInputTokens": 54584,
-      "lastTotalCacheReadInputTokens": 1211255,
-      "lastSessionId": "ca30135f-2329-41bf-8b87-f545a57acc2a",
+      "lastTotalInputTokens": 92365,
+      "lastTotalOutputTokens": 66059,
+      "lastTotalCacheCreationInputTokens": 1168698,
+      "lastTotalCacheReadInputTokens": 13907940,
+      "lastSessionId": "48841e32-ed65-4461-895c-ec810f82bf22",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -387,41 +388,58 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 163056,
+      "lastAPIDurationWithoutRetries": 1259335,
       "lastModelUsage": {
         "claude-opus-4-6[1m]": {
-          "inputTokens": 191,
-          "outputTokens": 6194,
-          "cacheReadInputTokens": 1211255,
-          "cacheCreationInputTokens": 54584,
+          "inputTokens": 3450,
+          "outputTokens": 35612,
+          "cacheReadInputTokens": 10711557,
+          "cacheCreationInputTokens": 748584,
           "webSearchRequests": 0,
-          "costUSD": 1.1025825
+          "costUSD": 10.9419785
+        },
+        "claude-sonnet-4-6": {
+          "inputTokens": 17969,
+          "outputTokens": 8570,
+          "cacheReadInputTokens": 270778,
+          "cacheCreationInputTokens": 127911,
+          "webSearchRequests": 0,
+          "costUSD": 0.74335665
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 70909,
+          "outputTokens": 14033,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.141074
+        },
+        "claude-opus-4-7[1m]": {
+          "inputTokens": 37,
+          "outputTokens": 7844,
+          "cacheReadInputTokens": 2925605,
+          "cacheCreationInputTokens": 292203,
+          "webSearchRequests": 0,
+          "costUSD": 3.4853562499999997
         }
       },
-      "lastFpsAverage": 1.59,
-      "lastFpsLow1Pct": 81.25,
+      "lastFpsAverage": 0.67,
+      "lastFpsLow1Pct": 4.84,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 62,
-        "hook_duration_ms_min": 84,
-        "hook_duration_ms_max": 28347,
-        "hook_duration_ms_avg": 1278.6774193548388,
-        "hook_duration_ms_p50": 212.5,
-        "hook_duration_ms_p95": 5117.1,
-        "hook_duration_ms_p99": 19423.92000000001,
-        "frame_duration_ms_count": 1080,
-        "frame_duration_ms_min": 0.1648330000025453,
-        "frame_duration_ms_max": 35.16483400000004,
-        "frame_duration_ms_avg": 1.7180214861105068,
-        "frame_duration_ms_p50": 1.3511664999823552,
-        "frame_duration_ms_p95": 4.227290199976412,
-        "frame_duration_ms_p99": 12.295185910005674,
-        "pre_tool_hook_duration_ms_count": 29,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 429,
-        "pre_tool_hook_duration_ms_avg": 169.24137931034483,
-        "pre_tool_hook_duration_ms_p50": 195,
-        "pre_tool_hook_duration_ms_p95": 422.59999999999997,
-        "pre_tool_hook_duration_ms_p99": 427.88
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 401,
+        "hook_duration_ms_max": 401,
+        "hook_duration_ms_avg": 401,
+        "hook_duration_ms_p50": 401,
+        "hook_duration_ms_p95": 401,
+        "hook_duration_ms_p99": 401,
+        "frame_duration_ms_count": 67,
+        "frame_duration_ms_min": 0.45008299999972223,
+        "frame_duration_ms_max": 206.4202499999999,
+        "frame_duration_ms_avg": 6.320706507462848,
+        "frame_duration_ms_p50": 2.202167000010377,
+        "frame_duration_ms_p95": 9.833937500000085,
+        "frame_duration_ms_p99": 83.4523500000005
       },
       "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": false
@@ -1956,7 +1974,7 @@
         "pre_tool_hook_duration_ms_p95": 203,
         "pre_tool_hook_duration_ms_p99": 203.8
       },
-      "lastGracefulShutdown": true
+      "lastGracefulShutdown": false
     },
     "/Users/jimweller/Library/CloudStorage/OneDrive-SharedLibraries-PresidioNetworkSolutions/MILLI012 Azure LZ Policy and IaC (3001612506832) [FF] - 6. Technical Information/PlatEng": {
       "allowedTools": [],
@@ -9646,7 +9664,7 @@
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.109",
+  "lastReleaseNotesSeen": "2.1.119",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -9986,8 +10004,8 @@
       "lastUsedAt": 1776831792212
     },
     "mcg-atlassian:jira": {
-      "usageCount": 362,
-      "lastUsedAt": 1776863540515
+      "usageCount": 363,
+      "lastUsedAt": 1777001619569
     },
     "understand": {
       "usageCount": 2,
@@ -9998,8 +10016,8 @@
       "lastUsedAt": 1775952698182
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 431,
-      "lastUsedAt": 1776882546818
+      "usageCount": 432,
+      "lastUsedAt": 1777001613557
     },
     "code-reviews": {
       "usageCount": 21,
@@ -10010,20 +10028,20 @@
       "lastUsedAt": 1774921229306
     },
     "mcg-jira-prefs": {
-      "usageCount": 100,
-      "lastUsedAt": 1776863544500
+      "usageCount": 101,
+      "lastUsedAt": 1777001622968
     },
     "handoff": {
       "usageCount": 27,
       "lastUsedAt": 1776777913899
     },
     "mcg-confluence-prefs": {
-      "usageCount": 92,
-      "lastUsedAt": 1776882549226
+      "usageCount": 93,
+      "lastUsedAt": 1777001616653
     },
     "commit": {
-      "usageCount": 204,
-      "lastUsedAt": 1776973552905
+      "usageCount": 205,
+      "lastUsedAt": 1777009544218
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -10054,8 +10072,8 @@
       "lastUsedAt": 1776875861513
     },
     "sage": {
-      "usageCount": 104,
-      "lastUsedAt": 1776906853055
+      "usageCount": 105,
+      "lastUsedAt": 1777003869126
     },
     "update-config": {
       "usageCount": 1,
@@ -10146,7 +10164,7 @@
   "showSpinnerTree": false,
   "penguinModeOrgEnabled": false,
   "effortCalloutV2Dismissed": true,
-  "migrationVersion": 11,
+  "migrationVersion": 12,
   "ideHintShownCount": 5,
   "deepLinkTerminal": "Ghostty",
   "claudeInChromeDefaultEnabled": false,

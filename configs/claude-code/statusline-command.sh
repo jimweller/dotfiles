@@ -14,6 +14,10 @@ ICON_TIMER=$'\xF3\xB1\x8E\xAB'
 ICON_DUMB=$'\U000F002A'
 ICON_DEATH=$'\U000F0238'
 ICON_SKULL=$'\U0000EF0E'
+ICON_GAUGE_LOW=$'\U000F0F85'
+ICON_GAUGE_MED=$'\U000F0F86'
+ICON_GAUGE_HI=$'\U000F04C5'
+ICON_THINKING=$'\U000F06E8'
 
 # Read JSON input from stdin
 INPUT=$(cat)
@@ -78,6 +82,17 @@ if [ -z "$MODEL" ]; then
     esac
   fi
 fi
+
+EFFORT_LEVEL=$(echo "$INPUT" | jq -r '.effort.level // empty')
+case "$EFFORT_LEVEL" in
+  high)  EFFORT_GLYPH="$ICON_GAUGE_LOW"; EFFORT_COLOR="\033[38;5;33m" ;;
+  xhigh) EFFORT_GLYPH="$ICON_GAUGE_MED"; EFFORT_COLOR="\033[38;5;220m" ;;
+  max)   EFFORT_GLYPH="$ICON_GAUGE_HI";  EFFORT_COLOR="\033[38;5;124m" ;;
+  *)     EFFORT_GLYPH="$ICON_GAUGE_LOW"; EFFORT_COLOR="\033[38;5;240m" ;;
+esac
+
+THINKING_ENABLED=$(echo "$INPUT" | jq -r '.thinking.enabled // false')
+
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
 COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.0f", $1}')
@@ -165,7 +180,9 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}${CTX_ICON} $MODEL\033[0m"
+printf " | ${CTX_COLOR}${CTX_ICON}\033[0m $MODEL"
+printf "${EFFORT_COLOR}${EFFORT_GLYPH}\033[0m"
+[ "$THINKING_ENABLED" = "true" ] && printf "${EFFORT_COLOR}${ICON_THINKING}\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%% ${CTX_TOKENS_K}\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CCUSAGE_CACHE="/tmp/ccusage-cache.json"
