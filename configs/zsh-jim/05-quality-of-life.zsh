@@ -81,6 +81,11 @@ alias jimcontainer='jimcontainer.sh'
 alias jimc='jimcontainer.sh'
 alias secrets='secrets.sh'
 
+bolt() {
+  local name="${1:-jimweller-$(openssl rand -hex 2)}"
+  quiver create "$name" --config "$HOME/.config/dotfiles/configs/quiver/bolt.yaml"
+}
+
 
 # enable zoxide smart change directory tool
 # replace cd command
