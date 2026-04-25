@@ -16,7 +16,7 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `submodules/antidote/` -- zsh plugin manager (submodule)
 - `submodules/devcontainer/` -- Linux container image (submodule)
 - `configs/` -- source configs symlinked to home
-- `configs/zsh-jim/` -- numbered zsh modules (00-93), loaded in order
+- `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh
 - `manifests/` -- package lists (brew, apt) and encrypted secrets archive
 
@@ -33,7 +33,7 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 
 - Dotbot YAML configs: `install.common.yaml`, `install.macos.yaml`, `install.linux.yaml`
 - Link defaults: `force: true`, `create: true`, `relink: true`
-- Zsh modules use numbered prefixes for load order (00-path, 01-qol, ..., 93-linux)
+- Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 05-qol, ..., 95-linux)
 - Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim` and `gitconfig-work`
 - Profile switching via `GIT_CONFIG_GLOBAL` env var
 - Secrets never committed in plaintext; only GPG-encrypted archive in `manifests/`

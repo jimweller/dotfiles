@@ -75,10 +75,10 @@
     "employee-termination@devx-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/employee-termination/0.1.0",
-        "version": "0.1.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/employee-termination/0.1.1",
+        "version": "0.1.1",
         "installedAt": "2026-04-23T01:08:23.821Z",
-        "lastUpdated": "2026-04-23T01:08:23.821Z",
+        "lastUpdated": "2026-04-24T13:43:50.080Z",
         "gitCommitSha": "609d4bbfa788a8be774f719088a6e1185d8fd038"
       }
     ]

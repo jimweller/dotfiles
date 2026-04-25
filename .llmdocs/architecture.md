@@ -57,20 +57,21 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.clau
 
 | Module                   | Scope                                                            |
 | ------------------------ | ---------------------------------------------------------------- |
-| `00-path.zsh`            | PATH construction from scratch                                   |
-| `01-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide, secrets loading        |
-| `02-tmux.zsh`            | Tmux session helpers                                             |
-| `04-gpg.zsh`             | GPG_TTY                                                          |
-| `06-git.zsh`             | Git profile switching (work/personal), lock/unlock, quick commit |
-| `08-iac.zsh`             | tenv auto-install                                                |
-| `10-aws.zsh`             | AWS aliases, SSM session helper                                  |
-| `12-azure.zsh`           | Azure PIM activation, subscription management                    |
-| `13-ado.zsh`             | Azure DevOps CLI wrapper (repos, PRs, browse)                    |
-| `14-docker.zsh`          | DOCKER_HOST detection (Colima/native)                            |
-| `18-k8s.zsh`             | kube-ps1, kubeconfig merging                                     |
-| `20-ai.zsh`              | Claude/OpenCode/Gemini aliases, path fixes                       |
-| `91-macos.zsh`           | Dock/Bluetooth helpers (conditional)                             |
-| `93-linux.zsh`           | Reserved (empty)                                                 |
+| `00-secrets.zsh`         | Auto-load all secrets from ~/.secrets/*.env                      |
+| `03-path.zsh`            | PATH construction from scratch                                   |
+| `05-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide                         |
+| `10-tmux.zsh`            | Tmux session helpers                                             |
+| `15-gpg.zsh`             | GPG_TTY                                                          |
+| `20-git.zsh`             | Git profile switching (work/personal), lock/unlock, quick commit |
+| `30-iac.zsh`             | tenv auto-install                                                |
+| `40-aws.zsh`             | AWS aliases, SSM session helper                                  |
+| `45-azure.zsh`           | Azure PIM activation, subscription management                    |
+| `50-ado.zsh`             | Azure DevOps CLI wrapper (repos, PRs, browse)                    |
+| `55-docker.zsh`          | DOCKER_HOST detection (Colima/native)                            |
+| `60-k8s.zsh`             | kube-ps1, kubeconfig merging                                     |
+| `70-ai.zsh`              | Claude/OpenCode/Gemini aliases, path fixes                       |
+| `90-macos.zsh`           | Dock/Bluetooth helpers (conditional)                             |
+| `95-linux.zsh`           | Reserved (empty)                                                 |
 
 Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` (macOS only).
 
@@ -82,7 +83,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 ~/.gitconfig-work -> gitconfig-work # Work: mcg email, id_mcg key, ADO credential helper
 ```text
 
-`switch_git_profile()` in `06-git.zsh` sets `GIT_CONFIG_GLOBAL` and loads profile-specific secrets. `git_lock()` writes profile to local repo config.
+`switch_git_profile()` in `20-git.zsh` sets `GIT_CONFIG_GLOBAL` and loads profile-specific secrets. `git_lock()` writes profile to local repo config.
 
 ## Submodules
 

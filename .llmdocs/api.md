@@ -32,8 +32,8 @@ Requires: git, bash. Idempotent.
 
 Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
-- Numbered prefix controls load order (00 first, 93 last)
-- OS-conditional loading for `91-macos.zsh` and `93-linux.zsh`
+- Numbered prefix controls load order (00 first, 95 last)
+- OS-conditional loading for `90-macos.zsh` and `95-linux.zsh`
 - Sub-plugins (`terragrunt/`, `tmux/`, `alehouse/`) follow antidote plugin convention with `<name>.plugin.zsh` entrypoint
 - Modules export env vars, define functions, and set aliases in global scope
 
@@ -41,16 +41,16 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 | Function                      | Module                   | Purpose                                         |
 | ----------------------------- | ------------------------ | ----------------------------------------------- |
-| `switch_git_profile()`        | `06-git.zsh`             | Set GIT_CONFIG_GLOBAL + load secrets            |
-| `git_lock()` / `git_unlock()` | `06-git.zsh`             | Write/clear git identity in local repo config   |
-| `gj()`                        | `06-git.zsh`             | Quick commit: add all, commit, push             |
-| `gpa()`                       | `06-git.zsh`             | Pull all subdirectory repos                     |
-| `activate_pim()`              | `12-azure.zsh`           | Azure PIM role elevation                        |
-| `ec2session()`                | `10-aws.zsh`             | SSM port-forward + password retrieval           |
-| `ado`                         | `13-ado.zsh`             | Azure DevOps CLI (browse, repo, pr subcommands) |
-| `secret()`                    | `01-quality-of-life.zsh` | Load named secrets env file                     |
-| `loadenv()`                   | `01-quality-of-life.zsh` | Source env file with `set -a`                   |
-| `otp()`                       | `01-quality-of-life.zsh` | Generate TOTP from seed                         |
+| `switch_git_profile()`        | `20-git.zsh`             | Set GIT_CONFIG_GLOBAL + load secrets            |
+| `git_lock()` / `git_unlock()` | `20-git.zsh`             | Write/clear git identity in local repo config   |
+| `gj()`                        | `20-git.zsh`             | Quick commit: add all, commit, push             |
+| `gpa()`                       | `20-git.zsh`             | Pull all subdirectory repos                     |
+| `activate_pim()`              | `45-azure.zsh`           | Azure PIM role elevation                        |
+| `ec2session()`                | `40-aws.zsh`             | SSM port-forward + password retrieval           |
+| `ado`                         | `50-ado.zsh`             | Azure DevOps CLI (browse, repo, pr subcommands) |
+| `secret()`                    | `05-quality-of-life.zsh` | Load named secrets env file                     |
+| `loadenv()`                   | `05-quality-of-life.zsh` | Source env file with `set -a`                   |
+| `otp()`                       | `05-quality-of-life.zsh` | Generate TOTP from seed                         |
 
 ## Antidote Plugin Manifest
 

@@ -99,15 +99,6 @@ HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 
 alias less=bat
 
-# Auto-load all secrets from ~/.secrets/*.env files
-if [[ -d "$HOME/.secrets" ]]; then
-  for secret_file in "$HOME/.secrets"/*.env; do
-    if [[ -f "$secret_file" ]]; then
-      source $secret_file
-    fi
-  done
-fi
-
 # make pretty html files from basic markdown
 markdown_to_html() {
   pandoc "$1" --css "$HOME/.config/dotfiles/assets/md.css" --embed-resources --standalone -o "${1%.*}.html"

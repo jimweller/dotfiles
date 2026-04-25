@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-04-24T06:23:54.224Z",
+    "lastUpdated": "2026-04-25T00:58:34.402Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -23,7 +23,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-04-22T17:02:47.882Z",
+    "lastUpdated": "2026-04-25T00:58:34.987Z",
     "autoUpdate": true
   },
   "devx-claude-marketplace": {
@@ -32,7 +32,7 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-04-23T01:08:15.571Z",
+    "lastUpdated": "2026-04-24T15:43:30.033Z",
     "autoUpdate": true
   },
   "jimweller": {
@@ -41,7 +41,7 @@
       "url": "https://github.com/jimweller/claude-mem.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-04-24T06:23:54.526Z",
+    "lastUpdated": "2026-04-24T23:52:46.836Z",
     "autoUpdate": true
   }
 }
