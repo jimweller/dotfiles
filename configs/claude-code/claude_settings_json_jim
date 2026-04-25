@@ -190,6 +190,5 @@
   "effortLevel": "xhigh",
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true
+  "prefersReducedMotion": true
 }
