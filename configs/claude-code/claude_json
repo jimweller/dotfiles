@@ -1,5 +1,5 @@
 {
-  "numStartups": 2887,
+  "numStartups": 2888,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -88,7 +88,7 @@
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1777078478180,
+  "changelogLastFetched": 1777128221468,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -370,17 +370,17 @@
       ],
       "exampleFilesGeneratedAt": 1776821271590,
       "disabledMcpServers": [],
-      "lastCost": 48.436183250000006,
-      "lastAPIDuration": 4382524,
-      "lastToolDuration": 871908,
-      "lastDuration": 86318144,
-      "lastLinesAdded": 698,
-      "lastLinesRemoved": 443,
-      "lastTotalInputTokens": 98837,
-      "lastTotalOutputTokens": 256836,
-      "lastTotalCacheCreationInputTokens": 2476349,
-      "lastTotalCacheReadInputTokens": 54817227,
-      "lastSessionId": "5bb0a5fc-5cb9-4e8b-bdeb-54cc8feff1f4",
+      "lastCost": 5.013871900000002,
+      "lastAPIDuration": 812121,
+      "lastToolDuration": 44895,
+      "lastDuration": 221795492,
+      "lastLinesAdded": 125,
+      "lastLinesRemoved": 54,
+      "lastTotalInputTokens": 2584,
+      "lastTotalOutputTokens": 39599,
+      "lastTotalCacheCreationInputTokens": 487724,
+      "lastTotalCacheReadInputTokens": 4676171,
+      "lastSessionId": "6db082be-fce8-4106-b2f1-c343b595c333",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -388,68 +388,60 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 4376989,
+      "lastAPIDurationWithoutRetries": 811124,
       "lastModelUsage": {
-        "claude-opus-4-6[1m]": {
-          "inputTokens": 3450,
-          "outputTokens": 35612,
-          "cacheReadInputTokens": 10711557,
-          "cacheCreationInputTokens": 748584,
-          "webSearchRequests": 0,
-          "costUSD": 10.9419785
-        },
-        "claude-sonnet-4-6": {
-          "inputTokens": 23250,
-          "outputTokens": 16477,
-          "cacheReadInputTokens": 447130,
-          "cacheCreationInputTokens": 198941,
-          "webSearchRequests": 0,
-          "costUSD": 1.1970727499999998
-        },
         "claude-haiku-4-5": {
-          "inputTokens": 71417,
-          "outputTokens": 14049,
+          "inputTokens": 370,
+          "outputTokens": 16,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.141662
+          "costUSD": 0.00045
         },
-        "claude-opus-4-7[1m]": {
-          "inputTokens": 720,
-          "outputTokens": 190698,
-          "cacheReadInputTokens": 43658540,
-          "cacheCreationInputTokens": 1528824,
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 1080,
+          "outputTokens": 17636,
+          "cacheReadInputTokens": 2538218,
+          "cacheCreationInputTokens": 198022,
           "webSearchRequests": 0,
-          "costUSD": 36.15547000000001
+          "costUSD": 2.9530465
+        },
+        "claude-sonnet-4-6": {
+          "inputTokens": 1134,
+          "outputTokens": 21947,
+          "cacheReadInputTokens": 2137953,
+          "cacheCreationInputTokens": 289702,
+          "webSearchRequests": 0,
+          "costUSD": 2.0603754
         }
       },
-      "lastFpsAverage": 0.12,
-      "lastFpsLow1Pct": 149.34,
+      "lastFpsAverage": 0.01,
+      "lastFpsLow1Pct": 110.92,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 103,
-        "hook_duration_ms_min": 170,
-        "hook_duration_ms_max": 16740,
-        "hook_duration_ms_avg": 1209.1650485436894,
-        "hook_duration_ms_p50": 210,
-        "hook_duration_ms_p95": 10119.899999999996,
-        "hook_duration_ms_p99": 13735.980000000003,
-        "frame_duration_ms_count": 2697,
-        "frame_duration_ms_min": 0.060125000309199095,
-        "frame_duration_ms_max": 32.23341699999992,
-        "frame_duration_ms_avg": 1.4600406577777303,
-        "frame_duration_ms_p50": 1.1402915002545342,
-        "frame_duration_ms_p95": 3.5960607000335583,
-        "frame_duration_ms_p99": 6.591922090100116,
-        "pre_tool_hook_duration_ms_count": 44,
+        "frame_duration_ms_count": 2208,
+        "frame_duration_ms_min": 0.10649999999441206,
+        "frame_duration_ms_max": 116.76908302307129,
+        "frame_duration_ms_avg": 1.620892949449905,
+        "frame_duration_ms_p50": 1.0712710111401975,
+        "frame_duration_ms_p95": 3.7737473500252228,
+        "frame_duration_ms_p99": 7.739168411652192,
+        "hook_duration_ms_count": 340,
+        "hook_duration_ms_min": 86,
+        "hook_duration_ms_max": 55020,
+        "hook_duration_ms_avg": 723.6,
+        "hook_duration_ms_p50": 267,
+        "hook_duration_ms_p95": 432.1,
+        "hook_duration_ms_p99": 12773.320000000054,
+        "pre_tool_hook_duration_ms_count": 165,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 253,
-        "pre_tool_hook_duration_ms_avg": 203.20454545454547,
-        "pre_tool_hook_duration_ms_p50": 208.5,
-        "pre_tool_hook_duration_ms_p95": 240.55,
-        "pre_tool_hook_duration_ms_p99": 249.13
+        "pre_tool_hook_duration_ms_max": 440,
+        "pre_tool_hook_duration_ms_avg": 252.46060606060607,
+        "pre_tool_hook_duration_ms_p50": 261,
+        "pre_tool_hook_duration_ms_p95": 399.7999999999999,
+        "pre_tool_hook_duration_ms_p99": 433.0799999999999
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": true
+      "lastGracefulShutdown": false
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -9696,7 +9688,7 @@
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.109",
+  "lastReleaseNotesSeen": "2.1.119",
   "mcpServers": {
     "c7": {
       "type": "stdio",
