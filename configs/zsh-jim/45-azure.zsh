@@ -6,12 +6,7 @@ alias azdown='az account clear'
 
 alias azs='az account show'
 alias azass='az account set -s'
-alias asasn='az account set -n'
-
-readit () {   
-  echo -n "Press any key to continue..."
-  read -n 1
-}
+alias azasn='az account set -n'
 
 activate_pim() {
   local pim_role="${1:-$AZ_PIM_ROLE}"
