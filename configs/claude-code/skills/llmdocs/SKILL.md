@@ -33,14 +33,20 @@ $ARGUMENTS
 For each CLAUDE.md/.llmdocs/ pair found, scoped to its directory:
 
 1. Read current `CLAUDE.md` (if exists)
-2. Compute what changed since docs were last touched:
+2. Compute what changed since docs were last touched. Include committed, staged, unstaged, and untracked work:
 
 ```bash
 TARGET_DIR=<directory containing CLAUDE.md and .llmdocs/>
 BASELINE=$(git log -1 --format=%H -- "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.llmdocs/")
-git diff ${BASELINE}..HEAD --stat -- "$TARGET_DIR"
+[ -z "$BASELINE" ] && BASELINE=$(git rev-list --max-parents=0 HEAD)
+
 git log --oneline ${BASELINE}..HEAD -- "$TARGET_DIR"
+git diff ${BASELINE} -- "$TARGET_DIR" --stat
+git diff ${BASELINE} -- "$TARGET_DIR"
+git ls-files --others --exclude-standard -- "$TARGET_DIR"
 ```text
+
+The diff has no `..HEAD` so it spans the baseline through the working tree, including staged and unstaged edits. `ls-files --others` surfaces new untracked files. Files matching `.gitignore` are excluded.
 
 3. Explore codebase at that directory level and below
 4. Review conversation history for relevant decisions, changes, or lessons learned

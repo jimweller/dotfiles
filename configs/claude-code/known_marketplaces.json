@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-04-25T15:22:46.278Z",
+    "lastUpdated": "2026-04-25T20:39:57.852Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -41,7 +41,7 @@
       "url": "https://github.com/jimweller/claude-mem.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-04-25T15:22:46.690Z",
+    "lastUpdated": "2026-04-25T20:39:58.137Z",
     "autoUpdate": true
   }
 }

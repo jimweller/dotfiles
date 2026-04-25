@@ -2,7 +2,6 @@ mode: terminal
 shell: /bin/zsh
 bootstrap_repo: https://github.com/jimweller/quiver-jim-bootstrap
 dotfiles_repo: git@github.com:jimweller/dotfiles.git
-workspace_repo: git@ssh.dev.azure.com:v3/mcgsead/devx-internal/deep-code-review
 resources:
   requests:
     cpu: "2"
