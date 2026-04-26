@@ -14,7 +14,7 @@ Format and lint markdown files with auto-fix enabled.
 
 ## Usage
 
-if $ARGUMENTS is empty, process all markdown files in the repository
+if $ARGUMENTS is empty, process all markdown files in the repository (submodule contents excluded)
 if $ARGUMENTS is not empty, process only the markdown files specified as arguments
 
 To fix all markdown files in the repository, run from the git root:
@@ -22,13 +22,25 @@ To fix all markdown files in the repository, run from the git root:
 ```bash
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 cd "$PROJECT_ROOT"
-prettier --config ~/.prettierrc --write "**/*.md" --ignore-path .gitignore && markdownlint-cli2 --config ~/.config/markdownlint/.markdownlint-cli2.jsonc --fix "**/*.md"
+
+mapfile -t md_files < <({
+  git ls-files '*.md'
+  git ls-files --others --exclude-standard '*.md'
+} | sort -u)
+
+if [ ${#md_files[@]} -eq 0 ]; then
+  echo "No markdown files to process."
+else
+  prettier --config ~/.prettierrc --write "${md_files[@]}" \
+    && markdownlint-cli2 --config ~/.config/markdownlint/.markdownlint-cli2.jsonc --fix "${md_files[@]}"
+fi
 ```
+
+`git ls-files` does not recurse into submodules, so submodule contents are skipped automatically. Untracked-but-not-ignored markdown is included via the second `git ls-files --others` invocation.
 
 To fix a specific file (can run from any directory):
 
 ```bash
-PROJECT_ROOT=$(git rev-parse --show-toplevel)
 prettier --config ~/.prettierrc --write "path/to/file.md" && markdownlint-cli2 --config ~/.config/markdownlint/.markdownlint-cli2.jsonc --fix "path/to/file.md"
 ```
 
@@ -36,3 +48,4 @@ prettier --config ~/.prettierrc --write "path/to/file.md" && markdownlint-cli2 -
 
 - Some markdownlint rules (like MD060) are not auto-fixable, but prettier handles them
 - If an error cannot be fixed automatically by prettier, ask the user if you should fix them manually for the user.
+- Submodule contents are excluded automatically. To lint files inside a submodule, run the skill from that submodule's working tree.
