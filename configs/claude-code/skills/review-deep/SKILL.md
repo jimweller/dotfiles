@@ -1,6 +1,6 @@
 ---
-name: code-reviews
-description: Launch parallel code reviews using OpenAI, Gemini, and Claude via opencode run.
+name: review-deep
+description: Whole-codebase deep audit launching parallel code reviews across OpenAI, Gemini, and Claude via opencode run.
 argument-hint: "<path>"
 context: fork
 disable-model-invocation: true
@@ -46,7 +46,7 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 rm -f "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-openai.md \
       "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-gemini.md \
       "$PROJECT_ROOT"/.llmtmp/review-"$TARGET_NAME"-claude.md
-mkdir -p "$PROJECT_ROOT/.llmtmp" "$PROJECT_ROOT/.llmtmp/code-reviews"
+mkdir -p "$PROJECT_ROOT/.llmtmp" "$PROJECT_ROOT/.llmtmp/review-deep"
 ```text
 
 ### Step 2: Pack Repomix
@@ -101,7 +101,7 @@ Use the agent name `review-<area>` for each. Each agent prompt MUST include:
 - outputId=<the outputId from Step 1>
 - OUTPUT_PATH=<STATE_DIR>/<MODEL_LABEL>-<area>.md
 
-STATE_DIR: <PROJECT_ROOT>/.llmtmp/code-reviews
+STATE_DIR: <PROJECT_ROOT>/.llmtmp/review-deep
 
 Areas and agent names:
 - review-security -> OUTPUT_PATH: <STATE_DIR>/<MODEL_LABEL>-security.md
@@ -146,7 +146,7 @@ Print exactly: REVIEW_COMPLETE"
 Write the prompt string to a temp file. This avoids shell interpolation issues with large prompts.
 
 ```bash
-STATE_DIR="$PROJECT_ROOT/.llmtmp/code-reviews"
+STATE_DIR="$PROJECT_ROOT/.llmtmp/review-deep"
 mkdir -p "$STATE_DIR"
 OPENAI_DIR=$(mktemp -d)
 GEMINI_DIR=$(mktemp -d)
@@ -164,8 +164,10 @@ Use the Agent tool to spawn 3 agents simultaneously. Each agent launches one ope
 Each agent receives the same instruction template with its model-specific values substituted. The agent's job is:
 
 1. Launch the opencode process as a background Bash task (`run_in_background`)
-2. Poll NDJSON progress every 30 seconds until the process finishes (reason: "stop") or errors out
+2. Poll NDJSON progress every `POLL_INTERVAL` seconds until the process finishes (reason: "stop") or errors out
 3. Report success/failure, cost, token count, and whether the output file exists
+
+`POLL_INTERVAL` defaults to 30 seconds. Adjust if the model is faster or slower than typical opencode runs.
 
 **Agent prompt template** (substitute `<LABEL>`, `<MODEL_ID>`, `<TEMP_DIR>`, `<STATE_DIR>`, `<TARGET_NAME>`, `<PROJECT_ROOT>`):
 
@@ -185,7 +187,7 @@ opencode run \
   "$(cat "$PROMPT_FILE")" \
   > "$STATE_DIR/<LABEL>.ndjson" 2>"$STATE_DIR/<LABEL>.log"
 
-Then poll every 30 seconds using:
+Then poll every POLL_INTERVAL seconds using:
   grep -c '"type":"step_finish"' "$STATE_DIR/<LABEL>.ndjson"
   tail -1 "$STATE_DIR/<LABEL>.ndjson" | jq -r '.part.reason // empty'
   grep -c '"type":"error"' "$STATE_DIR/<LABEL>.ndjson"
@@ -346,7 +348,7 @@ The final `step_finish` with `"reason":"stop"` means the model is done.
 
 ### Useful jq Queries
 
-Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmtmp/code-reviews/openai.ndjson`).
+Replace `$NDJSON` with the actual NDJSON file path (e.g., `<PROJECT_ROOT>/.llmtmp/review-deep/openai.ndjson`).
 
 ```bash
 # Is the process done? (last step_finish reason is "stop")
@@ -368,7 +370,7 @@ jq -r 'select(.type=="error") | .error.data.message' "$NDJSON"
 jq -r 'select(.type=="tool_use" and .part.tool=="task") | .part.state.status' "$NDJSON" | wc -l
 ```text
 
-Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmtmp/code-reviews/openai.log`):
+Replace `$LOGFILE` with the text log path (e.g., `<PROJECT_ROOT>/.llmtmp/review-deep/openai.log`):
 
 ```bash
 # All errors and warnings from text logs

@@ -255,3 +255,8 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+### Local working scratch ###
+# Skill scratch space for handoffs, reviews, plans, etc.
+.llmtmp/
+

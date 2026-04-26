@@ -33,6 +33,11 @@ If tasks are tightly coupled or the plan does not yet exist, use a different app
 
 This skill is the same-session execution pattern. Fresh subagent per task, no context pollution, two-stage review after each task, fast iteration.
 
+## Prerequisites
+
+- `/review-quick` is invoked per task. It needs git access to compute deltas; no extra binary.
+- `/review-full` is invoked once at the end. It shells out to `npx repomix` and uses the repomix MCP server. If repomix is unavailable, the final whole-codebase audit cannot run; either install it or skip the final-review step.
+
 ## The Process
 
 The controller follows this loop:
@@ -46,13 +51,13 @@ The controller follows this loop:
    4. Handle the status (see Handling Implementer Status below). If DONE or DONE_WITH_CONCERNS, proceed to spec compliance review.
    5. Dispatch the spec compliance reviewer subagent (use @spec-reviewer-prompt.md as the template).
    6. If the spec reviewer finds issues, the implementer fixes them. Re-dispatch the spec reviewer until it confirms compliance.
-   7. Once spec compliance passes, dispatch the code quality reviewer subagent (use @code-quality-reviewer-prompt.md as the template).
-   8. If the code quality reviewer finds issues, the implementer fixes them. Re-dispatch the code quality reviewer until approved.
+   7. Once spec compliance passes, invoke the `/review-quick` skill. It auto-detects the just-committed task changes and dispatches 8 specialized review agents in parallel. Returns a consolidated report.
+   8. If `/review-quick` reports High or Medium severity findings, the implementer fixes them. Re-invoke `/review-quick` until it returns no High/Medium findings.
    9. Mark the task complete in TodoWrite.
 
-3. After all tasks are complete, dispatch a final code-reviewer for the entire implementation (the same code-reviewer agent definition used for per-task quality reviews).
+3. After all tasks are complete, invoke `/review-full` for a whole-codebase audit of the implementation.
 
-4. Hand off to the commit skill to finalize the work.
+4. Hand off to the `/commit` skill to finalize the work.
 
 ## Model Selection
 
@@ -92,7 +97,8 @@ Never ignore an escalation or force the same model to retry without changes. If 
 
 - @implementer-prompt.md - Dispatch implementer subagent
 - @spec-reviewer-prompt.md - Dispatch spec compliance reviewer subagent
-- @code-quality-reviewer-prompt.md - Dispatch code quality reviewer subagent
+
+Code quality review uses the `/review-quick` skill, which dispatches 8 specialized review agents in parallel. No template needed in this skill.
 
 ## Example Workflow
 
@@ -104,7 +110,7 @@ Dispatch the implementer with full task text and context. The implementer asks: 
 
 Dispatch the spec reviewer. It returns: spec compliant.
 
-Dispatch the code quality reviewer. It returns: approved.
+Invoke `/review-quick`. It dispatches 8 specialized review agents in parallel and returns: no High or Medium findings (one Low finding noted but not blocking).
 
 Mark Task 1 complete.
 
@@ -116,13 +122,13 @@ Dispatch the spec reviewer. It returns: missing progress reporting (spec says "r
 
 The implementer fixes both issues. Re-dispatch the spec reviewer. Returns: spec compliant.
 
-Dispatch the code quality reviewer. Returns: magic number `100` in code.
+Invoke `/review-quick`. Returns: Code Quality flagged a Medium finding for magic number `100`.
 
-The implementer extracts a `PROGRESS_INTERVAL` constant. Re-dispatch the code quality reviewer. Returns: approved.
+The implementer extracts a `PROGRESS_INTERVAL` constant. Re-invoke `/review-quick`. Returns: no High or Medium findings.
 
 Mark Task 2 complete.
 
-Continue for remaining tasks. After all tasks, dispatch a final code-reviewer for the whole implementation. Hand off to the commit skill.
+Continue for remaining tasks. After all tasks, invoke `/review-full` for a whole-codebase audit. Hand off to `/commit`.
 
 ## Advantages
 
@@ -190,6 +196,11 @@ Subagents should use:
 - systematic-debugging - When BLOCKED on a stubborn failure
 - verify-claims - Verify subagent reports against VCS diff before accepting
 
+Code review:
+
+- /review-quick - Per-task code quality review (auto-dispatched after spec compliance passes)
+- /review-full - Whole-codebase audit after all tasks complete
+
 Workflow handoff:
 
-- commit - Finalize the work after all tasks and final review pass
+- /commit - Finalize the work after all tasks and final review pass
