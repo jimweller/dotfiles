@@ -87,6 +87,7 @@ projects:
 - /Users/jimweller/scratch/opencode
 - /Users/jimweller/scratch/openfang
 - /Users/jimweller/scratch/serena
+- /Users/jimweller/scratch/superpowers
 - /Users/jimweller/work/2026-devx-survey-results
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/employee-termination-skill
@@ -116,6 +117,10 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
