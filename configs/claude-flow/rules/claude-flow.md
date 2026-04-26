@@ -13,7 +13,7 @@ All tools prefixed with `mcp__claude-flow__`
 
 ### Core Swarm Operations
 
-```text
+````text
 swarm_init(topology, maxAgents, strategy)
   - topology: "hierarchical" | "mesh" | "ring" | "star"
   - maxAgents: 1-20 (default: 8)
@@ -565,3 +565,4 @@ npx claude-flow@alpha hive-mind spawn "<objective>"
 **STATUS:** Native MCP tools verified and connected
 **MODE:** Direct tool invocation (no subprocess)
 **OPTIMIZED FOR:** LLM execution efficiency
+````

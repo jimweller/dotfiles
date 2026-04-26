@@ -25,7 +25,7 @@ Put a single blank line between markdown types/styles. Do not put multiple blank
 
 CORRECT
 
-```markdown
+````markdown
 ## Heading
 
 paragraph
@@ -34,7 +34,8 @@ paragraph
 - list item two
 
 > block quote
-```text
+
+````text
 
 INCORRECT
 
@@ -98,3 +99,6 @@ CORRECT trailing newline
 ```markdown
 The End.
 ```text
+````
+
+````

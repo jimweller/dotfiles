@@ -22,8 +22,8 @@ The argument is a goal description. It may reference a file containing a PRD, pl
 
 All files go in `<PROJECT_ROOT>/.llmtmp/`. Create the directory if it does not exist.
 
-| File               | Purpose                                         |
-| ------------------ | ----------------------------------------------- |
+| File              | Purpose                                         |
+| ----------------- | ----------------------------------------------- |
 | `ralph-prompt.md` | The `/ralph-loop:ralph-loop` invocation command |
 | `ralph-tasks.md`  | Checklist of discrete tasks                     |
 | `ralph-plan.md`   | Execution plan for accomplishing the goal       |

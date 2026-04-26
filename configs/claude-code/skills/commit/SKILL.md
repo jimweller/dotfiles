@@ -13,7 +13,7 @@ STARTER_CHARACTER = 📌
 
 ### 1. Review Changes
 
-```bash
+````bash
 git status
 git diff HEAD
 git diff --stat HEAD
@@ -95,3 +95,4 @@ Fixes #482
 - `**/CLAUDE.md` -- folder local rules changes
 
 Git log is long-term memory for future sessions.
+````

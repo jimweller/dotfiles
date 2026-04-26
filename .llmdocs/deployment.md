@@ -4,7 +4,7 @@ Install process, platform detection, and environment setup.
 
 ## Install Flow
 
-```text
+````text
 ./install
   -> bootstrap python3 (apt or brew)
   -> git submodule update --init --recursive submodules/dotbot
@@ -77,3 +77,4 @@ Not automated by the installer:
 | Linux    | git, bash, apt | Python3                   |
 
 Homebrew is installed automatically on macOS if missing.
+````

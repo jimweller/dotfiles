@@ -12,7 +12,7 @@ Tests must verify real behavior, not mock behavior. Mocks isolate the unit under
 
 ## The Iron Laws
 
-```text
+````text
 1. NEVER test mock behavior
 2. NEVER add test-only methods to production classes
 3. NEVER mock without understanding the collaborator's contract
@@ -313,3 +313,4 @@ TDD cycle:
 If TDD reveals you're testing mock behavior, you've gone wrong.
 
 Fix: Test real behavior or question why you're mocking at all.
+````

@@ -29,7 +29,7 @@
 
 **Claude Code's Task tool is the PRIMARY way to spawn agents:**
 
-```javascript
+````javascript
 // ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
 [Single Message]:
   Task("Research agent", "Analyze requirements and patterns...", "researcher")
@@ -1001,3 +1001,4 @@ Subordinate documentation with detailed guides:
 **VERSION:** 3.0 - Integrated Claude-Flow + Multi-MCP
 **MODE:** Native MCP + Task Tool + Subprocess Orchestration
 **OPTIMIZED FOR:** LLM parsing and concurrent execution
+````

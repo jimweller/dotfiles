@@ -48,6 +48,7 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 | `activate_pim()`              | `45-azure.zsh`           | Azure PIM role elevation                        |
 | `ec2session()`                | `40-aws.zsh`             | SSM port-forward + password retrieval           |
 | `ado`                         | `50-ado.zsh`             | Azure DevOps CLI (browse, repo, pr subcommands) |
+| `bolt()`                      | `05-quality-of-life.zsh` | Create a quiver workspace (name or random)      |
 | `secret()`                    | `05-quality-of-life.zsh` | Load named secrets env file                     |
 | `loadenv()`                   | `05-quality-of-life.zsh` | Source env file with `set -a`                   |
 | `otp()`                       | `05-quality-of-life.zsh` | Generate TOTP from seed                         |
@@ -56,7 +57,7 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 `configs/zsh/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
 
-```text
+````text
 <github-org>/<repo> [path:<subpath>] [kind:fpath] [conditional:<func>]
 ```text
 
@@ -68,3 +69,4 @@ $HOME/.config/dotfiles/configs/zsh-jim/terragrunt
 $HOME/.config/dotfiles/configs/zsh-jim/tmux
 $HOME/.config/dotfiles/configs/zsh-jim/alehouse conditional:is_macos
 ```text
+````

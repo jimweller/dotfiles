@@ -38,7 +38,7 @@ Thinking "skip TDD just this once"? Stop. That's rationalization.
 
 ## The Iron Law
 
-```text
+`````text
 NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 ```text
 
@@ -376,3 +376,4 @@ Otherwise -> not TDD
 ```text
 
 No exceptions without the user's permission.
+`````

@@ -10,7 +10,7 @@
 
 ### google_search
 
-```text
+````text
 mcp__googler__google_search({
   query: string,
   num_results?: number  // 1-10, default: 5
@@ -546,3 +546,4 @@ QUERY TIPS:
 **Status:** Connected
 **Provider:** github:jimweller/google-research-mcp
 **Optimized for:** LLM direct execution
+````

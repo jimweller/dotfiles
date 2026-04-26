@@ -25,7 +25,7 @@ Launch 3 independent plan reviews of the Ralph Wiggum loop files in parallel usi
 
 ### Step 1: Validate Ralph Files Exist
 
-```text
+`````text
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 ```text
 
@@ -380,3 +380,4 @@ grep -E "^(ERROR|WARN)" "$LOGFILE"
 - Use plain message invocation, not `--command`. The `--command` flag has a known issue with the c7 MCP server.
 - Clean up the state directory after reporting results.
 - If a model fails, still wait for and report the others.
+`````

@@ -1030,7 +1030,6 @@ in the document:
 
 ```markdown
 ---
-
 ---
 
 ---

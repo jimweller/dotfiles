@@ -9,7 +9,7 @@
 
 ### Step 1: Copy Configuration Files
 
-```bash
+````bash
 # Create new test directory
 mkdir -p ~/test-claude-flow-app
 
@@ -440,3 +440,4 @@ AFTER EXECUTION:
 
 **Last Updated:** 2025-11-15
 **Configuration Version:** 3.0
+````

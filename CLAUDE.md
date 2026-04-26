@@ -33,7 +33,7 @@ scripts/sync.sh              # Backup to encrypted Google Drive image
 
 - Dotbot YAML configs: `install.common.yaml`, `install.macos.yaml`, `install.linux.yaml`
 - Link defaults: `force: true`, `create: true`, `relink: true`
-- Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 05-qol, ..., 95-linux)
+- Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 04-completions, 05-qol, ..., 95-linux)
 - Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim` and `gitconfig-work`
 - Profile switching via `GIT_CONFIG_GLOBAL` env var
 - Secrets never committed in plaintext; only GPG-encrypted archive in `manifests/`

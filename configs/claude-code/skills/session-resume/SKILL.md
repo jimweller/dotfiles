@@ -23,7 +23,7 @@ Search past conversations and help user resume them.
 
 Run the script `scripts/claude-search-resume`:
 
-```bash
+````bash
 # Search in current project
 ~/.claude/skills/session-resume/scripts/claude-search-resume
 
@@ -61,3 +61,4 @@ claude --resume <session-id>
 | "find conversations about auth"  | `scripts/claude-search-resume "auth" --global`              |
 | "what did we work on yesterday?" | `scripts/claude-search-resume --global --from "2026-01-13"` |
 | "find my CRM sessions"           | `scripts/claude-search-resume "crm" --global`               |
+````

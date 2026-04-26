@@ -12,7 +12,7 @@
 
 #### pack_codebase
 
-```text
+````text
 mcp__repomix__pack_codebase({
   directory: string,
   style?: string,
@@ -897,3 +897,4 @@ WHEN NOT TO USE:
 **Status:** Connected
 **Provider:** repomix --mcp
 **Optimized for:** LLM codebase analysis
+````

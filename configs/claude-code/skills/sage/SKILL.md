@@ -34,7 +34,7 @@ c7 indexes official documentation. Always current. No date filtering needed.
 
 1. Resolve the library ID:
 
-```text
+````text
 mcp__c7__resolve-library-id
   libraryName: "<library name>"
   query: "<specific question>"
@@ -155,3 +155,4 @@ Report findings inline in the conversation. Include:
 - Version numbers when relevant
 - Date of source material when available from g results
 - Clear statement if information was not found or results were inconclusive
+````

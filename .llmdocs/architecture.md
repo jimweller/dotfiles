@@ -4,21 +4,21 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 ## Core Components
 
-| Component          | Path                                         | Role                                                  |
-| ------------------ | -------------------------------------------- | ----------------------------------------------------- |
-| dotbot             | `submodules/dotbot/`                         | Symlink and install orchestration (git submodule)     |
-| antidote           | `submodules/antidote/`                       | Zsh plugin manager (git submodule)                    |
-| devcontainer       | `submodules/devcontainer/`                   | Linux Docker dev image (git submodule)                |
-| total-recall       | `configs/claude-code/tools/total-recall/`    | SQLite session memory for Claude Code (git submodule) |
-| lsp-enforcement-kit| `configs/claude-code/tools/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule) |
-| humble-master      | `configs/claude-code/tools/humble-master/`   | Daneel persona injection for Claude Code (git submodule) |
+| Component           | Path                                             | Role                                                     |
+| ------------------- | ------------------------------------------------ | -------------------------------------------------------- |
+| dotbot              | `submodules/dotbot/`                             | Symlink and install orchestration (git submodule)        |
+| antidote            | `submodules/antidote/`                           | Zsh plugin manager (git submodule)                       |
+| devcontainer        | `submodules/devcontainer/`                       | Linux Docker dev image (git submodule)                   |
+| total-recall        | `configs/claude-code/tools/total-recall/`        | SQLite session memory for Claude Code (git submodule)    |
+| lsp-enforcement-kit | `configs/claude-code/tools/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule)     |
+| humble-master       | `configs/claude-code/tools/humble-master/`       | Daneel persona injection for Claude Code (git submodule) |
 
 ## Directory Layout
 
-```text
+````text
 configs/                  # Source dotfiles (symlinked to home)
   zshrc                    # Shell entry, loads antidote
-  zsh-jim/                 # Numbered zsh modules (00-93)
+  zsh-jim/                 # Numbered zsh modules (00-95)
   zsh_plugins.txt          # Antidote plugin manifest
   p10k/                    # Powerlevel10k prompt theme and segments
   git/                     # Layered git identity and ignore
@@ -59,6 +59,7 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.clau
 | ------------------------ | ---------------------------------------------------------------- |
 | `00-secrets.zsh`         | Auto-load all secrets from ~/.secrets/*.env                      |
 | `03-path.zsh`            | PATH construction from scratch                                   |
+| `04-completions.zsh`     | Runtime completions for tools without fpath files (fzf, rustup, opencode) |
 | `05-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide                         |
 | `10-tmux.zsh`            | Tmux session helpers                                             |
 | `15-gpg.zsh`             | GPG_TTY                                                          |
@@ -97,3 +98,4 @@ Six submodules defined in `.gitmodules`:
 | total-recall        | no      | default |
 | lsp-enforcement-kit | no      | default |
 | humble-master       | no      | default |
+````

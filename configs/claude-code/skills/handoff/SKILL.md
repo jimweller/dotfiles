@@ -28,7 +28,7 @@ Review everything that happened in this conversation:
 
 ### 2. Gather Current State
 
-```bash
+````bash
 git status
 git diff --stat HEAD
 git log --oneline -5
@@ -106,7 +106,7 @@ After writing the handoff:
 
    ```text
    Read .llmtmp/handoff.md and continue from where the previous session left off.
-   ```
+````
 
 3. If there are uncommitted changes, suggest committing first:
 

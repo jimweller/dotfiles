@@ -7,7 +7,7 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - dotbot -- symlink and install orchestration (git submodule)
 - antidote -- zsh plugin manager (git submodule)
 - devcontainer -- Linux Docker image with utilities (git submodule)
-- zsh-jim -- numbered zsh modules loaded in order (path, quality-of-life, gpg, git, iac, aws, azure, ado, docker, k8s, ai, macos, linux)
+- zsh-jim -- numbered zsh modules loaded in order (secrets, path, completions, quality-of-life, tmux, gpg, git, iac, aws, azure, ado, docker, k8s, ai, macos, linux)
 - scripts -- launchd plists, container helpers, cloud token refresh, sync
 
 ## Project Structure
@@ -43,7 +43,9 @@ dotfiles/
 │   ├── jira/                                      # Jira CLI config
 │   ├── opencode/                                  # OpenCode CLI config and agents
 │   ├── powershell/                                # PowerShell profile
+│   ├── quiver/                                    # Quiver workspace templates
 │   ├── roocode/                                   # Roo Code modes and MCP settings
+│   ├── serena/                                    # Serena LSP config
 │   ├── iterm/                                     # iTerm2 preferences plist
 │   ├── macos/                                     # macOS Automator workflows
 │   └── assets/                                    # Static assets (md.css)
@@ -67,10 +69,10 @@ The installer runs dotbot with platform detection:
 
 ## Configuration
 
-| File             | Target                             | Purpose                                          |
-| ---------------- | ---------------------------------- | ------------------------------------------------ |
+| File                 | Target                             | Purpose                                          |
+| -------------------- | ---------------------------------- | ------------------------------------------------ |
 | `zsh/zshrc`          | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim    |
-| `p10k/p10k.zsh`     | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
+| `p10k/p10k.zsh`      | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
 | `git/gitconfig-all`  | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff) |
 | `git/gitconfig-jim`  | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all        |
 | `git/gitconfig-work` | `~/.gitconfig-work`                | Work identity, includes gitconfig-all            |

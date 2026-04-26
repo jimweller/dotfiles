@@ -35,7 +35,7 @@ For each CLAUDE.md/.llmdocs/ pair found, scoped to its directory:
 1. Read current `CLAUDE.md` (if exists)
 2. Compute what changed since docs were last touched. Include committed, staged, unstaged, and untracked work:
 
-```bash
+````bash
 TARGET_DIR=<directory containing CLAUDE.md and .llmdocs/>
 BASELINE=$(git log -1 --format=%H -- "$TARGET_DIR/CLAUDE.md" "$TARGET_DIR/.llmdocs/")
 [ -z "$BASELINE" ] && BASELINE=$(git rev-list --max-parents=0 HEAD)
@@ -162,3 +162,4 @@ After running, output:
 - Files created/modified
 - CLAUDE.md changes (sections added/updated/removed)
 - Docs updated/created (or "no doc changes needed")
+````

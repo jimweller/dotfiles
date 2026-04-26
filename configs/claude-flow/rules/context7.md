@@ -10,7 +10,7 @@
 
 ### resolve-library-id
 
-```text
+````text
 mcp__context7__resolve-library-id({ libraryName: string })
 ```text
 
@@ -401,3 +401,4 @@ WHEN NOT TO USE:
 **Status:** Connected
 **Provider:** @upstash/context7-mcp
 **Optimized for:** LLM direct execution
+````

@@ -28,7 +28,7 @@ Arguments: $ARGUMENTS
 
 ### Step 1: Resolve Target and Clean Up
 
-```text
+`````text
 TARGET_PATH = $ARGUMENTS (or repo root if empty)
 
 If TARGET_PATH is empty or not provided: use git repo root.
@@ -384,3 +384,4 @@ grep -E "^(ERROR|WARN)" "$LOGFILE"
 - Use plain message invocation, not `--command`. The `--command` flag has a known issue with the c7 MCP server.
 - Do NOT clean up per-area files, NDJSON logs, or text logs. All intermediate artifacts persist for debugging and evals.
 - If a model fails, still wait for and report the others.
+`````

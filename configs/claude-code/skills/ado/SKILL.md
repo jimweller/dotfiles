@@ -22,7 +22,7 @@ Repo ops require ADO remote (`dev.azure.com` or `visualstudio.com`).
 
 The shell environment provides default values via `$ADO_DEFAULT_ORG` and `$ADO_DEFAULT_PROJECT`. Use these as fallbacks when org or project cannot be parsed from the git remote, or when operating outside a git repo.
 
-```bash
+````bash
 org="${org:-$ADO_DEFAULT_ORG}"
 project="${project:-$ADO_DEFAULT_PROJECT}"
 ```text
@@ -900,3 +900,4 @@ Some operations require REST API (no CLI equivalent):
 - Git push operations (branches, commits)
 - PR comment threads
 - Webhooks
+````

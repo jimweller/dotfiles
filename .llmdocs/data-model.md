@@ -8,7 +8,7 @@ Three config files: `install.common.yaml`, `install.macos.yaml`, `install.linux.
 
 Top-level directives:
 
-```yaml
+````yaml
 - defaults:
     link:
       force: true # overwrite existing
@@ -59,8 +59,8 @@ Profile switching via `GIT_CONFIG_GLOBAL` env var set by `switch_git_profile()`.
 
 | File                             | Format                        | Purpose                            |
 | -------------------------------- | ----------------------------- | ---------------------------------- |
-| `manifests/brew-formula.txt`     | One package per line          | Homebrew formulae (103 packages)   |
-| `manifests/brew-casks.txt`       | One cask per line             | Homebrew casks (38 apps)           |
+| `manifests/brew-formula.txt`     | One package per line          | Homebrew formulae (127 packages)   |
+| `manifests/brew-casks.txt`       | One cask per line             | Homebrew casks (36 apps)           |
 | `manifests/brew-taps.txt`        | One tap per line              | Homebrew taps (19 taps)            |
 | `manifests/apt.txt`              | One package per line          | Linux apt packages (6 packages)    |
 | `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | Encrypted secrets tar archive      |
@@ -114,3 +114,4 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 | `claude_settings_json_aws`   | JSON   | `~/.claude/settings-aws.json`               |
 | `known_marketplaces.json`    | JSON   | `~/.claude/plugins/known_marketplaces.json` |
 | `installed_plugins.json`     | JSON   | `~/.claude/plugins/installed_plugins.json`  |
+````

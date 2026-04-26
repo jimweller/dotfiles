@@ -12,7 +12,7 @@
 
 #### jira_get_issue
 
-```text
+````text
 mcp__atl__jira_get_issue({
   issue_key: string,
   fields?: string,
@@ -1344,3 +1344,4 @@ WHEN NOT TO USE:
 **Provider:** mcp-atlassian
 **Python:** 3.10+ required
 **Optimized for:** LLM direct execution
+````
