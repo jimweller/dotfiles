@@ -73,8 +73,9 @@ belak/zsh-utils path:history
 # syntax highlighting on the command line
 zsh-users/zsh-syntax-highlighting
 
-# completions for zoxide, TODO, doesn't seem to work
-jnooree/zoxide-zsh-completion
+# zoxide completion is provided by `zoxide init --cmd cd zsh` in
+# 05-quality-of-life.zsh, plus brew ships _zoxide in fpath. The
+# jnooree/zoxide-zsh-completion plugin was a third overlapping source.
 
 # ls aliases for eza (better ls)
 birdhackor/zsh-eza-ls-plugin

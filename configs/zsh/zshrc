@@ -13,6 +13,12 @@ source $HOME/.config/dotfiles/submodules/antidote/antidote.zsh
 # use short friendly names for antidote downloads packages
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 
+# Cache the compinit dump for 20 hours instead of regenerating on every shell start.
+# Read by mattmc3/ez-compinit, which is the first plugin sourced by antidote load.
+# Set this BEFORE antidote load so ez-compinit sees the zstyle when it runs.
+# Tradeoff: completions installed mid-day require `compinit -f` or a 20-hour wait.
+zstyle ':plugin:ez-compinit' use-cache yes
+
 # conveniences for some older OMZ plugins, that export the old 
 # directories to exist.
 SHELL=zsh

@@ -1,6 +1,7 @@
 0=${(%):-%N}
 source ${0:A:h}/00-secrets.zsh
 source ${0:A:h}/03-path.zsh
+source ${0:A:h}/04-completions.zsh
 source ${0:A:h}/05-quality-of-life.zsh
 source ${0:A:h}/10-tmux.zsh
 source ${0:A:h}/15-gpg.zsh
