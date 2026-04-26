@@ -1,5 +1,5 @@
 {
-  "numStartups": 2896,
+  "numStartups": 2901,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157455,
+  "promptQueueUseCount": 157465,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -363,17 +363,17 @@
       ],
       "exampleFilesGeneratedAt": 1776821271590,
       "disabledMcpServers": [],
-      "lastCost": 64.54969209999999,
-      "lastAPIDuration": 5887819,
-      "lastToolDuration": 436380,
-      "lastDuration": 278405174,
-      "lastLinesAdded": 2653,
-      "lastLinesRemoved": 430,
-      "lastTotalInputTokens": 38352,
-      "lastTotalOutputTokens": 364396,
-      "lastTotalCacheCreationInputTokens": 4208552,
-      "lastTotalCacheReadInputTokens": 61834309,
-      "lastSessionId": "f3db4d3e-666a-4510-83d9-5b3c2218f94a",
+      "lastCost": 116.59127979999997,
+      "lastAPIDuration": 9811746,
+      "lastToolDuration": 1247467,
+      "lastDuration": 308885113,
+      "lastLinesAdded": 3370,
+      "lastLinesRemoved": 520,
+      "lastTotalInputTokens": 47930,
+      "lastTotalOutputTokens": 608529,
+      "lastTotalCacheCreationInputTokens": 7633052,
+      "lastTotalCacheReadInputTokens": 115275592,
+      "lastSessionId": "a875ca9d-c27a-4d63-a4a4-b485599de028",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -381,7 +381,7 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 5880272,
+      "lastAPIDurationWithoutRetries": 9800060,
       "lastModelUsage": {
         "claude-haiku-4-5": {
           "inputTokens": 370,
@@ -400,46 +400,46 @@
           "costUSD": 2.9530465
         },
         "claude-sonnet-4-6": {
-          "inputTokens": 1198,
-          "outputTokens": 29748,
-          "cacheReadInputTokens": 3692607,
-          "cacheCreationInputTokens": 372950,
+          "inputTokens": 4352,
+          "outputTokens": 61139,
+          "cacheReadInputTokens": 5279361,
+          "cacheCreationInputTokens": 1011280,
           "webSearchRequests": 0,
-          "costUSD": 2.9561585999999993
+          "costUSD": 6.306249300000001
         },
         "claude-opus-4-7[1m]": {
-          "inputTokens": 35704,
-          "outputTokens": 316996,
-          "cacheReadInputTokens": 55603484,
-          "cacheCreationInputTokens": 3637580,
+          "inputTokens": 42128,
+          "outputTokens": 529738,
+          "cacheReadInputTokens": 107458013,
+          "cacheCreationInputTokens": 6423750,
           "webSearchRequests": 0,
-          "costUSD": 58.640036999999985
+          "costUSD": 107.33153400000003
         }
       },
-      "lastFpsAverage": 0.32,
-      "lastFpsLow1Pct": 164.6,
+      "lastFpsAverage": 1.7,
+      "lastFpsLow1Pct": 161.44,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 997,
-        "hook_duration_ms_min": 175,
-        "hook_duration_ms_max": 69442,
-        "hook_duration_ms_avg": 1124.827482447342,
-        "hook_duration_ms_p50": 279,
-        "hook_duration_ms_p95": 7389.199999999971,
-        "hook_duration_ms_p99": 14757.519999999999,
-        "frame_duration_ms_count": 17618,
-        "frame_duration_ms_min": 0.07741700112819672,
-        "frame_duration_ms_max": 290.5821249999999,
-        "frame_duration_ms_avg": 1.1758085242437337,
-        "frame_duration_ms_p50": 0.7746254988014698,
-        "frame_duration_ms_p95": 2.9696125023066964,
-        "frame_duration_ms_p99": 5.8979899992048725,
-        "pre_tool_hook_duration_ms_count": 459,
+        "hook_duration_ms_count": 47,
+        "hook_duration_ms_min": 182,
+        "hook_duration_ms_max": 5127,
+        "hook_duration_ms_avg": 447.74468085106383,
+        "hook_duration_ms_p50": 202,
+        "hook_duration_ms_p95": 2292.199999999988,
+        "hook_duration_ms_p99": 4411.699999999999,
+        "frame_duration_ms_count": 616,
+        "frame_duration_ms_min": 0.21337499999208376,
+        "frame_duration_ms_max": 98.43858399999988,
+        "frame_duration_ms_avg": 1.2892565633118964,
+        "frame_duration_ms_p50": 0.8007080000024871,
+        "frame_duration_ms_p95": 4.446188000001712,
+        "frame_duration_ms_p99": 6.194199950006896,
+        "pre_tool_hook_duration_ms_count": 22,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 1306,
-        "pre_tool_hook_duration_ms_avg": 269.5468409586057,
-        "pre_tool_hook_duration_ms_p50": 257,
-        "pre_tool_hook_duration_ms_p95": 589,
-        "pre_tool_hook_duration_ms_p99": 1086.1000000000001
+        "pre_tool_hook_duration_ms_max": 284,
+        "pre_tool_hook_duration_ms_avg": 196.86363636363637,
+        "pre_tool_hook_duration_ms_p50": 200,
+        "pre_tool_hook_duration_ms_p95": 235.85,
+        "pre_tool_hook_duration_ms_p99": 274.12999999999994
       },
       "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": false
@@ -9719,56 +9719,140 @@
         "test-subagent-driven-development-integration.sh",
         "superpowers-codex"
       ],
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1777174871363,
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 0.36111775,
-      "lastAPIDuration": 23487,
-      "lastAPIDurationWithoutRetries": 23443,
-      "lastToolDuration": 393,
-      "lastDuration": 84484,
+      "lastCost": 2.236355,
+      "lastAPIDuration": 313961,
+      "lastAPIDurationWithoutRetries": 313617,
+      "lastToolDuration": 1915,
+      "lastDuration": 12541411,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 1850,
-      "lastTotalOutputTokens": 1417,
-      "lastTotalCacheCreationInputTokens": 45439,
-      "lastTotalCacheReadInputTokens": 64898,
+      "lastTotalInputTokens": 3947,
+      "lastTotalOutputTokens": 19136,
+      "lastTotalCacheCreationInputTokens": 163322,
+      "lastTotalCacheReadInputTokens": 1438571,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 2.88,
-      "lastFpsLow1Pct": 228.04,
+      "lastFpsAverage": 0.08,
+      "lastFpsLow1Pct": 234.94,
       "lastModelUsage": {
         "claude-opus-4-7[1m]": {
-          "inputTokens": 1850,
-          "outputTokens": 1417,
-          "cacheReadInputTokens": 64898,
-          "cacheCreationInputTokens": 45439,
+          "inputTokens": 3575,
+          "outputTokens": 19119,
+          "cacheReadInputTokens": 1438571,
+          "cacheCreationInputTokens": 163322,
           "webSearchRequests": 0,
-          "costUSD": 0.36111775
+          "costUSD": 2.235898
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 372,
+          "outputTokens": 17,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.000457
         }
       },
-      "lastSessionId": "f9295a2b-45e2-429b-b21a-c1c40a4640e0",
+      "lastSessionId": "d1b2f6be-53f7-4a56-a1b5-1943254befc9",
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 239,
-        "frame_duration_ms_min": 0.08187499999985448,
-        "frame_duration_ms_max": 5.794666999998299,
-        "frame_duration_ms_avg": 0.5940288995818526,
-        "frame_duration_ms_p50": 0.4140000000006694,
-        "frame_duration_ms_p95": 1.8490499999999879,
-        "frame_duration_ms_p99": 4.325273460000705,
-        "hook_duration_ms_count": 15,
-        "hook_duration_ms_min": 251,
-        "hook_duration_ms_max": 492,
-        "hook_duration_ms_avg": 318.8666666666667,
-        "hook_duration_ms_p50": 267,
-        "hook_duration_ms_p95": 444.3999999999999,
-        "hook_duration_ms_p99": 482.47999999999996,
-        "pre_tool_hook_duration_ms_count": 8,
+        "frame_duration_ms_count": 1061,
+        "frame_duration_ms_min": 0.05879200000026685,
+        "frame_duration_ms_max": 8.17633400001796,
+        "frame_duration_ms_avg": 0.6116546098026256,
+        "frame_duration_ms_p50": 0.47964549995958805,
+        "frame_duration_ms_p95": 1.82826880003267,
+        "frame_duration_ms_p99": 4.255476909962563,
+        "hook_duration_ms_count": 86,
+        "hook_duration_ms_min": 234,
+        "hook_duration_ms_max": 20366,
+        "hook_duration_ms_avg": 671.7093023255813,
+        "hook_duration_ms_p50": 291.5,
+        "hook_duration_ms_p95": 677.75,
+        "hook_duration_ms_p99": 11759.750000000058,
+        "pre_tool_hook_duration_ms_count": 48,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 425,
-        "pre_tool_hook_duration_ms_avg": 235.75,
-        "pre_tool_hook_duration_ms_p50": 317.5,
-        "pre_tool_hook_duration_ms_p95": 423.95,
-        "pre_tool_hook_duration_ms_p99": 424.79
+        "pre_tool_hook_duration_ms_max": 593,
+        "pre_tool_hook_duration_ms_avg": 237.875,
+        "pre_tool_hook_duration_ms_p50": 281,
+        "pre_tool_hook_duration_ms_p95": 502.8499999999998,
+        "pre_tool_hook_duration_ms_p99": 579.37
+      }
+    },
+    "/Users/jimweller/.config/dotfiles/configs/claude-code/tools/lsp-enforcement-kit": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": true,
+      "hasClaudeMdExternalIncludesWarningShown": true,
+      "lastGracefulShutdown": true,
+      "exampleFiles": [
+        "bash-grep-block.js",
+        "detect-lsp-provider.js",
+        "install.sh",
+        "lsp-first-glob-guard.js",
+        "lsp-first-guard.js"
+      ],
+      "exampleFilesGeneratedAt": 1777189649304,
+      "lastCost": 4.924833000000002,
+      "lastAPIDuration": 754500,
+      "lastAPIDurationWithoutRetries": 753700,
+      "lastToolDuration": 11605,
+      "lastDuration": 24946679,
+      "lastLinesAdded": 439,
+      "lastLinesRemoved": 16,
+      "lastTotalInputTokens": 719,
+      "lastTotalOutputTokens": 53384,
+      "lastTotalCacheCreationInputTokens": 215476,
+      "lastTotalCacheReadInputTokens": 4485170,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.12,
+      "lastFpsLow1Pct": 181.67,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 593,
+          "outputTokens": 15,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.000668
+        },
+        "claude-opus-4-7[1m]": {
+          "inputTokens": 126,
+          "outputTokens": 53369,
+          "cacheReadInputTokens": 4485170,
+          "cacheCreationInputTokens": 215476,
+          "webSearchRequests": 0,
+          "costUSD": 4.924165000000002
+        }
+      },
+      "lastSessionId": "ef4ea94b-d079-4059-a83c-fa3ae4ab6fd4",
+      "lastSessionMetrics": {
+        "frame_duration_ms_count": 1686,
+        "frame_duration_ms_min": 0.0750000000007276,
+        "frame_duration_ms_max": 14.369374999776483,
+        "frame_duration_ms_avg": 0.8077053309372489,
+        "frame_duration_ms_p50": 0.5593539988622069,
+        "frame_duration_ms_p95": 3.1144482988864164,
+        "frame_duration_ms_p99": 5.5687460911646465,
+        "hook_duration_ms_count": 107,
+        "hook_duration_ms_min": 147,
+        "hook_duration_ms_max": 11597,
+        "hook_duration_ms_avg": 826.3644859813085,
+        "hook_duration_ms_p50": 208,
+        "hook_duration_ms_p95": 5659.799999999983,
+        "hook_duration_ms_p99": 11035.759999999997,
+        "pre_tool_hook_duration_ms_count": 51,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 338,
+        "pre_tool_hook_duration_ms_avg": 155.5686274509804,
+        "pre_tool_hook_duration_ms_p50": 195,
+        "pre_tool_hook_duration_ms_p95": 276,
+        "pre_tool_hook_duration_ms_p99": 334.5
       }
     }
   },
@@ -9941,6 +10025,9 @@
     ],
     "obra/superpowers": [
       "/Users/jimweller/scratch/superpowers"
+    ],
+    "jimweller/claude-code-lsp-enforcement-kit": [
+      "/Users/jimweller/.config/dotfiles/configs/claude-code/tools/lsp-enforcement-kit"
     ]
   },
   "opus45MigrationComplete": true,
@@ -10153,8 +10240,8 @@
       "lastUsedAt": 1777038173767
     },
     "commit": {
-      "usageCount": 223,
-      "lastUsedAt": 1777182798002
+      "usageCount": 225,
+      "lastUsedAt": 1777226066430
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -10185,8 +10272,8 @@
       "lastUsedAt": 1777175174828
     },
     "sage": {
-      "usageCount": 113,
-      "lastUsedAt": 1777159546526
+      "usageCount": 114,
+      "lastUsedAt": 1777219813606
     },
     "update-config": {
       "usageCount": 1,
@@ -10197,8 +10284,8 @@
       "lastUsedAt": 1776884928681
     },
     "mem-search": {
-      "usageCount": 3,
-      "lastUsedAt": 1776818683535
+      "usageCount": 4,
+      "lastUsedAt": 1777188062943
     },
     "summarizing-slack-messages:summarize": {
       "usageCount": 3,

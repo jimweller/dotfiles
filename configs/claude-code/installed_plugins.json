@@ -65,10 +65,10 @@
     "claude-mem@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j3",
-        "version": "12.1.5-j3",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j4",
+        "version": "12.1.5-j4",
         "installedAt": "2026-04-16T06:16:39.220Z",
-        "lastUpdated": "2026-04-16T12:03:39.971Z",
+        "lastUpdated": "2026-04-26T14:55:24.338Z",
         "gitCommitSha": "a7f673879e597a8abd280795a6ec06568478a61a"
       }
     ],
