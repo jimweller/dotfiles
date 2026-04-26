@@ -1,5 +1,5 @@
 {
-  "numStartups": 2901,
+  "numStartups": 2902,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157465,
+  "promptQueueUseCount": 157466,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -9854,6 +9854,20 @@
         "pre_tool_hook_duration_ms_p95": 276,
         "pre_tool_hook_duration_ms_p99": 334.5
       }
+    },
+    "/Users/jimweller/personal/elephant-memories": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "lastGracefulShutdown": false,
+      "hasCompletedProjectOnboarding": true
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -10036,8 +10050,8 @@
   "officialMarketplaceAutoInstalled": true,
   "skillUsage": {
     "init": {
-      "usageCount": 10,
-      "lastUsedAt": 1776031471915
+      "usageCount": 11,
+      "lastUsedAt": 1777226558926
     },
     "fix-markdown": {
       "usageCount": 8,
@@ -10096,8 +10110,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 100,
-      "lastUsedAt": 1777174109294
+      "usageCount": 101,
+      "lastUsedAt": 1777227609108
     },
     "publish": {
       "usageCount": 11,
@@ -10240,8 +10254,8 @@
       "lastUsedAt": 1777038173767
     },
     "commit": {
-      "usageCount": 225,
-      "lastUsedAt": 1777226066430
+      "usageCount": 226,
+      "lastUsedAt": 1777227706459
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -10272,8 +10286,8 @@
       "lastUsedAt": 1777175174828
     },
     "sage": {
-      "usageCount": 114,
-      "lastUsedAt": 1777219813606
+      "usageCount": 115,
+      "lastUsedAt": 1777226725286
     },
     "update-config": {
       "usageCount": 1,
@@ -10336,8 +10350,8 @@
       "lastUsedAt": 1776778335186
     },
     "claude-mem:mem-search": {
-      "usageCount": 15,
-      "lastUsedAt": 1777045382818
+      "usageCount": 16,
+      "lastUsedAt": 1777226521828
     },
     "obsidian-cli": {
       "usageCount": 1,
@@ -10356,8 +10370,8 @@
       "lastUsedAt": 1777173939046
     },
     "llmdocs": {
-      "usageCount": 4,
-      "lastUsedAt": 1777173949539
+      "usageCount": 5,
+      "lastUsedAt": 1777226948529
     },
     "review-quick": {
       "usageCount": 2,
