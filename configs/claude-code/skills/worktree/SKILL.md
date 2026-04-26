@@ -11,41 +11,45 @@ STARTER_CHARACTER = 🎋
 
 # Git Worktree Management
 
-Manage git worktrees for parallel branch development. Each operation runs standard git commands.
+Manage git worktrees for parallel branch development. Worktrees live under `~/.worktrees/<repo>/<branch>`. Slashes in branch names create nested directories (e.g. `feature/foo` becomes `~/.worktrees/<repo>/feature/foo`).
 
 Arguments: $ARGUMENTS
 
 - First argument is the operation. Second argument is the branch name (required for create, merge, rebase, remove).
 - If $ARGUMENTS is empty, default to `list`.
 
-## Path Calculation
+## Path Discovery
 
-All operations derive paths from git. Worktree directories use the `<repo>-<branch>` naming convention (e.g., `davit-main`, `davit-feature-x`).
+All operations derive paths from git, not from `dirname` math.
 
 ```bash
-REPO_ROOT=$(git rev-parse --show-toplevel)
-PARENT_DIR=$(dirname "$REPO_ROOT")
-REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
-WORKTREE_DIR="$PARENT_DIR/$REPO_NAME-$BRANCH_NAME"
-MAIN_DIR="$PARENT_DIR/$REPO_NAME-main"
+PRIMARY=$(git worktree list --porcelain | awk '/^worktree / { print $2; exit }')
+REPO_NAME=$(basename "$PRIMARY")
+WORKTREE_DIR="$HOME/.worktrees/$REPO_NAME/<branch>"
 ```
+
+`PRIMARY` is the original clone (the first entry in `git worktree list`). Other worktrees live under `~/.worktrees/$REPO_NAME/`.
 
 ## Operations
 
 ### create <branch>
 
-Create a new worktree as a sibling directory with a new branch, using `<repo>-<branch>` naming.
+Create a new worktree under `~/.worktrees/<repo>/<branch>` with a new branch. Copy `.llmtmp/` from the primary if present. Open a new tmux window named `wt:<branch>` if running inside tmux. Focus does not switch.
 
 ```bash
-REPO_ROOT=$(git rev-parse --show-toplevel)
-REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
-git worktree add "$(dirname "$REPO_ROOT")/$REPO_NAME-<branch>" -b <branch>
+PRIMARY=$(git worktree list --porcelain | awk '/^worktree / { print $2; exit }')
+REPO_NAME=$(basename "$PRIMARY")
+WORKTREE_DIR="$HOME/.worktrees/$REPO_NAME/<branch>"
+
+mkdir -p "$(dirname "$WORKTREE_DIR")"
+git worktree add "$WORKTREE_DIR" -b <branch>
+
+[ -d "$PRIMARY/.llmtmp" ] && cp -r "$PRIMARY/.llmtmp" "$WORKTREE_DIR/.llmtmp"
+
+[ -n "$TMUX" ] && tmux new-window -d -n "wt:<branch>" -c "$WORKTREE_DIR"
 ```
 
-After creation, remind the user:
-
-- Run `/worktree-secrets` in the new worktree to copy `.envrc` and GPG keys
-- Open a new terminal in the worktree directory
+After creation, report the worktree path and the tmux window number (if created).
 
 ### list
 
@@ -59,17 +63,15 @@ git worktree list
 
 Merge the current worktree's branch into main. Run from the feature worktree.
 
-**Pre-check:** Verify the current branch is NOT main. If on main, refuse — there's nothing to merge.
+Pre-check: verify the current branch is NOT main. If on main, refuse.
 
 ```bash
-REPO_ROOT=$(git rev-parse --show-toplevel)
+PRIMARY=$(git worktree list --porcelain | awk '/^worktree / { print $2; exit }')
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
-MAIN_DIR="$(dirname "$REPO_ROOT")/$REPO_NAME-main"
 
-git -C "$MAIN_DIR" fetch origin && git -C "$MAIN_DIR" pull
-git -C "$MAIN_DIR" merge "$BRANCH"
-git -C "$MAIN_DIR" push origin main
+git -C "$PRIMARY" fetch origin && git -C "$PRIMARY" pull
+git -C "$PRIMARY" merge "$BRANCH"
+git -C "$PRIMARY" push origin main
 ```
 
 If there are conflicts, help the user resolve them before pushing.
@@ -78,38 +80,47 @@ If there are conflicts, help the user resolve them before pushing.
 
 Rebase a branch onto the latest main. Must be run from within the branch's worktree.
 
-**Pre-check:** Verify the current branch matches `<branch>`. If not, refuse and instruct the user to switch to the correct worktree.
+Pre-check: verify the current branch matches `<branch>`. If not, refuse and instruct the user to switch to the correct worktree.
 
 ```bash
 git fetch origin
 git rebase origin/main
 ```
 
-If there are conflicts, help the user resolve them. After successful rebase, remind the user that force-push is required if the branch was previously pushed (but only with explicit permission per safety rules).
+If there are conflicts, help the user resolve them. After successful rebase, force-push is required if the branch was previously pushed (only with explicit permission per safety rules).
 
 ### remove <branch>
 
-Remove a worktree and delete its branch. Must be run from the main worktree.
+Remove a worktree and delete its branch. Must be run from the primary worktree.
 
-**Pre-checks:**
+Pre-checks:
 
-1. Verify the current worktree is the main branch. If not, refuse.
+1. Verify the current directory is the primary worktree (`git rev-parse --show-toplevel` equals `$PRIMARY`). If not, refuse.
 2. Verify the branch is merged into main using `git branch --merged`. If not merged, refuse and instruct the user to merge first.
 
 ```bash
-REPO_ROOT=$(git rev-parse --show-toplevel)
-REPO_NAME=$(basename "$(git config --get remote.origin.url)" .git)
-git worktree remove "$(dirname "$REPO_ROOT")/$REPO_NAME-<branch>"
+PRIMARY=$(git worktree list --porcelain | awk '/^worktree / { print $2; exit }')
+REPO_NAME=$(basename "$PRIMARY")
+WORKTREE_DIR="$HOME/.worktrees/$REPO_NAME/<branch>"
+
+git worktree remove "$WORKTREE_DIR"
 git branch -d <branch>
+
+PARENT="$(dirname "$WORKTREE_DIR")"
+while [ "$PARENT" != "$HOME/.worktrees" ] && rmdir "$PARENT" 2>/dev/null; do
+  PARENT="$(dirname "$PARENT")"
+done
 ```
 
 If `git branch -d` fails with "not fully merged", stop and tell the user to merge first. Never use `git branch -D`.
 
+The `rmdir` loop cleans up empty parent directories left by slash-nested branch names and removes the per-repo dir when no branches remain.
+
 ## Safety Rules
 
 - Local merges only. Do not create pull requests.
-- If the worktree has unstaged or uncommited work during remove operation, ask the user about merging or forcing delete
-- Never delete a worktree branch manually. Only use `git worktree remove`
+- If the worktree has unstaged or uncommitted work during remove, ask the user about merging or forcing delete.
+- Never delete a worktree branch manually. Only use `git worktree remove`.
 - Never delete a worktree directory manually. Always use `git worktree remove`.
 - Never force push without explicit user permission.
-- Derive paths from `git rev-parse --show-toplevel` and `dirname`. Never hardcode paths.
+- Derive paths from `git worktree list --porcelain`. Never hardcode paths.
