@@ -192,7 +192,5 @@
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
-  "permissions": {
-    "disableBypassPermissionsMode": "disable"
-  }
+  "skipDangerousModePermissionPrompt": true
 }

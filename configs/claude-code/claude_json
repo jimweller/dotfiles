@@ -1,5 +1,5 @@
 {
-  "numStartups": 2894,
+  "numStartups": 2895,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -9719,7 +9719,7 @@
         "test-subagent-driven-development-integration.sh",
         "superpowers-codex"
       ],
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "exampleFilesGeneratedAt": 1777174871363,
       "hasCompletedProjectOnboarding": true,
       "lastCost": 0.36111775,
@@ -10153,8 +10153,8 @@
       "lastUsedAt": 1777038173767
     },
     "commit": {
-      "usageCount": 221,
-      "lastUsedAt": 1777174920007
+      "usageCount": 222,
+      "lastUsedAt": 1777175387232
     },
     "agent-browser:agent-browser": {
       "usageCount": 1,
@@ -10181,8 +10181,8 @@
       "lastUsedAt": 1776831783561
     },
     "familiarize": {
-      "usageCount": 27,
-      "lastUsedAt": 1777174880834
+      "usageCount": 28,
+      "lastUsedAt": 1777175174828
     },
     "sage": {
       "usageCount": 113,

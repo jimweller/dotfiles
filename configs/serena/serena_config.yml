@@ -261,6 +261,10 @@ default_modes:
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
 # These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 ignored_paths: []
 
 # time budget (seconds) per tool call for the retrieval of additional symbol information
