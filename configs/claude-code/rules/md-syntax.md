@@ -25,7 +25,7 @@ Put a single blank line between markdown types/styles. Do not put multiple blank
 
 CORRECT
 
-````markdown
+`````markdown
 ## Heading
 
 paragraph
@@ -100,5 +100,8 @@ CORRECT trailing newline
 The End.
 ```text
 ````
+`````
 
-````
+```
+
+```

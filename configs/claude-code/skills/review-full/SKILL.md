@@ -69,16 +69,16 @@ Do not delegate this step to a subagent. The orchestrator must own the `outputId
 
 Send a single message with 8 Task tool uses, one per review area. Each Task uses the corresponding `subagent_type`:
 
-| Agent | Subagent type | Output file |
-| ----- | ------------- | ----------- |
+| Agent                 | Subagent type         | Output file       |
+| --------------------- | --------------------- | ----------------- |
 | Architecture & Design | `review-architecture` | `architecture.md` |
-| Correctness & Bugs | `review-correctness` | `correctness.md` |
-| Operational Readiness | `review-ops` | `ops.md` |
-| Performance | `review-performance` | `performance.md` |
-| Code Quality | `review-quality` | `quality.md` |
-| Security | `review-security` | `security.md` |
-| SOLID Principles | `review-solid` | `solid.md` |
-| Testing | `review-testing` | `testing.md` |
+| Correctness & Bugs    | `review-correctness`  | `correctness.md`  |
+| Operational Readiness | `review-ops`          | `ops.md`          |
+| Performance           | `review-performance`  | `performance.md`  |
+| Code Quality          | `review-quality`      | `quality.md`      |
+| Security              | `review-security`     | `security.md`     |
+| SOLID Principles      | `review-solid`        | `solid.md`        |
+| Testing               | `review-testing`      | `testing.md`      |
 
 Each Task prompt contains:
 
@@ -109,16 +109,16 @@ Files reviewed: <count from repomix>
 
 ## Findings Counts
 
-| Area | High | Medium | Low |
-| ---- | ---- | ------ | --- |
-| Architecture & Design | <N> | <N> | <N> |
-| Correctness & Bugs | <N> | <N> | <N> |
-| Operational Readiness | <N> | <N> | <N> |
-| Performance | <N> | <N> | <N> |
-| Code Quality | <N> | <N> | <N> |
-| Security | <N> | <N> | <N> |
-| SOLID Principles | <N> | <N> | <N> |
-| Testing | <N> | <N> | <N> |
+| Area                  | High | Medium | Low |
+| --------------------- | ---- | ------ | --- |
+| Architecture & Design | <N>  | <N>    | <N> |
+| Correctness & Bugs    | <N>  | <N>    | <N> |
+| Operational Readiness | <N>  | <N>    | <N> |
+| Performance           | <N>  | <N>    | <N> |
+| Code Quality          | <N>  | <N>    | <N> |
+| Security              | <N>  | <N>    | <N> |
+| SOLID Principles      | <N>  | <N>    | <N> |
+| Testing               | <N>  | <N>    | <N> |
 
 ## Output Files
 

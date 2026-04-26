@@ -39,16 +39,16 @@ For each file from `git ls-files --others --exclude-standard`, read the full fil
 
 Send a single message with 8 Task tool uses, one per review area. Each Task uses the corresponding `subagent_type`:
 
-| Agent | Subagent type |
-| ----- | ------------- |
+| Agent                 | Subagent type         |
+| --------------------- | --------------------- |
 | Architecture & Design | `review-architecture` |
-| Correctness & Bugs | `review-correctness` |
-| Operational Readiness | `review-ops` |
-| Performance | `review-performance` |
-| Code Quality | `review-quality` |
-| Security | `review-security` |
-| SOLID Principles | `review-solid` |
-| Testing | `review-testing` |
+| Correctness & Bugs    | `review-correctness`  |
+| Operational Readiness | `review-ops`          |
+| Performance           | `review-performance`  |
+| Code Quality          | `review-quality`      |
+| Security              | `review-security`     |
+| SOLID Principles      | `review-solid`        |
+| Testing               | `review-testing`      |
 
 Each Task prompt contains:
 
@@ -75,12 +75,15 @@ After all 8 agents return, produce a single consolidated report:
 ## Findings by Severity
 
 ### High
+
 [All High findings from all 8 agents, ordered by file:line]
 
 ### Medium
+
 [All Medium findings from all 8 agents, ordered by file:line]
 
 ### Low
+
 [All Low findings from all 8 agents, ordered by file:line]
 ```
 

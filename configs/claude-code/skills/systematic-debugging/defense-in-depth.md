@@ -26,8 +26,8 @@ Purpose: reject obviously invalid input at API boundary.
 
 ```typescript
 function createProject(name: string, workingDirectory: string) {
-  if (!workingDirectory || workingDirectory.trim() === '') {
-    throw new Error('workingDirectory cannot be empty');
+  if (!workingDirectory || workingDirectory.trim() === "") {
+    throw new Error("workingDirectory cannot be empty");
   }
   if (!existsSync(workingDirectory)) {
     throw new Error(`workingDirectory does not exist: ${workingDirectory}`);
@@ -46,7 +46,7 @@ Purpose: ensure data makes sense for this operation.
 ```typescript
 function initializeWorkspace(projectDir: string, sessionId: string) {
   if (!projectDir) {
-    throw new Error('projectDir required for workspace initialization');
+    throw new Error("projectDir required for workspace initialization");
   }
   // ... proceed
 }
@@ -59,13 +59,13 @@ Purpose: prevent dangerous operations in specific contexts.
 ```typescript
 async function gitInit(directory: string) {
   // In tests, refuse git init outside temp directories
-  if (process.env.NODE_ENV === 'test') {
+  if (process.env.NODE_ENV === "test") {
     const normalized = normalize(resolve(directory));
     const tmpDir = normalize(resolve(tmpdir()));
 
     if (!normalized.startsWith(tmpDir)) {
       throw new Error(
-        `Refusing git init outside temp dir during tests: ${directory}`
+        `Refusing git init outside temp dir during tests: ${directory}`,
       );
     }
   }
@@ -80,7 +80,7 @@ Purpose: capture context for forensics.
 ```typescript
 async function gitInit(directory: string) {
   const stack = new Error().stack;
-  logger.debug('About to git init', {
+  logger.debug("About to git init", {
     directory,
     cwd: process.cwd(),
     stack,

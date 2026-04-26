@@ -25,7 +25,7 @@ Do not use when:
 Before, guessing at timing:
 
 ```typescript
-await new Promise(r => setTimeout(r, 50));
+await new Promise((r) => setTimeout(r, 50));
 const result = getResult();
 expect(result).toBeDefined();
 ```
@@ -40,13 +40,13 @@ expect(result).toBeDefined();
 
 ## Quick Patterns
 
-| Scenario          | Pattern                                                     |
-| ----------------- | ----------------------------------------------------------- |
-| Wait for event    | `waitFor(() => events.find(e => e.type === 'DONE'))`        |
-| Wait for state    | `waitFor(() => machine.state === 'ready')`                  |
-| Wait for count    | `waitFor(() => items.length >= 5)`                          |
-| Wait for file     | `waitFor(() => fs.existsSync(path))`                        |
-| Complex condition | `waitFor(() => obj.ready && obj.value > 10)`                |
+| Scenario          | Pattern                                              |
+| ----------------- | ---------------------------------------------------- |
+| Wait for event    | `waitFor(() => events.find(e => e.type === 'DONE'))` |
+| Wait for state    | `waitFor(() => machine.state === 'ready')`           |
+| Wait for count    | `waitFor(() => items.length >= 5)`                   |
+| Wait for file     | `waitFor(() => fs.existsSync(path))`                 |
+| Complex condition | `waitFor(() => obj.ready && obj.value > 10)`         |
 
 ## Implementation
 
@@ -56,7 +56,7 @@ Generic polling function:
 async function waitFor<T>(
   condition: () => T | undefined | null | false,
   description: string,
-  timeoutMs = 5000
+  timeoutMs = 5000,
 ): Promise<T> {
   const startTime = Date.now();
 
@@ -65,10 +65,12 @@ async function waitFor<T>(
     if (result) return result;
 
     if (Date.now() - startTime > timeoutMs) {
-      throw new Error(`Timeout waiting for ${description} after ${timeoutMs}ms`);
+      throw new Error(
+        `Timeout waiting for ${description} after ${timeoutMs}ms`,
+      );
     }
 
-    await new Promise(r => setTimeout(r, 10)); // Poll every 10ms
+    await new Promise((r) => setTimeout(r, 10)); // Poll every 10ms
   }
 }
 ```
@@ -87,8 +89,8 @@ Stale data: caching state before the loop reads invalid data. Call the getter in
 
 ```typescript
 // Tool ticks every 100ms - need 2 ticks to verify partial output
-await waitForEvent(manager, 'TOOL_STARTED'); // First: wait for condition
-await new Promise(r => setTimeout(r, 200));   // Then: wait for timed behavior
+await waitForEvent(manager, "TOOL_STARTED"); // First: wait for condition
+await new Promise((r) => setTimeout(r, 200)); // Then: wait for timed behavior
 // 200ms = 2 ticks at 100ms intervals - documented and justified
 ```
 

@@ -15,15 +15,15 @@ Three procedures for proving claims with evidence. Each procedure runs before th
 
 Map the claim to the command that proves it. Run the command in this turn. Use the actual output, not memory of prior runs.
 
-| Claim                 | Command                                        | Insufficient                      |
-| --------------------- | ---------------------------------------------- | --------------------------------- |
-| Tests pass            | Project test command, full suite or named test | Prior run, "should pass"          |
-| Linter clean          | Project linter command                         | Partial check, extrapolation      |
-| Build succeeds        | Project build command, exit 0                  | Linter passing, logs look fine    |
-| Bug fixed             | Test that reproduces the original symptom      | Code changed, "looks fixed"       |
-| Regression test works | Red-green-revert-restore (see below)           | Test passes once                  |
-| Subagent completed    | VCS diff plus targeted re-check                | Subagent self-report              |
-| Requirements met      | Re-read spec, line-by-line checklist           | Tests passing                     |
+| Claim                 | Command                                        | Insufficient                   |
+| --------------------- | ---------------------------------------------- | ------------------------------ |
+| Tests pass            | Project test command, full suite or named test | Prior run, "should pass"       |
+| Linter clean          | Project linter command                         | Partial check, extrapolation   |
+| Build succeeds        | Project build command, exit 0                  | Linter passing, logs look fine |
+| Bug fixed             | Test that reproduces the original symptom      | Code changed, "looks fixed"    |
+| Regression test works | Red-green-revert-restore (see below)           | Test passes once               |
+| Subagent completed    | VCS diff plus targeted re-check                | Subagent self-report           |
+| Requirements met      | Re-read spec, line-by-line checklist           | Tests passing                  |
 
 ## Subagent Result Verification
 
