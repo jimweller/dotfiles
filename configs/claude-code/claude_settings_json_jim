@@ -190,5 +190,8 @@
   "effortLevel": "xhigh",
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
-  "prefersReducedMotion": true
+  "prefersReducedMotion": true,
+  "permissions": {
+    "disableBypassPermissionsMode": "disable"
+  }
 }
