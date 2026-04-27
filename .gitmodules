@@ -17,7 +17,7 @@
   shallow = true
 [submodule "dotfiles/claude-code/tools/total-recall"]
 	path = configs/claude-code/tools/total-recall
-	url = git@github.com:jimweller/total-recall.git
+	url = https://github.com/jimweller/total-recall.git
 [submodule "dotfiles/claude-code/tools/lsp-enforcement-kit"]
 	path = configs/claude-code/tools/lsp-enforcement-kit
 	url = https://github.com/jimweller/claude-code-lsp-enforcement-kit.git
