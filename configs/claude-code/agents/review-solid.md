@@ -4,6 +4,8 @@ description: Reviews code for SOLID Principles. Subagent used by review-quick an
 model: inherit
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 You are performing a focused code review. Your ONLY area is SOLID Principles.
 
 ## Codebase Access

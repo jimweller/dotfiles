@@ -2,7 +2,7 @@
 # credential_process on [default] serves the Layer 5 export file to all AWS tools.
 
 [default]
-credential_process = /bin/sh -c "cat $HOME/.mcg/auth/tokens/aws-token.json"
+credential_process = /bin/sh -c "cat $HOME/assets/aws/aws-token.json"
 region = us-west-2
 
 [profile mcg]

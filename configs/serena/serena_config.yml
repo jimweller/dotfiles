@@ -78,6 +78,7 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
+- /Users/jimweller/.worktrees/quiver-main/feat/zitadel-scopes
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/personal/elephant-memories
 - /Users/jimweller/personal/jimwellercom
@@ -118,6 +119,10 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.

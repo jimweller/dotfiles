@@ -27,6 +27,7 @@ Requires: git, bash. Idempotent.
 | `scripts/pkg-brew.sh`                | macOS brew package management                  | `pkg-brew.sh`                            |
 | `scripts/gen-gitconfig.sh`           | Generate static gitconfig programmatically     | `gen-gitconfig.sh`                       |
 | `scripts/colima-setup-k8s-tunnel.sh` | SSH tunnel to k3s in Colima VM                 | `colima-setup-k8s-tunnel.sh`             |
+| `scripts/ralph.sh`                   | External-mode Ralph driver (beads-backed)      | `ralph.sh [PROMPT_FILE]`                 |
 
 ## Zsh-Jim Module Interface
 

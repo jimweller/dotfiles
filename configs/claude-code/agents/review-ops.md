@@ -4,6 +4,8 @@ description: Reviews code for Operational Readiness. Subagent used by review-qui
 model: inherit
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 You are performing a focused code review. Your ONLY area is Operational Readiness.
 
 ## Codebase Access

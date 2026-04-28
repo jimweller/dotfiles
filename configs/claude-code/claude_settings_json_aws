@@ -23,6 +23,7 @@
     "commit": "",
     "pr": ""
   },
+  "model": "sonnet",
   "hooks": {
     "PreCompact": [
       {

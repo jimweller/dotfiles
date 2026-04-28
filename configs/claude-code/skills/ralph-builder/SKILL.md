@@ -1,6 +1,6 @@
 ---
 name: ralph-builder
-description: Build or update Ralph Wiggum loop files for autonomous task execution.
+description: Author a beads-backed Ralph Wiggum loop for in-session or external autonomous execution.
 argument-hint: "<goal or filename>"
 context: fork
 disable-model-invocation: true
@@ -12,115 +12,169 @@ STARTER_CHARACTER = 🔁
 
 # Ralph Builder
 
-Build or update the three Ralph Wiggum loop files in `.llmtmp/` so a ralph loop can execute autonomously against the current repo.
+Author the artifacts a ralph loop needs to run autonomously against the current repo. Tasks live in a beads (`bd`) graph database. The plan and two prompt wrappers live in `.llmtmp/`.
 
 Arguments: $ARGUMENTS
 
 The argument is a goal description. It may reference a file containing a PRD, plan, or task list.
 
-## Output Files
+## Output Artifacts
 
-All files go in `<PROJECT_ROOT>/.llmtmp/`. Create the directory if it does not exist.
+| Path                                | Purpose                                                    |
+| ----------------------------------- | ---------------------------------------------------------- |
+| `.beads/`                           | Beads database (single source of task state)               |
+| `.llmtmp/ralph-plan.md`             | Mode-neutral execution plan                                |
+| `.llmtmp/ralph-prompt-insession.md` | Slash-command wrapper for the in-session ralph-loop plugin |
+| `.llmtmp/ralph-prompt-external.md`  | Body fed to `claude --print` by `scripts/ralph.sh`         |
 
-| File              | Purpose                                         |
-| ----------------- | ----------------------------------------------- |
-| `ralph-prompt.md` | The `/ralph-loop:ralph-loop` invocation command |
-| `ralph-tasks.md`  | Checklist of discrete tasks                     |
-| `ralph-plan.md`   | Execution plan for accomplishing the goal       |
+Both prompt wrappers carry the same body. Only the driver differs.
 
 ## Procedure
 
 ### Step 1: Gather Context
 
-Read these files to understand the repo:
+Read the repo to ground the plan:
 
 1. `README.md` (project root)
-2. All `.md` files in `.llmdocs/` (architecture, api, data-model, deployment, testing, ops, etc.)
+2. All `.md` files in `.llmdocs/`
 3. Any file referenced in $ARGUMENTS
 
-If `.llmtmp/` does not exist, create it.
+Create `.llmtmp/` if it does not exist.
 
-If `ralph-tasks.md`, `ralph-plan.md`, or `ralph-prompt.md` already exist, read them before overwriting.
+### Step 2: Initialize beads and mint the run epic
 
-### Step 2: Build ralph-tasks.md
+The bead graph is shared across worktrees of the same repo. Each ralph run is organized under a per-run epic so concurrent runs in different worktrees stay isolated by `--parent` filtering.
 
-This file is a progress-tracking checklist for a loop that reads it cold each iteration with zero memory of previous runs. Each ralph-loop iteration scans this file to find the first unchecked `[ ]` item and works on it. Checked `[x]` items are the only signal of prior progress.
+```bash
+if ! bd list >/dev/null 2>&1; then
+  bd init --skip-agents
+fi
 
-Each item names a deliverable or outcome. The task file answers "what's left?" -- never "how do I do it?" All implementation details (commands, patterns, techniques, function names) belong in `ralph-plan.md`.
-
-Format:
-
-```markdown
-- [ ] Create git tag RALPH-YYYYMMDD-BEGIN
-- [ ] First task
-- [ ] Second task
-- [ ] Third task
-- [ ] Create git tag RALPH-YYYYMMDD-END
+slug=$(git branch --show-current | tr '/' '-')
+epic=$(bd q "Ralph: ${slug}" -t epic -p 1 -l "ralph:${slug}")
 ```
 
-BAD -- leaks implementation details into the task list:
+`--skip-agents` suppresses bd's default `AGENTS.md` generation, `CLAUDE.md` modification, and `.claude/settings.json` injection. The project's existing agent guidance and the `beads` skill provide bd workflow context; bd's per-project agent files are redundant and conflict with project conventions.
 
-```markdown
-- [ ] Create lib/Test-Helpers.psm1 with Test-VmPath function
-- [ ] Add Test-VmLogContains to lib/Test-Helpers.psm1
-- [ ] Run `npm install jsonwebtoken bcrypt` and add to package.json
-- [ ] Add middleware in src/middleware/auth.ts that validates Bearer tokens
+The epic carries the label `ralph:${slug}` as run-identity. Children created in Step 3 carry both `--parent "${epic}"` and the same label, providing two independent signals so the reviewer can detect orphans.
+
+### Step 3: Translate Goal to bd Graph
+
+Every action in a ralph run is a bead. Each bead has a title (imperative one-liner) and a description (the worker's full instructions for that task). Lifecycle scaffolding (branch creation, BEGIN tag, END tag) is encoded as ordinary beads, all parented to the run epic.
+
+Create child beads with `bd create -t task --parent "${epic}" -l "ralph:${slug}" -q --json | jq -r .id`. Capture each ID for downstream `bd link` calls. Set descriptions with `bd update <id> -d "<text>"` (or `--body-file -` heredoc for multi-line). Wire dependencies with `bd link <a> <b>` (b blocks a). Every run starts with a branch task and a BEGIN tag task; every run ends with an END tag task that depends transitively on every other task.
+
+#### Example
+
+The block below shows a hypothetical run adding three greeting functions to `lib/greeting.go` and updating the README. The literal values (`SLUG`, file paths, function names, commit prefixes) are illustrative; substitute the real run's facts. Bead descriptions carry task-specific facts only. Universal rules (TDD for code, conventional commits, persona constraints) already live in `CLAUDE.md`. Run-wide conventions (build, test, lint commands) live in `ralph-plan.md`. Descriptions do not restate either.
+
+```bash
+DATE=$(date +%Y%m%d)
+SLUG=greeting   # derive from the goal; lowercase alphanumeric plus hyphen, max ~20 chars
+HASH=$(openssl rand -hex 2 | head -c 3)
+RUN="${DATE}-${SLUG}-${HASH}"
+BRANCH="ralph/${RUN}"
+
+# slug and epic are in scope from Step 2.
+
+bdc() {
+  bd create "$1" -t task -p 2 --parent "${epic}" -l "ralph:${slug}" -q --json | jq -r .id
+}
+
+T_BRANCH=$(bdc "Switch to branch ${BRANCH}")
+bd update "$T_BRANCH" -d "Switch to branch ${BRANCH}, creating it if missing. Verify: git rev-parse --abbrev-ref HEAD prints ${BRANCH}."
+
+T_BEGIN=$(bdc "Tag RALPH-${RUN}-BEGIN")
+bd link "$T_BEGIN" "$T_BRANCH"
+bd update "$T_BEGIN" -d "Run: git tag RALPH-${RUN}-BEGIN. Verify: git tag -l RALPH-${RUN}-BEGIN is non-empty."
+
+T1=$(bdc "Add hello() to lib/greeting.go")
+bd link "$T1" "$T_BEGIN"
+bd update "$T1" -d "hello() in lib/greeting.go returns \"world\". Commit: feat(greeting): add hello"
+
+T2=$(bdc "Add goodbye() to lib/greeting.go")
+bd link "$T2" "$T_BEGIN"
+bd update "$T2" -d "goodbye() in lib/greeting.go returns \"bye\". Commit: feat(greeting): add goodbye"
+
+T3=$(bdc "Add greet(name) to lib/greeting.go")
+bd link "$T3" "$T1"
+bd link "$T3" "$T2"
+bd update "$T3" -d "greet(name) in lib/greeting.go composes hello() and goodbye(). greet(\"Jim\") returns \"world Jim bye\". Commit: feat(greeting): add greet"
+
+T4=$(bdc "Document greetings API")
+bd link "$T4" "$T3"
+bd update "$T4" -d "Run /docs to document hello(), goodbye(), and greet() now exposed by lib/greeting.go. Commit: docs: document greetings API"
+
+T_END=$(bdc "Tag RALPH-${RUN}-END")
+bd link "$T_END" "$T4"
+bd update "$T_END" -d "Run: git tag RALPH-${RUN}-END. Verify: git tag -l RALPH-${RUN}-END is non-empty."
 ```
 
-GOOD -- names the deliverable, leaves technique to instructions:
+The 3-char hash suffix prevents branch and tag collisions when multiple ralph runs share a date and slug.
 
-```markdown
-- [ ] Create lib/Test-Helpers.psm1
-- [ ] Create lib/Test-Helpers.Tests.ps1
-- [ ] Add auth dependencies
-- [ ] Add auth middleware
+After authoring, assert no cycles, every child has a description, at least one task is ready, and the parent set equals the label set (excluding the epic):
+
+```bash
+bd dep cycles
+bd list --parent "${epic}" --json | jq -e 'all(.[]; (.description // "") | length > 0)'
+bd ready --parent "${epic}" --json | jq 'length'
+
+parent_ids=$(bd list --parent "${epic}" --json | jq -r '.[].id' | sort)
+label_ids=$(bd list --label "ralph:${slug}" --json | jq -r '.[] | select(.issue_type != "epic") | .id' | sort)
+[[ "${parent_ids}" == "${label_ids}" ]] || { echo "parent/label set mismatch: orphans or misclassified beads"; exit 1; }
 ```
 
-Rules:
+Title rules:
 
-- The first task is always: `Create git tag RALPH-YYYYMMDD-BEGIN` (use today's date)
-- The last task is always: `Create git tag RALPH-YYYYMMDD-END` (use same date as the RALPH BEGIN tag)
-- Each task is a single, independently-completable unit of work
-- The list is processed strictly top-to-bottom. Each iteration works the first unchecked `[ ]` item only, then marks it `[x]`. Order every task so that item N never depends on an uncompleted item below it
-- Use imperative voice
-- Reference specific files, modules, or components by name when it clarifies scope, but do not include commands, flags, config values, or implementation techniques
-- Each task names a deliverable. If the item contains a shell command, a flag, a config value, or names a function/method, move that detail to `ralph-plan.md`
-- Do not include meta-tasks like "read the codebase" or "understand the architecture"
-- Only checkbox items in the task file. No headings, prose, or blank lines between items.
-- Place documentation tasks (CLAUDE.md, .llmdocs/ updates) immediately after the code they document, not at the end of the task list
+- Imperative voice, one line
+- Names the deliverable, not the procedure
+- No meta-tasks like "read the codebase" or "understand the architecture"
 
-### Step 3: Build ralph-plan.md
+Description rules:
 
-Each ralph-loop iteration reads this file cold with no memory of previous iterations. It must be fully self-contained: every command, pattern, convention, and technique needed to execute any task in `ralph-tasks.md` belongs here. Dense, repo-specific detail is correct. Sparse, generic instructions cause each iteration to reinvent the approach.
+- Task-specific facts only: which file, what behavior, the commit message for this task
+- Include a verification command only when it differs from the run's standard test command (typically tag and branch tasks)
+- Do not restate TDD, code style, or persona rules; those live in `CLAUDE.md`. Do not restate run-wide build, test, or lint commands; those live in `ralph-plan.md`
 
-The plan describes the target state and constraints, not the implementation. When existing code serves as a model, reference it by path. The model generates code through red-green-refactor during execution.
+Skill delegations (mandatory):
 
-The plan is an execution guide, not a decision record. No rationale, changelogs, or "this replaces X" prose. State what exists and what to do with it. Each iteration doesn't care why a decision was made, only what the current state is and how to proceed.
+| Work                                                          | Skill   |
+| ------------------------------------------------------------- | ------- |
+| Updating `README.md`, `CLAUDE.md`, or any file in `.llmdocs/` | `/docs` |
 
-BAD -- decision records and changelogs:
+Beads in these categories must invoke the skill in the description, not author edits inline. Example: `Run /docs to document the new auth middleware` rather than `Edit .llmdocs/architecture.md to add an Authentication subsection`. The skill carries its own guardrails and parallelism; reproducing its job inline loses both.
 
-- SQL Server 2025 is GA and installs natively on Windows ARM64 without hacks. This replaces Docker SQL on macOS.
-- The connectivity test changes from $SQL_SERVER (10.0.2.2 Docker gateway) to localhost.
-- Finding 61: Get-WebBinding stringifies to type name.
+### Step 4: Write `.llmtmp/ralph-plan.md`
 
-GOOD -- current facts only:
+Each iteration reads this file cold with no memory of prior runs. Every command, pattern, and convention belongs here. Dense, repo-specific detail is correct.
 
-- SQL Server 2025 runs natively on the VM. SQL_SERVER=localhost.
-- Get-WebBinding returns an object. Access .bindingInformation or .protocol directly.
+The "Run Identity" section records the literal `${slug}` and `${epic}` values produced in Step 2 so the agent can read them directly without re-deriving each iteration.
 
-Format:
+The "Inputs" section's `plan documents:` line records the source documents the planner was passed via `$ARGUMENTS`. The reviewer parses that line and reads each path as authoritative intent. This is a passthrough: list exactly the files in `$ARGUMENTS`, no more, no fewer, no inferred additions. If `$ARGUMENTS` references no files (text-only goal), the value is empty.
 
-<!-- prettier-ignore-start -->
+Required sections:
+
 ```markdown
 # Ralph Plan
 
 ## Goal
 
-<one paragraph summary of the objective>
+<one paragraph>
 
 ## Approach
 
-<strategy specific to this goal -- include all relevant repo-specific detail directly, do not reference external docs that may become stale during the run>
+<strategy specific to this goal; include all relevant repo-specific detail directly>
+
+## Inputs
+
+plan documents: <comma-separated paths from $ARGUMENTS, or empty if none>
+
+## Run Identity
+
+- Branch slug: `<slug from Step 2>`
+- Epic ID: `<epic ID from Step 2>`
+- Epic label: `ralph:<slug>`
+- Driver: `scripts/ralph.sh .llmtmp/ralph-prompt-external.md`
 
 ## Conventions
 
@@ -128,59 +182,66 @@ Format:
 
 ## Git Workflow
 
-Before the first task:
-  git checkout -b ralph/YYYYMMDD-<short-goal-slug>
-  git tag RALPH-YYYYMMDD-BEGIN
-
-After the last commit:
-  git tag RALPH-YYYYMMDD-END
-
-Never commit to main. All ralph work happens on the ralph/ branch.
+All git operations execute as bd tasks per the per-task workflow. Branch creation, BEGIN tag, code commits, docs commits, and END tag are first-class beads in the graph, parented to the run epic. Never commit on `main`.
 
 ## Per-Task Workflow
 
-Each iteration: find the first unchecked `[ ]` item in ralph-tasks.md. Work only that item. Do not skip ahead or batch multiple tasks.
+Exactly ONE task per iteration. After step 5, STOP. Do not pick another task. Do not loop back to step 1. The driver (`scripts/ralph.sh` or the in-session loop) spawns a fresh context for the next task. The whole point of Ralph is one task per fresh context window; multiple tasks in one context defeats the design.
 
-MANDATORY for every task without exception:
-1. Write a failing test that defines the expected behavior
-2. Write the minimum code to make the test pass
-3. Refactor if needed while keeping tests green
-4. git add and git commit with a conventional commit message
-5. Mark the task [x] in ralph-tasks.md
+Each iteration:
 
-Never batch commits. Never skip the test step. Never skip the commit step.
-```
-<!-- prettier-ignore-end -->
+1. Read the epic ID and slug from the "Run Identity" section above.
+2. Run `bd ready --parent <epic-id> --json`. If the result is `[]`, run `bd close <epic-id> -m "ralph run complete"`, output `<promise>ALLDONE</promise>`, and stop.
+3. Pick the first task. Run `bd show <id>` to read the title and description.
+4. Execute the description exactly. The description names the files, commands, verification step, and commit message for this task.
+5. Run `bd close <id>`. Then STOP this iteration. Do not pick another task.
 
-Rules:
-
-- Ground instructions in the actual repo structure and tooling
-- Include build, test, and lint commands if known
-- Do not duplicate the project's CLAUDE.md rules
-- Define what "done" means for a task (tests pass, linter clean, etc.)
-- Include all relevant detail directly in the instructions file. Do not use `@path/file` references to .llmdocs/ docs -- ralph's work often changes the repo structure, making referenced docs stale mid-run
-
-### Validation: cross-reference tasks and instructions
-
-Before writing the files, verify the separation:
-
-- For every task in `ralph-tasks.md`, the instructions file must contain enough context to execute it (commands, patterns, file locations, conventions)
-- If a task requires a specific command, pattern, or technique to execute, that detail lives in `ralph-plan.md`, not on the task line
-- If removing the task text and replacing it with just the deliverable name loses no actionable information, the task is correctly scoped. If it does lose information, move that information to the instructions file.
-
-### Step 4: Build ralph-prompt.md
-
-Write exactly this static invocation. Do not modify it.
-
-```markdown
-/ralph-loop:ralph-loop "Read @.llmtmp/ralph-plan.md and follow its instructions. Work through @.llmtmp/ralph-tasks.md one task at a time. Mark items [x] when complete. Output <promise>ALLDONE</promise> when all tasks are complete." --max-iterations 100 --completion-promise ALLDONE
+The sentinel `<promise>ALLDONE</promise>` is emitted only on the iteration where step 2 finds the ready queue empty (all children closed and the epic just closed). Every other iteration ends silently after step 5.
 ```
 
-Rules:
+Plan rules:
 
-- The prompt text is fixed. Do not modify any part of it.
-- Do not add `@` file references beyond `ralph-plan.md` and `ralph-tasks.md`. All other file references belong in `ralph-plan.md`.
+- Ground instructions in actual repo structure and tooling
+- Include build, test, and lint commands when known
+- Do not duplicate the project's CLAUDE.md
+- Define what "done" means for a task (tests pass, linter clean)
+- State current facts only
+- `plan documents:` lists exactly the files referenced in `$ARGUMENTS`. Do not add `README.md`, `CLAUDE.md`, or `.llmdocs/*` (the reviewer reads those independently as baseline). Do not infer related files from `.llmtmp/` or elsewhere. If a path in `$ARGUMENTS` does not exist, fail the build with a clear error rather than dropping it.
 
-### Step 5: Report
+### Step 5: Write Prompt Wrappers
 
-List the three files created/updated and summarize the task count.
+Both files share this body:
+
+```text
+Read .llmtmp/ralph-plan.md and follow it.
+```
+
+`.llmtmp/ralph-prompt-insession.md` is one line:
+
+```text
+/ralph-loop:ralph-loop "<body>" --max-iterations 100 --completion-promise ALLDONE
+```
+
+`.llmtmp/ralph-prompt-external.md` is the body alone, no wrapper.
+
+## Validation
+
+Before finishing, assert:
+
+- `bd list >/dev/null 2>&1` exits zero
+- `bd dep cycles` exits zero
+- A single open epic exists for this run: `bd list -t epic -l "ralph:${slug}" --json | jq -e 'length == 1'`
+- `bd ready --parent "${epic}" --json | jq 'length'` is greater than zero
+- Every child of the epic has a non-empty description: `bd list --parent "${epic}" --json | jq -e 'all(.[]; (.description // "") | length > 0)'`
+- Parent set equals label set (excluding the epic itself):
+
+  ```bash
+  diff <(bd list --parent "${epic}" --json | jq -r '.[].id' | sort) \
+       <(bd list --label "ralph:${slug}" --json | jq -r '.[] | select(.issue_type != "epic") | .id' | sort)
+  ```
+
+- `.llmtmp/ralph-plan.md`, `.llmtmp/ralph-prompt-insession.md`, `.llmtmp/ralph-prompt-external.md` all exist
+- The plan's "Run Identity" section records the literal slug and epic ID
+- Both prompt files contain the identical shared body
+
+If any assertion fails, fix and re-validate.

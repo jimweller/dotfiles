@@ -47,15 +47,16 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 
 #### Human-Only (`disable-model-invocation: true`)
 
-| Skill            | Description                                                      |
-| ---------------- | ---------------------------------------------------------------- |
-| `familiarize`    | Orient in a new repo by reading docs, config, and code structure |
-| `worktree`       | Git worktree create, merge, rebase, remove                       |
-| `handoff`        | Write session handoff document for next agent                    |
-| `code-reviews`   | Parallel code reviews via 3 models through opencode              |
-| `ralph-builder`  | Build Ralph Wiggum loop files for autonomous execution           |
-| `ralph-reviewer` | Review Ralph loop files via 3 models through opencode            |
-| `docs`           | Run llmdocs and readme in parallel                               |
+| Skill               | Description                                                              |
+| ------------------- | ------------------------------------------------------------------------ |
+| `familiarize`       | Orient in a new repo by reading docs, config, and code structure         |
+| `worktree`          | Git worktree create, merge, rebase, remove                               |
+| `handoff`           | Write session handoff document for next agent                            |
+| `code-reviews`      | Parallel code reviews via 3 models through opencode                      |
+| `ralph-builder`     | Build Ralph Wiggum loop files for autonomous execution                   |
+| `ralph-review`      | Single-model deep review of Ralph artifacts via in-process opus subagent |
+| `ralph-review-deep` | Multi-model parallel review of Ralph artifacts via 3 opencode processes  |
+| `docs`              | Run llmdocs and readme in parallel                                       |
 
 #### Model-Only (`user-invocable: false`)
 

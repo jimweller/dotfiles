@@ -791,6 +791,48 @@ curl -s -u ":${AZURE_DEVOPS_EXT_PAT}" -X PATCH \
 
 ---
 
+## Code Search (REST API)
+
+Search code across repositories. Uses the `almsearch.dev.azure.com` host, not `dev.azure.com`.
+
+### Search in Project
+
+```bash
+curl -s -u ":${AZURE_DEVOPS_EXT_PAT}" -X POST \
+  "https://almsearch.dev.azure.com/${org}/${project}/_apis/search/codesearchresults?api-version=7.1" \
+  -H "Content-Type: application/json" \
+  -d '{"searchText":"<TEXT>","$top":25}' \
+  | jq '{count: .count, results: [.results[] | {repo: .repository.name, path: .path}]}'
+```text
+
+### Search Across Org with Filters
+
+```bash
+curl -s -u ":${AZURE_DEVOPS_EXT_PAT}" -X POST \
+  "https://almsearch.dev.azure.com/${org}/_apis/search/codesearchresults?api-version=7.1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "searchText":"<TEXT>",
+    "filters":{"Project":["<PROJECT>"],"Repository":["<REPO>"],"Branch":["main"],"Path":["/src"]},
+    "$top":25
+  }' \
+  | jq '.results[] | {project: .project.name, repo: .repository.name, path: .path}'
+```text
+
+Available filter keys: `Project`, `Repository`, `Branch`, `Path`, `CodeElement` (e.g. `["def","class"]`).
+
+### Search Operators
+
+The `searchText` field accepts ADO search syntax:
+
+- `ext:go quiver-bolt` -- file extension filter
+- `file:Makefile quiver-bolt` -- filename filter
+- `def:MyFunction` -- function/method definitions
+- `"exact phrase"` -- exact match
+- `foo AND bar`, `foo OR bar`, `foo NOT bar` -- boolean
+
+---
+
 ## Webhooks (REST API)
 
 ### List Service Hooks

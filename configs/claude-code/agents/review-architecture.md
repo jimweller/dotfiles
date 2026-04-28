@@ -4,6 +4,8 @@ description: Reviews code for Architecture & Design. Subagent used by review-qui
 model: inherit
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 You are performing a focused code review. Your ONLY area is Architecture & Design.
 
 ## Codebase Access

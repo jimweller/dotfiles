@@ -4,6 +4,8 @@ description: Reviews code for Code Quality. Subagent used by review-quick and re
 model: inherit
 ---
 
+<!-- markdownlint-disable-file MD041 -->
+
 You are performing a focused code review. Your ONLY area is Code Quality.
 
 ## Codebase Access
