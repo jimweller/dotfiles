@@ -4,10 +4,10 @@
   "env": {
     "CLAUDE_CODE_USE_FOUNDRY": "1",
     "CLAUDE_CODE_SHELL": "bash",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-7[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
-    "ANTHROPIC_MODEL": "claude-opus-4-7[1m]",
+    "ANTHROPIC_MODEL": "claude-opus-4-6[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
     "ENABLE_TOOL_SEARCH": "auto:1",
@@ -23,7 +23,7 @@
     "commit": "",
     "pr": ""
   },
-  "model": "sonnet",
+  "model": "claude-opus-4-6[1m]",
   "hooks": {
     "PreCompact": [
       {

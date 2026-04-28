@@ -44,6 +44,7 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 | `test-driven-development` | London TDD workflow for features and bugfixes                 |
 | `transcript-search`       | Search session memory DB for past decisions/context           |
 | `sage`                    | Research via c7 (library docs) and g (web search) MCP servers |
+| `beads`                   | bd (beads) issue tracker workflow and command reference       |
 
 #### Human-Only (`disable-model-invocation: true`)
 
@@ -56,6 +57,8 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 | `ralph-builder`     | Build Ralph Wiggum loop files for autonomous execution                   |
 | `ralph-review`      | Single-model deep review of Ralph artifacts via in-process opus subagent |
 | `ralph-review-deep` | Multi-model parallel review of Ralph artifacts via 3 opencode processes  |
+| `prd`               | Generate a Product Requirements Document for a new feature               |
+| `prd-review`        | Single-model deep review of a PRD via in-process opus subagent           |
 | `docs`              | Run llmdocs and readme in parallel                                       |
 
 #### Model-Only (`user-invocable: false`)

@@ -85,9 +85,11 @@ projects:
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/cwqi-windows
 - /Users/jimweller/scratch/everything-claude-code
+- /Users/jimweller/scratch/gascity
 - /Users/jimweller/scratch/google-researcher-mcp
 - /Users/jimweller/scratch/opencode
 - /Users/jimweller/scratch/openfang
+- /Users/jimweller/scratch/ruflo
 - /Users/jimweller/scratch/serena
 - /Users/jimweller/scratch/superpowers
 - /Users/jimweller/work/2026-devx-survey-results
@@ -119,6 +121,14 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.

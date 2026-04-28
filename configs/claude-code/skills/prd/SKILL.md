@@ -99,8 +99,8 @@ Specific, measurable objectives (bullet list).
 Each story needs:
 
 - Title: Short descriptive name
-- Description: "A [user] needs [feature] so that [benefit]"
-- Acceptance Criteria: Verifiable checklist of what "done" means
+- Description: "A [user role] needs [feature] so that [benefit]" where [user role] is the actor (platform operator, end user, admin), never the implementer
+- Acceptance Criteria: Verifiable functional assertions about the story's own behavior
 
 Each story should be small enough to implement in one focused session.
 
@@ -109,18 +109,24 @@ Format:
 ```markdown
 ### US-001: [Title]
 
-**Description:** A [user] needs [feature] so that [benefit].
+**Description:** A [user role] needs [feature] so that [benefit].
 
 **Acceptance Criteria:**
 
-- [ ] Specific verifiable criterion
-- [ ] Another verifiable criterion
-- [ ] **[UI stories only]** Verify in browser using agent-browser skill
+- [ ] Specific verifiable functional criterion
+- [ ] Another verifiable functional criterion
+- [ ] **[UI stories only]** Observable outcome verified in a browser session
 ```
 
 ### Note
 
-Acceptance criteria must be verifiable, not vague. "Works correctly" is bad. "Button shows confirmation dialog before deleting" is good. Write story descriptions in third-person voice of the user role; avoid first-person pronouns. For UI changes, include "Verify in browser using agent-browser skill" as acceptance criteria.
+Acceptance criteria rules:
+
+- Verifiable functional assertions about the story's own behavior. "Works correctly" is bad. "Button shows confirmation dialog before deleting" is good.
+- [user role] is the actor who benefits (platform operator, end user, admin). Never the implementer, never CLANKER, never "we", never "the developer", never "AI".
+- Build hygiene (lint passes, tests pass, typecheck passes) is a delivery baseline, not a feature criterion. Omit from acceptance criteria.
+- Each criterion is self-contained. No cross-story references ("widened in this run via US-011"). Move sequencing to Technical Considerations.
+- UI criteria state the observable outcome ("browser session shows the forced reauth screen"), not the verification tool.
 
 ### 4. Non-Goals (Out of Scope)
 
