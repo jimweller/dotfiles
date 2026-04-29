@@ -78,10 +78,11 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
-- /Users/jimweller/.worktrees/quiver-main/feat/zitadel-scopes
+- /Users/jimweller/.worktrees/quiver-main/feat/quiver-scopes
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/personal/elephant-memories
 - /Users/jimweller/personal/jimwellercom
+- /Users/jimweller/scratch/_crap
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/cwqi-windows
 - /Users/jimweller/scratch/everything-claude-code
@@ -121,166 +122,6 @@ base_modes:
 default_modes:
 - interactive
 - editing
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
-
-# list of paths to ignore across all projects.
-# Same syntax as gitignore, so you can use * and **.
-# These patterns are merged additively with each project's own ignored_paths.
 
 # list of paths to ignore across all projects.
 # Same syntax as gitignore, so you can use * and **.
@@ -326,3 +167,18 @@ ignored_memory_patterns: []
 # Note that Serena's own files (e.g. memories and configuration files) always use native line endings.
 # This setting can be overridden on a per-project basis in project.yml files.
 line_ending: native
+
+# defines the interface (application mode) used for the web dashboard (if enabled).
+# If empty/null, use platform-dependent default. Otherwise, possible values:
+#  * browser: the dashboard is opened in the default browser (if `web_dashboard_open_on_launch` is true)
+#      This is supported on all platforms.
+#  * app: the dashboard is opened in a separate native-like app window with accompanying tray icon, whose
+#      lifecycle is tied to the Serena process.
+#      If `web_dashboard_open_on_launch` is false, the dashboard can be conveniently accessed via the tray icon.
+#      This is supported on Windows and macOS, but note that on macOS, where tray icons are very visible,
+#      this may result in too many icons being displayed when using multi-agent setups.
+#  * tray_manager: use a global tray icon to provide access to the dashboards of all running Serena instances,
+#      opening the dashboard in browser tabs when selected from the tray menu.
+#      This is EXPERIMENTAL. It is tested on Windows only. We will establish macOS support, but it is yet untested.
+#      On Linux, this cannot be universally supported, but it may work in some desktop environments.
+web_dashboard_interface:

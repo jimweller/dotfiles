@@ -53,6 +53,7 @@
     ~/.zsh_plugins.txt: configs/zsh/zsh_plugins.txt
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
     ~/.gemini/settings.json: configs/gemini/gemini_settings
+    ~/.codex/config.toml: configs/codex/config.toml
     ~/.config/opencode/opencode.json: configs/opencode/opencode.json
     ~/.config/opencode/tui.json: configs/opencode/tui.json
     ~/.config/opencode/agents/:
@@ -85,14 +86,6 @@
     ~/.claude/tools/humble-master: configs/claude-code/tools/humble-master
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
     ~/.prettierrc: configs/prettier/prettierrc
-
-- link:
-    ~/.claude/hooks/:
-      glob: true
-      path: configs/claude-code/tools/lsp-enforcement-kit/hooks/*.js
-    ~/.claude/hooks/lib/:
-      glob: true
-      path: configs/claude-code/tools/lsp-enforcement-kit/hooks/lib/*.js
 
 - defaults:
     link:

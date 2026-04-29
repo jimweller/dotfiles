@@ -57,51 +57,6 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Grep",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-first-guard.js"
-          }
-        ]
-      },
-      {
-        "matcher": "Glob",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-first-glob-guard.js"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/bash-grep-block.js"
-          }
-        ]
-      },
-      {
-        "matcher": "Read",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-first-read-guard.js"
-          }
-        ]
-      },
-      {
-        "matcher": "Agent",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-pre-delegation.js"
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -120,28 +75,7 @@
         ]
       }
     ],
-    "PostToolUse": [
-      {
-        "matcher": "mcp__cclsp__find_definition|mcp__cclsp__find_references|mcp__cclsp__find_workspace_symbols|mcp__cclsp__find_implementation|mcp__cclsp__get_hover|mcp__cclsp__get_diagnostics|mcp__cclsp__get_incoming_calls|mcp__cclsp__get_outgoing_calls|mcp__serena__find_symbol|mcp__serena__find_referencing_symbols|mcp__serena__get_symbols_overview",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-usage-tracker.js"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "true",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node ~/.claude/hooks/lsp-session-reset.js"
-          }
-        ]
-      }
-    ],
+    "PostToolUse": [],
     "Stop": [
       {
         "matcher": "",
@@ -164,8 +98,11 @@
     "mcg-atlassian@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
+    "employee-termination@devx-claude-marketplace": true,
+    "beads@beads-marketplace": true,
     "claude-mem@jimweller": true,
-    "employee-termination@devx-claude-marketplace": true
+    "lsp-enforcement-kit@jimweller": true,
+    "superpowers@jimweller": true
   },
   "extraKnownMarketplaces": {
     "devx-claude-marketplace": {
@@ -175,10 +112,16 @@
       },
       "autoUpdate": true
     },
+    "beads-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "gastownhall/beads"
+      }
+    },
     "jimweller": {
       "source": {
-        "source": "git",
-        "url": "https://github.com/jimweller/claude-mem.git"
+        "source": "github",
+        "repo": "jimweller/claude-marketplace"
       }
     }
   },

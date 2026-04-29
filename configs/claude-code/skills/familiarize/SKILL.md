@@ -175,9 +175,9 @@ Identify entry point files under `SCAN_ROOT` by filename pattern:
 
 Collect up to 5 matches. Prefer files closer to the scan root.
 
-If `SERENA=true`: run `mcp__serena__get_symbols_overview` with `depth: 1` on each match. This returns top-level symbols (classes, functions, interfaces) and their immediate children (methods, attributes) without reading file contents. If a file returns symbols, record them and skip the bash fallback for that file.
+If `SERENA=true`: run `mcp__serena__get_symbols_overview` with `depth: 2` on each match. This returns top-level symbols and their children (methods, attributes, nested types). If a file returns symbols, record them and skip the bash fallback for that file. Then pick the 1-2 most important entry functions (e.g., `main`, `run`, `createApp`, `setup`) and call `mcp__serena__find_symbol` with `include_body: true` to read their implementation. This reveals initialization order, dependency wiring, and startup flow.
 
-If `SERENA=false` or Serena returned empty/error for a file: read the first 50 lines of that file.
+If `SERENA=false` or Serena returned empty/error for a file: read the first 80 lines of that file.
 
 ### 5c. Architectural symbol search (Serena only)
 
@@ -205,15 +205,46 @@ For the 2-3 most connected symbols found (symbols that appear in multiple files 
 
 Identify source directories from the directory tree in 5a (directories containing source files, not config/docs/tests).
 
-If `SERENA=true`: run `mcp__serena__get_symbols_overview` with `depth: 1` on up to 3 representative source files per directory. Record class names, function names, and interface names. If a file returns no symbols (unsupported language, error), fall through to bash for that file.
+If `SERENA=true`: run `mcp__serena__get_symbols_overview` with `depth: 2` on up to 5 representative source files per directory. Record class names, function names, interface names, and method signatures. If a file returns no symbols (unsupported language, error), fall through to bash for that file.
 
-If `SERENA=false` or Serena returned nothing for a file: read the first 50 lines.
+If `SERENA=false` or Serena returned nothing for a file: read the first 80 lines.
 
 Skip in both paths:
 
 - Test files (`*_test.*`, `*.test.*`, `*.spec.*`, `test_*`)
 - Generated files (`*.min.js`, `*_pb.go`, `*.generated.*`, `*.g.dart`)
 - Lock files (`package-lock.json`, `yarn.lock`, `poetry.lock`, `Cargo.lock`)
+
+### 5e. Type and interface inventory
+
+Use `mcp__serena__find_symbol` to locate key type definitions. Search for these `name_path_pattern` values with `include_body: false` and `depth: 1`, scoped to `SCAN_ROOT`:
+
+- `interface`
+- `type`
+- `enum`
+- `struct`
+- `dataclass`
+- `schema`
+- `dto`
+
+Cap at 7 total calls. For the 2-3 most central types found (those referenced in entry points or appearing across multiple files), call `mcp__serena__find_symbol` with `include_body: true` to read their full definition. This reveals the domain model and data shapes that drive the project.
+
+If `SERENA=false`, skip this step.
+
+### 5f. Test structure
+
+Identify test directories and files from the tree in 5a:
+
+- Directories named `test/`, `tests/`, `spec/`, `__tests__/`
+- Files matching `*_test.*`, `*.test.*`, `*.spec.*`, `test_*`
+
+List all test files found. Then pick 2-3 representative test files and:
+
+If `SERENA=true`: run `mcp__serena__get_symbols_overview` with `depth: 1` to see test function/class names.
+
+If `SERENA=false`: read the first 60 lines.
+
+Record: test framework used (inferred from imports/assertions), test naming conventions, whether tests are unit or integration style, and any test utilities or fixtures present.
 
 ---
 
@@ -227,19 +258,33 @@ List all files read and symbols discovered, grouped by step. For Serena results,
 
 ### Overview
 
-A concise summary of the project based on everything read. Cover:
+A summary of the project based on everything read. Cover all three sections below in order. 10-14 paragraphs of prose total. No bullets or headings within the overview.
+
+**How it works** (mechanical description):
 
 - What the project does
 - Tech stack and key dependencies
+- How the code is organized (key directories and their roles)
+- Public API surface and key abstractions (classes, interfaces, exported functions)
+- Domain model and core data types (from type/interface inventory)
+- Module relationships and dependency flow (from reference lookups and entry point bodies)
+- Conventions or patterns observed in the code (naming, error handling, layering)
+- Test strategy (framework, coverage style, test organization)
+
+**Why it matters** (value and purpose):
+
+- What problem the project solves and for whom
+- What alternatives exist and how this project differs (infer from README, docs, or code patterns)
+- Architectural trade-offs visible in the code (what was prioritized, what was deferred)
+- Technical debt or maintenance risks observed (missing tests, stale deps, unclear boundaries)
+- Anything notable, missing, or unclear
+
+**How to use it** (getting started):
+
 - How to build it (build system, compile steps, dependency install)
 - How to run or install it (entry points, startup commands, deploy method)
 - How to test it (test framework, test commands, test location)
-- How the code is organized (key directories and their roles)
-- Public API surface and key abstractions (classes, interfaces, exported functions)
-- Module relationships and dependency flow (if Serena reference lookups revealed them)
-- Conventions or patterns observed in the code
-- Anything notable, missing, or unclear
-
-5-7 paragraphs of prose. No bullets or headings in overview.
+- Key workflows a new contributor would need (development loop, common tasks)
+- Configuration knobs and environment requirements
 
 After the report, await instructions.

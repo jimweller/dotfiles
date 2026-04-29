@@ -12,6 +12,8 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | total-recall        | `configs/claude-code/tools/total-recall/`        | SQLite session memory for Claude Code (git submodule)    |
 | lsp-enforcement-kit | `configs/claude-code/tools/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule)     |
 | humble-master       | `configs/claude-code/tools/humble-master/`       | Daneel persona injection for Claude Code (git submodule) |
+| superpowers         | `configs/claude-code/tools/superpowers/`         | Claude Code skill plugin library (git submodule)         |
+| claude-mem          | `configs/claude-code/tools/claude-mem/`          | Persistent memory MCP tool for Claude Code (git submodule) |
 
 ## Directory Layout
 
@@ -88,7 +90,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Six submodules defined in `.gitmodules`:
+Eight submodules defined in `.gitmodules`:
 
 | Submodule           | Shallow | Branch  |
 | ------------------- | ------- | ------- |
@@ -98,4 +100,6 @@ Six submodules defined in `.gitmodules`:
 | total-recall        | no      | default |
 | lsp-enforcement-kit | no      | default |
 | humble-master       | no      | default |
+| superpowers         | no      | default |
+| claude-mem          | no      | default |
 ````

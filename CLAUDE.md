@@ -15,6 +15,8 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `submodules/dotbot/` -- installer engine (submodule)
 - `submodules/antidote/` -- zsh plugin manager (submodule)
 - `submodules/devcontainer/` -- Linux container image (submodule)
+- `configs/claude-code/tools/superpowers/` -- Claude Code skill plugin library (submodule)
+- `configs/claude-code/tools/claude-mem/` -- persistent memory MCP tool for Claude Code (submodule)
 - `configs/` -- source configs symlinked to home
 - `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh

@@ -24,3 +24,9 @@
 [submodule "dotfiles/claude-code/tools/humble-master"]
 	path = configs/claude-code/tools/humble-master
 	url = https://github.com/jimweller/humble-master.git
+[submodule "dotfiles/claude-code/tools/superpowers"]
+	path = configs/claude-code/tools/superpowers
+	url = https://github.com/jimweller/superpowers.git
+[submodule "dotfiles/claude-code/tools/claude-mem"]
+	path = configs/claude-code/tools/claude-mem
+	url = https://github.com/jimweller/claude-mem.git
