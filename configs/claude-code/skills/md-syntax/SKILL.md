@@ -1,7 +1,6 @@
 ---
 name: md-syntax
 description: Markdown authoring guidelines for formatting, code blocks, and structure. Use when writing or editing markdown files.
-disable-model-invocation: true
 ---
 
 <!-- markdownlint-disable-file MD041 -->

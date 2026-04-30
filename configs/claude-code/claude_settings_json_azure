@@ -3,6 +3,7 @@
   "cleanupPeriodDays": 90,
   "env": {
     "CLAUDE_CODE_USE_FOUNDRY": "1",
+    "CLAUDE_CODE_USE_BEDROCK": "0",
     "CLAUDE_CODE_SHELL": "bash",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-6[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6[1m]",
@@ -136,5 +137,8 @@
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-daltonized",
+  "preferredNotifChannel": "notifications_disabled",
+  "terminalProgressBarEnabled": false
 }
