@@ -14,10 +14,10 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/57405f93614f",
-        "version": "57405f93614f",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/7ada3384e2af",
+        "version": "7ada3384e2af",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-21T14:26:58.876Z",
+        "lastUpdated": "2026-04-29T16:52:27.460Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
@@ -74,11 +74,11 @@
     "claude-mem@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j5",
-        "version": "12.1.5-j5",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j6",
+        "version": "12.1.5-j6",
         "installedAt": "2026-04-29T02:28:17.608Z",
-        "lastUpdated": "2026-04-29T02:28:17.608Z",
-        "gitCommitSha": "5c45b678de31bc82e332cee741c01df4ee2511e9"
+        "lastUpdated": "2026-04-29T05:50:34.547Z",
+        "gitCommitSha": "8ac9a806617a2b995ef2746e9010abe3ba9854ee"
       }
     ],
     "lsp-enforcement-kit@jimweller": [
@@ -97,7 +97,7 @@
         "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/superpowers/5.1.1",
         "version": "5.1.1",
         "installedAt": "2026-04-29T02:28:50.051Z",
-        "lastUpdated": "2026-04-29T02:28:50.051Z",
+        "lastUpdated": "2026-04-29T05:39:25.318Z",
         "gitCommitSha": "4df9ac7946ca12e7b2335f0eb066e47e30937cd7"
       }
     ]

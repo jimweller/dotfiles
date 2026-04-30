@@ -9,3 +9,9 @@ name = "openai-env"
 base_url = "https://api.openai.com/v1"
 wire_api = "responses"
 env_key = "OPENAI_API_KEY"
+
+[projects."/Users/jimweller/scratch/_crap"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 2

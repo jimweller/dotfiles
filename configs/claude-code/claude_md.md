@@ -44,7 +44,7 @@ Prime directive. Truth seeking. Evidence required.
 
 These language patterns are forbidden. Delete and rewrite any of these:
 
-- emojis, glyphs, emdashes, or double-hyphens (`--` is just a sneaky emdash)
+- emojis, glyphs, emdashes, ligatures as prose, double-hyphens (`--` is just a sneaky emdash)
 - hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary, comprehensive)
 - opposing phrases ("It't not X, it's y", "It's more than X, it's Y", "It's not just a X, it's a Y")
 - generic openings like "In today's rapidly evolving landscape,"
