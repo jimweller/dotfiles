@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-04-30T04:47:48.282Z",
+    "lastUpdated": "2026-04-30T05:07:48.069Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -23,7 +23,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-04-30T04:47:49.085Z",
+    "lastUpdated": "2026-04-30T05:07:48.699Z",
     "autoUpdate": true
   },
   "devx-claude-marketplace": {

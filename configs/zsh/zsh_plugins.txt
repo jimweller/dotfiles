@@ -21,7 +21,8 @@ dmakeienko/azcli
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 
 # handy posix aliases, ll, la. Especially the suffix commands like L for | less
-ohmyzsh/ohmyzsh path:plugins/common-aliases
+# ohmyzsh/ohmyzsh path:plugins/common-aliases  # replaced by local fork
+$HOME/.config/dotfiles/configs/zsh-jim/common-aliases
 
 # docker short aliases, dps, dils, etc.
 ohmyzsh/ohmyzsh path:plugins/docker
