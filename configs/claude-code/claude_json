@@ -1,5 +1,5 @@
 {
-  "numStartups": 2986,
+  "numStartups": 2988,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -363,17 +363,17 @@
       ],
       "exampleFilesGeneratedAt": 1777429525379,
       "disabledMcpServers": [],
-      "lastCost": 3.9527537499999994,
-      "lastAPIDuration": 281821,
-      "lastToolDuration": 150823,
-      "lastDuration": 1170678,
-      "lastLinesAdded": 138,
+      "lastCost": 7.40322765,
+      "lastAPIDuration": 549938,
+      "lastToolDuration": 178727,
+      "lastDuration": 11473787,
+      "lastLinesAdded": 156,
       "lastLinesRemoved": 40,
-      "lastTotalInputTokens": 112,
-      "lastTotalOutputTokens": 22225,
-      "lastTotalCacheCreationInputTokens": 179613,
-      "lastTotalCacheReadInputTokens": 4547975,
-      "lastSessionId": "ac73eb4f-f8db-4c0e-95c3-7f73de00f93b",
+      "lastTotalInputTokens": 270,
+      "lastTotalOutputTokens": 44136,
+      "lastTotalCacheCreationInputTokens": 390043,
+      "lastTotalCacheReadInputTokens": 7881041,
+      "lastSessionId": "72a9c4a3-f8e1-41d8-9f6a-f8ba44b67c63",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -381,41 +381,49 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 281160,
+      "lastAPIDurationWithoutRetries": 545995,
       "lastModelUsage": {
         "global.anthropic.claude-opus-4-7[1m]": {
-          "inputTokens": 112,
-          "outputTokens": 22225,
-          "cacheReadInputTokens": 4547975,
-          "cacheCreationInputTokens": 179613,
+          "inputTokens": 265,
+          "outputTokens": 43523,
+          "cacheReadInputTokens": 7821483,
+          "cacheCreationInputTokens": 365339,
           "webSearchRequests": 0,
-          "costUSD": 3.9527537499999994
+          "costUSD": 7.28351025
+        },
+        "global.anthropic.claude-sonnet-4-6": {
+          "inputTokens": 5,
+          "outputTokens": 613,
+          "cacheReadInputTokens": 59558,
+          "cacheCreationInputTokens": 24704,
+          "webSearchRequests": 0,
+          "costUSD": 0.11971739999999999
         }
       },
-      "lastFpsAverage": 1.98,
-      "lastFpsLow1Pct": 102.13,
+      "lastFpsAverage": 0.31,
+      "lastFpsLow1Pct": 138.32,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 88,
-        "hook_duration_ms_min": 128,
-        "hook_duration_ms_max": 9260,
-        "hook_duration_ms_avg": 604.6931818181819,
-        "hook_duration_ms_p50": 260.5,
-        "hook_duration_ms_p95": 2256.749999999977,
-        "hook_duration_ms_p99": 7046.719999999988,
-        "frame_duration_ms_count": 1544,
-        "frame_duration_ms_min": 0.17966600001091138,
-        "frame_duration_ms_max": 73.92812499999991,
-        "frame_duration_ms_avg": 1.925053766839378,
-        "frame_duration_ms_p50": 1.4052914999774657,
-        "frame_duration_ms_p95": 4.338150000001769,
-        "frame_duration_ms_p99": 8.905358909989591,
+        "hook_duration_ms_count": 113,
+        "hook_duration_ms_min": 211,
+        "hook_duration_ms_max": 15774,
+        "hook_duration_ms_avg": 973.8407079646017,
+        "hook_duration_ms_p50": 266,
+        "hook_duration_ms_p95": 4832.599999999987,
+        "hook_duration_ms_p99": 12846.92,
+        "frame_duration_ms_count": 1936,
+        "frame_duration_ms_min": 0.06224999995902181,
+        "frame_duration_ms_max": 118.33316599999989,
+        "frame_duration_ms_avg": 0.9009867804725942,
+        "frame_duration_ms_p50": 0.5773335001431406,
+        "frame_duration_ms_p95": 3.015860800351946,
+        "frame_duration_ms_p99": 6.4422810897789855,
         "pre_tool_hook_duration_ms_count": 44,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 323,
-        "pre_tool_hook_duration_ms_avg": 192.4090909090909,
-        "pre_tool_hook_duration_ms_p50": 241.5,
-        "pre_tool_hook_duration_ms_p95": 296.4,
-        "pre_tool_hook_duration_ms_p99": 321.71
+        "pre_tool_hook_duration_ms_max": 683,
+        "pre_tool_hook_duration_ms_avg": 256.52272727272725,
+        "pre_tool_hook_duration_ms_p50": 249.5,
+        "pre_tool_hook_duration_ms_p95": 309.7,
+        "pre_tool_hook_duration_ms_p99": 573.7800000000001
       },
       "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": false
@@ -10322,6 +10330,22 @@
         "pre_tool_hook_duration_ms_p95": 256,
         "pre_tool_hook_duration_ms_p99": 296.79999999999995
       }
+    },
+    "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/ObsidianVault/People": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "lastGracefulShutdown": false,
+      "lastHintSessionId": "52da9023-64ef-4a2c-8286-349792ec2aae",
+      "lastSessionFirstPrompt": "you are in my obsidian people vault. /sage obsidian metadata, graph mode, \"extended graph\" plugin I want to visualize the graph - bigger nodes by number of inbound edges - colored by three categories ",
+      "lastSessionModified": 1777519249977
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -10573,8 +10597,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 138,
-      "lastUsedAt": 1777421565619
+      "usageCount": 139,
+      "lastUsedAt": 1777523760878
     },
     "publish": {
       "usageCount": 11,
@@ -10749,8 +10773,8 @@
       "lastUsedAt": 1777489180481
     },
     "sage": {
-      "usageCount": 132,
-      "lastUsedAt": 1777437231332
+      "usageCount": 134,
+      "lastUsedAt": 1777522413031
     },
     "update-config": {
       "usageCount": 1,

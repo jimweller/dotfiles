@@ -65,15 +65,6 @@
             "command": "~/.claude/hooks/rtk-rewrite.sh"
           }
         ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/command-safety-scanner.sh"
-          }
-        ]
       }
     ],
     "PostToolUse": [],
@@ -102,7 +93,6 @@
     "employee-termination@devx-claude-marketplace": true,
     "beads@beads-marketplace": true,
     "claude-mem@jimweller": true,
-    "lsp-enforcement-kit@jimweller": true,
     "superpowers@jimweller": true
   },
   "extraKnownMarketplaces": {

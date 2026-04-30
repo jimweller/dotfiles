@@ -65,15 +65,6 @@
             "command": "~/.claude/hooks/rtk-rewrite.sh"
           }
         ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/command-safety-scanner.sh"
-          }
-        ]
       }
     ],
     "PostToolUse": [],
