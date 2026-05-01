@@ -133,3 +133,34 @@ mkdir_and_cd() {
   mkdir -p $1 && cd $1
 }
 alias mkd='mkdir_and_cd'
+
+litellm-up() {
+  if lsof -iTCP:4000 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "litellm proxy already running on :4000"
+    return 0
+  fi
+  export LITELLM_MASTER_KEY="${LITELLM_MASTER_KEY:-sk-litellm-local}"
+  nohup litellm --config ~/.config/litellm/config.yaml >/dev/null 2>&1 &
+  local pid=$!
+  local tries=0
+  while ! lsof -iTCP:4000 -sTCP:LISTEN -t >/dev/null 2>&1; do
+    sleep 0.5
+    tries=$((tries + 1))
+    if (( tries > 20 )); then
+      echo "litellm proxy failed to start after 10s"
+      return 1
+    fi
+  done
+  echo "litellm proxy running (pid $pid) on :4000"
+}
+
+litellm-down() {
+  local pids
+  pids=$(lsof -iTCP:4000 -sTCP:LISTEN -t 2>/dev/null)
+  if [[ -z "$pids" ]]; then
+    echo "litellm proxy not running"
+    return 0
+  fi
+  kill $pids 2>/dev/null
+  echo "litellm proxy stopped"
+}

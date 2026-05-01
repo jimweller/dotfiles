@@ -1,5 +1,5 @@
 {
-  "numStartups": 3014,
+  "numStartups": 3015,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -349,17 +349,17 @@
       ],
       "exampleFilesGeneratedAt": 1777429525379,
       "disabledMcpServers": [],
-      "lastCost": 16.512004250000007,
-      "lastAPIDuration": 1086945,
-      "lastToolDuration": 228225,
-      "lastDuration": 42666782,
-      "lastLinesAdded": 285,
-      "lastLinesRemoved": 103,
-      "lastTotalInputTokens": 2938,
-      "lastTotalOutputTokens": 86785,
-      "lastTotalCacheCreationInputTokens": 722137,
-      "lastTotalCacheReadInputTokens": 19966051,
-      "lastSessionId": "72a9c4a3-f8e1-41d8-9f6a-f8ba44b67c63",
+      "lastCost": 1.20510925,
+      "lastAPIDuration": 168338,
+      "lastToolDuration": 52279,
+      "lastDuration": 473791,
+      "lastLinesAdded": 73,
+      "lastLinesRemoved": 1,
+      "lastTotalInputTokens": 493,
+      "lastTotalOutputTokens": 8097,
+      "lastTotalCacheCreationInputTokens": 74795,
+      "lastTotalCacheReadInputTokens": 1069365,
+      "lastSessionId": "2f6aa9c7-03ab-4edf-b8ae-27b1125df158",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -367,68 +367,55 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 1081858,
+      "lastAPIDurationWithoutRetries": 168060,
       "lastModelUsage": {
-        "global.anthropic.claude-opus-4-7[1m]": {
-          "inputTokens": 499,
-          "outputTokens": 84048,
-          "cacheReadInputTokens": 19220605,
-          "cacheCreationInputTokens": 537092,
+        "claude-opus-4-6[1m]": {
+          "inputTokens": 90,
+          "outputTokens": 8081,
+          "cacheReadInputTokens": 1069365,
+          "cacheCreationInputTokens": 74795,
           "webSearchRequests": 0,
-          "costUSD": 15.070822500000007
+          "costUSD": 1.20462625
         },
-        "global.anthropic.claude-sonnet-4-6": {
-          "inputTokens": 9,
-          "outputTokens": 1181,
-          "cacheReadInputTokens": 83940,
-          "cacheCreationInputTokens": 50101,
-          "webSearchRequests": 0,
-          "costUSD": 0.23080274999999997
-        },
-        "global.anthropic.claude-haiku-4-5-20251001-v1:0": {
-          "inputTokens": 2416,
-          "outputTokens": 258,
+        "claude-haiku-4-5": {
+          "inputTokens": 403,
+          "outputTokens": 16,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.003706
-        },
-        "claude-opus-4-6[1m]": {
-          "inputTokens": 14,
-          "outputTokens": 1298,
-          "cacheReadInputTokens": 661506,
-          "cacheCreationInputTokens": 134944,
-          "webSearchRequests": 0,
-          "costUSD": 1.2066729999999999
+          "costUSD": 0.000483
         }
       },
-      "lastFpsAverage": 0.01,
-      "lastFpsLow1Pct": 40.35,
+      "lastFpsAverage": 1.41,
+      "lastFpsLow1Pct": 203.73,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 12,
-        "hook_duration_ms_min": 102,
-        "hook_duration_ms_max": 5195,
-        "hook_duration_ms_avg": 802.6666666666666,
-        "hook_duration_ms_p50": 277,
-        "hook_duration_ms_p95": 3265.0499999999975,
-        "hook_duration_ms_p99": 4809.010000000002,
-        "frame_duration_ms_count": 217,
-        "frame_duration_ms_min": 0.7065830000065034,
-        "frame_duration_ms_max": 236.86137499999995,
-        "frame_duration_ms_avg": 3.245493880192849,
-        "frame_duration_ms_p50": 1.31025000000227,
-        "frame_duration_ms_p95": 8.437716400116912,
-        "frame_duration_ms_p99": 22.49010472000031,
-        "pre_tool_hook_duration_ms_count": 4,
+        "frame_duration_ms_count": 669,
+        "frame_duration_ms_min": 0.07566600000001245,
+        "frame_duration_ms_max": 8.152624999987893,
+        "frame_duration_ms_avg": 0.6723082212246967,
+        "frame_duration_ms_p50": 0.48016600002301857,
+        "frame_duration_ms_p95": 2.2917081999912634,
+        "frame_duration_ms_p99": 4.755144879990269,
+        "hook_duration_ms_count": 50,
+        "hook_duration_ms_min": 61,
+        "hook_duration_ms_max": 10652,
+        "hook_duration_ms_avg": 733.32,
+        "hook_duration_ms_p50": 222.5,
+        "hook_duration_ms_p95": 4123.45,
+        "hook_duration_ms_p99": 8423.47999999999,
+        "pre_tool_hook_duration_ms_count": 26,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 297,
-        "pre_tool_hook_duration_ms_avg": 168.5,
-        "pre_tool_hook_duration_ms_p50": 188.5,
-        "pre_tool_hook_duration_ms_p95": 293.7,
-        "pre_tool_hook_duration_ms_p99": 296.34
+        "pre_tool_hook_duration_ms_max": 252,
+        "pre_tool_hook_duration_ms_avg": 86.03846153846153,
+        "pre_tool_hook_duration_ms_p50": 30.5,
+        "pre_tool_hook_duration_ms_p95": 230.25,
+        "pre_tool_hook_duration_ms_p99": 246.75
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": true
+      "lastGracefulShutdown": true,
+      "lastHintSessionId": "2f6aa9c7-03ab-4edf-b8ae-27b1125df158",
+      "lastSessionFirstPrompt": "GEMINI_API_KEY OPENAI_API_KEY Are already set in the environment. Let's make a.files folder in configs for light LLM, configure it with all the models and keys, then let's mess with the clawed aliases",
+      "lastSessionModified": 1777650227621
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -10836,8 +10823,8 @@
       "lastUsedAt": 1777599606358
     },
     "sage": {
-      "usageCount": 139,
-      "lastUsedAt": 1777613215672
+      "usageCount": 140,
+      "lastUsedAt": 1777650040830
     },
     "update-config": {
       "usageCount": 1,

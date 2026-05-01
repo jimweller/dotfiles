@@ -59,6 +59,7 @@
     ~/.config/opencode/agents/:
       glob: true
       path: configs/opencode/agents/*
+    ~/.config/litellm/config.yaml: configs/litellm/config.yaml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
