@@ -24,11 +24,11 @@
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.8.0",
-        "version": "0.8.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.8.1",
+        "version": "0.8.1",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-04-21T14:27:04.202Z",
-        "gitCommitSha": "8b13265477a4b9ed277397484f0f92d5e461a52a"
+        "lastUpdated": "2026-04-30T14:28:03.969Z",
+        "gitCommitSha": "5b14012ec6169230e875e5416a6664e30c67491f"
       }
     ],
     "mcg-status-updates@devx-claude-marketplace": [

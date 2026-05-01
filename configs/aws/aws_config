@@ -8,7 +8,7 @@ region = us-west-2
 [profile mcg]
 sso_session = HearstOktaAuthenticated
 sso_account_id = 493888979299
-sso_role_name = 493888979299-mcg-rockusr
+sso_role_name = 493888979299-mcg-rockadm
 region = us-west-2
 
 [sso-session HearstOktaAuthenticated]

@@ -130,7 +130,6 @@ pdt() {
 
 mkdir_and_cd() {
   : "${1:?}"
-  mkdir $1 && cd $1
+  mkdir -p $1 && cd $1
 }
-
 alias mkd='mkdir_and_cd'
