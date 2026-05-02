@@ -68,6 +68,8 @@
     ~/.claude/settings.json: configs/claude-code/claude_settings_json_azure
     ~/.claude/settings-aws.json: configs/claude-code/claude_settings_json_aws
     ~/.claude/settings-azure.json: configs/claude-code/claude_settings_json_azure
+    ~/.claude/settings-litellm-oai.json: configs/claude-code/claude_settings_json_litellm_oai
+    ~/.claude/settings-litellm-gem.json: configs/claude-code/claude_settings_json_litellm_gem
     ~/.claude/statusline-command.sh: configs/claude-code/statusline-command.sh
     ~/.claude/CLAUDE.md: configs/claude-code/claude_md.md
     ~/.claude/plugins/known_marketplaces.json: configs/claude-code/known_marketplaces.json

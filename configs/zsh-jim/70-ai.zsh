@@ -18,8 +18,8 @@ alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.cla
 alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
 alias claude='claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
 
-alias claoai='litellm-up && env ANTHROPIC_BASE_URL=http://localhost:4000 ANTHROPIC_AUTH_TOKEN="${LITELLM_MASTER_KEY:-sk-litellm-local}" claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --model gpt-5.2'
-alias clagem='litellm-up && env ANTHROPIC_BASE_URL=http://localhost:4000 ANTHROPIC_AUTH_TOKEN="${LITELLM_MASTER_KEY:-sk-litellm-local}" claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --model gemini-3.1-pro-preview'
+alias cloai='ANTHROPIC_BASE_URL=http://localhost:4000 claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --settings ~/.claude/settings-litellm-oai.json'
+alias clgem='ANTHROPIC_BASE_URL=http://localhost:4000 claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --settings ~/.claude/settings-litellm-gem.json'
 
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 

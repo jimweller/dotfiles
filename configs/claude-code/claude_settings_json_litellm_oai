@@ -1,0 +1,9 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:4000",
+    "ANTHROPIC_AUTH_TOKEN": "01196e729f02c32d08267021b6d9e5b735d9b13b6e54bfaa",
+    "ANTHROPIC_MODEL": "gpt-5.5",
+    "CLAUDE_CODE_USE_FOUNDRY": "0",
+    "CLAUDE_CODE_USE_BEDROCK": "0"
+  }
+}

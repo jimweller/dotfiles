@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/Users/jimweller/.local/bin/litellm", line 4, in <module>
+    from litellm import run_server
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/litellm/__init__.py", line 479, in <module>
+    model_cost = get_model_cost_map(url=model_cost_map_url)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/litellm/litellm_core_utils/get_model_cost_map.py", line 269, in get_model_cost_map
+    content = GetModelCostMap.fetch_remote_model_cost_map(url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/litellm/litellm_core_utils/get_model_cost_map.py", line 153, in fetch_remote_model_cost_map
+    response = httpx.get(url, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_api.py", line 195, in get
+    return request(
+           ^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_api.py", line 109, in request
+    return client.request(
+           ^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jimweller/.local/share/uv/tools/litellm/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 208, in connect_tcp
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13_1/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 850, in create_connection
+    sock.connect(sa)
+KeyboardInterrupt

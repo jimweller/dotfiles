@@ -139,15 +139,14 @@ litellm-up() {
     echo "litellm proxy already running on :4000"
     return 0
   fi
-  export LITELLM_MASTER_KEY="${LITELLM_MASTER_KEY:-sk-litellm-local}"
   nohup litellm --config ~/.config/litellm/config.yaml >/dev/null 2>&1 &
   local pid=$!
   local tries=0
   while ! lsof -iTCP:4000 -sTCP:LISTEN -t >/dev/null 2>&1; do
     sleep 0.5
     tries=$((tries + 1))
-    if (( tries > 20 )); then
-      echo "litellm proxy failed to start after 10s"
+    if (( tries > 60 )); then
+      echo "litellm proxy failed to start after 30s"
       return 1
     fi
   done
