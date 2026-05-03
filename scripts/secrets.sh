@@ -69,7 +69,11 @@ if [ "$MODE" = "open" ]; then
   done
 
 elif [ "$MODE" = "save" ]; then
-  tar --disable-copyfile --no-xattrs -cvzf - \
+  TAR_FLAGS=(-cvzf -)
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    TAR_FLAGS=(--disable-copyfile --no-xattrs "${TAR_FLAGS[@]}")
+  fi
+  tar "${TAR_FLAGS[@]}" \
     -C "$HOME" $(echo "$FILES" | sed "s|$HOME/||g") \
     | gpg --batch --yes --passphrase "$PASSWORD" --symmetric --cipher-algo AES256 -o "$ARCHIVE"
     

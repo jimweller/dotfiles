@@ -1,0 +1,30 @@
+- defaults:
+    link:
+      force: true
+      create: true
+      relink: true
+
+- create:
+    - ~/.secrets
+    - ~/.config/powershell
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.gitconfig-all: configs/git/gitconfig-all
+    ~/.gitconfig-work: configs/git/gitconfig-work
+    ~/.gitconfig-jim: configs/git/gitconfig-jim
+
+    ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: configs/powershell/Microsoft.PowerShell_profile.ps1
+
+    ~/.config/powershell/jim.omp.json: configs/powershell/jim.omp.json
+
+- shell:
+    - command: >-
+        "C:\Program Files\Git\bin\bash.exe" -c
+        "grep -qF gitconfig-work ~/.gitconfig 2>/dev/null ||
+        printf '\n[include]\n\tpath = ~/.gitconfig-work\n' >> ~/.gitconfig"
+      description: Add gitconfig-work include to ~/.gitconfig
+      stdout: true
+      stderr: true

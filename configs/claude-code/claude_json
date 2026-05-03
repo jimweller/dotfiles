@@ -1,5 +1,5 @@
 {
-  "numStartups": 3064,
+  "numStartups": 3066,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -349,17 +349,17 @@
       ],
       "exampleFilesGeneratedAt": 1777429525379,
       "disabledMcpServers": [],
-      "lastCost": 5.607466449999999,
-      "lastAPIDuration": 730373,
-      "lastToolDuration": 264372,
-      "lastDuration": 19047227,
+      "lastCost": 8.43703495,
+      "lastAPIDuration": 976918,
+      "lastToolDuration": 481767,
+      "lastDuration": 20585102,
       "lastLinesAdded": 157,
-      "lastLinesRemoved": 46,
-      "lastTotalInputTokens": 13840,
-      "lastTotalOutputTokens": 36547,
-      "lastTotalCacheCreationInputTokens": 553299,
-      "lastTotalCacheReadInputTokens": 3187279,
-      "lastSessionId": "4ad27307-71cf-475f-b5c5-fad84b23cbef",
+      "lastLinesRemoved": 57,
+      "lastTotalInputTokens": 38049,
+      "lastTotalOutputTokens": 46728,
+      "lastTotalCacheCreationInputTokens": 763127,
+      "lastTotalCacheReadInputTokens": 5472426,
+      "lastSessionId": "0b5a57e4-173d-43a8-b763-e4d5a86d8be6",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -367,7 +367,7 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 729402,
+      "lastAPIDurationWithoutRetries": 975455,
       "lastModelUsage": {
         "claude-haiku-4-5": {
           "inputTokens": 888,
@@ -378,12 +378,12 @@
           "costUSD": 0.0010630000000000001
         },
         "claude-opus-4-6[1m]": {
-          "inputTokens": 6017,
-          "outputTokens": 24105,
-          "cacheReadInputTokens": 2853105,
-          "cacheCreationInputTokens": 466043,
+          "inputTokens": 30226,
+          "outputTokens": 34286,
+          "cacheReadInputTokens": 5138252,
+          "cacheCreationInputTokens": 675871,
           "webSearchRequests": 0,
-          "costUSD": 4.972031250000001
+          "costUSD": 7.801599750000001
         },
         "claude-sonnet-4-6": {
           "inputTokens": 6935,
@@ -394,30 +394,30 @@
           "costUSD": 0.6343721999999999
         }
       },
-      "lastFpsAverage": 0.67,
-      "lastFpsLow1Pct": 142.03,
+      "lastFpsAverage": 1.35,
+      "lastFpsLow1Pct": 181.01,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 238,
-        "hook_duration_ms_min": 58,
-        "hook_duration_ms_max": 9288,
-        "hook_duration_ms_avg": 372.5,
-        "hook_duration_ms_p50": 218,
-        "hook_duration_ms_p95": 472.1999999999998,
-        "hook_duration_ms_p99": 5252.249999999995,
-        "frame_duration_ms_count": 1997,
-        "frame_duration_ms_min": 0.08533299999544397,
-        "frame_duration_ms_max": 92.94237500000008,
-        "frame_duration_ms_avg": 0.9670330015038454,
-        "frame_duration_ms_p50": 0.5812290000030771,
-        "frame_duration_ms_p95": 3.613516849919686,
-        "frame_duration_ms_p99": 6.7238687500962975,
-        "pre_tool_hook_duration_ms_count": 122,
+        "hook_duration_ms_count": 101,
+        "hook_duration_ms_min": 62,
+        "hook_duration_ms_max": 6145,
+        "hook_duration_ms_avg": 475.3069306930693,
+        "hook_duration_ms_p50": 211,
+        "hook_duration_ms_p95": 2634,
+        "hook_duration_ms_p99": 5619,
+        "frame_duration_ms_count": 2067,
+        "frame_duration_ms_min": 0.06987500004470348,
+        "frame_duration_ms_max": 213.80920800000013,
+        "frame_duration_ms_avg": 0.7440475413653482,
+        "frame_duration_ms_p50": 0.44297949998872355,
+        "frame_duration_ms_p95": 1.5410599499911741,
+        "frame_duration_ms_p99": 5.522445839990687,
+        "pre_tool_hook_duration_ms_count": 58,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 436,
-        "pre_tool_hook_duration_ms_avg": 147.21311475409837,
-        "pre_tool_hook_duration_ms_p50": 120.5,
-        "pre_tool_hook_duration_ms_p95": 314.9,
-        "pre_tool_hook_duration_ms_p99": 423.1199999999998
+        "pre_tool_hook_duration_ms_max": 289,
+        "pre_tool_hook_duration_ms_avg": 66.34482758620689,
+        "pre_tool_hook_duration_ms_p50": 62.5,
+        "pre_tool_hook_duration_ms_p95": 245.35,
+        "pre_tool_hook_duration_ms_p99": 274.75
       },
       "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": false,
@@ -4440,10 +4440,10 @@
         "pre_tool_hook_duration_ms_p95": 140.3,
         "pre_tool_hook_duration_ms_p99": 140.86
       },
-      "lastGracefulShutdown": true,
-      "lastHintSessionId": "d2f45fab-b14c-480c-bca9-cc8ef99b2187",
-      "lastSessionFirstPrompt": "need to convert .envrc and example to mise.toml. decrypt secrets. change to sops age key. rencrypt. see quiver-main folder for example.  Also want login hook in mise.toml  [hooks] enter = '''   az log",
-      "lastSessionModified": 1777691032444
+      "lastGracefulShutdown": false,
+      "lastHintSessionId": "fb377758-859f-47fe-a21d-c5a6b7329afa",
+      "lastSessionFirstPrompt": "What's Nap",
+      "lastSessionModified": 1777804328394
     },
     "/Users/jimweller/work/quiver/quiver-issues": {
       "allowedTools": [],
@@ -10670,7 +10670,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1777799786664,
+  "lastPlanModeUse": 1777803766263,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -11032,8 +11032,8 @@
       "lastUsedAt": 1777793043507
     },
     "sage": {
-      "usageCount": 145,
-      "lastUsedAt": 1777782691009
+      "usageCount": 147,
+      "lastUsedAt": 1777804136379
     },
     "update-config": {
       "usageCount": 1,
@@ -11044,8 +11044,8 @@
       "lastUsedAt": 1776884928681
     },
     "mem-search": {
-      "usageCount": 6,
-      "lastUsedAt": 1777799934446
+      "usageCount": 7,
+      "lastUsedAt": 1777804706090
     },
     "summarizing-slack-messages:summarize": {
       "usageCount": 3,
