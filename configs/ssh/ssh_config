@@ -51,8 +51,3 @@ Host vs-ssh.visualstudio.com
   IdentityFile ~/.ssh/id_mcg
   IdentitiesOnly yes
 
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_jim
-  IdentitiesOnly yes

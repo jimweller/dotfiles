@@ -1,5 +1,5 @@
 version: 1
-git_protocol: ssh
+git_protocol: https
 # $VISUAL, $EDITOR and $PAGER are set already
 editor:
 pager:

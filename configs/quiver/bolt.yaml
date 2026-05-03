@@ -1,7 +1,7 @@
 mode: terminal
 shell: /bin/zsh
 bootstrap_repo: https://github.com/jimweller/quiver-jim-bootstrap
-dotfiles_repo: git@github.com:jimweller/dotfiles.git
+dotfiles_repo: https://github.com/jimweller/dotfiles.git
 resources:
   requests:
     cpu: "2"

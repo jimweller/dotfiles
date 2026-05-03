@@ -1,5 +1,5 @@
 {
-  "numStartups": 3062,
+  "numStartups": 3063,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -412,7 +412,7 @@
         "pre_tool_hook_duration_ms_p99": 307.56000000000006
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastHintSessionId": "fe5dd8e8-6a71-420d-a4fe-a075bb21d8a6",
       "lastSessionFirstPrompt": "obsidian. see what plugins I have. What other popular plugins might be useful for me? I use claude code and have API keys for all major models.",
       "lastSessionModified": 1777782545253
@@ -10662,7 +10662,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1777558449057,
+  "lastPlanModeUse": 1777799786664,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -10992,8 +10992,8 @@
       "lastUsedAt": 1777781944585
     },
     "commit": {
-      "usageCount": 235,
-      "lastUsedAt": 1777559193206
+      "usageCount": 236,
+      "lastUsedAt": 1777801235992
     },
     "agent-browser:agent-browser": {
       "usageCount": 2,
@@ -11036,8 +11036,8 @@
       "lastUsedAt": 1776884928681
     },
     "mem-search": {
-      "usageCount": 5,
-      "lastUsedAt": 1777793236751
+      "usageCount": 6,
+      "lastUsedAt": 1777799934446
     },
     "summarizing-slack-messages:summarize": {
       "usageCount": 3,
