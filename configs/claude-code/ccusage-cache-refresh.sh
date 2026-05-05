@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 npx ccusage daily -i --json > /tmp/ccusage-cache.json.tmp 2>/dev/null && mv /tmp/ccusage-cache.json.tmp /tmp/ccusage-cache.json
@@ -9,7 +9,7 @@ API_URL="https://management.azure.com/subscriptions/${SUB}/providers/Microsoft.C
 DATE_30D=$(date -v-30d +%Y-%m-%d 2>/dev/null)
 DATE_TODAY=$(date +%Y-%m-%d 2>/dev/null)
 
-MTD_COST=$(az rest --method post --url "$API_URL" --body "{
+MTD_RAW=$(az rest --method post --url "$API_URL" --body "{
   \"type\": \"Usage\",
   \"timeframe\": \"MonthToDate\",
   \"dataset\": {
@@ -17,9 +17,9 @@ MTD_COST=$(az rest --method post --url "$API_URL" --body "{
     \"aggregation\": { \"totalCost\": { \"name\": \"Cost\", \"function\": \"Sum\" } },
     \"filter\": { \"dimensions\": { \"name\": \"ResourceGroup\", \"operator\": \"In\", \"values\": [\"${RG}\"] } }
   }
-}" 2>/dev/null | jq '.properties.rows[0][0] // 0')
+}" 2>/dev/null) || true
 
-ROLLING_COST=$(az rest --method post --url "$API_URL" --body "{
+ROLLING_RAW=$(az rest --method post --url "$API_URL" --body "{
   \"type\": \"Usage\",
   \"timeframe\": \"Custom\",
   \"timePeriod\": { \"from\": \"${DATE_30D}\", \"to\": \"${DATE_TODAY}\" },
@@ -28,8 +28,13 @@ ROLLING_COST=$(az rest --method post --url "$API_URL" --body "{
     \"aggregation\": { \"totalCost\": { \"name\": \"Cost\", \"function\": \"Sum\" } },
     \"filter\": { \"dimensions\": { \"name\": \"ResourceGroup\", \"operator\": \"In\", \"values\": [\"${RG}\"] } }
   }
-}" 2>/dev/null | jq '.properties.rows[0][0] // 0')
+}" 2>/dev/null) || true
 
-jq -n --argjson mtd "${MTD_COST:-0}" --argjson rolling "${ROLLING_COST:-0}" \
-  '{mtd: $mtd, rolling30d: $rolling}' > /tmp/azure-cost-cache.json.tmp \
-  && mv /tmp/azure-cost-cache.json.tmp /tmp/azure-cost-cache.json
+MTD_COST=$(echo "$MTD_RAW" | jq -e '.properties.rows[0][0]' 2>/dev/null) || MTD_COST=""
+ROLLING_COST=$(echo "$ROLLING_RAW" | jq -e '.properties.rows[0][0]' 2>/dev/null) || ROLLING_COST=""
+
+if [[ -n "$MTD_COST" && -n "$ROLLING_COST" ]]; then
+  jq -n --argjson mtd "$MTD_COST" --argjson rolling "$ROLLING_COST" \
+    '{mtd: $mtd, rolling30d: $rolling}' > /tmp/azure-cost-cache.json.tmp \
+    && mv /tmp/azure-cost-cache.json.tmp /tmp/azure-cost-cache.json
+fi

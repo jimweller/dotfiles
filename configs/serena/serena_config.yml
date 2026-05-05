@@ -79,6 +79,7 @@ token_count_estimator: TIKTOKEN_GPT4O
 projects:
 - /Users/jimweller/.config/dotfiles
 - /Users/jimweller/.worktrees/quiver-main/feat/quiver-scopes
+- /Users/jimweller/obsidian
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/personal/elephant-memories
 - /Users/jimweller/personal/jimwellercom
@@ -99,6 +100,7 @@ projects:
 - /Users/jimweller/work/2026-devx-survey-results
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/employee-termination-skill
+- /Users/jimweller/work/k8s-custom-model
 - /Users/jimweller/work/mcg-atlassian-plugin
 - /Users/jimweller/work/mcg-pe-az-infra
 - /Users/jimweller/work/mcg-status-update-plugin

@@ -1,3 +1,9 @@
+# 00-secrets.zsh loads all ~/.secrets/*.env including git-jim.env and git-work.env.
+# Work sorts after jim so work identity wins. Clear identity and token vars here
+# so no profile is active until an explicit switch_git_profile call (work/jim).
+unset GIT_USER GIT_USERNAME GIT_EMAIL GIT_CONFIG_GLOBAL
+unset GITHUB_TOKEN GH_TOKE AZURE_DEVOPS_EXT_PAT
+
 alias work='cd work && switch_git_profile work'
 alias personal='cd personal && switch_git_profile jim'
 
