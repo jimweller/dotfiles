@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-05-06T09:21:50.225Z",
+    "lastUpdated": "2026-05-06T11:21:04.074Z",
     "autoUpdate": true
   },
   "agent-browser": {
@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-05-06T09:21:26.733Z",
+    "lastUpdated": "2026-05-06T11:21:04.020Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -32,7 +32,7 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-05-06T09:21:40.466Z",
+    "lastUpdated": "2026-05-06T10:22:07.487Z",
     "autoUpdate": true
   },
   "beads-marketplace": {

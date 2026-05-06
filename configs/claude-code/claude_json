@@ -1,5 +1,5 @@
 {
-  "numStartups": 3106,
+  "numStartups": 3110,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157542,
+  "promptQueueUseCount": 157547,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -88,7 +88,7 @@
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1777970593194,
+  "changelogLastFetched": 1778060448131,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -347,19 +347,19 @@
         "00-quality-of-life.zsh",
         "devcontainer.sh"
       ],
-      "exampleFilesGeneratedAt": 1777429525379,
+      "exampleFilesGeneratedAt": 1778060448213,
       "disabledMcpServers": [],
-      "lastCost": 35.90775415000001,
-      "lastAPIDuration": 3859524,
-      "lastToolDuration": 1946491,
-      "lastDuration": 243495866,
-      "lastLinesAdded": 1678,
-      "lastLinesRemoved": 272,
-      "lastTotalInputTokens": 303793,
-      "lastTotalOutputTokens": 188645,
-      "lastTotalCacheCreationInputTokens": 2578347,
-      "lastTotalCacheReadInputTokens": 32343190,
-      "lastSessionId": "bfc0c424-6c0d-45a8-8f63-333377efdd41",
+      "lastCost": 82.6568139000001,
+      "lastAPIDuration": 7159551,
+      "lastToolDuration": 2389927,
+      "lastDuration": 283836744,
+      "lastLinesAdded": 1937,
+      "lastLinesRemoved": 312,
+      "lastTotalInputTokens": 326742,
+      "lastTotalOutputTokens": 314007,
+      "lastTotalCacheCreationInputTokens": 4414424,
+      "lastTotalCacheReadInputTokens": 96396661,
+      "lastSessionId": "276ff663-0d5d-4dd2-8e9e-9e506c3bcb96",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -367,23 +367,23 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 3854658,
+      "lastAPIDurationWithoutRetries": 7148081,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 86566,
-          "outputTokens": 3819,
+          "inputTokens": 86954,
+          "outputTokens": 3839,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.105661
+          "costUSD": 0.10614900000000001
         },
         "claude-opus-4-6[1m]": {
-          "inputTokens": 33570,
-          "outputTokens": 114803,
-          "cacheReadInputTokens": 30245482,
-          "cacheCreationInputTokens": 2256799,
+          "inputTokens": 56131,
+          "outputTokens": 240145,
+          "cacheReadInputTokens": 94298953,
+          "cacheCreationInputTokens": 4092876,
           "webSearchRequests": 0,
-          "costUSD": 32.265659750000005
+          "costUSD": 79.01423150000008
         },
         "claude-sonnet-4-6": {
           "inputTokens": 183657,
@@ -394,29 +394,36 @@
           "costUSD": 3.5364334000000004
         }
       },
-      "lastFpsAverage": 0.25,
-      "lastFpsLow1Pct": 28.56,
+      "lastFpsAverage": 0.04,
+      "lastFpsLow1Pct": 127.06,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 1,
-        "hook_duration_ms_min": 458,
-        "hook_duration_ms_max": 458,
-        "hook_duration_ms_avg": 458,
-        "hook_duration_ms_p50": 458,
-        "hook_duration_ms_p95": 458,
-        "hook_duration_ms_p99": 458,
-        "frame_duration_ms_count": 20,
-        "frame_duration_ms_min": 0.27929100000005747,
-        "frame_duration_ms_max": 35.012917000000016,
-        "frame_duration_ms_avg": 2.987804100000017,
-        "frame_duration_ms_p50": 0.6673750000009022,
-        "frame_duration_ms_p95": 6.7039458499999665,
-        "frame_duration_ms_p99": 29.351122769999964
+        "hook_duration_ms_count": 12,
+        "hook_duration_ms_min": 84,
+        "hook_duration_ms_max": 3105,
+        "hook_duration_ms_avg": 641.3333333333334,
+        "hook_duration_ms_p50": 209,
+        "hook_duration_ms_p95": 2828.3499999999995,
+        "hook_duration_ms_p99": 3049.67,
+        "frame_duration_ms_count": 171,
+        "frame_duration_ms_min": 0.5209580000009737,
+        "frame_duration_ms_max": 108.7812919999999,
+        "frame_duration_ms_avg": 2.4160506549714817,
+        "frame_duration_ms_p50": 1.388915999999881,
+        "frame_duration_ms_p95": 5.478792000001704,
+        "frame_duration_ms_p99": 7.133629500025576,
+        "pre_tool_hook_duration_ms_count": 4,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 92,
+        "pre_tool_hook_duration_ms_avg": 44.25,
+        "pre_tool_hook_duration_ms_p50": 42.5,
+        "pre_tool_hook_duration_ms_p95": 90.95,
+        "pre_tool_hook_duration_ms_p99": 91.78999999999999
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": false,
-      "lastHintSessionId": "fe5dd8e8-6a71-420d-a4fe-a075bb21d8a6",
-      "lastSessionFirstPrompt": "obsidian. see what plugins I have. What other popular plugins might be useful for me? I use claude code and have API keys for all major models.",
-      "lastSessionModified": 1777782545253
+      "lastGracefulShutdown": true,
+      "lastHintSessionId": "276ff663-0d5d-4dd2-8e9e-9e506c3bcb96",
+      "lastSessionFirstPrompt": "google-researcher-mcp has hung processes again.  code is here /Users/jimweller/scratch/google-researcher-mcp need to fetch and pull from upstream (it's a fork) don't kill processes diagnose",
+      "lastSessionModified": 1778060654345
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -10849,64 +10856,72 @@
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": true,
-      "lastHintSessionId": "def5a24d-8fdf-4f93-a818-16983efebb4a",
-      "lastSessionFirstPrompt": "claude --resume 928b7bce-7186-4ab6-97fa-518eefdbf444",
-      "lastSessionModified": 1777998011767,
-      "lastCost": 14.34283325,
-      "lastAPIDuration": 1095400,
-      "lastAPIDurationWithoutRetries": 1094148,
-      "lastToolDuration": 42486,
-      "lastDuration": 17623470,
-      "lastLinesAdded": 77,
-      "lastLinesRemoved": 7,
-      "lastTotalInputTokens": 4396,
-      "lastTotalOutputTokens": 54585,
-      "lastTotalCacheCreationInputTokens": 1200687,
-      "lastTotalCacheReadInputTokens": 10903869,
+      "lastGracefulShutdown": false,
+      "lastHintSessionId": "8de737d1-a15d-4932-9c09-7db04b379772",
+      "lastSessionFirstPrompt": "read @\"M365 MCP Setup.md\"",
+      "lastSessionModified": 1778062529001,
+      "lastCost": 0.2284825,
+      "lastAPIDuration": 42177,
+      "lastAPIDurationWithoutRetries": 42173,
+      "lastToolDuration": 876,
+      "lastDuration": 72486,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 361,
+      "lastTotalOutputTokens": 1949,
+      "lastTotalCacheCreationInputTokens": 18760,
+      "lastTotalCacheReadInputTokens": 124829,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.23,
-      "lastFpsLow1Pct": 247.62,
+      "lastFpsAverage": 3.21,
+      "lastFpsLow1Pct": 229.79,
       "lastModelUsage": {
         "claude-opus-4-6[1m]": {
-          "inputTokens": 4396,
-          "outputTokens": 54585,
-          "cacheReadInputTokens": 10903869,
-          "cacheCreationInputTokens": 1200687,
+          "inputTokens": 13,
+          "outputTokens": 1933,
+          "cacheReadInputTokens": 124829,
+          "cacheCreationInputTokens": 18760,
           "webSearchRequests": 0,
-          "costUSD": 14.34283325
+          "costUSD": 0.2280545
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 348,
+          "outputTokens": 16,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.000428
         }
       },
-      "lastSessionId": "fa88cdb7-8015-425e-b3bb-0f5e260606e1",
+      "lastSessionId": "08aca27d-3e02-469c-8f12-81fa46ce66f4",
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 151,
-        "hook_duration_ms_min": 63,
-        "hook_duration_ms_max": 12189,
-        "hook_duration_ms_avg": 836.5960264900663,
-        "hook_duration_ms_p50": 220,
-        "hook_duration_ms_p95": 5885,
-        "hook_duration_ms_p99": 9640,
-        "frame_duration_ms_count": 4137,
-        "frame_duration_ms_min": 0.18970900028944016,
-        "frame_duration_ms_max": 434.82525000022724,
-        "frame_duration_ms_avg": 0.9981403855437512,
-        "frame_duration_ms_p50": 0.6540414993651211,
-        "frame_duration_ms_p95": 1.720181250094897,
-        "frame_duration_ms_p99": 4.454998499890786,
-        "pre_tool_hook_duration_ms_count": 77,
+        "frame_duration_ms_count": 229,
+        "frame_duration_ms_min": 0.046459000000140804,
+        "frame_duration_ms_max": 5.264667000000031,
+        "frame_duration_ms_avg": 0.7923262707423284,
+        "frame_duration_ms_p50": 0.4250000000029104,
+        "frame_duration_ms_p95": 3.1654912000001785,
+        "frame_duration_ms_p99": 4.34976871999992,
+        "hook_duration_ms_count": 20,
+        "hook_duration_ms_min": 60,
+        "hook_duration_ms_max": 505,
+        "hook_duration_ms_avg": 187.55,
+        "hook_duration_ms_p50": 201.5,
+        "hook_duration_ms_p95": 252.30000000000018,
+        "hook_duration_ms_p99": 454.4599999999997,
+        "pre_tool_hook_duration_ms_count": 11,
         "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 244,
-        "pre_tool_hook_duration_ms_avg": 57.03896103896104,
-        "pre_tool_hook_duration_ms_p50": 77,
-        "pre_tool_hook_duration_ms_p95": 112.4,
-        "pre_tool_hook_duration_ms_p99": 229.5599999999999
+        "pre_tool_hook_duration_ms_max": 115,
+        "pre_tool_hook_duration_ms_avg": 42.72727272727273,
+        "pre_tool_hook_duration_ms_p50": 60,
+        "pre_tool_hook_duration_ms_p95": 105,
+        "pre_tool_hook_duration_ms_p99": 113
       },
       "hasCompletedProjectOnboarding": true
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.128",
+  "lastReleaseNotesSeen": "2.1.131",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -10926,7 +10941,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "google-researcher-mcp@6.2.3"
+        "github:jimweller/google-research-mcp"
       ],
       "env": {
         "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_SEARCH_API_KEY}",
@@ -10972,8 +10987,8 @@
         "^(accept-calendar-event|add-mail-attachment|cancel-calendar-event|copy-mail-message|create-calendar|create-calendar-event|create-draft-email|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|decline-calendar-event|delete-calendar|delete-calendar-event|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-planner-bucket|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|forward-calendar-event|forward-mail-message|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-current-user|get-mail-message|get-mail-message-mime|get-meeting-transcript|get-meeting-transcript-content|get-outlook-contact|get-schedule|get-shared-calendar-view|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|graph-batch|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chats|list-focused-inbox-overrides|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-meeting-transcripts|list-outlook-contacts|list-pinned-chat-messages|list-relevant-people|list-shared-calendar-events|list-specific-calendar-events|list-subscriptions|list-team-channels|move-mail-message|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-mail-message|reply-to-channel-message|reply-to-chat-message|send-channel-message|send-chat-message|send-draft-message|send-mail|set-channel-message-reaction|set-chat-message-reaction|snooze-calendar-event-reminder|tentatively-accept-calendar-event|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-focused-inbox-override|update-mail-folder|update-mail-message|update-planner-bucket|update-planner-task|update-planner-task-details|update-specific-calendar-event|update-subscription|update-todo-task)$"
       ],
       "env": {
-        "MS365_MCP_CLIENT_ID": "${MS365_MCP_CLIENT_ID}",
-        "MS365_MCP_TENANT_ID": "${MS365_MCP_TENANT_ID}"
+        "MS365_MCP_CLIENT_ID": "1064a29c-eb07-4bd5-b746-865f9473cfd4",
+        "MS365_MCP_TENANT_ID": "a84894e7-87c5-40e3-9783-320d0334b3cc"
       }
     }
   },
@@ -11174,8 +11189,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 140,
-      "lastUsedAt": 1777905438374
+      "usageCount": 142,
+      "lastUsedAt": 1778063111528
     },
     "publish": {
       "usageCount": 11,
@@ -11206,8 +11221,8 @@
       "lastUsedAt": 1777992861260
     },
     "md-syntax": {
-      "usageCount": 31,
-      "lastUsedAt": 1777905350228
+      "usageCount": 32,
+      "lastUsedAt": 1778062641206
     },
     "ado": {
       "usageCount": 17,
@@ -11294,8 +11309,8 @@
       "lastUsedAt": 1775952698182
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 455,
-      "lastUsedAt": 1777993948642
+      "usageCount": 456,
+      "lastUsedAt": 1778062569814
     },
     "code-reviews": {
       "usageCount": 21,
@@ -11314,8 +11329,8 @@
       "lastUsedAt": 1777749362659
     },
     "mcg-confluence-prefs": {
-      "usageCount": 116,
-      "lastUsedAt": 1777993951379
+      "usageCount": 117,
+      "lastUsedAt": 1778062572479
     },
     "commit": {
       "usageCount": 240,
@@ -11346,8 +11361,8 @@
       "lastUsedAt": 1776831783561
     },
     "familiarize": {
-      "usageCount": 37,
-      "lastUsedAt": 1777793043507
+      "usageCount": 38,
+      "lastUsedAt": 1778062455429
     },
     "sage": {
       "usageCount": 151,
@@ -11506,8 +11521,8 @@
       "lastUsedAt": 1777511365726
     },
     "fact-check": {
-      "usageCount": 5,
-      "lastUsedAt": 1777689172748
+      "usageCount": 6,
+      "lastUsedAt": 1778059801979
     },
     "using-superpowers": {
       "usageCount": 1,
