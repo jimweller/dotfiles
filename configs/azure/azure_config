@@ -21,3 +21,4 @@ auto-upgrade = yes_without_prompt
 
 [auto-upgrade]
 enable = false
+

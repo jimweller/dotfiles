@@ -1,5 +1,5 @@
 {
-  "numStartups": 3101,
+  "numStartups": 3106,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157540,
+  "promptQueueUseCount": 157542,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -339,7 +339,7 @@
       "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "lastTotalWebSearchRequests": 0,
+      "lastTotalWebSearchRequests": 10,
       "exampleFiles": [
         "claude_json",
         ".p10k.zsh",
@@ -349,17 +349,17 @@
       ],
       "exampleFilesGeneratedAt": 1777429525379,
       "disabledMcpServers": [],
-      "lastCost": 32.6737136,
-      "lastAPIDuration": 3082686,
-      "lastToolDuration": 1098248,
-      "lastDuration": 227966977,
+      "lastCost": 35.90775415000001,
+      "lastAPIDuration": 3859524,
+      "lastToolDuration": 1946491,
+      "lastDuration": 243495866,
       "lastLinesAdded": 1678,
       "lastLinesRemoved": 272,
-      "lastTotalInputTokens": 44162,
-      "lastTotalOutputTokens": 148845,
-      "lastTotalCacheCreationInputTokens": 2338674,
-      "lastTotalCacheReadInputTokens": 30746266,
-      "lastSessionId": "9fce1e92-fae5-4691-99a5-5a321ef6ea1b",
+      "lastTotalInputTokens": 303793,
+      "lastTotalOutputTokens": 188645,
+      "lastTotalCacheCreationInputTokens": 2578347,
+      "lastTotalCacheReadInputTokens": 32343190,
+      "lastSessionId": "bfc0c424-6c0d-45a8-8f63-333377efdd41",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -367,60 +367,53 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 3078362,
+      "lastAPIDurationWithoutRetries": 3854658,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 1983,
-          "outputTokens": 66,
+          "inputTokens": 86566,
+          "outputTokens": 3819,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.002313
+          "costUSD": 0.105661
         },
         "claude-opus-4-6[1m]": {
-          "inputTokens": 33533,
-          "outputTokens": 108329,
-          "cacheReadInputTokens": 29600914,
-          "cacheCreationInputTokens": 2099493,
+          "inputTokens": 33570,
+          "outputTokens": 114803,
+          "cacheReadInputTokens": 30245482,
+          "cacheCreationInputTokens": 2256799,
           "webSearchRequests": 0,
-          "costUSD": 30.79817825000001
+          "costUSD": 32.265659750000005
         },
         "claude-sonnet-4-6": {
-          "inputTokens": 8646,
-          "outputTokens": 40450,
-          "cacheReadInputTokens": 1145352,
-          "cacheCreationInputTokens": 239181,
-          "webSearchRequests": 0,
-          "costUSD": 1.8732223500000005
+          "inputTokens": 183657,
+          "outputTokens": 70023,
+          "cacheReadInputTokens": 2097708,
+          "cacheCreationInputTokens": 321548,
+          "webSearchRequests": 10,
+          "costUSD": 3.5364334000000004
         }
       },
-      "lastFpsAverage": 0.01,
-      "lastFpsLow1Pct": 129.83,
+      "lastFpsAverage": 0.25,
+      "lastFpsLow1Pct": 28.56,
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 15,
-        "hook_duration_ms_min": 164,
-        "hook_duration_ms_max": 3578,
-        "hook_duration_ms_avg": 836.8,
-        "hook_duration_ms_p50": 238,
-        "hook_duration_ms_p95": 3271.3999999999996,
-        "hook_duration_ms_p99": 3516.68,
-        "frame_duration_ms_count": 226,
-        "frame_duration_ms_min": 0.08700000029057264,
-        "frame_duration_ms_max": 125.25208299999997,
-        "frame_duration_ms_avg": 1.5254848539342019,
-        "frame_duration_ms_p50": 0.48110400000587106,
-        "frame_duration_ms_p95": 3.5475725000724196,
-        "frame_duration_ms_p99": 7.641989499748547,
-        "pre_tool_hook_duration_ms_count": 5,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 273,
-        "pre_tool_hook_duration_ms_avg": 87.8,
-        "pre_tool_hook_duration_ms_p50": 1,
-        "pre_tool_hook_duration_ms_p95": 251.39999999999998,
-        "pre_tool_hook_duration_ms_p99": 268.68
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 458,
+        "hook_duration_ms_max": 458,
+        "hook_duration_ms_avg": 458,
+        "hook_duration_ms_p50": 458,
+        "hook_duration_ms_p95": 458,
+        "hook_duration_ms_p99": 458,
+        "frame_duration_ms_count": 20,
+        "frame_duration_ms_min": 0.27929100000005747,
+        "frame_duration_ms_max": 35.012917000000016,
+        "frame_duration_ms_avg": 2.987804100000017,
+        "frame_duration_ms_p50": 0.6673750000009022,
+        "frame_duration_ms_p95": 6.7039458499999665,
+        "frame_duration_ms_p99": 29.351122769999964
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastHintSessionId": "fe5dd8e8-6a71-420d-a4fe-a075bb21d8a6",
       "lastSessionFirstPrompt": "obsidian. see what plugins I have. What other popular plugins might be useful for me? I use claude code and have API keys for all major models.",
       "lastSessionModified": 1777782545253
@@ -5928,7 +5921,10 @@
         "pre_tool_hook_duration_ms_p95": 221,
         "pre_tool_hook_duration_ms_p99": 221
       },
-      "lastGracefulShutdown": true
+      "lastGracefulShutdown": false,
+      "lastHintSessionId": "558991ce-8696-4299-8a68-487dd8eee83f",
+      "lastSessionFirstPrompt": "You're killing me. That was so confusing. Every user gets their own endpoint. How many subscriptions and endpoints per sub.",
+      "lastSessionModified": 1778025440299
     },
     "/Users/jimweller/personal/demo": {
       "allowedTools": [],
@@ -10853,57 +10849,57 @@
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "lastHintSessionId": "def5a24d-8fdf-4f93-a818-16983efebb4a",
       "lastSessionFirstPrompt": "claude --resume 928b7bce-7186-4ab6-97fa-518eefdbf444",
       "lastSessionModified": 1777998011767,
-      "lastCost": 4.7331915,
-      "lastAPIDuration": 293168,
-      "lastAPIDurationWithoutRetries": 292568,
-      "lastToolDuration": 58491,
-      "lastDuration": 9236714,
-      "lastLinesAdded": 0,
-      "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 52,
-      "lastTotalOutputTokens": 17457,
-      "lastTotalCacheCreationInputTokens": 388870,
-      "lastTotalCacheReadInputTokens": 3732138,
+      "lastCost": 14.34283325,
+      "lastAPIDuration": 1095400,
+      "lastAPIDurationWithoutRetries": 1094148,
+      "lastToolDuration": 42486,
+      "lastDuration": 17623470,
+      "lastLinesAdded": 77,
+      "lastLinesRemoved": 7,
+      "lastTotalInputTokens": 4396,
+      "lastTotalOutputTokens": 54585,
+      "lastTotalCacheCreationInputTokens": 1200687,
+      "lastTotalCacheReadInputTokens": 10903869,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.16,
-      "lastFpsLow1Pct": 180.81,
+      "lastFpsAverage": 0.23,
+      "lastFpsLow1Pct": 247.62,
       "lastModelUsage": {
         "claude-opus-4-6[1m]": {
-          "inputTokens": 52,
-          "outputTokens": 17457,
-          "cacheReadInputTokens": 3732138,
-          "cacheCreationInputTokens": 388870,
+          "inputTokens": 4396,
+          "outputTokens": 54585,
+          "cacheReadInputTokens": 10903869,
+          "cacheCreationInputTokens": 1200687,
           "webSearchRequests": 0,
-          "costUSD": 4.7331915
+          "costUSD": 14.34283325
         }
       },
-      "lastSessionId": "928b7bce-7186-4ab6-97fa-518eefdbf444",
+      "lastSessionId": "fa88cdb7-8015-425e-b3bb-0f5e260606e1",
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 61,
-        "hook_duration_ms_min": 78,
-        "hook_duration_ms_max": 8668,
-        "hook_duration_ms_avg": 950.7540983606557,
-        "hook_duration_ms_p50": 206,
-        "hook_duration_ms_p95": 6153,
-        "hook_duration_ms_p99": 7435.599999999997,
-        "frame_duration_ms_count": 1478,
-        "frame_duration_ms_min": 0.34645799989812076,
-        "frame_duration_ms_max": 79.96737500000006,
-        "frame_duration_ms_avg": 1.0962148193498389,
-        "frame_duration_ms_p50": 0.7846664999960922,
-        "frame_duration_ms_p95": 3.3706606999854536,
-        "frame_duration_ms_p99": 5.268063749963181,
-        "pre_tool_hook_duration_ms_count": 22,
-        "pre_tool_hook_duration_ms_min": 78,
-        "pre_tool_hook_duration_ms_max": 121,
-        "pre_tool_hook_duration_ms_avg": 102.13636363636364,
-        "pre_tool_hook_duration_ms_p50": 102,
-        "pre_tool_hook_duration_ms_p95": 116.9,
-        "pre_tool_hook_duration_ms_p99": 120.16
+        "hook_duration_ms_count": 151,
+        "hook_duration_ms_min": 63,
+        "hook_duration_ms_max": 12189,
+        "hook_duration_ms_avg": 836.5960264900663,
+        "hook_duration_ms_p50": 220,
+        "hook_duration_ms_p95": 5885,
+        "hook_duration_ms_p99": 9640,
+        "frame_duration_ms_count": 4137,
+        "frame_duration_ms_min": 0.18970900028944016,
+        "frame_duration_ms_max": 434.82525000022724,
+        "frame_duration_ms_avg": 0.9981403855437512,
+        "frame_duration_ms_p50": 0.6540414993651211,
+        "frame_duration_ms_p95": 1.720181250094897,
+        "frame_duration_ms_p99": 4.454998499890786,
+        "pre_tool_hook_duration_ms_count": 77,
+        "pre_tool_hook_duration_ms_min": 0,
+        "pre_tool_hook_duration_ms_max": 244,
+        "pre_tool_hook_duration_ms_avg": 57.03896103896104,
+        "pre_tool_hook_duration_ms_p50": 77,
+        "pre_tool_hook_duration_ms_p95": 112.4,
+        "pre_tool_hook_duration_ms_p99": 229.5599999999999
       },
       "hasCompletedProjectOnboarding": true
     }
@@ -10964,6 +10960,21 @@
         "--project-from-cwd"
       ],
       "env": {}
+    },
+    "ms365": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@softeria/ms-365-mcp-server",
+        "--org-mode",
+        "--enabled-tools",
+        "^(accept-calendar-event|add-mail-attachment|cancel-calendar-event|copy-mail-message|create-calendar|create-calendar-event|create-draft-email|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|decline-calendar-event|delete-calendar|delete-calendar-event|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-planner-bucket|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|forward-calendar-event|forward-mail-message|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-current-user|get-mail-message|get-mail-message-mime|get-meeting-transcript|get-meeting-transcript-content|get-outlook-contact|get-schedule|get-shared-calendar-view|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|graph-batch|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chats|list-focused-inbox-overrides|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-meeting-transcripts|list-outlook-contacts|list-pinned-chat-messages|list-relevant-people|list-shared-calendar-events|list-specific-calendar-events|list-subscriptions|list-team-channels|move-mail-message|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-mail-message|reply-to-channel-message|reply-to-chat-message|send-channel-message|send-chat-message|send-draft-message|send-mail|set-channel-message-reaction|set-chat-message-reaction|snooze-calendar-event-reminder|tentatively-accept-calendar-event|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-focused-inbox-override|update-mail-folder|update-mail-message|update-planner-bucket|update-planner-task|update-planner-task-details|update-specific-calendar-event|update-subscription|update-todo-task)$"
+      ],
+      "env": {
+        "MS365_MCP_CLIENT_ID": "${MS365_MCP_CLIENT_ID}",
+        "MS365_MCP_TENANT_ID": "${MS365_MCP_TENANT_ID}"
+      }
     }
   },
   "hasIdeOnboardingBeenShown": {
@@ -11307,8 +11318,8 @@
       "lastUsedAt": 1777993951379
     },
     "commit": {
-      "usageCount": 239,
-      "lastUsedAt": 1777993103775
+      "usageCount": 240,
+      "lastUsedAt": 1778059315997
     },
     "agent-browser:agent-browser": {
       "usageCount": 2,
@@ -11339,8 +11350,8 @@
       "lastUsedAt": 1777793043507
     },
     "sage": {
-      "usageCount": 148,
-      "lastUsedAt": 1777832851773
+      "usageCount": 151,
+      "lastUsedAt": 1778028908365
     },
     "update-config": {
       "usageCount": 1,

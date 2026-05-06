@@ -14,21 +14,21 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/7ada3384e2af",
-        "version": "7ada3384e2af",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/918d40741151",
+        "version": "918d40741151",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-04-29T16:52:27.460Z",
+        "lastUpdated": "2026-05-05T23:52:50.139Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.8.1",
-        "version": "0.8.1",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.9.0",
+        "version": "0.9.0",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-04-30T14:28:03.969Z",
-        "gitCommitSha": "5b14012ec6169230e875e5416a6664e30c67491f"
+        "lastUpdated": "2026-05-06T09:21:47.088Z",
+        "gitCommitSha": "5b51a5f13a481d54a840ebb6c2835a8d508520b8"
       }
     ],
     "mcg-status-updates@devx-claude-marketplace": [
