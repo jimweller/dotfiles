@@ -18,8 +18,37 @@ alias claws='claude --dangerously-skip-permissions --no-chrome --settings ~/.cla
 alias claz='claude --dangerously-skip-permissions --no-chrome --settings ~/.claude/settings-azure.json --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
 alias claude='claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md'
 
+claude_local() {
+  command -v ollama >/dev/null 2>&1 || {
+    echo "ollama not found in PATH"
+    return 127
+  }
+
+  if ! lsof -iTCP:11434 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    nohup ollama serve >/dev/null 2>&1 &
+    local tries=0
+    while ! lsof -iTCP:11434 -sTCP:LISTEN -t >/dev/null 2>&1; do
+      sleep 0.5
+      tries=$((tries + 1))
+      if (( tries > 60 )); then
+        echo "ollama failed to start after 30s"
+        return 1
+      fi
+    done
+  fi
+
+  ANTHROPIC_BASE_URL=http://localhost:11434 \
+  ANTHROPIC_AUTH_TOKEN=ollama \
+  ANTHROPIC_MODEL="${CLOCAL_MODEL:-llama3.2:latest}" \
+  claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md "$@"
+}
+alias clocal='claude_local'
+
 alias cloai='ANTHROPIC_BASE_URL=http://localhost:4000 claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --settings ~/.claude/settings-litellm-oai.json'
 alias clgem='ANTHROPIC_BASE_URL=http://localhost:4000 claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md --settings ~/.claude/settings-litellm-gem.json'
+
+# Codex aliases
+alias codex='codex --dangerously-bypass-approvals-and-sandbox'
 
 alias opencode='OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true opencode'
 

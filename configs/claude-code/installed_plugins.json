@@ -14,10 +14,10 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/918d40741151",
-        "version": "918d40741151",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/d33bdb36f3f7",
+        "version": "d33bdb36f3f7",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-05-05T23:52:50.139Z",
+        "lastUpdated": "2026-05-07T14:47:46.155Z",
         "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
       }
     ],
@@ -34,10 +34,10 @@
     "mcg-status-updates@devx-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.2.0",
-        "version": "0.2.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.3.0",
+        "version": "0.3.0",
         "installedAt": "2026-04-08T23:16:14.925Z",
-        "lastUpdated": "2026-04-28T12:40:36.861Z",
+        "lastUpdated": "2026-05-06T14:21:04.504Z",
         "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
       }
     ],

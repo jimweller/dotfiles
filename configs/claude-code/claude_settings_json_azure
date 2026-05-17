@@ -93,7 +93,7 @@
     "employee-termination@devx-claude-marketplace": true,
     "beads@beads-marketplace": true,
     "claude-mem@jimweller": true,
-    "superpowers@jimweller": true
+    "superpowers@jimweller": false
   },
   "extraKnownMarketplaces": {
     "devx-claude-marketplace": {

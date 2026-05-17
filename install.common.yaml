@@ -54,6 +54,14 @@
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
     ~/.gemini/settings.json: configs/gemini/gemini_settings
     ~/.codex/config.toml: configs/codex/config.toml
+    ~/.codex/AGENTS.md: configs/codex/AGENTS.md
+    ~/.codex/daneel.md: configs/codex/daneel.md
+    ~/.codex/skills/:
+      glob: true
+      path: configs/codex/skills/*
+    ~/.codex/rules/:
+      glob: true
+      path: configs/codex/rules/*
     ~/.config/opencode/opencode.json: configs/opencode/opencode.json
     ~/.config/opencode/tui.json: configs/opencode/tui.json
     ~/.config/opencode/agents/:

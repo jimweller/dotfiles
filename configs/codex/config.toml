@@ -1,8 +1,16 @@
 model = "gpt-5.5"
 model_provider = "openai-env"
-model_reasoning_effort = "medium"
-sandbox = "macos"
-approval_policy = "on-request"
+model_reasoning_effort = "high"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+file_opener = "vscode"
+hide_agent_reasoning = false
+
+# Daneel persona injection (appended to Codex system prompt, not replacing it)
+model_instructions_file = "~/.codex/daneel.md"
+
+# Read existing CLAUDE.md files in projects that don't have AGENTS.md
+project_doc_fallback_filenames = ["CLAUDE.md"]
 
 [model_providers.openai-env]
 name = "openai-env"
@@ -10,8 +18,106 @@ base_url = "https://api.openai.com/v1"
 wire_api = "responses"
 env_key = "OPENAI_API_KEY"
 
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false
+
+[history]
+max_bytes = 104857600
+
+[tui]
+animations = false
+show_tooltips = false
+
+[tui.model_availability_nux]
+"gpt-5.5" = 3
+
+
+# --- MCP Servers ---
+
+[mcp_servers.c7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+env_vars = ["CONTEXT7_API_KEY"]
+[mcp_servers.c7.env]
+DEFAULT_MINIMUM_TOKENS = "10000"
+
+[mcp_servers.g]
+command = "npx"
+args = ["-y", "github:jimweller/google-research-mcp"]
+env_vars = ["GOOGLE_CUSTOM_SEARCH_API_KEY", "GOOGLE_CUSTOM_SEARCH_ID"]
+
+[mcp_servers.repomix]
+command = "npx"
+args = ["-y", "repomix", "--mcp"]
+
+[mcp_servers.slack]
+transport = "streamable_http"
+url = "https://mcp.slack.com/mcp"
+
+[mcp_servers.serena]
+command = "serena"
+args = ["start-mcp-server", "--context=codex", "--project-from-cwd"]
+
+[mcp_servers.ms365]
+command = "npx"
+args = [
+  "-y", "@softeria/ms-365-mcp-server",
+  "--org-mode",
+  "--enabled-tools",
+  "^(accept-calendar-event|add-mail-attachment|cancel-calendar-event|copy-mail-message|create-calendar|create-calendar-event|create-draft-email|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|decline-calendar-event|delete-calendar|delete-calendar-event|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-planner-bucket|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|forward-calendar-event|forward-mail-message|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-current-user|get-mail-message|get-mail-message-mime|get-meeting-transcript|get-meeting-transcript-content|get-outlook-contact|get-schedule|get-shared-calendar-view|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|graph-batch|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chats|list-focused-inbox-overrides|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-meeting-transcripts|list-outlook-contacts|list-pinned-chat-messages|list-relevant-people|list-shared-calendar-events|list-specific-calendar-events|list-subscriptions|list-team-channels|move-mail-message|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-mail-message|reply-to-channel-message|reply-to-chat-message|send-channel-message|send-chat-message|send-draft-message|send-mail|set-channel-message-reaction|set-chat-message-reaction|snooze-calendar-event-reminder|tentatively-accept-calendar-event|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-focused-inbox-override|update-mail-folder|update-mail-message|update-planner-bucket|update-planner-task|update-planner-task-details|update-specific-calendar-event|update-subscription|update-todo-task)$"
+]
+[mcp_servers.ms365.env]
+MS365_MCP_CLIENT_ID = "1064a29c-eb07-4bd5-b746-865f9473cfd4"
+MS365_MCP_TENANT_ID = "a84894e7-87c5-40e3-9783-320d0334b3cc"
+
+# --- Trusted Projects ---
+# Codex trust is exact-path, no cascading. Codex appends new entries
+# interactively when the user clicks "Yes, continue" on first visit.
+
+[projects."/Users/jimweller/.config/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/work"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/personal"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/scratch"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/tmp"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/work/mcg-pe-az-infra"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/work/quiver/quiver-main"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/scratch/crds"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/personal/elephant-memories"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller"]
+trust_level = "trusted"
+
 [projects."/Users/jimweller/scratch/_crap"]
 trust_level = "trusted"
 
-[tui.model_availability_nux]
-"gpt-5.5" = 2
+[projects."/Users/jimweller/scratch/_crap/skills"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/scratch/Orca"]
+trust_level = "trusted"
+
+[projects."/Users/jimweller/scratch/_crap/skillsadd"]
+trust_level = "trusted"
+
+[notice]
+fast_default_opt_out = true
