@@ -121,3 +121,8 @@ trust_level = "trusted"
 
 [notice]
 fast_default_opt_out = true
+
+[marketplaces.beads-marketplace]
+last_updated = "2026-05-18T03:32:07Z"
+source_type = "git"
+source = "https://github.com/gastownhall/beads.git"

@@ -19,6 +19,8 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - command: npx skills add https://github.com/jimweller/clanker-skills/tree/main/skills/universal -a claude-code -a codex -a opencode -g -y --copy
+    description: Install universal skills from clanker-skills via npx
 
 - link:
     ~/.aws/config: configs/aws/aws_config
