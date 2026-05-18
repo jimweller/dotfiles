@@ -1,5 +1,5 @@
 {
-  "numStartups": 3251,
+  "numStartups": 3252,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157649,
+  "promptQueueUseCount": 157650,
   "btwUseCount": 2,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -6264,7 +6264,7 @@
       "lastHintSessionId": "80927670-e981-425a-a3e0-7633b9a07971",
       "lastSessionFirstPrompt": "/Users/jimweller/work/platform-poc/platform-poc-main/15-ado/scripts/install/12-setup-datadog-ci-hooks.sh shows how to add datadog hooks. Add them to these two projects.   https://dev.azure.com/mcgsead",
       "lastSessionModified": 1778713442273,
-      "lastVersionBase": "2.1.141"
+      "lastVersionBase": "2.1.143"
     },
     "/Users/jimweller/scratch/_opencode": {
       "allowedTools": [],
@@ -11694,7 +11694,7 @@
   "hasOpusPlanDefault": false,
   "sonnet45MigrationComplete": true,
   "hasUsedBackslashReturn": true,
-  "lastPlanModeUse": 1779072305408,
+  "lastPlanModeUse": 1779076225205,
   "hasIdeAutoConnectDialogBeenShown": true,
   "githubRepoPaths": {
     "ruvnet/claude-flow": [
@@ -12033,8 +12033,8 @@
       "lastUsedAt": 1778856945020
     },
     "commit": {
-      "usageCount": 252,
-      "lastUsedAt": 1779035399580
+      "usageCount": 253,
+      "lastUsedAt": 1779080328250
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -12065,8 +12065,8 @@
       "lastUsedAt": 1778826887221
     },
     "sage": {
-      "usageCount": 184,
-      "lastUsedAt": 1779075099361
+      "usageCount": 185,
+      "lastUsedAt": 1779078601834
     },
     "update-config": {
       "usageCount": 1,
@@ -12145,12 +12145,12 @@
       "lastUsedAt": 1776402714543
     },
     "docs": {
-      "usageCount": 12,
-      "lastUsedAt": 1779017606128
+      "usageCount": 13,
+      "lastUsedAt": 1779078631271
     },
     "llmdocs": {
-      "usageCount": 13,
-      "lastUsedAt": 1779017611045
+      "usageCount": 14,
+      "lastUsedAt": 1779078636187
     },
     "review-quick": {
       "usageCount": 2,
@@ -12221,8 +12221,8 @@
       "lastUsedAt": 1777511365726
     },
     "fact-check": {
-      "usageCount": 7,
-      "lastUsedAt": 1778601602085
+      "usageCount": 8,
+      "lastUsedAt": 1779076895777
     },
     "using-superpowers": {
       "usageCount": 1,

@@ -64,6 +64,9 @@
     ~/.codex/rules/:
       glob: true
       path: configs/codex/rules/*
+    ~/.codex/agents/:
+      glob: true
+      path: configs/codex/agents/*
     ~/.config/opencode/opencode.json: configs/opencode/opencode.json
     ~/.config/opencode/tui.json: configs/opencode/tui.json
     ~/.config/opencode/agents/:
