@@ -16,17 +16,20 @@
   branch = main
   shallow = true
 [submodule "dotfiles/claude-code/tools/total-recall"]
-	path = configs/claude-code/tools/total-recall
+	path = submodules/total-recall
 	url = https://github.com/jimweller/total-recall.git
 [submodule "dotfiles/claude-code/tools/lsp-enforcement-kit"]
-	path = configs/claude-code/tools/lsp-enforcement-kit
+	path = submodules/lsp-enforcement-kit
 	url = https://github.com/jimweller/claude-code-lsp-enforcement-kit.git
 [submodule "dotfiles/claude-code/tools/humble-master"]
-	path = configs/claude-code/tools/humble-master
+	path = submodules/humble-master
 	url = https://github.com/jimweller/humble-master.git
 [submodule "dotfiles/claude-code/tools/superpowers"]
-	path = configs/claude-code/tools/superpowers
+	path = submodules/superpowers
 	url = https://github.com/jimweller/superpowers.git
 [submodule "dotfiles/claude-code/tools/claude-mem"]
-	path = configs/claude-code/tools/claude-mem
+	path = submodules/claude-mem
 	url = https://github.com/jimweller/claude-mem.git
+[submodule "submodules/clanker-skills"]
+	path = submodules/clanker-skills
+	url = https://github.com/jimweller/clanker-skills.git

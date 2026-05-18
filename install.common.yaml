@@ -94,7 +94,7 @@
     ~/.claude/agents/:
       glob: true
       path: configs/claude-code/agents/*
-    ~/.claude/tools/humble-master: configs/claude-code/tools/humble-master
+    ~/.claude/tools/humble-master: submodules/humble-master
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
     ~/.prettierrc: configs/prettier/prettierrc
 
