@@ -107,11 +107,14 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 ## Claude Code Config Files
 
-| File                         | Format | Symlink Target                              |
-| ---------------------------- | ------ | ------------------------------------------- |
-| `claude_json`                | JSON   | `~/.claude.json`                            |
-| `claude_settings_json_azure` | JSON   | `~/.claude/settings.json`                   |
-| `claude_settings_json_aws`   | JSON   | `~/.claude/settings-aws.json`               |
-| `known_marketplaces.json`    | JSON   | `~/.claude/plugins/known_marketplaces.json` |
-| `installed_plugins.json`     | JSON   | `~/.claude/plugins/installed_plugins.json`  |
+| File                         | Format | Symlink Target                                                        |
+| ---------------------------- | ------ | --------------------------------------------------------------------- |
+| `claude_json`                | JSON   | `~/.claude.json`                                                      |
+| `claude_settings_json_azure` | JSON   | `~/.claude/settings.json`                                             |
+| `claude_settings_json_aws`   | JSON   | `~/.claude/settings-aws.json`                                         |
+| `known_marketplaces.json`    | JSON   | `~/.claude/plugins/known_marketplaces.json`                           |
+| `installed_plugins.json`     | JSON   | `~/.claude/plugins/installed_plugins.json`                            |
+| `claude_desktop_config.json` | JSON   | `~/Library/Application Support/Claude-3p/claude_desktop_config.json` |
+
+`claude_desktop_config.json` configures Claude Desktop in 3p deployment mode with the ms365 MCP server (`@softeria/ms-365-mcp-server`). Symlinked via `install.macos.yaml`.
 ````

@@ -40,3 +40,6 @@ alias claude-mem='bun "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+
+# OpenHarness
+export PATH="/Users/jimweller/.local/bin:$PATH"

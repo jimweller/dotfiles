@@ -21,6 +21,8 @@
   - [git submodule update --init --recursive, Installing submodules]
   - command: npx skills add https://github.com/jimweller/clanker-skills/tree/main/skills/universal -a claude-code -a codex -a opencode -g -y --copy
     description: Install universal skills from clanker-skills via npx
+  - command: npx skills add https://github.com/kepano/obsidian-skills -a claude-code -a codex -a opencode -g -y --copy
+    description: Install kepano obsidian skills (markdown, bases, canvas, cli, defuddle)
 
 - link:
     ~/.aws/config: configs/aws/aws_config
@@ -100,6 +102,7 @@
       glob: true
       path: configs/claude-code/agents/*
     ~/.claude/tools/humble-master: submodules/humble-master
+    ~/Library/Application Support/Claude-3p/claude_desktop_config.json: configs/claude-code/claude_desktop_config.json
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
     ~/.prettierrc: configs/prettier/prettierrc
 

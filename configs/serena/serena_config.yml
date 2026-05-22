@@ -78,12 +78,12 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
-- /Users/jimweller/.worktrees/quiver-main/feat/quiver-scopes
 - /Users/jimweller/obsidian
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/personal/elephant-memories
 - /Users/jimweller/personal/jimwellercom
 - /Users/jimweller/scratch/Mcg.Path.DemoSimulator
+- /Users/jimweller/scratch/OpenHarness
 - /Users/jimweller/scratch/Orca
 - /Users/jimweller/scratch/_crap/dell-otel
 - /Users/jimweller/scratch/_crap/skills
@@ -102,11 +102,13 @@ projects:
 - /Users/jimweller/scratch/serena
 - /Users/jimweller/scratch/superpowers
 - /Users/jimweller/scratch/synapse-api-ui-demo
+- /Users/jimweller/scratch/web-researcher-mcp
 - /Users/jimweller/work/2026-confluence-migration-utils
 - /Users/jimweller/work/2026-devx-survey-results
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/employee-termination-skill
 - /Users/jimweller/work/k8s-custom-model
+- /Users/jimweller/work/killer-whales
 - /Users/jimweller/work/mcg-atlassian-plugin
 - /Users/jimweller/work/mcg-pe-az-infra
 - /Users/jimweller/work/mcg-status-update-plugin

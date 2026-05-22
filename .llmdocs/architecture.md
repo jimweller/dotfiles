@@ -47,7 +47,7 @@ install.linux.yaml         # Linux-specific dotbot config
 dotbot creates symlinks from `~` into this repo. Configured in three YAML files:
 
 - `install.common.yaml` -- all platforms: shell, git, SSH, tmux, cloud CLIs, AI tools, container configs
-- `install.macos.yaml` -- iTerm2 profiles, LaunchAgents, Colima, VSCode settings, Granted (macOS)
+- `install.macos.yaml` -- iTerm2 profiles, LaunchAgents, Colima, VSCode settings, Granted (macOS), Claude Desktop 3p config
 - `install.linux.yaml` -- Granted (Linux), Trash directory
 
 Link defaults: `force: true`, `create: true`, `relink: true`.
