@@ -38,3 +38,8 @@ You are performing a focused code review. Your ONLY area is Performance.
 - [ ] Connection pooling
 - [ ] Template parsing and caching
 - [ ] Timeout configuration
+- [ ] Memory allocation patterns (large slices, maps, buffers)
+- [ ] Unnecessary copies or serialization overhead
+- [ ] Unbounded queries missing pagination
+- [ ] Index coverage for frequent queries
+- [ ] Goroutine/thread pool sizing

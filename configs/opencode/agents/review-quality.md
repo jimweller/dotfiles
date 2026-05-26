@@ -40,3 +40,7 @@ You are performing a focused code review. Your ONLY area is Code Quality.
 - [ ] Language idioms and error handling patterns
 - [ ] Fallback logic that masks errors. Examples: catch, else, "||
 - [ ] Type safety and type mismatches
+- [ ] Magic numbers and strings
+- [ ] Excessive function length or parameter count
+- [ ] Inconsistent error return patterns
+- [ ] TODO/FIXME/HACK inventory

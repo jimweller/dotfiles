@@ -39,3 +39,6 @@ You are performing a focused code review. Your ONLY area is Architecture & Desig
 - [ ] Error propagation patterns
 - [ ] State management
 - [ ] Isolation model
+- [ ] Circular dependencies and layering violations
+- [ ] API versioning strategy
+- [ ] Hardcoded values that belong in configuration

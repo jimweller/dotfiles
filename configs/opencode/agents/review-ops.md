@@ -39,3 +39,8 @@ You are performing a focused code review. Your ONLY area is Operational Readines
 - [ ] Resource limits and requests
 - [ ] Logging and structured observability
 - [ ] Deployment upgrade/rollback safety
+- [ ] Retry and backoff policies
+- [ ] Circuit breaker patterns
+- [ ] Metrics and alerting hooks
+- [ ] Config hot-reload safety
+- [ ] Secret rotation support in code

@@ -38,3 +38,7 @@ You are performing a focused code review. Your ONLY area is Correctness & Bugs.
 - [ ] Nil pointer / index-out-of-bounds risks
 - [ ] Resource leaks (goroutines, connections, file handles)
 - [ ] Edge cases in lifecycle operations (partial rollback, concurrent mutations)
+- [ ] Off-by-one errors
+- [ ] Empty catch blocks or swallowed errors
+- [ ] Type coercion bugs and integer overflow/truncation
+- [ ] Unvalidated external input at system boundaries

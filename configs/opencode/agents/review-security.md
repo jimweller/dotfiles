@@ -36,7 +36,11 @@ You are performing a focused code review. Your ONLY area is Security.
 
 - [ ] Authentication and authorization
 - [ ] Secret handling (env vars, config files, key management)
+- [ ] Secrets leaked into logs or error messages
 - [ ] Input validation and injection risks (SQL, command, template, XSS)
 - [ ] RBAC scope and least-privilege
 - [ ] Network policies and ingress configuration
 - [ ] Container security context
+- [ ] CORS and CSP header configuration
+- [ ] Cryptographic choices (hashing algorithms, TLS settings)
+- [ ] Supply chain (dependency pinning, lockfile integrity)

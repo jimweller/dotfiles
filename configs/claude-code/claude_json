@@ -4150,71 +4150,39 @@
       },
       "exampleFilesGeneratedAt": 1779767118091,
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 36.96389534999998,
-      "lastAPIDuration": 2160602,
-      "lastAPIDurationWithoutRetries": 2158645,
-      "lastToolDuration": 14100216,
-      "lastDuration": 118011509,
-      "lastLinesAdded": 655,
-      "lastLinesRemoved": 585,
-      "lastTotalInputTokens": 4580,
-      "lastTotalOutputTokens": 96437,
-      "lastTotalCacheCreationInputTokens": 3171209,
-      "lastTotalCacheReadInputTokens": 32766417,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 4525649,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.07,
-      "lastFpsLow1Pct": 79.21,
-      "lastModelUsage": {
-        "claude-opus-4-6[1m]": {
-          "inputTokens": 3088,
-          "outputTokens": 85202,
-          "cacheReadInputTokens": 31220295,
-          "cacheCreationInputTokens": 2834816,
-          "webSearchRequests": 0,
-          "costUSD": 35.47323749999998
-        },
-        "claude-sonnet-4-6": {
-          "inputTokens": 1489,
-          "outputTokens": 11047,
-          "cacheReadInputTokens": 1546122,
-          "cacheCreationInputTokens": 174086,
-          "webSearchRequests": 0,
-          "costUSD": 1.2868311
-        },
-        "claude-haiku-4-5": {
-          "inputTokens": 3,
-          "outputTokens": 188,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 162307,
-          "webSearchRequests": 0,
-          "costUSD": 0.20382675
-        }
-      },
-      "lastSessionId": "968a85a2-b2d8-45fa-ab6a-eaeb39db697f",
+      "lastFpsAverage": 0.02,
+      "lastFpsLow1Pct": 52.18,
+      "lastModelUsage": {},
+      "lastSessionId": "c5f3c2fe-a12d-4a8c-b406-7a191999bbe9",
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 161,
-        "hook_duration_ms_min": 70,
-        "hook_duration_ms_max": 10264,
-        "hook_duration_ms_avg": 300.5217391304348,
-        "hook_duration_ms_p50": 219,
-        "hook_duration_ms_p95": 288,
-        "hook_duration_ms_p99": 2460.400000000027,
-        "frame_duration_ms_count": 1544,
-        "frame_duration_ms_min": 0.15070800110697746,
-        "frame_duration_ms_max": 440.9174580000108,
-        "frame_duration_ms_avg": 2.023229099102859,
-        "frame_duration_ms_p50": 1.1929375000081563,
-        "frame_duration_ms_p95": 3.5506714493036178,
-        "frame_duration_ms_p99": 13.087311571650188,
-        "pre_tool_hook_duration_ms_count": 87,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 306,
-        "pre_tool_hook_duration_ms_avg": 135.13793103448276,
-        "pre_tool_hook_duration_ms_p50": 99,
-        "pre_tool_hook_duration_ms_p95": 282.4000000000001,
-        "pre_tool_hook_duration_ms_p99": 295.68
+        "frame_duration_ms_count": 65,
+        "frame_duration_ms_min": 0.09466600000007475,
+        "frame_duration_ms_max": 19.165416999999934,
+        "frame_duration_ms_avg": 1.1830980615255482,
+        "frame_duration_ms_p50": 0.5547499999993306,
+        "frame_duration_ms_p95": 4.165383599999858,
+        "frame_duration_ms_p99": 10.493656999999967,
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 845,
+        "hook_duration_ms_max": 845,
+        "hook_duration_ms_avg": 845,
+        "hook_duration_ms_p50": 845,
+        "hook_duration_ms_p95": 845,
+        "hook_duration_ms_p99": 845
       },
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "lastHintSessionId": "968a85a2-b2d8-45fa-ab6a-eaeb39db697f",
       "lastSessionFirstPrompt": "how can I manually verify the machine identity?",
       "lastSessionModified": 1779073654415,
@@ -12241,8 +12209,8 @@
       "lastUsedAt": 1779377839861
     },
     "commit": {
-      "usageCount": 256,
-      "lastUsedAt": 1779769279683
+      "usageCount": 257,
+      "lastUsedAt": 1779770162100
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -12285,8 +12253,8 @@
       "lastUsedAt": 1778766818885
     },
     "mem-search": {
-      "usageCount": 16,
-      "lastUsedAt": 1779512750901
+      "usageCount": 17,
+      "lastUsedAt": 1779770158954
     },
     "summarizing-slack-messages:summarize": {
       "usageCount": 3,

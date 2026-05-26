@@ -39,3 +39,7 @@ You are performing a focused code review. Your ONLY area is SOLID Principles.
 - [ ] Liskov Substitution: implementations are substitutable for their interfaces
 - [ ] Interface Segregation: clients depend only on methods they use
 - [ ] Dependency Inversion: depend on abstractions, not concretions
+- [ ] God objects with too many responsibilities
+- [ ] Concrete coupling without interface abstraction
+- [ ] Excessive inheritance depth
+- [ ] Feature envy (methods using another class's data more than their own)

@@ -38,3 +38,7 @@ You are performing a focused code review. Your ONLY area is Testing.
 - [ ] Mock correctness vs real behavior
 - [ ] Missing negative / error path tests
 - [ ] Integration test completeness
+- [ ] Flaky test indicators (time-dependent, order-dependent)
+- [ ] Test isolation (shared mutable state between tests)
+- [ ] Assertion quality (testing behavior, not implementation)
+- [ ] Boundary value testing
