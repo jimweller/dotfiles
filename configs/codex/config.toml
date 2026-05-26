@@ -133,12 +133,15 @@ trust_level = "trusted"
 [projects."/Users/jimweller/work/killer-whales"]
 trust_level = "trusted"
 
+[projects."/Users/jimweller/work/platform-poc/platform-poc-main"]
+trust_level = "trusted"
+
 [notice]
 fast_default_opt_out = true
 
 [marketplaces.beads-marketplace]
-last_updated = "2026-05-22T00:22:36Z"
-last_revision = "3988db7e0da1d5488e5ff972349f736466bec1c8"
+last_updated = "2026-05-22T04:36:17Z"
+last_revision = "220e552a46cd473d8dd00c08395a6b070bc9a309"
 source_type = "git"
 source = "https://github.com/gastownhall/beads.git"
 

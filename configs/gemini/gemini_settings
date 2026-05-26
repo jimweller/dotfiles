@@ -23,8 +23,6 @@
   },
   "general": {
     "previewFeatures": true,
-    "disableAutoUpdate": true,
-    "disableUpdateNag": true,
     "enableAutoUpdate": false,
     "enableAutoUpdateNotification": false
   },
@@ -37,9 +35,9 @@
     "showLineNumbers": false,
     "hideWindowTitle": true,
     "accessibility": {
-      "disableLoadingPhrases": true,
       "enableLoadingPhrases": false
-    }
+    },
+    "loadingPhrases": "off"
   },
   "tools": {
     "shell": {
