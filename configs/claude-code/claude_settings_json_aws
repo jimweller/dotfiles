@@ -5,10 +5,10 @@
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "CLAUDE_CODE_USE_FOUNDRY": "0",
     "CLAUDE_CODE_SHELL": "bash",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-7[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-6[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6[1m]",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
-    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-7[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-6[1m]",
     "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
     "ENABLE_TOOL_SEARCH": "auto:1",
@@ -86,12 +86,12 @@
   },
   "enabledPlugins": {
     "ralph-loop@claude-plugins-official": true,
-    "agent-browser@agent-browser": true,
     "mcg-atlassian@sead-claude-marketplace": true,
-    "mcg-status-updates@devx-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
+    "beads@beads-marketplace": true,
     "claude-mem@jimweller": true,
-    "employee-termination@devx-claude-marketplace": true
+    "superpowers@jimweller": false,
+    "mcg-status-updates@devx-claude-marketplace": false
   },
   "extraKnownMarketplaces": {
     "devx-claude-marketplace": {
@@ -101,10 +101,16 @@
       },
       "autoUpdate": true
     },
+    "beads-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "gastownhall/beads"
+      }
+    },
     "jimweller": {
       "source": {
-        "source": "git",
-        "url": "https://github.com/jimweller/claude-mem.git"
+        "source": "github",
+        "repo": "jimweller/claude-marketplace"
       }
     }
   },
@@ -119,5 +125,8 @@
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-daltonized",
+  "preferredNotifChannel": "notifications_disabled",
+  "terminalProgressBarEnabled": false
 }

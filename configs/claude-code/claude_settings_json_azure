@@ -90,7 +90,8 @@
     "mcg-lookup@sead-claude-marketplace": true,
     "beads@beads-marketplace": true,
     "claude-mem@jimweller": true,
-    "superpowers@jimweller": false
+    "superpowers@jimweller": false,
+    "mcg-status-updates@devx-claude-marketplace": false
   },
   "extraKnownMarketplaces": {
     "devx-claude-marketplace": {
