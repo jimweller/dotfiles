@@ -112,7 +112,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 
 ## Development Workflow
 
-- Before writing any code, describe your approach and wait for approval
+- Before writing any code, describe your approach
 - Always ask clarifying questions before writing any code if requirements are ambiguous
 - If a task requires changes to more than 3 files, stop and break it into smaller tasks first
 - After writing code, list what could break and suggest tests to cover it

@@ -61,6 +61,7 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.clau
 | Module                   | Scope                                                            |
 | ------------------------ | ---------------------------------------------------------------- |
 | `00-secrets.zsh`         | Auto-load all secrets from ~/.secrets/*.env                      |
+| `02-locale.zsh`          | Set LANG and LC_ALL to en_US.UTF-8 (Unicode rendering in tmux)  |
 | `03-path.zsh`            | PATH construction from scratch                                   |
 | `04-completions.zsh`     | Runtime completions for tools without fpath files (fzf, rustup, opencode) |
 | `05-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide                         |

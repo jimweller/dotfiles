@@ -1,68 +1,54 @@
 model = "gpt-5.5"
 model_provider = "openai-env"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 file_opener = "vscode"
 hide_agent_reasoning = false
-
 # Daneel persona injection (appended to Codex system prompt, not replacing it)
 model_instructions_file = "~/.codex/daneel.md"
-
 # Read existing CLAUDE.md files in projects that don't have AGENTS.md
 project_doc_fallback_filenames = ["CLAUDE.md"]
-
+service_tier = "fast"
 [agents]
 max_threads = 8
-
 [model_providers.openai-env]
 name = "openai-env"
 base_url = "https://api.openai.com/v1"
 wire_api = "responses"
 env_key = "OPENAI_API_KEY"
-
 [analytics]
 enabled = false
-
 [feedback]
 enabled = false
-
 [history]
 max_bytes = 104857600
-
 [tui]
 animations = false
 show_tooltips = false
-
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "branch-changes", "run-state", "permissions", "approval-mode", "context-used", "context-window-size", "fast-mode"]
+status_line_use_colors = true
 [tui.model_availability_nux]
 "gpt-5.5" = 3
-
-
 # --- MCP Servers ---
-
 [mcp_servers.c7]
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 env_vars = ["CONTEXT7_API_KEY"]
 [mcp_servers.c7.env]
 DEFAULT_MINIMUM_TOKENS = "10000"
-
 [mcp_servers.g]
 transport = "streamable_http"
 url = "http://localhost:9091/mcp/"
-
 [mcp_servers.repomix]
 command = "npx"
 args = ["-y", "repomix", "--mcp"]
-
 [mcp_servers.slack]
 transport = "streamable_http"
 url = "https://mcp.slack.com/mcp"
-
 [mcp_servers.serena]
 command = "serena"
 args = ["start-mcp-server", "--context=codex", "--project-from-cwd"]
-
 [mcp_servers.ms365]
 command = "npx"
 args = [
@@ -74,93 +60,76 @@ args = [
 [mcp_servers.ms365.env]
 MS365_MCP_CLIENT_ID = "1064a29c-eb07-4bd5-b746-865f9473cfd4"
 MS365_MCP_TENANT_ID = "a84894e7-87c5-40e3-9783-320d0334b3cc"
-
 # --- Trusted Projects ---
 # Codex trust is exact-path, no cascading. Codex appends new entries
 # interactively when the user clicks "Yes, continue" on first visit.
-
 [projects."/Users/jimweller/.config/dotfiles"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/work"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/personal"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/tmp"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/work/mcg-pe-az-infra"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/work/quiver/quiver-main"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/crds"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/personal/elephant-memories"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/_crap"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/_crap/skills"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/Orca"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/_crap/skillsadd"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/_standup"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/web-researcher-mcp"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/scratch/OpenHarness"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/work/killer-whales"]
 trust_level = "trusted"
-
 [projects."/Users/jimweller/work/platform-poc/platform-poc-main"]
 trust_level = "trusted"
-
 [notice]
 fast_default_opt_out = true
 
 [marketplaces.beads-marketplace]
-last_updated = "2026-05-22T04:36:17Z"
-last_revision = "220e552a46cd473d8dd00c08395a6b070bc9a309"
+last_updated = "2026-06-01T02:28:01Z"
+last_revision = "7d7ff50c8e6487184098eedc172aa17e72d80346"
 source_type = "git"
 source = "https://github.com/gastownhall/beads.git"
-
-[plugins."beads@beads-marketplace"]
-enabled = true
-
 [hooks.state]
-
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:post_compact:0:0"]
 trusted_hash = "sha256:53280fbd74d122ef0607f320dacf407b21cba0e448f2cf5982c6d5b1074933c8"
-
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:pre_compact:0:0"]
 trusted_hash = "sha256:1f647821c1b2d16b397ca09bb1c76c71f74b04e8e13abf4abcd044a1ae82e0f7"
-
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:392a61a090ba7d6aab6ab0fb0f82f3df3d6a380ee81f60f00af3bd42025d51a9"
-
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:user_prompt_submit:0:0"]
 trusted_hash = "sha256:61bc468420addc4d83d288a4311e1409cc89cbbd9f44fec2e1039512d20fab86"
 
+[hooks.state."/Users/jimweller/.codex/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:1f647821c1b2d16b397ca09bb1c76c71f74b04e8e13abf4abcd044a1ae82e0f7"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:post_compact:0:0"]
+trusted_hash = "sha256:53280fbd74d122ef0607f320dacf407b21cba0e448f2cf5982c6d5b1074933c8"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:392a61a090ba7d6aab6ab0fb0f82f3df3d6a380ee81f60f00af3bd42025d51a9"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:61bc468420addc4d83d288a4311e1409cc89cbbd9f44fec2e1039512d20fab86"
 [features]
 goals = true
+hooks = true
