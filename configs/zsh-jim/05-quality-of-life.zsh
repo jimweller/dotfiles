@@ -53,6 +53,10 @@ if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
+# Require non-official brew taps to be trusted via `brew trust`
+# (allowlist seeded from configs/brew/trust.json -> ~/.homebrew/trust.json)
+export HOMEBREW_REQUIRE_TAP_TRUST=1
+
 
 # Set EDITOR and VISUAL variables - prefer 'code', then 'nano', fallback to 'vi'
 if command -v code > /dev/null 2>&1; then

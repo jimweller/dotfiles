@@ -38,8 +38,3 @@ alias claude-mem='bun "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-
 
 # THIS SHOULD BE THE LAST THING IN THE FILE BECAUSE OF P10K'S FAST START
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-
-# OpenHarness
-export PATH="/Users/jimweller/.local/bin:$PATH"

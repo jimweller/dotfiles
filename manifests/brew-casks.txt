@@ -2,9 +2,11 @@ alt-tab
 bartender
 basictex
 codeql
+codex
 displaylink
 dotnet-sdk10
 dotnet-sdk10-0-200
+dotnet-sdk10-0-300
 dotnet-sdk8
 dotnet-sdk8-0-400
 drawio
@@ -21,6 +23,7 @@ mitmproxy
 obs
 obsidian
 openshot-video-editor
+paintbrush
 pgadmin4
 postman
 postman-cli

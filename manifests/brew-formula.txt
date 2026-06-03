@@ -13,13 +13,13 @@ black
 cabextract
 cdrtools
 certbot
-cf2tf
 clipboard
 colima
 commitlint
-cowsay
 csvkit
 curlie
+defuddle
+dicklesworthstone/tap/bv
 dict
 docker
 docker-buildx
@@ -30,9 +30,7 @@ expat
 eza
 figlet
 flock
-fortune
 fzf
-gemini-cli
 gh
 ghostscript
 git
@@ -55,7 +53,6 @@ jq
 json-table
 json2ts
 json2tsv
-keidarcy/tap/e1s
 kics
 kube-ps1
 kubectx
@@ -65,12 +62,14 @@ lld
 markdownlint-cli2
 mdq
 mermaid-cli
+messense/macos-cross-toolchains/aarch64-unknown-linux-gnu
 mise
 ncc
 netcat
 nuget
 numpy
 oath-toolkit
+ollama
 openapi-generator
 opentofu
 oras
@@ -78,9 +77,9 @@ osslsigncode
 pam-reattach
 pandoc
 parallel
+pcre
 pike
 poppler
-postgresql@15
 postgresql@17
 powershell
 prettier
@@ -88,8 +87,6 @@ pwgen
 pygments
 pyright
 python-packaging
-python@3.10
-python@3.12
 qemu
 repomix
 rig
@@ -100,7 +97,6 @@ rtmpdump
 rust
 rust-analyzer
 rustup
-safe-rm
 saml-to/tap/saml-to
 sha2
 socket_vmnet
