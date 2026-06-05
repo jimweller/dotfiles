@@ -37,10 +37,16 @@ claude_local() {
     done
   fi
 
-  ANTHROPIC_BASE_URL=http://localhost:11434 \
-  ANTHROPIC_AUTH_TOKEN=ollama \
-  ANTHROPIC_MODEL="${CLOCAL_MODEL:-llama3.2:latest}" \
-  claude --dangerously-skip-permissions --no-chrome --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md "$@"
+  local model="${CLOCAL_MODEL:-llama3.2:latest}"
+  if [[ -n "$1" && "$1" != -* ]]; then
+    model="$1"
+    shift
+  fi
+
+  claude --dangerously-skip-permissions --no-chrome \
+    --settings ~/.claude/settings-ollama.json \
+    --model "$model" \
+    --system-prompt-file ~/.claude/tools/humble-master/daneel-final.md "$@"
 }
 alias clocal='claude_local'
 

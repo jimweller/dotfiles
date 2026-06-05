@@ -121,7 +121,7 @@
       "CLANKING"
     ]
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "prefersReducedMotion": true,

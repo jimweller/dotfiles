@@ -531,7 +531,9 @@
   "terminal.integrated.shellIntegration.quickFixEnabled": false,
   "terminal.integrated.macOptionClickForcesSelection": true,
   "claudeCode.disableLoginPrompt": true,
-  "chat.disableAIFeatures": true
+  "chat.disableAIFeatures": true,
+  "emulator.emulatorPathMac": "/opt/homebrew/share/android-commandlinetools/emulator",
+  "emulator.hasEditorTitleIcon": true
 
   // roo-cline.autoImportSettingsPath - Auto-import settings file path
   //"roo-cline.autoImportSettingsPath": "/Users/jimweller/.roo/roo-settings.json"

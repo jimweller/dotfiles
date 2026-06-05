@@ -75,6 +75,7 @@
       glob: true
       path: configs/opencode/agents/*
     ~/.config/litellm/config.yaml: configs/litellm/config.yaml
+    ~/.hermes/config.yaml: configs/hermes/config.yaml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
@@ -85,6 +86,7 @@
     ~/.claude/settings-azure.json: configs/claude-code/claude_settings_json_azure
     ~/.claude/settings-litellm-oai.json: configs/claude-code/claude_settings_json_litellm_oai
     ~/.claude/settings-litellm-gem.json: configs/claude-code/claude_settings_json_litellm_gem
+    ~/.claude/settings-ollama.json: configs/claude-code/claude_settings_json_ollama
     ~/.claude/statusline-command.sh: configs/claude-code/statusline-command.sh
     ~/.claude/CLAUDE.md: configs/claude-code/claude_md.md
     ~/.claude/plugins/known_marketplaces.json: configs/claude-code/known_marketplaces.json
