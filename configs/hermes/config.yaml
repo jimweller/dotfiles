@@ -317,6 +317,61 @@ skills:
   inline_shell: false
   inline_shell_timeout: 10
   guard_agent_created: false
+  disabled:
+  - airtable
+  - apple-notes
+  - apple-reminders
+  - architecture-diagram
+  - ascii-art
+  - ascii-video
+  - audiocraft-audio-generation
+  - baoyu-article-illustrator
+  - baoyu-comic
+  - baoyu-infographic
+  - claude-design
+  - comfyui
+  - design-md
+  - dogfood
+  - dspy
+  - evaluating-llms-harness
+  - excalidraw
+  - findmy
+  - gif-search
+  - godmode
+  - google-workspace
+  - heartmula
+  - huggingface-hub
+  - humanizer
+  - ideation
+  - imessage
+  - jupyter-live-kernel
+  - linear
+  - llama-cpp
+  - macos-computer-use
+  - manim-video
+  - maps
+  - minecraft-modpack-server
+  - notion
+  - obliteratus
+  - openhue
+  - p5js
+  - pixel-art
+  - pokemon-player
+  - polymarket
+  - popular-web-designs
+  - pretext
+  - research-paper-writing
+  - segment-anything-model
+  - serving-llms-vllm
+  - sketch
+  - songsee
+  - songwriting-and-ai-music
+  - spotify
+  - touchdesigner-mcp
+  - weights-and-biases
+  - xurl
+  - youtube-content
+  - yuanbao
 curator:
   enabled: true
   interval_hours: 168
@@ -427,7 +482,8 @@ sessions:
   min_interval_hours: 24
   write_json_snapshots: false
 onboarding:
-  seen: {}
+  seen:
+    tool_progress_prompt: true
 updates:
   pre_update_backup: false
   backup_keep: 5
@@ -454,3 +510,38 @@ paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
 _config_version: 24
+mcp_servers:
+  c7:
+    args:
+    - -y
+    - '@upstash/context7-mcp'
+    - --api-key
+    - ${CONTEXT7_API_KEY}
+    command: npx
+    env:
+      DEFAULT_MINIMUM_TOKENS: '10000'
+  codex:
+    args:
+    - -m
+    - gpt-5.5
+    - -c
+    - model_reasoning_effort=xhigh
+    - --dangerously-bypass-approvals-and-sandbox
+    - mcp-server
+    command: codex
+  g:
+    url: http://localhost:9091/mcp/
+  ms365:
+    args:
+    - -y
+    - '@softeria/ms-365-mcp-server'
+    - --org-mode
+    - --enabled-tools
+    - ^(accept-calendar-event|add-excel-table-rows|add-mail-attachment|cancel-calendar-event|clear-excel-range|clear-my-presence|clear-my-user-preferred-presence|copy-drive-item|copy-mail-message|create-calendar|create-calendar-event|create-chat|create-contact-child-folder|create-contact-folder|create-contact-in-folder|create-draft-email|create-drive-item-preview|create-drive-item-share-link|create-excel-chart|create-excel-table|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-mail-rule|create-my-calendar-permission|create-onedrive-folder|create-onenote-notebook|create-onenote-page|create-onenote-section|create-onenote-section-page|create-online-meeting|create-outlook-category|create-outlook-contact|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-shared-mailbox-draft|create-sharepoint-list|create-sharepoint-list-column|create-sharepoint-list-item|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|create-todo-task-list|create-upload-session|decline-calendar-event|delete-calendar|delete-calendar-event|delete-contact-folder|delete-drive-item-permission|delete-excel-range|delete-excel-table-row|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-mail-rule|delete-my-calendar-permission|delete-onedrive-file|delete-onenote-page|delete-online-meeting|delete-outlook-contact|delete-planner-bucket|delete-sharepoint-list-column|delete-sharepoint-list-item|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|delete-todo-task-list|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|format-excel-range|forward-calendar-event|forward-mail-message|forward-shared-mailbox-mail|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-chat-message|get-current-user|get-drive-delta|get-drive-item|get-drive-root-item|get-excel-range|get-excel-table|get-excel-used-range|get-mail-message|get-mail-message-mime|get-mail-tips|get-mailbox-settings|get-meeting-attendance-report|get-meeting-recording|get-meeting-recording-content|get-meeting-transcript|get-meeting-transcript-content|get-my-presence|get-onenote-notebook-from-web-url|get-onenote-page-content|get-online-meeting|get-outlook-contact|get-planner-bucket|get-planner-plan|get-planner-task|get-planner-task-details|get-presences-by-user-id|get-schedule|get-shared-calendar-view|get-shared-mailbox-message|get-sharepoint-list-column|get-sharepoint-site|get-sharepoint-site-by-path|get-sharepoint-site-drive-by-id|get-sharepoint-site-item|get-sharepoint-site-list|get-sharepoint-site-list-item|get-sharepoint-site-onenote-page-content|get-sharepoint-sites-delta|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|get-todo-task|get-user-presence|graph-batch|insert-excel-range|list-all-onenote-sections|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chat-message-hosted-contents|list-chat-message-replies|list-chat-messages|list-chats|list-contact-folder-child-folders|list-contact-folder-contacts|list-contact-folders|list-drive-item-permissions|list-drive-item-thumbnails|list-drive-item-versions|list-drives|list-excel-table-rows|list-excel-tables|list-excel-worksheets|list-focused-inbox-overrides|list-folder-files|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-mail-rules|list-meeting-attendance-records|list-meeting-attendance-reports|list-meeting-recordings|list-meeting-transcripts|list-my-associated-teams|list-my-calendar-permissions|list-my-installed-teams-apps|list-onenote-notebook-sections|list-onenote-notebooks|list-onenote-pages|list-onenote-section-groups|list-onenote-section-pages|list-online-meetings|list-outlook-categories|list-outlook-contacts|list-pinned-chat-messages|list-plan-buckets|list-plan-tasks|list-planner-tasks|list-relevant-people|list-shared-calendar-events|list-shared-mailbox-folder-messages|list-shared-mailbox-messages|list-sharepoint-list-columns|list-sharepoint-site-drives|list-sharepoint-site-items|list-sharepoint-site-list-items|list-sharepoint-site-lists|list-sharepoint-site-onenote-notebook-sections|list-sharepoint-site-onenote-notebooks|list-sharepoint-site-onenote-section-pages|list-specific-calendar-events|list-subscriptions|list-supported-languages|list-supported-time-zones|list-team-channels|list-todo-linked-resources|list-todo-task-lists|list-todo-tasks|list-trending-insights|merge-excel-range|move-mail-message|move-rename-onedrive-item|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-all-shared-mailbox-mail|reply-mail-message|reply-shared-mailbox-mail|reply-to-channel-message|reply-to-chat-message|search-onedrive-files|search-query|search-sharepoint-sites|send-channel-message|send-chat-message|send-draft-message|send-mail|send-my-activity-notification|send-shared-mailbox-mail|set-channel-message-reaction|set-chat-message-reaction|set-my-presence|set-my-status-message|set-my-user-preferred-presence|share-drive-item|snooze-calendar-event-reminder|sort-excel-range|tentatively-accept-calendar-event|unmerge-excel-range|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-contact-folder|update-excel-range|update-excel-table-row|update-focused-inbox-override|update-mail-folder|update-mail-message|update-mail-rule|update-mailbox-settings|update-my-calendar-permission|update-online-meeting|update-outlook-contact|update-planner-bucket|update-planner-task|update-planner-task-details|update-sharepoint-list-column|update-sharepoint-list-item|update-specific-calendar-event|update-subscription|update-todo-task|update-todo-task-list|upload-file-content|upload-my-profile-photo)$
+    command: npx
+    env:
+      MS365_MCP_CLIENT_ID: 25889c94-23bb-4bf1-9833-6f89934d3e85
+      MS365_MCP_TENANT_ID: a84894e7-87c5-40e3-9783-320d0334b3cc
+  slack:
+    auth: oauth
+    url: https://mcp.slack.com/mcp

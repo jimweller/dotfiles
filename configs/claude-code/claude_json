@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157764,
+  "promptQueueUseCount": 157765,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -12144,7 +12144,7 @@
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.163",
+  "lastReleaseNotesSeen": "2.1.160",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -12572,8 +12572,8 @@
       "lastUsedAt": 1780501877739
     },
     "commit": {
-      "usageCount": 264,
-      "lastUsedAt": 1780465701436
+      "usageCount": 265,
+      "lastUsedAt": 1780715433411
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -12604,8 +12604,8 @@
       "lastUsedAt": 1780414586544
     },
     "sage": {
-      "usageCount": 203,
-      "lastUsedAt": 1780637499254
+      "usageCount": 204,
+      "lastUsedAt": 1780714861620
     },
     "update-config": {
       "usageCount": 1,
@@ -12844,13 +12844,13 @@
   "opus48LaunchSeenCount": 5,
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 170,
-      "lastUsedAt": 1780641107421,
+      "usageCount": 225,
+      "lastUsedAt": 1780715300889,
       "lastUsedNumStartups": 3416
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 62,
-      "lastUsedAt": 1780641091259,
+      "usageCount": 75,
+      "lastUsedAt": 1780715241864,
       "lastUsedNumStartups": 3416
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -12859,13 +12859,13 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 67,
-      "lastUsedAt": 1780641091259,
+      "usageCount": 80,
+      "lastUsedAt": 1780715241864,
       "lastUsedNumStartups": 3416
     },
     "claude-mem@jimweller": {
-      "usageCount": 514,
-      "lastUsedAt": 1780641146476,
+      "usageCount": 659,
+      "lastUsedAt": 1780715325280,
       "lastUsedNumStartups": 3416
     }
   }
