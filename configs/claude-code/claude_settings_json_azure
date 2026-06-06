@@ -112,6 +112,12 @@
         "source": "github",
         "repo": "jimweller/claude-marketplace"
       }
+    },
+    "azure-skills": {
+      "source": {
+        "source": "github",
+        "repo": "microsoft/azure-skills"
+      }
     }
   },
   "spinnerTipsEnabled": false,

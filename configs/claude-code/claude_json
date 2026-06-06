@@ -1,5 +1,5 @@
 {
-  "numStartups": 3416,
+  "numStartups": 3417,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -56,7 +56,7 @@
     "feedback-command": 1335
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157765,
+  "promptQueueUseCount": 157766,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -89,7 +89,7 @@
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1780630981537,
+  "changelogLastFetched": 1780724491897,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -12140,11 +12140,25 @@
       "exampleFiles": [],
       "lastGracefulShutdown": false,
       "lastVersionBase": "2.1.163"
+    },
+    "/Users/jimweller/scratch/_crap/azskills": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.165"
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.160",
+  "lastReleaseNotesSeen": "2.1.165",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -12818,6 +12832,10 @@
     "employee-termination:employee-termination": {
       "usageCount": 1,
       "lastUsedAt": 1780323184646
+    },
+    "azure:azure-enterprise-infra-planner": {
+      "usageCount": 1,
+      "lastUsedAt": 1780724668820
     }
   },
   "opusProMigrationComplete": true,
@@ -12844,14 +12862,14 @@
   "opus48LaunchSeenCount": 5,
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 225,
-      "lastUsedAt": 1780715300889,
-      "lastUsedNumStartups": 3416
+      "usageCount": 321,
+      "lastUsedAt": 1780760448347,
+      "lastUsedNumStartups": 3417
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 75,
-      "lastUsedAt": 1780715241864,
-      "lastUsedNumStartups": 3416
+      "usageCount": 105,
+      "lastUsedAt": 1780760368508,
+      "lastUsedNumStartups": 3417
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -12859,14 +12877,19 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 80,
-      "lastUsedAt": 1780715241864,
-      "lastUsedNumStartups": 3416
+      "usageCount": 113,
+      "lastUsedAt": 1780760368508,
+      "lastUsedNumStartups": 3417
     },
     "claude-mem@jimweller": {
-      "usageCount": 659,
-      "lastUsedAt": 1780715325280,
-      "lastUsedNumStartups": 3416
+      "usageCount": 942,
+      "lastUsedAt": 1780760483997,
+      "lastUsedNumStartups": 3417
+    },
+    "azure@azure-skills": {
+      "usageCount": 10,
+      "lastUsedAt": 1780725771645,
+      "lastUsedNumStartups": 3417
     }
   }
 }
