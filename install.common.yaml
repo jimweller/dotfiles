@@ -119,4 +119,8 @@
     ~/.p10k.zsh: configs/p10k/p10k.zsh
     ~/.zshrc: configs/zsh/zshrc
 
+- shell:
+  - command: mise install -y
+    description: Install mise-managed tools from config.toml (agent-deck)
+
 
