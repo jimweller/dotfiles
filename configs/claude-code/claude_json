@@ -1,5 +1,5 @@
 {
-  "numStartups": 3429,
+  "numStartups": 3432,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3422
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157766,
+  "promptQueueUseCount": 157769,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -352,17 +352,17 @@
       ],
       "exampleFilesGeneratedAt": 1780632588697,
       "disabledMcpServers": [],
-      "lastCost": 124.03319399999997,
-      "lastAPIDuration": 10091572,
-      "lastToolDuration": 1542509,
-      "lastDuration": 427745735,
-      "lastLinesAdded": 686,
-      "lastLinesRemoved": 116,
-      "lastTotalInputTokens": 120668,
-      "lastTotalOutputTokens": 667839,
-      "lastTotalCacheCreationInputTokens": 10887192,
-      "lastTotalCacheReadInputTokens": 79322705,
-      "lastSessionId": "82e65e14-58d5-4aed-bb36-0aacc6dc0f57",
+      "lastCost": 5.381776250000002,
+      "lastAPIDuration": 680295,
+      "lastToolDuration": 46219,
+      "lastDuration": 16896634,
+      "lastLinesAdded": 12,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 68570,
+      "lastTotalOutputTokens": 42611,
+      "lastTotalCacheCreationInputTokens": 374529,
+      "lastTotalCacheReadInputTokens": 3471282,
+      "lastSessionId": "5fa96380-912c-46e4-b99a-1e13bfd3a927",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -370,35 +370,27 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 10007115,
+      "lastAPIDurationWithoutRetries": 679286,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 2258,
-          "outputTokens": 83,
+          "inputTokens": 23924,
+          "outputTokens": 355,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.0026729999999999996
+          "costUSD": 0.025699
         },
         "claude-opus-4-8[1m]": {
-          "inputTokens": 118355,
-          "outputTokens": 651439,
-          "cacheReadInputTokens": 76620060,
-          "cacheCreationInputTokens": 10784023,
+          "inputTokens": 44646,
+          "outputTokens": 42256,
+          "cacheReadInputTokens": 3471282,
+          "cacheCreationInputTokens": 374529,
           "webSearchRequests": 0,
-          "costUSD": 122.58792374999997
-        },
-        "claude-sonnet-4-6": {
-          "inputTokens": 55,
-          "outputTokens": 16317,
-          "cacheReadInputTokens": 2702645,
-          "cacheCreationInputTokens": 103169,
-          "webSearchRequests": 0,
-          "costUSD": 1.4425972499999995
+          "costUSD": 5.356077250000003
         }
       },
-      "lastFpsAverage": 0.11,
-      "lastFpsLow1Pct": 134.91,
+      "lastFpsAverage": 2.44,
+      "lastFpsLow1Pct": 78.29,
       "lastSessionMetrics": {
         "frame_duration_ms_count": 25729,
         "frame_duration_ms_min": 0.06779101490974426,
@@ -13041,14 +13033,14 @@
   "opus48LaunchSeenCount": 5,
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 483,
-      "lastUsedAt": 1780856122963,
-      "lastUsedNumStartups": 3429
+      "usageCount": 505,
+      "lastUsedAt": 1780856820283,
+      "lastUsedNumStartups": 3432
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 158,
-      "lastUsedAt": 1780855960095,
-      "lastUsedNumStartups": 3429
+      "usageCount": 166,
+      "lastUsedAt": 1780856773014,
+      "lastUsedNumStartups": 3432
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -13056,14 +13048,14 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 170,
-      "lastUsedAt": 1780855960095,
-      "lastUsedNumStartups": 3429
+      "usageCount": 178,
+      "lastUsedAt": 1780856773014,
+      "lastUsedNumStartups": 3432
     },
     "claude-mem@jimweller": {
-      "usageCount": 1554,
-      "lastUsedAt": 1780856122963,
-      "lastUsedNumStartups": 3429
+      "usageCount": 1634,
+      "lastUsedAt": 1780856820283,
+      "lastUsedNumStartups": 3432
     },
     "azure@azure-skills": {
       "usageCount": 10,
