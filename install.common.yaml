@@ -76,6 +76,8 @@
       path: configs/opencode/agents/*
     ~/.config/litellm/config.yaml: configs/litellm/config.yaml
     ~/.hermes/config.yaml: configs/hermes/config.yaml
+    ~/.config/agent-deck/config.toml: configs/agent-deck/config.toml
+    ~/.config/mise/config.toml: configs/mise/config.toml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
 
