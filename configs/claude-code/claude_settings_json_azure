@@ -130,6 +130,7 @@
   "effortLevel": "high",
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
+  "tui": "fullscreen",
   "prefersReducedMotion": true,
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-daltonized",

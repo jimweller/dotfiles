@@ -1,5 +1,5 @@
 {
-  "numStartups": 3417,
+  "numStartups": 3426,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -53,7 +53,8 @@
     "desktop-app": 1334,
     "web-app": 1334,
     "mobile-app": 1335,
-    "feedback-command": 1335
+    "feedback-command": 1335,
+    "auto-copy-config-hint": 3422
   },
   "memoryUsageCount": 1,
   "promptQueueUseCount": 157766,
@@ -89,7 +90,7 @@
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1780724491897,
+  "changelogLastFetched": 1780807276286,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -126,17 +127,17 @@
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastTotalWebSearchRequests": 0,
-      "lastCost": 0,
-      "lastAPIDuration": 0,
+      "lastCost": 0.09455125,
+      "lastAPIDuration": 3425,
       "lastToolDuration": 0,
-      "lastDuration": 33193263,
+      "lastDuration": 10273882,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 0,
-      "lastTotalOutputTokens": 0,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
-      "lastSessionId": "3b253f75-65e1-4c36-beb0-cd52c129f3f9",
+      "lastTotalInputTokens": 9011,
+      "lastTotalOutputTokens": 83,
+      "lastTotalCacheCreationInputTokens": 6299,
+      "lastTotalCacheReadInputTokens": 16105,
+      "lastSessionId": "18d0d528-f82f-4bfc-ae97-8b3cf73ab158",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -144,32 +145,41 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 0,
-      "lastModelUsage": {},
-      "lastFpsAverage": 0.17,
-      "lastFpsLow1Pct": 152.14,
+      "lastAPIDurationWithoutRetries": 3424,
+      "lastModelUsage": {
+        "claude-opus-4-8[1m]": {
+          "inputTokens": 9011,
+          "outputTokens": 83,
+          "cacheReadInputTokens": 16105,
+          "cacheCreationInputTokens": 6299,
+          "webSearchRequests": 0,
+          "costUSD": 0.09455125
+        }
+      },
+      "lastFpsAverage": 0.02,
+      "lastFpsLow1Pct": 13.27,
       "lastSessionMetrics": {
-        "frame_duration_ms_count": 103,
-        "frame_duration_ms_min": 0.10208300000067538,
-        "frame_duration_ms_max": 15.723625000002357,
-        "frame_duration_ms_avg": 1.325493543689622,
-        "frame_duration_ms_p50": 0.7615839999925811,
-        "frame_duration_ms_p95": 4.506892200000582,
-        "frame_duration_ms_p99": 6.56089648001167,
-        "hook_duration_ms_count": 4,
-        "hook_duration_ms_min": 285,
-        "hook_duration_ms_max": 20322,
-        "hook_duration_ms_avg": 5448,
-        "hook_duration_ms_p50": 592.5,
-        "hook_duration_ms_p95": 17364.899999999994,
-        "hook_duration_ms_p99": 19730.579999999994
+        "frame_duration_ms_count": 53,
+        "frame_duration_ms_min": 0.1532919998280704,
+        "frame_duration_ms_max": 75.38441700000112,
+        "frame_duration_ms_avg": 2.653428471703077,
+        "frame_duration_ms_p50": 0.4101249999948777,
+        "frame_duration_ms_p95": 7.68184980000369,
+        "frame_duration_ms_p99": 41.20860832000014,
+        "hook_duration_ms_count": 3,
+        "hook_duration_ms_min": 1925,
+        "hook_duration_ms_max": 4952,
+        "hook_duration_ms_avg": 2964,
+        "hook_duration_ms_p50": 2015,
+        "hook_duration_ms_p95": 4658.299999999999,
+        "hook_duration_ms_p99": 4893.26
       },
       "hasCompletedProjectOnboarding": true,
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastHintSessionId": "d89e5feb-c309-454c-aa1b-c7808801da3c",
       "lastSessionFirstPrompt": "figure out where this hook failures is coming from   ⎿  UserPromptSubmit hook error                                                         ⎿  Failed with non-blocking status code: Error: unknown comm",
       "lastSessionModified": 1778557702228,
-      "lastVersionBase": "2.1.162"
+      "lastVersionBase": "2.1.168"
     },
     "/Users/jimweller/dotfiles": {
       "allowedTools": [],
@@ -6092,31 +6102,22 @@
         "version": null,
         "packageManager": null
       },
-      "lastCost": 0.24941,
-      "lastAPIDuration": 552806,
-      "lastAPIDurationWithoutRetries": 552804,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
       "lastToolDuration": 0,
-      "lastDuration": 610060,
+      "lastDuration": 10479,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 39207,
-      "lastTotalOutputTokens": 2135,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
       "lastTotalCacheCreationInputTokens": 0,
       "lastTotalCacheReadInputTokens": 0,
       "lastTotalWebSearchRequests": 0,
-      "lastModelUsage": {
-        "igorls/gemma-4-12B-it-heretic-GGUF:latest": {
-          "inputTokens": 39207,
-          "outputTokens": 2135,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.24941
-        }
-      },
-      "lastSessionId": "2dc5d67f-41f8-40ff-9918-fb274d66f405",
-      "lastFpsAverage": 0.2,
-      "lastFpsLow1Pct": 217.37,
+      "lastModelUsage": {},
+      "lastSessionId": "217a857f-3b1e-4f88-9218-399797280f55",
+      "lastFpsAverage": 4.21,
+      "lastFpsLow1Pct": 10.12,
       "lastSessionMetrics": {
         "frame_duration_ms_count": 119,
         "frame_duration_ms_min": 0.1354590000000826,
@@ -6133,12 +6134,12 @@
         "hook_duration_ms_p95": 14771.75,
         "hook_duration_ms_p99": 17325.550000000003
       },
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "hasCompletedProjectOnboarding": true,
       "lastHintSessionId": "fd5a7d56-7355-492a-a2bd-e2957c47b346",
       "lastSessionFirstPrompt": "what folder/project was that session in. I want to go resume it.",
       "lastSessionModified": 1779121199496,
-      "lastVersionBase": "2.1.163"
+      "lastVersionBase": "2.1.168"
     },
     "/Users/jimweller/scratch/_opencode": {
       "allowedTools": [],
@@ -12134,7 +12135,7 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
+      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12148,7 +12149,7 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
+      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12158,7 +12159,7 @@
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.165",
+  "lastReleaseNotesSeen": "2.1.168",
   "mcpServers": {
     "c7": {
       "type": "stdio",
@@ -12226,11 +12227,7 @@
         "--org-mode",
         "--enabled-tools",
         "^(accept-calendar-event|add-excel-table-rows|add-mail-attachment|cancel-calendar-event|clear-excel-range|clear-my-presence|clear-my-user-preferred-presence|copy-drive-item|copy-mail-message|create-calendar|create-calendar-event|create-chat|create-contact-child-folder|create-contact-folder|create-contact-in-folder|create-draft-email|create-drive-item-preview|create-drive-item-share-link|create-excel-chart|create-excel-table|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-mail-rule|create-my-calendar-permission|create-onedrive-folder|create-onenote-notebook|create-onenote-page|create-onenote-section|create-onenote-section-page|create-online-meeting|create-outlook-category|create-outlook-contact|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-shared-mailbox-draft|create-sharepoint-list|create-sharepoint-list-column|create-sharepoint-list-item|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|create-todo-task-list|create-upload-session|decline-calendar-event|delete-calendar|delete-calendar-event|delete-contact-folder|delete-drive-item-permission|delete-excel-range|delete-excel-table-row|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-mail-rule|delete-my-calendar-permission|delete-onedrive-file|delete-onenote-page|delete-online-meeting|delete-outlook-contact|delete-planner-bucket|delete-sharepoint-list-column|delete-sharepoint-list-item|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|delete-todo-task-list|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|format-excel-range|forward-calendar-event|forward-mail-message|forward-shared-mailbox-mail|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-chat-message|get-current-user|get-drive-delta|get-drive-item|get-drive-root-item|get-excel-range|get-excel-table|get-excel-used-range|get-mail-message|get-mail-message-mime|get-mail-tips|get-mailbox-settings|get-meeting-attendance-report|get-meeting-recording|get-meeting-recording-content|get-meeting-transcript|get-meeting-transcript-content|get-my-presence|get-onenote-notebook-from-web-url|get-onenote-page-content|get-online-meeting|get-outlook-contact|get-planner-bucket|get-planner-plan|get-planner-task|get-planner-task-details|get-presences-by-user-id|get-schedule|get-shared-calendar-view|get-shared-mailbox-message|get-sharepoint-list-column|get-sharepoint-site|get-sharepoint-site-by-path|get-sharepoint-site-drive-by-id|get-sharepoint-site-item|get-sharepoint-site-list|get-sharepoint-site-list-item|get-sharepoint-site-onenote-page-content|get-sharepoint-sites-delta|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|get-todo-task|get-user-presence|graph-batch|insert-excel-range|list-all-onenote-sections|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chat-message-hosted-contents|list-chat-message-replies|list-chat-messages|list-chats|list-contact-folder-child-folders|list-contact-folder-contacts|list-contact-folders|list-drive-item-permissions|list-drive-item-thumbnails|list-drive-item-versions|list-drives|list-excel-table-rows|list-excel-tables|list-excel-worksheets|list-focused-inbox-overrides|list-folder-files|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-mail-rules|list-meeting-attendance-records|list-meeting-attendance-reports|list-meeting-recordings|list-meeting-transcripts|list-my-associated-teams|list-my-calendar-permissions|list-my-installed-teams-apps|list-onenote-notebook-sections|list-onenote-notebooks|list-onenote-pages|list-onenote-section-groups|list-onenote-section-pages|list-online-meetings|list-outlook-categories|list-outlook-contacts|list-pinned-chat-messages|list-plan-buckets|list-plan-tasks|list-planner-tasks|list-relevant-people|list-shared-calendar-events|list-shared-mailbox-folder-messages|list-shared-mailbox-messages|list-sharepoint-list-columns|list-sharepoint-site-drives|list-sharepoint-site-items|list-sharepoint-site-list-items|list-sharepoint-site-lists|list-sharepoint-site-onenote-notebook-sections|list-sharepoint-site-onenote-notebooks|list-sharepoint-site-onenote-section-pages|list-specific-calendar-events|list-subscriptions|list-supported-languages|list-supported-time-zones|list-team-channels|list-todo-linked-resources|list-todo-task-lists|list-todo-tasks|list-trending-insights|merge-excel-range|move-mail-message|move-rename-onedrive-item|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-all-shared-mailbox-mail|reply-mail-message|reply-shared-mailbox-mail|reply-to-channel-message|reply-to-chat-message|search-onedrive-files|search-query|search-sharepoint-sites|send-channel-message|send-chat-message|send-draft-message|send-mail|send-my-activity-notification|send-shared-mailbox-mail|set-channel-message-reaction|set-chat-message-reaction|set-my-presence|set-my-status-message|set-my-user-preferred-presence|share-drive-item|snooze-calendar-event-reminder|sort-excel-range|tentatively-accept-calendar-event|unmerge-excel-range|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-contact-folder|update-excel-range|update-excel-table-row|update-focused-inbox-override|update-mail-folder|update-mail-message|update-mail-rule|update-mailbox-settings|update-my-calendar-permission|update-online-meeting|update-outlook-contact|update-planner-bucket|update-planner-task|update-planner-task-details|update-sharepoint-list-column|update-sharepoint-list-item|update-specific-calendar-event|update-subscription|update-todo-task|update-todo-task-list|upload-file-content|upload-my-profile-photo)$"
-      ],
-      "env": {
-        "MS365_MCP_CLIENT_ID": "25889c94-23bb-4bf1-9833-6f89934d3e85",
-        "MS365_MCP_TENANT_ID": "a84894e7-87c5-40e3-9783-320d0334b3cc"
-      }
+      ]
     }
   },
   "hasIdeOnboardingBeenShown": {
@@ -12822,8 +12819,8 @@
       "lastUsedAt": 1779976333561
     },
     "defuddle": {
-      "usageCount": 2,
-      "lastUsedAt": 1780000543719
+      "usageCount": 3,
+      "lastUsedAt": 1780762911856
     },
     "claude-mem:knowledge-agent": {
       "usageCount": 2,
@@ -12862,14 +12859,14 @@
   "opus48LaunchSeenCount": 5,
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 321,
-      "lastUsedAt": 1780760448347,
-      "lastUsedNumStartups": 3417
+      "usageCount": 376,
+      "lastUsedAt": 1780809594121,
+      "lastUsedNumStartups": 3426
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 105,
-      "lastUsedAt": 1780760368508,
-      "lastUsedNumStartups": 3417
+      "usageCount": 133,
+      "lastUsedAt": 1780809581738,
+      "lastUsedNumStartups": 3426
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -12877,19 +12874,22 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 113,
-      "lastUsedAt": 1780760368508,
-      "lastUsedNumStartups": 3417
+      "usageCount": 141,
+      "lastUsedAt": 1780809581738,
+      "lastUsedNumStartups": 3426
     },
     "claude-mem@jimweller": {
-      "usageCount": 942,
-      "lastUsedAt": 1780760483997,
-      "lastUsedNumStartups": 3417
+      "usageCount": 1138,
+      "lastUsedAt": 1780809760219,
+      "lastUsedNumStartups": 3426
     },
     "azure@azure-skills": {
       "usageCount": 10,
       "lastUsedAt": 1780725771645,
       "lastUsedNumStartups": 3417
     }
+  },
+  "tipLifetimeShownCounts": {
+    "auto-copy-config-hint": 1
   }
 }
