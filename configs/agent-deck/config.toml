@@ -124,6 +124,7 @@ mcp_default_scope = ""
 
 [shell]
   init_script = ""
+  launch_shell = true
 
 [maintenance]
   enabled = false
@@ -161,6 +162,10 @@ mcp_default_scope = ""
   cpu_limit = ""
   memory_limit = ""
   mount_ssh = false
+
+[fork]
+  inherit_from_parent = false
+  branch_prefix = ""
 
 [openclaw]
   gateway_url = ""
