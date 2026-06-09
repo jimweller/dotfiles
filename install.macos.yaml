@@ -36,6 +36,8 @@
     "~/Library/LaunchAgents/com.user.totalrecallbackfill.plist": scripts/total-recall-backfill.plist
     ~/.claude/ccusage-cache-refresh.sh: configs/claude-code/ccusage-cache-refresh.sh
     ~/.homebrew/trust.json: configs/brew/trust.json
+    ~/personal/.mise.toml: configs/mise/personal.toml
+    ~/work/.mise.toml: configs/mise/work.toml
 
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)

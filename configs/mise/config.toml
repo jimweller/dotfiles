@@ -1,5 +1,9 @@
 [settings]
 experimental = true
+trusted_config_paths = [
+  "~/personal",
+  "~/work",
+]
 
 [tools]
 "ubi:asheshgoplani/agent-deck" = "latest"

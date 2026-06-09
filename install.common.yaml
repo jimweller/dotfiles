@@ -23,6 +23,8 @@
     description: Install universal skills from clanker-skills via npx
   - command: npx skills add https://github.com/kepano/obsidian-skills -a claude-code -a codex -a opencode -g -y --copy
     description: Install kepano obsidian skills (markdown, bases, canvas, cli, defuddle)
+  - command: npx skills add https://github.com/alibaba/open-code-review -a claude-code -a codex -a opencode -g -y --copy -s open-code-review
+    description: Install alibaba open-code-review skill (ocr CLI integration)
 
 - link:
     ~/.aws/config: configs/aws/aws_config

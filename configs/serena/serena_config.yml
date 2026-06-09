@@ -220,6 +220,7 @@ projects:
 - /Users/jimweller/personal/az-foundry-claude
 - /Users/jimweller/personal/elephant-memories
 - /Users/jimweller/personal/jimwellercom
+- /Users/jimweller/scratch
 - /Users/jimweller/scratch/Mcg.Path.DemoSimulator
 - /Users/jimweller/scratch/OpenHarness
 - /Users/jimweller/scratch/Orca
@@ -227,6 +228,7 @@ projects:
 - /Users/jimweller/scratch/_crap/dell-otel
 - /Users/jimweller/scratch/_crap/skills
 - /Users/jimweller/scratch/agent-deck
+- /Users/jimweller/scratch/agent-deck/.worktrees/fork-agent-deck
 - /Users/jimweller/scratch/claude-code-leak
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/code-review-graph
@@ -236,7 +238,6 @@ projects:
 - /Users/jimweller/scratch/gascity
 - /Users/jimweller/scratch/google-researcher-mcp
 - /Users/jimweller/scratch/headroom
-- /Users/jimweller/scratch/hermes
 - /Users/jimweller/scratch/openchoreo
 - /Users/jimweller/scratch/opencode
 - /Users/jimweller/scratch/openfang
@@ -257,6 +258,7 @@ projects:
 - /Users/jimweller/work/mcg-status-update-plugin
 - /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
+- /Users/jimweller/work/ruflo
 - /Users/jimweller/work/setup-claude
 
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.

@@ -4,6 +4,7 @@
 default_tool = "claude"
 theme = "dark"
 mcp_default_scope = ""
+sync_title = false
 
 [tools]
 
@@ -178,6 +179,7 @@ mcp_default_scope = ""
   default_filter = ""
   active_filter_label = ""
   show_session_timestamps = false
+  show_pane_titles = true
 
 [costs]
   currency = ""

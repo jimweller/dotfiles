@@ -105,8 +105,8 @@ trust_level = "trusted"
 fast_default_opt_out = true
 
 [marketplaces.beads-marketplace]
-last_updated = "2026-06-03T03:56:35Z"
-last_revision = "fbcee6c6246c874ed98a129d9c1ac22127d8c585"
+last_updated = "2026-06-08T22:20:14Z"
+last_revision = "9a1c88b63aee89b091c9db7e5330a48cb4911987"
 source_type = "git"
 source = "https://github.com/gastownhall/beads.git"
 [hooks.state]
