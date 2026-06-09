@@ -13241,13 +13241,13 @@
   "opus48LaunchSeenCount": 5,
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 1371,
-      "lastUsedAt": 1781011586737,
+      "usageCount": 1387,
+      "lastUsedAt": 1781011833582,
       "lastUsedNumStartups": 3486
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 417,
-      "lastUsedAt": 1781011549010,
+      "usageCount": 419,
+      "lastUsedAt": 1781011680573,
       "lastUsedNumStartups": 3486
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -13256,13 +13256,13 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 464,
-      "lastUsedAt": 1781011549010,
+      "usageCount": 466,
+      "lastUsedAt": 1781011680573,
       "lastUsedNumStartups": 3486
     },
     "claude-mem@jimweller": {
-      "usageCount": 5625,
-      "lastUsedAt": 1781011597620,
+      "usageCount": 5679,
+      "lastUsedAt": 1781011833582,
       "lastUsedNumStartups": 3486
     },
     "azure@azure-skills": {
