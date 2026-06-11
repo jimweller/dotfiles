@@ -19,12 +19,8 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - command: npx skills add https://github.com/jimweller/clanker-skills/tree/main/skills/universal -a claude-code -a codex -a opencode -a hermes-agent -g -y --copy
-    description: Install universal skills from clanker-skills via npx
-  - command: npx skills add https://github.com/kepano/obsidian-skills -a claude-code -a codex -a opencode -a hermes-agent -g -y --copy
-    description: Install kepano obsidian skills (markdown, bases, canvas, cli, defuddle)
-  - command: npx skills add https://github.com/alibaba/open-code-review -a claude-code -a codex -a opencode -a hermes-agent -g -y --copy -s open-code-review
-    description: Install alibaba open-code-review skill (ocr CLI integration)
+  - command: bash scripts/ai-npx-skills.sh
+    description: Install AI agent skills from manifests/ai-skills.txt
 
 - link:
     ~/.aws/config: configs/aws/aws_config

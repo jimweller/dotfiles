@@ -1,0 +1,7 @@
+# AI agent skills installed via npx skills add
+# Format: <source-url> [extra-flags]
+# Common flags (agents, global, copy) are applied by scripts/ai-npx-skills.sh
+
+https://github.com/jimweller/clanker-skills/tree/main/skills/universal
+https://github.com/kepano/obsidian-skills
+https://github.com/alibaba/open-code-review -s open-code-review

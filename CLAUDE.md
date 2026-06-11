@@ -35,6 +35,27 @@ scripts/secrets.sh save      # Re-encrypt secrets
 scripts/sync.sh              # Backup to encrypted Google Drive image
 ```
 
+## Cross-Platform Parity
+
+The dotfiles target macOS and Linux equally. Prefer cross-platform installers in `install.common.yaml`:
+
+- mise (github/ubi backends)
+- npx
+- uv tool install / uvx
+- go install
+
+Platform-specific steps belong exclusively in `install.macos.yaml` or `install.linux.yaml`. Brew is macOS-only in this repo -- do not use it in `install.common.yaml`. When a tool is available via both brew and a cross-platform method, prefer the cross-platform method unless there is a concrete reason not to.
+
+## Tool Installation Preference
+
+Prefer this hierarchy when deciding how to install a tool. Do not add one-off install commands to dotbot for individual tools.
+
+1. Native package managers (brew on macOS, apt on Linux) -- declared in `manifests/brew-formula.txt` or `manifests/apt.txt`, processed by `scripts/pkg-brew.sh` / `scripts/pkg-apt.sh` outside dotbot
+2. mise -- declared in `configs/mise/config.toml`, installed via the single `mise install -y` dotbot step
+3. Manifest files in `manifests/` -- e.g. a `uv-tools.txt` for Python CLI tools processed by a single dotbot step
+
+The `npx skills add` steps in dotbot are an exception -- they are config/setup orchestration wiring skills to agent directories, not individual tool installs.
+
 ## Conventions
 
 - Dotbot YAML configs: `install.common.yaml`, `install.macos.yaml`, `install.linux.yaml`
