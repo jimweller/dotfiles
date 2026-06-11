@@ -38,8 +38,7 @@ env_vars = ["CONTEXT7_API_KEY"]
 [mcp_servers.c7.env]
 DEFAULT_MINIMUM_TOKENS = "10000"
 [mcp_servers.g]
-transport = "streamable_http"
-url = "http://localhost:9091/mcp/"
+command = "web-researcher-mcp"
 [mcp_servers.repomix]
 command = "npx"
 args = ["-y", "repomix", "--mcp"]

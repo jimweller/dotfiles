@@ -310,7 +310,7 @@ mcp_servers:
             - mcp-server
         command: codex
     g:
-        url: http://localhost:9091/mcp/
+        command: web-researcher-mcp
     ms365:
         args:
             - -y

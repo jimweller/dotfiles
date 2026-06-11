@@ -54,10 +54,10 @@
     "web-app": 1334,
     "mobile-app": 1335,
     "feedback-command": 1335,
-    "auto-copy-config-hint": 3493
+    "auto-copy-config-hint": 3505
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157785,
+  "promptQueueUseCount": 157786,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -12557,8 +12557,13 @@
       }
     },
     "g": {
-      "type": "http",
-      "url": "http://localhost:9091/mcp/"
+      "type": "stdio",
+      "command": "web-researcher-mcp",
+      "args": [],
+      "env": {
+        "GOOGLE_CUSTOM_SEARCH_API_KEY": "${GOOGLE_CUSTOM_SEARCH_API_KEY}",
+        "GOOGLE_CUSTOM_SEARCH_ID": "${GOOGLE_CUSTOM_SEARCH_ID}"
+      }
     },
     "codex": {
       "type": "stdio",
@@ -13255,13 +13260,13 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 1630,
-      "lastUsedAt": 1781137347581,
+      "usageCount": 1734,
+      "lastUsedAt": 1781203925385,
       "lastUsedNumStartups": 3505
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 501,
-      "lastUsedAt": 1781137293456,
+      "usageCount": 512,
+      "lastUsedAt": 1781203907559,
       "lastUsedNumStartups": 3505
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -13270,13 +13275,13 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 548,
-      "lastUsedAt": 1781137293456,
+      "usageCount": 561,
+      "lastUsedAt": 1781203907559,
       "lastUsedNumStartups": 3505
     },
     "claude-mem@jimweller": {
-      "usageCount": 6552,
-      "lastUsedAt": 1781137347581,
+      "usageCount": 6906,
+      "lastUsedAt": 1781203925385,
       "lastUsedNumStartups": 3505
     },
     "azure@azure-skills": {
@@ -13291,6 +13296,6 @@
     }
   },
   "tipLifetimeShownCounts": {
-    "auto-copy-config-hint": 5
+    "auto-copy-config-hint": 6
   }
 }

@@ -123,6 +123,6 @@
 
 - shell:
   - command: mise install -y
-    description: Install mise-managed tools from config.toml (agent-deck)
+    description: Install mise-managed tools from configs/mise/config.toml
 
 
