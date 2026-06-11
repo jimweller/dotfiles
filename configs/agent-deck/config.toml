@@ -2,6 +2,7 @@
 # Edit this file or use Settings (press S) in the TUI
 
 default_tool = "claude"
+default_path = ""
 theme = "dark"
 mcp_default_scope = ""
 sync_title = false
