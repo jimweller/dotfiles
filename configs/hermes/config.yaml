@@ -233,7 +233,11 @@ display:
     user_message_preview:
         first_lines: 2
         last_lines: 2
-fallback_providers: []
+fallback_providers:
+    - provider: openai-api
+      model: gpt-5.5-pro
+    - provider: gemini
+      model: gemini-2.5-pro
 file_read_max_chars: 100000
 gateway:
     media_delivery_allow_dirs: []
@@ -332,9 +336,56 @@ memory:
     user_char_limit: 1375
     user_profile_enabled: true
 model:
-    base_url: https://api.openai.com/v1
-    default: gpt-5.5-pro
-    provider: openai-api
+    api_mode: anthropic_messages
+    base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    default: claude-opus-4-8
+    provider: azure-foundry
+model_aliases:
+    opus:
+        model: claude-opus-4-8
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    sonnet:
+        model: claude-sonnet-4-6
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    haiku:
+        model: claude-haiku-4-5
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    claude-high:
+        model: claude-opus-4-8
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    claude-med:
+        model: claude-sonnet-4-6
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    claude-low:
+        model: claude-haiku-4-5
+        provider: azure-foundry
+        base_url: https://mcg-dxclinical-fais.services.ai.azure.com/anthropic
+    gpt-high:
+        model: gpt-5.5
+        provider: openai-api
+    gpt-med:
+        model: gpt-5.4
+        provider: openai-api
+    gpt-low:
+        model: gpt-5.4-mini
+        provider: openai-api
+    gemini-high:
+        model: models/gemini-3.1-pro-preview
+        provider: google-openai
+        base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    gemini-med:
+        model: models/gemini-2.5-pro
+        provider: google-openai
+        base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    gemini-low:
+        model: models/gemini-3.5-flash
+        provider: google-openai
+        base_url: https://generativelanguage.googleapis.com/v1beta/openai/
 model_catalog:
     enabled: true
     providers: {}
@@ -358,7 +409,12 @@ privacy:
     redact_pii: false
 prompt_caching:
     cache_ttl: 5m
-providers: {}
+providers:
+    google-openai:
+        base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+        key_env: GEMINI_API_KEY
+        api_mode: chat_completions
+        default_model: models/gemini-2.5-pro
 quick_commands: {}
 secrets:
     bitwarden:

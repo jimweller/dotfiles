@@ -25,7 +25,7 @@
     "commit": "",
     "pr": ""
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
