@@ -212,7 +212,7 @@ sync_title = false
 [web]
 
 [ui]
-  preview_pct = 0
+  preview_pct = 60
   iterm_open_as = ""
   remote_latency_refresh_secs = 0
   remote_session_refresh_secs = 0
