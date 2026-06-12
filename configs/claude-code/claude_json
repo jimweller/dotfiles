@@ -54,7 +54,7 @@
     "web-app": 1334,
     "mobile-app": 1335,
     "feedback-command": 1335,
-    "auto-copy-config-hint": 3505
+    "auto-copy-config-hint": 3519
   },
   "memoryUsageCount": 1,
   "promptQueueUseCount": 157805,
@@ -13369,13 +13369,13 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 2361,
-      "lastUsedAt": 1781302959624,
+      "usageCount": 2400,
+      "lastUsedAt": 1781303575896,
       "lastUsedNumStartups": 3519
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 659,
-      "lastUsedAt": 1781302916855,
+      "usageCount": 661,
+      "lastUsedAt": 1781303383687,
       "lastUsedNumStartups": 3519
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -13384,13 +13384,13 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 732,
-      "lastUsedAt": 1781302916855,
+      "usageCount": 735,
+      "lastUsedAt": 1781303591822,
       "lastUsedNumStartups": 3519
     },
     "claude-mem@jimweller": {
-      "usageCount": 9292,
-      "lastUsedAt": 1781302976839,
+      "usageCount": 9418,
+      "lastUsedAt": 1781303575896,
       "lastUsedNumStartups": 3519
     },
     "azure@azure-skills": {
@@ -13405,6 +13405,6 @@
     }
   },
   "tipLifetimeShownCounts": {
-    "auto-copy-config-hint": 6
+    "auto-copy-config-hint": 7
   }
 }
