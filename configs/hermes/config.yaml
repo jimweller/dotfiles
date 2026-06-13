@@ -15,10 +15,6 @@ fallback_providers:
 - provider: gemini
   model: gemini-2.5-pro
 credential_pool_strategies: {}
-toolsets:
-- hermes-cli
-- g
-- c7
 agent:
   max_turns: 90
   gateway_timeout: 1800
