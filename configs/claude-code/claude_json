@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3519
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157806,
+  "promptQueueUseCount": 157807,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -13122,8 +13122,8 @@
       "lastUsedAt": 1780983864967
     },
     "sage": {
-      "usageCount": 212,
-      "lastUsedAt": 1781294670657
+      "usageCount": 213,
+      "lastUsedAt": 1781337076843
     },
     "update-config": {
       "usageCount": 1,
@@ -13278,8 +13278,8 @@
       "lastUsedAt": 1777511365726
     },
     "fact-check": {
-      "usageCount": 16,
-      "lastUsedAt": 1781286462119
+      "usageCount": 18,
+      "lastUsedAt": 1781338227051
     },
     "using-superpowers": {
       "usageCount": 1,
@@ -13369,13 +13369,13 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 2501,
-      "lastUsedAt": 1781323064067,
+      "usageCount": 2536,
+      "lastUsedAt": 1781338806465,
       "lastUsedNumStartups": 3519
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 685,
-      "lastUsedAt": 1781322428645,
+      "usageCount": 698,
+      "lastUsedAt": 1781338702562,
       "lastUsedNumStartups": 3519
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -13384,13 +13384,13 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 760,
-      "lastUsedAt": 1781322428646,
+      "usageCount": 775,
+      "lastUsedAt": 1781338766984,
       "lastUsedNumStartups": 3519
     },
     "claude-mem@jimweller": {
-      "usageCount": 9750,
-      "lastUsedAt": 1781323064067,
+      "usageCount": 9873,
+      "lastUsedAt": 1781338806465,
       "lastUsedNumStartups": 3519
     },
     "azure@azure-skills": {

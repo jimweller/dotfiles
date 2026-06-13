@@ -78,6 +78,7 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
+- /Users/jimweller/.local/share/mise/installs/pipx-hermes-agent/0.16.0/hermes-agent/lib/python3.14/site-packages
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-bet
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-c24
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-sll
@@ -228,7 +229,6 @@ projects:
 - /Users/jimweller/scratch/_crap/dell-otel
 - /Users/jimweller/scratch/_crap/skills
 - /Users/jimweller/scratch/agent-deck
-- /Users/jimweller/scratch/agent-deck/.worktrees/fork-agent-deck
 - /Users/jimweller/scratch/claude-code-leak
 - /Users/jimweller/scratch/claude-mem
 - /Users/jimweller/scratch/code-review-graph
