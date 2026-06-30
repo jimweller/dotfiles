@@ -8,7 +8,6 @@
     "messense/macos-cross-toolchains",
     "minamijoyo/hcledit",
     "saml-to/tap",
-    "sst/tap",
     "upbound/tap"
   ]
 }

@@ -1,6 +1,6 @@
 model = "gpt-5.5"
 model_provider = "openai-env"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 file_opener = "vscode"
@@ -100,12 +100,15 @@ trust_level = "trusted"
 trust_level = "trusted"
 [projects."/Users/jimweller/work/platform-poc/platform-poc-main"]
 trust_level = "trusted"
+
+[projects."/Users/jimweller/obsidian"]
+trust_level = "trusted"
 [notice]
 fast_default_opt_out = true
 
 [marketplaces.beads-marketplace]
-last_updated = "2026-06-08T22:20:14Z"
-last_revision = "9a1c88b63aee89b091c9db7e5330a48cb4911987"
+last_updated = "2026-06-29T14:46:38Z"
+last_revision = "fa4dce4548d8d15d5478b9ad7e4f6ee7cbfabaa1"
 source_type = "git"
 source = "https://github.com/gastownhall/beads.git"
 [hooks.state]
