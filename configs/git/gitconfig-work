@@ -63,3 +63,7 @@
 	insteadOf = mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/devx-internal/
 	insteadOf = ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/devx-internal/
 	insteadOf = git@ssh.dev.azure.com:v3/mcgsead/devx-internal/
+[url "https://dev.azure.com/mcgsead/Platform/_git/"]
+	insteadOf = mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/Platform/
+	insteadOf = ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Platform/
+	insteadOf = git@ssh.dev.azure.com:v3/mcgsead/Platform/
