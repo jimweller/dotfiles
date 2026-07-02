@@ -1,5 +1,5 @@
 {
-  "numStartups": 3563,
+  "numStartups": 3565,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3563
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 157809,
+  "promptQueueUseCount": 157810,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -4100,8 +4100,8 @@
         "issues.jsonl",
         "Makefile",
         "server_multitenant.go",
-        "index.html",
-        "install.sh"
+        "Dockerfile",
+        "index.html"
       ],
       "reactVulnerabilityCache": {
         "detected": false,
@@ -4110,7 +4110,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1781012210350,
+      "exampleFilesGeneratedAt": 1783009987834,
       "hasCompletedProjectOnboarding": true,
       "lastCost": 64.35272464999996,
       "lastAPIDuration": 5671323,
@@ -4168,11 +4168,11 @@
         "pre_tool_hook_duration_ms_p95": 107.2,
         "pre_tool_hook_duration_ms_p99": 107.84
       },
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastHintSessionId": "968a85a2-b2d8-45fa-ab6a-eaeb39db697f",
       "lastSessionFirstPrompt": "how can I manually verify the machine identity?",
       "lastSessionModified": 1779073654415,
-      "lastVersionBase": "2.1.175"
+      "lastVersionBase": "2.1.198"
     },
     "/Users/jimweller/work/data-spelunking": {
       "allowedTools": [],
@@ -13511,14 +13511,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 2890,
-      "lastUsedAt": 1783007690922,
-      "lastUsedNumStartups": 3563
+      "usageCount": 2907,
+      "lastUsedAt": 1783010492794,
+      "lastUsedNumStartups": 3565
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 849,
-      "lastUsedAt": 1783007680044,
-      "lastUsedNumStartups": 3563
+      "usageCount": 855,
+      "lastUsedAt": 1783010422724,
+      "lastUsedNumStartups": 3565
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -13526,14 +13526,14 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 934,
-      "lastUsedAt": 1783007680044,
-      "lastUsedNumStartups": 3563
+      "usageCount": 940,
+      "lastUsedAt": 1783010422724,
+      "lastUsedNumStartups": 3565
     },
     "claude-mem@jimweller": {
-      "usageCount": 11599,
-      "lastUsedAt": 1783009355188,
-      "lastUsedNumStartups": 3563
+      "usageCount": 11668,
+      "lastUsedAt": 1783010492794,
+      "lastUsedNumStartups": 3565
     },
     "azure@azure-skills": {
       "usageCount": 10,
