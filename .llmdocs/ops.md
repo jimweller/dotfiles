@@ -33,7 +33,7 @@ DOTFILES_KEY=<password> scripts/secrets.sh list
 | `com.user.awsrefreshtoken`     | `aws-refresh-token.sh`     | 00:00, 09:00, 18:00 + login | `~/.logs/`            |
 | `com.user.sync`                | `sync.sh`                  | Daily 02:00 + login         | `~/.logs/sync*.log`   |
 | `com.user.steampipe`           | `steampipe service start`  | Login only                  | `~/assets/steampipe/` |
-| `com.user.ccusagecacherefresh` | `ccusage-cache-refresh.sh` | Every 300s + login          | `~/.logs/`            |
+| `com.user.ccusagecacherefresh` | `ccusage-cache-refresh.sh` | 00:00, 08:00, 16:00 + login | `~/.logs/`            |
 | `com.user.totalrecallbackfill` | `total-recall-backfill.sh` | Every 15 min                | `~/.logs/`            |
 
 ### Reload a LaunchAgent

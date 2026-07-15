@@ -78,7 +78,6 @@ token_count_estimator: TIKTOKEN_GPT4O
 # the list of registered project paths (updated automatically).
 projects:
 - /Users/jimweller/.config/dotfiles
-- /Users/jimweller/.local/share/mise/installs/pipx-hermes-agent/0.16.0/hermes-agent/lib/python3.14/site-packages
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-bet
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-c24
 - /Users/jimweller/.worktrees/quiver-main/bead/qs-sll
@@ -225,9 +224,6 @@ projects:
 - /Users/jimweller/scratch/Mcg.Path.DemoSimulator
 - /Users/jimweller/scratch/OpenHarness
 - /Users/jimweller/scratch/Orca
-- /Users/jimweller/scratch/_crap/asf
-- /Users/jimweller/scratch/_crap/dell-otel
-- /Users/jimweller/scratch/_crap/skills
 - /Users/jimweller/scratch/agent-deck
 - /Users/jimweller/scratch/claude-code-leak
 - /Users/jimweller/scratch/claude-mem
@@ -249,6 +245,7 @@ projects:
 - /Users/jimweller/scratch/workers
 - /Users/jimweller/work/2026-confluence-migration-utils
 - /Users/jimweller/work/2026-devx-survey-results
+- /Users/jimweller/work/cd-team-knowledge-base
 - /Users/jimweller/work/data-spelunking
 - /Users/jimweller/work/employee-termination-skill
 - /Users/jimweller/work/k8s-custom-model

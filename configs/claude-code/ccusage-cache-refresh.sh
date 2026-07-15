@@ -17,7 +17,7 @@ log() {
 
 log INFO "refresh started (ccusage $(npx ccusage --version 2>/dev/null || echo unknown))"
 
-if npx ccusage daily -i --json > "${CCUSAGE_CACHE}.tmp" 2> "${CCUSAGE_CACHE}.err"; then
+if npx ccusage claude daily --instances --json > "${CCUSAGE_CACHE}.tmp" 2> "${CCUSAGE_CACHE}.err"; then
   mv "${CCUSAGE_CACHE}.tmp" "$CCUSAGE_CACHE"
   log INFO "ccusage cache updated ($(wc -c < "$CCUSAGE_CACHE" | tr -d ' ') bytes)"
 else
@@ -35,7 +35,7 @@ DATE_TODAY=$(date +%Y-%m-%d)
 
 azure_query() {
   local label="$1" body="$2" raw cost
-  if ! raw=$(az rest --method post --url "$API_URL" --headers "ClientType=ccusage-statusline" --body "$body" 2>&1); then
+  if ! raw=$(timeout 30 az rest --method post --url "$API_URL" --headers "ClientType=ccusage-statusline" --body "$body" 2>&1); then
     log ERROR "azure $label query failed: $(printf '%s' "$raw" | head -1)"
     return 1
   fi
