@@ -10,7 +10,7 @@ Maintenance, scheduled tasks, and operational runbooks.
 DOTFILES_KEY=<password> scripts/secrets.sh open
 ```
 
-Extracts SSH keys, GPG keys, and env files from `manifests/zcnqj7nbbgg4szrm.gpg` to their home directory locations.
+Extracts SSH keys, GPG keys, and the age key (`~/.config/sops/age/keys.txt`) from `manifests/zcnqj7nbbgg4szrm.gpg`. `DOTFILES_KEY` equals the age key string.
 
 ### Save updated secrets
 
@@ -18,13 +18,21 @@ Extracts SSH keys, GPG keys, and env files from `manifests/zcnqj7nbbgg4szrm.gpg`
 DOTFILES_KEY=<password> scripts/secrets.sh save
 ```
 
-Re-encrypts current secrets back to the GPG archive. Run after adding new SSH keys or updating credential env files.
+Re-encrypts SSH/GPG keys and the age key back to the GPG archive. Run after rotating SSH or GPG keys. Env secrets are not in this archive; edit them with `sops` (see below).
 
 ### List archived secrets
 
 ```bash
 DOTFILES_KEY=<password> scripts/secrets.sh list
 ```
+
+### Edit an env secret (SOPS)
+
+```bash
+sops configs/secrets/<name>.enc.env
+```
+
+Env secrets are SOPS+age encrypted under `configs/secrets/` and committed. Decryption uses `~/.config/sops/age/keys.txt` (via `SOPS_AGE_KEY_FILE`). Shells decrypt every `*.enc.env` at startup (`00-secrets.zsh`); `secret <name>` reloads one. Add a secret by creating `configs/secrets/<name>.enc.env`; the `.sops.yaml` creation rule applies the age recipient. The age key is a global identity shared with other repos, so it is never rotated casually.
 
 ## Scheduled Tasks (macOS LaunchAgents)
 
@@ -54,7 +62,7 @@ done
 
 ## Backup (sync.sh)
 
-Requires `DOTFILES_KEY` env var (loaded from `~/.secrets/dotfiles.env`).
+Requires `DOTFILES_KEY` (decrypted from `configs/secrets/dotfiles.enc.env`, or preset in the environment). The backup DMG is encrypted with this key; changing the key requires recreating the DMG.
 
 Process:
 

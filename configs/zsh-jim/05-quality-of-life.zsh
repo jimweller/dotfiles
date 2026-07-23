@@ -35,18 +35,21 @@ myip() {
   dig +short myip.opendns.com @resolver1.opendns.com
 }
 
-loadenv() { 
-  set -a 
+loadenv() {
+  set -a
   if [[ -f "$1" ]]; then
-    source "$1"
+    case "$1" in
+      *.enc.env) source <(sops -d --input-type dotenv --output-type dotenv "$1") ;;
+      *) source "$1" ;;
+    esac
   else
-    echo "❌"
+    print -u2 "loadenv: file not found: $1"
   fi
-  set +a; 
+  set +a
 }
 
-secret() { 
-  loadenv "$HOME/.secrets/$1.env" 
+secret() {
+  loadenv "$HOME/.config/dotfiles/configs/secrets/$1.enc.env"
 }
 
 if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then

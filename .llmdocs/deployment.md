@@ -34,7 +34,7 @@ Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 
 ### install.common.yaml
 
-1. Creates directories: `~/bin`, `~/.secrets`, `~/.logs`, `~/tmp`, `~/.ssh`, `~/assets/{postgres,qdrant,steampipe}`
+1. Creates directories: `~/bin`, `~/.secrets`, `~/.config/sops/age`, `~/.logs`, `~/tmp`, `~/.ssh`, `~/assets/{postgres,qdrant,steampipe}`
 2. Updates git submodules
 3. Symlinks all cross-platform dotfiles (shell, git, SSH, tmux, cloud CLIs, AI tools, containers, linting)
 

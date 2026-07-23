@@ -60,7 +60,7 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.clau
 
 | Module                   | Scope                                                            |
 | ------------------------ | ---------------------------------------------------------------- |
-| `00-secrets.zsh`         | Auto-load all secrets from ~/.secrets/*.env                      |
+| `00-secrets.zsh`         | Decrypt SOPS secrets (configs/secrets/*.enc.env) into the shell; set SOPS_AGE_KEY_FILE                      |
 | `02-locale.zsh`          | Set LANG and LC_ALL to en_US.UTF-8 (Unicode rendering in tmux)  |
 | `03-path.zsh`            | PATH construction from scratch                                   |
 | `04-completions.zsh`     | Runtime completions for tools without fpath files (fzf, rustup, opencode) |

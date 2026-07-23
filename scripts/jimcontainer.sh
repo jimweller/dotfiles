@@ -24,8 +24,9 @@ DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
 
 # Secrets configuration
 SECRETS_AUTO_SETUP="${DEVC_SECRETS_AUTO:-true}"
-HOST_SECRETS_DIR="${DEVC_SECRETS_DIR:-${HOME}/.secrets}"
-SECRETS_ENV_FILE="${DEVC_SECRETS_ENV:-dotfiles.env}"
+SECRETS_ENC_FILE="${DEVC_SECRETS_ENC:-${HOME}/.config/dotfiles/configs/secrets/dotfiles.enc.env}"
+: "${SOPS_AGE_KEY_FILE:=${HOME}/.config/sops/age/keys.txt}"
+export SOPS_AGE_KEY_FILE
 
 # Timeout configuration
 DOTFILES_TIMEOUT="${DEVC_DOTFILES_TIMEOUT:-60}"
@@ -81,12 +82,12 @@ setup_dotfiles_in_container() {
         debug "Secrets auto-setup enabled"
         
         # Check if secrets env file exists
-        if [[ -f "$HOST_SECRETS_DIR/$SECRETS_ENV_FILE" ]]; then
-            debug "Loading environment from $SECRETS_ENV_FILE..."
+        if [[ -f "$SECRETS_ENC_FILE" ]]; then
+            debug "Decrypting environment from $SECRETS_ENC_FILE..."
             
             # Load environment variables (equivalent to secret dotfiles / loadenv)
             set -a  # automatically export all variables
-            if source "$HOST_SECRETS_DIR/$SECRETS_ENV_FILE" 2>/dev/null; then
+            if source <(sops -d --input-type dotenv --output-type dotenv "$SECRETS_ENC_FILE"); then
                 set +a  # turn off automatic export
                 
                 debug "Environment loaded - DOTFILES_KEY length: ${#DOTFILES_KEY}, DOTFILES_ARCHIVE: $DOTFILES_ARCHIVE"
@@ -110,10 +111,10 @@ setup_dotfiles_in_container() {
                 fi
             else
                 set +a  # make sure to turn off automatic export even on failure
-                debug "Failed to load environment from $SECRETS_ENV_FILE"
+                debug "Failed to decrypt environment from $SECRETS_ENC_FILE"
             fi
         else
-            debug "No $SECRETS_ENV_FILE found, skipping secrets"
+            debug "No $SECRETS_ENC_FILE found, skipping secrets"
         fi
     fi
     

@@ -1,11 +1,14 @@
 #!/bin/zsh
 set -euo pipefail
 
-# Load encryption password
+# Load encryption password (SOPS-encrypted)
 if [[ -z "${DOTFILES_KEY:-}" ]]; then
-  if [[ -f "$HOME/.secrets/dotfiles.env" ]]; then
+  : "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
+  export SOPS_AGE_KEY_FILE
+  ENC="$HOME/.config/dotfiles/configs/secrets/dotfiles.enc.env"
+  if [[ -f "$ENC" ]]; then
     set -a
-    source "$HOME/.secrets/dotfiles.env"
+    source <(sops -d --input-type dotenv --output-type dotenv "$ENC")
     set +a
   fi
 fi

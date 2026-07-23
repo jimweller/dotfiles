@@ -13,6 +13,7 @@
   - ~/work
   - ~/personal
   - ~/.ssh
+  - ~/.config/sops/age
   - ~/assets/postgres
   - ~/assets/qdrant
   - ~/assets/steampipe

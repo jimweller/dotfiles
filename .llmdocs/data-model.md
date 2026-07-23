@@ -63,21 +63,21 @@ Profile switching via `GIT_CONFIG_GLOBAL` env var set by `switch_git_profile()`.
 | `manifests/brew-casks.txt`       | One cask per line             | Homebrew casks (36 apps)           |
 | `manifests/brew-taps.txt`        | One tap per line              | Homebrew taps (19 taps)            |
 | `manifests/apt.txt`              | One package per line          | Linux apt packages (6 packages)    |
-| `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | Encrypted secrets tar archive      |
+| `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | SSH/GPG keys + age key tar archive |
 
 ## Secrets Model
 
-`scripts/secrets.sh` manages a GPG-encrypted tar of sensitive files:
+Two layers:
 
-Archived paths:
+- **Env secrets (SOPS+age)**: `configs/secrets/*.enc.env` (+ `confluence-export.enc.yaml`), committed. Recipient in `.sops.yaml`. Decrypted at runtime with `~/.config/sops/age/keys.txt` (`SOPS_AGE_KEY_FILE`).
+- **Key material (GPG archive)**: `scripts/secrets.sh` manages a GPG-encrypted tar of:
+  - `~/.ssh/id*` (SSH key pairs)
+  - `~/.ssh/allowed_signers`
+  - `~/.config/sops/age/keys.txt` (the age private key)
+  - `~/.gnupg/private-keys-v1.d/*`
+  - `~/.gnupg/openpgp-revocs.d/*`
 
-- `~/.ssh/id*` (SSH key pairs)
-- `~/.ssh/allowed_signers`
-- `~/.secrets/*` (env files with tokens/credentials)
-- `~/.gnupg/private-keys-v1.d/*`
-- `~/.gnupg/openpgp-revocs.d/*`
-
-Password source: `DOTFILES_KEY` env var or CLI argument.
+Password source: `DOTFILES_KEY` env var or CLI argument, unified to equal the age key. One string restores the archive (including `keys.txt`), which then decrypts the SOPS secrets.
 
 ## Antidote Plugin Format
 

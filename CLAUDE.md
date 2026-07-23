@@ -7,7 +7,7 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - zsh + antidote (plugin manager) + Powerlevel10k (prompt)
 - dotbot (symlink orchestration)
 - Homebrew (macOS), apt (Linux)
-- GPG symmetric encryption (secrets)
+- SOPS + age (env secrets, committed encrypted); GPG symmetric archive (SSH/GPG keys + age key)
 - launchd (macOS scheduled tasks)
 
 ## Architecture
@@ -24,14 +24,16 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `configs/` -- source configs symlinked to home
 - `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh
-- `manifests/` -- package lists (brew, apt) and encrypted secrets archive
+- `manifests/` -- package lists (brew, apt) and the GPG archive (SSH/GPG keys + age key)
+- `configs/secrets/` -- SOPS+age encrypted env secrets (`*.enc.env`), safe to commit
 
 ## Commands
 
 ```bash
 ./install                    # Run dotbot installer (idempotent)
-scripts/secrets.sh open      # Decrypt secrets archive (needs DOTFILES_KEY)
-scripts/secrets.sh save      # Re-encrypt secrets
+scripts/secrets.sh open      # Restore SSH/GPG keys + age key (needs DOTFILES_KEY = age key)
+scripts/secrets.sh save      # Re-encrypt SSH/GPG keys + age key
+sops configs/secrets/NAME.enc.env   # Edit a SOPS-encrypted env secret
 scripts/sync.sh              # Backup to encrypted Google Drive image
 ```
 
@@ -63,7 +65,7 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 04-completions, 05-qol, ..., 95-linux)
 - Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim` and `gitconfig-work`
 - Profile switching via `GIT_CONFIG_GLOBAL` env var
-- Secrets never committed in plaintext; only GPG-encrypted archive in `manifests/`
+- Env secrets are SOPS-encrypted (age) in `configs/secrets/*.enc.env` and committed. The age key (`~/.config/sops/age/keys.txt`) and any plaintext are never committed. The GPG archive holds SSH/GPG keys plus the age key
 - `configs/claude-code/` is user-level Claude Code config, not repo metadata
 - `configs/claude-code/claude_settings_json_azure` is the active settings file (symlinked to `~/.claude/settings.json`). Make changes there first, then copy into `configs/claude-code/claude_settings_json_aws` and `configs/claude-code/claude_settings_json_jim`. Three differences exist between azure and aws that must be preserved when syncing: (1) azure uses `CLAUDE_CODE_USE_FOUNDRY=1`, aws uses `CLAUDE_CODE_USE_BEDROCK=1`; (2) model names use different ID formats -- azure/jim use Foundry-style IDs (e.g. `claude-opus-4-6[1m]`), aws uses Bedrock-style IDs (e.g. `global.anthropic.claude-opus-4-6-v1[1m]`); (3) azure has `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` which aws/jim may not. The jim file has no Foundry/Bedrock vars and uses Foundry-style model IDs. When the user updates model names in one file, translate to the correct ID format for the other files rather than copying verbatim.
 - When committing, always stage all changed and untracked files with `git add -A`. This is a personal, high-velocity repo where all files are intentional.
@@ -76,7 +78,8 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - **zsh-jim**: antidote plugin loaded from local path `$HOME/.config/dotfiles/configs/zsh-jim/`
 - **git profile switching**: `work`/`personal` aliases set `GIT_CONFIG_GLOBAL` and load profile secrets
 - **LaunchAgents**: macOS scheduled tasks for AWS token refresh, backup, steampipe, ccusage, total-recall
-- **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and env files
+- **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and the age key (`keys.txt`); passphrase is `DOTFILES_KEY`, unified to equal the age key
+- **SOPS secrets**: env secrets live in `configs/secrets/*.enc.env` (age recipient in `.sops.yaml`), decrypted at shell start by `00-secrets.zsh` via `SOPS_AGE_KEY_FILE`. mise loads git profiles through `configs/mise/load-git-secret.sh`. One string (the age key) bootstraps everything
 
 ## Docs
 

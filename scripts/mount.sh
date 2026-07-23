@@ -10,16 +10,17 @@ if [ ! -f "$DMG_FILE" ]; then
   exit 1
 fi
 
-# Check if environment file exists before sourcing
-ENV_FILE="$HOME/.secrets/dotfiles.env"
+# Decrypt the SOPS-encrypted dotfiles env for the password
+: "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
+export SOPS_AGE_KEY_FILE
+ENV_FILE="$HOME/.config/dotfiles/configs/secrets/dotfiles.enc.env"
 if [ ! -f "$ENV_FILE" ]; then
-  echo "Error: Environment file does not exist: $ENV_FILE" >&2
+  echo "Error: Encrypted env file does not exist: $ENV_FILE" >&2
   exit 1
 fi
 
-# Source environment file for password
 set -a
-source "$ENV_FILE"
+source <(sops -d --input-type dotenv --output-type dotenv "$ENV_FILE")
 set +a
 
 # Get password from environment with fail-fast

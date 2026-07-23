@@ -6,9 +6,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
-# Default configuration
-CONFIG_FILE="${CONFLUENCE_CONFIG:-$HOME/.secrets/confluence-export.yaml}"
-ENV_FILE="${CONFLUENCE_ENV:-$HOME/.secrets/atlassian.env}"
+# Default configuration (SOPS-encrypted sources, decrypted to temp files below)
+CONFIG_ENC="${CONFLUENCE_CONFIG:-$HOME/.config/dotfiles/configs/secrets/confluence-export.enc.yaml}"
+ENV_ENC="${CONFLUENCE_ENV:-$HOME/.config/dotfiles/configs/secrets/atlassian.enc.env}"
 OUTPUT_DIR="${1:-./confluence-backups}"
 ORIGINAL_DIR="$OUTPUT_DIR/_original"
 
@@ -34,8 +34,8 @@ Output Structure:
             └── attachments/           Separate attachment files
 
 Environment Variables:
-  CONFLUENCE_CONFIG   Path to YAML config (default: ~/.secrets/confluence-export.yaml)
-  CONFLUENCE_ENV      Path to credentials (default: ~/.secrets/atlassian.env)
+  CONFLUENCE_CONFIG   Path to encrypted YAML config (default: configs/secrets/confluence-export.enc.yaml)
+  CONFLUENCE_ENV      Path to encrypted credentials (default: configs/secrets/atlassian.enc.env)
 
 Examples:
   $0                                    # Export to ./confluence-backups
@@ -51,16 +51,24 @@ if [[ "${1:-}" == "-h" ]] || [[ "${1:-}" == "--help" ]]; then
     exit 0
 fi
 
-# Verify configuration files
-if [[ ! -f "$CONFIG_FILE" ]]; then
-    echo "Error: Config file not found: $CONFIG_FILE"
+# Verify encrypted sources exist, then decrypt to temp files
+if [[ ! -f "$CONFIG_ENC" ]]; then
+    echo "Error: Config file not found: $CONFIG_ENC"
     exit 1
 fi
 
-if [[ ! -f "$ENV_FILE" ]]; then
-    echo "Error: Environment file not found: $ENV_FILE"
+if [[ ! -f "$ENV_ENC" ]]; then
+    echo "Error: Environment file not found: $ENV_ENC"
     exit 1
 fi
+
+: "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
+export SOPS_AGE_KEY_FILE
+CONFIG_FILE="$(mktemp)"
+ENV_FILE="$(mktemp)"
+trap 'rm -f "$CONFIG_FILE" "$ENV_FILE"' EXIT
+sops -d --input-type yaml --output-type yaml "$CONFIG_ENC" > "$CONFIG_FILE"
+sops -d --input-type dotenv --output-type dotenv "$ENV_ENC" > "$ENV_FILE"
 
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
@@ -68,7 +76,7 @@ mkdir -p "$OUTPUT_DIR"
 echo "============================================"
 echo "Confluence Backup"
 echo "============================================"
-echo "Config:  $CONFIG_FILE"
+echo "Config:  $CONFIG_ENC"
 echo "Output:  $OUTPUT_DIR"
 echo ""
 

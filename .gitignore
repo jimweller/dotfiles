@@ -260,3 +260,12 @@ pyrightconfig.json
 # Skill scratch space for handoffs, reviews, plans, etc.
 .llmtmp/
 
+### SOPS / age secrets ###
+# Encrypted secrets ARE committed. Plaintext secrets and the age key are never committed.
+configs/secrets/*.env
+!configs/secrets/*.enc.env
+configs/secrets/*.yaml
+!configs/secrets/*.enc.yaml
+*.age
+**/keys.txt
+
