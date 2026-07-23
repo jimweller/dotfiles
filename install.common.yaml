@@ -46,6 +46,9 @@
     # ~/.roo/:
     #   glob: true
     #   path: configs/roocode/rules/**
+    ~/.secrets/:
+      glob: true
+      path: configs/secrets/*
     ~/.ssh/config: configs/ssh/ssh_config
     ~/.tmux.conf: configs/tmux/tmux.conf
     ~/.config/ghostty/config: configs/ghostty/ghostty_config
