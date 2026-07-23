@@ -13778,8 +13778,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 5118,
-      "lastUsedAt": 1784840230960,
+      "usageCount": 5119,
+      "lastUsedAt": 1784840250527,
       "lastUsedNumStartups": 3663
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -13798,8 +13798,8 @@
       "lastUsedNumStartups": 3663
     },
     "claude-mem@jimweller": {
-      "usageCount": 22259,
-      "lastUsedAt": 1784840250510,
+      "usageCount": 22261,
+      "lastUsedAt": 1784840250527,
       "lastUsedNumStartups": 3663
     },
     "azure@azure-skills": {
