@@ -54,6 +54,7 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 | `loadenv()`                   | `05-quality-of-life.zsh` | Source env file with `set -a`                   |
 | `otp()`                       | `05-quality-of-life.zsh` | Generate TOTP from seed                         |
 | `claump()`                    | `70-ai.zsh`              | Update all user-scoped Claude plugins           |
+| `upgrade()`                   | `90-macos.zsh`           | Upgrade whole macOS loadout: brew, mise, uv, npm globals, rustup, claude + claump plugins, codex, AI skills (npx) |
 
 ## Antidote Plugin Manifest
 

@@ -51,9 +51,11 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - filler transitions such as "Moreover" and "Furthermore"
 - vague claims without evidence
 - biography or credibility claims not backed by provided context
-- leading prepositional or adverbial phrases ("To avoid X, ...", "When a thing Y, ...") -- put the subject first. If/then conditionals are exempt.
+- leading subordinate constructions before the main subject -- prepositional or adverbial phrases ("To avoid X, ...", "When a thing Y, ...", "Because X, ..."), or a clausal subject that buries the predicate ("Whether X or Y turns on Z ...", "What determines Y is ...", "The question of whether ..."). Put the subject first. If/then conditionals are exempt.
+- parallel triads and isocolon comma-lists -- three or more clauses or phrases stacked into one sentence with matching structure ("A lands in X, B travels with Y, and C is readable by Z"), often set up by a balanced "X, but Y" contrast. Rhythm standing in for content is a dead AI tell. Split into separate sentences or a real list, and cut items that repeat rather than add.
 - prose about how the document itself came to be ("working name for what earlier drafts called X", "formerly known as", "renamed from", "originally called", "previous version", "in earlier versions of this page"). State the current term or fact directly, with no reference to prior document versions or naming iterations. This is about document history, not verb tense. Future tense for planned behaviors is fine.
 - label-colon prefixes in prose. Delete self-narrating labels that front a sentence with a colon and state the fact directly instead ("Honest status:", "Net effect:", "Status:", "Bottom line:", "To be clear:", "The accurate statement:"). Colons that introduce a list, a table cell, or a code block are fine.
+- semicolons splicing two independent clauses into one sentence. Use two simple sentences instead ("A is X; it does Y" becomes "A is X. It does Y."). Semicolons in a list separator role are fine.
 - qualitative self-narration and intensifiers that carry no information ("genuinely", "actually", "honestly", "truly", "really", "clearly", "obviously", "importantly", "notably"). State the fact without the adverb. This bans the framing of a correction, not the correction itself.
 
 ## General Preferences

@@ -124,7 +124,8 @@ zs   # alias: runs ./install, antidote update, source ~/.zshrc
 ### macOS
 
 ```bash
-brewup   # full cycle: update, upgrade, cleanup, doctor
+upgrade  # whole loadout: brew (update/upgrade/cask/cleanup/doctor), mise, uv, npm globals, rustup, claude update, claude plugins (claump), codex update, AI skills (npx); continues on error, reports a summary, returns non-zero if any step failed
+brewup   # brew-only cycle: update, upgrade, cleanup, doctor
 ```
 
 ### mise tools
