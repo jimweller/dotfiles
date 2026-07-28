@@ -28,7 +28,7 @@ fi
 rm -f "${CCUSAGE_CACHE}.err"
 
 SUB="3e4bd6d0-9adb-4fa7-bb8f-0ebd20c99aa9"
-RG="mcg-devx-clinical-ai-foundry"
+RG="dxclinical-187aa68e-rg"
 API_URL="https://management.azure.com/subscriptions/${SUB}/providers/Microsoft.CostManagement/query?api-version=2023-11-01"
 DATE_30D=$(date -v-30d +%Y-%m-%d)
 DATE_TODAY=$(date +%Y-%m-%d)
