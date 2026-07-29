@@ -79,6 +79,7 @@
     ~/.config/litellm/config.yaml: configs/litellm/config.yaml
     ~/.hermes/config.yaml: configs/hermes/config.yaml
     ~/.config/agent-deck/config.toml: configs/agent-deck/config.toml
+    ~/.config/herdr/config.toml: configs/herdr/config.toml
     ~/.config/mise/config.toml: configs/mise/config.toml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
@@ -108,6 +109,12 @@
       glob: true
       path: configs/claude-code/agents/*
     ~/.claude/tools/humble-master: submodules/humble-master
+    ~/.agents/skills/:
+      glob: true
+      path: configs/skills/*
+    ~/.hermes/skills/:
+      glob: true
+      path: configs/skills/*
     ~/Library/Application Support/Claude-3p/claude_desktop_config.json: configs/claude-code/claude_desktop_config.json
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
     ~/.prettierrc: configs/prettier/prettierrc
@@ -120,6 +127,16 @@
 - link:
     ~/.p10k.zsh: configs/p10k/p10k.zsh
     ~/.zshrc: configs/zsh/zshrc
+
+# Agent-neutral skills, fanned out to every harness. Kept separate from the
+# per-agent skills blocks above because those already claim these same keys.
+- link:
+    ~/.claude/skills/:
+      glob: true
+      path: configs/skills/*
+    ~/.codex/skills/:
+      glob: true
+      path: configs/skills/*
 
 - shell:
   - command: mise install -y
