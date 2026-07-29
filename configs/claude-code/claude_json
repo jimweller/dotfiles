@@ -1,5 +1,5 @@
 {
-  "numStartups": 3703,
+  "numStartups": 3704,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3703
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 158019,
+  "promptQueueUseCount": 158020,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -363,16 +363,16 @@
       ],
       "exampleFilesGeneratedAt": 1784820219005,
       "disabledMcpServers": [],
-      "lastCost": 1.2422304999999996,
-      "lastAPIDuration": 368241,
-      "lastToolDuration": 1841,
-      "lastDuration": 504392,
-      "lastLinesAdded": 0,
-      "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 549,
-      "lastTotalOutputTokens": 7243,
-      "lastTotalCacheCreationInputTokens": 67373,
-      "lastTotalCacheReadInputTokens": 774017,
+      "lastCost": 11.167381499999996,
+      "lastAPIDuration": 1302017,
+      "lastToolDuration": 29762,
+      "lastDuration": 6288120,
+      "lastLinesAdded": 4,
+      "lastLinesRemoved": 2,
+      "lastTotalInputTokens": 692,
+      "lastTotalOutputTokens": 71517,
+      "lastTotalCacheCreationInputTokens": 277118,
+      "lastTotalCacheReadInputTokens": 13214289,
       "lastSessionId": "f800932b-0952-4073-ad33-cd8777815f4b",
       "reactVulnerabilityCache": {
         "detected": false,
@@ -381,7 +381,7 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 99590,
+      "lastAPIDurationWithoutRetries": 1032486,
       "lastModelUsage": {
         "claude-haiku-4-5": {
           "inputTokens": 522,
@@ -392,12 +392,12 @@
           "costUSD": 0.000582
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 27,
-          "outputTokens": 7231,
-          "cacheReadInputTokens": 774017,
-          "cacheCreationInputTokens": 67373,
+          "inputTokens": 170,
+          "outputTokens": 71505,
+          "cacheReadInputTokens": 13214289,
+          "cacheCreationInputTokens": 277118,
           "webSearchRequests": 0,
-          "costUSD": 1.2416484999999997
+          "costUSD": 11.166799499999996
         }
       },
       "lastSessionMetrics": {
@@ -430,8 +430,8 @@
       "lastSessionModified": 1779211596554,
       "lastVersionBase": "2.1.220",
       "lastStartTime": 1785296142292,
-      "lastFpsAverage": 2.09,
-      "lastFpsLow1Pct": 289.68
+      "lastFpsAverage": 0.7,
+      "lastFpsLow1Pct": 269.24
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -13483,8 +13483,8 @@
       "lastUsedAt": 1785297543081
     },
     "commit": {
-      "usageCount": 282,
-      "lastUsedAt": 1785301410279
+      "usageCount": 283,
+      "lastUsedAt": 1785302557099
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -13778,14 +13778,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 6810,
-      "lastUsedAt": 1785301340475,
-      "lastUsedNumStartups": 3703
+      "usageCount": 6847,
+      "lastUsedAt": 1785302525317,
+      "lastUsedNumStartups": 3704
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 2272,
-      "lastUsedAt": 1785301314357,
-      "lastUsedNumStartups": 3703
+      "usageCount": 2282,
+      "lastUsedAt": 1785302469605,
+      "lastUsedNumStartups": 3704
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -13793,14 +13793,14 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 2482,
-      "lastUsedAt": 1785301314357,
-      "lastUsedNumStartups": 3703
+      "usageCount": 2492,
+      "lastUsedAt": 1785302469605,
+      "lastUsedNumStartups": 3704
     },
     "claude-mem@jimweller": {
-      "usageCount": 30170,
-      "lastUsedAt": 1785301340475,
-      "lastUsedNumStartups": 3703
+      "usageCount": 30317,
+      "lastUsedAt": 1785302540101,
+      "lastUsedNumStartups": 3704
     },
     "azure@azure-skills": {
       "usageCount": 10,
