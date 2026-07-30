@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3717
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 158057,
+  "promptQueueUseCount": 158058,
   "btwUseCount": 4,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -13441,8 +13441,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 221,
-      "lastUsedAt": 1785396939116
+      "usageCount": 222,
+      "lastUsedAt": 1785397763567
     },
     "publish": {
       "usageCount": 11,
@@ -13585,8 +13585,8 @@
       "lastUsedAt": 1785394778678
     },
     "commit": {
-      "usageCount": 290,
-      "lastUsedAt": 1785397183229
+      "usageCount": 291,
+      "lastUsedAt": 1785397796355
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -13880,8 +13880,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 7642,
-      "lastUsedAt": 1785397143612,
+      "usageCount": 7647,
+      "lastUsedAt": 1785397739652,
       "lastUsedNumStartups": 3726
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -13925,13 +13925,13 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 807,
-      "lastUsedAt": 1785397197859,
+      "usageCount": 837,
+      "lastUsedAt": 1785397767432,
       "lastUsedNumStartups": 3726
     },
     "claude-mem@thedotmack": {
-      "usageCount": 326,
-      "lastUsedAt": 1785397199201,
+      "usageCount": 369,
+      "lastUsedAt": 1785397767870,
       "lastUsedNumStartups": 3726
     }
   },
