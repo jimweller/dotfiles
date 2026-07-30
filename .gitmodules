@@ -27,9 +27,6 @@
 [submodule "dotfiles/claude-code/tools/superpowers"]
 	path = submodules/superpowers
 	url = https://github.com/jimweller/superpowers.git
-[submodule "dotfiles/claude-code/tools/claude-mem"]
-	path = submodules/claude-mem
-	url = https://github.com/jimweller/claude-mem.git
 [submodule "submodules/clanker-skills"]
 	path = submodules/clanker-skills
 	url = https://github.com/jimweller/clanker-skills.git

@@ -109,6 +109,7 @@
       glob: true
       path: configs/claude-code/agents/*
     ~/.claude/tools/humble-master: submodules/humble-master
+    ~/.claude-mem/settings.json: configs/claude-mem/settings.json
     ~/.agents/skills/:
       glob: true
       path: configs/skills/*

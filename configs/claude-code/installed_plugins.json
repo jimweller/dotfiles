@@ -14,11 +14,11 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/d33bdb36f3f7",
-        "version": "d33bdb36f3f7",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/6dcea79b4b56",
+        "version": "6dcea79b4b56",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-05-07T14:47:46.155Z",
-        "gitCommitSha": "d97e2016f5acdf824b979b1c68961068108b6027"
+        "lastUpdated": "2026-07-30T06:31:33.400Z",
+        "gitCommitSha": "6dcea79b4b567a5671f1e1164807204f69542a5c"
       }
     ],
     "mcg-atlassian@sead-claude-marketplace": [
@@ -71,16 +71,6 @@
         "gitCommitSha": "203406d9f4c7f188c9a4eb69fb9fb5ec7711e793"
       }
     ],
-    "claude-mem@jimweller": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/claude-mem/12.1.5-j6",
-        "version": "12.1.5-j6",
-        "installedAt": "2026-04-29T02:28:17.608Z",
-        "lastUpdated": "2026-04-29T05:50:34.547Z",
-        "gitCommitSha": "8ac9a806617a2b995ef2746e9010abe3ba9854ee"
-      }
-    ],
     "superpowers@jimweller": [
       {
         "scope": "user",
@@ -89,6 +79,25 @@
         "installedAt": "2026-04-29T02:28:50.051Z",
         "lastUpdated": "2026-04-29T05:39:25.318Z",
         "gitCommitSha": "4df9ac7946ca12e7b2335f0eb066e47e30937cd7"
+      }
+    ],
+    "mcg-sensitive-canary@sead-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-sensitive-canary/0.7.1",
+        "version": "0.7.1",
+        "installedAt": "2026-07-30T06:28:04.262Z",
+        "lastUpdated": "2026-07-30T06:28:04.262Z"
+      }
+    ],
+    "claude-mem@thedotmack": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/13.12.4",
+        "version": "13.12.4",
+        "installedAt": "2026-07-30T06:28:36.114Z",
+        "lastUpdated": "2026-07-30T06:28:36.114Z",
+        "gitCommitSha": "132b46343e60ecf4057c427736c57b08f7615dfe"
       }
     ]
   }

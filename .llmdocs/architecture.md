@@ -4,17 +4,16 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 ## Core Components
 
-| Component           | Path                                             | Role                                                       |
-| ------------------- | ------------------------------------------------ | ---------------------------------------------------------- |
-| dotbot              | `submodules/dotbot/`                             | Symlink and install orchestration (git submodule)          |
-| antidote            | `submodules/antidote/`                           | Zsh plugin manager (git submodule)                         |
-| devcontainer        | `submodules/devcontainer/`                       | Linux Docker dev image (git submodule)                     |
-| clanker-skills      | `submodules/clanker-skills/`                     | Universal AI agent skills (git submodule)                  |
-| total-recall        | `submodules/total-recall/`                       | SQLite session memory for Claude Code (git submodule)      |
-| lsp-enforcement-kit | `submodules/lsp-enforcement-kit/`                | LSP-first navigation enforcement kit (git submodule)       |
-| humble-master       | `submodules/humble-master/`                      | Daneel persona injection for Claude Code (git submodule)   |
-| superpowers         | `submodules/superpowers/`                        | Claude Code skill plugin library (git submodule)           |
-| claude-mem          | `submodules/claude-mem/`                         | Persistent memory MCP tool for Claude Code (git submodule) |
+| Component           | Path                              | Role                                                     |
+| ------------------- | --------------------------------- | -------------------------------------------------------- |
+| dotbot              | `submodules/dotbot/`              | Symlink and install orchestration (git submodule)        |
+| antidote            | `submodules/antidote/`            | Zsh plugin manager (git submodule)                       |
+| devcontainer        | `submodules/devcontainer/`        | Linux Docker dev image (git submodule)                   |
+| clanker-skills      | `submodules/clanker-skills/`      | Universal AI agent skills (git submodule)                |
+| total-recall        | `submodules/total-recall/`        | SQLite session memory for Claude Code (git submodule)    |
+| lsp-enforcement-kit | `submodules/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule)     |
+| humble-master       | `submodules/humble-master/`       | Daneel persona injection for Claude Code (git submodule) |
+| superpowers         | `submodules/superpowers/`         | Claude Code skill plugin library (git submodule)         |
 
 ## Directory Layout
 
@@ -92,7 +91,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Nine submodules defined in `.gitmodules`, all under `submodules/`:
+Eight submodules defined in `.gitmodules`, all under `submodules/`:
 
 | Submodule           | Shallow | Branch  |
 | ------------------- | ------- | ------- |
@@ -104,5 +103,4 @@ Nine submodules defined in `.gitmodules`, all under `submodules/`:
 | lsp-enforcement-kit | no      | default |
 | humble-master       | no      | default |
 | superpowers         | no      | default |
-| claude-mem          | no      | default |
 ````

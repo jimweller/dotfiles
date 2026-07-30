@@ -30,7 +30,22 @@
     "deny": [
       "Read(~/.config/sops/age/keys.txt)",
       "Read(**/keys.txt)",
-      "Read(**/*.age)"
+      "Read(**/*.age)",
+      "Skill(claude-mem:babysit)",
+      "Skill(claude-mem:cloud-sync)",
+      "Skill(claude-mem:design-is)",
+      "Skill(claude-mem:do)",
+      "Skill(claude-mem:how-it-works)",
+      "Skill(claude-mem:learn-codebase)",
+      "Skill(claude-mem:make-plan)",
+      "Skill(claude-mem:oh-my-issues)",
+      "Skill(claude-mem:pathfinder)",
+      "Skill(claude-mem:smart-explore)",
+      "Skill(claude-mem:standup)",
+      "Skill(claude-mem:version-bump)",
+      "Skill(claude-mem:weekly-digests)",
+      "Skill(claude-mem:what-the)",
+      "Skill(claude-mem:wowerpoint)"
     ]
   },
   "model": "sonnet",
@@ -164,7 +179,7 @@
   },
   "enabledPlugins": {
     "beads@beads-marketplace": true,
-    "claude-mem@jimweller": true,
+    "claude-mem@thedotmack": true,
     "mcg-atlassian@sead-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": false,
@@ -196,6 +211,12 @@
       "source": {
         "source": "github",
         "repo": "jimweller/claude-marketplace"
+      }
+    },
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
       }
     }
   },

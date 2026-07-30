@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-05-07T14:47:46.014Z",
+    "lastUpdated": "2026-07-30T06:35:12.947Z",
     "autoUpdate": true
   },
   "agent-browser": {
@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-05-07T14:47:45.985Z",
+    "lastUpdated": "2026-07-30T06:35:12.909Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -50,5 +50,21 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
     "lastUpdated": "2026-05-06T15:53:03.522Z"
+  },
+  "thedotmack": {
+    "source": {
+      "source": "github",
+      "repo": "thedotmack/claude-mem"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
+    "lastUpdated": "2026-07-30T06:28:32.869Z"
+  },
+  "azure-skills": {
+    "source": {
+      "source": "github",
+      "repo": "microsoft/azure-skills"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/azure-skills",
+    "lastUpdated": "2026-07-30T06:29:31.921Z"
   }
 }
