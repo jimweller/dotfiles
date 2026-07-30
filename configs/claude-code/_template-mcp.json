@@ -45,7 +45,7 @@
         "read_repomix_output"
       ]
     },
-    "googler": {
+    "researcher": {
       "type": "stdio",
       "command": "npx",
       "args": [
@@ -59,7 +59,7 @@
       }
     }
   },
-  "c7": {
+  "context7": {
     "type": "http",
     "url": "https://mcp.context7.com/mcp",
     "headers": {

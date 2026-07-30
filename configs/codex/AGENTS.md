@@ -49,7 +49,7 @@ These language patterns are forbidden. Delete and rewrite any of these:
 - ALWAYS read a file before editing it
 - NEVER commit plaintext secrets, credentials, or .env files. SOPS-encrypted files (e.g. secrets.enc.env) and .envrc files with no secrets are safe to commit.
 - Use existing patterns and conventions when modifying projects
-- Prefer current research over model training data. Use c7 and g MCP tools for research. Prefer c7 and g over builtin web search tools.
+- Prefer current research over model training data. Use context7 and researcher MCP tools for research. Prefer context7 and researcher over builtin web search tools.
 - When a dependency points to a git repo, NEVER switch it to a published package without first checking the latest release date and comparing it to recent commits. The git source is intentional when it contains unreleased changes.
 
 ## Code Style
@@ -104,8 +104,8 @@ These language patterns are forbidden. Delete and rewrite any of these:
 
 ## Rules
 
-@~/.codex/rules/bash.md
-@~/.codex/rules/lsp-serena.md
-@~/.codex/rules/md-style.md
-@~/.codex/rules/md-syntax.md
+@~~/.codex/rules/bash.md
+@~~/.codex/rules/lsp-serena.md
+@~~/.codex/rules/md-style.md
+@~~/.codex/rules/md-syntax.md
 @~/.codex/rules/python.md

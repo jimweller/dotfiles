@@ -27,7 +27,7 @@
   "userID": "",
   "lastReleaseNotesSeen": "",
   "mcpServers": {
-    "c7": {
+    "context7": {
       "type": "stdio",
       "command": "npx",
       "args": [
@@ -40,7 +40,7 @@
         "DEFAULT_MINIMUM_TOKENS": "10000"
       }
     },
-    "g": {
+    "researcher": {
       "type": "stdio",
       "command": "npx",
       "args": [

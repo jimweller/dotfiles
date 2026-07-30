@@ -96,7 +96,7 @@
         "file_system_read_directory"
       ]
     },
-    "googler": {
+    "researcher": {
       "type": "stdio",
       "command": "npx",
       "args": [

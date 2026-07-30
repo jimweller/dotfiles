@@ -64,7 +64,7 @@ Connected and verified:
 
 - `claude-flow` - Multi-agent orchestration, memory, swarm coordination
 - `context7` - Official library documentation retrieval
-- `googler` - Web research, scraping, AI analysis
+- `researcher` - Web research, scraping, AI analysis
 - `agentdb` - Reinforcement learning, experience replay, vector memory
 - `repomix` - Codebase analysis and packaging
 - `atl` - Jira/Confluence integration (optional)
@@ -88,7 +88,7 @@ Connected and verified:
 
 - **claude-flow**: Swarm coordination, memory, neural features
 - **context7**: Official library documentation
-- **googler**: Web research and analysis
+- **researcher**: Web research and analysis
 - **agentdb**: AI learning and memory patterns
 - **repomix**: Codebase analysis and packaging
 - **atl**: Jira/Confluence management
@@ -148,13 +148,13 @@ mcp__context7__get-library-docs({
 
 **Use for:** Official API docs, library references, SDK usage
 
-### Googler Tools (Web Research)
+### Researcher Tools (Web Research)
 
 ```text
-mcp__googler__google_search({ query: string, num_results?: number })
-mcp__googler__scrape_page({ url: string })
-mcp__googler__analyze_with_gemini({ text: string, model?: string })
-mcp__googler__research_topic({ query: string, num_results?: number })
+mcp__researcher__google_search({ query: string, num_results?: number })
+mcp__researcher__scrape_page({ url: string })
+mcp__researcher__analyze_with_gemini({ text: string, model?: string })
+mcp__researcher__research_topic({ query: string, num_results?: number })
 ```text
 
 **Use for:** Best practices, comparisons, trends, tutorials, real-world examples
@@ -182,7 +182,7 @@ STEP 1: Research (if needed)
   IF need official docs:
     USE: mcp__context7__resolve-library-id → mcp__context7__get-library-docs
   IF need best practices:
-    USE: mcp__googler__research_topic({ query: "topic 2024", num_results: 3 })
+    USE: mcp__researcher__research_topic({ query: "topic 2024", num_results: 3 })
 
 STEP 2: Check Memory
   USE: mcp__claude-flow__memory_search({ pattern: "feature_context", namespace: "project" })
@@ -229,14 +229,14 @@ FOR official_library_docs:
   STEP 3: Store in memory
 
 FOR real_world_examples OR best_practices:
-  STEP 1: mcp__googler__research_topic({
+  STEP 1: mcp__researcher__research_topic({
     query: "specific_query 2024",
     num_results: 3-5
   })
   STEP 2: Store findings
 
 COMBINED APPROACH (Recommended):
-  STEP 1: Research best practices (Googler)
+  STEP 1: Research best practices (Researcher)
   STEP 2: Get official docs (Context7)
   STEP 3: Store synthesized knowledge (Claude-Flow)
   STEP 4: Implement with Task tool
@@ -250,7 +250,7 @@ STEP 1: Search Existing Solutions
   USE: mcp__agentdb__agentdb_search({ query: "error_description", k: 5 })
 
 STEP 2: Research Fix Approaches
-  USE: mcp__googler__research_topic({
+  USE: mcp__researcher__research_topic({
     query: "error_message solution 2024",
     num_results: 3
   })
@@ -284,7 +284,7 @@ mcp__claude-flow__agent_spawn({ type: "coder", name: "backend-dev" })
 mcp__claude-flow__agent_spawn({ type: "tester", name: "test-engineer" })
 
 // 2. Research if needed
-mcp__googler__research_topic({ query: "REST API authentication 2024", num_results: 3 })
+mcp__researcher__research_topic({ query: "REST API authentication 2024", num_results: 3 })
 mcp__context7__resolve-library-id({ libraryName: "express" })
 mcp__context7__get-library-docs({ context7CompatibleLibraryID: "/expressjs/express", topic: "authentication" })
 
@@ -360,8 +360,8 @@ mcp__repomix__grep_repomix_output({
   contextLines: 2,
 });
 
-// 2. Research best practices (Googler)
-mcp__googler__research_topic({
+// 2. Research best practices (Researcher)
+mcp__researcher__research_topic({
   query: "microservices authentication patterns 2024",
   num_results: 3,
 });
@@ -540,8 +540,8 @@ mcp__repomix__grep_repomix_output({
   contextLines: 5,
 });
 
-// 2. Research architecture patterns (Googler)
-mcp__googler__research_topic({
+// 2. Research architecture patterns (Researcher)
+mcp__researcher__research_topic({
   query: "microservices architecture patterns best practices 2024",
   num_results: 4,
 });
@@ -612,8 +612,8 @@ mcp__repomix__grep_repomix_output({
   ignoreCase: true,
 });
 
-// 3. Research new technologies (Googler + Context7)
-mcp__googler__research_topic({
+// 3. Research new technologies (Researcher + Context7)
+mcp__researcher__research_topic({
   query: "GraphQL vs REST API 2024 comparison",
   num_results: 3,
 });
@@ -683,7 +683,7 @@ mcp__claude -
     namespace: "patterns",
   });
 
-// 3. Get latest docs and research (Context7 + Googler)
+// 3. Get latest docs and research (Context7 + Researcher)
 mcp__context7__get -
   library -
   docs({
@@ -691,7 +691,7 @@ mcp__context7__get -
     topic: "strategies",
   });
 
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: "OAuth2 implementation best practices 2024",
   num_results: 3,
 });
@@ -760,7 +760,7 @@ architecture  - Architectural patterns, decisions, rationale
 api           - API contracts, endpoints, specifications
 patterns      - Coding patterns, conventions, standards
 bugs          - Known issues, solutions, root causes
-research      - Research findings, sources, comparisons (from Googler)
+research      - Research findings, sources, comparisons (from Researcher)
 library_docs  - Documentation summaries (from Context7)
 features      - Feature-specific implementation details
 sessions      - AgentDB session data
@@ -809,7 +809,7 @@ NEED: official_api_docs
   → PATTERN: resolve-library-id → get-library-docs
 
 NEED: best_practices OR comparisons OR trends
-  → USE: Googler
+  → USE: Researcher
   → PATTERN: research_topic with year in query
 
 NEED: learning_from_experience
@@ -817,7 +817,7 @@ NEED: learning_from_experience
   → PATTERN: agentdb_search → reflexion_retrieve
 
 COMBINED RESEARCH:
-  1. Googler: Best practices and real-world examples
+  1. Researcher: Best practices and real-world examples
   2. Context7: Official documentation
   3. AgentDB: Past experience and learned patterns
   4. Claude-Flow Memory: Store synthesized knowledge
@@ -829,7 +829,7 @@ COMBINED RESEARCH:
 // SINGLE MESSAGE - Complete research and implementation
 
 // Research best practices
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: "Stripe payment integration best practices 2024",
   num_results: 3,
 });
@@ -918,7 +918,7 @@ Use hooks for coordination.
 **1. Feature Development:**
 
 ```text
-Research (Googler/Context7) → Memory Search → Task Tool → Memory Store
+Research (Researcher/Context7) → Memory Search → Task Tool → Memory Store
 ```text
 
 **2. Bug Fix:**
@@ -944,7 +944,7 @@ Execute Task → AgentDB Reflexion → Pattern Recognition → Future Reuse
 | Need                | Primary Tool    | Secondary Tool | Tertiary Tool |
 | ------------------- | --------------- | -------------- | ------------- |
 | **Official docs**   | Context7        | -              | -             |
-| **Best practices**  | Googler         | Context7       | AgentDB       |
+| **Best practices**  | Researcher      | Context7       | AgentDB       |
 | **Agent execution** | Task Tool       | -              | -             |
 | **Coordination**    | MCP claude-flow | NPX subprocess | -             |
 | **Memory**          | Claude-Flow     | AgentDB        | -             |
@@ -958,7 +958,7 @@ Subordinate documentation with detailed guides:
 
 - @rules/claude-flow.md - Complete Claude-Flow MCP tool reference (80+ tools)
 - @rules/context7.md - Context7 documentation retrieval patterns
-- @rules/googler.md - Googler research and analysis workflows
+- @rules/researcher.md - Web research and analysis workflows
 - @rules/repomix.md - Repomix codebase packaging and analysis
 - @rules/atl.md - ATL Jira and Confluence management
 
@@ -981,7 +981,7 @@ Subordinate documentation with detailed guides:
 4. **Hooks Enable Coordination** - Agents use hooks for communication
 5. **Memory is Persistent** - Store context across sessions
 6. **Learning from Experience** - Use AgentDB for pattern recognition
-7. **Research Before Coding** - Googler + Context7 + AgentDB
+7. **Research Before Coding** - Researcher + Context7 + AgentDB
 
 ---
 

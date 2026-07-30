@@ -30,7 +30,7 @@ claude mcp list
 # Should show:
 # - claude-flow ✓
 # - context7 ✓
-# - googler ✓
+# - researcher ✓
 # - agentdb ✓
 # - repomix ✓
 # - atl ✓ (optional)
@@ -73,7 +73,7 @@ WORKFLOW:
 5. Store implementation patterns for future learning
 
 USE ALL TOOLS:
-- Googler: Research authentication patterns
+- Researcher: Research authentication patterns
 - Context7: Get Express, JWT, bcrypt docs
 - Claude-Flow: Coordinate multi-agent development
 - AgentDB: Store learned patterns
@@ -88,7 +88,7 @@ DELIVERABLES:
 
 **Expected Behavior:**
 
-- ✅ Googler researches authentication best practices 2024
+- ✅ Researcher researches authentication best practices 2024
 - ✅ Context7 fetches Express.js, jsonwebtoken, bcrypt docs
 - ✅ Claude-Flow initializes hierarchical swarm
 - ✅ Task Tool spawns 3+ agents concurrently (backend-dev, tester, documenter)
@@ -129,7 +129,7 @@ WORKFLOW REQUIREMENTS:
 
 USE ALL AVAILABLE TOOLS:
 - Repomix: Analyze any relevant existing codebases for patterns
-- Googler: Research microservices best practices, Docker patterns
+- Researcher: Research microservices best practices, Docker patterns
 - Context7: Get official documentation for Express, Prisma, Redis, Socket.io, Jest
 - ATL (if available): Create Jira epic with tasks, document architecture in Confluence
 - Claude-Flow: Initialize mesh topology for complex coordination
@@ -157,7 +157,7 @@ DELIVERABLES:
 **Expected Behavior:**
 
 - ✅ Repomix packs any relevant repos (if provided)
-- ✅ Googler researches microservices + Docker + testing patterns (3-4 sources)
+- ✅ Researcher researches microservices + Docker + testing patterns (3-4 sources)
 - ✅ Context7 fetches docs for 5+ libraries in parallel
 - ✅ ATL creates Jira epic + tasks, Confluence architecture doc (if available)
 - ✅ Claude-Flow initializes mesh topology with 8+ agents
@@ -205,8 +205,8 @@ TECHNICAL STACK RESEARCH REQUIRED:
 
 PHASE 1: PLANNING & RESEARCH (Current Phase)
 1. Analyze existing SaaS architectures in popular repos (Repomix)
-2. Research best practices for multi-tenant architecture (Googler)
-3. Research real-time collaboration patterns (Googler)
+2. Research best practices for multi-tenant architecture (Researcher)
+3. Research real-time collaboration patterns (Researcher)
 4. Get official documentation for candidate technologies (Context7)
 5. Create Jira epic with detailed task breakdown (ATL if available)
 6. Document architecture decisions in Confluence (ATL if available)
@@ -215,7 +215,7 @@ PHASE 1: PLANNING & RESEARCH (Current Phase)
 
 REQUIRED TOOL USAGE:
 - Repomix: Analyze 2-3 open-source SaaS platforms for architectural patterns
-- Googler: Research multi-tenant SaaS, real-time collaboration, payment integration, RBAC patterns
+- Researcher: Research multi-tenant SaaS, real-time collaboration, payment integration, RBAC patterns
 - Context7: Fetch docs for 10+ libraries (NestJS, Next.js, Prisma, Stripe, Socket.io, etc.)
 - ATL: Create comprehensive Jira epic with 50+ tasks across multiple sprints, create Confluence space with architecture documentation
 - Claude-Flow: Initialize hierarchical topology, spawn Hive-Mind for multi-week project
@@ -255,7 +255,7 @@ OUTPUT REQUIREMENTS:
 **Expected Behavior:**
 
 - ✅ Repomix analyzes 2-3 GitHub repos for SaaS patterns
-- ✅ Googler performs 5+ research queries (multi-tenant, real-time, payments, auth, RBAC)
+- ✅ Researcher performs 5+ research queries (multi-tenant, real-time, payments, auth, RBAC)
 - ✅ Context7 fetches 10+ library documentation sets in parallel
 - ✅ ATL creates Jira epic with 50+ tasks, Confluence space with architecture docs
 - ✅ Claude-Flow spawns Hive-Mind session for multi-week tracking
@@ -283,7 +283,7 @@ OUTPUT REQUIREMENTS:
 
 **Verify Tool Integration:**
 
-- [ ] Googler: Research queries executed
+- [ ] Researcher: Research queries executed
 - [ ] Context7: Library docs fetched
 - [ ] Repomix: Codebases analyzed (if applicable)
 - [ ] ATL: Jira/Confluence operations (if available)
@@ -393,7 +393,7 @@ npx claude-flow@alpha status
 
 ```text
 GOOD PROMPT ELEMENTS:
-- Explicit tool mentions: "USE Googler to research..."
+- Explicit tool mentions: "USE Researcher to research..."
 - Concurrent execution: "in SINGLE message"
 - File organization: "organize in /src, /tests, /docs"
 - Memory namespaces: "store in architecture namespace"

@@ -499,10 +499,10 @@ STEP 3: mcp__claude-flow__memory_usage({
 })
 ```text
 
-### With Googler Research
+### With Researcher Research
 
 ```text
-STEP 1: mcp__googler__research_topic({
+STEP 1: mcp__researcher__research_topic({
   query: "Node.js best practices error handling 2024",
   num_results: 3
 })
@@ -571,8 +571,8 @@ STEP 3: FOR each TODO:
 ### Complete Analysis Workflow
 
 ```text
-STEP 1: RESEARCH (Googler)
-mcp__googler__research_topic({
+STEP 1: RESEARCH (Researcher)
+mcp__researcher__research_topic({
   query: "microservices architecture patterns 2024",
   num_results: 3
 })

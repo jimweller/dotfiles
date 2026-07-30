@@ -67,7 +67,7 @@
   "permission": "allow",
   "enabled_providers": ["google", "openai", "az-anthropic"],
   "mcp": {
-    "c7": {
+    "context7": {
       "type": "local",
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "environment": {
@@ -75,7 +75,7 @@
       },
       "enabled": true
     },
-    "g": {
+    "researcher": {
       "type": "local",
       "command": ["web-researcher-mcp"],
       "enabled": true

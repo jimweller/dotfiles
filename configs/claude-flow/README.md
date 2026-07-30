@@ -16,7 +16,7 @@ claude-flow/
     ├── atl.md          # Jira and Confluence MCP tool reference
     ├── claude-flow.md  # Claude-Flow MCP native tool reference (80+ tools)
     ├── context7.md     # Official documentation retrieval patterns
-    ├── googler.md      # Web research and analysis workflows
+    ├── researcher.md   # Web research and analysis workflows
     ├── repomix.md      # Codebase packaging and analysis
     └── test-prompts.md # Test prompts and validation guide
 ```
@@ -31,7 +31,7 @@ Symlinked to `~/.claude/` via dotbot. The `CLAUDE.md` file is loaded automatical
 | ----------- | ----------------------------------------- |
 | claude-flow | Multi-agent orchestration, memory, swarm  |
 | context7    | Official library documentation retrieval  |
-| googler     | Web research, scraping, AI analysis       |
+| researcher  | Web research, scraping, AI analysis       |
 | agentdb     | Reinforcement learning, experience replay |
 | repomix     | Codebase analysis and packaging           |
 | atl         | Jira and Confluence management            |

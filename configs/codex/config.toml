@@ -33,13 +33,13 @@ status_line_use_colors = true
 [tui.model_availability_nux]
 "gpt-5.5" = 3
 # --- MCP Servers ---
-[mcp_servers.c7]
+[mcp_servers.context7]
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 env_vars = ["CONTEXT7_API_KEY"]
-[mcp_servers.c7.env]
+[mcp_servers.context7.env]
 DEFAULT_MINIMUM_TOKENS = "10000"
-[mcp_servers.g]
+[mcp_servers.researcher]
 command = "web-researcher-mcp"
 [mcp_servers.repomix]
 command = "npx"

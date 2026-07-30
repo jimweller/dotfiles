@@ -116,11 +116,11 @@ USE Context7 FOR:
   ✅ Code examples from official sources
 
 DO NOT USE FOR:
-  ❌ General web search (use Googler)
-  ❌ Best practices articles (use Googler)
-  ❌ Community tutorials (use Googler)
+  ❌ General web search (use Researcher)
+  ❌ Best practices articles (use Researcher)
+  ❌ Community tutorials (use Researcher)
   ❌ Code in current project (use file tools)
-  ❌ Comparisons between libraries (use Googler)
+  ❌ Comparisons between libraries (use Researcher)
 ```text
 
 ---
@@ -218,7 +218,7 @@ IF resolve-library-id returns multiple options:
 IF resolve-library-id returns no results:
   1. CHECK spelling of libraryName
   2. TRY alternative names (e.g., "@package/name" vs "package")
-  3. FALLBACK: mcp__googler__research_topic for general info
+  3. FALLBACK: mcp__researcher__research_topic for general info
   4. INFORM user: library may be too new/obscure for Context7
 ```text
 
@@ -263,10 +263,10 @@ RESPONSE OPTIONS:
    })
 ```text
 
-### With Googler Research
+### With Researcher Research
 
 ```text
-1. mcp__googler__research_topic({
+1. mcp__researcher__research_topic({
      query: "stripe payment best practices 2024",
      num_results: 3
    })
@@ -283,7 +283,7 @@ RESPONSE OPTIONS:
 ```text
 FOR implementation task:
   STEP 1: Get official API docs (Context7)
-  STEP 2: Get real-world examples (Googler)
+  STEP 2: Get real-world examples (Researcher)
   STEP 3: Store combined knowledge (Claude-Flow)
   STEP 4: Implement feature
 ```text
@@ -332,11 +332,11 @@ START
   |
   ├─ Need official API docs? → YES → Context7
   |
-  ├─ Need best practices? → YES → Googler
+  ├─ Need best practices? → YES → Researcher
   |
-  ├─ Need library comparison? → YES → Googler
+  ├─ Need library comparison? → YES → Researcher
   |
-  ├─ Need real-world examples? → YES → Googler
+  ├─ Need real-world examples? → YES → Researcher
   |
   └─ Need code in this project? → YES → File tools
 

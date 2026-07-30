@@ -1053,7 +1053,7 @@ USE ATL FOR:
 
 DO NOT USE FOR:
   ❌ Code repository operations (use repomix)
-  ❌ General web research (use googler)
+  ❌ General web research (use researcher)
   ❌ Library documentation (use context7)
   ❌ File system operations (use file tools)
 ```text
@@ -1078,10 +1078,10 @@ STEP 2: mcp__claude-flow__memory_usage({
 })
 ```text
 
-### With Googler Research
+### With Researcher Research
 
 ```text
-STEP 1: mcp__googler__research_topic({
+STEP 1: mcp__researcher__research_topic({
   query: "microservices best practices 2024",
   num_results: 3
 })

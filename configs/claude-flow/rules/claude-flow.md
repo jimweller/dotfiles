@@ -551,10 +551,10 @@ npx claude-flow@alpha hive-mind spawn "<objective>"
 3. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })
 ```text
 
-### With Googler
+### With Researcher
 
 ```text
-1. mcp__googler__research_topic({ query: "topic", num_results: 3 })
+1. mcp__researcher__research_topic({ query: "topic", num_results: 3 })
 2. mcp__claude-flow__agent_spawn({ type: "analyst" })
 3. mcp__claude-flow__task_orchestrate({ task: "synthesize findings" })
 4. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })

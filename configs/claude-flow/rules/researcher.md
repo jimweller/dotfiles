@@ -1,4 +1,4 @@
-# Googler MCP - Web Research & AI Analysis
+# Researcher MCP - Web Research & AI Analysis
 
 **Target:** LLM execution
 **Purpose:** Web research, content scraping, AI analysis, comprehensive topic investigation
@@ -11,7 +11,7 @@
 ### google_search
 
 ````text
-mcp__googler__google_search({
+mcp__researcher__google_search({
   query: string,
   num_results?: number  // 1-10, default: 5
 })
@@ -35,7 +35,7 @@ mcp__googler__google_search({
 ### scrape_page
 
 ```text
-mcp__googler__scrape_page({
+mcp__researcher__scrape_page({
   url: string
 })
 ```text
@@ -58,7 +58,7 @@ mcp__googler__scrape_page({
 ### analyze_with_gemini
 
 ```text
-mcp__googler__analyze_with_gemini({
+mcp__researcher__analyze_with_gemini({
   text: string,
   model?: string  // default: "gemini-2.0-flash-001"
 })
@@ -83,7 +83,7 @@ mcp__googler__analyze_with_gemini({
 ### research_topic
 
 ```text
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: string,
   num_results?: number  // 1-5, default: 3
 })
@@ -119,22 +119,22 @@ mcp__googler__research_topic({
 ### Pattern: Quick Search & Review
 
 ```text
-STEP 1: mcp__googler__google_search({
+STEP 1: mcp__researcher__google_search({
   query: "React 18 new features 2024",
   num_results: 5
 })
 
 STEP 2: SELECT best URL from results
 
-STEP 3: mcp__googler__scrape_page({ url: "selected_url" })
+STEP 3: mcp__researcher__scrape_page({ url: "selected_url" })
 ```text
 
 ### Pattern: Deep Article Analysis
 
 ```text
-STEP 1: mcp__googler__scrape_page({ url: "article_url" })
+STEP 1: mcp__researcher__scrape_page({ url: "article_url" })
 
-STEP 2: mcp__googler__analyze_with_gemini({
+STEP 2: mcp__researcher__analyze_with_gemini({
   text: "scraped_content",
   model: "gemini-pro"
 })
@@ -143,7 +143,7 @@ STEP 2: mcp__googler__analyze_with_gemini({
 ### Pattern: Comprehensive Research (Recommended)
 
 ```text
-SINGLE CALL: mcp__googler__research_topic({
+SINGLE CALL: mcp__researcher__research_topic({
   query: "microservices vs monolithic architecture pros cons 2024",
   num_results: 4
 })
@@ -154,16 +154,16 @@ RETURNS: Multi-source synthesis
 ### Pattern: YouTube Tutorial Research
 
 ```text
-STEP 1: mcp__googler__google_search({
+STEP 1: mcp__researcher__google_search({
   query: "Next.js App Router tutorial site:youtube.com",
   num_results: 3
 })
 
-STEP 2: mcp__googler__scrape_page({
+STEP 2: mcp__researcher__scrape_page({
   url: "youtube_video_url"
 })
 
-STEP 3: mcp__googler__analyze_with_gemini({
+STEP 3: mcp__researcher__analyze_with_gemini({
   text: "transcript_content"
 })
 ```text
@@ -171,7 +171,7 @@ STEP 3: mcp__googler__analyze_with_gemini({
 ### Pattern: Competitive Analysis
 
 ```text
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: "Stripe vs Braintree vs PayPal comparison features pricing 2024",
   num_results: 5
 })
@@ -182,7 +182,7 @@ mcp__googler__research_topic({
 ## WHEN TO USE
 
 ```text
-USE Googler FOR:
+USE Researcher FOR:
   ✅ Web research on technical topics, trends
   ✅ Article analysis and summarization
   ✅ YouTube transcript extraction
@@ -327,7 +327,7 @@ IF scrape_page fails on YouTube URL:
 ### With Context7
 
 ```text
-STEP 1: mcp__googler__research_topic({
+STEP 1: mcp__researcher__research_topic({
   query: "payment processing best practices 2024",
   num_results: 3
 })
@@ -349,7 +349,7 @@ STEP 5: mcp__claude-flow__memory_usage({
 ### With Claude-Flow Memory
 
 ```text
-STEP 1: mcp__googler__research_topic({
+STEP 1: mcp__researcher__research_topic({
   query: "database comparison PostgreSQL MongoDB Redis 2024",
   num_results: 4
 })
@@ -366,7 +366,7 @@ STEP 2: mcp__claude-flow__memory_usage({
 
 ```text
 FOR implementation task:
-  1. Research best practices (Googler)
+  1. Research best practices (Researcher)
   2. Get official docs (Context7)
   3. Store combined knowledge (Claude-Flow)
   4. Implement feature
@@ -481,7 +481,7 @@ START
 ### Technology Selection
 
 ```text
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: "message queue comparison RabbitMQ Kafka Redis Streams 2024",
   num_results: 4
 })
@@ -492,7 +492,7 @@ THEN: Store decision in Claude-Flow memory
 ### Best Practices Implementation
 
 ```text
-mcp__googler__research_topic({
+mcp__researcher__research_topic({
   query: "Node.js API rate limiting best practices Redis implementation",
   num_results: 3
 })
@@ -504,7 +504,7 @@ THEN: Implement with combined knowledge
 ### Troubleshooting
 
 ```text
-mcp__googler__google_search({
+mcp__researcher__google_search({
   query: "PostgreSQL connection pool exhaustion Node.js solution",
   num_results: 5
 })
@@ -519,10 +519,10 @@ THEN: Store in bugs namespace
 
 ```text
 TOOLS:
-  mcp__googler__google_search({ query, num_results? })
-  mcp__googler__scrape_page({ url })
-  mcp__googler__analyze_with_gemini({ text, model? })
-  mcp__googler__research_topic({ query, num_results? })
+  mcp__researcher__google_search({ query, num_results? })
+  mcp__researcher__scrape_page({ url })
+  mcp__researcher__analyze_with_gemini({ text, model? })
+  mcp__researcher__research_topic({ query, num_results? })
 
 RECOMMENDED:
   research_topic - All-in-one comprehensive research
@@ -542,7 +542,7 @@ QUERY TIPS:
 
 ---
 
-**MCP Server:** googler
+**MCP Server:** researcher
 **Status:** Connected
 **Provider:** github:jimweller/google-research-mcp
 **Optimized for:** LLM direct execution
