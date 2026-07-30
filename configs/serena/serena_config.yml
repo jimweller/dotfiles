@@ -257,6 +257,7 @@ projects:
 - /Users/jimweller/work/platform-poc
 - /Users/jimweller/work/quiver/quiver-main
 - /Users/jimweller/work/ruflo
+- /Users/jimweller/work/sensitive-canary
 - /Users/jimweller/work/setup-claude
 
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.

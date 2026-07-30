@@ -4,7 +4,10 @@
 
 https://github.com/jimweller/clanker-skills/tree/main/skills/universal
 https://github.com/kepano/obsidian-skills
+https://github.com/vercel-labs/agent-browser -s agent-browser
 https://github.com/alibaba/open-code-review -s open-code-review
+https://github.com/laurigates/claude-plugins -s yq-yaml-processing
+https://github.com/laurigates/claude-plugins -s jq-json-processing
 
 # herdr is vendored at configs/claude-code/skills/herdr/SKILL.md instead.
 # Its SKILL.md sits at the repo root, so skills.sh scopes the snapshot to the
