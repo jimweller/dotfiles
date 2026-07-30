@@ -83,6 +83,7 @@
     ~/.config/mise/config.toml: configs/mise/config.toml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh
     ~/assets/qdrant/qdrant-container.sh: scripts/qdrant-container.sh
+    ~/bin/claude-mem-chroma-status.sh: scripts/claude-mem-chroma-status.sh
 
 - link:
     ~/.claude.json: configs/claude-code/claude_json
