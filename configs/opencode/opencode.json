@@ -40,7 +40,7 @@
     "az-anthropic": {
       "npm": "@ai-sdk/anthropic",
       "options": {
-        "baseURL": "https://mcg-dxclinical-fais.services.ai.azure.com/anthropic/v1",
+        "baseURL": "https://dxclinical-187aa68e.services.ai.azure.com/anthropic/v1",
         "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}"
       },
       "models": {
