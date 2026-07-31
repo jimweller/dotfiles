@@ -11,6 +11,7 @@ model_instructions_file = "~/.codex/daneel.md"
 project_doc_fallback_filenames = ["CLAUDE.md"]
 service_tier = "fast"
 notify = ["/Users/jimweller/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+mcp_oauth_callback_port = 3118
 
 [agents]
 max_threads = 8
@@ -44,9 +45,10 @@ command = "web-researcher-mcp"
 [mcp_servers.repomix]
 command = "npx"
 args = ["-y", "repomix", "--mcp"]
-#[mcp_servers.slack]
-#transport = "streamable_http"
-#url = "https://mcp.slack.com/mcp"
+[mcp_servers.slack]
+url = "https://mcp.slack.com/mcp"
+[mcp_servers.slack.oauth]
+client_id = "1601185624273.8899143856786"
 [mcp_servers.serena]
 command = "serena"
 args = ["start-mcp-server", "--context=codex", "--project-from-cwd"]
@@ -148,8 +150,8 @@ trust_level = "trusted"
 fast_default_opt_out = true
 
 [marketplaces.beads-marketplace]
-last_updated = "2026-07-28T23:39:11Z"
-last_revision = "e2095bd905bbfc3eaef36111bae9a52aa214c3b8"
+last_updated = "2026-07-31T17:19:28Z"
+last_revision = "6356dce01b3b0021df3110e7658befa7fe77a4b3"
 source_type = "git"
 source = "https://github.com/gastownhall/beads.git"
 
