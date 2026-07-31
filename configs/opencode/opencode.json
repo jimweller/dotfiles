@@ -44,22 +44,24 @@
         "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}"
       },
       "models": {
-        "claude-opus-4-6": {
-          "name": "Claude Opus 4.6",
+        "claude-opus-5": {
+          "name": "Claude Opus 5",
           "options": {
-            "thinking": { "type": "enabled", "budgetTokens": 63999 }
-          }
+            "thinking": { "type": "adaptive" }
+          },
+          "limit": { "context": 200000, "output": 128000 }
         },
-        "claude-sonnet-4-6": {
-          "name": "Claude Sonnet 4.6"
+        "claude-sonnet-5": {
+          "name": "Claude Sonnet 5",
+          "limit": { "context": 200000, "output": 128000 }
         },
         "claude-haiku-4-5": {
           "name": "Claude Haiku 4.5"
         }
       },
       "whitelist": [
-        "claude-opus-4-6",
-        "claude-sonnet-4-6",
+        "claude-opus-5",
+        "claude-sonnet-5",
         "claude-haiku-4-5"
       ]
     }
