@@ -90,8 +90,7 @@ alias secrets='secrets.sh'
 
 bolt() {
   local name="${1:-jimweller-$(openssl rand -hex 2)}"
-  quiver create "$name" --config "$HOME/.config/dotfiles/configs/quiver/bolt.yaml" \
-    --age-key "$DOTFILES_KEY"
+  quiver create "$name" --config "$HOME/.config/dotfiles/configs/quiver/bolt.yaml"
 }
 
 
