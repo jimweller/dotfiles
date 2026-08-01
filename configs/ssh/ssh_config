@@ -2,6 +2,13 @@
 Host *
   IgnoreUnknown UseKeychain
 
+# Git hosts. id_jim is the key shipped in the quiver bootstrap tarball, so a
+# fresh bolt can clone before the full keyring is restored. IdentitiesOnly is
+# left off so machines with the whole keyring still fall back to other keys.
+Host github.com ssh.dev.azure.com vs-ssh.visualstudio.com
+  User git
+  IdentityFile ~/.ssh/id_jim
+
 # macOS-specific includes (only exists on macOS)
 Include ~/.colima/ssh_config
 
