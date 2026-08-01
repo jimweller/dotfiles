@@ -1,4 +1,4 @@
 [env]
 GIT_CONFIG_GLOBAL = "{{env.HOME}}/.gitconfig-jim"
-GIT_PROFILE_ENC = "{{env.HOME}}/.config/dotfiles/configs/secrets/git-jim.enc.env"
+GIT_PROFILE_ENC = "{{env.HOME}}/.secrets/git-jim.enc.env"
 _.source = { path = "{{env.HOME}}/.config/dotfiles/configs/mise/load-git-secret.sh", redact = true }

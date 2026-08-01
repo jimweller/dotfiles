@@ -32,7 +32,7 @@ DOTFILES_KEY=<password> scripts/secrets.sh list
 sops configs/secrets/<name>.enc.env
 ```
 
-Env secrets are SOPS+age encrypted under `configs/secrets/` and committed. Decryption uses `~/.config/sops/age/keys.txt` (via `SOPS_AGE_KEY_FILE`). Shells decrypt every `*.enc.env` at startup (`00-secrets.zsh`); `secret <name>` reloads one. Add a secret by creating `configs/secrets/<name>.enc.env`; the `.sops.yaml` creation rule applies the age recipient. The age key is a global identity shared with other repos, so it is never rotated casually.
+Env secrets are SOPS+age encrypted under `configs/secrets/` and committed; that is the source of truth. dotbot glob-links the directory into `~/.secrets/`, and every runtime consumer reads from there via `$SECRETS_DIR` (or `${SECRETS_DIR:-$HOME/.secrets}` in standalone scripts) rather than the repo path. Decryption uses `~/.config/sops/age/keys.txt` (via `SOPS_AGE_KEY_FILE`, set in `00-secrets.zsh` and, separately, `scripts/confluence-backup.sh` for the launchd path). Shells decrypt every `$SECRETS_DIR/*.enc.env` at startup (`00-secrets.zsh`); `secret <name>` reloads one. Add a secret by creating `configs/secrets/<name>.enc.env`; `.sops.yaml` is a single pathless creation rule, so the age recipient applies automatically. The age key is a global identity shared with other repos, so it is never rotated casually.
 
 ## Scheduled Tasks (macOS LaunchAgents)
 
@@ -62,14 +62,14 @@ done
 
 ## Backup (sync.sh)
 
-Requires `DOTFILES_KEY` (decrypted from `configs/secrets/dotfiles.enc.env`, or preset in the environment). The backup DMG is encrypted with this key; changing the key requires recreating the DMG.
+Rsyncs directly to a plain folder, `${DOTFILES_BACKUP_DIR:-$HOME/bak/PortfolioJim/current}`. `~/bak` is a symlink into the personal Gmail Google Drive. No encryption, no mounted image, no `DOTFILES_KEY` requirement.
 
 Process:
 
-1. Creates/mounts encrypted APFS sparse image at Google Drive path (16GB)
+1. Creates `$TARGET_DIR` if missing
 2. Exports: `brew leaves`, `brew list --cask`, `brew tap`, `code --list-extensions`
 3. Runs `confluence-backup.sh` if available
-4. `rsync -avL --delete` key directories: `~/work`, `~/personal`, `~/tmp`, `~/assets`, VSCode settings, Chrome bookmarks, OneDrive
+4. `rsync -avL --delete` key directories: `~/work`, `~/personal`, `~/assets`, VSCode settings, Chrome bookmarks, OneDrive
 
 Excludes: `.git`, `node_modules`, `.terraform`, `.venv`, and other build artifacts.
 

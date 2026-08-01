@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3760
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 158086,
+  "promptQueueUseCount": 158089,
   "btwUseCount": 5,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -13471,8 +13471,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 227,
-      "lastUsedAt": 1785507489755
+      "usageCount": 228,
+      "lastUsedAt": 1785564728470
     },
     "publish": {
       "usageCount": 11,
@@ -13491,20 +13491,20 @@
       "lastUsedAt": 1769957781495
     },
     "md-style": {
-      "usageCount": 46,
-      "lastUsedAt": 1785368953384
+      "usageCount": 47,
+      "lastUsedAt": 1785564717138
     },
     "jira": {
       "usageCount": 316,
       "lastUsedAt": 1774921207148
     },
     "readme": {
-      "usageCount": 36,
-      "lastUsedAt": 1785368953027
+      "usageCount": 37,
+      "lastUsedAt": 1785564620205
     },
     "md-syntax": {
-      "usageCount": 59,
-      "lastUsedAt": 1785478639992
+      "usageCount": 60,
+      "lastUsedAt": 1785564717120
     },
     "ado": {
       "usageCount": 38,
@@ -13727,12 +13727,12 @@
       "lastUsedAt": 1776402714543
     },
     "docs": {
-      "usageCount": 21,
-      "lastUsedAt": 1785368927145
+      "usageCount": 22,
+      "lastUsedAt": 1785564578975
     },
     "llmdocs": {
-      "usageCount": 22,
-      "lastUsedAt": 1785368968191
+      "usageCount": 23,
+      "lastUsedAt": 1785564614194
     },
     "review-quick": {
       "usageCount": 2,
@@ -13922,8 +13922,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 7917,
-      "lastUsedAt": 1785560860904,
+      "usageCount": 7947,
+      "lastUsedAt": 1785565054471,
       "lastUsedNumStartups": 3764
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -13967,13 +13967,13 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 3154,
-      "lastUsedAt": 1785560852708,
+      "usageCount": 3332,
+      "lastUsedAt": 1785565094973,
       "lastUsedNumStartups": 3764
     },
     "claude-mem@thedotmack": {
-      "usageCount": 3706,
-      "lastUsedAt": 1785560860904,
+      "usageCount": 3963,
+      "lastUsedAt": 1785565095086,
       "lastUsedNumStartups": 3764
     }
   },

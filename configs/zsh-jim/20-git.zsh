@@ -1,4 +1,4 @@
-# 00-secrets.zsh decrypts all configs/secrets/*.enc.env including git-jim and git-work.
+# 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-jim and git-work.
 # Work sorts after jim so work identity wins. Clear identity and token vars here
 # so no profile is active until an explicit switch_git_profile call (work/jim).
 unset GIT_USER GIT_USERNAME GIT_EMAIL GIT_CONFIG_GLOBAL
@@ -20,7 +20,7 @@ alias gulk='git_unlock'
 
 switch_git_profile() {
   local profile=$1
-  local env_file="$HOME/.config/dotfiles/configs/secrets/git-${profile}.enc.env"
+  local env_file="$SECRETS_DIR/git-${profile}.enc.env"
   
   [[ -f "$env_file" ]] || { echo "Missing env: $env_file"; return 1; }
   

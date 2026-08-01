@@ -24,9 +24,7 @@ DOTFILES_AUTO_SETUP="${DEVC_DOTFILES_AUTO:-true}"
 
 # Secrets configuration
 SECRETS_AUTO_SETUP="${DEVC_SECRETS_AUTO:-true}"
-SECRETS_ENC_FILE="${DEVC_SECRETS_ENC:-${HOME}/.config/dotfiles/configs/secrets/dotfiles.enc.env}"
-: "${SOPS_AGE_KEY_FILE:=${HOME}/.config/sops/age/keys.txt}"
-export SOPS_AGE_KEY_FILE
+SECRETS_ENC_FILE="${DEVC_SECRETS_ENC:-${SECRETS_DIR:-${HOME}/.secrets}/dotfiles.enc.env}"
 
 # Timeout configuration
 DOTFILES_TIMEOUT="${DEVC_DOTFILES_TIMEOUT:-60}"

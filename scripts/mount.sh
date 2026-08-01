@@ -11,9 +11,7 @@ if [ ! -f "$DMG_FILE" ]; then
 fi
 
 # Decrypt the SOPS-encrypted dotfiles env for the password
-: "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
-export SOPS_AGE_KEY_FILE
-ENV_FILE="$HOME/.config/dotfiles/configs/secrets/dotfiles.enc.env"
+ENV_FILE="${SECRETS_DIR:-$HOME/.secrets}/dotfiles.enc.env"
 if [ ! -f "$ENV_FILE" ]; then
   echo "Error: Encrypted env file does not exist: $ENV_FILE" >&2
   exit 1

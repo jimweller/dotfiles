@@ -1,3 +1,2 @@
 creation_rules:
-  - path_regex: configs/secrets/.*\.enc\.(env|yaml)$
-    age: 'age1acpjhysgq05ce884qyz5pju52qrth9nvr2ze2rqmreaggtjwzp7sq0jx3n'
+  - age: 'age1acpjhysgq05ce884qyz5pju52qrth9nvr2ze2rqmreaggtjwzp7sq0jx3n'

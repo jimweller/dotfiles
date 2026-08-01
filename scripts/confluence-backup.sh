@@ -7,8 +7,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 
 # Default configuration (SOPS-encrypted sources, decrypted to temp files below)
-CONFIG_ENC="${CONFLUENCE_CONFIG:-$HOME/.config/dotfiles/configs/secrets/confluence-export.enc.yaml}"
-ENV_ENC="${CONFLUENCE_ENV:-$HOME/.config/dotfiles/configs/secrets/atlassian.enc.env}"
+CONFIG_ENC="${CONFLUENCE_CONFIG:-${SECRETS_DIR:-$HOME/.secrets}/confluence-export.enc.yaml}"
+ENV_ENC="${CONFLUENCE_ENV:-${SECRETS_DIR:-$HOME/.secrets}/atlassian.enc.env}"
 OUTPUT_DIR="${1:-./confluence-backups}"
 ORIGINAL_DIR="$OUTPUT_DIR/_original"
 
@@ -34,8 +34,8 @@ Output Structure:
             └── attachments/           Separate attachment files
 
 Environment Variables:
-  CONFLUENCE_CONFIG   Path to encrypted YAML config (default: configs/secrets/confluence-export.enc.yaml)
-  CONFLUENCE_ENV      Path to encrypted credentials (default: configs/secrets/atlassian.enc.env)
+  CONFLUENCE_CONFIG   Path to encrypted YAML config (default: ~/.secrets/confluence-export.enc.yaml)
+  CONFLUENCE_ENV      Path to encrypted credentials (default: ~/.secrets/atlassian.enc.env)
 
 Examples:
   $0                                    # Export to ./confluence-backups
@@ -64,6 +64,7 @@ fi
 
 : "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
 export SOPS_AGE_KEY_FILE
+
 CONFIG_FILE="$(mktemp)"
 ENV_FILE="$(mktemp)"
 trap 'rm -f "$CONFIG_FILE" "$ENV_FILE"' EXIT

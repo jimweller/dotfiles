@@ -1,5 +1,5 @@
 # load azure environment variables (SOPS-encrypted)
-loadenv "$HOME/.config/dotfiles/configs/secrets/azure.enc.env"
+loadenv "$SECRETS_DIR/azure.enc.env"
 
 alias azup='activate_pim'
 alias azdown='az account clear'

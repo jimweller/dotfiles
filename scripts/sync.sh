@@ -1,53 +1,10 @@
 #!/bin/zsh
 set -euo pipefail
 
-# Load encryption password (SOPS-encrypted)
-if [[ -z "${DOTFILES_KEY:-}" ]]; then
-  : "${SOPS_AGE_KEY_FILE:=$HOME/.config/sops/age/keys.txt}"
-  export SOPS_AGE_KEY_FILE
-  ENC="$HOME/.config/dotfiles/configs/secrets/dotfiles.enc.env"
-  if [[ -f "$ENC" ]]; then
-    set -a
-    source <(sops -d --input-type dotenv --output-type dotenv "$ENC")
-    set +a
-  fi
-fi
+TARGET_DIR="${DOTFILES_BACKUP_DIR:-$HOME/bak/PortfolioJim/current}"
 
-# Verify password is available
-if [[ -z "${DOTFILES_KEY:-}" ]]; then
-  echo "Error: DOTFILES_KEY not set. Please set it or add to ~/.secrets/dotfiles.env"
-  exit 1
-fi
-
-# Sparse image variables
-PASSWORD="${DOTFILES_KEY}"
-DMG=$(eval echo "${DOTFILES_BACKUP_DMG:-\$HOME/bak/PortfolioJim/current/backup.dmg.sparseimage}")
-MOUNT="/Volumes/Backup"
-SIZE="16g"
-TARGET_DIR="$MOUNT"
-
-# Create parent directory for DMG if needed
 echo "Ensuring backup directory exists..."
-mkdir -p "$(dirname "$DMG")"
-
-# Create encrypted sparse image if it doesn't exist
-if [[ ! -f "$DMG" ]]; then
-  echo "Creating encrypted sparse image..."
-  echo "$PASSWORD" | hdiutil create -encryption -type SPARSE -stdinpass -size "$SIZE" -volname Backup -fs APFS "$DMG"
-fi
-
-# Check if already mounted, unmount if so
-if mount | grep -q "$MOUNT"; then
-  echo "Volume already mounted, unmounting..."
-  hdiutil detach "$MOUNT" || true
-fi
-
-# Mount encrypted sparse image
-echo "Mounting encrypted backup volume..."
-echo "$PASSWORD" | hdiutil attach "$DMG" -stdinpass -mountpoint "$MOUNT" -nobrowse
-
-# Ensure unmount happens even on error
-trap "hdiutil detach '$MOUNT' 2>/dev/null || true" EXIT INT TERM
+mkdir -p "$TARGET_DIR"
 
 # Generate brew + extensions
 echo "Backing up Homebrew and VS Code extensions..."
@@ -73,7 +30,7 @@ else
 fi
 
 echo ""
-echo "Syncing files to encrypted volume..."
+echo "Syncing files to $TARGET_DIR..."
 rsync -avL --delete \
   --exclude='.Trash' \
   --exclude='.trash' \
@@ -114,7 +71,4 @@ rsync -avL --delete \
   ~/Library/CloudStorage/OneDrive-Hearst \
   "$TARGET_DIR/"
 
-echo "Sync complete."
-echo "Unmounting backup volume..."
-# Trap will handle unmounting
-echo "Encrypted backup complete: $DMG"
+echo "Backup complete: $TARGET_DIR"

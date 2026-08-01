@@ -61,7 +61,8 @@ dotfiles/
 
 - Python 3 (installer bootstraps via brew or apt if missing)
 - Git with submodule support
-- GPG (for secrets decryption)
+- GPG (key material archive decryption)
+- SOPS + age (env secret decryption)
 - macOS: Homebrew
 - Linux: apt
 - Windows: PowerShell, Git for Windows
@@ -124,7 +125,7 @@ See `configs/claude-code/README.md` for skill inventory and plugin details.
 
 ## Secrets
 
-`scripts/secrets.sh` decrypts a GPG archive containing SSH keys, credentials, and env files. Accepts a password via `DOTFILES_KEY` env var or CLI argument. Plaintext secrets are never committed.
+Two layers. Env secrets are SOPS-encrypted (age) under `configs/secrets/*.enc.env`, committed, symlinked into `~/.secrets/`, and decrypted into the shell at startup using the age key at `~/.config/sops/age/keys.txt`. Key material (SSH keys, GPG keys, the age key) lives in a GPG-encrypted archive at `manifests/*.gpg`, restored with `scripts/secrets.sh open`. Both use the same password, passed via `DOTFILES_KEY` env var or CLI argument. Plaintext secrets are never committed.
 
 ## Links
 

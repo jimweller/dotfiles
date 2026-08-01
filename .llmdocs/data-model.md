@@ -69,7 +69,12 @@ Profile switching via `GIT_CONFIG_GLOBAL` env var set by `switch_git_profile()`.
 
 Two layers:
 
-- **Env secrets (SOPS+age)**: `configs/secrets/*.enc.env` (+ `confluence-export.enc.yaml`), committed. Recipient in `.sops.yaml`. Decrypted at runtime with `~/.config/sops/age/keys.txt` (`SOPS_AGE_KEY_FILE`).
+- **Env secrets (SOPS+age)**: stored at `configs/secrets/*.enc.env` (+ `confluence-export.enc.yaml`) in the repo, committed, source of truth. `.sops.yaml` is a single pathless creation rule (no `path_regex`) carrying the age recipient, applied repo-wide. dotbot glob-links `configs/secrets/*` into `~/.secrets/` (`install.common.yaml:49-51`). All runtime consumers read from `$SECRETS_DIR` (`~/.secrets`), never the repo path directly:
+  - `configs/zsh-jim/00-secrets.zsh` exports `SECRETS_DIR="$HOME/.secrets"` and decrypts every `$SECRETS_DIR/*.enc.env` into the interactive shell
+  - `configs/zsh-jim/05-quality-of-life.zsh`, `configs/zsh-jim/20-git.zsh`, `configs/zsh-jim/45-azure.zsh` reference `"$SECRETS_DIR/..."` directly (they run inside a shell that already exported it)
+  - `scripts/confluence-backup.sh`, `scripts/jimcontainer.sh`, `scripts/mount.sh` use `${SECRETS_DIR:-$HOME/.secrets}` so they stay correct when run standalone (outside the interactive shell)
+  - `configs/mise/personal.toml`, `configs/mise/work.toml` set `GIT_PROFILE_ENC` to `{{env.HOME}}/.secrets/git-*.enc.env`, consumed by `configs/mise/load-git-secret.sh`
+  - Decryption uses the age key at `~/.config/sops/age/keys.txt` (`SOPS_AGE_KEY_FILE`), which itself is unchanged and is not under `~/.secrets`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (covers all shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd, since `sync.sh` invokes it and launchd provides no shell env). The variable is required because macOS sops defaults to `~/Library/Application Support/sops/age/keys.txt` while the key lives at the XDG path.
 - **Key material (GPG archive)**: `scripts/secrets.sh` manages a GPG-encrypted tar of:
   - `~/.ssh/id*` (SSH key pairs)
   - `~/.ssh/allowed_signers`
@@ -117,4 +122,14 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 | `claude_desktop_config.json` | JSON   | `~/Library/Application Support/Claude-3p/claude_desktop_config.json` |
 
 `claude_desktop_config.json` configures Claude Desktop in 3p deployment mode with the ms365 MCP server (`@softeria/ms-365-mcp-server`). Symlinked via `install.macos.yaml`.
+
+## Model ID Conventions
+
+| Config file                                                                | Model ID format                                                         |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `configs/claude-code/claude_settings_json_azure`, `claude_settings_json_jim` | Foundry-style, `[1m]` suffix, e.g. `claude-opus-5[1m]`                   |
+| `configs/claude-code/claude_settings_json_aws`                              | Bedrock-style, `[1m]` suffix, e.g. `global.anthropic.claude-opus-5-v1[1m]` |
+| `configs/hermes/config.yaml`, `configs/opencode/opencode.json`              | Bare Azure Foundry ID, no suffix, e.g. `claude-opus-5`                   |
+
+The `[1m]` (1M context) suffix works only in Claude Code settings; Claude Code strips it client-side before calling the provider. Azure Foundry rejects a bracketed ID directly with a 404, so `hermes/config.yaml` and `opencode/opencode.json` must use the bare model ID.
 ````
