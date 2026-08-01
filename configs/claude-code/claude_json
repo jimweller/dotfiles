@@ -13903,8 +13903,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 7993,
-      "lastUsedAt": 1785608498457,
+      "usageCount": 7996,
+      "lastUsedAt": 1785608793737,
       "lastUsedNumStartups": 3768
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -13948,13 +13948,13 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 3846,
-      "lastUsedAt": 1785608465045,
+      "usageCount": 3853,
+      "lastUsedAt": 1785608782238,
       "lastUsedNumStartups": 3768
     },
     "claude-mem@thedotmack": {
-      "usageCount": 4627,
-      "lastUsedAt": 1785608465094,
+      "usageCount": 4637,
+      "lastUsedAt": 1785608793737,
       "lastUsedNumStartups": 3768
     }
   },
