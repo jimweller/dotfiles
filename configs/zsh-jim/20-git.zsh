@@ -1,8 +1,10 @@
 # 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-jim and git-work.
-# Work sorts after jim so work identity wins. Clear identity and token vars here
-# so no profile is active until an explicit switch_git_profile call (work/jim).
-unset GIT_USER GIT_USERNAME GIT_EMAIL GIT_CONFIG_GLOBAL
-unset GITHUB_TOKEN GH_TOKEN AZURE_DEVOPS_EXT_PAT
+# The glob sorts jim before work, so work wins every shared key and its identity
+# and tokens are live by default. GIT_CONFIG_GLOBAL is in neither secrets file, so
+# it is defaulted to work here to match. gitconfig-all sets user.useConfigOnly, so
+# git refuses to commit without it. switch_git_profile overrides it, and so does
+# mise in any directory carrying configs/mise/{personal,work}.toml.
+export GIT_CONFIG_GLOBAL="${GIT_CONFIG_GLOBAL:-$HOME/.gitconfig-work}"
 
 alias work='cd work && switch_git_profile work'
 alias personal='cd personal && switch_git_profile jim'

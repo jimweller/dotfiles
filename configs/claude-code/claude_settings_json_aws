@@ -96,6 +96,24 @@
             "command": "rtk hook claude"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "serena-hooks remind --client=claude-code"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__serena__*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "serena-hooks auto-approve --client=claude-code"
+          }
+        ]
       }
     ],
     "SessionEnd": [
@@ -125,6 +143,15 @@
             "async": true
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "serena-hooks cleanup --client=claude-code"
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -134,6 +161,15 @@
             "type": "command",
             "command": "agent-deck hook-handler",
             "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "serena-hooks activate --client=claude-code"
           }
         ]
       }

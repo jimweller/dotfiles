@@ -1,5 +1,5 @@
 {
-  "numStartups": 3764,
+  "numStartups": 3768,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 3760
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 158089,
+  "promptQueueUseCount": 158092,
   "btwUseCount": 5,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -4138,49 +4138,24 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1784947219820,
+      "exampleFilesGeneratedAt": 1785570007723,
       "hasCompletedProjectOnboarding": true,
-      "lastCost": 15.873922799999999,
-      "lastAPIDuration": 1504763,
-      "lastAPIDurationWithoutRetries": 1441494,
-      "lastToolDuration": 443304,
-      "lastDuration": 450954244,
-      "lastLinesAdded": 1310,
-      "lastLinesRemoved": 16,
-      "lastTotalInputTokens": 5038,
-      "lastTotalOutputTokens": 112462,
-      "lastTotalCacheCreationInputTokens": 1090173,
-      "lastTotalCacheReadInputTokens": 8288586,
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 3206811,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
       "lastTotalWebSearchRequests": 0,
       "lastFpsAverage": 0.01,
-      "lastFpsLow1Pct": 235.71,
-      "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 1064,
-          "outputTokens": 31,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.001219
-        },
-        "claude-opus-4-8[1m]": {
-          "inputTokens": 3868,
-          "outputTokens": 78369,
-          "cacheReadInputTokens": 5801385,
-          "cacheCreationInputTokens": 798750,
-          "webSearchRequests": 0,
-          "costUSD": 12.8667575
-        },
-        "claude-sonnet-5": {
-          "inputTokens": 106,
-          "outputTokens": 34062,
-          "cacheReadInputTokens": 2487201,
-          "cacheCreationInputTokens": 291423,
-          "webSearchRequests": 0,
-          "costUSD": 3.0059462999999993
-        }
-      },
-      "lastSessionId": "f5f2282a-360e-4062-9101-5bd9d3ebfd3f",
+      "lastFpsLow1Pct": 85.02,
+      "lastModelUsage": {},
+      "lastSessionId": "e5cbff9a-a6d9-4cee-8087-0a8f6ea2f8d7",
       "lastSessionMetrics": {
         "frame_duration_ms_count": 4163,
         "frame_duration_ms_min": 0.03033300000242889,
@@ -4209,7 +4184,7 @@
       "lastSessionFirstPrompt": "how can I manually verify the machine identity?",
       "lastSessionModified": 1779073654415,
       "lastVersionBase": "2.1.220",
-      "lastStartTime": 1784947219063
+      "lastStartTime": 1785570007213
     },
     "/Users/jimweller/work/data-spelunking": {
       "allowedTools": [],
@@ -13137,40 +13112,40 @@
       "exampleFiles": [],
       "lastGracefulShutdown": false,
       "lastVersionBase": "2.1.220",
-      "lastCost": 9.457034999999998,
-      "lastAPIDuration": 717243,
-      "lastAPIDurationWithoutRetries": 716745,
-      "lastToolDuration": 30240,
-      "lastDuration": 24147804,
-      "lastStartTime": 1785509869309,
+      "lastCost": 1.7050725,
+      "lastAPIDuration": 216562,
+      "lastAPIDurationWithoutRetries": 216324,
+      "lastToolDuration": 83052,
+      "lastDuration": 526468,
+      "lastStartTime": 1785565923283,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 857,
-      "lastTotalOutputTokens": 52294,
-      "lastTotalCacheCreationInputTokens": 395971,
-      "lastTotalCacheReadInputTokens": 8377908,
+      "lastTotalInputTokens": 1106,
+      "lastTotalOutputTokens": 13412,
+      "lastTotalCacheCreationInputTokens": 50982,
+      "lastTotalCacheReadInputTokens": 1714101,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.1,
-      "lastFpsLow1Pct": 244.09,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 706,
-          "outputTokens": 22,
+          "inputTokens": 577,
+          "outputTokens": 16,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.000816
+          "costUSD": 0.000657
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 151,
-          "outputTokens": 52272,
-          "cacheReadInputTokens": 8377908,
-          "cacheCreationInputTokens": 395971,
+          "inputTokens": 529,
+          "outputTokens": 13396,
+          "cacheReadInputTokens": 1714101,
+          "cacheCreationInputTokens": 50982,
           "webSearchRequests": 0,
-          "costUSD": 9.456218999999997
+          "costUSD": 1.7044154999999999
         }
       },
-      "lastSessionId": "7e3fbe67-85e2-428d-b426-5990b5bb7299"
+      "lastSessionId": "0312b0f1-c050-4c58-a632-26349b73cb2b",
+      "lastFpsAverage": 0.35,
+      "lastFpsLow1Pct": 182.91
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -13509,8 +13484,8 @@
       "lastUsedAt": 1785564620205
     },
     "md-syntax": {
-      "usageCount": 60,
-      "lastUsedAt": 1785564717120
+      "usageCount": 61,
+      "lastUsedAt": 1785568307828
     },
     "ado": {
       "usageCount": 38,
@@ -13653,8 +13628,8 @@
       "lastUsedAt": 1785388019494
     },
     "sage": {
-      "usageCount": 243,
-      "lastUsedAt": 1785537018856
+      "usageCount": 245,
+      "lastUsedAt": 1785572363461
     },
     "update-config": {
       "usageCount": 2,
@@ -13928,14 +13903,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 7949,
-      "lastUsedAt": 1785565481675,
-      "lastUsedNumStartups": 3764
+      "usageCount": 7993,
+      "lastUsedAt": 1785608498457,
+      "lastUsedNumStartups": 3768
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 2677,
-      "lastUsedAt": 1785554978418,
-      "lastUsedNumStartups": 3764
+      "usageCount": 2683,
+      "lastUsedAt": 1785573250743,
+      "lastUsedNumStartups": 3768
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 0,
@@ -13943,9 +13918,9 @@
       "lastUsedNumStartups": 3412
     },
     "beads@beads-marketplace": {
-      "usageCount": 2857,
-      "lastUsedAt": 1785554978418,
-      "lastUsedNumStartups": 3764
+      "usageCount": 2863,
+      "lastUsedAt": 1785573250742,
+      "lastUsedNumStartups": 3768
     },
     "claude-mem@jimweller": {
       "usageCount": 34296,
@@ -13973,14 +13948,14 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 3340,
-      "lastUsedAt": 1785565470112,
-      "lastUsedNumStartups": 3764
+      "usageCount": 3846,
+      "lastUsedAt": 1785608465045,
+      "lastUsedNumStartups": 3768
     },
     "claude-mem@thedotmack": {
-      "usageCount": 3973,
-      "lastUsedAt": 1785565481675,
-      "lastUsedNumStartups": 3764
+      "usageCount": 4627,
+      "lastUsedAt": 1785608465094,
+      "lastUsedNumStartups": 3768
     }
   },
   "tipLifetimeShownCounts": {

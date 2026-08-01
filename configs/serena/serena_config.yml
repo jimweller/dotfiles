@@ -60,7 +60,15 @@ ls_specific_settings: {}
 tool_timeout: 240
 
 # list of tools to be globally excluded
-excluded_tools: []
+excluded_tools:
+- write_memory
+- read_memory
+- delete_memory
+- edit_memory
+- rename_memory
+- list_memories
+- onboarding
+- check_onboarding_performed
 
 # list of optional tools (which are disabled by default) to be included
 included_optional_tools: []
