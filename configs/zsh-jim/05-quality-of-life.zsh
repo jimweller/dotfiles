@@ -49,7 +49,7 @@ loadenv() {
 }
 
 secret() {
-  loadenv "$HOME/.config/dotfiles/configs/secrets/$1.enc.env"
+  loadenv "$SECRETS_DIR/$1.enc.env"
 }
 
 if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
@@ -90,7 +90,8 @@ alias secrets='secrets.sh'
 
 bolt() {
   local name="${1:-jimweller-$(openssl rand -hex 2)}"
-  quiver create "$name" --config "$HOME/.config/dotfiles/configs/quiver/bolt.yaml"
+  quiver create "$name" --config "$HOME/.config/dotfiles/configs/quiver/bolt.yaml" \
+    --age-key "$DOTFILES_KEY"
 }
 
 
