@@ -53,7 +53,7 @@ gitconfig-work (work, includes gitconfig-all)
   url rewrites: 11 ADO project SSH -> HTTPS mappings
 ```text
 
-Profile switching via `GIT_CONFIG_GLOBAL` env var set by `switch_git_profile()`.
+`GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `configs/zsh-jim/20-git.zsh`. The `~/.secrets/*.enc.env` glob sorts `git-jim` before `git-work`, so the work identity wins shared keys and is live by default. `gitconfig-all` sets `user.useConfigOnly`, so git refuses to commit without an explicit config. Precedence, highest first: `switch_git_profile()` in an interactive shell, mise's per-directory `configs/mise/{personal,work}.toml`, then the `20-git.zsh` default.
 
 ## Manifest Files
 
@@ -122,6 +122,21 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 | `claude_desktop_config.json` | JSON   | `~/Library/Application Support/Claude-3p/claude_desktop_config.json` |
 
 `claude_desktop_config.json` configures Claude Desktop in 3p deployment mode with the ms365 MCP server (`@softeria/ms-365-mcp-server`). Symlinked via `install.macos.yaml`.
+
+## Serena Hooks
+
+`configs/claude-code/claude_settings_json_azure` registers the `serena-hooks` CLI for four Claude Code lifecycle events (client `claude-code`):
+
+| Event        | Matcher          | Command                                          | Behavior                                                                                                             |
+| ------------ | ---------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| SessionStart | `""`              | `serena-hooks activate --client=claude-code`      | Always injects additionalContext telling the agent to call activate_project.                                        |
+| PreToolUse   | `""`              | `serena-hooks remind --client=claude-code`        | Denies the tool call after 3 consecutive Read calls on files with a source-code extension (e.g. .yaml, .json, .sh, .toml, .tf), then goes no-op for 120s. Markdown files and Bash commands do not count toward the streak. |
+| PreToolUse   | `mcp__serena__*`  | `serena-hooks auto-approve --client=claude-code`  | Allows serena symbolic tools only when permission_mode is acceptEdits or auto.                                       |
+| SessionEnd   | `""`              | `serena-hooks cleanup --client=claude-code`        | Deletes `~/.serena/hook_data/<session_id>`.                                                                          |
+
+State persists for the session at `~/.serena/hook_data/<session_id>/tool_use_counter.pkl`.
+
+`configs/serena/serena_config.yml` (symlinked to `~/.serena/serena_config.yml`) sets `excluded_tools` to eight memory and onboarding tools: write_memory, read_memory, delete_memory, edit_memory, rename_memory, list_memories, onboarding, check_onboarding_performed.
 
 ## Model ID Conventions
 

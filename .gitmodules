@@ -18,9 +18,6 @@
 [submodule "dotfiles/claude-code/tools/total-recall"]
 	path = submodules/total-recall
 	url = https://github.com/jimweller/total-recall.git
-[submodule "dotfiles/claude-code/tools/lsp-enforcement-kit"]
-	path = submodules/lsp-enforcement-kit
-	url = https://github.com/jimweller/claude-code-lsp-enforcement-kit.git
 [submodule "dotfiles/claude-code/tools/humble-master"]
 	path = submodules/humble-master
 	url = https://github.com/jimweller/humble-master.git

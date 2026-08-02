@@ -4,16 +4,15 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 ## Core Components
 
-| Component           | Path                              | Role                                                     |
-| ------------------- | --------------------------------- | -------------------------------------------------------- |
-| dotbot              | `submodules/dotbot/`              | Symlink and install orchestration (git submodule)        |
-| antidote            | `submodules/antidote/`            | Zsh plugin manager (git submodule)                       |
-| devcontainer        | `submodules/devcontainer/`        | Linux Docker dev image (git submodule)                   |
-| clanker-skills      | `submodules/clanker-skills/`      | Universal AI agent skills (git submodule)                |
-| total-recall        | `submodules/total-recall/`        | SQLite session memory for Claude Code (git submodule)    |
-| lsp-enforcement-kit | `submodules/lsp-enforcement-kit/` | LSP-first navigation enforcement kit (git submodule)     |
-| humble-master       | `submodules/humble-master/`       | Daneel persona injection for Claude Code (git submodule) |
-| superpowers         | `submodules/superpowers/`         | Claude Code skill plugin library (git submodule)         |
+| Component      | Path                         | Role                                                     |
+| -------------- | ---------------------------- | -------------------------------------------------------- |
+| dotbot         | `submodules/dotbot/`         | Symlink and install orchestration (git submodule)        |
+| antidote       | `submodules/antidote/`       | Zsh plugin manager (git submodule)                       |
+| devcontainer   | `submodules/devcontainer/`   | Linux Docker dev image (git submodule)                   |
+| clanker-skills | `submodules/clanker-skills/` | Universal AI agent skills (git submodule)                |
+| total-recall   | `submodules/total-recall/`   | SQLite session memory for Claude Code (git submodule)    |
+| humble-master  | `submodules/humble-master/`  | Daneel persona injection for Claude Code (git submodule) |
+| superpowers    | `submodules/superpowers/`    | Claude Code skill plugin library (git submodule)         |
 
 ## Directory Layout
 
@@ -29,6 +28,7 @@ configs/                  # Source dotfiles (symlinked to home)
   opencode/                # OpenCode CLI config + agents
   roocode/                 # Roo Code modes + MCP settings
   gemini/                  # Gemini CLI settings
+  serena/                  # Serena MCP config (hooks, tool exclusions)
   github/                  # GitHub CLI config
   iterm/                   # iTerm2 dynamic profiles
   macos/                   # macOS Automator workflows
@@ -87,20 +87,19 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 ~/.gitconfig-work -> gitconfig-work # Work: mcg email, id_mcg key, ADO credential helper
 ```text
 
-`switch_git_profile()` in `20-git.zsh` sets `GIT_CONFIG_GLOBAL` and loads profile-specific secrets. `git_lock()` writes profile to local repo config.
+`20-git.zsh` exports a default `GIT_CONFIG_GLOBAL` of `~/.gitconfig-work` at shell init, so the work identity is live without an explicit switch. `switch_git_profile()` overrides it and loads profile-specific secrets, as does mise in any directory carrying `configs/mise/{personal,work}.toml`. `git_lock()` writes profile to local repo config.
 
 ## Submodules
 
-Eight submodules defined in `.gitmodules`, all under `submodules/`:
+Seven submodules defined in `.gitmodules`, all under `submodules/`:
 
-| Submodule           | Shallow | Branch  |
-| ------------------- | ------- | ------- |
-| dotbot              | yes     | default |
-| devcontainer        | yes     | main    |
-| antidote            | yes     | main    |
-| clanker-skills      | no      | default |
-| total-recall        | no      | default |
-| lsp-enforcement-kit | no      | default |
-| humble-master       | no      | default |
-| superpowers         | no      | default |
+| Submodule      | Shallow | Branch  |
+| -------------- | ------- | ------- |
+| dotbot         | yes     | default |
+| devcontainer   | yes     | main    |
+| antidote       | yes     | main    |
+| clanker-skills | no      | default |
+| total-recall   | no      | default |
+| humble-master  | no      | default |
+| superpowers    | no      | default |
 ````

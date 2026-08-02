@@ -18,7 +18,6 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `submodules/clanker-skills/` -- universal AI agent skills (submodule)
 - `submodules/superpowers/` -- Claude Code skill plugin library (submodule)
 - `submodules/total-recall/` -- SQLite session transcript memory (submodule)
-- `submodules/lsp-enforcement-kit/` -- LSP-first navigation hooks (submodule)
 - `submodules/humble-master/` -- Daneel persona research (submodule)
 - `configs/` -- source configs symlinked to home
 - `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
@@ -63,7 +62,7 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - Link defaults: `force: true`, `create: true`, `relink: true`
 - Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 04-completions, 05-qol, ..., 95-linux)
 - Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim` and `gitconfig-work`
-- Profile switching via `GIT_CONFIG_GLOBAL` env var
+- `GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `20-git.zsh`. `switch_git_profile` and per-directory mise config override it
 - Env secrets are SOPS-encrypted (age) in `configs/secrets/*.enc.env` and committed. dotbot glob-links them into `~/.secrets/`; runtime code reads from `$SECRETS_DIR` (`~/.secrets`), never the repo path directly. The age key (`~/.config/sops/age/keys.txt`) and any plaintext are never committed. The GPG archive holds SSH/GPG keys plus the age key
 - `configs/claude-code/` is user-level Claude Code config, not repo metadata
 - `configs/claude-code/claude_settings_json_azure` is the active settings file (symlinked to `~/.claude/settings.json`). Make changes there first, then copy into `configs/claude-code/claude_settings_json_aws` and `configs/claude-code/claude_settings_json_jim`. Three differences exist between azure and aws that must be preserved when syncing: (1) azure uses `CLAUDE_CODE_USE_FOUNDRY=1`, aws uses `CLAUDE_CODE_USE_BEDROCK=1`; (2) model names use different ID formats -- azure/jim use Foundry-style IDs (e.g. `claude-opus-5[1m]`), aws uses Bedrock-style IDs (e.g. `global.anthropic.claude-opus-5-v1[1m]`); (3) azure has `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` which aws/jim may not. The jim file has no Foundry/Bedrock vars and uses Foundry-style model IDs. When the user updates model names in one file, translate to the correct ID format for the other files rather than copying verbatim.
@@ -80,6 +79,7 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - **LaunchAgents**: macOS scheduled tasks for AWS token refresh, backup, steampipe, ccusage, total-recall
 - **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and the age key (`keys.txt`); passphrase is `DOTFILES_KEY`, unified to equal the age key
 - **SOPS secrets**: env secrets are stored in `configs/secrets/*.enc.env` (age recipient in `.sops.yaml`, a pathless rule) and committed. dotbot glob-links them into `~/.secrets/` (`install.common.yaml:49-51`); all runtime reads use `$SECRETS_DIR` (`~/.secrets`), exported by `00-secrets.zsh`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd). mise loads git profiles through `configs/mise/load-git-secret.sh`, pointed at `$SECRETS_DIR/git-*.enc.env`. One string (the age key) bootstraps everything
+- **serena hooks**: `serena-hooks` is registered for four Claude Code lifecycle events in `claude_settings_json_azure` (SessionStart activate, PreToolUse remind, PreToolUse auto-approve on `mcp__serena__*`, SessionEnd cleanup). Session state lives at `~/.serena/hook_data/<session_id>/`
 
 ## Docs
 
