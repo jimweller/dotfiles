@@ -71,16 +71,6 @@
         "gitCommitSha": "203406d9f4c7f188c9a4eb69fb9fb5ec7711e793"
       }
     ],
-    "superpowers@jimweller": [
-      {
-        "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/superpowers/5.1.1",
-        "version": "5.1.1",
-        "installedAt": "2026-04-29T02:28:50.051Z",
-        "lastUpdated": "2026-04-29T05:39:25.318Z",
-        "gitCommitSha": "4df9ac7946ca12e7b2335f0eb066e47e30937cd7"
-      }
-    ],
     "mcg-sensitive-canary@sead-claude-marketplace": [
       {
         "scope": "user",
@@ -98,6 +88,16 @@
         "installedAt": "2026-07-30T06:28:36.114Z",
         "lastUpdated": "2026-07-30T06:28:36.114Z",
         "gitCommitSha": "132b46343e60ecf4057c427736c57b08f7615dfe"
+      }
+    ],
+    "ast-grep@ast-grep-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/ast-grep-marketplace/ast-grep/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-08-02T05:57:32.841Z",
+        "lastUpdated": "2026-08-02T05:57:32.841Z",
+        "gitCommitSha": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a"
       }
     ]
   }

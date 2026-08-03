@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "cleanupPeriodDays": 90,
+  "cleanupPeriodDays": 366,
   "env": {
     "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5[1m]",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
@@ -48,40 +48,14 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "sonnet",
+  "model": "fable",
   "hooks": {
-    "Notification": [
-      {
-        "matcher": "permission_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
-          }
-        ]
-      }
-    ],
     "PreCompact": [
       {
         "hooks": [
           {
             "type": "command",
             "command": "~/.claude/hooks/ingest-transcript.sh"
-          },
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
           }
         ]
       }
@@ -135,15 +109,6 @@
         ]
       },
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
@@ -154,15 +119,6 @@
       }
     ],
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
-          }
-        ]
-      },
       {
         "matcher": "*",
         "hooks": [
@@ -189,21 +145,6 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/stop-phrase-guard.sh"
-          },
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
           }
         ]
       }
@@ -220,8 +161,8 @@
     "mcg-lookup@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": false,
     "ralph-loop@claude-plugins-official": true,
-    "superpowers@jimweller": false,
-    "mcg-sensitive-canary@sead-claude-marketplace": true
+    "mcg-sensitive-canary@sead-claude-marketplace": true,
+    "ast-grep@ast-grep-marketplace": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
@@ -243,16 +184,16 @@
       },
       "autoUpdate": true
     },
-    "jimweller": {
-      "source": {
-        "source": "github",
-        "repo": "jimweller/claude-marketplace"
-      }
-    },
     "thedotmack": {
       "source": {
         "source": "github",
         "repo": "thedotmack/claude-mem"
+      }
+    },
+    "ast-grep-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "ast-grep/agent-skill"
       }
     }
   },

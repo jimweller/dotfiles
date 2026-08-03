@@ -450,15 +450,7 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist: []
-hooks:
-  on_session_end:
-    - command: agent-deck hook-handler
-  on_session_start:
-    - command: agent-deck hook-handler
-  post_tool_call:
-    - command: agent-deck hook-handler
-  pre_tool_call:
-    - command: agent-deck hook-handler
+hooks: {}
 hooks_auto_accept: false
 security:
   allow_private_urls: false

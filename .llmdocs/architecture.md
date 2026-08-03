@@ -12,7 +12,6 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | clanker-skills | `submodules/clanker-skills/` | Universal AI agent skills (git submodule)                |
 | total-recall   | `submodules/total-recall/`   | SQLite session memory for Claude Code (git submodule)    |
 | humble-master  | `submodules/humble-master/`  | Daneel persona injection for Claude Code (git submodule) |
-| superpowers    | `submodules/superpowers/`    | Claude Code skill plugin library (git submodule)         |
 
 ## Directory Layout
 
@@ -91,7 +90,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Seven submodules defined in `.gitmodules`, all under `submodules/`:
+Six submodules defined in `.gitmodules`, all under `submodules/`:
 
 | Submodule      | Shallow | Branch  |
 | -------------- | ------- | ------- |
@@ -101,5 +100,4 @@ Seven submodules defined in `.gitmodules`, all under `submodules/`:
 | clanker-skills | no      | default |
 | total-recall   | no      | default |
 | humble-master  | no      | default |
-| superpowers    | no      | default |
 ````

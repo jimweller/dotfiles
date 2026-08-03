@@ -21,9 +21,6 @@
 [submodule "dotfiles/claude-code/tools/humble-master"]
 	path = submodules/humble-master
 	url = https://github.com/jimweller/humble-master.git
-[submodule "dotfiles/claude-code/tools/superpowers"]
-	path = submodules/superpowers
-	url = https://github.com/jimweller/superpowers.git
 [submodule "submodules/clanker-skills"]
 	path = submodules/clanker-skills
 	url = https://github.com/jimweller/clanker-skills.git

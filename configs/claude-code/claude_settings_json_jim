@@ -1,6 +1,29 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "cleanupPeriodDays": 90,
+  "cleanupPeriodDays": 366,
+  "env": {
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5[1m]",
+    "ANTHROPIC_MODEL": "opus",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
+    "CLAUDE_CODE_SHELL": "bash",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "DISABLE_COST_WARNINGS": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_FEEDBACK_COMMAND": "1",
+    "DISABLE_TELEMETRY": "1",
+    "ENABLE_PROMPT_CACHING_1H": "1",
+    "ENABLE_TOOL_SEARCH": "auto:1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "deny": [
       "Read(~/.config/sops/age/keys.txt)",
@@ -23,64 +46,14 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "env": {
-    "CLAUDE_CODE_SHELL": "bash",
-    "ANTHROPIC_DEFAULT_FABLE_MODEL": "claude-fable-5[1m]",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5[1m]",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5[1m]",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5",
-    "ANTHROPIC_MODEL": "opus",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "40",
-    "ENABLE_TOOL_SEARCH": "auto:1",
-    "ENABLE_PROMPT_CACHING_1H": "1",
-    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
-    "DISABLE_FEEDBACK_COMMAND": "1",
-    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "DISABLE_TELEMETRY": "1",
-    "DISABLE_COST_WARNINGS": "1",
-    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1"
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
-    "Notification": [
-      {
-        "matcher": "permission_prompt|elicitation_dialog",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [],
     "PreCompact": [
       {
         "hooks": [
           {
             "type": "command",
             "command": "~/.claude/hooks/ingest-transcript.sh"
-          },
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
           }
         ]
       }
@@ -134,15 +107,6 @@
         ]
       },
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
@@ -154,11 +118,12 @@
     ],
     "SessionStart": [
       {
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
+            "command": "bash '/Users/jimweller/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       },
@@ -178,21 +143,6 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/stop-phrase-guard.sh"
-          },
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "agent-deck hook-handler",
-            "async": true
           }
         ]
       }
@@ -203,21 +153,21 @@
     "command": "~/.claude/statusline-command.sh jim"
   },
   "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true,
-    "mcg-atlassian@sead-claude-marketplace": true,
-    "mcg-lookup@sead-claude-marketplace": true,
     "beads@beads-marketplace": true,
     "claude-mem@thedotmack": true,
-    "superpowers@jimweller": false,
-    "mcg-status-updates@devx-claude-marketplace": false
+    "mcg-atlassian@sead-claude-marketplace": true,
+    "mcg-lookup@sead-claude-marketplace": true,
+    "mcg-status-updates@devx-claude-marketplace": false,
+    "ralph-loop@claude-plugins-official": true,
+    "mcg-sensitive-canary@sead-claude-marketplace": true,
+    "ast-grep@ast-grep-marketplace": true
   },
   "extraKnownMarketplaces": {
-    "devx-claude-marketplace": {
+    "azure-skills": {
       "source": {
-        "source": "git",
-        "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
-      },
-      "autoUpdate": true
+        "source": "github",
+        "repo": "microsoft/azure-skills"
+      }
     },
     "beads-marketplace": {
       "source": {
@@ -225,22 +175,23 @@
         "repo": "gastownhall/beads"
       }
     },
-    "jimweller": {
+    "devx-claude-marketplace": {
       "source": {
-        "source": "github",
-        "repo": "jimweller/claude-marketplace"
-      }
-    },
-    "azure-skills": {
-      "source": {
-        "source": "github",
-        "repo": "microsoft/azure-skills"
-      }
+        "source": "git",
+        "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
+      },
+      "autoUpdate": true
     },
     "thedotmack": {
       "source": {
         "source": "github",
         "repo": "thedotmack/claude-mem"
+      }
+    },
+    "ast-grep-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "ast-grep/agent-skill"
       }
     }
   },
@@ -251,7 +202,7 @@
       "CLANKING"
     ]
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",

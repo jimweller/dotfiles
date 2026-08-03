@@ -16,7 +16,6 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `submodules/antidote/` -- zsh plugin manager (submodule)
 - `submodules/devcontainer/` -- Linux container image (submodule)
 - `submodules/clanker-skills/` -- universal AI agent skills (submodule)
-- `submodules/superpowers/` -- Claude Code skill plugin library (submodule)
 - `submodules/total-recall/` -- SQLite session transcript memory (submodule)
 - `submodules/humble-master/` -- Daneel persona research (submodule)
 - `configs/` -- source configs symlinked to home

@@ -43,14 +43,6 @@
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/beads-marketplace",
     "lastUpdated": "2026-05-06T14:54:12.184Z"
   },
-  "jimweller": {
-    "source": {
-      "source": "github",
-      "repo": "jimweller/claude-marketplace"
-    },
-    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-05-06T15:53:03.522Z"
-  },
   "thedotmack": {
     "source": {
       "source": "github",
@@ -66,5 +58,13 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/azure-skills",
     "lastUpdated": "2026-07-30T06:29:31.921Z"
+  },
+  "ast-grep-marketplace": {
+    "source": {
+      "source": "github",
+      "repo": "ast-grep/agent-skill"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/ast-grep-marketplace",
+    "lastUpdated": "2026-08-02T05:56:51.520Z"
   }
 }

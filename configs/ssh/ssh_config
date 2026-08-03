@@ -27,6 +27,16 @@ Host claude-flow.devpod
   User node
 # DevPod End claude-flow.devpod
 
+Host hd3
+  HostName 127.0.0.1
+  Port 2222
+  User vscode
+  IdentityFile ~/.ssh/hd3_test_key
+  IdentitiesOnly yes
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  LogLevel error
+
 # Cross-platform settings with macOS-specific UseKeychain
 Host *
   AddKeysToAgent yes

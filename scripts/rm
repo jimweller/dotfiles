@@ -18,9 +18,6 @@ SAFE_RM_DEBUG=${SAFE_RM_DEBUG:=}
 # Simple basename: /bin/rm -> rm
 COMMAND=${0##*/}
 
-# pwd
-__DIRNAME=$(pwd)
-
 GUID=0
 TIME=
 date_time(){
@@ -298,22 +295,6 @@ trash(){
   # the first parameter to be passed to `mv`
   local move=$file
   local base=$(basename "$file")
-  local travel=
-
-  # basename ./       -> .
-  # basename ../      -> ..
-  # basename ../abc   -> abc
-  # basename ../.abc  -> .abc
-  if [[ -d "$file" && ${base:0:1} = '.' ]]; then
-    # then file must be a relative dir
-    cd $file
-
-    # pwd can't be piped?
-    move=$(pwd)
-    move=$(basename "$move")
-    cd ..
-    travel=1
-  fi
 
   local trash_name=$SAFE_RM_TRASH/$base
 
@@ -328,8 +309,6 @@ trash(){
 
   debug "mv $move to $trash_name"
   mv "$move" "$trash_name"
-
-  [[ "$travel" = 1 ]] && cd $__DIRNAME &> /dev/null
 
   #default status
   return 0
