@@ -1,4 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "pyyaml>=6.0",
+#     "requests>=2.32",
+# ]
+# ///
 """
 Export Confluence spaces and pages to local HTML files.
 Preserves images, tables, and all formatting.

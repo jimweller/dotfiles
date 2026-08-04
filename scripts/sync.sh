@@ -18,19 +18,25 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 echo ""
 echo "Backing up Confluence pages..."
 CONFLUENCE_BACKUP="$SCRIPT_DIR/confluence-backup.sh"
+CONFLUENCE_STATUS="ok"
 if [[ -f "$CONFLUENCE_BACKUP" ]]; then
-    "$CONFLUENCE_BACKUP" "$TARGET_DIR/Confluence"
-    if [[ $? -eq 0 ]]; then
-        echo "✓ Confluence backup complete"
+    confluence_rc=0
+    "$CONFLUENCE_BACKUP" "$TARGET_DIR/Confluence" || confluence_rc=$?
+    if [[ $confluence_rc -eq 0 ]]; then
+        echo "Confluence backup complete"
     else
-        echo "⚠ Confluence backup failed (continuing with sync)"
+        echo "ERROR: Confluence backup failed (exit $confluence_rc); continuing with file sync"
+        CONFLUENCE_STATUS="failed (exit $confluence_rc)"
     fi
 else
-    echo "⚠ confluence-backup.sh not found at $CONFLUENCE_BACKUP, skipping Confluence backup"
+    echo "ERROR: confluence-backup.sh not found at $CONFLUENCE_BACKUP"
+    CONFLUENCE_STATUS="missing"
 fi
 
 echo ""
 echo "Syncing files to $TARGET_DIR..."
+SYNC_STATUS="ok"
+rsync_rc=0
 rsync -avL --delete \
   --exclude='.Trash' \
   --exclude='.trash' \
@@ -69,6 +75,21 @@ rsync -avL --delete \
   ~/Library/Application\ Support/Code/User/keybindings.json \
   ~/Library/Application\ Support/Google/Chrome/Default/Bookmarks \
   ~/Library/CloudStorage/OneDrive-Hearst \
-  "$TARGET_DIR/"
+  "$TARGET_DIR/" || rsync_rc=$?
+
+if [[ $rsync_rc -eq 0 ]]; then
+  echo "File sync complete"
+elif [[ $rsync_rc -eq 23 || $rsync_rc -eq 24 ]]; then
+  echo "ERROR: rsync partial transfer (exit $rsync_rc); some files were not copied, see backup-err.txt"
+  SYNC_STATUS="partial (exit $rsync_rc)"
+else
+  echo "ERROR: rsync failed (exit $rsync_rc)"
+  exit $rsync_rc
+fi
+
+if [[ "$CONFLUENCE_STATUS" != "ok" || "$SYNC_STATUS" != "ok" ]]; then
+  echo "Backup finished with errors: confluence=$CONFLUENCE_STATUS sync=$SYNC_STATUS"
+  exit 1
+fi
 
 echo "Backup complete: $TARGET_DIR"
