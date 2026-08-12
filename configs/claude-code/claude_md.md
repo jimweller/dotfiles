@@ -86,7 +86,7 @@ These language patterns are forbidden in ALL writing, chat responses and ghostwr
 - Follow existing project/repo conventions when present
 - Prefer simple, readable solutions over clever ones
 - Avoid over-engineering or adding unnecessary abstractions
-- Do not add comments to production code. Keep it clean unless asked.
+- Do not add superfluous comments to production code. Reserve comments for code that warrants them, such as security boundaries and complex logic.
 - In docs, never add parenthetical clarifications like "(not X)" or "(NOT X)". State the correct value only.
 - Never use emojis or glyphs in code. Keep it text only unless asked.
 - Do not add fallbacks that hide failures. No `|| true`. No `try { x } catch { }`. No silent catch-all exception handlers. No automatic package substitution. Errors should surface, not be swallowed.
@@ -128,7 +128,6 @@ These language patterns are forbidden in ALL writing, chat responses and ghostwr
 
 - Before writing any code, describe your approach
 - Always ask clarifying questions before writing any code if requirements are ambiguous
-- If a task requires changes to more than 3 files, stop and break it into smaller tasks first
 - After writing code, list what could break and suggest tests to cover it
 - ALWAYS run tests after making code changes
 - ALWAYS verify 100% passing tests before committing

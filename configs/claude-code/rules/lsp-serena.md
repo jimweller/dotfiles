@@ -8,7 +8,10 @@ For code navigation in a language with LSP backing, prefer Serena over Read.
 | Find references   | `mcp__serena__find_referencing_symbols` | Bash rg         |
 | Find callers      | `mcp__serena__find_referencing_symbols` | Bash rg         |
 | Understand a file | `mcp__serena__get_symbols_overview`     | Read whole file |
+| Resolve a usage   | `mcp__serena__find_declaration`         | Bash rg         |
+| Find implementers | `mcp__serena__find_implementations`     | Bash rg         |
+| Check diagnostics | `mcp__serena__get_diagnostics_for_file` | Build output    |
 
 Fall back to Read or Bash (`rg`, `find`) when Serena returns empty or errors, or when searching string literals, comments, config keys, or URLs.
 
-Serena has no equivalent for hover/type info, diagnostics, or outgoing calls. Use Read or build output for those.
+Hover and type info come from `include_info` on `find_symbol`, `find_declaration`, and `find_implementations`. Serena has no equivalent for outgoing calls. Use Read for those.

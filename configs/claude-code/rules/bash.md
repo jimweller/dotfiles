@@ -46,3 +46,4 @@ Environment sourcing is handled automatically with `mise` for variables, secrets
 - Use `$()` instead of backticks for command substitution
 - Prefer `printf` over `echo` for portable output
 - Use `local` for function variables
+- A header comment states the script's purpose and required environment. Functions need none

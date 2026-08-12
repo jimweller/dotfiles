@@ -78,6 +78,7 @@ Style rules live in `.editorconfig` at the repo root. Analyzer violations are bu
 - Suffix async methods with `Async`
 - `record` for immutable data, `class` for behavior
 - Constructor injection for dependencies. No service locator
+- XML doc comments (`///`) on public library API only. Internal and private members need none
 
 ## New Project
 

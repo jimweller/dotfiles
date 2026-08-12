@@ -107,6 +107,7 @@ Default rustfmt style. `rustfmt.toml` exists only when a project needs an overri
 - Borrow in function arguments: `&str` over `String`, `&[T]` over `Vec<T>`
 - Derive `Debug` on every public type. Derive `Clone` only when the type is cheap to copy
 - One `impl` block per trait
+- `///` doc comments on public items only. Private items need none
 
 ## New Project
 

@@ -103,6 +103,11 @@ uv run black .             # format (black)
 
 Line length is 100 for both ruff and black.
 
+## Style
+
+- Type hints carry the contract. Do not restate a type in prose
+- Docstrings on public modules, classes, and functions in a library. Scripts and private helpers need none
+
 ## New Project
 
 Use `uv init --lib <name>` to scaffold. Edit `pyproject.toml` to add dependency-groups and tool config per the template above. Run `uv sync` to create `.venv` and install deps.

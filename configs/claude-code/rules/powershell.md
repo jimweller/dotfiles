@@ -108,3 +108,4 @@ PSScriptAnalyzer findings are errors, not suggestions. Settings live in `PSScrip
 - Single quotes for literal strings, double quotes only when interpolating
 - Output objects, not formatted text. Never `Write-Host` for data. Use `Write-Output` for data and `Write-Verbose` for diagnostics
 - Use `Join-Path` for paths. Never string-concatenate with `/` or `\`
+- Comment-based help (`.SYNOPSIS`, `.PARAMETER`) on exported module functions, since `Get-Help` reads it. Private helpers need none

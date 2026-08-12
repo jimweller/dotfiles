@@ -108,3 +108,4 @@ ESLint config is flat config in `eslint.config.js`. Never `.eslintrc*`.
 - No `any`. Use `unknown` and narrow
 - Async/await over raw promise chains
 - Node builtins use the `node:` prefix: `import { readFile } from "node:fs/promises"`
+- `strict` types carry the contract. JSDoc only on published package entry points, never on internal code

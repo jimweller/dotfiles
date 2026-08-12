@@ -149,6 +149,7 @@ Lint failures are build failures. `//nolint` requires a reason on the same line.
 
 - `context.Context` is the first parameter and never stored in a struct. Test helpers take `t *testing.T` first
 - Exported identifiers in library packages carry a doc comment that starts with the identifier name. `package main` symbols need one only when the comment says something the name does not
+- `godoc` output is the audience for a doc comment. Write for the caller, not for the reader of the implementation
 - No `panic` in library code. Panic only when a startup invariant fails
 - Zero values are usable where practical. Prefer `var x []T` over `x := []T{}`
 
