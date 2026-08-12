@@ -159,7 +159,7 @@
     "claude-mem@thedotmack": true,
     "mcg-atlassian@sead-claude-marketplace": true,
     "mcg-lookup@sead-claude-marketplace": true,
-    "mcg-status-updates@devx-claude-marketplace": false,
+    "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "mcg-sensitive-canary@sead-claude-marketplace": true,
     "ast-grep@ast-grep-marketplace": true
