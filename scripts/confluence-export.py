@@ -203,12 +203,14 @@ def get_all_descendant_pages(client, page_id):
 def download_attachment(client, attachment_url, dest_path):
     """Download an attachment from Confluence."""
     if not attachment_url.startswith('http'):
-        attachment_url = urljoin(client['base_url'], attachment_url)
+        # Concatenate rather than urljoin: base_url ends with /wiki and the API
+        # returns root-relative links, which urljoin would strip the prefix from.
+        attachment_url = client['base_url'].rstrip('/') + '/' + attachment_url.lstrip('/')
     
     try:
         # Use same headers as API calls
         headers = {
-            'Accept': 'application/octet-stream',
+            'Accept': '*/*',
             'X-Atlassian-Token': 'no-check'
         }
         response = requests.get(attachment_url, auth=client['auth'], headers=headers, stream=True, timeout=30)
@@ -339,9 +341,12 @@ def export_page(client, page, dest_dir, space_key):
     
     for attachment in attachments:
         att_title = attachment['title']
-        # Construct clean download URL without version parameters
-        # The API returns URLs with stale version params that cause 404s
-        download_link = f"{client['base_url']}/download/attachments/{page_id}/{att_title}"
+        # Use the API-provided downloadLink. Rebuilding the URL by hand yields a
+        # path that requires a browser session and rejects API-token auth.
+        download_link = attachment.get('downloadLink', '')
+        if not download_link:
+            print(f"      No downloadLink for: {att_title}")
+            continue
         att_path = os.path.join(attachments_dir, att_title)
         
         if download_attachment(client, download_link, att_path):
