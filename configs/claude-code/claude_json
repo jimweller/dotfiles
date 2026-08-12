@@ -13781,8 +13781,8 @@
       "lastUsedAt": 1785859029724
     },
     "commit": {
-      "usageCount": 309,
-      "lastUsedAt": 1786497273537
+      "usageCount": 310,
+      "lastUsedAt": 1786497827774
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -14100,8 +14100,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 8503,
-      "lastUsedAt": 1786493541473,
+      "usageCount": 8505,
+      "lastUsedAt": 1786497789933,
       "lastUsedNumStartups": 3837
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -14145,13 +14145,13 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 7879,
-      "lastUsedAt": 1786497324256,
+      "usageCount": 7894,
+      "lastUsedAt": 1786497782790,
       "lastUsedNumStartups": 3837
     },
     "claude-mem@thedotmack": {
-      "usageCount": 11332,
-      "lastUsedAt": 1786497324377,
+      "usageCount": 11352,
+      "lastUsedAt": 1786497789933,
       "lastUsedNumStartups": 3837
     },
     "mind-meld@inline": {
