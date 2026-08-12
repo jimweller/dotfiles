@@ -269,3 +269,8 @@ configs/secrets/*.yaml
 *.age
 **/keys.txt
 
+### Claude Code runtime artifacts ###
+# ~/.claude.json is symlinked to configs/claude-code/claude_json, so Claude Code's
+# atomic writes land their temp files in the repo alongside it.
+configs/claude-code/claude_json.tmp.*
+
