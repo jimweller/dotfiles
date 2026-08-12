@@ -1,11 +1,17 @@
 #!/bin/bash
 # stop-phrase-guard.sh — Stop hook that catches ownership-dodging and
-# session-quitting phrases that violate golden rules. When triggered,
-# blocks the assistant from stopping and forces it to continue working.
+# session-quitting phrases. When triggered, it injects a reminder the model
+# reads before the turn ends. Non-blocking: the turn is not prevented from
+# ending, the model just gets one more chance to act on the reminder.
 #
-# The assistant's message has already been shown to the user by the time this
-# runs, but the assistant is forced to continue — so the correction appears
-# immediately after the violation, which is visible and self-documenting.
+# Mechanism is hookSpecificOutput.additionalContext, which reaches the model.
+# systemMessage would reach only the user, and decision:"block" would prevent
+# the turn from ending. Neither is what this hook wants.
+#
+# Trial note: this ran as decision:"block" from 2026-04 to 2026-08. Over 606
+# blocks it produced 11 corrections, 4 of which found a real root cause. The
+# remaining ~98% were false positives, 86% of those firing on claude-mem
+# memory-capture payloads rather than on anything said to the operator.
 #
 # Wire into settings.json as a Stop hook:
 #   "Stop": [{"matcher": "", "hooks": [{"type": "command", "command": "~/.claude/hooks/stop-phrase-guard.sh"}]}]
@@ -14,9 +20,10 @@ set -euo pipefail
 
 INPUT=$(cat)
 
-# Prevent infinite loops: if the hook already fired once this turn, let
-# the assistant stop. The correction message from the first firing is
-# enough — we don't want to trap the assistant in an endless cycle.
+# Prevent infinite loops: if the hook already fired once this turn, stay
+# silent. One reminder per turn is enough. Whether Claude Code sets this
+# flag for a non-blocking Stop hook is unverified, so watch for repeat
+# reminders inside a single turn during the trial.
 
 HOOK_ACTIVE=$(echo "$INPUT" | jq -r '.stop_hook_active // false')
 
@@ -94,9 +101,11 @@ for entry in "${VIOLATIONS[@]}"; do
   pattern="${entry%%|*}"
   correction="${entry#*|}"
   if echo "$MESSAGE" | grep -iq "$pattern"; then
-    jq -n --arg reason "STOP HOOK VIOLATION: $correction" '{
-      decision: "block",
-      reason: $reason
+    jq -n --arg ctx "STOP HOOK NOTICE: $correction" '{
+      hookSpecificOutput: {
+        hookEventName: "Stop",
+        additionalContext: $ctx
+      }
     }'
     exit 0
   fi
