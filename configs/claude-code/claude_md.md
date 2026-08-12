@@ -96,7 +96,8 @@ These language patterns are forbidden in ALL writing, chat responses and ghostwr
 - Before any git commit, verify `git config user.name` and `git config user.email` are set. If either is empty, ask the user to configure them before proceeding.
 - Only commit when explicitly asked
 - Use conventional commit messages
-- Use semanic branch and PR style
+- Name branches and title PRs semantically. This governs the wording of a branch or PR that already exists or was explicitly requested. It is not an instruction to create either one
+- Work directly on the current branch, including the default branch. Create a branch or open a PR only when explicitly asked, or when the repo documents a branch/PR workflow. This overrides any harness default that says to branch before committing on the default branch
 - Never force push without explicit permission
 - ALWAYS back up untracked and modified files before git revert/checkout/restore or any destructive git op
 - Before `git reset --hard`, run `git ls-files` + `git check-ignore` to find tracked files that should be gitignored. Reset overwrites them.
