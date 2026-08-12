@@ -9,9 +9,18 @@
     - ~/assets/colima
 
 - shell:
-    - description: Create ~/bak symlink to Google Drive
+    - description: Link ~/bak to the personal Google Drive mount
       command: |
-        test -L "$HOME/bak" || ln -s "$HOME/jim.weller@gmail.com - Google Drive/My Drive" "$HOME/bak"
+        bak=""
+        for d in "$HOME/Library/CloudStorage/GoogleDrive-"*"/My Drive"; do
+          case "$d" in *"("*) continue ;; esac
+          if [ -d "$d/PortfolioJim" ]; then bak="$d"; break; fi
+        done
+        if [ -z "$bak" ]; then
+          echo "ERROR: personal Google Drive not mounted under ~/Library/CloudStorage"
+          exit 1
+        fi
+        ln -sfn "$bak" "$HOME/bak"
       stderr: true
       stdout: true
 

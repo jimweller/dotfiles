@@ -3,6 +3,30 @@ set -euo pipefail
 
 TARGET_DIR="${DOTFILES_BACKUP_DIR:-$HOME/bak/PortfolioJim/current}"
 
+# Refuse to run unless ~/bak resolves into a live Google Drive mount. A dangling
+# symlink here is otherwise materialized as a plain local directory by mkdir -p,
+# sending every backup to the internal disk with no sync and no error.
+if [[ -z "${DOTFILES_BACKUP_DIR:-}" ]]; then
+    BACKUP_ROOT="$HOME/bak"
+
+    if [[ ! -L "$BACKUP_ROOT" ]]; then
+        echo "ERROR: $BACKUP_ROOT is not a symlink; expected a link into ~/Library/CloudStorage"
+        exit 1
+    fi
+
+    RESOLVED_ROOT="$(cd "$BACKUP_ROOT" 2>/dev/null && pwd -P)" || RESOLVED_ROOT=""
+    if [[ -z "$RESOLVED_ROOT" ]]; then
+        echo "ERROR: $BACKUP_ROOT does not resolve; is Google Drive mounted?"
+        exit 1
+    fi
+
+    if [[ "$RESOLVED_ROOT" != "$HOME/Library/CloudStorage/"* ]]; then
+        echo "ERROR: $BACKUP_ROOT resolves to $RESOLVED_ROOT, outside ~/Library/CloudStorage"
+        echo "Backups would land on local disk and never sync. Refusing to run."
+        exit 1
+    fi
+fi
+
 echo "Ensuring backup directory exists..."
 mkdir -p "$TARGET_DIR"
 
@@ -66,6 +90,7 @@ rsync -avL --delete \
   --exclude='assets/qdrant' \
   --exclude='assets/postgres' \
   --exclude='kics/test/fixtures' \
+  --exclude='OneDrive-Hearst/emojis' \
   --filter=':- .gitignore' \
   ~/work \
   ~/personal \
