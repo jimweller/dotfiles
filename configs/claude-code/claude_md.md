@@ -112,6 +112,10 @@ These language patterns are forbidden in ALL writing, chat responses and ghostwr
 - `c` and `j` are NOT in PATH. ALWAYS invoke mcg-atlassian skill first, then run CLI per skill instructions.
 - When other skills reference `c` or `j` CLI commands, those commands must still be routed through the mcg-atlassian skills.
 
+## Daily Standup
+
+- NEVER put these standing meetings in the Today section: DevX standup ("Standup: <name>"), DevX Cowork time, DevX Nerd Cave, Not Nerd Cave. They are recurring ceremonies with no standup value. Drop them from calendar hints.
+
 ## Software Architecture
 
 - Follow Domain-Driven Design with bounded contexts
