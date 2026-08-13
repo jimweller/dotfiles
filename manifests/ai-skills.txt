@@ -6,9 +6,14 @@ https://github.com/jimweller/clanker-skills/tree/main/skills/universal
 https://github.com/kepano/obsidian-skills
 https://github.com/vercel-labs/agent-browser -s agent-browser
 https://github.com/alibaba/open-code-review -s open-code-review
-https://github.com/laurigates/claude-plugins -s yq-yaml-processing
-https://github.com/laurigates/claude-plugins -s jq-json-processing
 https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/hermes-agent
+
+# jq-json-processing and yq-yaml-processing were archived 2026-08-12. Both are
+# generic jq/yq cheat sheets covering syntax the model already knows, so it never
+# selected either one in ~109k tool calls. Nothing in CLAUDE.md or rules/ routed
+# to them. Re-add only with narrow, gap-shaped descriptions.
+# https://github.com/laurigates/claude-plugins -s yq-yaml-processing
+# https://github.com/laurigates/claude-plugins -s jq-json-processing
 
 # herdr is vendored at configs/claude-code/skills/herdr/SKILL.md instead.
 # Its SKILL.md sits at the repo root, so skills.sh scopes the snapshot to the
