@@ -4,9 +4,11 @@
 # reads before the turn ends. Non-blocking: the turn is not prevented from
 # ending, the model just gets one more chance to act on the reminder.
 #
-# Mechanism is hookSpecificOutput.additionalContext, which reaches the model.
-# systemMessage would reach only the user, and decision:"block" would prevent
-# the turn from ending. Neither is what this hook wants.
+# Mechanism is hookSpecificOutput.additionalContext, which reaches the model,
+# plus systemMessage, which reaches only the operator's terminal. The matched
+# phrase goes to systemMessage alone so the model is never fed back its own
+# trigger text and cannot re-fire the guard by quoting it. decision:"block" is
+# deliberately unused: it would prevent the turn from ending.
 #
 # Trial note: this ran as decision:"block" from 2026-04 to 2026-08. Over 606
 # blocks it produced 11 corrections, 4 of which found a real root cause. The
@@ -100,13 +102,21 @@ VIOLATIONS=(
 for entry in "${VIOLATIONS[@]}"; do
   pattern="${entry%%|*}"
   correction="${entry#*|}"
-  if echo "$MESSAGE" | grep -iq "$pattern"; then
-    jq -n --arg ctx "STOP HOOK NOTICE: $correction" '{
-      hookSpecificOutput: {
-        hookEventName: "Stop",
-        additionalContext: $ctx
-      }
-    }'
+  # The assignment lives in the `if` condition so a non-matching grep is a
+  # tested outcome rather than a `set -e` abort.
+  if matched=$(printf '%s\n' "$MESSAGE" | grep -iom1 "$pattern"); then
+    matched="${matched%%$'\n'*}"  # -m1 caps matching lines, not matches per line
+    matched="${matched:0:120}"    # patterns like "want to continue.*or " can run long
+    jq -n \
+      --arg ctx "STOP HOOK NOTICE: $correction" \
+      --arg msg "stop-phrase-guard: matched \"$matched\"" \
+      '{
+        systemMessage: $msg,
+        hookSpecificOutput: {
+          hookEventName: "Stop",
+          additionalContext: $ctx
+        }
+      }'
     exit 0
   fi
 done
