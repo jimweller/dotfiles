@@ -9,6 +9,9 @@ Dotfiles are a feedback loop: **work, learn, edit, install**. Use the tools, enc
 - dotbot -- symlink and install orchestration (git submodule)
 - antidote -- zsh plugin manager (git submodule)
 - devcontainer -- Linux Docker image with utilities (git submodule)
+- clanker-skills -- universal AI agent skills (git submodule)
+- total-recall -- SQLite-backed session transcript memory for Claude Code (git submodule)
+- humble-master -- Daneel persona research for Claude Code (git submodule)
 - zsh-jim -- numbered zsh modules loaded in order (00-secrets through 95-linux)
 - scripts -- launchd plists, container helpers, cloud token refresh, sync
 
@@ -19,7 +22,10 @@ dotfiles/
 ├── submodules/
 │   ├── dotbot/                  # Installer engine (submodule)
 │   ├── antidote/                # Zsh plugin manager (submodule)
-│   └── devcontainer/            # Linux container image (submodule)
+│   ├── devcontainer/            # Linux container image (submodule)
+│   ├── clanker-skills/          # Universal AI agent skills (submodule)
+│   ├── total-recall/            # SQLite session transcript memory (submodule)
+│   └── humble-master/           # Daneel persona research (submodule)
 ├── configs/
 │   ├── zsh/                     # Shell entry points and plugin manifests
 │   ├── zsh-jim/                 # Numbered zsh modules (00-95)
@@ -27,10 +33,13 @@ dotfiles/
 │   ├── git/                     # Git identity and ignore
 │   ├── ssh/                     # SSH host config
 │   ├── tmux/                    # Tmux config
+│   ├── mise/                    # mise tool version manager and git profile loader
+│   ├── secrets/                 # SOPS-encrypted env secrets (*.enc.env)
 │   ├── aws/                     # AWS CLI config
 │   ├── azure/                   # Azure CLI config
 │   ├── granted/                 # Granted cloud role switcher
 │   ├── colima/                  # Colima VM config
+│   ├── brew/                    # Homebrew tap trust list
 │   ├── docker/                  # Docker CLI config
 │   ├── bat/                     # bat pager config
 │   ├── ripgrep/                 # ripgrep config
@@ -39,12 +48,17 @@ dotfiles/
 │   ├── ghostty/                 # Ghostty terminal config
 │   ├── vscode/                  # VS Code settings
 │   ├── claude-code/             # Claude Code skills, hooks, agents, settings
+│   ├── claude-mem/              # claude-mem cross-session memory settings
+│   ├── skills/                  # Universal skills fanned out to every agent tool
 │   ├── claude-flow/             # Claude Flow CLAUDE.md and MCP rules
 │   ├── gemini/                  # Gemini CLI settings
 │   ├── github/                  # GitHub CLI config
 │   ├── jira/                    # Jira CLI config
 │   ├── opencode/                # OpenCode CLI config and agents
 │   ├── codex/                   # Codex CLI config
+│   ├── hermes/                  # Hermes Agent config
+│   ├── agent-deck/              # Agent Deck multi-agent session manager config
+│   ├── herdr/                   # Herdr terminal multiplexer config
 │   ├── litellm/                 # LiteLLM proxy config
 │   ├── powershell/              # PowerShell profile and Oh My Posh theme
 │   ├── quiver/                  # Quiver workspace templates
@@ -108,17 +122,22 @@ The installer runs dotbot with platform detection:
 
 ## AI Tooling
 
-| Directory                        | Tool            | Key files                                     |
-| -------------------------------- | --------------- | --------------------------------------------- |
-| `claude-code/`                   | Claude Code CLI | Settings, skills, hooks, agents, plugins      |
-| `claude-code/tools/total-recall` | Total Recall    | SQLite-backed session memory for Claude Code  |
-| `claude-code/tools/claude-mem`   | claude-mem      | Persistent cross-session memory (MCP plugin)  |
-| `claude-flow/`                   | Claude Flow     | CLAUDE.md, MCP tool rules                     |
-| `opencode/`                      | OpenCode CLI    | opencode.json, review agents                  |
-| `roocode/`                       | Roo Code        | custom_modes.yaml, mcp_settings.json          |
-| `gemini/`                        | Gemini CLI      | gemini_settings                               |
-| `codex/`                         | Codex CLI       | config.toml                                   |
-| `litellm/`                       | LiteLLM         | Proxy config for multi-provider model routing |
+| Directory      | Tool             | Key files                                                                                        |
+| -------------- | ---------------- | ------------------------------------------------------------------------------------------------ |
+| `claude-code/` | Claude Code CLI  | Settings, skills, hooks, agents, plugins                                                         |
+| `claude-mem/`  | claude-mem       | Persistent cross-session memory (MCP plugin), settings.json                                      |
+| `skills/`      | Universal skills | Skill directories fanned out to Claude Code, Codex, Hermes, and agent-neutral `~/.agents/skills` |
+| `claude-flow/` | Claude Flow      | CLAUDE.md, MCP tool rules                                                                        |
+| `opencode/`    | OpenCode CLI     | opencode.json, review agents                                                                     |
+| `roocode/`     | Roo Code         | custom_modes.yaml, mcp_settings.json                                                             |
+| `gemini/`      | Gemini CLI       | gemini_settings                                                                                  |
+| `codex/`       | Codex CLI        | config.toml                                                                                      |
+| `hermes/`      | Hermes Agent     | config.yaml                                                                                      |
+| `agent-deck/`  | Agent Deck       | Multi-agent session manager, config.toml                                                         |
+| `herdr/`       | Herdr            | Terminal multiplexer for agents, config.toml                                                     |
+| `litellm/`     | LiteLLM          | Proxy config for multi-provider model routing                                                    |
+
+The `total-recall` submodule provides SQLite-backed session memory for Claude Code. The `humble-master` submodule, symlinked to `~/.claude/tools/humble-master`, provides Daneel persona injection. The `skills/` contents come from the `clanker-skills` submodule via `manifests/ai-skills.txt`.
 
 See `configs/claude-code/README.md` for skill inventory and plugin details.
 
