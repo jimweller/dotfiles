@@ -163,7 +163,8 @@
     "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "mcg-sensitive-canary@sead-claude-marketplace": true,
-    "ast-grep@ast-grep-marketplace": true
+    "ast-grep@ast-grep-marketplace": true,
+    "story-stick@sead-claude-marketplace": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
