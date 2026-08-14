@@ -138,6 +138,31 @@ State persists for the session at `~/.serena/hook_data/<session_id>/tool_use_cou
 
 `configs/serena/serena_config.yml` (symlinked to `~/.serena/serena_config.yml`) sets `excluded_tools` to eight memory and onboarding tools: write_memory, read_memory, delete_memory, edit_memory, rename_memory, list_memories, onboarding, check_onboarding_performed.
 
+## Auto-Compact Window
+
+All three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) carry the same two `env` keys:
+
+| Key                               | Value      |
+| --------------------------------- | ---------- |
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | `"100"`    |
+| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | `"400000"` |
+
+Claude Code computes the compaction threshold from a window `W` and a percentage. Two readings of the arithmetic fit the observed data and no evidence separates them. One is `W * pct/100`. The other is `min(W * pct/100, W - 13000)`, where the 13000 reserve comes from binary string extraction rather than documentation.
+
+Pinning the percentage to 100 makes the window the only number that moves the trigger. The threshold lands at 400000 under the first reading and 387000 under the second.
+
+The window is clamped to the model's real context window. A 200K-window model clamps 400000 down to 200000, giving a threshold of 200000 or 187000 depending on the reading.
+
+Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-context suffix stripped, so a tool reading transcripts has no way to recover the effective window and no basis for computing a percentage from it.
+
+Evidence for the percentage being live comes from 797 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882 around an 80000 threshold, and 1M-window sessions produced 387841 and 424509 around a 400000 threshold. Both match `W * 0.40`.
+
+Two things stay unverified. Claude Code may reject a percentage above its internal default and silently keep the default. The 13000 reserve is unconfirmed. Both resolve from the `preTokens` value on the next `compact_boundary` event:
+
+```bash
+grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
+```
+
 ## Model ID Conventions
 
 | Config file                                                                | Model ID format                                                         |

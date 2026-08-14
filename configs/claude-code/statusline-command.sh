@@ -102,11 +102,12 @@ DAYS=$((DURATION_SEC / 86400))
 HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
 SECS=$((DURATION_SEC % 60))
-CTX_PCT=$(echo "$INPUT" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 CTX_TOKENS=$(echo "$INPUT" | jq -r '[.context_window.current_usage.input_tokens, .context_window.current_usage.cache_creation_input_tokens, .context_window.current_usage.cache_read_input_tokens] | map(. // 0) | add')
 CTX_TOKENS_K=$(awk -v t="$CTX_TOKENS" 'BEGIN { printf "%dk", (t + 500) / 1000 }')
-COMPACT_PCT=${CLAUDE_AUTOCOMPACT_PCT_OVERRIDE:-96.7}
-CTX_USABLE=$(echo "$CTX_PCT" | awk -v cap="$COMPACT_PCT" '{v = $1 * 100 / cap; printf "%.0f", (v > 100 ? 100 : v)}')
+# Autocompaction fires at a fixed token count, not a share of the model window.
+# used_percentage is measured against the real 1M window, so it reads 40% at the cap.
+COMPACT_THRESHOLD=400000
+CTX_USABLE=$(awk -v t="$CTX_TOKENS" -v cap="$COMPACT_THRESHOLD" 'BEGIN { v = t * 100 / cap; printf "%.0f", (v > 100 ? 100 : v) }')
 
 # Get git info
 if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
