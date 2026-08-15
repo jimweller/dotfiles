@@ -145,19 +145,30 @@ All three settings files (`claude_settings_json_azure`, `claude_settings_json_aw
 | Key                               | Value      |
 | --------------------------------- | ---------- |
 | `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | `"100"`    |
-| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | `"400000"` |
+| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | `"432000"` |
 
-Claude Code computes the compaction threshold from a window `W` and a percentage. Two readings of the arithmetic fit the observed data and no evidence separates them. One is `W * pct/100`. The other is `min(W * pct/100, W - 13000)`, where the 13000 reserve comes from binary string extraction rather than documentation.
+Claude Code computes the compaction threshold as `min(W, model_window) * pct/100 - reserve`, where the reserve is the model's default `max_output_tokens`. Pinning the percentage to 100 makes the window the only number that moves the trigger.
 
-Pinning the percentage to 100 makes the window the only number that moves the trigger. The threshold lands at 400000 under the first reading and 387000 under the second.
+Measured evidence brackets the reserve. Two auto-compaction events ran under `pct=100` and `W=400000` on `claude-opus-5[1m]`:
 
-The window is clamped to the model's real context window. A 200K-window model clamps 400000 down to 200000, giving a threshold of 200000 or 187000 depending on the reading.
+| Event (UTC)         | Last turn total, no fire | `preTokens` at fire |
+| ------------------- | ------------------------ | ------------------- |
+| 2026-08-14T05:10:35 | 360345                   | 371569              |
+| 2026-08-15T03:58:59 | 366766                   | 370689              |
+
+The trigger sits in the open interval (366766, 370689], putting the reserve between 29311 and 33234. Binary 2.1.233 carries `max_output_tokens:{default:32000}`, which lands inside that band. A 13000 reserve is ruled out, because a 387000 threshold would not have fired at 370689.
+
+The window is set to 432000 so the trigger lands near 400000. The check runs at turn boundaries, so `preTokens` overshoots the threshold by whatever the crossing turn added. Expect a fire in the low 400000s rather than at 400000 exactly.
+
+The window is clamped to the model's real context window. A 200K-window model clamps 432000 down to 200000, giving a 168000 trigger.
+
+`configs/claude-code/statusline-command.sh:109` sets a separate, hardcoded `COMPACT_THRESHOLD=400000` used only to compute the displayed context-usage percentage. It is not read from `CLAUDE_CODE_AUTO_COMPACT_WINDOW` and does not need to change when that setting does. It stays at 400000 because that approximates the actual measured trigger under the new 432000 window.
 
 Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-context suffix stripped, so a tool reading transcripts has no way to recover the effective window and no basis for computing a percentage from it.
 
-Evidence for the percentage being live comes from 797 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882 around an 80000 threshold, and 1M-window sessions produced 387841 and 424509 around a 400000 threshold. Both match `W * 0.40`.
+Earlier evidence for the percentage being live comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509.
 
-Two things stay unverified. Claude Code may reject a percentage above its internal default and silently keep the default. The 13000 reserve is unconfirmed. Both resolve from the `preTokens` value on the next `compact_boundary` event:
+Two things stay unverified. Claude Code may reject a percentage above its internal default and silently keep the default. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. Both resolve from the `preTokens` value on the next `compact_boundary` event:
 
 ```bash
 grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
