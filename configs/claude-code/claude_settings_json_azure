@@ -49,7 +49,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "fable",
+  "model": "opus",
   "hooks": {
     "PreCompact": [
       {
