@@ -15,7 +15,10 @@ https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agen
 # https://github.com/laurigates/claude-plugins -s yq-yaml-processing
 # https://github.com/laurigates/claude-plugins -s jq-json-processing
 
-# herdr is vendored at configs/claude-code/skills/herdr/SKILL.md instead.
-# Its SKILL.md sits at the repo root, so skills.sh scopes the snapshot to the
-# whole repo and installs 2323 files / 41MB per agent dir.
-# https://github.com/vercel-labs/skills/issues/1469
+# herdr is vendored at configs/skills/herdr/SKILL.md instead. install.common.yaml
+# regenerates it from `herdr --skill`, added in herdr 0.8.0, which prints the skill
+# bundled in the installed binary. The vendored copy therefore matches the running
+# version with no network fetch.
+# Installing it through this manifest scoped the snapshot to the whole repo and
+# copied 2323 files / 41MB per agent dir. herdr fixed its side in 0.8.0 (#2022);
+# the skills CLI issue is https://github.com/vercel-labs/skills/issues/1469

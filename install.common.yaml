@@ -22,6 +22,8 @@
   - [git submodule update --init --recursive, Installing submodules]
   - command: bash scripts/ai-npx-skills.sh
     description: Install AI agent skills from manifests/ai-skills.txt
+  - command: 'if command -v herdr >/dev/null 2>&1; then herdr --skill > configs/skills/herdr/SKILL.md; fi'
+    description: Refresh vendored herdr skill from the installed herdr binary
 
 - link:
     ~/.aws/config: configs/aws/aws_config
@@ -78,7 +80,6 @@
       path: configs/opencode/agents/*
     ~/.config/litellm/config.yaml: configs/litellm/config.yaml
     ~/.hermes/config.yaml: configs/hermes/config.yaml
-    ~/.config/agent-deck/config.toml: configs/agent-deck/config.toml
     ~/.config/herdr/config.toml: configs/herdr/config.toml
     ~/.config/mise/config.toml: configs/mise/config.toml
     ~/assets/postgres/pg-container.sh: scripts/pg-container.sh

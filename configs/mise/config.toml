@@ -7,5 +7,4 @@ trusted_config_paths = [
 
 [tools]
 "github:zoharbabin/web-researcher-mcp" = "latest"
-"ubi:asheshgoplani/agent-deck" = "latest"
 "pipx:hermes-agent" = { version = "latest", extras = "anthropic,mcp" }

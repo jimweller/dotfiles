@@ -57,7 +57,6 @@ dotfiles/
 │   ├── opencode/                # OpenCode CLI config and agents
 │   ├── codex/                   # Codex CLI config
 │   ├── hermes/                  # Hermes Agent config
-│   ├── agent-deck/              # Agent Deck multi-agent session manager config
 │   ├── herdr/                   # Herdr terminal multiplexer config
 │   ├── litellm/                 # LiteLLM proxy config
 │   ├── powershell/              # PowerShell profile and Oh My Posh theme
@@ -133,7 +132,6 @@ The installer runs dotbot with platform detection:
 | `gemini/`      | Gemini CLI       | gemini_settings                                                                                  |
 | `codex/`       | Codex CLI        | config.toml                                                                                      |
 | `hermes/`      | Hermes Agent     | config.yaml                                                                                      |
-| `agent-deck/`  | Agent Deck       | Multi-agent session manager, config.toml                                                         |
 | `herdr/`       | Herdr            | Terminal multiplexer for agents, config.toml                                                     |
 | `litellm/`     | LiteLLM          | Proxy config for multi-provider model routing                                                    |
 
