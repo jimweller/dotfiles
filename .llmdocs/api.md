@@ -19,6 +19,7 @@ Requires: git, bash. Idempotent.
 | ------------------------------------ | ---------------------------------------------- | ---------------------------------------- |
 | `scripts/secrets.sh`                 | GPG archive manager                            | `secrets.sh open\|save\|list [password]` |
 | `scripts/sync.sh`                    | Rsync backup to Google Drive folder            | `DOTFILES_BACKUP_DIR` overrides target   |
+| `scripts/backup-runner.c`            | TCC identity carrier that execs `sync.sh`      | Built to `~/bin/dotfiles-backup-runner`  |
 | `scripts/aws-refresh-token.sh`       | Renew AWS SSO credentials                      | Scheduled via launchd                    |
 | `scripts/total-recall-backfill.sh`   | Run embedding + semantic linking on session DB | Scheduled via launchd                    |
 | `scripts/pg-container.sh`            | Start postgres:17 container                    | `pg-container.sh`                        |

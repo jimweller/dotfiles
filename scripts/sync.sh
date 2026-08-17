@@ -6,6 +6,10 @@ TARGET_DIR="${DOTFILES_BACKUP_DIR:-$HOME/bak/PortfolioJim/current}"
 # Refuse to run unless ~/bak resolves into a live Google Drive mount. A dangling
 # symlink here is otherwise materialized as a plain local directory by mkdir -p,
 # sending every backup to the internal disk with no sync and no error.
+#
+# Resolve with readlink, not `cd && pwd -P`. Inside a FileProvider domain getcwd
+# fails with EPERM unless this process holds a TCC grant, and zsh then falls
+# back to the logical $PWD, which makes a correct symlink look broken.
 if [[ -z "${DOTFILES_BACKUP_DIR:-}" ]]; then
     BACKUP_ROOT="$HOME/bak"
 
@@ -14,15 +18,23 @@ if [[ -z "${DOTFILES_BACKUP_DIR:-}" ]]; then
         exit 1
     fi
 
-    RESOLVED_ROOT="$(cd "$BACKUP_ROOT" 2>/dev/null && pwd -P)" || RESOLVED_ROOT=""
-    if [[ -z "$RESOLVED_ROOT" ]]; then
-        echo "ERROR: $BACKUP_ROOT does not resolve; is Google Drive mounted?"
-        exit 1
-    fi
-
+    RESOLVED_ROOT="$(readlink "$BACKUP_ROOT")"
     if [[ "$RESOLVED_ROOT" != "$HOME/Library/CloudStorage/"* ]]; then
         echo "ERROR: $BACKUP_ROOT resolves to $RESOLVED_ROOT, outside ~/Library/CloudStorage"
         echo "Backups would land on local disk and never sync. Refusing to run."
+        exit 1
+    fi
+
+    # The domain must be readable. Without a TCC grant for the running binary
+    # every read inside it fails with EPERM, and at login it can be unmounted.
+    if ! ls "$RESOLVED_ROOT" >/dev/null 2>&1; then
+        echo "ERROR: $RESOLVED_ROOT is not readable"
+        echo "Either Google Drive is not mounted yet, or $0 lacks a TCC grant for this domain."
+        exit 1
+    fi
+
+    if [[ ! -d "$RESOLVED_ROOT/PortfolioJim" ]]; then
+        echo "ERROR: $RESOLVED_ROOT/PortfolioJim is missing; the mount looks incomplete"
         exit 1
     fi
 fi

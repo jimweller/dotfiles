@@ -41,7 +41,8 @@ Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 ### install.macos.yaml
 
 1. Creates: `~/.colima/default`, `~/assets/colima`
-2. Symlinks: Colima config, Granted (macOS), VSCode settings, iTerm2 profiles, LaunchAgents, ccusage script
+2. Links `~/bak` to the personal Google Drive mount and builds `~/bin/dotfiles-backup-runner` from `scripts/backup-runner.c` (rebuilt only when the source is newer, because a rebuild voids the backup's TCC grants)
+3. Symlinks: Colima config, Granted (macOS), VSCode settings, iTerm2 profiles, LaunchAgents, ccusage script
 3. Copies iTerm2 prefs plist (cfprefsd requires copy)
 4. Sets Finder to list view
 5. Loads all `com.user.*.plist` LaunchAgents via `launchctl`

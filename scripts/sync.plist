@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  Nightly encrypted backup to Google Drive sparse image
+  Nightly backup to the personal Google Drive mount.
+
+  ProgramArguments points at ~/bin/dotfiles-backup-runner, not sync.sh. The
+  runner is a compiled binary built by install.macos.yaml that execs
+  scripts/sync.sh. It exists only to own the TCC identity: launchd running a
+  #!/bin/zsh script makes /bin/zsh the responsible process, and macOS never
+  grants an Apple platform binary access to ~/Library/CloudStorage.
   
   Install:
     cp scripts/sync.plist ~/Library/LaunchAgents/com.user.sync.plist
@@ -24,7 +30,7 @@
 
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/jimweller/.config/dotfiles/scripts/sync.sh</string>
+      <string>/Users/jimweller/bin/dotfiles-backup-runner</string>
     </array>
 
     <key>EnvironmentVariables</key>

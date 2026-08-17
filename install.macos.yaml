@@ -24,6 +24,19 @@
       stderr: true
       stdout: true
 
+    - description: Build the backup runner (gives the scheduled backup its own TCC identity)
+      command: |
+        src="$PWD/scripts/backup-runner.c"
+        out="$HOME/bin/dotfiles-backup-runner"
+        if [ ! -x "$out" ] || [ "$src" -nt "$out" ]; then
+          clang -O2 -DSYNC_SCRIPT="\"$PWD/scripts/sync.sh\"" -o "$out" "$src"
+          echo "built $out; macOS will prompt once per cloud domain on the next run"
+        else
+          echo "$out is current"
+        fi
+      stderr: true
+      stdout: true
+
 - link:
     ~/.colima/default/colima.yaml: configs/colima/colima_default
     ~/.granted/config: configs/granted/granted_config_macos

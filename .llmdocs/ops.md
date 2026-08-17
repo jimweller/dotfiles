@@ -39,7 +39,7 @@ Env secrets are SOPS+age encrypted under `configs/secrets/` and committed; that 
 | Agent                          | Script                     | Schedule                    | Log                   |
 | ------------------------------ | -------------------------- | --------------------------- | --------------------- |
 | `com.user.awsrefreshtoken`     | `aws-refresh-token.sh`     | 00:00, 09:00, 18:00 + login | `~/.logs/`            |
-| `com.user.sync`                | `sync.sh`                  | Daily 02:00 + login         | `~/.logs/sync*.log`   |
+| `com.user.sync`                | `dotfiles-backup-runner` -> `sync.sh` | Daily 02:00 + login | `~/.logs/backup-log.txt`, `backup-err.txt` |
 | `com.user.steampipe`           | `steampipe service start`  | Login only                  | `~/assets/steampipe/` |
 | `com.user.ccusagecacherefresh` | `ccusage-cache-refresh.sh` | 00:00, 08:00, 16:00 + login | `~/.logs/`            |
 | `com.user.totalrecallbackfill` | `total-recall-backfill.sh` | Every 15 min                | `~/.logs/`            |
@@ -72,6 +72,18 @@ Process:
 4. `rsync -avL --delete` key directories: `~/work`, `~/personal`, `~/assets`, VSCode settings, Chrome bookmarks, OneDrive
 
 Excludes: `.git`, `node_modules`, `.terraform`, `.venv`, and other build artifacts.
+
+### TCC and the backup runner
+
+`com.user.sync` runs `~/bin/dotfiles-backup-runner`, not `sync.sh`. The runner is a 30-line C binary (`scripts/backup-runner.c`) that execs `/bin/zsh scripts/sync.sh` and exists only to own the TCC identity.
+
+macOS attributes access to a FileProvider domain under `~/Library/CloudStorage` to the responsible process. When launchd runs a `#!/bin/zsh` script that process is `/bin/zsh`, which tccd logs as `Platform binary prompting is 'Deny' because: is Platform Binary`. An Apple platform binary is never prompted for and holds no grant of its own, so every read inside the Google Drive or OneDrive domain fails with `Operation not permitted`. Writes still succeed, which makes the failure look intermittent.
+
+The runner is not a platform binary, so macOS prompts once per domain (`"dotfiles-backup-runner" wants to access files managed by "Google Drive - ..."`) and the approval persists. Two grants are needed: the personal Google Drive domain for the destination, and `OneDrive-Hearst` for one of the rsync sources.
+
+`install.macos.yaml` builds the runner with clang and rebuilds it only when `backup-runner.c` is newer. The grant is keyed to the binary's path and code hash, so a rebuild voids both approvals and macOS prompts again on the next run with a user logged in. Never re-sign it with `codesign -s -`; replacing the linker's ad-hoc signature makes the kernel kill it with SIGKILL.
+
+Two consequences for debugging. A denial inside the domain surfaces as EPERM from `ls` and `head`, not as a TCC dialog, when no user is logged in. `getcwd(3)` also fails with EPERM inside a domain, and zsh's `pwd -P` then silently returns the logical `$PWD`, so `sync.sh` resolves `~/bak` with `readlink` instead.
 
 ## AWS SSO Token Refresh
 
