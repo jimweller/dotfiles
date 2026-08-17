@@ -140,35 +140,31 @@ State persists for the session at `~/.serena/hook_data/<session_id>/tool_use_cou
 
 ## Auto-Compact Window
 
-All three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) carry the same two `env` keys:
+None of the three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) sets `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` or `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Both were removed and nothing replaced them. `autoCompactEnabled` is also unset in every config. Auto-compaction runs at Claude Code's built-in default: `pct=40`, window `W` equal to the model's real context window.
 
-| Key                               | Value      |
-| --------------------------------- | ---------- |
-| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | `"100"`    |
-| `CLAUDE_CODE_AUTO_COMPACT_WINDOW` | `"432000"` |
+Claude Code computes the compaction threshold as `min(W, model_window) * pct/100 - reserve`, where the reserve is the model's default `max_output_tokens`.
 
-Claude Code computes the compaction threshold as `min(W, model_window) * pct/100 - reserve`, where the reserve is the model's default `max_output_tokens`. Pinning the percentage to 100 makes the window the only number that moves the trigger.
-
-Measured evidence brackets the reserve. Two auto-compaction events ran under `pct=100` and `W=400000` on `claude-opus-5[1m]`:
+Measured evidence brackets the reserve. Two auto-compaction events ran under `pct=100` and `W=400000` (the settings in effect before removal) on `claude-opus-5[1m]`:
 
 | Event (UTC)         | Last turn total, no fire | `preTokens` at fire |
 | ------------------- | ------------------------ | ------------------- |
 | 2026-08-14T05:10:35 | 360345                   | 371569              |
 | 2026-08-15T03:58:59 | 366766                   | 370689              |
 
-The trigger sits in the open interval (366766, 370689], putting the reserve between 29311 and 33234. Binary 2.1.233 carries `max_output_tokens:{default:32000}`, which lands inside that band. A 13000 reserve is ruled out, because a 387000 threshold would not have fired at 370689.
+The trigger sits in the open interval (366766, 370689], putting the reserve between 29311 and 33234. Binary 2.1.233 carries `max_output_tokens:{default:32000}`, which lands inside that band. A 13000 reserve is ruled out, because a 387000 threshold would not have fired at 370689. These bracketed values are the basis for the default-trigger arithmetic below; they do not depend on the removed keys.
 
-The window is set to 432000 so the trigger lands near 400000. The check runs at turn boundaries, so `preTokens` overshoots the threshold by whatever the crossing turn added. Expect a fire in the low 400000s rather than at 400000 exactly.
+With `pct=40` and no override, the arithmetic gives:
 
-The window is clamped to the model's real context window. A 200K-window model clamps 432000 down to 200000, giving a 168000 trigger.
+- 1M-window model: `1000000 * 0.40 - 32000` = roughly 368000
+- 200K-window model: `200000 * 0.40 - 32000` = roughly 48000
 
-`configs/claude-code/statusline-command.sh:109` sets a separate, hardcoded `COMPACT_THRESHOLD=400000` used only to compute the displayed context-usage percentage. It is not read from `CLAUDE_CODE_AUTO_COMPACT_WINDOW` and does not need to change when that setting does. It stays at 400000 because that approximates the actual measured trigger under the new 432000 window.
+`configs/claude-code/statusline-command.sh:109` still hardcodes `COMPACT_THRESHOLD=400000`, used only to compute the displayed context-usage percentage. This was left unchanged on purpose; the user keeps it as a manual gauge for when to flush context by hand, independent of the real auto-compact trigger. It is not read from any auto-compact env var.
 
 Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-context suffix stripped, so a tool reading transcripts has no way to recover the effective window and no basis for computing a percentage from it.
 
-Earlier evidence for the percentage being live comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509.
+Earlier evidence for the percentage being live (from when the override keys were still set) comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509. Those clusters fit a 13000 reserve closely (`200000*0.40 - 13000` = 67000 against a 72197 floor, `1000000*0.40 - 13000` = 387000 against a 387841 fire) and fit the 32000 reserve only if the crossing turns overshot by 24197 and 19841 tokens. The two 2026-08 events rule 13000 out. The reserve may have changed between binary versions.
 
-Two things stay unverified. Claude Code may reject a percentage above its internal default and silently keep the default. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. Both resolve from the `preTokens` value on the next `compact_boundary` event:
+Two things stay unverified. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. The exact default `pct` Claude Code applies with no override is inferred from the 801-event cluster, not read from the binary. Both resolve from the `preTokens` value on the next `compact_boundary` event:
 
 ```bash
 grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
@@ -179,8 +175,14 @@ grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
 | Config file                                                                | Model ID format                                                         |
 | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `configs/claude-code/claude_settings_json_azure`, `claude_settings_json_jim` | Foundry-style, `[1m]` suffix, e.g. `claude-opus-5[1m]`                   |
-| `configs/claude-code/claude_settings_json_aws`                              | Bedrock-style, `[1m]` suffix, e.g. `global.anthropic.claude-opus-5-v1[1m]` |
+| `configs/claude-code/claude_settings_json_aws`                              | Bedrock-style, e.g. `global.anthropic.claude-opus-5[1m]`                  |
 | `configs/hermes/config.yaml`, `configs/opencode/opencode.json`              | Bare Azure Foundry ID, no suffix, e.g. `claude-opus-5`                   |
 
 The `[1m]` (1M context) suffix works only in Claude Code settings; Claude Code strips it client-side before calling the provider. Azure Foundry rejects a bracketed ID directly with a 404, so `hermes/config.yaml` and `opencode/opencode.json` must use the bare model ID.
+
+Bedrock IDs are not uniform across model generations, so never derive one by appending a suffix to another model's ID. The 5-series carries no version suffix (`global.anthropic.claude-opus-5[1m]`, `claude-sonnet-5[1m]`, `claude-fable-5[1m]`), while Haiku 4.5 needs the dated form `global.anthropic.claude-haiku-4-5-20251001-v1:0`. Bedrock rejects the bare `global.anthropic.claude-haiku-4-5` with `400 The provided model identifier is invalid`, which surfaces as a stop-hook evaluator failure because hook evaluation runs on haiku. The authoritative list of IDs this account has actually called is the set of `lastModelUsage` keys in `configs/claude-code/claude_json`:
+
+```bash
+grep -o '"global\.anthropic\.[^"]*"' configs/claude-code/claude_json | sort -u
+```
 ````
