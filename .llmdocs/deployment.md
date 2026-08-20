@@ -4,7 +4,7 @@ Install process, platform detection, and environment setup.
 
 ## Install Flow
 
-````text
+```text
 ./install
   -> bootstrap python3 (apt or brew)
   -> git submodule update --init --recursive submodules/dotbot
@@ -12,7 +12,7 @@ Install process, platform detection, and environment setup.
   -> detect OS
      -> macOS: dotbot -d . -c install.macos.yaml
      -> Linux: dotbot -d . -c install.linux.yaml
-```text
+```
 
 ## Platform Detection
 
@@ -26,7 +26,7 @@ Zsh modules use helper functions:
 ```zsh
 is_macos() { [[ "$(uname)" == "Darwin" ]] }
 is_linux()  { [[ "$(uname)" == "Linux" ]] }
-```text
+```
 
 Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 
@@ -58,7 +58,7 @@ The `submodules/devcontainer/` submodule is a Docker image. VSCode links it as a
 
 ```yaml
 ~/.vscode/extensions/.../0jimbox -> submodules/devcontainer
-```text
+```
 
 VSCode devcontainer settings reference this repo for dotfiles injection into dev containers.
 
@@ -78,4 +78,3 @@ Not automated by the installer:
 | Linux    | git, bash, apt | Python3                   |
 
 Homebrew is installed automatically on macOS if missing.
-````

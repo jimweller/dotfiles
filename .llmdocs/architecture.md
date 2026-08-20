@@ -15,7 +15,7 @@ Dotfiles repo managing workstation config across macOS and Linux.
 
 ## Directory Layout
 
-````text
+```text
 configs/                  # Source dotfiles (symlinked to home)
   zshrc                    # Shell entry, loads antidote
   zsh-jim/                 # Numbered zsh modules (00-95)
@@ -38,7 +38,7 @@ install                    # Entry point installer script
 install.common.yaml        # Cross-platform dotbot config
 install.macos.yaml         # macOS-specific dotbot config
 install.linux.yaml         # Linux-specific dotbot config
-```text
+```
 
 ## Symlink Topology
 
@@ -84,7 +84,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 ~/.gitconfig -> gitconfig-all     # Base config (signing, editor, LFS, rerere)
 ~/.gitconfig-jim -> gitconfig-jim  # Personal: gmail, id_jim key, SSH URL rewrite
 ~/.gitconfig-work -> gitconfig-work # Work: mcg email, id_mcg key, ADO credential helper
-```text
+```
 
 `20-git.zsh` exports a default `GIT_CONFIG_GLOBAL` of `~/.gitconfig-work` at shell init, so the work identity is live without an explicit switch. `switch_git_profile()` overrides it and loads profile-specific secrets, as does mise in any directory carrying `configs/mise/{personal,work}.toml`. `git_lock()` writes profile to local repo config.
 
@@ -100,4 +100,3 @@ Six submodules defined in `.gitmodules`, all under `submodules/`:
 | clanker-skills | no      | default |
 | total-recall   | no      | default |
 | humble-master  | no      | default |
-````

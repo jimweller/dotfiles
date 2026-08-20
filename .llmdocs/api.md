@@ -61,9 +61,9 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 `configs/zsh/zsh_plugins.txt` lists all zsh plugins loaded by antidote in order. Format:
 
-````text
-<github-org>/<repo> [path:<subpath>] [kind:fpath] [conditional:<func>]
 ```text
+<github-org>/<repo> [path:<subpath>] [kind:fpath] [conditional:<func>]
+```
 
 Self-referential entries load zsh-jim modules using absolute paths:
 
@@ -72,5 +72,4 @@ $HOME/.config/dotfiles/configs/zsh-jim
 $HOME/.config/dotfiles/configs/zsh-jim/terragrunt
 $HOME/.config/dotfiles/configs/zsh-jim/tmux
 $HOME/.config/dotfiles/configs/zsh-jim/alehouse conditional:is_macos
-```text
-````
+```

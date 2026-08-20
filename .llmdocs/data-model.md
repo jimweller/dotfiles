@@ -8,7 +8,7 @@ Three config files: `install.common.yaml`, `install.macos.yaml`, `install.linux.
 
 Top-level directives:
 
-````yaml
+```yaml
 - defaults:
     link:
       force: true # overwrite existing
@@ -26,7 +26,7 @@ Top-level directives:
     ~/.target: # symlink destination
       path: source # relative to repo root
       glob: true # expand wildcards (for path/*)
-```text
+```
 
 ## Git Identity Model
 
@@ -51,7 +51,7 @@ gitconfig-work (work, includes gitconfig-all)
   user.signingkey: ~/.ssh/id_mcg
   credential helper: env var injection ($GIT_USERNAME, $AZURE_DEVOPS_EXT_PAT)
   url rewrites: 11 ADO project SSH -> HTTPS mappings
-```text
+```
 
 `GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `configs/zsh-jim/20-git.zsh`. The `~/.secrets/*.enc.env` glob sorts `git-jim` before `git-work`, so the work identity wins shared keys and is live by default. `gitconfig-all` sets `user.useConfigOnly`, so git refuses to commit without an explicit config. Precedence, highest first: `switch_git_profile()` in an interactive shell, mise's per-directory `configs/mise/{personal,work}.toml`, then the `20-git.zsh` default.
 
@@ -90,7 +90,7 @@ Password source: `DOTFILES_KEY` env var or CLI argument, unified to equal the ag
 
 ```text
 <org>/<repo> [path:<subdir>] [kind:fpath] [conditional:<shell_func>]
-```text
+```
 
 - `path:` scopes to a subdirectory within the repo
 - `kind:fpath` adds to fpath only (no sourcing)
@@ -257,4 +257,3 @@ Bedrock IDs are not uniform across model generations, so never derive one by app
 ```bash
 grep -o '"global\.anthropic\.[^"]*"' configs/claude-code/claude_json | sort -u
 ```
-````
