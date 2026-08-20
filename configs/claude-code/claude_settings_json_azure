@@ -47,8 +47,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "sonnet",
-  "outputStyle": "clanker",
+  "model": "fable",
   "hooks": {
     "PostToolUse": [
       {
@@ -56,13 +55,13 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Edit(**/*.md)",
-            "command": "~/.claude/hooks/md-format.sh"
+            "command": "~/.claude/hooks/md-format.sh",
+            "if": "Edit(**/*.md)"
           },
           {
             "type": "command",
-            "if": "Write(**/*.md)",
-            "command": "~/.claude/hooks/md-format.sh"
+            "command": "~/.claude/hooks/md-format.sh",
+            "if": "Write(**/*.md)"
           }
         ]
       }
@@ -221,6 +220,7 @@
       }
     }
   },
+  "outputStyle": "clanker",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
