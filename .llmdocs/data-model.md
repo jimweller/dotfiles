@@ -126,7 +126,19 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 ## Output Style
 
-`configs/claude-code/output-styles/clanker.md` is glob-linked into `~/.claude/output-styles/` and selected by `"outputStyle": "clanker"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It owns the chat-response contract: findings first, recommendation second, derivation last, no repetition, and the CLANKER register. `configs/claude-code/claude_md.md` no longer carries a `## Chat with the Operator` section; that content moved into the style file. The banned-pattern catalog stays in `claude_md.md` and the style file points at it.
+`configs/claude-code/output-styles/clanker.md` is glob-linked into `~/.claude/output-styles/` and selected by `"outputStyle": "clanker"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It owns the chat-response contract: findings first, recommendation second, derivation last, no repetition, and the CLANKER register.
+
+Three files split the writing contract, and each one points at the other two rather than repeating them:
+
+| File | Scope | Loading |
+| ---- | ----- | ------- |
+| `configs/claude-code/output-styles/clanker.md` | The assistant turn in the terminal | `outputStyle` in the three settings files |
+| `configs/claude-code/rules/ghostwriting.md` | Everything else: commits, PRs, code comments, docs, Jira, Slack, email | No `paths` frontmatter, loads every session |
+| `configs/claude-code/rules/banned-patterns.md` | Both surfaces, prose mechanics only | No `paths` frontmatter, loads every session |
+
+`configs/claude-code/claude_md.md` carries none of the three. It holds a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
+
+A rule with no `paths` frontmatter loads at `session_start` with the same priority as a CLAUDE.md, verified with an `InstructionsLoaded` hook on a turn that made no tool calls. A rule with `paths` loads only on `path_glob_match`, and the trigger is a Read of a matching file: writing a new `.md` with no prior Read produced no match event.
 
 `outputStyle` takes no provider-specific format, so all three settings files carry the identical string. The three alternate settings files (`_litellm_oai`, `_litellm_gem`, `_ollama`) do not set the key.
 
@@ -196,7 +208,7 @@ Measured on macOS with both tools already installed by brew:
 
 npx adds about 0.32s per invocation.
 
-Formatting after an Edit invalidates the model's copy of the file. Two Edit calls to one file in a single assistant turn lose the second to `String to replace not found in file.`, because the first edit's success message asserts the copy is current. Recovery is one Read. The hook script mode must stay 755; a 644 hook fails with no entry in the debug log.
+Formatting after an Edit invalidates the model's copy of the file. Two Edit calls to one file in a single assistant turn lose the second to `String to replace not found in file.`, because the first edit's success message asserts the copy is current. Recovery is one Read. The hook script mode must stay 755. A 644 hook fails with no entry in the debug log.
 
 ## Auto-Compact Window
 
