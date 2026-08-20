@@ -12,6 +12,12 @@ STARTER_CHARACTER = 🎫
 
 Default project: DEVX
 
+When the user gives only a number (e.g. `451`), resolve it against the default project: `DEVX-451`.
+
+## Ticket Transitions
+
+Never transition a ticket straight to Done. Transition to In Progress first, then to Done. This applies even when the work is already finished before the ticket is touched.
+
 ## Creation Defaults
 
 Apply unless the conversation specifies otherwise.
@@ -43,6 +49,25 @@ Apply unless the conversation specifies otherwise.
 - Leave unassigned unless someone is explicitly designated to do the work
 - Requester = reporter, not assignee
 - Mentioned in conversation does not imply assignment
+
+## DevX Team Roster
+
+Current members:
+
+- Matt Grdinic
+- Jim.Weller
+- nate.curtis
+- Nathaniel.Brumbach
+- Joe.Clancy
+- Cesar.Carrillo
+
+Former members:
+
+- Bart Mielnik
+
+Use the reporter field, not the creator field, to decide whether an issue came from the team or from an outside requester. Team members sometimes file issues on behalf of requesters, which makes creator unreliable.
+
+An issue reported by anyone outside this roster is an inbound service request, not roadmap work.
 
 ## Description Template
 

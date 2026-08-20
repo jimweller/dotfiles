@@ -71,11 +71,23 @@ ROLLING_BODY="{
 MTD_COST=$(azure_query MTD "$MTD_BODY") || MTD_COST=""
 ROLLING_COST=$(azure_query rolling30d "$ROLLING_BODY") || ROLLING_COST=""
 
+# Anthropic list cost over the same span the rolling Azure query covered. The
+# ratio of the two is what the platform actually charges against list rates.
+LIST_COST=""
+if [[ -f "$CCUSAGE_CACHE" ]]; then
+  LIST_COST=$(jq -r --arg from "$DATE_30D" --arg to "$DATE_TODAY" \
+    '[.projects[][] | select(.date >= $from and .date <= $to) | .totalCost] | add // 0' "$CCUSAGE_CACHE")
+  log INFO "ccusage list cost ${DATE_30D}..${DATE_TODAY} = $LIST_COST"
+fi
+
 if [[ -n "$MTD_COST" && -n "$ROLLING_COST" ]]; then
   if jq -n --argjson mtd "$MTD_COST" --argjson rolling "$ROLLING_COST" \
-    '{mtd: $mtd, rolling30d: $rolling}' > "${AZURE_CACHE}.tmp"; then
+    --argjson list "${LIST_COST:-0}" \
+    '{mtd: $mtd, rolling30d: $rolling}
+     + (if $list > 0 then {listRolling30d: $list, actualRatio: ($rolling / $list)} else {} end)' \
+    > "${AZURE_CACHE}.tmp"; then
     mv "${AZURE_CACHE}.tmp" "$AZURE_CACHE"
-    log INFO "azure cache updated (mtd=$MTD_COST rolling30d=$ROLLING_COST)"
+    log INFO "azure cache updated (mtd=$MTD_COST rolling30d=$ROLLING_COST list=$LIST_COST)"
   else
     log ERROR "azure cache write failed"
     rm -f "${AZURE_CACHE}.tmp"

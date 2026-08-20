@@ -8,6 +8,7 @@ ICON_BRANCH=$'\xF3\xB0\x98\xAC'
 ICON_ROBOT=$'\U0000EE0D'
 ICON_CASH=$'\xF3\xB0\x84\x94'
 ICON_INVOICE=$'\xF3\xB1\x89\x9F'
+ICON_DIVISION=$'\xF3\xB0\x87\x94'
 ICON_CAL_RANGE=$'\xF3\xB0\x83\xB0'
 ICON_CAL_TODAY=$'\xF3\xB0\xB8\x97'
 ICON_TIMER=$'\xF3\xB1\x8E\xAB'
@@ -109,8 +110,14 @@ CTX_TOKENS_K=$(awk -v t="$CTX_TOKENS" 'BEGIN { printf "%dk", (t + 500) / 1000 }'
 COMPACT_THRESHOLD=400000
 CTX_USABLE=$(awk -v t="$CTX_TOKENS" -v cap="$COMPACT_THRESHOLD" 'BEGIN { v = t * 100 / cap; printf "%.0f", (v > 100 ? 100 : v) }')
 
-# Get git info
-if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; then
+# Get git info. GIT_USER and GIT_EMAIL are also exported by the git profile secrets,
+# so they are cleared first to keep the environment from leaking into the segment.
+GIT_USER=""
+GIT_USER_ICON=""
+GIT_USER_COLOR=""
+BRANCH=""
+if cd "$CWD" 2>/dev/null; then
+  # Read the identity outside the work-tree check so it matches the zsh prompt in non-repo dirs
   GIT_EMAIL=$(git config user.email 2>/dev/null)
   case "$GIT_EMAIL" in
     jim.weller@gmail.com) GIT_USER="jw";   GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;33m" ;;
@@ -119,21 +126,23 @@ if cd "$CWD" 2>/dev/null && git rev-parse --is-inside-work-tree &>/dev/null; the
     *)                    GIT_USER="$GIT_EMAIL"; GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;29m" ;;
   esac
 
-  BRANCH=$(git branch --show-current 2>/dev/null)
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    BRANCH=$(git branch --show-current 2>/dev/null)
 
-  # Ahead/behind remote
-  AHEAD=$(git rev-list --count @{upstream}..HEAD 2>/dev/null || echo 0)
-  BEHIND=$(git rev-list --count HEAD..@{upstream} 2>/dev/null || echo 0)
+    # Ahead/behind remote
+    AHEAD=$(git rev-list --count @{upstream}..HEAD 2>/dev/null || echo 0)
+    BEHIND=$(git rev-list --count HEAD..@{upstream} 2>/dev/null || echo 0)
 
-  # Stash count
-  STASH=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
+    # Stash count
+    STASH=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
 
-  # Use git status --porcelain for staged/unstaged/untracked/conflicted
-  GIT_STATUS=$(git status --porcelain 2>/dev/null)
-  STAGED=$(echo "$GIT_STATUS" | grep -c '^[MADRC]' 2>/dev/null || echo 0)
-  UNSTAGED=$(echo "$GIT_STATUS" | grep -c '^.[MD]' 2>/dev/null || echo 0)
-  UNTRACKED=$(echo "$GIT_STATUS" | grep -c '^??' 2>/dev/null || echo 0)
-  CONFLICTS=$(echo "$GIT_STATUS" | grep -c '^UU\|^AA\|^DD' 2>/dev/null || echo 0)
+    # Use git status --porcelain for staged/unstaged/untracked/conflicted
+    GIT_STATUS=$(git status --porcelain 2>/dev/null)
+    STAGED=$(echo "$GIT_STATUS" | grep -c '^[MADRC]' 2>/dev/null || echo 0)
+    UNSTAGED=$(echo "$GIT_STATUS" | grep -c '^.[MD]' 2>/dev/null || echo 0)
+    UNTRACKED=$(echo "$GIT_STATUS" | grep -c '^??' 2>/dev/null || echo 0)
+    CONFLICTS=$(echo "$GIT_STATUS" | grep -c '^UU\|^AA\|^DD' 2>/dev/null || echo 0)
+  fi
 fi
 
 if [ "$CTX_USABLE" -gt 90 ]; then
@@ -191,19 +200,36 @@ AZURE_CACHE="/tmp/azure-cost-cache.json"
 COST_PROJECT=""
 COST_MONTH=""
 COST_MTD=""
+PROJ_COST_RAW=""
+PROJ_TOKENS=""
+ACTUAL_RATIO=""
+PER_MTOK=""
 if [ -f "$CCUSAGE_CACHE" ] && [ -n "$PROJECT_KEY" ]; then
-  COST_PROJECT=$(jq -r --arg p "$PROJECT_KEY" '[.projects[$p][]? | .totalCost] | add // empty' "$CCUSAGE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  PROJ_AGG=$(jq -r --arg p "$PROJECT_KEY" '(.projects[$p]? // []) as $r | if ($r | length) == 0 then empty else "\([$r[].totalCost] | add) \([$r[].totalTokens] | add)" end' "$CCUSAGE_CACHE" 2>/dev/null)
+  if [ -n "$PROJ_AGG" ]; then
+    PROJ_COST_RAW=${PROJ_AGG%% *}
+    PROJ_TOKENS=${PROJ_AGG##* }
+    COST_PROJECT=$(printf '%s' "$PROJ_COST_RAW" | awk '{printf "%.0f", $1}')
+  fi
 fi
 if [ -f "$AZURE_CACHE" ]; then
   COST_MTD=$(jq -r '.mtd // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
   COST_MONTH=$(jq -r '.rolling30d // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  ACTUAL_RATIO=$(jq -r '.actualRatio // empty' "$AZURE_CACHE" 2>/dev/null)
+fi
+# Project lifetime dollars per million tokens, repriced from Anthropic list to
+# what the platform actually billed. Blank unless both halves are available.
+if [ -n "$PROJ_COST_RAW" ] && [ -n "$PROJ_TOKENS" ] && [ -n "$ACTUAL_RATIO" ]; then
+  PER_MTOK=$(awk -v c="$PROJ_COST_RAW" -v t="$PROJ_TOKENS" -v r="$ACTUAL_RATIO" 'BEGIN { if (t > 0) printf "%.2f", c * r * 1000000 / t }')
 fi
 fmtc() { LC_ALL=en_US.UTF-8 printf "%'d" "${1:-0}" 2>/dev/null || echo "${1:-0}"; }
 COST=$(fmtc "$COST")
 [ -n "$COST_PROJECT" ] && COST_PROJECT=$(fmtc "$COST_PROJECT")
 [ -n "$COST_MTD" ] && COST_MTD=$(fmtc "$COST_MTD")
 [ -n "$COST_MONTH" ] && COST_MONTH=$(fmtc "$COST_MONTH")
-printf " | \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
+printf " |"
+[ -n "$PER_MTOK" ] && printf " \033[38;5;186m${ICON_DIVISION} \$${PER_MTOK}\033[0m"
+printf " \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
 [ -n "$COST_PROJECT" ] && printf " \033[38;5;186m${ICON_INVOICE} \$${COST_PROJECT}\033[0m"
 [ -n "$COST_MTD" ] && printf " \033[38;5;186m${ICON_CAL_TODAY} \$${COST_MTD}\033[0m"
 [ -n "$COST_MONTH" ] && printf " \033[38;5;186m${ICON_CAL_RANGE} \$${COST_MONTH}\033[0m"

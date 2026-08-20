@@ -158,7 +158,7 @@ With `pct=40` and no override, the arithmetic gives:
 - 1M-window model: `1000000 * 0.40 - 32000` = roughly 368000
 - 200K-window model: `200000 * 0.40 - 32000` = roughly 48000
 
-`configs/claude-code/statusline-command.sh:109` still hardcodes `COMPACT_THRESHOLD=400000`, used only to compute the displayed context-usage percentage. This was left unchanged on purpose; the user keeps it as a manual gauge for when to flush context by hand, independent of the real auto-compact trigger. It is not read from any auto-compact env var.
+`configs/claude-code/statusline-command.sh:110` still hardcodes `COMPACT_THRESHOLD=400000`, used only to compute the displayed context-usage percentage. This was left unchanged on purpose; the user keeps it as a manual gauge for when to flush context by hand, independent of the real auto-compact trigger. It is not read from any auto-compact env var.
 
 Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-context suffix stripped, so a tool reading transcripts has no way to recover the effective window and no basis for computing a percentage from it.
 
