@@ -138,6 +138,31 @@ State persists for the session at `~/.serena/hook_data/<session_id>/tool_use_cou
 
 `configs/serena/serena_config.yml` (symlinked to `~/.serena/serena_config.yml`) sets `excluded_tools` to eight memory and onboarding tools: write_memory, read_memory, delete_memory, edit_memory, rename_memory, list_memories, onboarding, check_onboarding_performed.
 
+## Markdown Format Hook
+
+`configs/claude-code/hooks/md-format.sh` runs on `PostToolUse` in all three settings files, with matcher `Edit|Write` and two handlers pointing at the same script:
+
+| Handler `if` | Fires on |
+| ------------ | -------- |
+| `Edit(**/*.md)` | Edit calls on any `.md` file at any depth |
+| `Write(**/*.md)` | Write calls on any `.md` file at any depth |
+
+Two handlers are required because an `if` rule matches the tool name as well as the path. `Edit(**/*.md)` skips every Write call, logged as `Skipping hook due to if condition "Edit(**/*.md)" not matching`. A `Write(...)` path rule does work inside an `if`, even though `Write` path rules are never consulted for permission checks. A bare `*.md` and `**/*.md` behave identically, both matching nested paths.
+
+The script runs `markdownlint-cli2 --fix` before `prettier --write`, both through `npx -y`. The reverse order leaves MD022 unfixed on a heading written as `#Title` and needs a second pass to converge. It exits early for `.llmtmp/`, `.llmdocs/`, `SKILL.md`, and `~/.claude/plans/`, matching the exclusions in `configs/claude-code/rules/md-syntax.md`. A changed file hash produces an `additionalContext` payload telling the model its in-context copy is stale. Residual markdownlint errors go to stderr with exit 2, which Claude Code shows to the model.
+
+Measured on macOS with both tools already installed by brew:
+
+| Case | Wall time |
+| ---- | --------- |
+| File already conforming | 0.63s to 0.69s |
+| File rewritten | roughly 1.0s |
+| Same formatters, direct binaries | 0.21s to 0.24s |
+
+npx adds about 0.32s per invocation.
+
+Formatting after an Edit invalidates the model's copy of the file. Two Edit calls to one file in a single assistant turn lose the second to `String to replace not found in file.`, because the first edit's success message asserts the copy is current. Recovery is one Read. The hook script mode must stay 755; a 644 hook fails with no entry in the debug log.
+
 ## Auto-Compact Window
 
 None of the three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) sets `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` or `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Both were removed and nothing replaced them. `autoCompactEnabled` is also unset in every config. Auto-compaction runs at Claude Code's built-in default: `pct=40`, window `W` equal to the model's real context window.

@@ -49,6 +49,23 @@
   },
   "model": "sonnet",
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(**/*.md)",
+            "command": "~/.claude/hooks/md-format.sh"
+          },
+          {
+            "type": "command",
+            "if": "Write(**/*.md)",
+            "command": "~/.claude/hooks/md-format.sh"
+          }
+        ]
+      }
+    ],
     "PreCompact": [
       {
         "hooks": [
