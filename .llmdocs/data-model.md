@@ -117,11 +117,46 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 | `claude_json`                | JSON   | `~/.claude.json`                                                      |
 | `claude_settings_json_azure` | JSON   | `~/.claude/settings.json`                                             |
 | `claude_settings_json_aws`   | JSON   | `~/.claude/settings-aws.json`                                         |
+| `output-styles/clanker.md`   | MD     | `~/.claude/output-styles/clanker.md` (glob)                           |
 | `known_marketplaces.json`    | JSON   | `~/.claude/plugins/known_marketplaces.json`                           |
 | `installed_plugins.json`     | JSON   | `~/.claude/plugins/installed_plugins.json`                            |
 | `claude_desktop_config.json` | JSON   | `~/Library/Application Support/Claude-3p/claude_desktop_config.json` |
 
 `claude_desktop_config.json` configures Claude Desktop in 3p deployment mode with the ms365 MCP server (`@softeria/ms-365-mcp-server`). Symlinked via `install.macos.yaml`.
+
+## Output Style
+
+`configs/claude-code/output-styles/clanker.md` is glob-linked into `~/.claude/output-styles/` and selected by `"outputStyle": "clanker"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It owns the chat-response contract: findings first, recommendation second, derivation last, no repetition, and the CLANKER register. `configs/claude-code/claude_md.md` no longer carries a `## Chat with the Operator` section; that content moved into the style file. The banned-pattern catalog stays in `claude_md.md` and the style file points at it.
+
+`outputStyle` takes no provider-specific format, so all three settings files carry the identical string. The three alternate settings files (`_litellm_oai`, `_litellm_gem`, `_ollama`) do not set the key.
+
+Mechanism, read from the shipped binary at `/Users/jimweller/.local/share/claude/versions/2.1.237`. The system prompt assembly in `a9()`:
+
+```text
+[ ...o ? [JPT(c,t)]
+       : [ UPT(c), zPT(t),
+           c===null||c.keepCodingInstructions===!0 ? qPT() : null,
+           WPT(), GPT(d), YPT() ],
+  ..., ...h, PFm(t) ].filter(y=>y!==null)
+```
+
+`c` is the resolved style, `null` when `outputStyle` is `default`. `o` selects the lean single-section prompt (`JPT`), where `qPT()` and `YPT()` are never emitted and `keep-coding-instructions` is inert. An output style is additive, not a replacement:
+
+| Effect    | Detail                                                                                                      |
+| --------- | ----------------------------------------------------------------------------------------------------------- |
+| Added     | `BPT(c)` emits `# Output Style: <name>` plus the file body, inside the dynamic list `h`, after `language` and before `bg-session` |
+| Changed   | `UPT(c)` swaps one clause in the opening sentence                                                            |
+| Dropped   | `qPT()`, the default coding-guidelines block, unless frontmatter sets `keep-coding-instructions: true`         |
+| Untouched | `zPT()`, `WPT()`, `GPT()`, `YPT()`, and every other section. `YPT()` carries "Your responses should be short and concise." and survives every style |
+
+The style body therefore competes with existing tone guidance rather than replacing it. The built-in `Concise` style closes with "Where these rules conflict with more general communication or formatting guidance elsewhere in your instructions, these rules win." `clanker.md` carries the same precedence clause; without it the style has no claim over `YPT()` or CLAUDE.md.
+
+Two behaviors to know:
+
+- The settings value must equal the frontmatter `name`, not the filename. `UAT` keys the style map by `u.name`, and `Pa()?.outputStyle` looks the value up in that map. A mismatch resolves to `null` with no warning and the style silently does nothing. `clanker.md` sets `name: clanker` so both agree.
+- A custom style gets no per-turn reminder. The renderer is `output_style:(e)=>{let t=Oke[e.style]; if(!t) return []; ...}`, and `Oke` is the built-in map; `UAT` merges custom styles into a copy (`o={...Oke}`) without mutating it. Built-in styles like `Concise` re-inject a one-line `turnReminder` every turn. `clanker` gets one system-prompt injection per session and nothing after.
+
+`Mze("output-styles", ...)` loads styles from `~/.claude/output-styles/` (source `userSettings`), a project `.claude/output-styles/`, a policy directory, and plugin `outputStylesPath` entries. The `/output-style` slash command was removed; the picker is at `/config` -> Output style. The feature itself is current, and the binary's own reference notes "Output styles still exist as a feature; only the dedicated command was removed." Two built-in styles, `Explanatory` and `Learning`, are deprecated in favor of SessionStart-hook plugins but still ship in the built-in map alongside `Proactive` and `Concise`.
 
 ## Serena Hooks
 

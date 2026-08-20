@@ -22,7 +22,7 @@ configs/                  # Source dotfiles (symlinked to home)
   zsh_plugins.txt          # Antidote plugin manifest
   p10k/                    # Powerlevel10k prompt theme and segments
   git/                     # Layered git identity and ignore
-  claude-code/             # Claude Code config, skills, commands, hooks
+  claude-code/             # Claude Code config, skills, agents, rules, hooks, output styles
   claude-flow/             # Claude Flow multi-agent CLAUDE.md + MCP rules
   opencode/                # OpenCode CLI config + agents
   roocode/                 # Roo Code modes + MCP settings
@@ -50,7 +50,7 @@ dotbot creates symlinks from `~` into this repo. Configured in three YAML files:
 
 Link defaults: `force: true`, `create: true`, `relink: true`.
 
-Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/commands/`, `~/.claude/skills/`, `~/.claude/hooks/`, `~/.config/powershell/`, `~/.config/opencode/agents/`.
+Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/skills/`, `~/.claude/hooks/`, `~/.claude/rules/`, `~/.claude/agents/`, `~/.claude/output-styles/`, `~/.agents/skills/`, `~/.config/powershell/`, `~/.config/opencode/agents/`.
 
 ## Zsh Module System
 
