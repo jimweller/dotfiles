@@ -46,7 +46,7 @@
     ]
   },
   "model": "sonnet",
-  "outputStyle": "clanker",
+  "outputStyle": "Concise",
   "hooks": {
     "PostToolUse": [
       {

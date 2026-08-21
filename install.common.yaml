@@ -110,9 +110,6 @@
     ~/.claude/agents/:
       glob: true
       path: configs/claude-code/agents/*
-    ~/.claude/output-styles/:
-      glob: true
-      path: configs/claude-code/output-styles/*
     ~/.claude/tools/humble-master: submodules/humble-master
     ~/.claude-mem/settings.json: configs/claude-mem/settings.json
     ~/.agents/skills/:

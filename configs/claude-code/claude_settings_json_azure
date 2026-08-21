@@ -220,7 +220,7 @@
       }
     }
   },
-  "outputStyle": "clanker",
+  "outputStyle": "Concise",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",

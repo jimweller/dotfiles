@@ -117,7 +117,6 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 | `claude_json`                | JSON   | `~/.claude.json`                                                      |
 | `claude_settings_json_azure` | JSON   | `~/.claude/settings.json`                                             |
 | `claude_settings_json_aws`   | JSON   | `~/.claude/settings-aws.json`                                         |
-| `output-styles/clanker.md`   | MD     | `~/.claude/output-styles/clanker.md` (glob)                           |
 | `known_marketplaces.json`    | JSON   | `~/.claude/plugins/known_marketplaces.json`                           |
 | `installed_plugins.json`     | JSON   | `~/.claude/plugins/installed_plugins.json`                            |
 | `claude_desktop_config.json` | JSON   | `~/Library/Application Support/Claude-3p/claude_desktop_config.json` |
@@ -126,23 +125,28 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 ## Output Style
 
-`configs/claude-code/output-styles/clanker.md` is glob-linked into `~/.claude/output-styles/` and selected by `"outputStyle": "clanker"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It owns the chat-response contract: findings first, recommendation second, derivation last, no repetition, and the CLANKER register.
+The active style is the built-in `Concise`, selected by `"outputStyle": "Concise"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It ships inside the Claude Code binary, so no file for it exists in this repo. Capital C is required: `ggi()` resolves the style with `e[o]` against a map keyed by style name, and the built-in keys are exactly `Proactive`, `Concise`, `Explanatory`, `Learning`. A miss resolves to `null` with no warning and no style at all.
 
-Three files split the writing contract, and each one points at the other two rather than repeating them:
+A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules moved to `configs/claude-code/rules/chat-register.md`.
 
-| File | Scope | Loading |
-| ---- | ----- | ------- |
-| `configs/claude-code/output-styles/clanker.md` | The assistant turn in the terminal | `outputStyle` in the three settings files |
+Four sources split the writing contract, and each points at the others rather than repeating them:
+
+| Source | Scope | Loading |
+| ------ | ----- | ------- |
+| Built-in `Concise` style | Brevity in the assistant turn: lead with the result, cut narration, 1-3 sentences for a simple question, no hedging, full detail on request, never trade correctness for brevity | `"outputStyle": "Concise"` in the three settings files |
+| `configs/claude-code/rules/chat-register.md` | What `Concise` omits: findings-then-recommendation ordering, conditional derivation, the CLANKER register | No `paths` frontmatter, loads every session |
 | `configs/claude-code/rules/ghostwriting.md` | Everything else: commits, PRs, code comments, docs, Jira, Slack, email | No `paths` frontmatter, loads every session |
-| `configs/claude-code/rules/banned-patterns.md` | Both surfaces, prose mechanics only | No `paths` frontmatter, loads every session |
+| `configs/claude-code/rules/banned-patterns.md` | All surfaces, prose mechanics only | No `paths` frontmatter, loads every session |
 
-`configs/claude-code/claude_md.md` carries none of the three. It holds a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
+`configs/claude-code/claude_md.md` carries none of the four. It holds a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
 
 A rule with no `paths` frontmatter loads at `session_start` with the same priority as a CLAUDE.md, verified with an `InstructionsLoaded` hook on a turn that made no tool calls. A rule with `paths` loads only on `path_glob_match`, and the trigger is a Read of a matching file: writing a new `.md` with no prior Read produced no match event.
 
 `outputStyle` takes no provider-specific format, so all three settings files carry the identical string. The three alternate settings files (`_litellm_oai`, `_litellm_gem`, `_ollama`) do not set the key.
 
-Mechanism, read from the shipped binary at `/Users/jimweller/.local/share/claude/versions/2.1.237`. The system prompt assembly in `a9()`:
+### System prompt assembly
+
+Read from the shipped binary at `/Users/jimweller/.local/share/claude/versions/2.1.237`, in `a9()`:
 
 ```text
 [ ...o ? [JPT(c,t)]
@@ -156,19 +160,49 @@ Mechanism, read from the shipped binary at `/Users/jimweller/.local/share/claude
 
 | Effect    | Detail                                                                                                      |
 | --------- | ----------------------------------------------------------------------------------------------------------- |
-| Added     | `BPT(c)` emits `# Output Style: <name>` plus the file body, inside the dynamic list `h`, after `language` and before `bg-session` |
+| Added     | `BPT(c)` emits `# Output Style: <name>` plus the style body, inside the dynamic list `h`, after `language` and before `bg-session` |
 | Changed   | `UPT(c)` swaps one clause in the opening sentence                                                            |
-| Dropped   | `qPT()`, the default coding-guidelines block, unless frontmatter sets `keep-coding-instructions: true`         |
+| Dropped   | `qPT()`, the default coding-guidelines block, unless the style sets `keepCodingInstructions`                   |
 | Untouched | `zPT()`, `WPT()`, `GPT()`, `YPT()`, and every other section. `YPT()` carries "Your responses should be short and concise." and survives every style |
 
-The style body therefore competes with existing tone guidance rather than replacing it. The built-in `Concise` style closes with "Where these rules conflict with more general communication or formatting guidance elsewhere in your instructions, these rules win." `clanker.md` carries the same precedence clause; without it the style has no claim over `YPT()` or CLAUDE.md.
+`Concise` sets `keepCodingInstructions:!0`, so the default coding-guidelines block stays. The retired `clanker.md` set `keep-coding-instructions: true` for the same effect.
 
-Two behaviors to know:
+The style body competes with existing tone guidance rather than replacing it, so `Concise` closes with "Where these rules conflict with more general communication or formatting guidance elsewhere in your instructions, these rules win." That clause sits in the system prompt and outranks any rules file, which is why `chat-register.md` carries no competing precedence clause of its own and no rule that contradicts `Concise`.
 
-- The settings value must equal the frontmatter `name`, not the filename. `UAT` keys the style map by `u.name`, and `Pa()?.outputStyle` looks the value up in that map. A mismatch resolves to `null` with no warning and the style silently does nothing. `clanker.md` sets `name: clanker` so both agree.
-- A custom style gets no per-turn reminder. The renderer is `output_style:(e)=>{let t=Oke[e.style]; if(!t) return []; ...}`, and `Oke` is the built-in map; `UAT` merges custom styles into a copy (`o={...Oke}`) without mutating it. Built-in styles like `Concise` re-inject a one-line `turnReminder` every turn. `clanker` gets one system-prompt injection per session and nothing after.
+### Per-turn reminder
+
+This is the mechanical reason a built-in style beats a custom one, and the reason `clanker` was retired.
+
+Every turn, `s3T()` emits a payload that the renderer turns into a `system-reminder`:
+
+```text
+async function s3T(){if((Na()?.outputStyle||"default")==="default")return[];
+ let r=await ggi();if(!r)return[];
+ return[{type:"output_style",style:r.name,turnReminder:r.turnReminder}]}
+
+output_style:(e)=>{if(typeof e.style!=="string"||e.style==="")return[];
+ if(e.style.length>gFn)return T(`Output style name exceeds ${gFn} characters ...`,{level:"error"}),[];
+ return Zy([kn({content:`${pze(e.style)} output style is active. ${e.turnReminder??"Remember to follow the specific guidelines for this style."}`,isMeta:!0})])}
+```
+
+Only built-in styles define `turnReminder`. Two exist in the binary: `q3S` for `Concise` ("Be concise: lead with the result, skip preamble and narration, keep only what the user needs.") and `j3S` for `Proactive` ("Execute autonomously ..."). Both style-file loaders parse a fixed key set with no `turnReminder` among them:
+
+| Loader | Parsed frontmatter keys |
+| ------ | ----------------------- |
+| User directory (`B3S`) | `name`, `description`, `keep-coding-instructions` |
+| Plugin (`BVp`) | `name`, `description`, `force-for-plugin`, `keep-coding-instructions` |
+
+Neither validates `name`. Both do `(i.name!=null?String(i.name):void 0)||<filename>`, and the frontmatter schema declares `name` as an optional string with no pattern and no length bound. So a custom style always falls back to "Remember to follow the specific guidelines for this style," which instructs nothing.
+
+Version boundary. Through 2.1.237 the renderer gated on the built-in map, `output_style:(e)=>{let t=Oke[e.style]; if(!t) return []; ...}`, so a custom style got no per-turn reminder at all. 2.1.238 removed the gate and added the generic fallback above. A custom style now gets a reminder that names itself and instructs nothing.
+
+Undocumented workaround, not in use. `gFn=256` and `pze()` only HTML-escapes `&`, `<`, and `>`. Since the name is injected verbatim every turn and never validated, up to 256 characters of instruction text can be smuggled through the `name` field, with the settings value set to the same string. This fails closed: one character over the limit suppresses the reminder entirely and logs an error nowhere the user sees it. The name also renders as the `# Output Style:` heading and as the `/config` picker label.
+
+### Loader and picker
 
 `Mze("output-styles", ...)` loads styles from `~/.claude/output-styles/` (source `userSettings`), a project `.claude/output-styles/`, a policy directory, and plugin `outputStylesPath` entries. The `/output-style` slash command was removed; the picker is at `/config` -> Output style. The feature itself is current, and the binary's own reference notes "Output styles still exist as a feature; only the dedicated command was removed." Two built-in styles, `Explanatory` and `Learning`, are deprecated in favor of SessionStart-hook plugins but still ship in the built-in map alongside `Proactive` and `Concise`.
+
+Since no custom style remains in this repo, `install.common.yaml` no longer glob-links `~/.claude/output-styles/`.
 
 ## Serena Hooks
 
