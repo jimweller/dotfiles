@@ -43,7 +43,7 @@ Each module is a plain `.zsh` file sourced by `zsh-jim.plugin.zsh`. Convention:
 
 | Function                      | Module                   | Purpose                                                                                                           |
 | ----------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `switch_git_profile()`        | `20-git.zsh`             | Set GIT_CONFIG_GLOBAL + load secrets                                                                              |
+| `switch_git_profile()`        | `20-git.zsh`             | Set GIT_CONFIG_GLOBAL + load secrets for `jim`, `work`, or `hearst`                                               |
 | `git_lock()` / `git_unlock()` | `20-git.zsh`             | Write/clear git identity in local repo config                                                                     |
 | `gj()`                        | `20-git.zsh`             | Quick commit: add all, commit, push                                                                               |
 | `gpa()`                       | `20-git.zsh`             | Pull all subdirectory repos                                                                                       |

@@ -67,7 +67,7 @@ VSCode devcontainer settings reference this repo for dotfiles injection into dev
 Not automated by the installer:
 
 - `scripts/secrets.sh open` to decrypt SSH keys and credentials
-- `switch_git_profile work` or `switch_git_profile personal` to set git identity
+- `switch_git_profile work`, `switch_git_profile jim`, or `switch_git_profile hearst` to set git identity
 - Load LaunchAgents (macOS installer does this automatically)
 
 ## Prerequisites

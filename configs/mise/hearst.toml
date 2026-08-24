@@ -1,0 +1,4 @@
+[env]
+GIT_CONFIG_GLOBAL = "{{env.HOME}}/.gitconfig-hearst"
+GIT_PROFILE_ENC = "{{env.HOME}}/.secrets/git-hearst.enc.env"
+_.source = { path = "{{env.HOME}}/.config/dotfiles/configs/mise/load-git-secret.sh", redact = true }

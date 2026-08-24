@@ -151,10 +151,12 @@ mise install                              # install tools from nearest mise.toml
 ## Git Profile Switching
 
 ```bash
-work       # cd ~/work + switch to work git profile
+work       # cd ~/work + switch to work ADO git profile
 personal   # cd ~/personal + switch to personal profile
-corp       # switch to work profile only (no cd)
+hearst     # cd ~/hearst + switch to work GitHub profile
+corp       # switch to work ADO profile only (no cd)
 jim        # switch to personal profile only (no cd)
+hrs        # switch to work GitHub profile only (no cd)
 gitlock    # write current profile to local repo .git/config
 gitunlock  # remove profile from local repo .git/config
 ```

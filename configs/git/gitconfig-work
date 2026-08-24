@@ -8,8 +8,6 @@
 [credential "https://dev.azure.com"]
 	helper = "!f() { echo username=$GIT_USERNAME; echo password=$AZURE_DEVOPS_EXT_PAT; }; f"
 	useHttpPath = true
-[credential "https://github.com"]
-	helper = "!f() { echo username=x-token-auth; echo password=$GITHUB_TOKEN; }; f"
 [url "https://github.com/"]
 	insteadOf = git@github.com:
 [url "https://dev.azure.com/mcgsead/Data%20Engineering/_git/"]

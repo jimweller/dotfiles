@@ -1,16 +1,22 @@
-# 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-jim and git-work.
-# The glob sorts jim before work, so work wins every shared key and its identity
-# and tokens are live by default. GIT_CONFIG_GLOBAL is in neither secrets file, so
-# it is defaulted to work here to match. gitconfig-all sets user.useConfigOnly, so
-# git refuses to commit without it. switch_git_profile overrides it, and so does
-# mise in any directory carrying configs/mise/{personal,work}.toml.
+# 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-hearst, git-jim
+# and git-work. The glob sorts hearst, jim, work, so work wins every key it defines
+# and its identity and ADO tokens are live by default. GIT_CONFIG_GLOBAL is in no
+# secrets file, so it is defaulted to work here to match. gitconfig-all sets
+# user.useConfigOnly, so git refuses to commit without it. switch_git_profile
+# overrides it, and so does mise in any directory carrying
+# configs/mise/{personal,work,hearst}.toml.
+#
+# GITHUB_TOKEN and GH_TOKEN live in git-hearst and git-jim only, so git-jim's
+# values are the ones live at shell start until a profile switch runs.
 export GIT_CONFIG_GLOBAL="${GIT_CONFIG_GLOBAL:-$HOME/.gitconfig-work}"
 
 alias work='cd work && switch_git_profile work'
 alias personal='cd personal && switch_git_profile jim'
+alias hearst='cd hearst && switch_git_profile hearst'
 
 alias corp='switch_git_profile work'
 alias jim='switch_git_profile jim'
+alias hrs='switch_git_profile hearst'
 
 alias gitlock='git_lock'
 alias glock='git_lock'
@@ -51,13 +57,13 @@ git_lock() {
   fi
 
   # Check required environment variables are set
-  [[ -n "$GIT_USER" ]] || { echo "Error: GIT_USER not set. Run a profile switch first (jim/work)"; return 1; }
-  [[ -n "$GIT_EMAIL" ]] || { echo "Error: GIT_EMAIL not set. Run a profile switch first (jim/work)"; return 1; }
+  [[ -n "$GIT_USER" ]] || { echo "Error: GIT_USER not set. Run a profile switch first (jim/work/hearst)"; return 1; }
+  [[ -n "$GIT_EMAIL" ]] || { echo "Error: GIT_EMAIL not set. Run a profile switch first (jim/work/hearst)"; return 1; }
 
   # Get current signing key
   local current_signingkey
   current_signingkey=$(git config user.signingkey)
-  [[ -n "$current_signingkey" ]] || { echo "Error: No signing key configured. Run a profile switch first (jim/work)"; return 1; }
+  [[ -n "$current_signingkey" ]] || { echo "Error: No signing key configured. Run a profile switch first (jim/work/hearst)"; return 1; }
 
   # Set repository-specific config using current environment
   git config user.name "$GIT_USER"

@@ -46,14 +46,22 @@ gitconfig-jim (personal, includes gitconfig-all)
   user.signingkey: ~/.ssh/id_jim
   url rewrite: github HTTPS -> SSH
 
-gitconfig-work (work, includes gitconfig-all)
+gitconfig-work (work ADO, includes gitconfig-all)
   user.email: mcg
   user.signingkey: ~/.ssh/id_mcg
   credential helper: env var injection ($GIT_USERNAME, $AZURE_DEVOPS_EXT_PAT)
   url rewrites: 11 ADO project SSH -> HTTPS mappings
+
+gitconfig-hearst (work GitHub, includes gitconfig-all)
+  user.email: mcg
+  user.signingkey: ~/.ssh/id_mcg
+  credential helper: env var injection ($GITHUB_TOKEN) for https://github.com
+  url rewrite: github SSH -> HTTPS
 ```
 
-`GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `configs/zsh-jim/20-git.zsh`. The `~/.secrets/*.enc.env` glob sorts `git-jim` before `git-work`, so the work identity wins shared keys and is live by default. `gitconfig-all` sets `user.useConfigOnly`, so git refuses to commit without an explicit config. Precedence, highest first: `switch_git_profile()` in an interactive shell, mise's per-directory `configs/mise/{personal,work}.toml`, then the `20-git.zsh` default.
+`GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `configs/zsh-jim/20-git.zsh`. The `~/.secrets/*.enc.env` glob sorts `git-hearst`, `git-jim`, `git-work`, so the work ADO identity wins every key it defines and is live by default. `gitconfig-all` sets `user.useConfigOnly`, so git refuses to commit without an explicit config. Precedence, highest first: `switch_git_profile()` in an interactive shell, mise's per-directory `configs/mise/{personal,work,hearst}.toml`, then the `20-git.zsh` default.
+
+`work` and `hearst` carry the same `user.email` and `user.signingkey`. The split is which credential helper and which token each one holds: `git-work.enc.env` has `AZURE_DEVOPS_EXT_PAT` and no GitHub token, `git-hearst.enc.env` has `GITHUB_TOKEN` and `GH_TOKEN` and no ADO PAT. `GITHUB_TOKEN` is therefore defined by `git-hearst` and `git-jim` only, so at shell start `git-jim`'s personal token is the live one until a profile switch runs.
 
 ## Manifest Files
 
@@ -73,7 +81,7 @@ Two layers:
   - `configs/zsh-jim/00-secrets.zsh` exports `SECRETS_DIR="$HOME/.secrets"` and decrypts every `$SECRETS_DIR/*.enc.env` into the interactive shell
   - `configs/zsh-jim/05-quality-of-life.zsh`, `configs/zsh-jim/20-git.zsh`, `configs/zsh-jim/45-azure.zsh` reference `"$SECRETS_DIR/..."` directly (they run inside a shell that already exported it)
   - `scripts/confluence-backup.sh`, `scripts/jimcontainer.sh`, `scripts/mount.sh` use `${SECRETS_DIR:-$HOME/.secrets}` so they stay correct when run standalone (outside the interactive shell)
-  - `configs/mise/personal.toml`, `configs/mise/work.toml` set `GIT_PROFILE_ENC` to `{{env.HOME}}/.secrets/git-*.enc.env`, consumed by `configs/mise/load-git-secret.sh`
+  - `configs/mise/personal.toml`, `configs/mise/work.toml`, `configs/mise/hearst.toml` set `GIT_PROFILE_ENC` to `{{env.HOME}}/.secrets/git-*.enc.env`, consumed by `configs/mise/load-git-secret.sh`. Each is symlinked to `~/<dir>/.mise.toml` by `install.macos.yaml`, and each directory is listed in `trusted_config_paths` in `configs/mise/config.toml`
   - Decryption uses the age key at `~/.config/sops/age/keys.txt` (`SOPS_AGE_KEY_FILE`), which itself is unchanged and is not under `~/.secrets`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (covers all shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd, since `sync.sh` invokes it and launchd provides no shell env). The variable is required because macOS sops defaults to `~/Library/Application Support/sops/age/keys.txt` while the key lives at the XDG path.
 - **Key material (GPG archive)**: `scripts/secrets.sh` manages a GPG-encrypted tar of:
   - `~/.ssh/id*` (SSH key pairs)
@@ -268,7 +276,7 @@ With `pct=40` and no override, the arithmetic gives:
 
 Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-context suffix stripped, so a tool reading transcripts has no way to recover the effective window and no basis for computing a percentage from it.
 
-Earlier evidence for the percentage being live (from when the override keys were still set) comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509. Those clusters fit a 13000 reserve closely (`200000*0.40 - 13000` = 67000 against a 72197 floor, `1000000*0.40 - 13000` = 387000 against a 387841 fire) and fit the 32000 reserve only if the crossing turns overshot by 24197 and 19841 tokens. The two 2026-08 events rule 13000 out. The reserve may have changed between binary versions.
+Earlier evidence for the percentage being live (from when the override keys were still set) comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509. Those clusters fit a 13000 reserve closely (`200000*0.40 - 13000` = 67000 against a 72197 minimum, `1000000*0.40 - 13000` = 387000 against a 387841 fire) and fit the 32000 reserve only if the crossing turns overshot by 24197 and 19841 tokens. The two 2026-08 events rule 13000 out. The reserve may have changed between binary versions.
 
 Two things stay unverified. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. The exact default `pct` Claude Code applies with no override is inferred from the 801-event cluster, not read from the binary. Both resolve from the `preTokens` value on the next `compact_boundary` event:
 

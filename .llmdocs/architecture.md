@@ -65,7 +65,7 @@ Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/skills/`, `~/.claude
 | `05-quality-of-life.zsh` | Aliases, utilities, editor/pager, zoxide                         |
 | `10-tmux.zsh`            | Tmux session helpers                                             |
 | `15-gpg.zsh`             | GPG_TTY                                                          |
-| `20-git.zsh`             | Git profile switching (work/personal), lock/unlock, quick commit |
+| `20-git.zsh`             | Git profile switching (work/personal/hearst), lock/unlock, quick commit |
 | `30-iac.zsh`             | tenv auto-install                                                |
 | `40-aws.zsh`             | AWS aliases, SSM session helper                                  |
 | `45-azure.zsh`           | Azure PIM activation, subscription management                    |
@@ -82,11 +82,14 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ```text
 ~/.gitconfig -> gitconfig-all     # Base config (signing, editor, LFS, rerere)
-~/.gitconfig-jim -> gitconfig-jim  # Personal: gmail, id_jim key, SSH URL rewrite
-~/.gitconfig-work -> gitconfig-work # Work: mcg email, id_mcg key, ADO credential helper
+~/.gitconfig-jim -> gitconfig-jim  # Personal: gmail, id_jim key, GitHub token helper
+~/.gitconfig-work -> gitconfig-work # Work ADO: mcg email, id_mcg key, ADO credential helper
+~/.gitconfig-hearst -> gitconfig-hearst # Work GitHub: mcg email, id_mcg key, GitHub token helper
 ```
 
-`20-git.zsh` exports a default `GIT_CONFIG_GLOBAL` of `~/.gitconfig-work` at shell init, so the work identity is live without an explicit switch. `switch_git_profile()` overrides it and loads profile-specific secrets, as does mise in any directory carrying `configs/mise/{personal,work}.toml`. `git_lock()` writes profile to local repo config.
+`20-git.zsh` exports a default `GIT_CONFIG_GLOBAL` of `~/.gitconfig-work` at shell init, so the work ADO identity is live without an explicit switch. `switch_git_profile()` overrides it and loads profile-specific secrets, as does mise in any directory carrying `configs/mise/{personal,work,hearst}.toml`. `git_lock()` writes profile to local repo config.
+
+`work` and `hearst` share the email `jim.weller@mcg.com` and the signing key `~/.ssh/id_mcg`; they differ in which credential helper and which token they carry. Because the email no longer identifies a profile, the p10k `gituser` segment and the Claude Code statusline resolve the profile from `GIT_CONFIG_GLOBAL` and the cwd rather than from `git config user.email`.
 
 ## Submodules
 

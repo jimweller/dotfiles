@@ -60,7 +60,8 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - Dotbot YAML configs: `install.common.yaml`, `install.macos.yaml`, `install.linux.yaml`
 - Link defaults: `force: true`, `create: true`, `relink: true`
 - Zsh modules use numbered prefixes for load order (00-secrets, 03-path, 04-completions, 05-qol, ..., 95-linux)
-- Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim` and `gitconfig-work`
+- Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim`, `gitconfig-work`, and `gitconfig-hearst`
+- Three git profiles: `jim` (personal GitHub), `work` (MCG Azure DevOps), `hearst` (work GitHub). `work` and `hearst` share `jim.weller@mcg.com` and `~/.ssh/id_mcg` and differ only in credential helper and token, so email alone never identifies a profile. Anything that displays the profile must resolve it from `GIT_CONFIG_GLOBAL` or the cwd
 - `GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `20-git.zsh`. `switch_git_profile` and per-directory mise config override it
 - Env secrets are SOPS-encrypted (age) in `configs/secrets/*.enc.env` and committed. dotbot glob-links them into `~/.secrets/`; runtime code reads from `$SECRETS_DIR` (`~/.secrets`), never the repo path directly. The age key (`~/.config/sops/age/keys.txt`) and any plaintext are never committed. The GPG archive holds SSH/GPG keys plus the age key
 - `configs/claude-code/` is user-level Claude Code config, not repo metadata
@@ -77,7 +78,7 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 
 - **antidote plugin manifest**: `configs/zsh/zsh_plugins.txt` lists all zsh plugins in load order
 - **zsh-jim**: antidote plugin loaded from local path `$HOME/.config/dotfiles/configs/zsh-jim/`
-- **git profile switching**: `work`/`personal` aliases set `GIT_CONFIG_GLOBAL` and load profile secrets
+- **git profile switching**: `work`/`personal`/`hearst` aliases cd and set `GIT_CONFIG_GLOBAL`, `corp`/`jim`/`hrs` switch without the cd. All load profile secrets. Adding a profile means a `configs/git/gitconfig-<name>`, a `configs/secrets/git-<name>.enc.env`, a `configs/mise/<name>.toml` plus its `trusted_config_paths` entry, dotbot `create`/`link` entries, an alias pair, and a case arm in both `configs/p10k/p10k.git.zsh` and `configs/claude-code/statusline-command.sh`
 - **LaunchAgents**: macOS scheduled tasks for AWS token refresh, backup, steampipe, ccusage, total-recall
 - **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and the age key (`keys.txt`); passphrase is `DOTFILES_KEY`, unified to equal the age key
 - **SOPS secrets**: env secrets are stored in `configs/secrets/*.enc.env` (age recipient in `.sops.yaml`, a pathless rule) and committed. dotbot glob-links them into `~/.secrets/` (`install.common.yaml:49-51`); all runtime reads use `$SECRETS_DIR` (`~/.secrets`), exported by `00-secrets.zsh`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd). mise loads git profiles through `configs/mise/load-git-secret.sh`, pointed at `$SECRETS_DIR/git-*.enc.env`. One string (the age key) bootstraps everything

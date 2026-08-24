@@ -12,6 +12,7 @@
   - ~/scratch
   - ~/work
   - ~/personal
+  - ~/hearst
   - ~/.ssh
   - ~/.config/sops/age
   - ~/assets/postgres
@@ -37,6 +38,7 @@
     ~/.gitconfig: configs/git/gitconfig-all
     ~/.gitconfig-jim: configs/git/gitconfig-jim
     ~/.gitconfig-work: configs/git/gitconfig-work
+    ~/.gitconfig-hearst: configs/git/gitconfig-hearst
     ~/.config/gh/:
       glob: true
       path: configs/github/*

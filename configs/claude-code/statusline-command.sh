@@ -117,13 +117,33 @@ GIT_USER_ICON=""
 GIT_USER_COLOR=""
 BRANCH=""
 if cd "$CWD" 2>/dev/null; then
+  # Resolve the git profile. The work and hearst profiles share an email, so the address
+  # alone cannot separate them, and GIT_CONFIG_GLOBAL is frozen at whatever the launching
+  # shell exported and never sees a mid-session switch. $CWD arrives fresh on every
+  # invocation, so the profile tree wins, matching mise's trusted_config_paths.
+  GIT_PROFILE=""
+  case "${CWD#$HOME/}" in
+    hearst|hearst/*)     GIT_PROFILE="hearst" ;;
+    work|work/*)         GIT_PROFILE="work" ;;
+    personal|personal/*) GIT_PROFILE="jim" ;;
+    *)                   GIT_PROFILE="${GIT_CONFIG_GLOBAL##*/.gitconfig-}" ;;
+  esac
+  [ "$GIT_PROFILE" = "$GIT_CONFIG_GLOBAL" ] && GIT_PROFILE=""
+
   # Read the identity outside the work-tree check so it matches the zsh prompt in non-repo dirs
   GIT_EMAIL=$(git config user.email 2>/dev/null)
-  case "$GIT_EMAIL" in
-    jim.weller@gmail.com) GIT_USER="jw";   GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;33m" ;;
-    jim.weller@mcg.com)   GIT_USER="work"; GIT_USER_ICON=$'\xEF\x91\xAE'; GIT_USER_COLOR="\033[38;5;196m" ;;
-    "")                   GIT_USER="" ;;
-    *)                    GIT_USER="$GIT_EMAIL"; GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;29m" ;;
+  case "$GIT_PROFILE" in
+    jim)    GIT_USER="jw";     GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;33m" ;;
+    work)   GIT_USER="work";   GIT_USER_ICON=$'\xEF\x91\xAE'; GIT_USER_COLOR="\033[38;5;196m" ;;
+    hearst) GIT_USER="hearst"; GIT_USER_ICON=$'\xEF\x82\x9B'; GIT_USER_COLOR="\033[38;5;208m" ;;
+    *)
+      case "$GIT_EMAIL" in
+        jim.weller@gmail.com) GIT_USER="jw";   GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;33m" ;;
+        jim.weller@mcg.com)   GIT_USER="work"; GIT_USER_ICON=$'\xEF\x91\xAE'; GIT_USER_COLOR="\033[38;5;196m" ;;
+        "")                   GIT_USER="" ;;
+        *)                    GIT_USER="$GIT_EMAIL"; GIT_USER_ICON=$'\xEF\x8A\xBB'; GIT_USER_COLOR="\033[38;5;29m" ;;
+      esac
+      ;;
   esac
 
   if git rev-parse --is-inside-work-tree &>/dev/null; then

@@ -1,0 +1,11 @@
+[include]
+	path = ~/.gitconfig-all
+
+[user]
+	name = Jim Weller
+	email = jim.weller@mcg.com
+	signingkey = ~/.ssh/id_mcg
+[credential "https://github.com"]
+	helper = "!f() { echo username=x-token-auth; echo password=$GITHUB_TOKEN; }; f"
+[url "https://github.com/"]
+	insteadOf = git@github.com:
