@@ -62,6 +62,9 @@
       path: configs/powershell/*
     ~/.zsh_plugins.txt: configs/zsh/zsh_plugins.txt
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
+    # sensitive-canary reads this one path in the home directory and never a
+    # project-local copy, so the repo file has to be linked rather than sourced.
+    ~/.mcg/sensitive-canary/config.json: configs/sensitive-canary/config.json
     ~/.gemini/settings.json: configs/gemini/gemini_settings
     ~/.codex/config.toml: configs/codex/config.toml
     # One instruction body for both harnesses. Codex expands no @file references,
