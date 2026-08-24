@@ -64,14 +64,12 @@
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
     ~/.gemini/settings.json: configs/gemini/gemini_settings
     ~/.codex/config.toml: configs/codex/config.toml
-    ~/.codex/AGENTS.md: configs/codex/AGENTS.md
-    ~/.codex/daneel.md: configs/codex/daneel.md
+    # One instruction body for both harnesses. Codex expands no @file references,
+    # so the always-on rules live inside this file rather than beside it.
+    ~/.codex/AGENTS.md: configs/claude-code/claude_md.md
     ~/.codex/skills/:
       glob: true
       path: configs/codex/skills/*
-    ~/.codex/rules/:
-      glob: true
-      path: configs/codex/rules/*
     ~/.codex/agents/:
       glob: true
       path: configs/codex/agents/*

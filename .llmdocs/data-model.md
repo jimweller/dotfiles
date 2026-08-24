@@ -135,18 +135,22 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 The active style is the built-in `Concise`, selected by `"outputStyle": "Concise"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It ships inside the Claude Code binary, so no file for it exists in this repo. Capital C is required: `ggi()` resolves the style with `e[o]` against a map keyed by style name, and the built-in keys are exactly `Proactive`, `Concise`, `Explanatory`, `Learning`. A miss resolves to `null` with no warning and no style at all.
 
-A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules moved to `configs/claude-code/rules/chat-register.md`.
+A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules live in the `## Chat Register` section of `configs/claude-code/claude_md.md`.
 
-Four sources split the writing contract, and each points at the others rather than repeating them:
+Two sources split the writing contract:
 
 | Source | Scope | Loading |
 | ------ | ----- | ------- |
 | Built-in `Concise` style | Brevity in the assistant turn: lead with the result, cut narration, 1-3 sentences for a simple question, no hedging, full detail on request, never trade correctness for brevity | `"outputStyle": "Concise"` in the three settings files |
-| `configs/claude-code/rules/chat-register.md` | What `Concise` omits: findings-then-recommendation ordering, conditional derivation, the CLANKER register | No `paths` frontmatter, loads every session |
-| `configs/claude-code/rules/ghostwriting.md` | Everything else: commits, PRs, code comments, docs, Jira, Slack, email | No `paths` frontmatter, loads every session |
-| `configs/claude-code/rules/banned-patterns.md` | All surfaces, prose mechanics only | No `paths` frontmatter, loads every session |
+| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections: `Banned Patterns in All Writing` (prose mechanics, both surfaces), `Chat Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice), `Ghostwriting for Other Humans` (commits, PRs, code comments, docs, Jira, Slack, email), `LSP-First Navigation` | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
 
-`configs/claude-code/claude_md.md` carries none of the four. It holds a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
+The four sections were separate files under `configs/claude-code/rules/` until 2026-08-24. All four carried no `paths` frontmatter, so all four already loaded on every Claude session; folding them into `claude_md.md` changed nothing for Claude and gave Codex content it had never received, because Codex resolves no `@file` references. `configs/claude-code/rules/` now holds only the nine `paths`-filtered language rules, which Codex never sees.
+
+`claude_md.md` also holds the Daneel persona, a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
+
+The file must stay harness-neutral. It names no Claude-only tools: the research bullet says "the builtin web search tools" and the STARTER_CHARACTER rule says "invoked by the skill system". Both spots are the ones to watch when editing. The measured size is 28,080 bytes. That is safe on both: the global `~/.codex/AGENTS.md` is exempt from `project_doc_max_bytes` (verified by setting the budget to 100 and watching the whole file still load), and Claude Code documents no CLAUDE.md size limit.
+
+Codex has no `Concise` analogue. Its nearest lever is `personality`, with values `default`, `friendly`, and `pragmatic`, none of them terse. Codex therefore gets ordering and register but not brevity.
 
 A rule with no `paths` frontmatter loads at `session_start` with the same priority as a CLAUDE.md, verified with an `InstructionsLoaded` hook on a turn that made no tool calls. A rule with `paths` loads only on `path_glob_match`, and the trigger is a Read of a matching file: writing a new `.md` with no prior Read produced no match event.
 

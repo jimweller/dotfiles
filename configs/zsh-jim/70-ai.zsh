@@ -10,20 +10,9 @@ done
 
 # AI-related functions and aliases
 
-# System prompt composition for Claude Code.
-# Repeating --append-system-prompt is last-wins rather than additive, and
-# --append-system-prompt cannot be combined with --append-system-prompt-file,
-# so both prompts are concatenated here into a single string.
-
-# Humble master persona, read from the humble-master submodule.
-_sysprompt_humble() {
-  local f="$HOME/.claude/tools/humble-master/daneel-final.md"
-  if [[ ! -r $f ]]; then
-    print -u2 "sysprompt: cannot read $f"
-    return 1
-  fi
-  cat "$f"
-}
+# System prompt composition for Claude Code. Only the Serena half is generated at
+# launch. The Daneel persona lives in claude_md.md, which both ~/.claude/CLAUDE.md
+# and ~/.codex/AGENTS.md point at.
 
 # Serena instructions, generated live and cached until serena or its config changes.
 # Pass any argument to force regeneration.
@@ -60,7 +49,7 @@ generate_system_prompts() {
   mkdir -p "${out:h}" || return 1
   tmp="${out}.$$"
 
-  if ! { _sysprompt_humble && print "" && _sysprompt_serena "$@" } >"$tmp"; then
+  if ! _sysprompt_serena "$@" >"$tmp"; then
     command rm -f "$tmp"
     return 1
   fi
@@ -71,7 +60,7 @@ generate_system_prompts() {
 
 # Cloud-specific Claude aliases using --settings flag
 
-# append humble master persona plus serena instructions to the built-in prompt
+# append serena instructions to the built-in prompt
 # https://thezvi.substack.com/p/opus-47-part-2-capabilities-and-reactions#:~:text=Consider%20changing%20your%20custom%20instructions%2C%20and%20even%20removing%20as%20much%20of%20the%20default%20prompt%20as%20possible
 # Function wrappers rather than aliases: a failed prompt build aborts instead of
 # launching without the prompt, and function bodies are not alias-expanded at

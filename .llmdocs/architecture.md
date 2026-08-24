@@ -11,7 +11,7 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | devcontainer   | `submodules/devcontainer/`   | Linux Docker dev image (git submodule)                   |
 | clanker-skills | `submodules/clanker-skills/` | Universal AI agent skills (git submodule)                |
 | total-recall   | `submodules/total-recall/`   | SQLite session memory for Claude Code (git submodule)    |
-| humble-master  | `submodules/humble-master/`  | Daneel persona injection for Claude Code (git submodule) |
+| humble-master  | `submodules/humble-master/`  | Daneel persona research, upstream source of the persona text (git submodule) |
 
 ## Directory Layout
 

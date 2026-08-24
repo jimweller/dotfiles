@@ -136,7 +136,7 @@ The installer runs dotbot with platform detection:
 | `herdr/`       | Herdr            | Terminal multiplexer for agents, config.toml                                                     |
 | `litellm/`     | LiteLLM          | Proxy config for multi-provider model routing                                                    |
 
-The `total-recall` submodule provides SQLite-backed session memory for Claude Code. The `humble-master` submodule, symlinked to `~/.claude/tools/humble-master`, provides Daneel persona injection. The `skills/` contents come from the `clanker-skills` submodule via `manifests/ai-skills.txt`.
+The `total-recall` submodule provides SQLite-backed session memory for Claude Code. The `humble-master` submodule, symlinked to `~/.claude/tools/humble-master`, holds the Daneel persona research; the persona text itself lives in `configs/claude-code/claude_md.md`, which both `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md` point at. The `skills/` contents come from the `clanker-skills` submodule via `manifests/ai-skills.txt`.
 
 See `configs/claude-code/README.md` for skill inventory and plugin details.
 
