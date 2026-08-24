@@ -231,6 +231,36 @@ State persists for the session at `~/.serena/hook_data/<session_id>/tool_use_cou
 
 `configs/serena/serena_config.yml` (symlinked to `~/.serena/serena_config.yml`) sets `excluded_tools` to eight memory and onboarding tools: write_memory, read_memory, delete_memory, edit_memory, rename_memory, list_memories, onboarding, check_onboarding_performed.
 
+## Codex Hooks
+
+`configs/codex/hooks.json` is symlinked to `~/.codex/hooks.json`. It carries the beads wiring (`bd codex-hook` on PreCompact, PostCompact, SessionStart, UserPromptSubmit), the herdr SessionStart entry, the same four `serena-hooks` calls Claude gets with `--client=codex`, and `stop-phrase-guard.sh` on Stop.
+
+Codex 0.149.1 accepts eleven events: PreToolUse, PermissionRequest, PostToolUse, PreCompact, PostCompact, SessionStart, SessionEnd, UserPromptSubmit, SubagentStart, SubagentStop, Stop. `matcher` is a regex, and `"*"`, `""`, or an omitted key all match everything. UserPromptSubmit and Stop ignore matchers. Claude's glob `mcp__serena__*` therefore becomes `mcp__serena__.*`.
+
+Payload field names match Claude's: `tool_name`, `tool_input`, `tool_response`, `stop_hook_active`, `last_assistant_message`. `stop-phrase-guard.sh` and its loop guard run unmodified on both harnesses. A `~` in the `command` field expands, so `~/.claude/hooks/stop-phrase-guard.sh` resolves.
+
+Codex's shell tool reports `tool_name` as `exec_command` in telemetry. Across every test run, PostToolUse fired for both MCP and shell calls while PreToolUse fired only on shell calls. Whether Codex skips PreToolUse for MCP tools is unverified, because the only trusted PreToolUse handler during those runs was the claude-mem plugin's, whose matcher `^Bash$|^mcp__.+__(read|view|cat)(_file|_files)?$` excludes `mcp__serena__get_symbols_overview` anyway. Settle it by trusting `serena-hooks remind` and re-running against an MCP call.
+
+### Hook trust
+
+A command hook is skipped until its exact definition is approved through `/hooks` in the Codex TUI. Codex records the approval in `configs/codex/config.toml` under `[hooks.state]`, keyed `"<source>:<event_snake_case>:<group_index>:<hook_index>"` with a `trusted_hash`:
+
+```toml
+[hooks.state."/Users/jimweller/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:73745463e0f126e906971319f0f308cc28e1798edbdf03dda03c318c1f9ded73"
+```
+
+Four consequences. Editing a hook's command invalidates its hash and silently stops it firing, with nothing in the session output to say so. A `hook: <Event>` line in `codex exec` output proves only that some trusted handler ran, not which one, so count the lines per event instead: a trusted addition raises the count by one. New handlers must be appended rather than inserted, because the key carries the array index and reordering revokes trust on every entry after the insertion point. `codex exec` grants no trust of its own, so a hook added outside the TUI stays inert until `/hooks` approves it. And `~/.codex/config.toml` is a symlink into this repo, so Codex writes trust hashes straight into `configs/codex/config.toml` and they arrive as an uncommitted diff.
+
+Counts observed with the current file, on a turn with one shell call:
+
+| Event | Firings | Handlers |
+| ----- | ------- | -------- |
+| SessionStart | 4 | beads, herdr, `serena-hooks activate`, claude-mem |
+| UserPromptSubmit | 2 | beads, claude-mem |
+| PreToolUse | 1 | claude-mem only; both serena handlers await `/hooks` |
+| Stop | 2 | claude-mem, `stop-phrase-guard.sh` |
+
 ## Markdown Format Hook
 
 `configs/claude-code/hooks/md-format.sh` runs on `PostToolUse` in all three settings files, with matcher `Edit|Write` and two handlers pointing at the same script:

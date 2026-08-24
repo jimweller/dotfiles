@@ -1,0 +1,107 @@
+{
+  "hooks": {
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "command": "bd codex-hook PostCompact",
+            "statusMessage": "Scheduling Beads context refresh",
+            "type": "command"
+          }
+        ],
+        "matcher": "manual|auto"
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "command": "bd codex-hook PreCompact",
+            "statusMessage": "Checking Beads context",
+            "type": "command"
+          }
+        ],
+        "matcher": "manual|auto"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "serena-hooks remind --client=codex",
+            "type": "command"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "serena-hooks auto-approve --client=codex",
+            "type": "command"
+          }
+        ],
+        "matcher": "mcp__serena__.*"
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "serena-hooks cleanup --client=codex",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bd codex-hook SessionStart",
+            "statusMessage": "Loading Beads context",
+            "type": "command"
+          }
+        ],
+        "matcher": "startup|resume|clear"
+      },
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/jimweller/.codex/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "command": "serena-hooks activate --client=codex",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "~/.claude/hooks/stop-phrase-guard.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "bd codex-hook UserPromptSubmit",
+            "statusMessage": "Refreshing Beads context",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  }
+}

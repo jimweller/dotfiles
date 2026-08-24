@@ -67,6 +67,12 @@
     # One instruction body for both harnesses. Codex expands no @file references,
     # so the always-on rules live inside this file rather than beside it.
     ~/.codex/AGENTS.md: configs/claude-code/claude_md.md
+    # Codex trusts hooks by content hash, so editing this file means running
+    # /hooks inside Codex to re-approve before any of them fire again.
+    ~/.codex/hooks.json: configs/codex/hooks.json
+    # herdr regenerates this per client and the Claude and Codex copies differ
+    # (integration version, event handling), so each harness gets its own.
+    ~/.codex/herdr-agent-state.sh: configs/codex/herdr-agent-state.sh
     ~/.codex/skills/:
       glob: true
       path: configs/codex/skills/*

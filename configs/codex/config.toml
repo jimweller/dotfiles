@@ -202,6 +202,15 @@ trusted_hash = "sha256:ec28069a1699801e83b6c227f730f4cd89616e8ef24e5b1ffdbc68066
 
 [hooks.state."claude-mem@claude-mem-local:hooks/codex-hooks.json:stop:0:0"]
 trusted_hash = "sha256:bc8fcabc7e0a38d90e26757207c40907b8b6e967256e6eb74f8f49f9cc4c4bf1"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:01a21acadcbd06488387cb1d14311fac33d4cff9f74403cdffb929e570ef4185"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:session_end:0:0"]
+trusted_hash = "sha256:0a2d1790fdd845c6f0c1389c25003525f071dda55cefab308f3404e8f6d697d0"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:47891ec0bbe917210a6d48e5a7fab6d45650a31f43d30d36fe480855004edc3f"
 [features]
 goals = true
 hooks = true
