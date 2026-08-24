@@ -12,7 +12,7 @@
 
 #### jira_get_issue
 
-````text
+```text
 mcp__atl__jira_get_issue({
   issue_key: string,
   fields?: string,
@@ -21,7 +21,7 @@ mcp__atl__jira_get_issue({
   properties?: string,
   update_history?: boolean
 })
-```text
+```
 
 **Purpose:** Get detailed Jira issue information including Epic links
 **Returns:** Full issue object with specified fields
@@ -46,7 +46,7 @@ mcp__atl__jira_search({
   projects_filter?: string,
   expand?: string
 })
-```text
+```
 
 **Purpose:** Search issues using JQL (Jira Query Language)
 **Returns:** Paginated search results
@@ -70,7 +70,7 @@ By assignee: "assignee = currentUser()"
 Recent: "updated >= -7d AND project = PROJ"
 By label: "labels = frontend AND project = PROJ"
 By priority: "priority = High AND project = PROJ"
-```text
+```
 
 #### jira_create_issue
 
@@ -84,7 +84,7 @@ mcp__atl__jira_create_issue({
   components?: string,
   additional_fields?: object
 })
-```text
+```
 
 **Purpose:** Create new Jira issue
 **Returns:** Created issue object
@@ -109,7 +109,7 @@ mcp__atl__jira_create_issue({
   fixVersions: [{ id: "10020" }],
   customfield_10010: "value"
 }
-```text
+```
 
 #### jira_batch_create_issues
 
@@ -118,7 +118,7 @@ mcp__atl__jira_batch_create_issues({
   issues: string,  // JSON array
   validate_only?: boolean
 })
-```text
+```
 
 **Purpose:** Create multiple issues in batch
 **Returns:** Created issues or validation results
@@ -144,7 +144,7 @@ mcp__atl__jira_batch_create_issues({
     "components": ["Frontend"]
   }
 ]
-```text
+```
 
 #### jira_update_issue
 
@@ -155,7 +155,7 @@ mcp__atl__jira_update_issue({
   additional_fields?: object,
   attachments?: string
 })
-```text
+```
 
 **Purpose:** Update existing issue
 **Returns:** Updated issue object and attachment results
@@ -176,7 +176,7 @@ mcp__atl__jira_update_issue({
   description: "Updated description",
   priority: { name: "High" }
 }
-```text
+```
 
 #### jira_delete_issue
 
@@ -184,7 +184,7 @@ mcp__atl__jira_update_issue({
 mcp__atl__jira_delete_issue({
   issue_key: string
 })
-```text
+```
 
 **Purpose:** Delete issue
 **Returns:** Success confirmation
@@ -198,7 +198,7 @@ mcp__atl__jira_transition_issue({
   fields?: object,
   comment?: string
 })
-```text
+```
 
 **Purpose:** Change issue status
 **Returns:** Updated issue object
@@ -218,7 +218,7 @@ mcp__atl__jira_transition_issue({
     name: "Fixed";
   }
 }
-```text
+```
 
 #### jira_get_transitions
 
@@ -226,7 +226,7 @@ mcp__atl__jira_transition_issue({
 mcp__atl__jira_get_transitions({
   issue_key: string
 })
-```text
+```
 
 **Purpose:** Get available status transitions
 **Returns:** Array of available transitions with IDs
@@ -242,7 +242,7 @@ mcp__atl__jira_link_to_epic({
   issue_key: string,
   epic_key: string
 })
-```text
+```
 
 **Purpose:** Link issue to epic
 **Returns:** Updated issue object
@@ -257,7 +257,7 @@ mcp__atl__jira_create_issue_link({
   comment?: string,
   comment_visibility?: object
 })
-```text
+```
 
 **Purpose:** Create link between issues
 **Returns:** Success/failure status
@@ -281,7 +281,7 @@ mcp__atl__jira_create_remote_issue_link({
   relationship?: string,
   icon_url?: string
 })
-```text
+```
 
 **Purpose:** Create web link or Confluence link
 **Returns:** Success/failure status
@@ -301,7 +301,7 @@ mcp__atl__jira_create_remote_issue_link({
 mcp__atl__jira_remove_issue_link({
   link_id: string
 })
-```text
+```
 
 **Purpose:** Remove issue link
 **Returns:** Success confirmation
@@ -310,7 +310,7 @@ mcp__atl__jira_remove_issue_link({
 
 ```text
 mcp__atl__jira_get_link_types()
-```text
+```
 
 **Purpose:** Get all available link types
 **Returns:** Array of link type objects
@@ -326,7 +326,7 @@ mcp__atl__jira_add_comment({
   issue_key: string,
   comment: string
 })
-```text
+```
 
 **Purpose:** Add comment to issue (Markdown format)
 **Returns:** Created comment object
@@ -342,7 +342,7 @@ mcp__atl__jira_add_worklog({
   original_estimate?: string,
   remaining_estimate?: string
 })
-```text
+```
 
 **Purpose:** Log work time on issue
 **Returns:** Created worklog object
@@ -362,7 +362,7 @@ mcp__atl__jira_add_worklog({
 mcp__atl__jira_get_worklog({
   issue_key: string
 })
-```text
+```
 
 **Purpose:** Get worklog entries
 **Returns:** Worklog entries array
@@ -374,7 +374,7 @@ mcp__atl__jira_download_attachments({
   issue_key: string,
   target_dir: string
 })
-```text
+```
 
 **Purpose:** Download issue attachments
 **Returns:** Download operation results
@@ -389,7 +389,7 @@ mcp__atl__jira_download_attachments({
 mcp__atl__jira_get_all_projects({
   include_archived?: boolean
 })
-```text
+```
 
 **Purpose:** Get accessible projects
 **Returns:** Array of project objects (keys in uppercase)
@@ -406,7 +406,7 @@ mcp__atl__jira_get_project_issues({
   limit?: number,
   start_at?: number
 })
-```text
+```
 
 **Purpose:** Get all issues for project
 **Returns:** Paginated issue list
@@ -423,7 +423,7 @@ mcp__atl__jira_get_project_issues({
 mcp__atl__jira_get_project_versions({
   project_key: string
 })
-```text
+```
 
 **Purpose:** Get fix versions for project
 **Returns:** Array of version objects
@@ -438,7 +438,7 @@ mcp__atl__jira_create_version({
   release_date?: string,
   description?: string
 })
-```text
+```
 
 **Purpose:** Create fix version
 **Returns:** Created version object
@@ -458,7 +458,7 @@ mcp__atl__jira_batch_create_versions({
   project_key: string,
   versions: string  // JSON array
 })
-```text
+```
 
 **Purpose:** Create multiple versions
 **Returns:** Array of results
@@ -475,7 +475,7 @@ mcp__atl__jira_batch_create_versions({
   },
   { "name": "v2.0" }
 ]
-```text
+```
 
 ---
 
@@ -491,7 +491,7 @@ mcp__atl__jira_get_agile_boards({
   start_at?: number,
   limit?: number
 })
-```text
+```
 
 **Purpose:** Get boards by name, project, or type
 **Returns:** Array of board objects
@@ -515,7 +515,7 @@ mcp__atl__jira_get_board_issues({
   limit?: number,
   expand?: string
 })
-```text
+```
 
 **Purpose:** Get board issues filtered by JQL
 **Returns:** Paginated issue list
@@ -538,7 +538,7 @@ mcp__atl__jira_get_sprints_from_board({
   start_at?: number,
   limit?: number
 })
-```text
+```
 
 **Purpose:** Get sprints from board by state
 **Returns:** Array of sprint objects
@@ -559,7 +559,7 @@ mcp__atl__jira_get_sprint_issues({
   start_at?: number,
   limit?: number
 })
-```text
+```
 
 **Purpose:** Get issues in sprint
 **Returns:** Paginated issue list
@@ -581,7 +581,7 @@ mcp__atl__jira_create_sprint({
   end_date: string,
   goal?: string
 })
-```text
+```
 
 **Purpose:** Create sprint for board
 **Returns:** Created sprint object
@@ -605,7 +605,7 @@ mcp__atl__jira_update_sprint({
   end_date?: string,
   goal?: string
 })
-```text
+```
 
 **Purpose:** Update sprint
 **Returns:** Updated sprint object
@@ -631,7 +631,7 @@ mcp__atl__jira_batch_get_changelogs({
   fields?: string[],
   limit?: number
 })
-```text
+```
 
 **Purpose:** Get changelogs for multiple issues (Cloud only)
 **Returns:** Issues with changelogs
@@ -650,7 +650,7 @@ mcp__atl__jira_search_fields({
   limit?: number,
   refresh?: boolean
 })
-```text
+```
 
 **Purpose:** Search fields by keyword with fuzzy match
 **Returns:** Matching field definitions
@@ -667,7 +667,7 @@ mcp__atl__jira_search_fields({
 mcp__atl__jira_get_user_profile({
   user_identifier: string
 })
-```text
+```
 
 **Purpose:** Get user profile
 **Returns:** User profile object
@@ -688,7 +688,7 @@ mcp__atl__confluence_search({
   limit?: number,
   spaces_filter?: string
 })
-```text
+```
 
 **Purpose:** Search Confluence content (text or CQL)
 **Returns:** Simplified page objects
@@ -715,7 +715,7 @@ Contributed: "contributor = currentUser() AND lastModified > startOfWeek()"
 Watched: "watcher = \"user@domain.com\" AND type = page"
 Exact phrase: "text ~ \"\\\"Urgent Review Required\\\"\" AND label = \"pending-approval\""
 Title wildcards: "title ~ \"Minutes*\" AND (space = \"HR\" OR space = \"Marketing\")"
-```text
+```
 
 #### confluence_get_page
 
@@ -727,7 +727,7 @@ mcp__atl__confluence_get_page({
   include_metadata?: boolean,
   convert_to_markdown?: boolean
 })
-```text
+```
 
 **Purpose:** Get page content by ID or title+space
 **Returns:** Page content and/or metadata
@@ -751,7 +751,7 @@ mcp__atl__confluence_get_page_children({
   convert_to_markdown?: boolean,
   start?: number
 })
-```text
+```
 
 **Purpose:** Get child pages
 **Returns:** Array of child page objects
@@ -776,7 +776,7 @@ mcp__atl__confluence_create_page({
   content_format?: string,
   enable_heading_anchors?: boolean
 })
-```text
+```
 
 **Purpose:** Create Confluence page
 **Returns:** Created page object
@@ -803,7 +803,7 @@ mcp__atl__confluence_update_page({
   content_format?: string,
   enable_heading_anchors?: boolean
 })
-```text
+```
 
 **Purpose:** Update existing page
 **Returns:** Updated page object
@@ -825,7 +825,7 @@ mcp__atl__confluence_update_page({
 mcp__atl__confluence_delete_page({
   page_id: string
 })
-```text
+```
 
 **Purpose:** Delete page
 **Returns:** Success/failure status
@@ -837,7 +837,7 @@ mcp__atl__confluence_add_comment({
   page_id: string,
   content: string
 })
-```text
+```
 
 **Purpose:** Add page comment (Markdown format)
 **Returns:** Created comment object
@@ -848,7 +848,7 @@ mcp__atl__confluence_add_comment({
 mcp__atl__confluence_get_comments({
   page_id: string
 })
-```text
+```
 
 **Purpose:** Get page comments
 **Returns:** Array of comment objects
@@ -860,7 +860,7 @@ mcp__atl__confluence_add_label({
   page_id: string,
   name: string
 })
-```text
+```
 
 **Purpose:** Add label to page
 **Returns:** Updated label list
@@ -871,7 +871,7 @@ mcp__atl__confluence_add_label({
 mcp__atl__confluence_get_labels({
   page_id: string
 })
-```text
+```
 
 **Purpose:** Get page labels
 **Returns:** Array of label objects
@@ -883,7 +883,7 @@ mcp__atl__confluence_search_user({
   query: string,
   limit?: number
 })
-```text
+```
 
 **Purpose:** Search users with CQL
 **Returns:** User search results
@@ -920,7 +920,7 @@ STEP 3: mcp__atl__jira_link_to_epic({
   issue_key: "PROJ-456",
   epic_key: "PROJ-123"
 })
-```text
+```
 
 ### Pattern: Sprint Planning Workflow
 
@@ -944,7 +944,7 @@ STEP 3: mcp__atl__jira_search({
 })
 
 STEP 4: UPDATE issues to sprint (via jira_update_issue)
-```text
+```
 
 ### Pattern: Issue Transition with Resolution
 
@@ -960,7 +960,7 @@ STEP 2: mcp__atl__jira_transition_issue({
   fields: { resolution: { name: "Fixed" } },
   comment: "Implemented and tested successfully"
 })
-```text
+```
 
 ### Pattern: Confluence Documentation Creation
 
@@ -983,7 +983,7 @@ STEP 3: mcp__atl__confluence_add_label({
   page_id: "789012",
   name: "api-docs"
 })
-```text
+```
 
 ### Pattern: Batch Issue Creation
 
@@ -1008,7 +1008,7 @@ STEP 1: mcp__atl__jira_batch_create_issues({
     }
   ])
 })
-```text
+```
 
 ### Pattern: Research and Document
 
@@ -1034,7 +1034,7 @@ STEP 4: mcp__claude-flow__memory_usage({
   value: "Key findings and action items",
   namespace: "project"
 })
-```text
+```
 
 ---
 
@@ -1056,7 +1056,7 @@ DO NOT USE FOR:
   ❌ General web research (use researcher)
   ❌ Library documentation (use context7)
   ❌ File system operations (use file tools)
-```text
+```
 
 ---
 
@@ -1076,7 +1076,7 @@ STEP 2: mcp__claude-flow__memory_usage({
   value: "Architecture issues and decisions from Jira",
   namespace: "architecture"
 })
-```text
+```
 
 ### With Researcher Research
 
@@ -1098,7 +1098,7 @@ STEP 3: mcp__atl__jira_create_issue({
   issue_type: "Story",
   description: "Based on research, evaluate microservices approach"
 })
-```text
+```
 
 ### With Context7 Documentation
 
@@ -1125,7 +1125,7 @@ STEP 4: mcp__atl__jira_create_remote_issue_link({
   url: "https://confluence.example.com/display/DEV/Express+Auth",
   title: "Authentication Implementation Guide"
 })
-```text
+```
 
 ---
 
@@ -1135,49 +1135,49 @@ STEP 4: mcp__atl__jira_create_remote_issue_link({
 
 ```text
 "status = 'In Progress' AND priority = High AND project = PROJ"
-```text
+```
 
 ### Find Unassigned Issues
 
 ```text
 "assignee is EMPTY AND project = PROJ AND status != Done"
-```text
+```
 
 ### Find Issues Modified Recently
 
 ```text
 "updated >= -7d AND project = PROJ ORDER BY updated DESC"
-```text
+```
 
 ### Find Blocked Issues
 
 ```text
 "status = Blocked AND project = PROJ"
-```text
+```
 
 ### Find Issues by Component
 
 ```text
 "component = Backend AND status != Done AND project = PROJ"
-```text
+```
 
 ### Find Overdue Issues
 
 ```text
 "duedate < now() AND status != Done AND project = PROJ"
-```text
+```
 
 ### Find Issues by Sprint
 
 ```text
 "sprint = 'Sprint 24' AND project = PROJ"
-```text
+```
 
 ### Find Epic Children
 
 ```text
 "parent = PROJ-123"
-```text
+```
 
 ---
 
@@ -1187,31 +1187,31 @@ STEP 4: mcp__atl__jira_create_remote_issue_link({
 
 ```text
 "type=page AND space=DEV"
-```text
+```
 
 ### Find Recent Pages
 
 ```text
 "type=page AND lastModified > startOfWeek() AND space=TEAM"
-```text
+```
 
 ### Find by Creator
 
 ```text
 "creator = currentUser() AND type=page"
-```text
+```
 
 ### Find by Label
 
 ```text
 "label=api-docs AND space=DEV"
-```text
+```
 
 ### Find Pages with Text
 
 ```text
 "siteSearch ~ \"authentication\" AND space=DEV"
-```text
+```
 
 ---
 
@@ -1225,7 +1225,7 @@ IF jira_create_issue fails:
   2. VERIFY issue_type is valid for project
   3. CHECK required fields for issue type
   4. VERIFY assignee exists (jira_get_user_profile)
-```text
+```
 
 ### Transition Failures
 
@@ -1235,7 +1235,7 @@ IF jira_transition_issue fails:
   2. VERIFY transition_id is valid
   3. CHECK required fields for transition
   4. ENSURE current status allows transition
-```text
+```
 
 ### Confluence Access Issues
 
@@ -1245,7 +1245,7 @@ IF confluence_get_page fails:
   2. CHECK permissions for space
   3. TRY confluence_search to find page
   4. VERIFY space_key is correct
-```text
+```
 
 ---
 
@@ -1262,7 +1262,7 @@ USE batch tools when possible:
 FASTER than individual calls
 FEWER API requests
 BETTER quota management
-```text
+```
 
 ### Field Selection
 
@@ -1275,7 +1275,7 @@ EFFICIENT:
 INEFFICIENT:
   - Always requesting all fields
   - Expanding all optional fields
-```text
+```
 
 ### Pagination
 
@@ -1285,7 +1285,7 @@ OPTIMAL:
   - Use limit=50 for batch processing
   - Track start_at for pagination
   - Stop when sufficient results found
-```text
+```
 
 ---
 
@@ -1305,7 +1305,7 @@ START
   ├─ Need to link issues/pages? → YES → ATL jira_create_issue_link
   |
   └─ Need to track work time? → YES → ATL jira_add_worklog
-```text
+```
 
 ---
 
@@ -1335,7 +1335,7 @@ WHEN TO USE:
 
 WHEN NOT TO USE:
   Code operations, web research, library docs, file system
-```text
+```
 
 ---
 
@@ -1344,4 +1344,3 @@ WHEN NOT TO USE:
 **Provider:** mcp-atlassian
 **Python:** 3.10+ required
 **Optimized for:** LLM direct execution
-````

@@ -29,7 +29,7 @@
 
 **Claude Code's Task tool is the PRIMARY way to spawn agents:**
 
-````javascript
+```javascript
 // ✅ CORRECT: Use Claude Code's Task tool for parallel agent execution
 [Single Message]:
   Task("Research agent", "Analyze requirements and patterns...", "researcher")
@@ -37,7 +37,7 @@
   Task("Tester agent", "Create comprehensive tests...", "tester")
   Task("Reviewer agent", "Review code quality...", "reviewer")
   Task("Architect agent", "Design system architecture...", "system-architect")
-```text
+```
 
 **MCP tools are ONLY for coordination setup:**
 
@@ -116,7 +116,7 @@ mcp__claude-flow__agent_spawn(type, name?, capabilities?, swarmId?)
 mcp__claude-flow__task_orchestrate(task, strategy?, priority?, dependencies?)
 mcp__claude-flow__swarm_status(swarmId?)
 mcp__claude-flow__agent_list(swarmId?)
-```text
+```
 
 **Memory & Neural:**
 
@@ -125,7 +125,7 @@ mcp__claude-flow__memory_usage(action, key?, value?, namespace?, ttl?)
 mcp__claude-flow__memory_search(pattern, namespace?, limit?)
 mcp__claude-flow__neural_train(pattern_type, training_data, epochs?)
 mcp__claude-flow__neural_patterns(action, operation?, outcome?, metadata?)
-```text
+```
 
 **Performance:**
 
@@ -133,7 +133,7 @@ mcp__claude-flow__neural_patterns(action, operation?, outcome?, metadata?)
 mcp__claude-flow__performance_report(format?, timeframe?)
 mcp__claude-flow__bottleneck_analyze(component?, metrics?)
 mcp__claude-flow__agent_metrics(agentId)
-```text
+```
 
 ### Context7 Tools (Official Documentation)
 
@@ -144,7 +144,7 @@ mcp__context7__get-library-docs({
   topic?: string,
   tokens?: number
 })
-```text
+```
 
 **Use for:** Official API docs, library references, SDK usage
 
@@ -155,7 +155,7 @@ mcp__researcher__google_search({ query: string, num_results?: number })
 mcp__researcher__scrape_page({ url: string })
 mcp__researcher__analyze_with_gemini({ text: string, model?: string })
 mcp__researcher__research_topic({ query: string, num_results?: number })
-```text
+```
 
 **Use for:** Best practices, comparisons, trends, tutorials, real-world examples
 
@@ -167,7 +167,7 @@ mcp__agentdb__agentdb_insert({ text: string, metadata?, tags?, session_id? })
 mcp__agentdb__agentdb_search({ query: string, k?: number, filters? })
 mcp__agentdb__reflexion_store({ session_id, task, reward, success, critique? })
 mcp__agentdb__learning_start_session({ user_id, session_type, config })
-```text
+```
 
 **Use for:** Experience replay, pattern learning, reinforcement learning
 
@@ -215,7 +215,7 @@ STEP 5: Store Knowledge
     reward: 0.9,
     success: true
   })
-```text
+```
 
 ### SOP-2: Documentation Research Pattern
 
@@ -240,7 +240,7 @@ COMBINED APPROACH (Recommended):
   STEP 2: Get official docs (Context7)
   STEP 3: Store synthesized knowledge (Claude-Flow)
   STEP 4: Implement with Task tool
-```text
+```
 
 ### SOP-3: Bug Investigation with Learning
 
@@ -266,7 +266,7 @@ STEP 4: Store Solution and Learning
     success: true,
     critique: "lessons_learned"
   })
-```text
+```
 
 ---
 
@@ -336,7 +336,7 @@ mcp__claude-flow__memory_usage({
   value: "Express JWT authentication with bcrypt",
   namespace: "api"
 })
-```text
+```
 
 ---
 
@@ -454,7 +454,7 @@ mcp__agentdb__reflexion_store({
   success: true,
   critique: "Successfully integrated research, docs, and codebase analysis",
 });
-```text
+```
 
 ### Pattern 2: Code Review with Issue Tracking
 
@@ -520,7 +520,7 @@ mcp__agentdb__agentdb_pattern_store({
     "Automated security and quality scanning with Repomix + Jira integration",
   successRate: 0.95,
 });
-```text
+```
 
 ### Pattern 3: Architecture Documentation Workflow
 
@@ -583,7 +583,7 @@ mcp__claude -
     value: "Microservices with NestJS, event-driven communication...",
     namespace: "architecture",
   });
-```text
+```
 
 ### Pattern 4: Sprint Planning with Research
 
@@ -655,7 +655,7 @@ mcp__claude -
     value: "Focus: GraphQL migration + tech debt. Research completed.",
     namespace: "project",
   });
-```text
+```
 
 ### Pattern 5: Learning from Experience
 
@@ -719,7 +719,7 @@ mcp__agentdb__experience_record({
   reward: 0.92,
   success: true,
 });
-```text
+```
 
 ---
 
@@ -732,21 +732,21 @@ mcp__agentdb__experience_record({
 ```bash
 npx claude-flow@alpha hooks pre-task --description "[task]"
 npx claude-flow@alpha hooks session-restore --session-id "swarm-[id]"
-```text
+```
 
 **2️⃣ DURING Work:**
 
 ```bash
 npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
 npx claude-flow@alpha hooks notify --message "[what was done]"
-```text
+```
 
 **3️⃣ AFTER Work:**
 
 ```bash
 npx claude-flow@alpha hooks post-task --task-id "[task]"
 npx claude-flow@alpha hooks session-end --export-metrics true
-```text
+```
 
 ---
 
@@ -765,7 +765,7 @@ library_docs  - Documentation summaries (from Context7)
 features      - Feature-specific implementation details
 sessions      - AgentDB session data
 learning      - AgentDB reflexion and patterns
-```text
+```
 
 ### Storage Pattern
 
@@ -795,7 +795,7 @@ mcp__agentdb__reflexion_store({
   success: true/false,
   critique: "self_reflection"
 })
-```text
+```
 
 ---
 
@@ -821,7 +821,7 @@ COMBINED RESEARCH:
   2. Context7: Official documentation
   3. AgentDB: Past experience and learned patterns
   4. Claude-Flow Memory: Store synthesized knowledge
-```text
+```
 
 ### Example: Implementing Stripe Payments
 
@@ -875,7 +875,7 @@ Use hooks for coordination.
 `,
   "backend-dev",
 );
-```text
+```
 
 ---
 
@@ -919,25 +919,25 @@ Use hooks for coordination.
 
 ```text
 Research (Researcher/Context7) → Memory Search → Task Tool → Memory Store
-```text
+```
 
 **2. Bug Fix:**
 
 ```text
 Memory/AgentDB Search → Research Solution → Task Tool → Reflexion Store
-```text
+```
 
 **3. Documentation:**
 
 ```text
 Context7 → Synthesize → Task Tool → Memory Store
-```text
+```
 
 **4. Learning:**
 
 ```text
 Execute Task → AgentDB Reflexion → Pattern Recognition → Future Reuse
-```text
+```
 
 ### Tool Selection
 
@@ -1001,4 +1001,3 @@ Subordinate documentation with detailed guides:
 **VERSION:** 3.0 - Integrated Claude-Flow + Multi-MCP
 **MODE:** Native MCP + Task Tool + Subprocess Orchestration
 **OPTIMIZED FOR:** LLM parsing and concurrent execution
-````

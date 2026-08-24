@@ -10,9 +10,9 @@
 
 ### resolve-library-id
 
-````text
-mcp__context7__resolve-library-id({ libraryName: string })
 ```text
+mcp__context7__resolve-library-id({ libraryName: string })
+```
 
 **Purpose:** Convert library/package name to Context7-compatible ID
 **Required:** YES (unless user provides ID in `/org/project` format)
@@ -38,7 +38,7 @@ mcp__context7__get-library-docs({
   topic?: string,
   tokens?: number
 })
-```text
+```
 
 **Purpose:** Fetch documentation content
 **Required:** Must use resolved ID from previous call
@@ -64,7 +64,7 @@ STEP 2: mcp__context7__get-library-docs({
   context7CompatibleLibraryID: "/stripe/stripe-node",
   topic: "webhooks"
 })
-```text
+```
 
 ### Pattern: Specific Version
 
@@ -76,7 +76,7 @@ STEP 2: mcp__context7__get-library-docs({
   context7CompatibleLibraryID: "/vercel/next.js/v14.0.0",
   topic: "app router"
 })
-```text
+```
 
 ### Pattern: Comprehensive API Reference
 
@@ -89,7 +89,7 @@ STEP 2: mcp__context7__get-library-docs({
   topic: "authentication API",
   tokens: 10000
 })
-```text
+```
 
 ### Pattern: User Provides Exact ID
 
@@ -100,7 +100,7 @@ STEP 2: mcp__context7__get-library-docs({
   context7CompatibleLibraryID: "/mongodb/docs",
   topic: "aggregation"
 })
-```text
+```
 
 ---
 
@@ -121,7 +121,7 @@ DO NOT USE FOR:
   ❌ Community tutorials (use Researcher)
   ❌ Code in current project (use file tools)
   ❌ Comparisons between libraries (use Researcher)
-```text
+```
 
 ---
 
@@ -135,7 +135,7 @@ next.js         → /vercel/next.js
 vue             → /vuejs/core
 svelte          → /sveltejs/svelte
 angular         → /angular/angular
-```text
+```
 
 ### Backend & APIs
 
@@ -145,7 +145,7 @@ fastify         → /fastify/fastify
 nestjs          → /nestjs/nest
 koa             → /koajs/koa
 hapi            → /hapijs/hapi
-```text
+```
 
 ### Databases & ORMs
 
@@ -155,7 +155,7 @@ prisma          → /prisma/prisma
 supabase        → /supabase/supabase
 typeorm         → /typeorm/typeorm
 sequelize       → /sequelize/sequelize
-```text
+```
 
 ### Payment & Auth
 
@@ -164,7 +164,7 @@ stripe          → /stripe/stripe-node
 auth0           → /auth0/node-auth0
 firebase        → /firebase/firebase-js-sdk
 clerk           → /clerk/javascript
-```text
+```
 
 ### Testing
 
@@ -173,7 +173,7 @@ jest            → /jestjs/jest
 vitest          → /vitest-dev/vitest
 playwright      → /microsoft/playwright
 cypress         → /cypress-io/cypress
-```text
+```
 
 ---
 
@@ -186,14 +186,14 @@ Quick reference:     5000 tokens (default)
 Standard lookup:     5000-8000 tokens
 Comprehensive API:   8000-10000 tokens
 Deep dive:           10000-15000 tokens
-```text
+```
 
 ### Topic Specificity Impact
 
 ```text
 NO topic parameter:     Broad, unfocused (use more tokens)
 WITH specific topic:    Focused, efficient (use fewer tokens)
-```text
+```
 
 **Recommendation:** Always use `topic` parameter for token efficiency
 
@@ -210,7 +210,7 @@ IF resolve-library-id returns multiple options:
   IF ambiguous:
     ASK user to clarify OR
     DEFAULT to highest benchmark score + best name match
-```text
+```
 
 ### No Matches
 
@@ -220,7 +220,7 @@ IF resolve-library-id returns no results:
   2. TRY alternative names (e.g., "@package/name" vs "package")
   3. FALLBACK: mcp__researcher__research_topic for general info
   4. INFORM user: library may be too new/obscure for Context7
-```text
+```
 
 ### Invalid Library ID
 
@@ -229,7 +229,7 @@ IF get-library-docs fails with provided ID:
   1. VERIFY ID format (/org/project or /org/project/version)
   2. RE-RUN resolve-library-id to get correct ID
   3. RETRY get-library-docs with corrected ID
-```text
+```
 
 ### User Ambiguity
 
@@ -241,7 +241,7 @@ RESPONSE OPTIONS:
   Option 1: ASK user which library
   Option 2: DEFAULT to most popular (date-fns)
   Option 3: PROVIDE brief comparison first
-```text
+```
 
 ---
 
@@ -261,7 +261,7 @@ RESPONSE OPTIONS:
      value: "documentation_summary",
      namespace: "research"
    })
-```text
+```
 
 ### With Researcher Research
 
@@ -276,7 +276,7 @@ RESPONSE OPTIONS:
    })
 4. SYNTHESIZE: best practices + official docs
 5. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })
-```text
+```
 
 ### Combined Documentation Strategy
 
@@ -286,7 +286,7 @@ FOR implementation task:
   STEP 2: Get real-world examples (Researcher)
   STEP 3: Store combined knowledge (Claude-Flow)
   STEP 4: Implement feature
-```text
+```
 
 ---
 
@@ -307,7 +307,7 @@ POOR topic parameters:
   ❌ "docs"
   ❌ "help"
   ❌ "usage"
-```text
+```
 
 ### LibraryName Best Practices
 
@@ -321,7 +321,7 @@ GENERIC (may need disambiguation):
   ⚠️ "react"
   ⚠️ "node"
   ⚠️ "express"
-```text
+```
 
 ---
 
@@ -344,7 +344,7 @@ Context7 Path:
   1. resolve-library-id (unless ID provided)
   2. get-library-docs (with topic if possible)
   3. Store results if needed
-```text
+```
 
 ---
 
@@ -362,7 +362,7 @@ INEFFICIENT:
   - Resolve same library multiple times
   - Fetch docs without topic filter
   - Re-fetch same docs repeatedly
-```text
+```
 
 ### Token Management
 
@@ -372,7 +372,7 @@ IF insufficient:
   INCREASE to 8000-10000
 IF still insufficient:
   SPLIT into multiple queries with different topics
-```text
+```
 
 ---
 
@@ -393,7 +393,7 @@ WHEN TO USE:
 
 WHEN NOT TO USE:
   General search, best practices, comparisons, tutorials
-```text
+```
 
 ---
 
@@ -401,4 +401,3 @@ WHEN NOT TO USE:
 **Status:** Connected
 **Provider:** @upstash/context7-mcp
 **Optimized for:** LLM direct execution
-````

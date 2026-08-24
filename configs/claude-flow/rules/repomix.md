@@ -12,7 +12,7 @@
 
 #### pack_codebase
 
-````text
+```text
 mcp__repomix__pack_codebase({
   directory: string,
   style?: string,
@@ -21,7 +21,7 @@ mcp__repomix__pack_codebase({
   includePatterns?: string,
   ignorePatterns?: string
 })
-```text
+```
 
 **Purpose:** Package local directory into consolidated AI-readable format
 **Returns:** Packed output with metrics, file tree, formatted code
@@ -42,7 +42,7 @@ xml      - Structured <file> tags (default, best for parsing)
 markdown - Human-readable with ## headers and code blocks
 json     - Machine-readable key-value pairs
 plain    - Simple text with separators
-```text
+```
 
 **Pattern Examples:**
 
@@ -51,7 +51,7 @@ includePatterns: "**/*.{js,ts}" - Only JS/TS files
 includePatterns: "src/**,docs/**" - Multiple directories
 ignorePatterns: "test/**,*.spec.js" - Exclude tests
 ignorePatterns: "node_modules/**,dist/**" - Exclude builds
-```text
+```
 
 **Compression:**
 
@@ -60,7 +60,7 @@ compress: false - Full code content (default)
 compress: true  - Extract signatures, remove implementation (~70% smaller)
                   Use only for large repos when you need full codebase
                   Generally not needed since grep_repomix_output allows incremental retrieval
-```text
+```
 
 #### pack_remote_repository
 
@@ -73,7 +73,7 @@ mcp__repomix__pack_remote_repository({
   includePatterns?: string,
   ignorePatterns?: string
 })
-```text
+```
 
 **Purpose:** Clone and package GitHub repository
 **Returns:** Packed output with metrics, file tree, formatted code
@@ -94,7 +94,7 @@ mcp__repomix__pack_remote_repository({
 "https://github.com/user/repo"
 "https://github.com/user/repo/tree/branch"
 "https://github.com/user/repo/tree/main/subdirectory"
-```text
+```
 
 **Security:**
 
@@ -109,7 +109,7 @@ mcp__repomix__attach_packed_output({
   path: string,
   topFilesLength?: number
 })
-```text
+```
 
 **Purpose:** Attach existing Repomix output file for analysis
 **Returns:** Output ID and content preview
@@ -126,7 +126,7 @@ mcp__repomix__attach_packed_output({
 .md   - Markdown formatted output
 .txt  - Plain text output
 .json - JSON formatted output
-```text
+```
 
 **Notes:**
 
@@ -146,7 +146,7 @@ mcp__repomix__read_repomix_output({
   startLine?: number,
   endLine?: number
 })
-```text
+```
 
 **Purpose:** Read content from packed output (full or partial)
 **Returns:** File contents with specified line range
@@ -164,7 +164,7 @@ Full read: { outputId: "xxx" }
 Partial:   { outputId: "xxx", startLine: 100, endLine: 200 }
 From line: { outputId: "xxx", startLine: 500 }
 To line:   { outputId: "xxx", endLine: 1000 }
-```text
+```
 
 #### grep_repomix_output
 
@@ -177,7 +177,7 @@ mcp__repomix__grep_repomix_output({
   beforeLines?: number,
   afterLines?: number
 })
-```text
+```
 
 **Purpose:** Search packed output with regex (JavaScript syntax)
 **Returns:** Matching lines with optional context
@@ -200,7 +200,7 @@ mcp__repomix__grep_repomix_output({
 "TODO|FIXME"                 - Find code comments
 "export\\s+default"          - Find default exports
 "\\berror\\b"                - Find exact word "error"
-```text
+```
 
 **Context Examples:**
 
@@ -208,7 +208,7 @@ mcp__repomix__grep_repomix_output({
 { contextLines: 3 }              - 3 lines before and after
 { beforeLines: 5, afterLines: 2 } - Asymmetric context
 { contextLines: 0 }              - Match lines only (default)
-```text
+```
 
 ---
 
@@ -220,7 +220,7 @@ mcp__repomix__grep_repomix_output({
 mcp__repomix__file_system_read_file({
   path: string
 })
-```text
+```
 
 **Purpose:** Read file from absolute path (with security validation)
 **Returns:** File contents
@@ -247,7 +247,7 @@ mcp__repomix__file_system_read_file({
 mcp__repomix__file_system_read_directory({
   path: string
 })
-```text
+```
 
 **Purpose:** List directory contents with [FILE]/[DIR] indicators
 **Returns:** Formatted directory listing
@@ -289,7 +289,7 @@ STEP 3: mcp__repomix__read_repomix_output({
   endLine: 600
 })
 RETURNS: Specific code section
-```text
+```
 
 ### Pattern: Analyze GitHub Repository
 
@@ -309,7 +309,7 @@ STEP 2: mcp__repomix__grep_repomix_output({
 RETURNS: All hook functions
 
 STEP 3: ANALYZE findings
-```text
+```
 
 ### Pattern: Code Review Workflow
 
@@ -340,7 +340,7 @@ STEP 4: mcp__atl__jira_create_issue({
   summary: "Code review findings",
   description: "Findings from automated review..."
 })
-```text
+```
 
 ### Pattern: Architecture Analysis
 
@@ -372,7 +372,7 @@ STEP 4: mcp__claude-flow__memory_usage({
   value: "Architecture findings...",
   namespace: "architecture"
 })
-```text
+```
 
 ### Pattern: Security Audit
 
@@ -404,7 +404,7 @@ STEP 4: mcp__repomix__grep_repomix_output({
   contextLines: 3
 })
 CHECK: SQL injection risks
-```text
+```
 
 ### Pattern: Documentation Generation
 
@@ -428,7 +428,7 @@ STEP 3: mcp__atl__confluence_create_page({
   content: "Generated API docs from codebase analysis...",
   content_format: "markdown"
 })
-```text
+```
 
 ### Pattern: Attach Pre-Generated Output
 
@@ -448,7 +448,7 @@ STEP 3: mcp__repomix__read_repomix_output({
   startLine: 100,
   endLine: 200
 })
-```text
+```
 
 ---
 
@@ -472,7 +472,7 @@ DO NOT USE FOR:
   ❌ File modifications (use Edit/Write tools)
   ❌ Git operations (use Bash/git commands)
   ❌ Package management (use Bash/npm/pip)
-```text
+```
 
 ---
 
@@ -497,7 +497,7 @@ STEP 3: mcp__claude-flow__memory_usage({
   value: "Project uses repository pattern for data access...",
   namespace: "patterns"
 })
-```text
+```
 
 ### With Researcher Research
 
@@ -520,7 +520,7 @@ STEP 3: mcp__repomix__grep_repomix_output({
 AUDIT: Current error handling
 
 STEP 4: COMPARE findings with best practices
-```text
+```
 
 ### With Context7 Documentation
 
@@ -543,7 +543,7 @@ STEP 3: mcp__repomix__grep_repomix_output({
 AUDIT: Current middleware usage
 
 STEP 4: IDENTIFY improvements based on docs
-```text
+```
 
 ### With ATL Issue Tracking
 
@@ -566,7 +566,7 @@ STEP 3: FOR each TODO:
     issue_type: "Task",
     description: "Code location and context..."
   })
-```text
+```
 
 ### Complete Analysis Workflow
 
@@ -614,7 +614,7 @@ mcp__atl__confluence_create_page({
   title: "Microservices Migration Plan",
   content: "Analysis and migration strategy..."
 })
-```text
+```
 
 ---
 
@@ -624,76 +624,76 @@ mcp__atl__confluence_create_page({
 
 ```text
 pattern: "function\\s+\\w+\\s*\\(|const\\s+\\w+\\s*=\\s*\\("
-```text
+```
 
 ### Find All Class Definitions
 
 ```text
 pattern: "class\\s+\\w+|interface\\s+\\w+"
-```text
+```
 
 ### Find All Imports
 
 ```text
 pattern: "import.*from|require\\("
-```text
+```
 
 ### Find All Exports
 
 ```text
 pattern: "export\\s+(default|const|function|class)"
-```text
+```
 
 ### Find API Routes
 
 ```text
 pattern: "app\\.(get|post|put|delete)\\(|router\\.(get|post|put|delete)\\("
-```text
+```
 
 ### Find Database Queries
 
 ```text
 pattern: "SELECT|INSERT|UPDATE|DELETE|FROM|WHERE"
 ignoreCase: true
-```text
+```
 
 ### Find Error Handling
 
 ```text
 pattern: "try\\s*\\{|catch\\s*\\(|throw\\s+new"
-```text
+```
 
 ### Find Async Operations
 
 ```text
 pattern: "async\\s+function|await\\s+|Promise\\."
-```text
+```
 
 ### Find Configuration
 
 ```text
 pattern: "config\\.|process\\.env\\.|dotenv"
-```text
+```
 
 ### Find Authentication
 
 ```text
 pattern: "auth|login|logout|token|jwt|session"
 ignoreCase: true
-```text
+```
 
 ### Find Security Issues
 
 ```text
 pattern: "eval\\(|innerHTML|dangerouslySetInnerHTML|document\\.write"
-```text
+```
 
 ### Find Hardcoded Values
 
 ```text
 pattern: "password\\s*=\\s*['\"]|api[_-]?key\\s*=\\s*['\"]"
 ignoreCase: true
-```text
+```
 
 ---
 
@@ -723,7 +723,7 @@ plain
   - File separators
   - Minimal formatting
   - Fastest processing
-```text
+```
 
 ---
 
@@ -744,7 +744,7 @@ compress: true
     - When you need full codebase overview
     - Initial architecture understanding
   - NOT needed if using grep_repomix_output
-```text
+```
 
 ---
 
@@ -763,7 +763,7 @@ INEFFICIENT:
   - Packing entire repository without filters
   - Including generated/compiled code
   - Including large binary files
-```text
+```
 
 ### Incremental Analysis
 
@@ -778,7 +778,7 @@ INEFFICIENT:
   - Re-packing for each search
   - Reading full output repeatedly
   - Not using grep for searches
-```text
+```
 
 ### Pattern Efficiency
 
@@ -792,7 +792,7 @@ INEFFICIENT:
   - Overly broad patterns (e.g., ".*")
   - Always requesting large context
   - Case-insensitive when not needed
-```text
+```
 
 ---
 
@@ -807,7 +807,7 @@ IF pack_codebase fails:
   3. VERIFY includePatterns syntax
   4. CHECK ignorePatterns don't exclude everything
   5. ENSURE sufficient disk space
-```text
+```
 
 ### Remote Repository Failures
 
@@ -818,7 +818,7 @@ IF pack_remote_repository fails:
   3. CHECK network connectivity
   4. VERIFY authentication for private repos
   5. TRY alternative URL format
-```text
+```
 
 ### Grep No Results
 
@@ -829,7 +829,7 @@ IF grep_repomix_output returns no matches:
   3. SIMPLIFY pattern to test
   4. CHECK if files were included in pack
   5. VERIFY outputId is correct
-```text
+```
 
 ---
 
@@ -849,7 +849,7 @@ START
   ├─ Need specific code section? → YES → read_repomix_output
   |
   └─ Need to read single file? → YES → file_system_read_file
-```text
+```
 
 ---
 
@@ -889,7 +889,7 @@ WHEN TO USE:
 
 WHEN NOT TO USE:
   Single file reading, code execution, file modifications, git operations
-```text
+```
 
 ---
 
@@ -897,4 +897,3 @@ WHEN NOT TO USE:
 **Status:** Connected
 **Provider:** repomix --mcp
 **Optimized for:** LLM codebase analysis
-````

@@ -13,7 +13,7 @@ All tools prefixed with `mcp__claude-flow__`
 
 ### Core Swarm Operations
 
-````text
+```text
 swarm_init(topology, maxAgents, strategy)
   - topology: "hierarchical" | "mesh" | "ring" | "star"
   - maxAgents: 1-20 (default: 8)
@@ -33,7 +33,7 @@ swarm_monitor(swarmId, interval?)
 swarm_scale(swarmId, targetSize)
   - Auto-scale agent count
   - Dynamic resource allocation
-```text
+```
 
 ### Agent Management
 
@@ -56,7 +56,7 @@ agents_spawn_parallel(agents[], maxConcurrency?, batchSize?)
   - agents: Array of {type, name, capabilities, priority}
   - maxConcurrency: default 5
   - batchSize: default 3
-```text
+```
 
 ### Task Orchestration
 
@@ -74,7 +74,7 @@ task_status(taskId)
 task_results(taskId)
   - Get completion results
   - Returns: output, metrics
-```text
+```
 
 ### Memory System
 
@@ -109,7 +109,7 @@ memory_sync(target)
 
 memory_analytics(timeframe?)
   - Usage analysis
-```text
+```
 
 ### Neural Operations
 
@@ -144,7 +144,7 @@ transfer_learn(sourceModel, targetDomain)
 
 neural_explain(modelId, prediction)
   - AI explainability
-```text
+```
 
 ### Performance Monitoring
 
@@ -182,7 +182,7 @@ usage_stats(component?)
 
 health_check(components?)
   - System health monitoring
-```text
+```
 
 ### Workflow & Automation
 
@@ -216,7 +216,7 @@ batch_process(items[], operation)
 
 parallel_execute(tasks[])
   - Execute in parallel
-```text
+```
 
 ### Advanced Operations
 
@@ -262,7 +262,7 @@ daa_fault_tolerance(agentId, strategy?)
 
 daa_optimization(target, metrics?)
   - Performance optimization
-```text
+```
 
 ### GitHub Integration
 
@@ -290,7 +290,7 @@ github_sync_coord(repos[])
 
 github_metrics(repo)
   - Repository metrics
-```text
+```
 
 ### System Operations
 
@@ -318,7 +318,7 @@ log_analysis(logFile, patterns?)
 
 diagnostic_run(components?)
   - System diagnostics
-```text
+```
 
 ### Query Control
 
@@ -330,7 +330,7 @@ query_control(action, queryId, model?, permissionMode?, command?)
 
 query_list(includeHistory?)
   - List active queries
-```text
+```
 
 ### SPARC Development
 
@@ -338,7 +338,7 @@ query_list(includeHistory?)
 sparc_mode(mode, task_description, options?)
   - mode: "dev" | "api" | "ui" | "test" | "refactor"
   - Run SPARC development patterns
-```text
+```
 
 ---
 
@@ -351,7 +351,7 @@ sparc_mode(mode, task_description, options?)
 2. mcp__claude-flow__swarm_init({ topology: "hierarchical" })
 3. mcp__claude-flow__task_orchestrate({ task: "implement feature", strategy: "adaptive" })
 4. mcp__claude-flow__memory_usage({ action: "store", namespace: "features" })
-```text
+```
 
 ### Pattern: Complex Multi-Agent Task
 
@@ -368,7 +368,7 @@ sparc_mode(mode, task_description, options?)
    })
 3. mcp__claude-flow__task_orchestrate({ task: "complex_task", strategy: "adaptive" })
 4. mcp__claude-flow__swarm_status()
-```text
+```
 
 ### Pattern: Bug Analysis & Fix
 
@@ -377,7 +377,7 @@ sparc_mode(mode, task_description, options?)
 2. mcp__claude-flow__agent_spawn({ type: "analyst", name: "debugger" })
 3. mcp__claude-flow__task_orchestrate({ task: "analyze bug", strategy: "sequential" })
 4. mcp__claude-flow__memory_usage({ action: "store", namespace: "bugs" })
-```text
+```
 
 ### Pattern: Performance Optimization
 
@@ -386,7 +386,7 @@ sparc_mode(mode, task_description, options?)
 2. mcp__claude-flow__agent_spawn({ type: "optimizer" })
 3. mcp__claude-flow__task_orchestrate({ task: "optimize bottleneck", strategy: "balanced" })
 4. mcp__claude-flow__performance_report({ format: "detailed" })
-```text
+```
 
 ### Pattern: Research & Documentation
 
@@ -395,7 +395,7 @@ sparc_mode(mode, task_description, options?)
 2. mcp__claude-flow__task_orchestrate({ task: "research topic", strategy: "parallel" })
 3. mcp__claude-flow__agent_spawn({ type: "documenter" })
 4. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })
-```text
+```
 
 ---
 
@@ -410,7 +410,7 @@ bugs          - Known issues, solutions
 research      - Research findings, sources
 features      - Feature-specific knowledge
 sessions      - Session-specific state
-```text
+```
 
 ---
 
@@ -431,7 +431,7 @@ researcher       - When: investigating topics, technologies
 coder            - When: implementing features
 tester           - When: creating tests, validation
 reviewer         - When: code review, quality assurance
-```text
+```
 
 ---
 
@@ -449,7 +449,7 @@ ring         - Agents in circular communication pattern
 
 star         - Central hub with spoke agents
              - Best for: Centralized coordination, distributed execution
-```text
+```
 
 ---
 
@@ -467,7 +467,7 @@ adaptive     - Dynamically adjust strategy based on task analysis
 
 balanced     - Hybrid approach optimizing for throughput
              - Best for: Mixed workloads, resource optimization
-```text
+```
 
 ---
 
@@ -481,7 +481,7 @@ IF memory_usage fails:
   2. TRY memory_namespace("create")
   3. RETRY memory_usage
   4. FALLBACK to different namespace
-```text
+```
 
 ### Swarm Initialization Errors
 
@@ -490,7 +490,7 @@ IF swarm_init fails:
   1. CHECK existing swarms with swarm_status()
   2. DESTROY stale swarms with swarm_destroy()
   3. RETRY swarm_init
-```text
+```
 
 ### Agent Spawn Errors
 
@@ -500,7 +500,7 @@ IF agent_spawn fails:
   2. TRY swarm_scale to increase capacity
   3. RETRY agent_spawn
   4. FALLBACK to agents_spawn_parallel with lower concurrency
-```text
+```
 
 ---
 
@@ -513,7 +513,7 @@ USE memory_search instead of memory_usage("list") - More targeted
 USE agents_spawn_parallel for multiple agents - 10-20x faster
 USE adaptive strategy for unknown workloads - Auto-optimizes
 USE namespace filtering - Reduces search space
-```text
+```
 
 ### Concurrency Optimization
 
@@ -522,7 +522,7 @@ parallel_execute for independent tasks
 batch_process for bulk operations
 agents_spawn_parallel with optimal batchSize (default: 3)
 swarm_scale dynamically based on load
-```text
+```
 
 ---
 
@@ -537,7 +537,7 @@ npx claude-flow@alpha memory store <key> "<value>" --namespace <ns> --reasoningb
 npx claude-flow@alpha memory query "<search>" --namespace <ns> --reasoningbank
 npx claude-flow@alpha swarm "<task>" --strategy <type>
 npx claude-flow@alpha hive-mind spawn "<objective>"
-```text
+```
 
 ---
 
@@ -549,7 +549,7 @@ npx claude-flow@alpha hive-mind spawn "<objective>"
 1. mcp__context7__resolve-library-id({ libraryName: "library" })
 2. mcp__context7__get-library-docs({ context7CompatibleLibraryID: "id" })
 3. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })
-```text
+```
 
 ### With Researcher
 
@@ -558,11 +558,10 @@ npx claude-flow@alpha hive-mind spawn "<objective>"
 2. mcp__claude-flow__agent_spawn({ type: "analyst" })
 3. mcp__claude-flow__task_orchestrate({ task: "synthesize findings" })
 4. mcp__claude-flow__memory_usage({ action: "store", namespace: "research" })
-```text
+```
 
 ---
 
 **STATUS:** Native MCP tools verified and connected
 **MODE:** Direct tool invocation (no subprocess)
 **OPTIMIZED FOR:** LLM execution efficiency
-````

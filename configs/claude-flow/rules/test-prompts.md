@@ -9,7 +9,7 @@
 
 ### Step 1: Copy Configuration Files
 
-````bash
+```bash
 # Create new test directory
 mkdir -p ~/test-claude-flow-app
 
@@ -19,7 +19,7 @@ cp -r /path/to/docs ~/test-claude-flow-app/
 
 # Navigate to new directory
 cd ~/test-claude-flow-app
-```text
+```
 
 ### Step 2: Verify MCP Servers
 
@@ -34,7 +34,7 @@ claude mcp list
 # - agentdb ✓
 # - repomix ✓
 # - atl ✓ (optional)
-```text
+```
 
 ### Step 3: Initialize Claude-Flow
 
@@ -44,7 +44,7 @@ npx -y claude-flow@latest init --force
 
 # Verify initialization
 npx claude-flow@alpha status
-```text
+```
 
 ---
 
@@ -84,7 +84,7 @@ DELIVERABLES:
 - Test suite with >80% coverage
 - API documentation
 - Stored knowledge in memory for future reference
-```text
+```
 
 **Expected Behavior:**
 
@@ -152,7 +152,7 @@ DELIVERABLES:
 - Architecture documentation (Confluence if ATL available)
 - Stored knowledge in memory across namespaces (architecture, api, patterns)
 - AgentDB patterns for future microservices projects
-```text
+```
 
 **Expected Behavior:**
 
@@ -250,7 +250,7 @@ OUTPUT REQUIREMENTS:
 - Demonstrate concurrent execution patterns
 - Explain memory organization strategy
 - Show AgentDB learning patterns stored
-```text
+```
 
 **Expected Behavior:**
 
@@ -323,19 +323,19 @@ OUTPUT REQUIREMENTS:
 
 ```bash
 ls -la CLAUDE.md docs/
-```text
+```
 
 **Check MCP servers connected:**
 
 ```bash
 claude mcp list
-```text
+```
 
 **Verify claude-flow initialized:**
 
 ```bash
 npx claude-flow@alpha status
-```text
+```
 
 ### If Execution Not Concurrent
 
@@ -404,7 +404,7 @@ AVOID:
 - No tool guidance: assuming Claude will auto-select
 - Sequential language: "first do X, then do Y"
 - Root file mentions: "create README.md" (should be /docs/README.md)
-```text
+```
 
 ### Verification
 
@@ -415,7 +415,7 @@ AFTER EXECUTION:
 3. Check AgentDB: Look for pattern storage confirmations
 4. Check git history: git log (if initialized)
 5. Run tests: npm test (if created)
-```text
+```
 
 ---
 
@@ -440,4 +440,3 @@ AFTER EXECUTION:
 
 **Last Updated:** 2025-11-15
 **Configuration Version:** 3.0
-````

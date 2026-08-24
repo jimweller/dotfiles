@@ -10,12 +10,12 @@
 
 ### google_search
 
-````text
+```text
 mcp__researcher__google_search({
   query: string,
   num_results?: number  // 1-10, default: 5
 })
-```text
+```
 
 **Purpose:** Search Google, retrieve results with summaries
 **Returns:** Array of {title, url, snippet}
@@ -38,7 +38,7 @@ mcp__researcher__google_search({
 mcp__researcher__scrape_page({
   url: string
 })
-```text
+```
 
 **Purpose:** Extract content from URL (web pages or YouTube videos)
 **Returns:** Content in markdown format
@@ -62,7 +62,7 @@ mcp__researcher__analyze_with_gemini({
   text: string,
   model?: string  // default: "gemini-2.0-flash-001"
 })
-```text
+```
 
 **Purpose:** AI analysis of text content
 **Returns:** Analysis summary, insights, key points
@@ -87,7 +87,7 @@ mcp__researcher__research_topic({
   query: string,
   num_results?: number  // 1-5, default: 3
 })
-```text
+```
 
 **Purpose:** Comprehensive all-in-one research (search + scrape + analyze)
 **Returns:** Synthesized analysis from multiple sources
@@ -127,7 +127,7 @@ STEP 1: mcp__researcher__google_search({
 STEP 2: SELECT best URL from results
 
 STEP 3: mcp__researcher__scrape_page({ url: "selected_url" })
-```text
+```
 
 ### Pattern: Deep Article Analysis
 
@@ -138,7 +138,7 @@ STEP 2: mcp__researcher__analyze_with_gemini({
   text: "scraped_content",
   model: "gemini-pro"
 })
-```text
+```
 
 ### Pattern: Comprehensive Research (Recommended)
 
@@ -149,7 +149,7 @@ SINGLE CALL: mcp__researcher__research_topic({
 })
 
 RETURNS: Multi-source synthesis
-```text
+```
 
 ### Pattern: YouTube Tutorial Research
 
@@ -166,7 +166,7 @@ STEP 2: mcp__researcher__scrape_page({
 STEP 3: mcp__researcher__analyze_with_gemini({
   text: "transcript_content"
 })
-```text
+```
 
 ### Pattern: Competitive Analysis
 
@@ -175,7 +175,7 @@ mcp__researcher__research_topic({
   query: "Stripe vs Braintree vs PayPal comparison features pricing 2024",
   num_results: 5
 })
-```text
+```
 
 ---
 
@@ -197,7 +197,7 @@ DO NOT USE FOR:
   ❌ Official API documentation (use Context7)
   ❌ Code in current project (use file tools)
   ❌ Library SDK references (use Context7)
-```text
+```
 
 ---
 
@@ -208,42 +208,42 @@ DO NOT USE FOR:
 ```text
 Pattern: "[tech1] vs [tech2] [aspect] [year]"
 Example: "GraphQL vs REST API performance scalability 2024"
-```text
+```
 
 ### Best Practices
 
 ```text
 Pattern: "[technology] best practices [area] [year]"
 Example: "Node.js error handling best practices production 2024"
-```text
+```
 
 ### Technical Comparisons
 
 ```text
 Pattern: "[opt1] vs [opt2] vs [opt3] comparison"
 Example: "Docker vs Kubernetes vs AWS ECS container orchestration comparison"
-```text
+```
 
 ### Problem Solving
 
 ```text
 Pattern: "how to [problem] [technology] [year]"
 Example: "how to implement rate limiting Express.js Redis 2024"
-```text
+```
 
 ### Trend Analysis
 
 ```text
 Pattern: "[technology] trends [year]"
 Example: "web development frameworks trends 2024"
-```text
+```
 
 ### Security Research
 
 ```text
 Pattern: "[technology] security vulnerabilities [year]"
 Example: "JWT authentication security vulnerabilities best practices 2024"
-```text
+```
 
 ---
 
@@ -256,7 +256,7 @@ Quick check:        3-5 results
 Comprehensive:      8-10 results
 
 Trade-off: More results = more options, but slower
-```text
+```
 
 ### research_topic
 
@@ -266,7 +266,7 @@ Standard research:  3-4 sources (balanced)
 Deep research:      4-5 sources (comprehensive, expensive)
 
 Trade-off: More sources = better synthesis, but higher token cost
-```text
+```
 
 ---
 
@@ -286,7 +286,7 @@ gemini-pro:
   - Cost: Higher
   - Use: Detailed analysis, complex synthesis
   - SELECTIVE USE
-```text
+```
 
 ---
 
@@ -299,7 +299,7 @@ IF scrape_page fails:
   1. CHECK URL validity
   2. TRY alternative source from search results
   3. INFORM user: site may block automated access
-```text
+```
 
 ### No Relevant Results
 
@@ -309,7 +309,7 @@ IF google_search returns poor results:
   2. ADD year for recency
   3. INCLUDE comparison/evaluation terms
   4. TRY alternative search terms
-```text
+```
 
 ### YouTube Transcript Unavailable
 
@@ -318,7 +318,7 @@ IF scrape_page fails on YouTube URL:
   1. INFORM user: transcript not available
   2. SEARCH for alternative videos
   3. FALLBACK to written tutorials
-```text
+```
 
 ---
 
@@ -344,7 +344,7 @@ STEP 5: mcp__claude-flow__memory_usage({
   action: "store",
   namespace: "research"
 })
-```text
+```
 
 ### With Claude-Flow Memory
 
@@ -360,7 +360,7 @@ STEP 2: mcp__claude-flow__memory_usage({
   value: "synthesized_findings",
   namespace: "research"
 })
-```text
+```
 
 ### Combined Research Workflow
 
@@ -370,7 +370,7 @@ FOR implementation task:
   2. Get official docs (Context7)
   3. Store combined knowledge (Claude-Flow)
   4. Implement feature
-```text
+```
 
 ---
 
@@ -390,7 +390,7 @@ POOR:
   ❌ "payments"
   ❌ "database"
   ❌ "help"
-```text
+```
 
 ### Query Enhancement
 
@@ -406,7 +406,7 @@ ADD comparison:
 
 ADD technology context:
   "caching" → "Redis caching strategies Node.js"
-```text
+```
 
 ---
 
@@ -424,7 +424,7 @@ research_topic with 4-5 sources:
   - Slower
   - Higher cost
   - Better for complex decisions
-```text
+```
 
 ### Model Efficiency
 
@@ -438,7 +438,7 @@ gemini-pro (selective):
   - Use for: Critical decisions, complex synthesis
   - Speed: Slower
   - Cost: Higher
-```text
+```
 
 ### Minimize Redundant Calls
 
@@ -452,7 +452,7 @@ INEFFICIENT:
   - Manual search → scrape → analyze for each source
   - Re-scraping same URLs
   - Re-analyzing same content
-```text
+```
 
 ---
 
@@ -472,7 +472,7 @@ START
   |
   └─ Need YouTube tutorial?
      → YES → google_search (site:youtube.com) → scrape_page
-```text
+```
 
 ---
 
@@ -487,7 +487,7 @@ mcp__researcher__research_topic({
 })
 
 THEN: Store decision in Claude-Flow memory
-```text
+```
 
 ### Best Practices Implementation
 
@@ -499,7 +499,7 @@ mcp__researcher__research_topic({
 
 THEN: Get official library docs (Context7)
 THEN: Implement with combined knowledge
-```text
+```
 
 ### Troubleshooting
 
@@ -511,7 +511,7 @@ mcp__researcher__google_search({
 
 THEN: Scrape best solution article
 THEN: Store in bugs namespace
-```text
+```
 
 ---
 
@@ -538,7 +538,7 @@ QUERY TIPS:
   - Use comparison keywords
   - Be specific with technology names
   - Add context (Node.js, production, etc.)
-```text
+```
 
 ---
 
@@ -546,4 +546,3 @@ QUERY TIPS:
 **Status:** Connected
 **Provider:** github:jimweller/google-research-mcp
 **Optimized for:** LLM direct execution
-````
