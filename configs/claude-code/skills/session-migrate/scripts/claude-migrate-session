@@ -40,6 +40,11 @@ if [ ! -d "$PROJECTS_DIR" ]; then
     exit 1
 fi
 
+if ! command -v python3 >/dev/null 2>&1; then
+    echo "Error: python3 is required for path encoding and transcript rewriting"
+    exit 1
+fi
+
 # Find the source .jsonl file
 SOURCE_FILE=$(find "$PROJECTS_DIR" -name "${SESSION_ID}.jsonl" -type f 2>/dev/null | head -1)
 
@@ -52,9 +57,44 @@ SOURCE_DIR=$(dirname "$SOURCE_FILE")
 
 # Derive target project folder from pwd
 # Claude uses realpath (resolves symlinks like /tmp → /private/tmp on macOS)
-# Encoding: replace /, _, and space with - (e.g. /Users/jimweller/my dir/_crap → -Users-jimweller-my-dir--crap)
-CURRENT_DIR=$(python3 -c "import os; print(os.path.realpath('.'))" 2>/dev/null || realpath "$(pwd)" 2>/dev/null || pwd)
-ENCODED_PATH=$(echo "$CURRENT_DIR" | sed 's|[/_ ]|-|g')
+# Encoding, matching Claude Code 2.1.239: every non-alphanumeric UTF-16 code unit
+# becomes -, and a slug longer than 200 units is truncated to 200 and suffixed with
+# a base36 hash of the unencoded path.
+CURRENT_DIR=$(python3 -c "import os; print(os.path.realpath('.'))")
+ENCODED_PATH=$(python3 - "$CURRENT_DIR" <<'PY'
+import sys
+
+path = sys.argv[1]
+raw = path.encode('utf-16-le')
+units = [int.from_bytes(raw[i:i + 2], 'little') for i in range(0, len(raw), 2)]
+
+
+def is_alnum(unit):
+    return (48 <= unit <= 57) or (65 <= unit <= 90) or (97 <= unit <= 122)
+
+
+def base36(n):
+    digits = '0123456789abcdefghijklmnopqrstuvwxyz'
+    if n == 0:
+        return '0'
+    out = ''
+    while n:
+        n, rem = divmod(n, 36)
+        out = digits[rem] + out
+    return out
+
+
+slug = ''.join(chr(u) if is_alnum(u) else '-' for u in units)
+if len(slug) > 200:
+    h = 0
+    for u in units:
+        h = ((h << 5) - h + u) & 0xFFFFFFFF
+        if h >= 0x80000000:
+            h -= 0x100000000
+    slug = slug[:200] + '-' + base36(abs(h))
+print(slug)
+PY
+)
 TARGET_DIR="$PROJECTS_DIR/$ENCODED_PATH"
 
 # Guard: refuse if already in the target folder
@@ -70,8 +110,38 @@ mkdir -p "$TARGET_DIR"
 # Generate a new UUID for the destination copy
 NEW_ID=$(uuidgen | tr '[:upper:]' '[:lower:]')
 
-# Copy the .jsonl file, rewriting the sessionId
-sed "s/$SESSION_ID/$NEW_ID/g" "$SOURCE_FILE" > "$TARGET_DIR/${NEW_ID}.jsonl"
+# Rewrite a transcript: swap the session UUID everywhere and point every cwd record
+# at the destination folder. Source and destination may be the same file.
+rewrite_transcript() {
+    python3 - "$1" "$2" "$SESSION_ID" "$NEW_ID" "$CURRENT_DIR" <<'PY'
+import json
+import sys
+
+src, dst, old_id, new_id, cwd = sys.argv[1:6]
+lines = []
+with open(src, encoding='utf-8') as fh:
+    for number, line in enumerate(fh, 1):
+        text = line.rstrip('\n').replace(old_id, new_id)
+        if text.strip():
+            try:
+                record = json.loads(text)
+            except ValueError as exc:
+                print(f'Warning: {src}:{number} is not JSON ({exc}); copied unchanged',
+                      file=sys.stderr)
+                record = None
+            if isinstance(record, dict) and isinstance(record.get('cwd'), str):
+                record['cwd'] = cwd
+                text = json.dumps(record, separators=(',', ':'), ensure_ascii=False)
+        lines.append(text)
+
+with open(dst, 'w', encoding='utf-8') as fh:
+    for text in lines:
+        fh.write(text + '\n')
+PY
+}
+
+# Copy the .jsonl file, rewriting the sessionId and cwd
+rewrite_transcript "$SOURCE_FILE" "$TARGET_DIR/${NEW_ID}.jsonl"
 echo "Copied: ${SESSION_ID}.jsonl → ${NEW_ID}.jsonl"
 echo "  From: $SOURCE_DIR"
 echo "  To:   $TARGET_DIR"
@@ -80,7 +150,9 @@ echo "  To:   $TARGET_DIR"
 SUBAGENTS_SOURCE="$SOURCE_DIR/$SESSION_ID"
 if [ -d "$SUBAGENTS_SOURCE" ]; then
     cp -r "$SUBAGENTS_SOURCE" "$TARGET_DIR/$NEW_ID"
-    find "$TARGET_DIR/$NEW_ID" -type f -name "*.jsonl" -exec sed -i '' "s/$SESSION_ID/$NEW_ID/g" {} +
+    while IFS= read -r subagent_file; do
+        rewrite_transcript "$subagent_file" "$subagent_file"
+    done < <(find "$TARGET_DIR/$NEW_ID" -type f -name "*.jsonl")
     echo "Copied subagents dir: $SESSION_ID/ → $NEW_ID/"
 fi
 

@@ -41,3 +41,5 @@ Migrate a conversation from another project to the current working directory.
 - The migrate script copies (not moves) session files — the original session stays intact in the source project
 - The destination gets a new UUID (via uuidgen) so source and destination sessions are fully independent
 - The script handles both the `.jsonl` file and any subagents directory
+- Every `cwd` record in the copied transcripts is rewritten to the destination directory
+- Requires `python3`, used for the project-folder path encoding and the transcript rewrite
