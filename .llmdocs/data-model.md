@@ -258,8 +258,10 @@ Counts observed with the current file, on a turn with one shell call:
 | ----- | ------- | -------- |
 | SessionStart | 4 | beads, herdr, `serena-hooks activate`, claude-mem |
 | UserPromptSubmit | 2 | beads, claude-mem |
-| PreToolUse | 1 | claude-mem only; both serena handlers await `/hooks` |
+| PreToolUse | 1 | claude-mem only, measured while both serena handlers were still untrusted |
 | Stop | 2 | claude-mem, `stop-phrase-guard.sh` |
+
+Both `serena-hooks` PreToolUse handlers were trusted through `/hooks` on 2026-08-24, so `configs/codex/config.toml` now carries `hooks.json:pre_tool_use:0:0` and `:1:0` hashes. The PreToolUse firing count has not been re-measured since.
 
 ## Markdown Format Hook
 

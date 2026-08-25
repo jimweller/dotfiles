@@ -146,6 +146,9 @@ trust_level = "trusted"
 
 [projects."/Users/jimweller/work/jira"]
 trust_level = "trusted"
+
+[projects."/Users/jimweller/work/sensitive-canary"]
+trust_level = "trusted"
 [notice]
 fast_default_opt_out = true
 
@@ -211,6 +214,12 @@ trusted_hash = "sha256:0a2d1790fdd845c6f0c1389c25003525f071dda55cefab308f3404e8f
 
 [hooks.state."/Users/jimweller/.codex/hooks.json:stop:0:0"]
 trusted_hash = "sha256:47891ec0bbe917210a6d48e5a7fab6d45650a31f43d30d36fe480855004edc3f"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:pre_tool_use:1:0"]
+trusted_hash = "sha256:6272a3612cebcd021ea3ddd70a62813d90f2ccc75e7d70ecb96684e29bd8aa80"
+
+[hooks.state."/Users/jimweller/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:bea71cca907bce2402e937b1fe3755c78bc3fca577f087add2cb4c50c09a502a"
 [features]
 goals = true
 hooks = true
