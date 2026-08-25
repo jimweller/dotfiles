@@ -154,6 +154,10 @@ source = "/Users/jimweller/.claude/plugins/marketplaces/thedotmack"
 [marketplaces.sead-claude-marketplace]
 source_type = "git"
 source = "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
+
+[marketplaces.agent-browser]
+source_type = "git"
+source = "https://github.com/vercel-labs/agent-browser.git"
 [hooks.state]
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:post_compact:0:0"]
 trusted_hash = "sha256:53280fbd74d122ef0607f320dacf407b21cba0e448f2cf5982c6d5b1074933c8"
@@ -208,6 +212,12 @@ trusted_hash = "sha256:6272a3612cebcd021ea3ddd70a62813d90f2ccc75e7d70ecb96684e29
 
 [hooks.state."/Users/jimweller/.codex/hooks.json:pre_tool_use:0:0"]
 trusted_hash = "sha256:bea71cca907bce2402e937b1fe3755c78bc3fca577f087add2cb4c50c09a502a"
+
+[hooks.state."mcg-atlassian@sead-claude-marketplace:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:80ae5258289c25ed77b18d6de9843963d10fc061730694b3458d763650275f27"
+
+[hooks.state."mcg-atlassian@sead-claude-marketplace:hooks/hooks.json:session_start:0:1"]
+trusted_hash = "sha256:c4d3ab3c065ad4b4de6529c52e6019f3d494c21b6a8d811003486c323c5308c9"
 [features]
 goals = true
 hooks = true
@@ -253,4 +263,10 @@ followUpQueueMode = "queue"
 enabled = false
 
 [plugins."mcg-atlassian@sead-claude-marketplace"]
+enabled = true
+
+[plugins."agent-browser@agent-browser"]
+enabled = true
+
+[plugins."beads@beads-marketplace"]
 enabled = true
