@@ -45,10 +45,8 @@ command = "web-researcher-mcp"
 [mcp_servers.repomix]
 command = "npx"
 args = ["-y", "repomix", "--mcp"]
-[mcp_servers.slack]
-url = "https://mcp.slack.com/mcp"
-[mcp_servers.slack.oauth]
-client_id = "1601185624273.8899143856786"
+# No slack MCP server. The OAuth app behind mcp.slack.com is registered for
+# Claude, so the same client_id fails to authorize from Codex.
 [mcp_servers.serena]
 command = "serena"
 args = ["start-mcp-server", "--context=codex", "--project-from-cwd"]
