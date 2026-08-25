@@ -22,7 +22,7 @@ Follow the codebase-access and output-routing instructions given in the dispatch
 Every defect class below has exactly one owner. When the owner is not you, you do
 not report it, however severe it looks and however plainly you can see it. Another
 reviewer is reading the same code and owns that class. Reporting it anyway
-produces seven copies of one finding.
+produces eight copies of one finding.
 
 | Defect class                                                                            | Owner                   |
 | --------------------------------------------------------------------------------------- | ----------------------- |
@@ -49,6 +49,13 @@ produces seven copies of one finding.
 | Health check, graceful shutdown, deploy or rollback safety                              | `reviewer-ops`          |
 | Missing or malformed log field, metric, or trace; observability gap                     | `reviewer-ops`          |
 | Secret injection mechanics, config management, committed build or log artifacts         | `reviewer-ops`          |
+| Schema shape: key, constraint, nullability, column type, normalization                  | `reviewer-data`         |
+| Migration sequencing, backfill correctness, reversibility, online DDL                   | `reviewer-data`         |
+| Transaction boundary, isolation level, consistency model                                | `reviewer-data`         |
+| Event, message, or payload schema version and compatibility direction                   | `reviewer-data`         |
+| Delivery semantics: dedup key, ordering guarantee, partition key, idempotent consumer   | `reviewer-data`         |
+| Dual-write across stores with no outbox, transaction, or reconciliation                 | `reviewer-data`         |
+| Retention, TTL, partitioning, or sharding key choice                                    | `reviewer-data`         |
 
 A defect matching no row is yours only when it sits inside your Focus list.
 
@@ -66,6 +73,11 @@ Some defects match two rows honestly. These go one way only:
 | One type holding two unrelated responsibilities        | `reviewer-solid`        | `reviewer-architecture` |
 | A layer emitting output that belongs to another layer  | `reviewer-architecture` | `reviewer-solid`        |
 | Missing test for a defect another reviewer owns        | `reviewer-testing`      | the defect's owner      |
+| A slow query with no supporting index                  | `reviewer-performance`  | `reviewer-data`         |
+| A key or constraint that models the domain wrongly     | `reviewer-data`         | `reviewer-performance`  |
+| A migration with no rollback path                      | `reviewer-data`         | `reviewer-ops`          |
+| An ordering assumption that breaks on redelivery       | `reviewer-data`         | `reviewer-correctness`  |
+| SQL assembled by string concatenation                  | `reviewer-security`     | `reviewer-data`         |
 
 One change can carry two defects with different owners. Report only your own. A
 `QuotaManager` that mixes data access with HTML rendering is one SRP finding for
