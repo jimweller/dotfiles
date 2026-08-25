@@ -150,6 +150,10 @@ source = "/Users/jimweller/.cache/codex-runtimes/codex-primary-runtime/plugins/o
 [marketplaces.claude-mem-local]
 source_type = "local"
 source = "/Users/jimweller/.claude/plugins/marketplaces/thedotmack"
+
+[marketplaces.sead-claude-marketplace]
+source_type = "git"
+source = "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
 [hooks.state]
 [hooks.state."beads@beads-marketplace:hooks/hooks.json:post_compact:0:0"]
 trusted_hash = "sha256:53280fbd74d122ef0607f320dacf407b21cba0e448f2cf5982c6d5b1074933c8"
@@ -247,3 +251,6 @@ followUpQueueMode = "queue"
 
 [plugins."claude-mem@thedotmack"]
 enabled = false
+
+[plugins."mcg-atlassian@sead-claude-marketplace"]
+enabled = true
