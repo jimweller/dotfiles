@@ -270,3 +270,6 @@ enabled = true
 
 [plugins."beads@beads-marketplace"]
 enabled = true
+
+[plugins."story-stick@sead-claude-marketplace"]
+enabled = true
