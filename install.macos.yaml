@@ -61,6 +61,7 @@
     ~/personal/.mise.toml: configs/mise/personal.toml
     ~/work/.mise.toml: configs/mise/work.toml
     ~/hearst/.mise.toml: configs/mise/hearst.toml
+    ~/obsidian/.mise.toml: configs/mise/personal.toml
 
 - shell:
     - description: Copy iTerm2 preferences (cannot symlink due to macOS cfprefsd)

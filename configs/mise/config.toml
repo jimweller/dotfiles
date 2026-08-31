@@ -4,6 +4,7 @@ trusted_config_paths = [
   "~/personal",
   "~/work",
   "~/hearst",
+  "~/obsidian",
 ]
 
 [tools]
