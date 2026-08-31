@@ -1,5 +1,5 @@
 {
-  "numStartups": 3968,
+  "numStartups": 4018,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -54,10 +54,10 @@
     "web-app": 1334,
     "mobile-app": 1335,
     "feedback-command": 1335,
-    "auto-copy-config-hint": 3963
+    "auto-copy-config-hint": 4009
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 158620,
+  "promptQueueUseCount": 158754,
   "btwUseCount": 5,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -91,7 +91,7 @@
   "hasCompletedOnboarding": true,
   "subscriptionNoticeCount": 0,
   "hasAvailableSubscription": false,
-  "changelogLastFetched": 1787616035793,
+  "changelogLastFetched": 1787946141509,
   "hasAcknowledgedCostThreshold": true,
   "isQualifiedForDataSharing": false,
   "projects": {
@@ -102,7 +102,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true
     },
@@ -113,7 +112,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true
     },
@@ -124,7 +122,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastTotalWebSearchRequests": 0,
@@ -183,7 +180,6 @@
         "hook_duration_ms_p95": 1261,
         "hook_duration_ms_p99": 1281.8
       },
-      "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": true,
       "lastHintSessionId": "d89e5feb-c309-454c-aa1b-c7808801da3c",
       "lastSessionFirstPrompt": "figure out where this hook failures is coming from   ⎿  UserPromptSubmit hook error                                                         ⎿  Failed with non-blocking status code: Error: unknown comm",
@@ -199,7 +195,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -211,7 +206,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -223,7 +217,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -274,10 +267,8 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0,
       "lastCost": 0.008161999999999999,
       "lastAPIDuration": 28227,
@@ -299,7 +290,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -322,7 +312,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 5,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0
@@ -335,7 +324,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "hasTrustDialogHooksAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -358,7 +346,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -369,19 +356,19 @@
         "claude_settings_json_azure",
         "00-quality-of-life.zsh"
       ],
-      "exampleFilesGeneratedAt": 1787155133817,
+      "exampleFilesGeneratedAt": 1787837219364,
       "disabledMcpServers": [],
-      "lastCost": 13.866303499999999,
-      "lastAPIDuration": 1191451,
-      "lastToolDuration": 42657,
-      "lastDuration": 12664841,
-      "lastLinesAdded": 42,
-      "lastLinesRemoved": 22,
-      "lastTotalInputTokens": 180,
-      "lastTotalOutputTokens": 89741,
-      "lastTotalCacheCreationInputTokens": 371029,
-      "lastTotalCacheReadInputTokens": 15823177,
-      "lastSessionId": "2142d2e3-db27-470d-b380-73f1fcf86a3a",
+      "lastCost": 8.580888999999999,
+      "lastAPIDuration": 582138,
+      "lastToolDuration": 457450,
+      "lastDuration": 29071543,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 1005,
+      "lastTotalOutputTokens": 42673,
+      "lastTotalCacheCreationInputTokens": 458743,
+      "lastTotalCacheReadInputTokens": 5851058,
+      "lastSessionId": "f643c91c-ccb7-4416-b23a-e78b58683499",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -389,49 +376,56 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 1190381,
+      "lastAPIDurationWithoutRetries": 581496,
       "lastModelUsage": {
-        "claude-opus-5[1m]": {
-          "inputTokens": 180,
-          "outputTokens": 89741,
-          "cacheReadInputTokens": 15823177,
-          "cacheCreationInputTokens": 371029,
+        "claude-haiku-4-5": {
+          "inputTokens": 905,
+          "outputTokens": 15,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 13.866303499999999
+          "costUSD": 0.00098
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 100,
+          "outputTokens": 42658,
+          "cacheReadInputTokens": 5851058,
+          "cacheCreationInputTokens": 458743,
+          "webSearchRequests": 0,
+          "costUSD": 8.579908999999999
         }
       },
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 363,
+        "hook_duration_ms_count": 410,
         "hook_duration_ms_min": 1,
-        "hook_duration_ms_max": 11686,
-        "hook_duration_ms_avg": 167.04132231404958,
-        "hook_duration_ms_p50": 108,
-        "hook_duration_ms_p95": 328.79999999999995,
-        "hook_duration_ms_p99": 924.0999999999998,
-        "frame_duration_ms_count": 7225,
-        "frame_duration_ms_min": 0.015166997909545898,
-        "frame_duration_ms_max": 12.32779199630022,
-        "frame_duration_ms_avg": 0.4938115646121213,
-        "frame_duration_ms_p50": 0.33845850080251694,
-        "frame_duration_ms_p95": 1.3052410999993296,
-        "frame_duration_ms_p99": 2.121713931560516,
-        "pre_tool_hook_duration_ms_count": 172,
-        "pre_tool_hook_duration_ms_min": 68,
-        "pre_tool_hook_duration_ms_max": 217,
-        "pre_tool_hook_duration_ms_avg": 118.06976744186046,
-        "pre_tool_hook_duration_ms_p50": 119,
-        "pre_tool_hook_duration_ms_p95": 144,
-        "pre_tool_hook_duration_ms_p99": 157.73999999999995
+        "hook_duration_ms_max": 1267,
+        "hook_duration_ms_avg": 122.23170731707317,
+        "hook_duration_ms_p50": 112,
+        "hook_duration_ms_p95": 425.64999999999986,
+        "hook_duration_ms_p99": 816.5599999999995,
+        "frame_duration_ms_count": 9336,
+        "frame_duration_ms_min": 0.020999997854232788,
+        "frame_duration_ms_max": 21.715084000024945,
+        "frame_duration_ms_avg": 0.5216102367046893,
+        "frame_duration_ms_p50": 0.3632090000901371,
+        "frame_duration_ms_p95": 1.2687874478287993,
+        "frame_duration_ms_p99": 1.9967714301031079,
+        "pre_tool_hook_duration_ms_count": 181,
+        "pre_tool_hook_duration_ms_min": 75,
+        "pre_tool_hook_duration_ms_max": 924,
+        "pre_tool_hook_duration_ms_avg": 137.05524861878453,
+        "pre_tool_hook_duration_ms_p50": 133,
+        "pre_tool_hook_duration_ms_p95": 159,
+        "pre_tool_hook_duration_ms_p99": 277.39999999999674
       },
-      "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": false,
       "lastHintSessionId": "72797f30-4c92-4f00-9217-7e9249fe7a97",
       "lastSessionFirstPrompt": "we updated ms365 mcp in claude, do codex too.",
       "lastSessionModified": 1779211596554,
-      "lastVersionBase": "2.1.243",
-      "lastStartTime": 1787603529993,
-      "lastFpsAverage": 0.27,
-      "lastFpsLow1Pct": 293.14
+      "lastVersionBase": "2.1.251",
+      "lastStartTime": 1787807462053,
+      "lastFpsAverage": 0.06,
+      "lastFpsLow1Pct": 422.99
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -440,7 +434,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 1.0206461499999995,
@@ -462,7 +455,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 2.56063805,
@@ -485,7 +477,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0.06858825,
@@ -508,7 +499,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -539,7 +529,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -562,7 +551,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -585,7 +573,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0,
@@ -608,7 +595,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -631,7 +617,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -642,7 +627,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -673,7 +657,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -696,7 +679,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 15,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 26.695178600000038,
@@ -719,7 +701,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -750,7 +731,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -773,7 +753,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -797,7 +776,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -829,7 +807,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -854,7 +831,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 5,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -879,7 +855,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -904,11 +879,9 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0,
       "lastCost": 0.26478099999999993,
       "lastAPIDuration": 471341,
@@ -930,7 +903,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -955,7 +927,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 6,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -980,7 +951,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": []
@@ -993,7 +963,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": []
@@ -1006,7 +975,6 @@
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1019,7 +987,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1043,7 +1010,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1067,7 +1033,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1080,7 +1045,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1104,7 +1068,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": []
@@ -1116,7 +1079,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": []
@@ -1128,7 +1090,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1152,7 +1113,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -1175,12 +1135,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastTotalWebSearchRequests": 0,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.3335188,
       "lastAPIDuration": 30605,
       "lastToolDuration": 96,
@@ -1200,7 +1158,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1213,11 +1170,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0
     },
     "/Users/jimweller/tmp/cf/3": {
@@ -1227,10 +1182,8 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0,
       "lastCost": 50.25725261999996,
       "lastAPIDuration": 7769735,
@@ -1251,7 +1204,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -1262,7 +1214,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1286,10 +1237,8 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0,
       "exampleFiles": [
         "kubernetes.go",
@@ -1323,7 +1272,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1336,7 +1284,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1393,7 +1340,6 @@
           "costUSD": 0.26589540000000006
         }
       },
-      "hasCompletedProjectOnboarding": true,
       "lastFpsAverage": 8.81,
       "lastFpsLow1Pct": 173.71
     },
@@ -1404,7 +1350,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -1415,7 +1360,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -1426,7 +1370,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -1437,12 +1380,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastTotalWebSearchRequests": 0,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 29.228135849999997,
       "lastAPIDuration": 6793638,
       "lastToolDuration": 4777663,
@@ -1462,7 +1403,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1473,7 +1413,6 @@
         "simple-cli.js"
       ],
       "exampleFilesGeneratedAt": 1763744002020,
-      "hasCompletedProjectOnboarding": true,
       "lastTotalWebSearchRequests": 0
     },
     "/Users/jimweller/tmp/davit/davit4": {
@@ -1483,11 +1422,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 87.49597334999993,
       "lastAPIDuration": 18004858,
       "lastToolDuration": 9390061,
@@ -1507,7 +1444,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1547,7 +1483,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1570,11 +1505,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
-      "hasCompletedProjectOnboarding": true,
       "exampleFiles": [
         "ado_test.go",
         "ado_test.go",
@@ -1635,7 +1568,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1647,8 +1579,7 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1659,7 +1590,7 @@
         ".terraform.lock.hcl"
       ],
       "lastTotalWebSearchRequests": 0,
-      "exampleFilesGeneratedAt": 1786492430309,
+      "exampleFilesGeneratedAt": 1787928789996,
       "lastCost": 0,
       "lastAPIDuration": 0,
       "lastToolDuration": 0,
@@ -1680,7 +1611,7 @@
       },
       "lastAPIDurationWithoutRetries": 0,
       "lastModelUsage": {},
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastSessionMetrics": {
         "frame_duration_ms_count": 665,
         "frame_duration_ms_min": 0.06883399999060202,
@@ -1704,9 +1635,8 @@
         "pre_tool_hook_duration_ms_p95": 126,
         "pre_tool_hook_duration_ms_p99": 126
       },
-      "lastVersionBase": "2.1.227",
+      "lastVersionBase": "2.1.250",
       "lastStartTime": 1786462433330,
-      "hasCompletedProjectOnboarding": true,
       "lastFpsAverage": 0,
       "lastFpsLow1Pct": 2.58
     },
@@ -1717,7 +1647,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1741,7 +1670,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1765,11 +1693,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.36909654999999997,
       "lastAPIDuration": 49670,
       "lastToolDuration": 0,
@@ -1790,7 +1716,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1849,7 +1774,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -1880,23 +1804,21 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastTotalWebSearchRequests": 0,
-      "hasCompletedProjectOnboarding": true,
-      "lastCost": 12.521697699999999,
-      "lastAPIDuration": 877159,
-      "lastToolDuration": 101962,
-      "lastDuration": 442946339,
-      "lastLinesAdded": 228,
-      "lastLinesRemoved": 70,
-      "lastTotalInputTokens": 5585,
-      "lastTotalOutputTokens": 65325,
-      "lastTotalCacheCreationInputTokens": 599905,
-      "lastTotalCacheReadInputTokens": 10481057,
-      "lastSessionId": "751a3aaa-5cfa-470d-bfe8-752ea36a6317",
+      "lastCost": 11.7310445,
+      "lastAPIDuration": 777930,
+      "lastToolDuration": 402217,
+      "lastDuration": 42648065,
+      "lastLinesAdded": 369,
+      "lastLinesRemoved": 114,
+      "lastTotalInputTokens": 1093,
+      "lastTotalOutputTokens": 53396,
+      "lastTotalCacheCreationInputTokens": 464315,
+      "lastTotalCacheReadInputTokens": 11502907,
+      "lastSessionId": "f678c4be-3600-45fa-8a2d-5635e36b7487",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -1904,31 +1826,31 @@
         "version": null,
         "packageManager": null
       },
-      "lastAPIDurationWithoutRetries": 876498,
+      "lastAPIDurationWithoutRetries": 777129,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 901,
+          "inputTokens": 911,
           "outputTokens": 14,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.000971
+          "costUSD": 0.000981
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 156,
-          "outputTokens": 59677,
-          "cacheReadInputTokens": 9972743,
-          "cacheCreationInputTokens": 547908,
+          "inputTokens": 46,
+          "outputTokens": 13031,
+          "cacheReadInputTokens": 1742353,
+          "cacheCreationInputTokens": 76829,
           "webSearchRequests": 0,
-          "costUSD": 11.9581565
+          "costUSD": 1.9654715000000003
         },
-        "claude-sonnet-5[1m]": {
-          "inputTokens": 4528,
-          "outputTokens": 5634,
-          "cacheReadInputTokens": 508314,
-          "cacheCreationInputTokens": 51997,
+        "global.anthropic.claude-opus-5[1m]": {
+          "inputTokens": 136,
+          "outputTokens": 40351,
+          "cacheReadInputTokens": 9760554,
+          "cacheCreationInputTokens": 387486,
           "webSearchRequests": 0,
-          "costUSD": 0.5625701999999999
+          "costUSD": 9.764591999999995
         }
       },
       "disabledMcpServers": [],
@@ -1955,12 +1877,14 @@
         "pre_tool_hook_duration_ms_p95": 184.39999999999992,
         "pre_tool_hook_duration_ms_p99": 217.67999999999986
       },
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "lastHintSessionId": "69baa289-ecc2-43b8-8767-8276bee4286a",
       "lastSessionFirstPrompt": "jira make a new epic for \"[aie]AI Enablement\". Take the existing [aie] epics and convert them to stories under that epic. You can use the content of the stories to fill out the epic description. Also ",
       "lastSessionModified": 1778782735380,
-      "lastVersionBase": "2.1.235",
-      "lastStartTime": 1787150778098
+      "lastVersionBase": "2.1.248",
+      "lastStartTime": 1787885189093,
+      "lastFpsAverage": 0.14,
+      "lastFpsLow1Pct": 388.9
     },
     "/Users/jimweller/Library/CloudStorage/OneDrive-SharedLibraries-PresidioNetworkSolutions/MILLI012 Azure LZ Policy and IaC (3001612506832) [FF] - 6. Technical Information/PlatEng": {
       "allowedTools": [],
@@ -1969,7 +1893,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -1988,7 +1911,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2006,7 +1928,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1767743589182,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.33232935,
       "lastAPIDuration": 412720,
       "lastAPIDurationWithoutRetries": 412301,
@@ -2054,7 +1975,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2072,7 +1992,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1770590989613,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 572.3038639000015,
       "lastAPIDuration": 27567093,
       "lastAPIDurationWithoutRetries": 27238455,
@@ -2158,7 +2077,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2175,8 +2093,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1768074286701,
-      "hasCompletedProjectOnboarding": true
+      "exampleFilesGeneratedAt": 1768074286701
     },
     "/Users/jimweller/tmp/platform-poc/i17": {
       "allowedTools": [],
@@ -2185,7 +2102,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2202,8 +2118,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1768075449496,
-      "hasCompletedProjectOnboarding": true
+      "exampleFilesGeneratedAt": 1768075449496
     },
     "/Users/jimweller/tmp/platform-poc/i7": {
       "allowedTools": [],
@@ -2212,7 +2127,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2230,7 +2144,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1768080956431,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.4093142,
       "lastAPIDuration": 270838,
       "lastAPIDurationWithoutRetries": 270436,
@@ -2278,7 +2191,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2295,8 +2207,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1768081542953,
-      "hasCompletedProjectOnboarding": true
+      "exampleFilesGeneratedAt": 1768081542953
     },
     "/Users/jimweller/tmp/platform-poc/i13": {
       "allowedTools": [],
@@ -2305,7 +2216,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2322,8 +2232,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1768081580404,
-      "hasCompletedProjectOnboarding": true
+      "exampleFilesGeneratedAt": 1768081580404
     },
     "/Users/jimweller/work/pe-owned-resources-and-processes/jira-analysis": {
       "allowedTools": [],
@@ -2332,7 +2241,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2389,7 +2297,6 @@
         }
       },
       "lastSessionId": "07f4498a-caaa-4766-81e6-635a5e191dcd",
-      "hasCompletedProjectOnboarding": true,
       "lastFpsAverage": 0.11,
       "lastFpsLow1Pct": 9.76
     },
@@ -2400,7 +2307,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2418,7 +2324,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1768803067052,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 15.177340100000002,
       "lastAPIDuration": 1379610,
       "lastAPIDurationWithoutRetries": 1379096,
@@ -2466,7 +2371,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2483,8 +2387,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1768803963048,
-      "hasCompletedProjectOnboarding": true
+      "exampleFilesGeneratedAt": 1768803963048
     },
     "/Users/jimweller/tmp/platform-poc/go-refactor": {
       "allowedTools": [],
@@ -2493,7 +2396,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2511,7 +2413,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1768839752053,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.14333600000000002,
       "lastAPIDuration": 18843,
       "lastAPIDurationWithoutRetries": 18628,
@@ -2551,7 +2452,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -2562,7 +2462,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 11.501192000000001,
       "lastAPIDuration": 829978,
       "lastAPIDurationWithoutRetries": 829165,
@@ -2610,7 +2509,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -2621,7 +2519,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.18871075,
       "lastAPIDuration": 5341,
       "lastAPIDurationWithoutRetries": 5329,
@@ -2661,7 +2558,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2751,7 +2647,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -2817,7 +2712,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -2867,7 +2761,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2915,7 +2808,6 @@
         }
       },
       "lastSessionId": "08e419fc-afe1-4ee4-a89b-e6819f9fb6c0",
-      "hasCompletedProjectOnboarding": true,
       "exampleFilesGeneratedAt": 1775530754078,
       "lastFpsAverage": 0.01,
       "lastFpsLow1Pct": 62.84,
@@ -2950,7 +2842,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -2968,7 +2859,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1769983882297,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.24507074999999998,
       "lastAPIDuration": 15740,
       "lastAPIDurationWithoutRetries": 15640,
@@ -3008,7 +2898,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3026,7 +2915,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1769994363228,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 23.20926645000001,
       "lastAPIDuration": 2543764,
       "lastAPIDurationWithoutRetries": 2543606,
@@ -3074,7 +2962,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3092,7 +2979,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1769997518481,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 17.06567620000002,
       "lastAPIDuration": 1466576,
       "lastAPIDurationWithoutRetries": 1466427,
@@ -3140,7 +3026,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3158,7 +3043,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1770003805638,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 14.661578399999996,
       "lastAPIDuration": 1091092,
       "lastAPIDurationWithoutRetries": 1091030,
@@ -3206,7 +3090,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -3256,7 +3139,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -3306,7 +3188,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3324,7 +3205,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1770538137057,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 21.73347699999999,
       "lastAPIDuration": 2999174,
       "lastAPIDurationWithoutRetries": 2998976,
@@ -3374,7 +3254,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3391,7 +3270,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.5851479999999993,
       "lastAPIDuration": 358049,
       "lastAPIDurationWithoutRetries": 357995,
@@ -3442,7 +3320,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3460,7 +3337,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771289021195,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.3235465,
       "lastAPIDuration": 515844,
       "lastAPIDurationWithoutRetries": 515764,
@@ -3502,7 +3378,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3520,7 +3395,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771269134151,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 462.0703925000018,
       "lastAPIDuration": 46233980,
       "lastAPIDurationWithoutRetries": 46229363,
@@ -3570,7 +3444,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3588,7 +3461,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1770618604169,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 5.109946,
       "lastAPIDuration": 902639,
       "lastAPIDurationWithoutRetries": 902598,
@@ -3638,7 +3510,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3655,7 +3526,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 8.799242150000003,
       "lastAPIDuration": 813131,
       "lastAPIDurationWithoutRetries": 813076,
@@ -3706,7 +3576,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3723,7 +3592,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 6.528737750000006,
       "lastAPIDuration": 1104749,
       "lastAPIDurationWithoutRetries": 1060632,
@@ -3774,7 +3642,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3792,7 +3659,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771045071609,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 5.492127499999999,
       "lastAPIDuration": 560347,
       "lastAPIDurationWithoutRetries": 560264,
@@ -3834,7 +3700,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3852,7 +3717,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771046112966,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 18.235466250000005,
       "lastAPIDuration": 2635988,
       "lastAPIDurationWithoutRetries": 2635818,
@@ -3902,7 +3766,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3920,7 +3783,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771256877594,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 16.200859249999993,
       "lastAPIDuration": 2700029,
       "lastAPIDurationWithoutRetries": 2084164,
@@ -3970,7 +3832,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -3988,7 +3849,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771292160502,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 33.83752424999995,
       "lastAPIDuration": 3450990,
       "lastAPIDurationWithoutRetries": 3450774,
@@ -4038,7 +3898,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4056,7 +3915,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771541574474,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 15.52385075,
       "lastAPIDuration": 1330184,
       "lastAPIDurationWithoutRetries": 1319190,
@@ -4106,7 +3964,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4124,7 +3981,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1786462428727,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 4.538044,
       "lastAPIDuration": 153324,
       "lastAPIDurationWithoutRetries": 153172,
@@ -4194,8 +4050,7 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4205,7 +4060,7 @@
         "ado-analysis.ipynb",
         "04_populate_repos.py"
       ],
-      "exampleFilesGeneratedAt": 1785362435207,
+      "exampleFilesGeneratedAt": 1787922358241,
       "lastCost": 0.45218800000000003,
       "lastAPIDuration": 33327,
       "lastAPIDurationWithoutRetries": 33289,
@@ -4263,8 +4118,7 @@
         "pre_tool_hook_duration_ms_p99": 227.6000000000002
       },
       "lastGracefulShutdown": false,
-      "hasCompletedProjectOnboarding": true,
-      "lastVersionBase": "2.1.220",
+      "lastVersionBase": "2.1.250",
       "lastStartTime": 1785362429932
     },
     "/Users/jimweller/work": {
@@ -4273,45 +4127,43 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
-      "lastCost": 0.7338285,
-      "lastAPIDuration": 57972,
-      "lastAPIDurationWithoutRetries": 57860,
-      "lastToolDuration": 52482,
-      "lastDuration": 33816316,
-      "lastLinesAdded": 0,
-      "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 641,
-      "lastTotalOutputTokens": 3904,
-      "lastTotalCacheCreationInputTokens": 40574,
-      "lastTotalCacheReadInputTokens": 460343,
+      "lastCost": 17.540545000000005,
+      "lastAPIDuration": 1501879,
+      "lastAPIDurationWithoutRetries": 1500466,
+      "lastToolDuration": 66295,
+      "lastDuration": 10427109,
+      "lastLinesAdded": 596,
+      "lastLinesRemoved": 227,
+      "lastTotalInputTokens": 1172,
+      "lastTotalOutputTokens": 123410,
+      "lastTotalCacheCreationInputTokens": 521562,
+      "lastTotalCacheReadInputTokens": 19555366,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.02,
-      "lastFpsLow1Pct": 268.9,
+      "lastFpsAverage": 0.61,
+      "lastFpsLow1Pct": 366.43,
       "lastModelUsage": {
         "claude-haiku-4-5": {
-          "inputTokens": 622,
-          "outputTokens": 20,
+          "inputTokens": 928,
+          "outputTokens": 291,
           "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
+          "cacheCreationInputTokens": 66792,
           "webSearchRequests": 0,
-          "costUSD": 0.0007220000000000001
+          "costUSD": 0.135967
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 19,
-          "outputTokens": 3884,
-          "cacheReadInputTokens": 460343,
-          "cacheCreationInputTokens": 40574,
+          "inputTokens": 244,
+          "outputTokens": 123119,
+          "cacheReadInputTokens": 19555366,
+          "cacheCreationInputTokens": 454770,
           "webSearchRequests": 0,
-          "costUSD": 0.7331064999999999
+          "costUSD": 17.404578000000004
         }
       },
-      "lastSessionId": "20d03394-1a0b-4903-82f0-f60acc3ba7a2",
+      "lastSessionId": "1ed39fd5-1116-46ca-8279-44816564a807",
       "lastSessionMetrics": {
         "frame_duration_ms_count": 275,
         "frame_duration_ms_min": 0.10775000229477882,
@@ -4328,9 +4180,9 @@
         "hook_duration_ms_p95": 1226,
         "hook_duration_ms_p99": 1226
       },
-      "lastGracefulShutdown": true,
-      "lastVersionBase": "2.1.232",
-      "lastStartTime": 1786718370651
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.251",
+      "lastStartTime": 1788145529634
     },
     "/Users/jimweller/work/cwqi-sunset": {
       "allowedTools": [],
@@ -4339,7 +4191,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4413,8 +4264,7 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4424,24 +4274,38 @@
         "install.sh",
         "atlantis_test.go"
       ],
-      "exampleFilesGeneratedAt": 1780980975449,
-      "hasCompletedProjectOnboarding": true,
-      "lastCost": 0,
-      "lastAPIDuration": 0,
-      "lastAPIDurationWithoutRetries": 0,
-      "lastToolDuration": 0,
-      "lastDuration": 132733,
+      "exampleFilesGeneratedAt": 1787946143740,
+      "lastCost": 1.540432,
+      "lastAPIDuration": 90304,
+      "lastAPIDurationWithoutRetries": 90273,
+      "lastToolDuration": 523,
+      "lastDuration": 69894,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 0,
-      "lastTotalOutputTokens": 0,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalInputTokens": 939,
+      "lastTotalOutputTokens": 7718,
+      "lastTotalCacheCreationInputTokens": 123020,
+      "lastTotalCacheReadInputTokens": 233198,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.16,
-      "lastFpsLow1Pct": 119.4,
-      "lastModelUsage": {},
-      "lastSessionId": "bd7cb9e2-d0cc-492f-ae94-b55db2556044",
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 923,
+          "outputTokens": 16,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001003
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 16,
+          "outputTokens": 7702,
+          "cacheReadInputTokens": 233198,
+          "cacheCreationInputTokens": 123020,
+          "webSearchRequests": 0,
+          "costUSD": 1.539429
+        }
+      },
+      "lastSessionId": "ff17fccc-f820-42d5-ab67-63be25076484",
       "lastSessionMetrics": {
         "frame_duration_ms_count": 20,
         "frame_duration_ms_min": 0.17933300000004238,
@@ -4458,11 +4322,14 @@
         "hook_duration_ms_p95": 1066,
         "hook_duration_ms_p99": 1066
       },
-      "lastGracefulShutdown": true,
+      "lastGracefulShutdown": false,
       "lastHintSessionId": "145c5da2-5995-450d-a23e-c47ed5a5513b",
       "lastSessionFirstPrompt": "my company is migrating to github. I want to explore having this poc support github. What is in scope? What adds or changes?",
       "lastSessionModified": 1778990546141,
-      "lastVersionBase": "2.1.173"
+      "lastVersionBase": "2.1.251",
+      "lastStartTime": 1787954419582,
+      "lastFpsAverage": 1.83,
+      "lastFpsLow1Pct": 330.98
     },
     "/Users/jimweller/work/quiver/quiver-issues": {
       "allowedTools": [],
@@ -4471,7 +4338,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4482,7 +4348,6 @@
         "auth.go"
       ],
       "exampleFilesGeneratedAt": 1772303380531,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 31.92709174999998,
       "lastAPIDuration": 2833122,
       "lastAPIDurationWithoutRetries": 2821588,
@@ -4555,7 +4420,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -4623,7 +4487,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -4699,7 +4562,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4773,7 +4635,6 @@
         "hook_duration_ms_p95": 73.75,
         "hook_duration_ms_p99": 77.94999999999999
       },
-      "hasCompletedProjectOnboarding": true,
       "exampleFilesGeneratedAt": 1772869991973
     },
     "/Users/jimweller/tmp/deep-review/csharp-fixture": {
@@ -4783,7 +4644,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4851,7 +4711,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -4926,7 +4785,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5001,7 +4859,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5068,7 +4925,6 @@
         "pre_tool_hook_duration_ms_p99": 516
       },
       "exampleFilesGeneratedAt": 1777796502899,
-      "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": true,
       "lastHintSessionId": "1440ef75-f48c-4336-b17a-42bfed717747",
       "lastSessionFirstPrompt": "Can I get some of the images from the slides in the template? Specifically the triangle background images. If you can, dump them all to .llmtmp/",
@@ -5081,7 +4937,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5091,30 +4946,29 @@
         "ado-analysis.ipynb",
         "04_populate_repos.py"
       ],
-      "exampleFilesGeneratedAt": 1786575297167,
-      "hasCompletedProjectOnboarding": true,
-      "lastCost": 13.347440500000003,
-      "lastAPIDuration": 1186942,
-      "lastAPIDurationWithoutRetries": 1185744,
-      "lastToolDuration": 1187006,
-      "lastDuration": 103881953,
+      "exampleFilesGeneratedAt": 1787837244324,
+      "lastCost": 2.542852,
+      "lastAPIDuration": 7950,
+      "lastAPIDurationWithoutRetries": 7945,
+      "lastToolDuration": 0,
+      "lastDuration": 84210348,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 270,
-      "lastTotalOutputTokens": 84234,
-      "lastTotalCacheCreationInputTokens": 211743,
-      "lastTotalCacheReadInputTokens": 18245621,
+      "lastTotalInputTokens": 2,
+      "lastTotalOutputTokens": 232,
+      "lastTotalCacheCreationInputTokens": 252954,
+      "lastTotalCacheReadInputTokens": 15004,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0.08,
-      "lastFpsLow1Pct": 333,
+      "lastFpsAverage": 0,
+      "lastFpsLow1Pct": 16.18,
       "lastModelUsage": {
         "claude-opus-5[1m]": {
-          "inputTokens": 270,
-          "outputTokens": 84234,
-          "cacheReadInputTokens": 18245621,
-          "cacheCreationInputTokens": 211743,
+          "inputTokens": 2,
+          "outputTokens": 232,
+          "cacheReadInputTokens": 15004,
+          "cacheCreationInputTokens": 252954,
           "webSearchRequests": 0,
-          "costUSD": 13.347440500000003
+          "costUSD": 2.542852
         }
       },
       "lastSessionId": "85b47cd3-65af-413b-86f5-22cad8bf2df4",
@@ -5134,9 +4988,9 @@
         "hook_duration_ms_p95": 1038,
         "hook_duration_ms_p99": 1038
       },
-      "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.235",
-      "lastStartTime": 1786575421273
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.247",
+      "lastStartTime": 1787837228750
     },
     "/private/tmp/official-mcp-auth": {
       "allowedTools": [],
@@ -5145,7 +4999,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
     },
@@ -5156,7 +5009,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0,
@@ -5192,7 +5044,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0,
@@ -5228,7 +5079,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0,
@@ -5264,7 +5114,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 0,
@@ -5300,7 +5149,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 7,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5310,7 +5158,6 @@
         "run.sh",
         "01-create-vm.sh"
       ],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.3662464499999993,
       "lastAPIDuration": 303186,
       "lastAPIDurationWithoutRetries": 302908,
@@ -5378,7 +5225,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5388,7 +5234,6 @@
         "scrape.py",
         "analyze.py"
       ],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 3.184996,
       "lastAPIDuration": 570604,
       "lastAPIDurationWithoutRetries": 569563,
@@ -5459,7 +5304,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5510,7 +5354,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5577,7 +5420,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5635,7 +5477,6 @@
         "pre_tool_hook_duration_ms_p95": 0,
         "pre_tool_hook_duration_ms_p99": 0
       },
-      "hasCompletedProjectOnboarding": true,
       "exampleFilesGeneratedAt": 1775506303688
     },
     "/Users/jimweller/work/k8s-custom-model": {
@@ -5645,7 +5486,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5719,7 +5559,6 @@
         "pre_tool_hook_duration_ms_p95": 209.89999999999998,
         "pre_tool_hook_duration_ms_p99": 213.98
       },
-      "hasCompletedProjectOnboarding": true,
       "exampleFilesGeneratedAt": 1778591567793,
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.140"
@@ -5731,7 +5570,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5748,7 +5586,6 @@
         "version": null,
         "packageManager": null
       },
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 57.04607949999999,
       "lastAPIDuration": 1585787,
       "lastAPIDurationWithoutRetries": 1579547,
@@ -5799,7 +5636,7 @@
         "pre_tool_hook_duration_ms_p99": 0
       },
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.239"
+      "lastVersionBase": "2.1.247"
     },
     "/Users/jimweller/work/terraform-az-aks-platform": {
       "allowedTools": [],
@@ -5808,7 +5645,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -5839,7 +5675,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -5889,7 +5724,6 @@
         }
       },
       "lastSessionId": "4999a02a-55e7-4ee5-beaf-36939b8eed33",
-      "hasCompletedProjectOnboarding": true,
       "lastFpsAverage": 0.02,
       "lastFpsLow1Pct": 179.83,
       "lastSessionMetrics": {
@@ -5928,7 +5762,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -5981,7 +5814,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 5,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastTotalWebSearchRequests": 0,
@@ -6040,7 +5872,6 @@
           "costUSD": 0.391211
         }
       },
-      "hasCompletedProjectOnboarding": true,
       "lastSessionMetrics": {
         "frame_duration_ms_count": 584,
         "frame_duration_ms_min": 0.1854170000005979,
@@ -6072,7 +5903,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -6124,7 +5954,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -6166,7 +5995,6 @@
         "frame_duration_ms_p99": 3.0041704994440077
       },
       "lastGracefulShutdown": true,
-      "hasCompletedProjectOnboarding": true,
       "lastHintSessionId": "fd5a7d56-7355-492a-a2bd-e2957c47b346",
       "lastSessionFirstPrompt": "what folder/project was that session in. I want to go resume it.",
       "lastSessionModified": 1779121199496,
@@ -6182,7 +6010,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -6240,7 +6067,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6328,11 +6154,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 18.174880649999995,
       "lastAPIDuration": 1712965,
       "lastAPIDurationWithoutRetries": 1712913,
@@ -6405,7 +6229,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6416,7 +6239,6 @@
         "workflow_entry.py"
       ],
       "exampleFilesGeneratedAt": 1773262704421,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 19.718863500000015,
       "lastAPIDuration": 2380039,
       "lastAPIDurationWithoutRetries": 2379503,
@@ -6489,7 +6311,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6566,7 +6387,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -6610,7 +6430,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6675,7 +6494,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -6743,11 +6561,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 19.899461450000008,
       "lastAPIDuration": 1392971,
       "lastAPIDurationWithoutRetries": 1385696,
@@ -6820,7 +6636,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6831,7 +6646,6 @@
         "mod.rs"
       ],
       "exampleFilesGeneratedAt": 1774670963061,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.32437150000000003,
       "lastAPIDuration": 28544,
       "lastAPIDurationWithoutRetries": 28487,
@@ -6889,7 +6703,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -6907,7 +6720,6 @@
         "packageManager": null
       },
       "exampleFilesGeneratedAt": 1771044000103,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 14.015574250000002,
       "lastAPIDuration": 2116342,
       "lastAPIDurationWithoutRetries": 2116153,
@@ -6957,7 +6769,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 7,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7017,7 +6828,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -7084,7 +6894,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7145,7 +6954,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -7210,7 +7018,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7260,7 +7067,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7302,7 +7108,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7376,7 +7181,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7419,7 +7223,6 @@
       "lastFpsLow1Pct": 177.83,
       "lastModelUsage": {},
       "lastSessionId": "89d27c0b-2c3c-4aaa-88e4-f141eba600aa",
-      "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.197"
     },
@@ -7430,7 +7233,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7498,7 +7300,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastCost": 18.27601304999999,
@@ -7573,11 +7374,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 102.77530555000003,
       "lastAPIDuration": 5320351,
       "lastAPIDurationWithoutRetries": 5300832,
@@ -7650,11 +7449,9 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 11.302704250000005,
       "lastAPIDuration": 1276052,
       "lastAPIDurationWithoutRetries": 1274373,
@@ -7727,7 +7524,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7780,7 +7576,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 7,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7853,7 +7648,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7902,7 +7696,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -7948,7 +7741,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -8015,7 +7807,6 @@
         "openchoreo"
       ],
       "lastStartTime": 1785850988947,
-      "hasCompletedProjectOnboarding": true,
       "lastFpsAverage": 0.02,
       "lastFpsLow1Pct": 198.07
     },
@@ -8026,7 +7817,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8109,7 +7899,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -8177,7 +7966,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -8236,8 +8024,7 @@
         "pre_tool_hook_duration_ms_p50": 0,
         "pre_tool_hook_duration_ms_p95": 1,
         "pre_tool_hook_duration_ms_p99": 184.94
-      },
-      "hasCompletedProjectOnboarding": true
+      }
     },
     "/Users/jimweller/gt/cwqiwindows/.repo.git": {
       "allowedTools": [],
@@ -8246,7 +8033,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8256,7 +8042,6 @@
         "lib-build-env-image.sh",
         "lib.sh"
       ],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.0545955,
       "lastAPIDuration": 127759,
       "lastAPIDurationWithoutRetries": 127627,
@@ -8322,7 +8107,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -8390,7 +8174,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8473,7 +8256,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8483,7 +8265,6 @@
         "main.tf",
         "outputs.tf"
       ],
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.6371467499999999,
       "lastAPIDuration": 71124,
       "lastAPIDurationWithoutRetries": 71028,
@@ -8549,7 +8330,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8560,7 +8340,6 @@
         "schema.test.ts"
       ],
       "exampleFilesGeneratedAt": 1775949748062,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.93692325,
       "lastAPIDuration": 191504,
       "lastAPIDurationWithoutRetries": 191181,
@@ -8625,7 +8404,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8707,8 +8485,7 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8718,22 +8495,39 @@
         "custom.css",
         "blog-list-item.html.twig"
       ],
-      "lastCost": 0,
-      "lastAPIDuration": 0,
-      "lastAPIDurationWithoutRetries": 0,
-      "lastToolDuration": 0,
-      "lastDuration": 119940248,
-      "lastLinesAdded": 0,
-      "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 0,
-      "lastTotalOutputTokens": 0,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
+      "lastCost": 5.352266,
+      "lastAPIDuration": 260595,
+      "lastAPIDurationWithoutRetries": 260201,
+      "lastToolDuration": 26877,
+      "lastDuration": 29335873,
+      "lastLinesAdded": 17,
+      "lastLinesRemoved": 13,
+      "lastTotalInputTokens": 1080,
+      "lastTotalOutputTokens": 18381,
+      "lastTotalCacheCreationInputTokens": 243778,
+      "lastTotalCacheReadInputTokens": 4907482,
       "lastTotalWebSearchRequests": 0,
-      "lastFpsAverage": 0,
-      "lastFpsLow1Pct": 185.48,
-      "lastModelUsage": {},
-      "lastSessionId": "9efc57bc-5132-49b2-95e0-9f33ec975999",
+      "lastFpsAverage": 0.17,
+      "lastFpsLow1Pct": 353.52,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 980,
+          "outputTokens": 13,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001045
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 100,
+          "outputTokens": 18368,
+          "cacheReadInputTokens": 4907482,
+          "cacheCreationInputTokens": 243778,
+          "webSearchRequests": 0,
+          "costUSD": 5.351221000000001
+        }
+      },
+      "lastSessionId": "97434018-5e7e-43d9-a9d5-de42f4773973",
       "lastSessionMetrics": {
         "frame_duration_ms_count": 173,
         "frame_duration_ms_min": 0.10845900000003894,
@@ -8750,14 +8544,13 @@
         "hook_duration_ms_p95": 661,
         "hook_duration_ms_p99": 661
       },
-      "hasCompletedProjectOnboarding": true,
       "lastGracefulShutdown": true,
       "lastHintSessionId": "52a421a7-4148-41b1-a631-cc08dda2be80",
       "lastSessionFirstPrompt": "is the email ingestion script reading the email subject as part of the text extraction?",
       "lastSessionModified": 1778852670148,
-      "lastVersionBase": "2.1.220",
-      "exampleFilesGeneratedAt": 1784904438456,
-      "lastStartTime": 1785278251779
+      "lastVersionBase": "2.1.250",
+      "exampleFilesGeneratedAt": 1787898327780,
+      "lastStartTime": 1787898321527
     },
     "/Users/jimweller/scratch/claude-code-lsp-enforcement-kit": {
       "allowedTools": [],
@@ -8766,7 +8559,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8817,7 +8609,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -8829,7 +8620,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776301322365,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.25742000000000004,
       "lastAPIDuration": 46377,
       "lastAPIDurationWithoutRetries": 46370,
@@ -8894,12 +8684,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": true,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 4.03012575,
       "lastAPIDuration": 627287,
       "lastAPIDurationWithoutRetries": 626634,
@@ -8967,7 +8755,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -9028,7 +8815,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9040,7 +8826,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776482598238,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 3.82602375,
       "lastAPIDuration": 215948,
       "lastAPIDurationWithoutRetries": 215664,
@@ -9098,7 +8883,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -9167,7 +8951,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9179,7 +8962,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776653617037,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.57569375,
       "lastAPIDuration": 189552,
       "lastAPIDurationWithoutRetries": 189349,
@@ -9244,7 +9026,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9255,8 +9036,7 @@
         "config.py"
       ],
       "lastGracefulShutdown": false,
-      "exampleFilesGeneratedAt": 1787156452129,
-      "hasCompletedProjectOnboarding": true,
+      "exampleFilesGeneratedAt": 1787837232166,
       "lastCost": 3.7789216999999993,
       "lastAPIDuration": 376650,
       "lastAPIDurationWithoutRetries": 376339,
@@ -9322,7 +9102,7 @@
       "lastHintSessionId": "adffd815-24a8-4399-b532-99ed98da7a0f",
       "lastSessionFirstPrompt": "The c-cli does not have operations to support page versions. I ran into this issue in another session. --   This session is about improving the Confluence publishing workflow for the Harness Engineeri",
       "lastSessionModified": 1777970712151,
-      "lastVersionBase": "2.1.235",
+      "lastVersionBase": "2.1.247",
       "lastStartTime": 1785852264990,
       "lastFpsAverage": 0.87,
       "lastFpsLow1Pct": 262.66
@@ -9334,7 +9114,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9346,7 +9125,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776836314542,
-      "hasCompletedProjectOnboarding": true,
       "lastHintSessionId": "5a0c0a95-fe45-4965-88d5-6a8594088404",
       "lastSessionFirstPrompt": "any beads bd here?",
       "lastSessionModified": 1777406144336,
@@ -9414,7 +9192,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9426,7 +9203,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776838094194,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.6582607500000002,
       "lastAPIDuration": 348121,
       "lastAPIDurationWithoutRetries": 347500,
@@ -9491,7 +9267,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9503,7 +9278,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1776839532031,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.9152952500000001,
       "lastAPIDuration": 176296,
       "lastAPIDurationWithoutRetries": 176187,
@@ -9560,7 +9334,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9580,7 +9353,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -9649,7 +9421,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9725,7 +9496,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -9738,7 +9508,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -9802,7 +9571,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9814,7 +9582,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1777174871363,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 2.236355,
       "lastAPIDuration": 313961,
       "lastAPIDurationWithoutRetries": 313617,
@@ -9879,7 +9646,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastGracefulShutdown": true,
@@ -9955,7 +9721,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -9966,7 +9731,6 @@
         "dag_links_test.rs"
       ],
       "lastGracefulShutdown": true,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 44.25186304999998,
       "lastAPIDuration": 3571438,
       "lastAPIDurationWithoutRetries": 3567756,
@@ -10052,7 +9816,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -10064,7 +9827,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1777393182745,
-      "hasCompletedProjectOnboarding": true,
       "lastHintSessionId": "8e07e3f6-4410-487b-9bb3-843dede07dce",
       "lastSessionFirstPrompt": "Ok that's the hype and the mechanics from the README. Look deeper what can I *ACTUALLY* do with it, say in an automated workflow. Imagine I have a standing code repo and I want to deliver a new featur",
       "lastSessionModified": 1777393617874,
@@ -10124,7 +9886,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -10136,7 +9897,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1777403281732,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.7506077500000001,
       "lastAPIDuration": 234429,
       "lastAPIDurationWithoutRetries": 234273,
@@ -10193,7 +9953,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": true,
       "hasClaudeMdExternalIncludesWarningShown": true,
       "lastGracefulShutdown": true,
@@ -10205,7 +9964,6 @@
         "superpowers-codex"
       ],
       "exampleFilesGeneratedAt": 1777407141259,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.9857189999999998,
       "lastAPIDuration": 173367,
       "lastAPIDurationWithoutRetries": 173198,
@@ -10262,7 +10020,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10323,7 +10080,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -10394,7 +10150,6 @@
         "pre_tool_hook_duration_ms_p95": 123,
         "pre_tool_hook_duration_ms_p99": 123
       },
-      "hasCompletedProjectOnboarding": true,
       "lastVersionBase": "2.1.218",
       "lastStartTime": 1784838553842
     },
@@ -10405,7 +10160,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10421,7 +10175,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10466,7 +10219,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10529,8 +10281,7 @@
         "pre_tool_hook_duration_ms_p50": 105,
         "pre_tool_hook_duration_ms_p95": 300.15,
         "pre_tool_hook_duration_ms_p99": 379.3799999999999
-      },
-      "hasCompletedProjectOnboarding": true
+      }
     },
     "/Users/jimweller/scratch/code-review-graph": {
       "allowedTools": [],
@@ -10539,7 +10290,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -10551,7 +10301,6 @@
       ],
       "lastGracefulShutdown": true,
       "exampleFilesGeneratedAt": 1777793042331,
-      "hasCompletedProjectOnboarding": true,
       "lastHintSessionId": "239ac26e-450b-42d9-a95c-e2fee122af23",
       "lastSessionFirstPrompt": "how does this differ from an lsp like serena?",
       "lastSessionModified": 1777793817065,
@@ -10627,7 +10376,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10707,7 +10455,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10779,7 +10526,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -10851,34 +10597,50 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
         "capabilities-tools-skills-org-options.md.storage.xhtml",
-        "build-team-marketplace.py",
+        "review-body-fixed.xhtml",
+        "harness-composability.drawio",
         "Untitled 5.base",
-        "ai-guides-draft-body.html",
-        "Platform Capabilities for Org Planning.pptx"
+        "ai-guides-draft-body.html"
       ],
       "lastGracefulShutdown": false,
       "lastHintSessionId": "8de737d1-a15d-4932-9c09-7db04b379772",
       "lastSessionFirstPrompt": "read @\"M365 MCP Setup.md\"",
       "lastSessionModified": 1778062529001,
-      "lastCost": 0,
-      "lastAPIDuration": 0,
-      "lastAPIDurationWithoutRetries": 0,
-      "lastToolDuration": 0,
-      "lastDuration": 220740649,
+      "lastCost": 1.9663879999999998,
+      "lastAPIDuration": 143910,
+      "lastAPIDurationWithoutRetries": 143775,
+      "lastToolDuration": 111017,
+      "lastDuration": 38434537,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 0,
-      "lastTotalOutputTokens": 0,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalInputTokens": 930,
+      "lastTotalOutputTokens": 9963,
+      "lastTotalCacheCreationInputTokens": 126187,
+      "lastTotalCacheReadInputTokens": 909186,
       "lastTotalWebSearchRequests": 0,
-      "lastModelUsage": {},
-      "lastSessionId": "dea0d290-f35d-4bf6-82d4-6db943ac46d1",
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 900,
+          "outputTokens": 10,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.00095
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 30,
+          "outputTokens": 9953,
+          "cacheReadInputTokens": 909186,
+          "cacheCreationInputTokens": 126187,
+          "webSearchRequests": 0,
+          "costUSD": 1.9654379999999998
+        }
+      },
+      "lastSessionId": "976718fe-9cc6-4ce8-8fb2-8b50d4e127a4",
       "lastSessionMetrics": {
         "hook_duration_ms_count": 1,
         "hook_duration_ms_min": 1732,
@@ -10895,12 +10657,11 @@
         "frame_duration_ms_p95": 4.434600199013939,
         "frame_duration_ms_p99": 27.04405303999992
       },
-      "hasCompletedProjectOnboarding": true,
-      "lastVersionBase": "2.1.240",
-      "lastStartTime": 1787155134966,
-      "exampleFilesGeneratedAt": 1787150451106,
-      "lastFpsAverage": 0,
-      "lastFpsLow1Pct": 8.23
+      "lastVersionBase": "2.1.251",
+      "lastStartTime": 1787931534519,
+      "exampleFilesGeneratedAt": 1787823345641,
+      "lastFpsAverage": 0.02,
+      "lastFpsLow1Pct": 308.61
     },
     "/Users/jimweller/scratch/synapse-api-ui-demo": {
       "allowedTools": [],
@@ -10909,7 +10670,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 4,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -10989,7 +10749,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11046,8 +10805,7 @@
         "hook_duration_ms_p50": 760,
         "hook_duration_ms_p95": 27073.299999999996,
         "hook_duration_ms_p99": 29412.26
-      },
-      "hasCompletedProjectOnboarding": true
+      }
     },
     "/Users/jimweller/scratch/_crap/scheduling": {
       "allowedTools": [],
@@ -11056,7 +10814,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11102,7 +10859,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11175,7 +10931,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 5,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -11248,7 +11003,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -11328,7 +11082,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11401,7 +11154,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11475,7 +11227,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11489,7 +11240,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11551,7 +11301,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -11564,7 +11313,6 @@
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.144",
       "exampleFilesGeneratedAt": 1779238462869,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0,
       "lastAPIDuration": 0,
       "lastAPIDurationWithoutRetries": 0,
@@ -11605,7 +11353,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -11618,7 +11365,6 @@
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.145",
       "exampleFilesGeneratedAt": 1779286160314,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 0.278926,
       "lastAPIDuration": 41371,
       "lastAPIDurationWithoutRetries": 41317,
@@ -11683,7 +11429,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11753,7 +11498,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11839,7 +11583,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -11909,7 +11652,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": true,
@@ -11954,7 +11696,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12024,7 +11765,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12101,7 +11841,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12171,7 +11910,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 3,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12241,7 +11979,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12326,7 +12063,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12374,7 +12110,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12421,7 +12156,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12491,7 +12225,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12504,7 +12237,6 @@
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.169",
       "exampleFilesGeneratedAt": 1780959596137,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 7.0718197499999995,
       "lastAPIDuration": 560642,
       "lastAPIDurationWithoutRetries": 560318,
@@ -12562,7 +12294,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12639,7 +12370,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -12676,7 +12406,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12706,7 +12435,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12753,7 +12481,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12792,7 +12519,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -12806,12 +12532,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.202",
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 3.3762097499999997,
       "lastAPIDuration": 294117,
       "lastAPIDurationWithoutRetries": 293968,
@@ -12869,12 +12593,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.202",
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 1.48531575,
       "lastAPIDuration": 233257,
       "lastAPIDurationWithoutRetries": 233101,
@@ -12940,12 +12662,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.205",
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 29.887779750000007,
       "lastAPIDuration": 2778908,
       "lastAPIDurationWithoutRetries": 2712965,
@@ -12988,7 +12708,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13036,7 +12755,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -13046,91 +12764,66 @@
         "rules.test.ts",
         "config.ts"
       ],
-      "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.243",
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.251",
       "exampleFilesGeneratedAt": 1787616036120,
-      "lastCost": 50.74785180000003,
-      "lastAPIDuration": 4009907,
-      "lastAPIDurationWithoutRetries": 4008006,
-      "lastToolDuration": 219033,
-      "lastDuration": 73883053,
-      "lastStartTime": 1786917667780,
-      "lastLinesAdded": 106,
-      "lastLinesRemoved": 6,
-      "lastTotalInputTokens": 179462,
-      "lastTotalOutputTokens": 296447,
-      "lastTotalCacheCreationInputTokens": 2190347,
-      "lastTotalCacheReadInputTokens": 54697370,
+      "lastCost": 2.412976000000001,
+      "lastAPIDuration": 226173,
+      "lastAPIDurationWithoutRetries": 225943,
+      "lastToolDuration": 7325,
+      "lastDuration": 11420774,
+      "lastStartTime": 1787969779566,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 1845,
+      "lastTotalOutputTokens": 16886,
+      "lastTotalCacheCreationInputTokens": 117106,
+      "lastTotalCacheReadInputTokens": 1636210,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
-        "global.anthropic.claude-fable-5[1m]": {
-          "inputTokens": 74,
-          "outputTokens": 20471,
-          "cacheReadInputTokens": 4037974,
-          "cacheCreationInputTokens": 138353,
+        "claude-haiku-4-5": {
+          "inputTokens": 1811,
+          "outputTokens": 16,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 7.829323999999998
-        },
-        "global.anthropic.claude-sonnet-5[1m]": {
-          "inputTokens": 112053,
-          "outputTokens": 146158,
-          "cacheReadInputTokens": 11749848,
-          "cacheCreationInputTokens": 982591,
-          "webSearchRequests": 0,
-          "costUSD": 11.949029399999997
-        },
-        "global.anthropic.claude-opus-5[1m]": {
-          "inputTokens": 54,
-          "outputTokens": 29070,
-          "cacheReadInputTokens": 4114689,
-          "cacheCreationInputTokens": 166369,
-          "webSearchRequests": 0,
-          "costUSD": 4.448054500000001
+          "costUSD": 0.0018909999999999999
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 244,
-          "outputTokens": 72119,
-          "cacheReadInputTokens": 29609086,
-          "cacheCreationInputTokens": 577056,
+          "inputTokens": 34,
+          "outputTokens": 16870,
+          "cacheReadInputTokens": 1636210,
+          "cacheCreationInputTokens": 117106,
           "webSearchRequests": 0,
-          "costUSD": 22.379297999999995
-        },
-        "claude-sonnet-5[1m]": {
-          "inputTokens": 67037,
-          "outputTokens": 28629,
-          "cacheReadInputTokens": 5185773,
-          "cacheCreationInputTokens": 325978,
-          "webSearchRequests": 0,
-          "costUSD": 4.142145900000002
+          "costUSD": 2.411085000000001
         }
       },
-      "lastSessionId": "b08003c2-af45-4892-a88c-bb8241b7a942",
-      "hasCompletedProjectOnboarding": true,
+      "lastSessionId": "63677fc5-7584-4903-8013-952639df472c",
       "lastSessionMetrics": {
-        "hook_duration_ms_count": 44,
-        "hook_duration_ms_min": 119,
-        "hook_duration_ms_max": 15866,
-        "hook_duration_ms_avg": 869.1818181818181,
-        "hook_duration_ms_p50": 241.5,
-        "hook_duration_ms_p95": 3666.150000000005,
-        "hook_duration_ms_p99": 12826.760000000002,
-        "frame_duration_ms_count": 1922,
-        "frame_duration_ms_min": 0.042459000018425286,
-        "frame_duration_ms_max": 10.176124999999956,
-        "frame_duration_ms_avg": 0.5959468714872251,
-        "frame_duration_ms_p50": 0.4628755000012461,
-        "frame_duration_ms_p95": 1.557031199976336,
-        "frame_duration_ms_p99": 3.038744679928348,
-        "pre_tool_hook_duration_ms_count": 18,
-        "pre_tool_hook_duration_ms_min": 0,
-        "pre_tool_hook_duration_ms_max": 243,
-        "pre_tool_hook_duration_ms_avg": 133.88888888888889,
-        "pre_tool_hook_duration_ms_p50": 136.5,
-        "pre_tool_hook_duration_ms_p95": 236.2,
-        "pre_tool_hook_duration_ms_p99": 241.64
+        "frame_duration_ms_count": 496,
+        "frame_duration_ms_min": 0.06995799951255322,
+        "frame_duration_ms_max": 61.2198750001844,
+        "frame_duration_ms_avg": 1.0347478508008834,
+        "frame_duration_ms_p50": 0.5673959999985527,
+        "frame_duration_ms_p95": 2.7647395000385586,
+        "frame_duration_ms_p99": 4.611364599993257,
+        "hook_duration_ms_count": 31,
+        "hook_duration_ms_min": 0,
+        "hook_duration_ms_max": 935,
+        "hook_duration_ms_avg": 95.35483870967742,
+        "hook_duration_ms_p50": 73,
+        "hook_duration_ms_p95": 391,
+        "hook_duration_ms_p99": 782.2999999999996,
+        "pre_tool_hook_duration_ms_count": 14,
+        "pre_tool_hook_duration_ms_min": 71,
+        "pre_tool_hook_duration_ms_max": 111,
+        "pre_tool_hook_duration_ms_avg": 87.71428571428571,
+        "pre_tool_hook_duration_ms_p50": 84.5,
+        "pre_tool_hook_duration_ms_p95": 110.35,
+        "pre_tool_hook_duration_ms_p99": 110.87
       },
-      "lastFpsAverage": 0.02,
-      "lastFpsLow1Pct": 333.64
+      "lastFpsAverage": 0.11,
+      "lastFpsLow1Pct": 263.58
     },
     "/Users/jimweller/work/Mcg.DaVinci.ReconSkillsAgents": {
       "allowedTools": [],
@@ -13139,7 +12832,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": true,
@@ -13169,7 +12861,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13216,55 +12907,53 @@
       "mcpServers": {},
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
-      "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
+      "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
         "report.mjs",
         "harness-core.mjs",
         "001_schema.sql",
-        "cancel.mjs",
+        "report.test.mjs",
         "pulse-core.mjs"
       ],
       "lastGracefulShutdown": true,
-      "lastVersionBase": "2.1.228",
-      "exampleFilesGeneratedAt": 1786549162444,
-      "lastCost": 42.5929065,
-      "lastAPIDuration": 2456332,
-      "lastAPIDurationWithoutRetries": 2454139,
-      "lastToolDuration": 33088,
-      "lastDuration": 203011211,
-      "lastStartTime": 1786549161887,
-      "lastLinesAdded": 733,
-      "lastLinesRemoved": 356,
-      "lastTotalInputTokens": 924,
-      "lastTotalOutputTokens": 184643,
-      "lastTotalCacheCreationInputTokens": 1085430,
-      "lastTotalCacheReadInputTokens": 54240639,
+      "lastVersionBase": "2.1.246",
+      "exampleFilesGeneratedAt": 1787779998092,
+      "lastCost": 26.676384499999998,
+      "lastAPIDuration": 1710980,
+      "lastAPIDurationWithoutRetries": 1709431,
+      "lastToolDuration": 26862,
+      "lastDuration": 56567469,
+      "lastStartTime": 1787779993736,
+      "lastLinesAdded": 126,
+      "lastLinesRemoved": 101,
+      "lastTotalInputTokens": 1210,
+      "lastTotalOutputTokens": 134797,
+      "lastTotalCacheCreationInputTokens": 615446,
+      "lastTotalCacheReadInputTokens": 35334939,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
         "claude-opus-5[1m]": {
-          "inputTokens": 402,
-          "outputTokens": 184627,
-          "cacheReadInputTokens": 54240639,
-          "cacheCreationInputTokens": 1085430,
+          "inputTokens": 294,
+          "outputTokens": 134575,
+          "cacheReadInputTokens": 35334939,
+          "cacheCreationInputTokens": 551269,
           "webSearchRequests": 0,
-          "costUSD": 42.5923045
+          "costUSD": 26.5460045
         },
         "claude-haiku-4-5": {
-          "inputTokens": 522,
-          "outputTokens": 16,
+          "inputTokens": 916,
+          "outputTokens": 222,
           "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
+          "cacheCreationInputTokens": 64177,
           "webSearchRequests": 0,
-          "costUSD": 0.000602
+          "costUSD": 0.13038
         }
       },
-      "lastSessionId": "5a92713b-e0db-4e48-b4d9-fd8876ba5d32",
-      "lastFpsAverage": 0.05,
-      "lastFpsLow1Pct": 214.55,
-      "hasCompletedProjectOnboarding": true,
+      "lastSessionId": "071c1b61-905f-46ff-a78c-4218fb9b199e",
+      "lastFpsAverage": 0.12,
+      "lastFpsLow1Pct": 368.77,
       "lastSessionMetrics": {
         "frame_duration_ms_count": 8840,
         "frame_duration_ms_min": 0.04691600054502487,
@@ -13296,44 +12985,28 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 2,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.235",
-      "lastCost": 4.728824500000001,
-      "lastAPIDuration": 471019,
-      "lastAPIDurationWithoutRetries": 470652,
-      "lastToolDuration": 48896,
-      "lastDuration": 65621980,
-      "lastStartTime": 1787271711091,
+      "lastVersionBase": "2.1.251",
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 7456,
+      "lastStartTime": 1787952546627,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 1070,
-      "lastTotalOutputTokens": 34521,
-      "lastTotalCacheCreationInputTokens": 193616,
-      "lastTotalCacheReadInputTokens": 3857139,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
       "lastTotalWebSearchRequests": 0,
-      "lastModelUsage": {
-        "claude-haiku-4-5": {
-          "inputTokens": 990,
-          "outputTokens": 16,
-          "cacheReadInputTokens": 0,
-          "cacheCreationInputTokens": 0,
-          "webSearchRequests": 0,
-          "costUSD": 0.00107
-        },
-        "claude-opus-5[1m]": {
-          "inputTokens": 80,
-          "outputTokens": 34505,
-          "cacheReadInputTokens": 3857139,
-          "cacheCreationInputTokens": 193616,
-          "webSearchRequests": 0,
-          "costUSD": 4.7277545000000005
-        }
-      },
-      "lastSessionId": "31920424-af80-4729-badc-a0ad42cd74c2"
+      "lastModelUsage": {},
+      "lastSessionId": "b9196997-22a7-4a0e-8631-86657d841b06",
+      "lastFpsAverage": 0.2,
+      "lastFpsLow1Pct": 392.52
     },
     "/Users/jimweller/scratch/sc": {
       "allowedTools": [],
@@ -13342,7 +13015,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13373,45 +13045,43 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.237",
-      "lastCost": 9.152029699999998,
-      "lastAPIDuration": 1272734,
-      "lastAPIDurationWithoutRetries": 1272370,
-      "lastToolDuration": 24166,
-      "lastDuration": 255927426,
-      "lastStartTime": 1787322509316,
-      "lastLinesAdded": 971,
-      "lastLinesRemoved": 954,
-      "lastTotalInputTokens": 65680,
-      "lastTotalOutputTokens": 121825,
-      "lastTotalCacheCreationInputTokens": 619386,
-      "lastTotalCacheReadInputTokens": 7502393,
+      "lastVersionBase": "2.1.247",
+      "lastCost": 6.735741400000002,
+      "lastAPIDuration": 1248307,
+      "lastAPIDurationWithoutRetries": 1247991,
+      "lastToolDuration": 496758,
+      "lastDuration": 81823416,
+      "lastStartTime": 1787839869158,
+      "lastLinesAdded": 895,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 77615,
+      "lastTotalOutputTokens": 123427,
+      "lastTotalCacheCreationInputTokens": 620489,
+      "lastTotalCacheReadInputTokens": 6590361,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
         "claude-opus-5[1m]": {
-          "inputTokens": 38,
-          "outputTokens": 17065,
-          "cacheReadInputTokens": 1994414,
-          "cacheCreationInputTokens": 147743,
+          "inputTokens": 32,
+          "outputTokens": 17108,
+          "cacheReadInputTokens": 1586864,
+          "cacheCreationInputTokens": 135573,
           "webSearchRequests": 0,
-          "costUSD": 2.901451999999999
+          "costUSD": 2.5770220000000004
         },
         "claude-sonnet-5[1m]": {
-          "inputTokens": 65642,
-          "outputTokens": 104760,
-          "cacheReadInputTokens": 5507979,
-          "cacheCreationInputTokens": 471643,
+          "inputTokens": 77583,
+          "outputTokens": 106319,
+          "cacheReadInputTokens": 5003497,
+          "cacheCreationInputTokens": 484916,
           "webSearchRequests": 0,
-          "costUSD": 6.250577699999998
+          "costUSD": 4.1587194
         }
       },
-      "lastSessionId": "d5a35690-fef1-49bf-97ce-e6dd43390b51",
-      "hasCompletedProjectOnboarding": true
+      "lastSessionId": "f39153d3-be33-4b07-8dbc-c73dcff28fcf"
     },
     "/Users/jimweller/scratch/ai-online-course": {
       "allowedTools": [],
@@ -13420,7 +13090,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13451,27 +13120,45 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.235",
-      "lastCost": 0,
-      "lastAPIDuration": 0,
-      "lastAPIDurationWithoutRetries": 0,
-      "lastToolDuration": 0,
-      "lastDuration": 109757322,
-      "lastStartTime": 1787155134949,
+      "lastCost": 3.7578815000000003,
+      "lastAPIDuration": 509879,
+      "lastAPIDurationWithoutRetries": 509486,
+      "lastToolDuration": 262200,
+      "lastDuration": 368872950,
+      "lastStartTime": 1787264892271,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 0,
-      "lastTotalOutputTokens": 0,
-      "lastTotalCacheCreationInputTokens": 0,
-      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalInputTokens": 1010,
+      "lastTotalOutputTokens": 38678,
+      "lastTotalCacheCreationInputTokens": 155547,
+      "lastTotalCacheReadInputTokens": 2468919,
       "lastTotalWebSearchRequests": 0,
-      "lastModelUsage": {},
-      "lastSessionId": "c49b6eb6-60c1-4318-90d2-38521567b387"
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 942,
+          "outputTokens": 14,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001012
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 68,
+          "outputTokens": 38664,
+          "cacheReadInputTokens": 2468919,
+          "cacheCreationInputTokens": 155547,
+          "webSearchRequests": 0,
+          "costUSD": 3.7568695
+        }
+      },
+      "lastSessionId": "b800cd7e-fd74-4a1d-8a0f-7c46aa377303",
+      "lastFpsAverage": 0.01,
+      "lastFpsLow1Pct": 169.55
     },
     "/private/tmp/sysmsg-tui-probe": {
       "allowedTools": [],
@@ -13480,7 +13167,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13528,7 +13214,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -13591,7 +13276,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [
@@ -13604,7 +13288,6 @@
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.231",
       "exampleFilesGeneratedAt": 1786628102397,
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 6.422797400000001,
       "lastAPIDuration": 573532,
       "lastAPIDurationWithoutRetries": 573061,
@@ -13655,13 +13338,11 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.232",
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 14.263140300000002,
       "lastAPIDuration": 1116533,
       "lastAPIDurationWithoutRetries": 1115653,
@@ -13712,7 +13393,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13760,7 +13440,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13823,13 +13502,11 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.233",
-      "hasCompletedProjectOnboarding": true,
       "lastCost": 6.413424999999999,
       "lastAPIDuration": 495458,
       "lastAPIDurationWithoutRetries": 495121,
@@ -13872,7 +13549,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13920,7 +13596,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -13991,7 +13666,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -14031,12 +13705,44 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.235"
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.235",
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 479385004,
+      "lastStartTime": 1787155134934,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0,
+      "lastFpsLow1Pct": 14.3,
+      "lastModelUsage": {},
+      "lastSessionId": "05d455e8-f32e-424e-91b2-6044369d8e78",
+      "lastSessionMetrics": {
+        "hook_duration_ms_count": 1,
+        "hook_duration_ms_min": 4429,
+        "hook_duration_ms_max": 4429,
+        "hook_duration_ms_avg": 4429,
+        "hook_duration_ms_p50": 4429,
+        "hook_duration_ms_p95": 4429,
+        "hook_duration_ms_p99": 4429,
+        "frame_duration_ms_count": 166,
+        "frame_duration_ms_min": 0.10112500190734863,
+        "frame_duration_ms_max": 83.79308301210403,
+        "frame_duration_ms_avg": 3.8981742046553225,
+        "frame_duration_ms_p50": 0.4661875097081065,
+        "frame_duration_ms_p95": 28.73379173874855,
+        "frame_duration_ms_p99": 57.653378944743174
+      }
     },
     "/Users/jimweller/Downloads/hearst-invulnerability-df91137": {
       "allowedTools": [],
@@ -14045,7 +13751,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -14101,7 +13806,6 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 1,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
@@ -14149,11 +13853,10 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": true,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.239",
+      "lastVersionBase": "2.1.247",
       "exampleFiles": [
         "version.py",
         "s4_audit.py",
@@ -14212,12 +13915,53 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.241"
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.241",
+      "lastCost": 2.3433015,
+      "lastAPIDuration": 123385,
+      "lastAPIDurationWithoutRetries": 123383,
+      "lastToolDuration": 0,
+      "lastDuration": 30804385,
+      "lastStartTime": 1787603650364,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 2316,
+      "lastTotalOutputTokens": 10927,
+      "lastTotalCacheCreationInputTokens": 204825,
+      "lastTotalCacheReadInputTokens": 20593,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.01,
+      "lastFpsLow1Pct": 37.02,
+      "lastModelUsage": {
+        "claude-opus-5[1m]": {
+          "inputTokens": 2316,
+          "outputTokens": 10927,
+          "cacheReadInputTokens": 20593,
+          "cacheCreationInputTokens": 204825,
+          "webSearchRequests": 0,
+          "costUSD": 2.3433015
+        }
+      },
+      "lastSessionId": "b7b9c361-4777-4c8b-b1f9-a300ae16254a",
+      "lastSessionMetrics": {
+        "hook_duration_ms_count": 4,
+        "hook_duration_ms_min": 294,
+        "hook_duration_ms_max": 616,
+        "hook_duration_ms_avg": 438.5,
+        "hook_duration_ms_p50": 422,
+        "hook_duration_ms_p95": 600.6999999999999,
+        "hook_duration_ms_p99": 612.9399999999999,
+        "frame_duration_ms_count": 174,
+        "frame_duration_ms_min": 0.07699999999022111,
+        "frame_duration_ms_max": 28.22995899990201,
+        "frame_duration_ms_avg": 1.2570670919217812,
+        "frame_duration_ms_p50": 0.5671460005833069,
+        "frame_duration_ms_p95": 3.0069875001492568,
+        "frame_duration_ms_p99": 14.12378640966508
+      }
     },
     "/Users/jimweller/scratch/s2": {
       "allowedTools": [],
@@ -14226,41 +13970,355 @@
       "enabledMcpjsonServers": [],
       "disabledMcpjsonServers": [],
       "hasTrustDialogAccepted": false,
-      "projectOnboardingSeenCount": 0,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastGracefulShutdown": false,
+      "lastGracefulShutdown": true,
       "lastVersionBase": "2.1.241",
-      "lastCost": 1.938591,
-      "lastAPIDuration": 43368,
-      "lastAPIDurationWithoutRetries": 43340,
-      "lastToolDuration": 364,
-      "lastDuration": 160237,
-      "lastStartTime": 1787603685970,
-      "lastLinesAdded": 98,
+      "lastCost": 2.279595,
+      "lastAPIDuration": 353614,
+      "lastAPIDurationWithoutRetries": 353420,
+      "lastToolDuration": 13253,
+      "lastDuration": 30608771,
+      "lastStartTime": 1787603846207,
+      "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 8,
-      "lastTotalOutputTokens": 3113,
-      "lastTotalCacheCreationInputTokens": 159692,
-      "lastTotalCacheReadInputTokens": 527612,
+      "lastTotalInputTokens": 999,
+      "lastTotalOutputTokens": 25735,
+      "lastTotalCacheCreationInputTokens": 71513,
+      "lastTotalCacheReadInputTokens": 1840230,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 945,
+          "outputTokens": 12,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001005
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 54,
+          "outputTokens": 25723,
+          "cacheReadInputTokens": 1840230,
+          "cacheCreationInputTokens": 71513,
+          "webSearchRequests": 0,
+          "costUSD": 2.2785900000000003
+        }
+      },
+      "lastSessionId": "ba748926-953e-4411-8661-5483edc272e6",
+      "lastFpsAverage": 0.04,
+      "lastFpsLow1Pct": 277.93,
+      "lastSessionMetrics": {
+        "hook_duration_ms_count": 65,
+        "hook_duration_ms_min": 0,
+        "hook_duration_ms_max": 971,
+        "hook_duration_ms_avg": 110.84615384615384,
+        "hook_duration_ms_p50": 103,
+        "hook_duration_ms_p95": 504.59999999999934,
+        "hook_duration_ms_p99": 766.1999999999998,
+        "frame_duration_ms_count": 817,
+        "frame_duration_ms_min": 0.0367909999913536,
+        "frame_duration_ms_max": 27.811165999621153,
+        "frame_duration_ms_avg": 0.6602709216721405,
+        "frame_duration_ms_p50": 0.41404200000397395,
+        "frame_duration_ms_p95": 1.6891086002462532,
+        "frame_duration_ms_p99": 3.5709762799926157,
+        "pre_tool_hook_duration_ms_count": 30,
+        "pre_tool_hook_duration_ms_min": 94,
+        "pre_tool_hook_duration_ms_max": 152,
+        "pre_tool_hook_duration_ms_avg": 122.86666666666666,
+        "pre_tool_hook_duration_ms_p50": 120.5,
+        "pre_tool_hook_duration_ms_p95": 146.49999999999997,
+        "pre_tool_hook_duration_ms_p99": 151.71
+      }
+    },
+    "/Users/jimweller/work/mcg-ai-usage-data": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.245",
+      "lastCost": 33.582832500000016,
+      "lastAPIDuration": 2319804,
+      "lastAPIDurationWithoutRetries": 2317673,
+      "lastToolDuration": 569449,
+      "lastDuration": 67695824,
+      "lastStartTime": 1787682507630,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 255665,
+      "lastTotalOutputTokens": 182062,
+      "lastTotalCacheCreationInputTokens": 845630,
+      "lastTotalCacheReadInputTokens": 38361427,
+      "lastTotalWebSearchRequests": 12,
+      "lastModelUsage": {
+        "claude-haiku-4-5": {
+          "inputTokens": 949,
+          "outputTokens": 13,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.001014
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 254716,
+          "outputTokens": 182049,
+          "cacheReadInputTokens": 38361427,
+          "cacheCreationInputTokens": 845630,
+          "webSearchRequests": 12,
+          "costUSD": 33.58181850000001
+        }
+      },
+      "lastSessionId": "0c6cc52e-191e-4580-adc8-15029366649c",
+      "lastFpsAverage": 0.45,
+      "lastFpsLow1Pct": 602.59
+    },
+    "/Users/jimweller/work/Mcg.Path.DemoSimulator": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.247",
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 29424,
+      "lastStartTime": 1787750707464,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastModelUsage": {},
+      "lastSessionId": "32032e07-8234-4316-9f38-de3a96a9e26f"
+    },
+    "/Users/jimweller/work/prototype-sandbox": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.247",
+      "exampleFiles": [
+        "App.vue",
+        "_layout.vue",
+        "session-management.mdc",
+        "EpisodeOverview.vue",
+        "HomePage.vue"
+      ],
+      "exampleFilesGeneratedAt": 1787750830638,
+      "lastCost": 39.2612165,
+      "lastAPIDuration": 2179965,
+      "lastAPIDurationWithoutRetries": 2178069,
+      "lastToolDuration": 1949196,
+      "lastDuration": 7280229,
+      "lastStartTime": 1787750828950,
+      "lastLinesAdded": 984,
+      "lastLinesRemoved": 33,
+      "lastTotalInputTokens": 1358,
+      "lastTotalOutputTokens": 161060,
+      "lastTotalCacheCreationInputTokens": 601803,
+      "lastTotalCacheReadInputTokens": 58427737,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 2.28,
+      "lastFpsLow1Pct": 365.63,
+      "lastModelUsage": {
+        "claude-opus-5[1m]": {
+          "inputTokens": 440,
+          "outputTokens": 161045,
+          "cacheReadInputTokens": 58427737,
+          "cacheCreationInputTokens": 601803,
+          "webSearchRequests": 0,
+          "costUSD": 39.26022350000001
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 918,
+          "outputTokens": 15,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.000993
+        }
+      },
+      "lastSessionId": "a8be5ee5-4426-43a3-af2d-fb6bd3c55a14"
+    },
+    "/Users/jimweller/work/mcg-productassistant": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.250",
+      "exampleFiles": [
+        "ChatView.vue",
+        "client.ts",
+        "chat.py",
+        "document_publishing.py",
+        "chatStore.ts"
+      ],
+      "exampleFilesGeneratedAt": 1787758740832,
+      "lastCost": 44.178137500000005,
+      "lastAPIDuration": 2081725,
+      "lastAPIDurationWithoutRetries": 2079618,
+      "lastToolDuration": 4110942,
+      "lastDuration": 171728348,
+      "lastStartTime": 1787758739412,
+      "lastLinesAdded": 897,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 1398,
+      "lastTotalOutputTokens": 150452,
+      "lastTotalCacheCreationInputTokens": 1037089,
+      "lastTotalCacheReadInputTokens": 60085539,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
         "claude-opus-5[1m]": {
-          "inputTokens": 8,
-          "outputTokens": 3113,
-          "cacheReadInputTokens": 527612,
-          "cacheCreationInputTokens": 159692,
+          "inputTokens": 500,
+          "outputTokens": 150441,
+          "cacheReadInputTokens": 60085539,
+          "cacheCreationInputTokens": 1037089,
           "webSearchRequests": 0,
-          "costUSD": 1.938591
+          "costUSD": 44.17718450000001
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 898,
+          "outputTokens": 11,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.0009530000000000001
         }
       },
-      "lastSessionId": "e978d02c-8eee-4729-810e-a64e37536cfc"
+      "lastSessionId": "c4a8fed7-8b1e-4760-bd5e-14f8c930a75e"
+    },
+    "/Users/jimweller/work/ai-gateway": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": true,
+      "lastVersionBase": "2.1.251",
+      "lastCost": 0,
+      "lastAPIDuration": 0,
+      "lastAPIDurationWithoutRetries": 0,
+      "lastToolDuration": 0,
+      "lastDuration": 225877,
+      "lastStartTime": 1787956307686,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 0,
+      "lastTotalOutputTokens": 0,
+      "lastTotalCacheCreationInputTokens": 0,
+      "lastTotalCacheReadInputTokens": 0,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 3.96,
+      "lastFpsLow1Pct": 701.96,
+      "lastModelUsage": {},
+      "lastSessionId": "83613463-1125-4a7a-84f3-15f03a82dd0a"
+    },
+    "/Users/jimweller/work/ai-gateway-poc": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.251",
+      "lastCost": 77.10075330000004,
+      "lastAPIDuration": 3317955,
+      "lastAPIDurationWithoutRetries": 3314706,
+      "lastToolDuration": 1598954,
+      "lastDuration": 173453754,
+      "lastStartTime": 1787956545028,
+      "lastLinesAdded": 1123,
+      "lastLinesRemoved": 58,
+      "lastTotalInputTokens": 232909,
+      "lastTotalOutputTokens": 214943,
+      "lastTotalCacheCreationInputTokens": 2255742,
+      "lastTotalCacheReadInputTokens": 48405703,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 2.04,
+      "lastFpsLow1Pct": 193.27,
+      "lastModelUsage": {
+        "claude-fable-5[1m]": {
+          "inputTokens": 368,
+          "outputTokens": 139375,
+          "cacheReadInputTokens": 36284046,
+          "cacheCreationInputTokens": 1167847,
+          "webSearchRequests": 0,
+          "costUSD": 66.61341600000002
+        },
+        "claude-sonnet-5[1m]": {
+          "inputTokens": 226858,
+          "outputTokens": 62772,
+          "cacheReadInputTokens": 8721914,
+          "cacheCreationInputTokens": 580439,
+          "webSearchRequests": 0,
+          "costUSD": 5.1475748
+        },
+        "claude-haiku-4-5": {
+          "inputTokens": 5657,
+          "outputTokens": 1093,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 217312,
+          "webSearchRequests": 0,
+          "costUSD": 0.445746
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 26,
+          "outputTokens": 11703,
+          "cacheReadInputTokens": 3399743,
+          "cacheCreationInputTokens": 290144,
+          "webSearchRequests": 0,
+          "costUSD": 4.894016500000001
+        }
+      },
+      "lastSessionId": "d5f89561-f420-4092-b12a-d93e91bf8f54"
+    },
+    "/Users/jimweller/work/llmdocs": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.251"
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
   "userID": "3fc9c4ec492f23923d936796b55f6312b8069a3fce361a46092c6de29d9514c6",
-  "lastReleaseNotesSeen": "2.1.243",
+  "lastReleaseNotesSeen": "2.1.251",
   "mcpServers": {
     "context7": {
       "type": "stdio",
@@ -14537,12 +14595,12 @@
       "lastUsedAt": 1771538880918
     },
     "firewall": {
-      "usageCount": 3,
-      "lastUsedAt": 1785341190637
+      "usageCount": 4,
+      "lastUsedAt": 1787887187210
     },
     "zscaler": {
-      "usageCount": 4,
-      "lastUsedAt": 1773777869846
+      "usageCount": 5,
+      "lastUsedAt": 1787885209793
     },
     "md-writer": {
       "usageCount": 2,
@@ -14565,8 +14623,8 @@
       "lastUsedAt": 1770087818123
     },
     "md-lint": {
-      "usageCount": 348,
-      "lastUsedAt": 1787374056375
+      "usageCount": 352,
+      "lastUsedAt": 1788145866675
     },
     "publish": {
       "usageCount": 11,
@@ -14585,24 +14643,24 @@
       "lastUsedAt": 1769957781495
     },
     "md-style": {
-      "usageCount": 60,
-      "lastUsedAt": 1787346289491
+      "usageCount": 65,
+      "lastUsedAt": 1788145866840
     },
     "jira": {
       "usageCount": 316,
       "lastUsedAt": 1774921207148
     },
     "readme": {
-      "usageCount": 50,
-      "lastUsedAt": 1786923817278
+      "usageCount": 51,
+      "lastUsedAt": 1787665765540
     },
     "md-syntax": {
-      "usageCount": 90,
-      "lastUsedAt": 1787582558248
+      "usageCount": 97,
+      "lastUsedAt": 1787949098079
     },
     "ado": {
-      "usageCount": 51,
-      "lastUsedAt": 1787594334521
+      "usageCount": 65,
+      "lastUsedAt": 1787921348354
     },
     "claude-migrate-session": {
       "usageCount": 27,
@@ -14673,8 +14731,8 @@
       "lastUsedAt": 1776831792212
     },
     "mcg-atlassian:jira": {
-      "usageCount": 528,
-      "lastUsedAt": 1787578554500
+      "usageCount": 547,
+      "lastUsedAt": 1787922024755
     },
     "understand": {
       "usageCount": 2,
@@ -14685,8 +14743,8 @@
       "lastUsedAt": 1775952698182
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 659,
-      "lastUsedAt": 1787591490448
+      "usageCount": 683,
+      "lastUsedAt": 1787922048048
     },
     "code-reviews": {
       "usageCount": 21,
@@ -14697,20 +14755,20 @@
       "lastUsedAt": 1774921229306
     },
     "mcg-jira-prefs": {
-      "usageCount": 262,
-      "lastUsedAt": 1787578556075
+      "usageCount": 281,
+      "lastUsedAt": 1787922024846
     },
     "handoff": {
       "usageCount": 50,
       "lastUsedAt": 1786589815226
     },
     "mcg-confluence-prefs": {
-      "usageCount": 310,
-      "lastUsedAt": 1787591497929
+      "usageCount": 335,
+      "lastUsedAt": 1787922048123
     },
     "commit": {
-      "usageCount": 343,
-      "lastUsedAt": 1787613290613
+      "usageCount": 348,
+      "lastUsedAt": 1788156679164
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -14737,20 +14795,20 @@
       "lastUsedAt": 1776831783561
     },
     "familiarize": {
-      "usageCount": 66,
-      "lastUsedAt": 1787247531326
+      "usageCount": 71,
+      "lastUsedAt": 1787922356557
     },
     "sage": {
-      "usageCount": 272,
-      "lastUsedAt": 1787579712694
+      "usageCount": 276,
+      "lastUsedAt": 1787975378617
     },
     "update-config": {
       "usageCount": 2,
       "lastUsedAt": 1784146322667
     },
     "session-migrate": {
-      "usageCount": 12,
-      "lastUsedAt": 1787603528226
+      "usageCount": 13,
+      "lastUsedAt": 1787750483549
     },
     "mem-search": {
       "usageCount": 23,
@@ -14789,12 +14847,12 @@
       "lastUsedAt": 1775944503439
     },
     "mcg-status-updates:daily-standup": {
-      "usageCount": 78,
-      "lastUsedAt": 1787578482495
+      "usageCount": 82,
+      "lastUsedAt": 1787921696538
     },
     "mcg-lookup:mcg-lookup": {
-      "usageCount": 10,
-      "lastUsedAt": 1787374029242
+      "usageCount": 13,
+      "lastUsedAt": 1787896722118
     },
     "agent-browser:slack": {
       "usageCount": 1,
@@ -14805,8 +14863,8 @@
       "lastUsedAt": 1787582034313
     },
     "claude-mem:mem-search": {
-      "usageCount": 32,
-      "lastUsedAt": 1786685749536
+      "usageCount": 33,
+      "lastUsedAt": 1787821212086
     },
     "obsidian-cli": {
       "usageCount": 6,
@@ -14821,20 +14879,20 @@
       "lastUsedAt": 1776402714543
     },
     "docs": {
-      "usageCount": 35,
-      "lastUsedAt": 1786923796344
+      "usageCount": 36,
+      "lastUsedAt": 1787665719518
     },
     "llmdocs": {
-      "usageCount": 37,
-      "lastUsedAt": 1786923813053
+      "usageCount": 38,
+      "lastUsedAt": 1787665748806
     },
     "review-quick": {
       "usageCount": 2,
       "lastUsedAt": 1777186326462
     },
     "claude-api": {
-      "usageCount": 20,
-      "lastUsedAt": 1786620685364
+      "usageCount": 23,
+      "lastUsedAt": 1787931314125
     },
     "prd": {
       "usageCount": 2,
@@ -14893,8 +14951,8 @@
       "lastUsedAt": 1777433742505
     },
     "review-full": {
-      "usageCount": 7,
-      "lastUsedAt": 1787251631479
+      "usageCount": 8,
+      "lastUsedAt": 1787666350719
     },
     "fact-check": {
       "usageCount": 27,
@@ -14945,16 +15003,16 @@
       "lastUsedAt": 1779976333561
     },
     "defuddle": {
-      "usageCount": 11,
-      "lastUsedAt": 1786590386459
+      "usageCount": 12,
+      "lastUsedAt": 1787896722719
     },
     "claude-mem:knowledge-agent": {
       "usageCount": 2,
       "lastUsedAt": 1780396559700
     },
     "employee-termination:employee-termination": {
-      "usageCount": 2,
-      "lastUsedAt": 1785794902477
+      "usageCount": 3,
+      "lastUsedAt": 1787667197990
     },
     "azure:azure-enterprise-infra-planner": {
       "usageCount": 1,
@@ -14969,8 +15027,8 @@
       "lastUsedAt": 1783605608402
     },
     "dataviz": {
-      "usageCount": 3,
-      "lastUsedAt": 1786578126766
+      "usageCount": 4,
+      "lastUsedAt": 1787674986878
     },
     "employee-termination": {
       "usageCount": 1,
@@ -15001,16 +15059,16 @@
       "lastUsedAt": 1785803577580
     },
     "prove-it": {
-      "usageCount": 13,
-      "lastUsedAt": 1787232568363
+      "usageCount": 15,
+      "lastUsedAt": 1787975363036
     },
     "relay": {
       "usageCount": 4,
       "lastUsedAt": 1786623561605
     },
     "mind-meld:harness-review": {
-      "usageCount": 1,
-      "lastUsedAt": 1786549171215
+      "usageCount": 2,
+      "lastUsedAt": 1787780004226
     },
     "mcg-sensitive-canary:sensitive-canary": {
       "usageCount": 3,
@@ -15025,16 +15083,16 @@
       "lastUsedAt": 1786735278503
     },
     "story-stick:relay": {
-      "usageCount": 25,
-      "lastUsedAt": 1787603789399
+      "usageCount": 28,
+      "lastUsedAt": 1787820457774
     },
     "story-stick:handoff": {
-      "usageCount": 5,
-      "lastUsedAt": 1786913809024
+      "usageCount": 9,
+      "lastUsedAt": 1787954408249
     },
     "archeology": {
-      "usageCount": 4,
-      "lastUsedAt": 1787270755798
+      "usageCount": 12,
+      "lastUsedAt": 1787919860707
     }
   },
   "opusProMigrationComplete": true,
@@ -15060,24 +15118,24 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 10154,
-      "lastUsedAt": 1787616581198,
-      "lastUsedNumStartups": 3968
+      "usageCount": 10720,
+      "lastUsedAt": 1788156627465,
+      "lastUsedNumStartups": 4018
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 3374,
-      "lastUsedAt": 1787616199706,
-      "lastUsedNumStartups": 3968
+      "usageCount": 3515,
+      "lastUsedAt": 1788155964643,
+      "lastUsedNumStartups": 4018
     },
     "mcg-lookup@sead-claude-marketplace": {
-      "usageCount": 4,
-      "lastUsedAt": 1787374029243,
-      "lastUsedNumStartups": 3956
+      "usageCount": 7,
+      "lastUsedAt": 1787896722118,
+      "lastUsedNumStartups": 4001
     },
     "beads@beads-marketplace": {
-      "usageCount": 3412,
-      "lastUsedAt": 1787616199706,
-      "lastUsedNumStartups": 3968
+      "usageCount": 3506,
+      "lastUsedAt": 1788155964643,
+      "lastUsedNumStartups": 4018
     },
     "claude-mem@jimweller": {
       "usageCount": 34296,
@@ -15090,14 +15148,14 @@
       "lastUsedNumStartups": 3417
     },
     "mcg-status-updates@devx-claude-marketplace": {
-      "usageCount": 41,
-      "lastUsedAt": 1787582034313,
-      "lastUsedNumStartups": 3960
+      "usageCount": 45,
+      "lastUsedAt": 1787921696538,
+      "lastUsedNumStartups": 4002
     },
     "employee-termination@devx-claude-marketplace": {
-      "usageCount": 2,
-      "lastUsedAt": 1785794902477,
-      "lastUsedNumStartups": 3800
+      "usageCount": 3,
+      "lastUsedAt": 1787667197990,
+      "lastUsedNumStartups": 3974
     },
     "csharp-lsp@claude-plugins-official": {
       "usageCount": 0,
@@ -15105,19 +15163,19 @@
       "lastUsedNumStartups": 3578
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 22690,
-      "lastUsedAt": 1787616619431,
-      "lastUsedNumStartups": 3968
+      "usageCount": 28963,
+      "lastUsedAt": 1788156714821,
+      "lastUsedNumStartups": 4018
     },
     "claude-mem@thedotmack": {
-      "usageCount": 31785,
-      "lastUsedAt": 1787616619431,
-      "lastUsedNumStartups": 3968
+      "usageCount": 41387,
+      "lastUsedAt": 1788156714821,
+      "lastUsedNumStartups": 4018
     },
     "mind-meld@inline": {
-      "usageCount": 15,
-      "lastUsedAt": 1786627057612,
-      "lastUsedNumStartups": 3865
+      "usageCount": 16,
+      "lastUsedAt": 1787780004226,
+      "lastUsedNumStartups": 3984
     },
     "ast-grep@ast-grep-marketplace": {
       "usageCount": 2,
@@ -15130,9 +15188,9 @@
       "lastUsedNumStartups": 3873
     },
     "story-stick@sead-claude-marketplace": {
-      "usageCount": 30,
-      "lastUsedAt": 1787603789399,
-      "lastUsedNumStartups": 3966
+      "usageCount": 37,
+      "lastUsedAt": 1787954408249,
+      "lastUsedNumStartups": 4007
     },
     "token-miser@sead-claude-marketplace": {
       "usageCount": 2,
@@ -15141,12 +15199,13 @@
     }
   },
   "tipLifetimeShownCounts": {
-    "auto-copy-config-hint": 41
+    "auto-copy-config-hint": 44
   },
   "machineID": "1596c55d9a78723bd2ae5f9dc96df5e8ea2f5e9de4b4224f8d3b6f9a52aca309",
   "hasOpenedAgentsView": true,
   "agentLastUsed": {
     "bg": 1783442762804
   },
-  "hasSeenAutoModeEntryWarning": true
+  "hasSeenAutoModeEntryWarning": true,
+  "lastClawdEntranceVersion": "2.1.251"
 }
