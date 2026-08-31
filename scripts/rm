@@ -389,8 +389,11 @@ for file in "${FILE_NAME[@]}"; do
       fi
     done
   else
-    echo "$COMMAND: $file: No such file or directory"
-    EXIT_CODE=1
+    # -f matches real rm: a missing operand is silent and does not set an exit code
+    if [[ -z "$OPT_FORCE" ]]; then
+      echo "$COMMAND: $file: No such file or directory"
+      EXIT_CODE=1
+    fi
   fi
 done
 
