@@ -1,11 +1,15 @@
 # Raise opencode's hard output-token cap (default 32K) so models can use their full output limit                                                                                       
 export OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX=131072
 
-# Fix hardcoded home paths in Claude plugin JSON files (portability across machines)
+# Fix hardcoded home paths in Claude plugin JSON files (portability across machines).
+# Compare-then-write: no backup or temp file, so concurrent shell startups share no
+# scratch path and cannot race each other deleting it.
 for f in ~/.claude/plugins/known_marketplaces.json ~/.claude/plugins/installed_plugins.json; do
   real=$(readlink -f "$f" 2>/dev/null || readlink "$f" 2>/dev/null) || continue
-  [[ -f "$real" ]] && grep -vq "\"$HOME/" "$real" 2>/dev/null && \
-    sed -i.bak -E "s|\"[^\"]*(/\.claude/)|\"${HOME}\1|g" "$real" && command rm -f "$real.bak"
+  [[ -f "$real" ]] || continue
+  fixed=$(sed -E "s|\"[^\"]*(/\.claude/)|\"${HOME}\1|g" "$real") || continue
+  [[ "$fixed" == "$(<"$real")" ]] && continue
+  printf '%s\n' "$fixed" > "$real"
 done
 
 # AI-related functions and aliases
