@@ -177,7 +177,7 @@
     "mcg-lookup@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
-    "mcg-sensitive-canary@sead-claude-marketplace": false,
+    "mcg-sensitive-canary@sead-claude-marketplace": true,
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true
   },
@@ -231,6 +231,9 @@
   "effortLevel": "xhigh",
   "modelSettings": {
     "claude-fable-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5": {
       "effortLevel": "xhigh"
     }
   },
