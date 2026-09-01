@@ -218,6 +218,18 @@ trusted_hash = "sha256:80ae5258289c25ed77b18d6de9843963d10fc061730694b3458d76365
 
 [hooks.state."mcg-atlassian@sead-claude-marketplace:hooks/hooks.json:session_start:0:1"]
 trusted_hash = "sha256:c4d3ab3c065ad4b4de6529c52e6019f3d494c21b6a8d811003486c323c5308c9"
+
+[hooks.state."beads@beads-marketplace:.codex-plugin/hooks/hooks.json:pre_compact:0:0"]
+trusted_hash = "sha256:1f647821c1b2d16b397ca09bb1c76c71f74b04e8e13abf4abcd044a1ae82e0f7"
+
+[hooks.state."beads@beads-marketplace:.codex-plugin/hooks/hooks.json:post_compact:0:0"]
+trusted_hash = "sha256:53280fbd74d122ef0607f320dacf407b21cba0e448f2cf5982c6d5b1074933c8"
+
+[hooks.state."beads@beads-marketplace:.codex-plugin/hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:392a61a090ba7d6aab6ab0fb0f82f3df3d6a380ee81f60f00af3bd42025d51a9"
+
+[hooks.state."beads@beads-marketplace:.codex-plugin/hooks/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:61bc468420addc4d83d288a4311e1409cc89cbbd9f44fec2e1039512d20fab86"
 [features]
 goals = true
 hooks = true
