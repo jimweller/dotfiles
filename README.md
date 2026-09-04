@@ -109,16 +109,17 @@ The installer runs dotbot with platform detection:
 
 ## Configuration
 
-| File                   | Target                             | Purpose                                          |
-| ---------------------- | ---------------------------------- | ------------------------------------------------ |
-| `zsh/zshrc`            | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim    |
-| `p10k/p10k.zsh`        | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                       |
-| `git/gitconfig-all`    | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff) |
-| `git/gitconfig-jim`    | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all        |
-| `git/gitconfig-work`   | `~/.gitconfig-work`                | Work ADO identity, includes gitconfig-all        |
-| `git/gitconfig-hearst` | `~/.gitconfig-hearst`              | Work GitHub identity, includes gitconfig-all     |
-| `ssh/ssh_config`       | `~/.ssh/config`                    | SSH host configurations                          |
-| `tmux/tmux.conf`       | `~/.tmux.conf`                     | Tmux preferences                                 |
+| File                   | Target                             | Purpose                                                |
+| ---------------------- | ---------------------------------- | ------------------------------------------------------ |
+| `zsh/zshrc`            | `~/.zshrc`                         | Shell entry point, loads antidote and zsh-jim          |
+| `p10k/p10k.zsh`        | `~/.p10k.zsh`                      | Powerlevel10k prompt theme                             |
+| `git/gitconfig-all`    | `~/.gitconfig`, `~/.gitconfig-all` | Shared git settings (core, signing, merge, diff)       |
+| `git/gitconfig-jim`    | `~/.gitconfig-jim`                 | Personal identity, includes gitconfig-all              |
+| `git/gitconfig-work`   | `~/.gitconfig-work`                | Work ADO identity, includes gitconfig-all              |
+| `git/gitconfig-hearst` | `~/.gitconfig-hearst`              | Work GitHub identity, includes gitconfig-all           |
+| `git/gitconfig-nathan` | `~/.gitconfig-nathan`              | NathanielBrumbach ADO identity, includes gitconfig-all |
+| `ssh/ssh_config`       | `~/.ssh/config`                    | SSH host configurations                                |
+| `tmux/tmux.conf`       | `~/.tmux.conf`                     | Tmux preferences                                       |
 
 ## AI Tooling
 

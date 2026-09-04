@@ -1,0 +1,17 @@
+[include]
+	path = ~/.gitconfig-all
+
+[credential "https://dev.azure.com"]
+	helper = "!f() { echo username=$GIT_USERNAME; echo password=$AZURE_DEVOPS_EXT_PAT; }; f"
+	useHttpPath = true
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+[url "https://dev.azure.com/NathanielBrumbach/Sunset-Container/_git/"]
+	insteadOf = git@ssh.dev.azure.com:v3/NathanielBrumbach/Sunset-Container/
+	insteadOf = ssh://NathanielBrumbach@vs-ssh.visualstudio.com/v3/NathanielBrumbach/Sunset-Container/
+[url "https://dev.azure.com/NathanielBrumbach/cwqi-discovery/_git/"]
+	insteadOf = git@ssh.dev.azure.com:v3/NathanielBrumbach/cwqi-discovery/
+	insteadOf = ssh://NathanielBrumbach@vs-ssh.visualstudio.com/v3/NathanielBrumbach/cwqi-discovery/
+[url "https://dev.azure.com/NathanielBrumbach/"]
+	insteadOf = https://NathanielBrumbach.visualstudio.com/DefaultCollection/
+	insteadOf = https://NathanielBrumbach.visualstudio.com/

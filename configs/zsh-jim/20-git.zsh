@@ -1,10 +1,12 @@
-# 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-hearst, git-jim
-# and git-work. The glob sorts hearst, jim, work, so work wins every key it defines
-# and its identity and ADO tokens are live by default. GIT_CONFIG_GLOBAL is in no
+# 00-secrets.zsh decrypts all ~/.secrets/*.enc.env including git-hearst, git-jim,
+# git-nathan and git-work. The glob sorts hearst, jim, nathan, work, so work wins
+# every key it defines and its identity and ADO tokens are live by default.
+# git-nathan also defines AZURE_DEVOPS_EXT_PAT but sorts before git-work, so the
+# mcgsead PAT stays the live one until a switch. GIT_CONFIG_GLOBAL is in no
 # secrets file, so it is defaulted to work here to match. gitconfig-all sets
 # user.useConfigOnly, so git refuses to commit without it. switch_git_profile
 # overrides it, and so does mise in any directory carrying
-# configs/mise/{personal,work,hearst}.toml.
+# configs/mise/{personal,work,hearst,nathan}.toml.
 #
 # GITHUB_TOKEN and GH_TOKEN live in git-hearst and git-jim only, so git-jim's
 # values are the ones live at shell start until a profile switch runs.
@@ -13,10 +15,12 @@ export GIT_CONFIG_GLOBAL="${GIT_CONFIG_GLOBAL:-$HOME/.gitconfig-work}"
 alias work='cd work && switch_git_profile work'
 alias personal='cd personal && switch_git_profile jim'
 alias hearst='cd hearst && switch_git_profile hearst'
+alias nathan='cd nathan && switch_git_profile nathan'
 
 alias corp='switch_git_profile work'
 alias jim='switch_git_profile jim'
 alias hrs='switch_git_profile hearst'
+alias nat='switch_git_profile nathan'
 
 alias gitlock='git_lock'
 alias glock='git_lock'
@@ -41,8 +45,8 @@ switch_git_profile() {
   # Propagate to tmux server environment so status bar scripts can read it
   [[ -n "$TMUX" ]] && tmux set-environment GIT_CONFIG_GLOBAL "$GIT_CONFIG_GLOBAL"
   
-  # For work profile, export Azure DevOps credentials
-  if [[ "$profile" == "work" ]]; then
+  # ADO profiles export Azure DevOps credentials for the git credential helper
+  if [[ "$profile" == "work" || "$profile" == "nathan" ]]; then
     [[ -n "$AZURE_DEVOPS_EXT_PAT" ]] || { echo "Missing AZURE_DEVOPS_EXT_PAT in $env_file"; return 1; }
     export GIT_USERNAME
     export AZURE_DEVOPS_EXT_PAT
