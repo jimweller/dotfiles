@@ -9,5 +9,8 @@
     "minamijoyo/hcledit",
     "saml-to/tap",
     "upbound/tap"
+  ],
+  "trustedformulae": [
+    "hashicorp/tap/packer"
   ]
 }
