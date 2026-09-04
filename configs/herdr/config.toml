@@ -4,5 +4,8 @@ agent_panel_sort = "spaces"
 
 [ui.sound]
 enabled = true
-done_path = "sounds/Glass.mp3"
-request_path = "sounds/Ping.mp3"
+done_path = "sounds/Submarine.mp3"
+request_path = "sounds/Basso.mp3"
+
+[ui.toast]
+delivery = "terminal"
