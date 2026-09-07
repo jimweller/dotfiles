@@ -77,6 +77,7 @@ Route by who reads the artifact. An artifact a model reads takes no voice rules.
 - Use existing patterns and conventions when modifying projects
 - Prefer current research over model training data. Use context7 and researcher MCP servers for research. Prefer context7 and researcher over the builtin web search tools.
 - When a dependency points to a git repo, NEVER switch it to a published package without first checking the latest release date and comparing it to recent commits. The git source is intentional when it contains unreleased changes.
+- NEVER run a polling or waiting command in the main session. This bans `sleep`, retry loops, and watch loops that block on external work such as a deploy, a CI run, a batch job, or a Kubernetes reconcile. Report what was started and what the next check would be, then stop, because the operator asks for status when they want it. Delegate the poll to a background agent and wait for its notification only when the operator explicitly asks for polling.
 
 ## Code Style
 

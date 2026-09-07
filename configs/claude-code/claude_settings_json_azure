@@ -48,7 +48,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
@@ -235,6 +235,9 @@
       "effortLevel": "xhigh"
     },
     "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5": {
       "effortLevel": "xhigh"
     }
   },

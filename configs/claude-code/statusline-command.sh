@@ -15,10 +15,6 @@ ICON_TIMER=$'\xF3\xB1\x8E\xAB'
 ICON_DUMB=$'\U000F002A'
 ICON_DEATH=$'\U000F0238'
 ICON_SKULL=$'\U0000EF0E'
-ICON_GAUGE_LOW=$'\U000F0F85'
-ICON_GAUGE_MED=$'\U000F0F86'
-ICON_GAUGE_HI=$'\U000F04C5'
-ICON_THINKING=$'\U000F06E8'
 
 # Read JSON input from stdin
 INPUT=$(cat)
@@ -85,24 +81,29 @@ if [ -z "$MODEL" ]; then
 fi
 
 EFFORT_LEVEL=$(echo "$INPUT" | jq -r '.effort.level // empty')
+# Luminance ramp rather than a hue ramp: the operator's CVD type is unknown, and
+# brightness is the one channel every dichromacy preserves. The letter carries the
+# level on its own, so color is reinforcement. Medium and max both render m by
+# request; their brightness is what separates them.
 case "$EFFORT_LEVEL" in
-  high)  EFFORT_GLYPH="$ICON_GAUGE_LOW"; EFFORT_COLOR="\033[38;5;33m" ;;
-  xhigh) EFFORT_GLYPH="$ICON_GAUGE_MED"; EFFORT_COLOR="\033[38;5;220m" ;;
-  max)   EFFORT_GLYPH="$ICON_GAUGE_HI";  EFFORT_COLOR="\033[38;5;124m" ;;
-  *)     EFFORT_GLYPH="$ICON_GAUGE_LOW"; EFFORT_COLOR="\033[38;5;240m" ;;
+  low)    EFFORT_TEXT="l"; EFFORT_COLOR="\033[38;5;240m" ;;
+  medium) EFFORT_TEXT="m"; EFFORT_COLOR="\033[38;5;244m" ;;
+  high)   EFFORT_TEXT="h"; EFFORT_COLOR="\033[38;5;249m" ;;
+  xhigh)  EFFORT_TEXT="x"; EFFORT_COLOR="\033[38;5;253m" ;;
+  max)    EFFORT_TEXT="m"; EFFORT_COLOR="\033[1;38;5;231m" ;;
+  ultra*) EFFORT_TEXT="u"; EFFORT_COLOR="\033[1;7;38;5;231m" ;;
+  *)      EFFORT_TEXT="l"; EFFORT_COLOR="\033[38;5;240m" ;;
 esac
-
-THINKING_ENABLED=$(echo "$INPUT" | jq -r '.thinking.enabled // false')
 
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')
 DIR=$(echo "$CWD" | sed "s|^$HOME|~|")
-COST=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0' | awk '{printf "%.0f", $1}')
+COST_RAW=$(echo "$INPUT" | jq -r '.cost.total_cost_usd // 0')
+COST=$(printf '%s' "$COST_RAW" | awk '{printf "%.0f", $1}')
 DURATION_MS=$(echo "$INPUT" | jq -r '.cost.total_duration_ms // 0')
 DURATION_SEC=$((DURATION_MS / 1000))
 DAYS=$((DURATION_SEC / 86400))
 HOURS=$(( (DURATION_SEC % 86400) / 3600 ))
 MINS=$(( (DURATION_SEC % 3600) / 60 ))
-SECS=$((DURATION_SEC % 60))
 CTX_TOKENS=$(echo "$INPUT" | jq -r '[.context_window.current_usage.input_tokens, .context_window.current_usage.cache_creation_input_tokens, .context_window.current_usage.cache_read_input_tokens] | map(. // 0) | add')
 CTX_TOKENS_K=$(awk -v t="$CTX_TOKENS" 'BEGIN { printf "%dk", (t + 500) / 1000 }')
 # Autocompaction fires at a fixed token count, not a share of the model window.
@@ -197,11 +198,11 @@ BAR_BUFFER=""
 [ "$BUFFER_SHOW" -gt 0 ] && BAR_BUFFER=$(printf "%${BUFFER_SHOW}s" | tr ' ' '░')
 
 # Build statusline
-[ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m | "
+[ -n "$CLOUD" ] && printf "${CLOUD_COLOR}${CLOUD}\033[0m "
 printf "\033[38;5;117m${ICON_FOLDER} $DIR\033[0m"
-[ -n "$GIT_USER" ] && printf " | ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
+[ -n "$GIT_USER" ] && printf " ${GIT_USER_COLOR}${GIT_USER_ICON} $GIT_USER\033[0m"
 if [ -n "$BRANCH" ]; then
-  printf " | \033[33m${ICON_BRANCH} $BRANCH\033[0m"
+  printf " \033[33m${ICON_BRANCH} $BRANCH\033[0m"
   [ "$BEHIND" -gt 0 ] 2>/dev/null && printf " \033[96m⇣$BEHIND\033[0m"
   [ "$AHEAD" -gt 0 ] 2>/dev/null && printf " \033[96m⇡$AHEAD\033[0m"
   [ "$STASH" -gt 0 ] 2>/dev/null && printf " \033[95m*$STASH\033[0m"
@@ -210,10 +211,17 @@ if [ -n "$BRANCH" ]; then
   [ "$UNSTAGED" -gt 0 ] 2>/dev/null && printf " \033[93m!$UNSTAGED\033[0m"
   [ "$UNTRACKED" -gt 0 ] 2>/dev/null && printf " \033[97m?$UNTRACKED\033[0m"
 fi
-printf " | ${CTX_COLOR}${CTX_ICON}\033[0m $MODEL"
-printf "${EFFORT_COLOR}${EFFORT_GLYPH}\033[0m"
-[ "$THINKING_ENABLED" = "true" ] && printf "${EFFORT_COLOR}${ICON_THINKING}\033[0m"
+printf " ${CTX_COLOR}${CTX_ICON}\033[0m $MODEL"
+printf "${EFFORT_COLOR}${EFFORT_TEXT}\033[0m"
 printf " ${CTX_COLOR}${BAR_FILLED}\033[38;5;240m${BAR_EMPTY}\033[0m\033[38;5;250m${BAR_BUFFER}\033[0m ${CTX_COLOR}${CTX_USABLE}%% ${CTX_TOKENS_K}\033[0m"
+if [ "$DAYS" -gt 0 ]; then
+  DURATION="${DAYS}d${HOURS}h${MINS}m"
+elif [ "$HOURS" -gt 0 ]; then
+  DURATION="${HOURS}h${MINS}m"
+else
+  DURATION="${MINS}m"
+fi
+printf " \033[38;5;250m${ICON_TIMER} ${DURATION}\033[0m"
 PROJECT_KEY=$(echo "$INPUT" | jq -r '.workspace.project_dir // "" | gsub("[/.]"; "-") | gsub("_"; "")')
 CCUSAGE_CACHE="/tmp/ccusage-cache.json"
 AZURE_CACHE="/tmp/azure-cost-cache.json"
@@ -222,46 +230,70 @@ COST_MONTH=""
 COST_MTD=""
 PROJ_COST_RAW=""
 PROJ_TOKENS=""
+MTD_TOKENS=""
+MONTH_TOKENS=""
+MTD_RAW=""
+MONTH_RAW=""
 ACTUAL_RATIO=""
-PER_MTOK=""
-if [ -f "$CCUSAGE_CACHE" ] && [ -n "$PROJECT_KEY" ]; then
-  PROJ_AGG=$(jq -r --arg p "$PROJECT_KEY" '(.projects[$p]? // []) as $r | if ($r | length) == 0 then empty else "\([$r[].totalCost] | add) \([$r[].totalTokens] | add)" end' "$CCUSAGE_CACHE" 2>/dev/null)
-  if [ -n "$PROJ_AGG" ]; then
-    PROJ_COST_RAW=${PROJ_AGG%% *}
-    PROJ_TOKENS=${PROJ_AGG##* }
-    COST_PROJECT=$(printf '%s' "$PROJ_COST_RAW" | awk '{printf "%.0f", $1}')
-  fi
+SESSION_TOKENS=""
+if [ -f "$CCUSAGE_CACHE" ]; then
+  DATE_30D=$(date -v-30d +%F 2>/dev/null || date -d '30 days ago' +%F)
+  DATE_MONTH=$(date +%Y-%m-01)
+  read -r PROJ_COST_RAW PROJ_TOKENS MTD_TOKENS MONTH_TOKENS <<<"$(jq -r \
+    --arg p "$PROJECT_KEY" --arg m1 "$DATE_MONTH" --arg d30 "$DATE_30D" '
+      [.projects[][]] as $all
+      | (.projects[$p]? // []) as $proj
+      | [([$proj[].totalCost] | add // 0),
+         ([$proj[].totalTokens] | add // 0),
+         ([$all[] | select(.date >= $m1) | .totalTokens] | add // 0),
+         ([$all[] | select(.date >= $d30) | .totalTokens] | add // 0)]
+      | @tsv' "$CCUSAGE_CACHE" 2>/dev/null)"
+  [ "${PROJ_TOKENS:-0}" -gt 0 ] 2>/dev/null && COST_PROJECT=$(printf '%s' "$PROJ_COST_RAW" | awk '{printf "%.0f", $1}')
 fi
 if [ -f "$AZURE_CACHE" ]; then
-  COST_MTD=$(jq -r '.mtd // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
-  COST_MONTH=$(jq -r '.rolling30d // empty' "$AZURE_CACHE" 2>/dev/null | awk '{printf "%.0f", $1}')
+  MTD_RAW=$(jq -r '.mtd // empty' "$AZURE_CACHE" 2>/dev/null)
+  MONTH_RAW=$(jq -r '.rolling30d // empty' "$AZURE_CACHE" 2>/dev/null)
   ACTUAL_RATIO=$(jq -r '.actualRatio // empty' "$AZURE_CACHE" 2>/dev/null)
+  [ -n "$MTD_RAW" ] && COST_MTD=$(printf '%s' "$MTD_RAW" | awk '{printf "%.0f", $1}')
+  [ -n "$MONTH_RAW" ] && COST_MONTH=$(printf '%s' "$MONTH_RAW" | awk '{printf "%.0f", $1}')
 fi
-# Project lifetime dollars per million tokens, repriced from Anthropic list to
-# what the platform actually billed. Blank unless both halves are available.
-if [ -n "$PROJ_COST_RAW" ] && [ -n "$PROJ_TOKENS" ] && [ -n "$ACTUAL_RATIO" ]; then
-  PER_MTOK=$(awk -v c="$PROJ_COST_RAW" -v t="$PROJ_TOKENS" -v r="$ACTUAL_RATIO" 'BEGIN { if (t > 0) printf "%.2f", c * r * 1000000 / t }')
+# Cumulative session tokens live only in the transcript. The statusline payload
+# carries current context occupancy, which is a different number.
+TRANSCRIPT=$(echo "$INPUT" | jq -r '.transcript_path // empty')
+if [ -n "$TRANSCRIPT" ] && [ -f "$TRANSCRIPT" ]; then
+  SESSION_TOKENS=$(jq -s '[.[] | .message.usage | select(. != null)
+    | ((.input_tokens // 0) + (.output_tokens // 0)
+       + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0))]
+    | add // 0' "$TRANSCRIPT" 2>/dev/null)
 fi
+# Dollars per million tokens. Session and project costs are Anthropic list price,
+# so they are repriced by what the platform actually billed. The Azure MTD and
+# rolling-30d figures are already actual dollars and take no ratio.
+fmte() {
+  awk -v c="${1:-}" -v t="${2:-0}" -v r="${3:-}" 'BEGIN {
+    if (c == "" || r == "" || t + 0 <= 0) exit
+    v = sprintf("%.2f", c * r * 1000000 / t)
+    sub(/^0\./, ".", v)
+    print v
+  }'
+}
+EFF_SESSION=$(fmte "$COST_RAW" "$SESSION_TOKENS" "$ACTUAL_RATIO")
+EFF_PROJECT=$(fmte "$PROJ_COST_RAW" "$PROJ_TOKENS" "$ACTUAL_RATIO")
+EFF_MTD=$(fmte "$MTD_RAW" "$MTD_TOKENS" 1)
+EFF_MONTH=$(fmte "$MONTH_RAW" "$MONTH_TOKENS" 1)
 fmtc() { LC_ALL=en_US.UTF-8 printf "%'d" "${1:-0}" 2>/dev/null || echo "${1:-0}"; }
 COST=$(fmtc "$COST")
 [ -n "$COST_PROJECT" ] && COST_PROJECT=$(fmtc "$COST_PROJECT")
 [ -n "$COST_MTD" ] && COST_MTD=$(fmtc "$COST_MTD")
 [ -n "$COST_MONTH" ] && COST_MONTH=$(fmtc "$COST_MONTH")
-printf " |"
-[ -n "$PER_MTOK" ] && printf " \033[38;5;186m${ICON_DIVISION} \$${PER_MTOK}\033[0m"
+EFF_COLOR="\033[38;5;65m"
 printf " \033[38;5;186m${ICON_CASH} \$${COST}\033[0m"
+[ -n "$EFF_SESSION" ] && printf "${EFF_COLOR}${ICON_DIVISION}\$${EFF_SESSION}\033[0m"
 [ -n "$COST_PROJECT" ] && printf " \033[38;5;186m${ICON_INVOICE} \$${COST_PROJECT}\033[0m"
+[ -n "$EFF_PROJECT" ] && printf "${EFF_COLOR}${ICON_DIVISION}\$${EFF_PROJECT}\033[0m"
 [ -n "$COST_MTD" ] && printf " \033[38;5;186m${ICON_CAL_TODAY} \$${COST_MTD}\033[0m"
+[ -n "$EFF_MTD" ] && printf "${EFF_COLOR}${ICON_DIVISION}\$${EFF_MTD}\033[0m"
 [ -n "$COST_MONTH" ] && printf " \033[38;5;186m${ICON_CAL_RANGE} \$${COST_MONTH}\033[0m"
-if [ "$DAYS" -gt 0 ]; then
-  DURATION="${DAYS}d ${HOURS}h ${MINS}m ${SECS}s"
-elif [ "$HOURS" -gt 0 ]; then
-  DURATION="${HOURS}h ${MINS}m ${SECS}s"
-elif [ "$MINS" -gt 0 ]; then
-  DURATION="${MINS}m ${SECS}s"
-else
-  DURATION="${SECS}s"
-fi
-printf " | \033[38;5;250m${ICON_TIMER} ${DURATION}\033[0m"
+[ -n "$EFF_MONTH" ] && printf "${EFF_COLOR}${ICON_DIVISION}\$${EFF_MONTH}\033[0m"
 
 echo
