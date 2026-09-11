@@ -84,7 +84,6 @@ if [ -n "$KEYWORD" ]; then
 fi
 
 CURRENT_DIR=$(pwd)
-RESULTS_FILE=$(mktemp)
 
 echo "Finding conversations..."
 [ -n "$KEYWORD" ] && echo "Filtering by: $KEYWORD"
@@ -94,112 +93,133 @@ echo ""
 HAS_RG=false
 command -v rg >/dev/null 2>&1 && HAS_RG=true
 
-MAX_RESULTS=30
+MAX_RESULTS=10
 RG_GLOB_ARGS=(--glob '*.jsonl' --glob '!**/subagents/**')
 
-extract_field() {
-    sed -n "s/.*\"$1\":\"\\([^\"]*\\)\".*/\\1/p"
+# --from/--to are compared as ISO strings rather than epochs. Transcript
+# timestamps and the bounds are both naive wall-clock text, so a lexicographic
+# compare gives the same answer as the old date(1) round-trip without spawning
+# two processes per candidate file.
+normalize_bound() {
+    local d="${1/ /T}"
+    case "$d" in
+        *T*) ;;
+        *) if [ "$2" = "to" ]; then d="${d}T23:59:59"; else d="${d}T00:00:00"; fi ;;
+    esac
+    printf '%s' "$d"
 }
 
-# Discover session files, filter by keyword, sort by internal timestamp, limit to top N
-FILES=()
+FROM_BOUND=""
+TO_BOUND=""
+[ -n "$FROM_DATE" ] && FROM_BOUND=$(normalize_bound "$FROM_DATE" from)
+[ -n "$TO_DATE" ] && TO_BOUND=$(normalize_bound "$TO_DATE" to)
+
+CANDIDATES=$(mktemp)
+META=$(mktemp)
+MATCHED=$(mktemp)
+trap 'rm -f "$CANDIDATES" "$META" "$MATCHED"' EXIT
+
+# Stage 1: rg picks candidate files. This is the only keyword scan.
 if [ "$HAS_RG" = true ]; then
     if [ -n "$KEYWORD" ]; then
-        rg_pattern="$KEYWORD"
-        rg_flags=(-li)
+        rg -li --max-columns 0 "$KEYWORD" "$PROJECTS_DIR" "${RG_GLOB_ARGS[@]}" 2>/dev/null
     else
-        rg_pattern='"cwd"'
-        rg_flags=(-l)
-    fi
-    ALL_FILES=()
-    while IFS= read -r file; do
-        ALL_FILES+=("$file")
-    done < <(rg "${rg_flags[@]}" --max-columns 0 "$rg_pattern" "$PROJECTS_DIR" "${RG_GLOB_ARGS[@]}" 2>/dev/null | grep -v '/agent-')
-
-    # Sort by internal timestamp (last line of each file), take top N
-    SORTED_FILE=$(mktemp)
-    for f in "${ALL_FILES[@]}"; do
-        ts=$(tail -1 "$f" 2>/dev/null | extract_field timestamp)
-        [ -n "$ts" ] && printf '%s\t%s\n' "$ts" "$f"
-    done | sort -r | head -"$MAX_RESULTS" > "$SORTED_FILE"
-
-    while IFS=$'\t' read -r _ts file; do
-        FILES+=("$file")
-    done < "$SORTED_FILE"
-    rm -f "$SORTED_FILE"
+        rg -l --max-columns 0 '"cwd"' "$PROJECTS_DIR" "${RG_GLOB_ARGS[@]}" 2>/dev/null
+    fi | grep -v '/agent-' > "$CANDIDATES"
 else
-    while IFS= read -r file; do
-        [[ "$file" == *"/agent-"* ]] && continue
-        [[ "$file" == *"/subagents/"* ]] && continue
-        FILES+=("$file")
-    done < <(find "$PROJECTS_DIR" -name "*.jsonl" -type f -size +0 2>/dev/null)
+    find "$PROJECTS_DIR" -name '*.jsonl' -type f -size +0 2>/dev/null \
+        | grep -v '/agent-' | grep -v '/subagents/' > "$CANDIDATES"
     if [ -n "$KEYWORD" ]; then
-        FILTERED=()
-        for f in "${FILES[@]}"; do
-            grep -qi "$KEYWORD" "$f" 2>/dev/null && FILTERED+=("$f")
-        done
-        FILES=("${FILTERED[@]}")
+        while IFS= read -r f; do
+            grep -qiE "$KEYWORD" "$f" 2>/dev/null && printf '%s\n' "$f"
+        done < "$CANDIDATES" > "$CANDIDATES.kw"
+        mv "$CANDIDATES.kw" "$CANDIDATES"
     fi
 fi
 
-for session_file in "${FILES[@]}"; do
-    session_id=$(basename "$session_file" .jsonl)
-
+# Stage 2: one streaming pass yields the sort key and project path for every
+# candidate. A session's last line is often a metadata record with no timestamp
+# (last-prompt, cost-state, permission-mode, mode, ai-title, custom-title,
+# atis-latch), which is why the last line alone is not a usable sort key.
+# Measured over 5855 files / 3.6G: per-file tail 48.6s, this pass 3.0s.
+if [ -s "$CANDIDATES" ]; then
     if [ "$HAS_RG" = true ]; then
-        project_path=$(rg -m1 --max-columns 0 '"cwd"' "$session_file" 2>/dev/null | extract_field cwd)
+        tr '\n' '\0' < "$CANDIDATES" \
+            | xargs -0 rg -o --no-heading --with-filename '"(cwd|timestamp)":"[^"]*"' 2>/dev/null
     else
-        project_path=$(grep -m1 '"cwd"' "$session_file" 2>/dev/null | extract_field cwd)
-    fi
-    [ -z "$project_path" ] && continue
+        tr '\n' '\0' < "$CANDIDATES" \
+            | xargs -0 grep -oHE '"(cwd|timestamp)":"[^"]*"' 2>/dev/null
+    fi | awk '
+        {
+            if (match($0, /:"timestamp":"/)) {
+                f = substr($0, 1, RSTART - 1)
+                v = substr($0, RSTART + RLENGTH); sub(/"$/, "", v)
+                ts[f] = v
+                next
+            }
+            if (match($0, /:"cwd":"/)) {
+                f = substr($0, 1, RSTART - 1)
+                v = substr($0, RSTART + RLENGTH); sub(/"$/, "", v)
+                if (!(f in cw)) cw[f] = v
+            }
+        }
+        END { for (f in ts) if (f in cw) printf "%s\t%s\t%s\n", ts[f], cw[f], f }
+    ' > "$META"
+fi
 
-    if [ "$FILTER_GLOBAL" = false ]; then
-        [ "$project_path" != "$CURRENT_DIR" ] && continue
-    fi
+# Stage 3: filter, then sort. Nothing is truncated here, so the reported count
+# is the true number of matches.
+while IFS=$'\t' read -r ts cwd path; do
+    [ -z "$ts" ] && continue
+    [ "$FILTER_GLOBAL" = false ] && [ "$cwd" != "$CURRENT_DIR" ] && continue
+    [ -n "$FROM_BOUND" ] && [[ "$ts" < "$FROM_BOUND" ]] && continue
+    [ -n "$TO_BOUND" ] && [[ "$ts" > "$TO_BOUND" ]] && continue
+    printf '%s\t%s\t%s\n' "$ts" "$cwd" "$path"
+done < "$META" | sort -r > "$MATCHED"
 
-    timestamp=$(tail -1 "$session_file" 2>/dev/null | extract_field timestamp)
-    [ -z "$timestamp" ] && continue
+TOTAL=$(wc -l < "$MATCHED" | tr -d ' ')
 
-    if [ -n "$FROM_DATE" ]; then
-        from_epoch=$(parse_date_to_epoch "$FROM_DATE")
-        ts_epoch=$(parse_date_to_epoch "$timestamp")
-        [ -n "$from_epoch" ] && [ -n "$ts_epoch" ] && [ "$ts_epoch" -lt "$from_epoch" ] && continue
-    fi
-    if [ -n "$TO_DATE" ]; then
-        to_epoch=$(parse_date_to_epoch "$TO_DATE")
-        ts_epoch=$(parse_date_to_epoch "$timestamp")
-        [ -n "$to_epoch" ] && [ -n "$ts_epoch" ] && [ "$ts_epoch" -gt "$to_epoch" ] && continue
-    fi
+if [ "$TOTAL" -eq 0 ]; then
+    echo "No conversations found"
+    exit 0
+fi
 
-    date_str=$(format_date "$timestamp")
+if [ -n "$KEYWORD" ]; then
+    echo "$TOTAL session(s) matched"
+else
+    echo "$TOTAL session(s) found"
+fi
+echo ""
+
+count=0
+while IFS=$'\t' read -r ts cwd path; do
+    count=$((count + 1))
+    session_id=$(basename "$path" .jsonl)
+
+    date_str=$(format_date "$ts")
     [ -z "$date_str" ] && date_str="?"
 
     if [ "$HAS_RG" = true ]; then
-        user_line=$(rg -m1 --max-columns 0 '"type":"user"' "$session_file" 2>/dev/null)
-        msg_count=$(rg -c '"type":"user"' "$session_file" 2>/dev/null || echo 0)
+        user_line=$(rg -m1 --max-columns 0 '"type":"user"' "$path" 2>/dev/null)
+        msg_count=$(rg -c '"type":"user"' "$path" 2>/dev/null || echo 0)
     else
-        user_line=$(grep -m1 '"type":"user"' "$session_file" 2>/dev/null)
-        msg_count=$(grep -c '"type":"user"' "$session_file" 2>/dev/null || echo 0)
+        user_line=$(grep -m1 '"type":"user"' "$path" 2>/dev/null)
+        msg_count=$(grep -c '"type":"user"' "$path" 2>/dev/null || echo 0)
     fi
     preview=$(echo "$user_line" | sed -n 's/.*"type":"user".*"text":"\([^"]*\)".*/\1/p')
     [ -z "$preview" ] && preview=$(echo "$user_line" | sed -n 's/.*"type":"user".*"content":"\([^"]*\)".*/\1/p')
     preview=$(echo "$preview" | tr '\n\t|' '   ' | cut -c1-80)
 
-    printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$timestamp" "$date_str" "$project_path" "$preview" "$msg_count" "$session_id" >> "$RESULTS_FILE"
-done
-
-# Display
-if [ -s "$RESULTS_FILE" ]; then
-    count=0
-    while IFS=$'\t' read -r timestamp date_str project preview msg_count session_id; do
-        count=$((count + 1))
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "$count. [$date_str] $project ($msg_count msgs)"
-        [ -n "$preview" ] && echo "   💬 $preview"
-        echo "   ▶ claude --resume $session_id"
-    done < <(sort -r "$RESULTS_FILE" | head -30)
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-else
-    echo "No conversations found"
-fi
+    echo "$count. [$date_str] $cwd ($msg_count msgs)"
+    [ -n "$preview" ] && echo "   💬 $preview"
+    echo "   ▶ claude --resume $session_id"
+done < <(head -"$MAX_RESULTS" "$MATCHED")
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-rm -f "$RESULTS_FILE"
+if [ "$TOTAL" -gt "$MAX_RESULTS" ]; then
+    echo ""
+    echo "Showing the $MAX_RESULTS most recent of $TOTAL matches."
+    echo "To narrow: use a longer or more specific search string, or add a date"
+    echo "range, e.g. --from \"2026-03-01\" --to \"2026-03-31\""
+fi
