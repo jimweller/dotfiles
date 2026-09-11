@@ -96,12 +96,18 @@ def get_space_pages(client, space_key):
             break
         
         data = response.json()
-        pages.extend(data['results'])
-        
-        if len(data['results']) < limit:
+        results = data['results']
+        pages.extend(results)
+
+        # Confluence caps an expansion-heavy request well below the requested
+        # limit (25 with body.export_view) and rewrites `limit` in the response.
+        # Advance by what the server actually returned and stop only when it
+        # offers no next page; comparing against the requested limit truncates
+        # every space larger than the server cap.
+        if not results or not data.get('_links', {}).get('next'):
             break
-        
-        start += limit
+
+        start += len(results)
     
     return pages
 
@@ -176,12 +182,14 @@ def get_child_pages(client, page_id):
             break
 
         data = response.json()
-        children.extend(data['results'])
-        
-        if len(data['results']) < limit:
+        results = data['results']
+        children.extend(results)
+
+        # Same server-side limit cap as get_space_pages; page on _links.next.
+        if not results or not data.get('_links', {}).get('next'):
             break
-        
-        start += limit
+
+        start += len(results)
     
     return children
 
@@ -279,7 +287,7 @@ def get_page_attachments(client, page_id):
                 }
             })
         
-        if not results or len(results) < limit:
+        if not results:
             break
         
         # API v2 uses cursor-based pagination
