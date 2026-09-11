@@ -178,7 +178,7 @@
     "mcg-lookup@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
-    "mcg-sensitive-canary@sead-claude-marketplace": false,
+    "mcg-sensitive-canary@sead-claude-marketplace": true,
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true
   },
@@ -219,6 +219,12 @@
         "source": "git",
         "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
       }
+    },
+    "cwqi-claude-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://dev.azure.com/mcgsead/MCG%20Sunset/_git/Mcg.CWQI.ClaudeMarketplace"
+      }
     }
   },
   "outputStyle": "Concise",
@@ -235,10 +241,10 @@
       "effortLevel": "xhigh"
     },
     "claude-opus-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     },
     "claude-sonnet-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     }
   },
   "awaySummaryEnabled": false,
