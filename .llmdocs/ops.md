@@ -38,8 +38,8 @@ Env secrets are SOPS+age encrypted under `configs/secrets/` and committed; that 
 
 | Agent                          | Script                     | Schedule                    | Log                   |
 | ------------------------------ | -------------------------- | --------------------------- | --------------------- |
-| `com.user.awsrefreshtoken`     | `aws-refresh-token.sh`     | 00:00, 09:00, 18:00 + login | `~/.logs/`            |
 | `com.user.sync`                | `dotfiles-backup-runner` -> `sync.sh` | Daily 02:00 + login | `~/.logs/backup-log.txt`, `backup-err.txt` |
+| `com.user.logrotate`           | `log-rotate.sh`            | Daily 03:30 + login         | `~/.logs/log-rotate.log`, `log-rotate.err` |
 | `com.user.steampipe`           | `steampipe service start`  | Login only                  | `~/assets/steampipe/` |
 | `com.user.ccusagecacherefresh` | `ccusage-cache-refresh.sh` | 00:00, 08:00, 16:00 + login | `~/.logs/`            |
 | `com.user.totalrecallbackfill` | `total-recall-backfill.sh` | Every 15 min                | `~/.logs/`            |
@@ -71,7 +71,23 @@ Process:
 3. Runs `confluence-backup.sh` if available
 4. `rsync -avL --delete` key directories: `~/work`, `~/personal`, `~/assets`, VSCode settings, Chrome bookmarks, OneDrive
 
-Excludes: `.git`, `node_modules`, `.terraform`, `.venv`, and other build artifacts.
+Excludes: `.git`, `node_modules`, `.terraform`, `.venv`, and other build artifacts, plus `OneDrive-Hearst/Recordings` and every OneDrive placeholder (below).
+
+### Dataless OneDrive placeholders
+
+OneDrive Files On-Demand leaves placeholder files carrying the `dataless` flag, visible as `compressed,dataless` in `ls -lO` or `stat -f '%Sf'`. The bytes are not on disk, so any read forces a download. Under launchd that download fails with `EDEADLK`, logged as `Resource deadlock avoided (11)`, and rsync then discards the partial file with `failed verification -- update discarded` and exits 23.
+
+`sync.sh` builds an exclude list before each run:
+
+```bash
+find ~/Library/CloudStorage/OneDrive-Hearst -flags +dataless -type f
+```
+
+Paths are rewritten to patterns anchored at the rsync transfer root and fed to `--exclude-from`. Wildcard characters are escaped, since rsync reads `[`, `]`, `*`, and `?` in a pattern as glob metacharacters. The run prints how many placeholders it skipped, and warns if the scan itself reported errors, because a failed scan yields an empty list and silently restores the old behavior.
+
+Measured 2026-09-11: 1291 of 5323 OneDrive files were dataless. Of those, 95 totalling 6.6G were reachable by rsync and re-read on every nightly run, none ever transferring. After the change, 0 remain reachable. The other 1196 were already covered by existing excludes, mostly `OneDrive-Hearst/emojis`.
+
+Reading a placeholder by hand materializes it, so avoid `head`, `cat`, or `grep` inside the domain when diagnosing. `stat` and `find` inspect metadata only and are safe.
 
 ### TCC and the backup runner
 
@@ -84,6 +100,16 @@ The runner is not a platform binary, so macOS prompts once per domain (`"dotfile
 `install.macos.yaml` builds the runner with clang and rebuilds it only when `backup-runner.c` is newer. The grant is keyed to the binary's path and code hash, so a rebuild voids both approvals and macOS prompts again on the next run with a user logged in. Never re-sign it with `codesign -s -`; replacing the linker's ad-hoc signature makes the kernel kill it with SIGKILL.
 
 Two consequences for debugging. A denial inside the domain surfaces as EPERM from `ls` and `head`, not as a TCC dialog, when no user is logged in. `getcwd(3)` also fails with EPERM inside a domain, and zsh's `pwd -P` then silently returns the logical `$PWD`, so `sync.sh` resolves `~/bak` with `readlink` instead.
+
+## Log Rotation
+
+`scripts/log-rotate.sh` caps every `*.log`, `*.txt`, and `*.err` under `~/.logs` at 10 MiB, keeping the last 2 MiB and prepending a line naming what was dropped. Thresholds come from `DOTFILES_LOG_MAX_BYTES` and `DOTFILES_LOG_KEEP_BYTES`; the directory from `DOTFILES_LOG_DIR`.
+
+It truncates in place instead of renaming. launchd holds `StandardOutPath` and `StandardErrorPath` open for the life of each agent, so a rename leaves launchd appending to the rotated copy while the active path stays empty. Rewriting the same inode keeps those descriptors valid.
+
+Nothing rotated these logs before 2026-09-11, when `~/.logs` reached 7.8G. `total-recall-backfill.log` alone was 8.1G (sparse), `backup-err.txt` 123M, `backup-log.txt` 57M. The first run reclaimed 7932 MiB.
+
+That size came from a failing job, not from normal volume. `total-recall-backfill.sh` runs every 15 minutes and its embedding step reports `4500 fail, 0 ok`, each failure logging `500 Server Error ... /api/embeddings`. The endpoint answers 200 for payloads from 100 to 8000 characters when tested by hand against `nomic-embed-text`, so the cause is situational rather than a payload-size bug and is still unresolved. Rotation caps the symptom only.
 
 ## AWS SSO Token Refresh
 

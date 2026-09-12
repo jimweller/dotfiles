@@ -244,7 +244,7 @@
       "effortLevel": "medium"
     },
     "claude-sonnet-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     }
   },
   "awaySummaryEnabled": false,

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Caps the size of every log under ~/.logs.
+
+  The other agents write through launchd's StandardOutPath and
+  StandardErrorPath, which nothing truncates on its own. Before this agent
+  existed ~/.logs held 7.8G, 8.1G of it in total-recall-backfill.log.
+
+  scripts/log-rotate.sh truncates in place rather than renaming, because
+  launchd keeps those output descriptors open for the life of each agent.
+
+  Install:
+    cp scripts/log-rotate.plist ~/Library/LaunchAgents/com.user.logrotate.plist
+    launchctl load ~/Library/LaunchAgents/com.user.logrotate.plist
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.user.logrotate.plist
+    rm ~/Library/LaunchAgents/com.user.logrotate.plist
+
+  Start immediately:
+    launchctl start com.user.logrotate
+
+  Check status:
+    launchctl list | grep logrotate
+-->
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.logrotate</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>-l</string>
+      <string>/Users/jimweller/.config/dotfiles/scripts/log-rotate.sh</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+      <key>HOME</key>
+      <string>/Users/jimweller</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true />
+
+    <!-- Runs daily at 3:30 AM, after the 2:00 AM backup has finished writing -->
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>3</integer>
+      <key>Minute</key>
+      <integer>30</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jimweller/.logs/log-rotate.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jimweller/.logs/log-rotate.err</string>
+  </dict>
+</plist>

@@ -70,10 +70,43 @@ else
 fi
 
 echo ""
+
+# OneDrive Files On-Demand leaves placeholder files carrying the `dataless`
+# flag. The bytes are not on disk, so rsync reading one forces a download.
+# Under launchd that download fails with EDEADLK ("Resource deadlock avoided"),
+# rsync discards the partial file as "failed verification", and the whole run
+# exits 23. Measured before this exclusion: 95 placeholders totalling 6.6G were
+# re-read on every nightly run, none of them ever transferring.
+#
+# Skip them by path. They stay in OneDrive, which is itself cloud storage, so
+# nothing is lost that was ever held locally.
+ONEDRIVE_ROOT="$HOME/Library/CloudStorage/OneDrive-Hearst"
+DATALESS_EXCLUDES="$(mktemp)"
+DATALESS_ERRS="$(mktemp)"
+trap 'rm -f "$DATALESS_EXCLUDES" "$DATALESS_ERRS"' EXIT
+
+# Patterns are anchored to the rsync transfer root, which starts at
+# OneDrive-Hearst. Wildcard characters in a filename would otherwise be read as
+# glob metacharacters, so escape backslashes first, then [ ] * ?.
+find "$ONEDRIVE_ROOT" -flags +dataless -type f -print 2>"$DATALESS_ERRS" \
+  | sed -e "s|^$HOME/Library/CloudStorage/|/|" \
+        -e 's/[\\]/\\\\/g' \
+        -e 's/[][*?]/\\&/g' \
+  > "$DATALESS_EXCLUDES"
+
+dataless_count=$(wc -l < "$DATALESS_EXCLUDES" | tr -d ' ')
+echo "Skipping $dataless_count dataless OneDrive placeholder(s)"
+if [[ -s "$DATALESS_ERRS" ]]; then
+  echo "WARNING: scanning $ONEDRIVE_ROOT reported errors; the skip list may be incomplete"
+  head -3 "$DATALESS_ERRS"
+fi
+
 echo "Syncing files to $TARGET_DIR..."
 SYNC_STATUS="ok"
 rsync_rc=0
 rsync -avL --delete \
+  --exclude-from="$DATALESS_EXCLUDES" \
+  --exclude='OneDrive-Hearst/Recordings' \
   --exclude='.Trash' \
   --exclude='.trash' \
   --exclude='.git' \

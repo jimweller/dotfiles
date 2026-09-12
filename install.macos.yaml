@@ -52,6 +52,7 @@
     #   path: configs/roocode/*
     "~/Library/Application\ Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/custom_modes.yaml": configs/roocode/custom_modes.yaml
     "~/Library/LaunchAgents/com.user.sync.plist": scripts/sync.plist
+    "~/Library/LaunchAgents/com.user.logrotate.plist": scripts/log-rotate.plist
     "~/Library/LaunchAgents/com.user.steampipe.plist": scripts/steampipe-start.plist
     "~/Library/LaunchAgents/com.user.ccusagecacherefresh.plist": scripts/ccusage-cache-refresh.plist
     "~/Library/LaunchAgents/com.user.totalrecallbackfill.plist": scripts/total-recall-backfill.plist
