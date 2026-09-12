@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 4165
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 159670,
+  "promptQueueUseCount": 159678,
   "btwUseCount": 5,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -15850,8 +15850,8 @@
       "lastUsedAt": 1789046144857
     },
     "prose": {
-      "usageCount": 3,
-      "lastUsedAt": 1789249162631
+      "usageCount": 88,
+      "lastUsedAt": 1789255920650
     }
   },
   "opusProMigrationComplete": true,
@@ -15877,13 +15877,13 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 13105,
-      "lastUsedAt": 1789249035197,
+      "usageCount": 13241,
+      "lastUsedAt": 1789255868324,
       "lastUsedNumStartups": 4169
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 3832,
-      "lastUsedAt": 1789249166815,
+      "usageCount": 3908,
+      "lastUsedAt": 1789255859130,
       "lastUsedNumStartups": 4169
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -15892,8 +15892,8 @@
       "lastUsedNumStartups": 4121
     },
     "beads@beads-marketplace": {
-      "usageCount": 3771,
-      "lastUsedAt": 1789249160677,
+      "usageCount": 3847,
+      "lastUsedAt": 1789255859130,
       "lastUsedNumStartups": 4169
     },
     "claude-mem@jimweller": {
@@ -15922,13 +15922,13 @@
       "lastUsedNumStartups": 4150
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 40301,
-      "lastUsedAt": 1789249180205,
+      "usageCount": 41287,
+      "lastUsedAt": 1789255921453,
       "lastUsedNumStartups": 4169
     },
     "claude-mem@thedotmack": {
-      "usageCount": 70493,
-      "lastUsedAt": 1789249180205,
+      "usageCount": 72266,
+      "lastUsedAt": 1789255921453,
       "lastUsedNumStartups": 4169
     },
     "mind-meld@inline": {
