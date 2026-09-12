@@ -83,6 +83,10 @@ claude() { _claude_appended "$@" }
 claws() { _claude_appended --settings ~/.claude/settings-aws.json "$@" }
 claz() { _claude_appended --settings ~/.claude/settings-azure.json "$@" }
 
+# Resumes the most recent session in this directory. The alias expands to the claude
+# function above, so the appended system prompt comes along.
+alias claudec='claude --continue'
+
 claude_local() {
   command -v ollama >/dev/null 2>&1 || {
     echo "ollama not found in PATH"
