@@ -31,7 +31,78 @@ printf '%s\n' "$payload" >>"$HOME/.logs/subagent-statusline.jsonl" 2>/dev/null |
 
 command -v jq >/dev/null 2>&1 || exit 0
 
-printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" '
+# The payload carries no agent type. Its `name` field is populated only for
+# explicitly named background agents and is absent for every subagent_type,
+# verified across two runs including a purpose-built `napper` agent. The type
+# does live in the transcript, which the payload points at: an Agent tool_use
+# carries input.subagent_type, and the matching tool_result carries agentId.
+#
+# Resolving that means parsing the transcript, so results are cached by agent id
+# and each id is looked up once for its lifetime rather than every 5s tick.
+TYPE_CACHE="$HOME/.cache/claude-subagent-types.tsv"
+types_json='{}'
+
+resolve_types() {
+    local transcript ids unknown
+    transcript=$(printf '%s' "$payload" | jq -r '.transcript_path // empty') || return 0
+    [[ -n "$transcript" && -f "$transcript" ]] || return 0
+    ids=$(printf '%s' "$payload" | jq -r '.tasks[]?.id') || return 0
+    [[ -n "$ids" ]] || return 0
+
+    mkdir -p "$(dirname "$TYPE_CACHE")" 2>/dev/null || return 0
+    [[ -f "$TYPE_CACHE" ]] || : >"$TYPE_CACHE"
+
+    unknown=$(comm -23 <(printf '%s\n' "$ids" | sort -u) \
+                       <(cut -f1 "$TYPE_CACHE" | sort -u) 2>/dev/null) || unknown=""
+
+    if [[ -n "$unknown" ]]; then
+        python3 - "$transcript" "$TYPE_CACHE" <<'PY' 2>/dev/null || true
+import json, sys
+transcript, cache = sys.argv[1], sys.argv[2]
+tool2type, found = {}, {}
+with open(transcript, errors="replace") as fh:
+    for line in fh:
+        if '"Agent"' not in line and "agentId" not in line:
+            continue
+        try:
+            rec = json.loads(line)
+        except Exception:
+            continue
+        content = rec.get("message", {}).get("content")
+        blocks = content if isinstance(content, list) else []
+        for b in blocks:
+            if isinstance(b, dict) and b.get("type") == "tool_use" and b.get("name") == "Agent":
+                tool2type[b["id"]] = b.get("input", {}).get("subagent_type")
+        result = rec.get("toolUseResult")
+        if isinstance(result, dict) and "agentId" in result:
+            tool_id = next((b.get("tool_use_id") for b in blocks
+                            if isinstance(b, dict) and b.get("type") == "tool_result"), None)
+            kind = tool2type.get(tool_id)
+            if kind:
+                found[result["agentId"]] = kind
+if found:
+    with open(cache, "a") as fh:
+        for agent_id, kind in found.items():
+            fh.write(f"{agent_id}\t{kind}\n")
+PY
+    fi
+
+    # awk rather than another python3, because interpreter startup dominates a
+    # tick that fires every 5 seconds.
+    types_json=$(awk -F'\t' '
+        BEGIN { printf "{" }
+        NF == 2 && !seen[$1]++ {
+            if (n++) printf ",";
+            gsub(/"/, "", $1); gsub(/"/, "", $2);
+            printf "\"%s\":\"%s\"", $1, $2
+        }
+        END { printf "}" }' "$TYPE_CACHE" 2>/dev/null) || types_json='{}'
+    [[ -n "$types_json" ]] || types_json='{}'
+}
+
+resolve_types || true
+
+printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$types_json" '
   def paint($c): "[\($c)m\(.)[0m";
 
   def elapsed:
@@ -94,7 +165,7 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" '
   | (if $desc == $title then [] else [$desc] end) as $descpart
   | (.model | shortmodel) as $model
   | (.effort | effortmark) as $e
-  | (if .name == null then [] else [.name] end) as $agentpart
+  | ((.name // $types[.id] // null) | if . == null then [] else [.] end) as $agentpart
   | ((.tokenSamples // [] | last // 0)) as $toknum
   | (if $toknum == 0 then "—" else ($toknum | commas) end) as $tokens
   | ((if ((.startTime // 0) > 0) then (($now - .startTime) / 1000) else 0 end)
