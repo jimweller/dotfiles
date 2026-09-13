@@ -59,6 +59,20 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" '
     elif . == "queued" or . == "pending" then ["○", "2;37"]
     else ["●", "2;37"] end;
 
+  # Same letters statusline-command.sh uses, so the two bars read alike. That
+  # script ramps brightness per level because it paints the cell as a
+  # background. Here the letter sits in normal text and takes one colour.
+  # Absent effort prints nothing rather than defaulting to low.
+  def effortmark:
+    if . == null then ""
+    elif . == "low" then "l"
+    elif . == "medium" then "m"
+    elif . == "high" then "h"
+    elif . == "xhigh" then "x"
+    elif . == "max" then "m"
+    elif startswith("ultra") then "u"
+    else "" end;
+
   # claude-sonnet-5[1m] and global.anthropic.claude-haiku-4-5-2025... both reduce
   # to the family name.
   def shortmodel:
@@ -75,33 +89,45 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" '
   | (now * 1000) as $now
   | .tasks[]?
   | ((.status // "?") | glyph) as $g
-  | (.name // .label // .description // "-") as $title
+  | (.label // .description // "-") as $title
   | (.description // "-") as $desc
   | (if $desc == $title then [] else [$desc] end) as $descpart
   | (.model | shortmodel) as $model
+  | (.effort | effortmark) as $e
+  | (if .name == null then [] else [.name] end) as $agentpart
   | ((.tokenSamples // [] | last // 0)) as $toknum
   | (if $toknum == 0 then "—" else ($toknum | commas) end) as $tokens
   | ((if ((.startTime // 0) > 0) then (($now - .startTime) / 1000) else 0 end)
      | if . < 0 then 0 else . end | elapsed) as $age
-  # The glyph occupies one column. Five fields always render (glyph, title,
-  # model, tokens, age) plus the optional description, so the two-space joiner
-  # appears 4 times, or 5 when the description is present.
-  | (1 + ($model | length) + ($tokens | length) + ($age | length)
-     + (2 * (4 + ($descpart | length)))) as $fixed
-  | ($width - $fixed) as $free
-  | (if ($descpart | length) == 0 then $free
-     else ([($title | length), ($free / 2 | floor)] | min) end) as $titleroom
-  | ($title | clamp($titleroom)) as $titletext
-  | (($descpart | first // "") | clamp($free - ($titletext | length))) as $desctext
+  # Lay the row out at full length, measure it, then take the overage out of the
+  # shrinkable fields in priority order: description first, then agent type,
+  # then title. Measuring beats pre-allocating, because the separator count
+  # changes with which optional fields are present.
+  | ($agentpart | first // "") as $agent0
+  | ($descpart | first // "") as $desc0
+  | (def plain($t; $a; $d):
+       [$g[0], $t, $model, $e, $a, $d, $tokens, $age]
+       | map(select(. != "")) | join("  ") | length;
+     plain($title; $agent0; $desc0) - $width) as $over
+  | (if $over <= 0 then $desc0
+     else ($desc0 | clamp(($desc0 | length) - $over)) end) as $desctext
+  | ($over - (($desc0 | length) - ($desctext | length))) as $over2
+  | (if $over2 <= 0 then $agent0
+     else ($agent0 | clamp(($agent0 | length) - $over2)) end) as $agenttext
+  | ($over2 - (($agent0 | length) - ($agenttext | length))) as $over3
+  | (if $over3 <= 0 then $title
+     else ($title | clamp(($title | length) - $over3)) end) as $titletext
   | {
       id,
       content: ([
         ($g[0] | paint($g[1])),
-        $titletext,
+        (if $titletext == "" then empty else $titletext end),
         ($model | paint("36")),
+        (if ($e | length) == 0 then empty else ($e | paint("33")) end),
+        (if $agenttext == "" then empty else ($agenttext | paint("35")) end),
         (if $desctext == "" then empty else ($desctext | paint("2;37")) end),
         (if $toknum == 0 then ($tokens | paint("2;37")) else ($tokens | paint("1;37")) end),
         ($age | paint("2;37"))
-      ] | join("  "))
+      ] | map(select(. != "")) | join("  "))
     }
 ' 2>/dev/null || exit 0

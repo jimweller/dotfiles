@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 4204
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 159739,
+  "promptQueueUseCount": 159748,
   "btwUseCount": 5,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -16003,9 +16003,9 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 13444,
-      "lastUsedAt": 1789324974548,
-      "lastUsedNumStartups": 4209
+      "usageCount": 13454,
+      "lastUsedAt": 1789325411416,
+      "lastUsedNumStartups": 4210
     },
     "mcg-atlassian@sead-claude-marketplace": {
       "usageCount": 4018,
@@ -16048,13 +16048,13 @@
       "lastUsedNumStartups": 4150
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 42971,
-      "lastUsedAt": 1789325159937,
+      "usageCount": 43010,
+      "lastUsedAt": 1789325473895,
       "lastUsedNumStartups": 4210
     },
     "claude-mem@thedotmack": {
-      "usageCount": 74639,
-      "lastUsedAt": 1789325159937,
+      "usageCount": 74693,
+      "lastUsedAt": 1789325485597,
       "lastUsedNumStartups": 4210
     },
     "mind-meld@inline": {
