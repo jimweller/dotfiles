@@ -123,12 +123,17 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
     if $w <= 0 then "" elif length > $w then .[0:$w-1] + "…" else . end;
 
   # Avoids leaning on a red/green split, which dark-daltonized does not separate.
+  # Third element is the trailing separator the glyph carries, so the row skips
+  # the usual two-space join after it. U+26A1 is East Asian Wide and draws in two
+  # columns, the rest draw in one, and jq counts all of them as length 1. Giving
+  # the wide bolt one space and the narrow glyphs two lands every title in the
+  # same column without the bolt looking padded.
   def glyph:
-    if . == "running" then ["⚡", "1;33"]
-    elif . == "completed" then ["✓", "1;36"]
-    elif . == "failed" or . == "error" then ["✗", "1;31"]
-    elif . == "queued" or . == "pending" then ["○", "2;37"]
-    else ["●", "2;37"] end;
+    if . == "running" then ["⚡", "1;33", " "]
+    elif . == "completed" then ["✓", "1;36", "  "]
+    elif . == "failed" or . == "error" then ["✗", "1;31", "  "]
+    elif . == "queued" or . == "pending" then ["○", "2;37", "  "]
+    else ["●", "2;37", "  "] end;
 
   # Same letters statusline-command.sh uses, so the two bars read alike. That
   # script ramps brightness per level because it paints the cell as a
@@ -177,8 +182,12 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
   | ($agentpart | first // "") as $agent0
   | ($descpart | first // "") as $desc0
   | (def plain($t; $a; $d):
-       [$g[0], $t, $model, $e, $a, $d, $tokens, $age]
-       | map(select(. != "")) | join("  ") | length;
+       # The glyph cell always draws 3 columns: a 2-column wide glyph plus one
+       # space, or a 1-column glyph plus two. jq measures the wide one as 1, so
+       # the constant is used instead of a length.
+       3 +
+       ([$t, $model, $e, $a, $d, $tokens, $age]
+        | map(select(. != "")) | join("  ") | length);
      plain($title; $agent0; $desc0) - $width) as $over
   | (if $over <= 0 then $desc0
      else ($desc0 | clamp(($desc0 | length) - $over)) end) as $desctext
@@ -190,8 +199,7 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
      else ($title | clamp(($title | length) - $over3)) end) as $titletext
   | {
       id,
-      content: ([
-        ($g[0] | paint($g[1])),
+      content: (($g[0] | paint($g[1])) + $g[2]) + ([
         (if $titletext == "" then empty else $titletext end),
         ($model | paint("36")),
         (if ($e | length) == 0 then empty else ($e | paint("33")) end),
