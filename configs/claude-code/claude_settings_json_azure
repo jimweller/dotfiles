@@ -12,9 +12,11 @@
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
     "CLAUDE_CODE_SHELL": "bash",
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL": "5m",
     "CLAUDE_CODE_USE_BEDROCK": "0",
     "CLAUDE_CODE_USE_FOUNDRY": "1",
     "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_BUG_COMMAND": "1",
     "DISABLE_COST_WARNINGS": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_FEEDBACK_COMMAND": "1",
@@ -171,6 +173,10 @@
     "type": "command",
     "command": "~/.claude/statusline-command.sh azure"
   },
+  "subagentStatusLine": {
+    "type": "command",
+    "command": "~/.claude/subagent-statusline.sh"
+  },
   "enabledPlugins": {
     "beads@beads-marketplace": true,
     "claude-mem@thedotmack": true,
@@ -235,16 +241,18 @@
       "CLANKING"
     ]
   },
-  "effortLevel": "xhigh",
   "modelSettings": {
     "claude-fable-5": {
       "effortLevel": "xhigh"
     },
+    "claude-haiku-4-5": {
+      "effortLevel": "xhigh"
+    },
     "claude-opus-5": {
-      "effortLevel": "medium"
+      "effortLevel": "xhigh"
     },
     "claude-sonnet-5": {
-      "effortLevel": "medium"
+      "effortLevel": "xhigh"
     }
   },
   "awaySummaryEnabled": false,

@@ -12,7 +12,9 @@
     "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
     "CLAUDE_CODE_SHELL": "bash",
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL": "5m",
     "DISABLE_AUTOUPDATER": "1",
+    "DISABLE_BUG_COMMAND": "1",
     "DISABLE_COST_WARNINGS": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_FEEDBACK_COMMAND": "1",
@@ -47,7 +49,6 @@
     ]
   },
   "model": "sonnet",
-  "outputStyle": "Concise",
   "hooks": {
     "PostToolUse": [
       {
@@ -55,13 +56,13 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Edit(**/*.md)",
-            "command": "~/.claude/hooks/md-format.sh"
+            "command": "~/.claude/hooks/md-format.sh",
+            "if": "Edit(**/*.md)"
           },
           {
             "type": "command",
-            "if": "Write(**/*.md)",
-            "command": "~/.claude/hooks/md-format.sh"
+            "command": "~/.claude/hooks/md-format.sh",
+            "if": "Write(**/*.md)"
           }
         ]
       }
@@ -170,6 +171,10 @@
     "type": "command",
     "command": "~/.claude/statusline-command.sh jim"
   },
+  "subagentStatusLine": {
+    "type": "command",
+    "command": "~/.claude/subagent-statusline.sh"
+  },
   "enabledPlugins": {
     "beads@beads-marketplace": true,
     "claude-mem@thedotmack": true,
@@ -178,7 +183,8 @@
     "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "mcg-sensitive-canary@sead-claude-marketplace": true,
-    "ast-grep@ast-grep-marketplace": true
+    "ast-grep@ast-grep-marketplace": true,
+    "story-stick@sead-claude-marketplace": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
@@ -211,8 +217,21 @@
         "source": "github",
         "repo": "ast-grep/agent-skill"
       }
+    },
+    "sead-claude-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
+      }
+    },
+    "cwqi-claude-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://dev.azure.com/mcgsead/MCG%20Sunset/_git/Mcg.CWQI.ClaudeMarketplace"
+      }
     }
   },
+  "outputStyle": "Concise",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
@@ -220,12 +239,17 @@
       "CLANKING"
     ]
   },
-  "effortLevel": "xhigh",
   "modelSettings": {
     "claude-fable-5": {
       "effortLevel": "xhigh"
     },
+    "claude-haiku-4-5": {
+      "effortLevel": "xhigh"
+    },
     "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-sonnet-5": {
       "effortLevel": "xhigh"
     }
   },

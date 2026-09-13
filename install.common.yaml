@@ -113,6 +113,7 @@
     ~/.claude/settings-litellm-gem.json: configs/claude-code/claude_settings_json_litellm_gem
     ~/.claude/settings-ollama.json: configs/claude-code/claude_settings_json_ollama
     ~/.claude/statusline-command.sh: configs/claude-code/statusline-command.sh
+    ~/.claude/subagent-statusline.sh: configs/claude-code/subagent-statusline.sh
     ~/.claude/CLAUDE.md: configs/claude-code/claude_md.md
     ~/.claude/plugins/known_marketplaces.json: configs/claude-code/known_marketplaces.json
     ~/.claude/plugins/installed_plugins.json: configs/claude-code/installed_plugins.json
