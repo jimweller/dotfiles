@@ -85,12 +85,21 @@ fi
 if [ -z "$MODEL" ]; then
   MODEL_ID_IN=$(echo "$INPUT" | jq -r '.model.id // empty')
   if [ -n "$MODEL_ID_IN" ]; then
-    MODEL=$(echo "$MODEL_ID_IN" | sed -E '
-      s|^global\.anthropic\.||;
-      s|^claude-||;
-      s|-v[0-9]+||;
-      s|^([a-z]+)-([0-9]+)-([0-9]+)|\1 \2.\3|
-    ')
+    # Family name plus the context suffix. The generation, the provider prefix
+    # and the date stamp are things the operator already knows; whether the
+    # session is on the 1M window is not.
+    case "$MODEL_ID_IN" in
+      *"[1m]"*) MODEL_SUFFIX="[1m]" ;;
+      *)        MODEL_SUFFIX="" ;;
+    esac
+    case "$MODEL_ID_IN" in
+      *opus*)   MODEL="opus" ;;
+      *sonnet*) MODEL="sonnet" ;;
+      *haiku*)  MODEL="haiku" ;;
+      *fable*)  MODEL="fable" ;;
+      *) MODEL=$(echo "$MODEL_ID_IN" | sed -E 's|^global\.anthropic\.||; s|^claude-||; s|\[1m\]||') ;;
+    esac
+    MODEL="${MODEL}${MODEL_SUFFIX}"
   else
     MODEL_RAW=$(echo "$INPUT" | jq -r '.model.display_name // "Claude"')
     case "$MODEL_RAW" in
