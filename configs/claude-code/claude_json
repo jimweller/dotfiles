@@ -1,5 +1,5 @@
 {
-  "numStartups": 4231,
+  "numStartups": 4232,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 4230
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 159831,
+  "promptQueueUseCount": 159832,
   "btwUseCount": 6,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -15232,7 +15232,34 @@
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
       "lastGracefulShutdown": false,
-      "lastVersionBase": "2.1.263"
+      "lastVersionBase": "2.1.263",
+      "lastCost": 0.6899925,
+      "lastAPIDuration": 61775,
+      "lastAPIDurationWithoutRetries": 61707,
+      "lastToolDuration": 18162,
+      "lastDuration": 1478578,
+      "lastStartTime": 1789409199169,
+      "lastLinesAdded": 0,
+      "lastLinesRemoved": 0,
+      "lastTotalInputTokens": 16,
+      "lastTotalOutputTokens": 2647,
+      "lastTotalCacheCreationInputTokens": 43885,
+      "lastTotalCacheReadInputTokens": 369775,
+      "lastTotalWebSearchRequests": 0,
+      "lastFpsAverage": 0.28,
+      "lastFpsLow1Pct": 444.54,
+      "lastModelUsage": {
+        "claude-opus-5[1m]": {
+          "inputTokens": 16,
+          "outputTokens": 2647,
+          "thinkingTokens": 894,
+          "cacheReadInputTokens": 369775,
+          "cacheCreationInputTokens": 43885,
+          "webSearchRequests": 0,
+          "costUSD": 0.6899925
+        }
+      },
+      "lastSessionId": "3aab35cd-e742-4a92-b0cf-f6755be22050"
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -15685,8 +15712,8 @@
       "lastUsedAt": 1789278750980
     },
     "commit": {
-      "usageCount": 398,
-      "lastUsedAt": 1789410485272
+      "usageCount": 399,
+      "lastUsedAt": 1789411595248
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -16044,14 +16071,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 13668,
-      "lastUsedAt": 1789410214833,
-      "lastUsedNumStartups": 4231
+      "usageCount": 13673,
+      "lastUsedAt": 1789411519962,
+      "lastUsedNumStartups": 4232
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 4056,
-      "lastUsedAt": 1789409218016,
-      "lastUsedNumStartups": 4231
+      "usageCount": 4058,
+      "lastUsedAt": 1789411469737,
+      "lastUsedNumStartups": 4232
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 9,
@@ -16059,9 +16086,9 @@
       "lastUsedNumStartups": 4213
     },
     "beads@beads-marketplace": {
-      "usageCount": 3989,
-      "lastUsedAt": 1789409218016,
-      "lastUsedNumStartups": 4231
+      "usageCount": 3991,
+      "lastUsedAt": 1789411469737,
+      "lastUsedNumStartups": 4232
     },
     "claude-mem@jimweller": {
       "usageCount": 34296,
@@ -16089,14 +16116,14 @@
       "lastUsedNumStartups": 4150
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 45237,
-      "lastUsedAt": 1789410538241,
-      "lastUsedNumStartups": 4231
+      "usageCount": 45310,
+      "lastUsedAt": 1789411550746,
+      "lastUsedNumStartups": 4232
     },
     "claude-mem@thedotmack": {
-      "usageCount": 76849,
-      "lastUsedAt": 1789410538241,
-      "lastUsedNumStartups": 4231
+      "usageCount": 76915,
+      "lastUsedAt": 1789411519962,
+      "lastUsedNumStartups": 4232
     },
     "mind-meld@inline": {
       "usageCount": 18,
