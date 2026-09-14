@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 4230
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 159864,
+  "promptQueueUseCount": 159869,
   "btwUseCount": 6,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -15808,8 +15808,8 @@
       "lastUsedAt": 1787582034313
     },
     "claude-mem:mem-search": {
-      "usageCount": 34,
-      "lastUsedAt": 1789412959496
+      "usageCount": 35,
+      "lastUsedAt": 1789422219419
     },
     "obsidian-cli": {
       "usageCount": 6,
@@ -16071,9 +16071,9 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 13743,
-      "lastUsedAt": 1789419270258,
-      "lastUsedNumStartups": 4237
+      "usageCount": 13768,
+      "lastUsedAt": 1789425066624,
+      "lastUsedNumStartups": 4239
     },
     "mcg-atlassian@sead-claude-marketplace": {
       "usageCount": 4071,
@@ -16116,13 +16116,13 @@
       "lastUsedNumStartups": 4150
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 46370,
-      "lastUsedAt": 1789419365257,
+      "usageCount": 46655,
+      "lastUsedAt": 1789425126096,
       "lastUsedNumStartups": 4239
     },
     "claude-mem@thedotmack": {
-      "usageCount": 77881,
-      "lastUsedAt": 1789419365257,
+      "usageCount": 78123,
+      "lastUsedAt": 1789425118574,
       "lastUsedNumStartups": 4239
     },
     "mind-meld@inline": {

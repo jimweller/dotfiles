@@ -113,11 +113,8 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
       elif $m > 0 then "\($m)m\($s)s"
       else "\($s)s" end;
 
-  def commas:
-    tostring | explode | reverse
-    | [range(0; length) as $i
-       | (.[$i], if ($i % 3 == 2 and $i + 1 < length) then 44 else empty end)]
-    | reverse | implode;
+  def ktokens:
+    if . >= 1000 then "\(. / 1000 | round)k" else tostring end;
 
   def clamp($w):
     if $w <= 0 then "" elif length > $w then .[0:$w-1] + "…" else . end;
@@ -172,7 +169,7 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
   | (.effort | effortmark) as $e
   | ((.name // $types[.id] // null) | if . == null then [] else [.] end) as $agentpart
   | ((.tokenSamples // [] | last // 0)) as $toknum
-  | (if $toknum == 0 then "—" else ($toknum | commas) end) as $tokens
+  | (if $toknum == 0 then "—" else ($toknum | ktokens) end) as $tokens
   | ((if ((.startTime // 0) > 0) then (($now - .startTime) / 1000) else 0 end)
      | if . < 0 then 0 else . end | elapsed) as $age
   # Lay the row out at full length, measure it, then take the overage out of the
@@ -185,8 +182,10 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
        # The glyph cell always draws 3 columns: a 2-column wide glyph plus one
        # space, or a 1-column glyph plus two. jq measures the wide one as 1, so
        # the constant is used instead of a length.
-       3 +
-       ([$t, $model, $e, $a, $d, $tokens, $age]
+       # The description renders inside quotes that the clamped text does not
+       # carry, so the pair is counted here.
+       3 + (if $d == "" then 0 else 2 end) +
+       ([$a, $model, $e, $tokens, $age, $t, $d]
         | map(select(. != "")) | join("  ") | length);
      plain($title; $agent0; $desc0) - $width) as $over
   | (if $over <= 0 then $desc0
@@ -200,13 +199,13 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
   | {
       id,
       content: (($g[0] | paint($g[1])) + $g[2]) + ([
-        (if $titletext == "" then empty else $titletext end),
+        (if $agenttext == "" then empty else ($agenttext | paint("35")) end),
         ($model | paint("36")),
         (if ($e | length) == 0 then empty else ($e | paint("33")) end),
-        (if $agenttext == "" then empty else ($agenttext | paint("35")) end),
-        (if $desctext == "" then empty else ($desctext | paint("2;37")) end),
         (if $toknum == 0 then ($tokens | paint("2;37")) else ($tokens | paint("1;37")) end),
-        ($age | paint("2;37"))
+        ($age | paint("2;37")),
+        (if $titletext == "" then empty else $titletext end),
+        (if $desctext == "" then empty else ("\"\($desctext)\"" | paint("2;37")) end)
       ] | map(select(. != "")) | join("  "))
     }
 ' 2>/dev/null || exit 0
