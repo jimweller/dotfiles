@@ -87,6 +87,23 @@ claz() { _claude_appended --settings ~/.claude/settings-azure.json "$@" }
 # function above, so the appended system prompt comes along.
 alias claudec='claude --continue'
 
+# Sonnet 5 at 200k instead of 1M, and both halves are needed. Claude Code's catalog
+# marks claude-sonnet-5 native 1M, so the bare ID on its own still resolves to a 1M
+# window, and the env var on its own still dispatches claude-sonnet-5[1m] through the
+# sonnet alias. Every session gets a --name, defaulting to the current directory plus
+# "-agent". A first argument that does not start with a dash overrides it. Calls the
+# claude function above, so the appended system prompt comes along.
+clag() {
+  local name="${PWD:t}-agent"
+  if [[ -n "$1" && "$1" != -* ]]; then
+    name="$1"
+    shift
+  fi
+
+  CLAUDE_CODE_DISABLE_1M_CONTEXT=1 claude \
+    --name "$name" --model claude-sonnet-5 "$@"
+}
+
 claude_local() {
   command -v ollama >/dev/null 2>&1 || {
     echo "ollama not found in PATH"
