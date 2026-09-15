@@ -30,6 +30,7 @@ postman-cli
 raycast
 shottr
 slack
+sonarqube-cli
 spokenly
 tigervnc
 tigervnc-viewer

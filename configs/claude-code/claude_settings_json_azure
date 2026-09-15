@@ -186,7 +186,8 @@
     "ralph-loop@claude-plugins-official": true,
     "mcg-sensitive-canary@sead-claude-marketplace": true,
     "ast-grep@ast-grep-marketplace": true,
-    "story-stick@sead-claude-marketplace": true
+    "story-stick@sead-claude-marketplace": true,
+    "sonarqube@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
