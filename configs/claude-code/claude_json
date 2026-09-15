@@ -1,5 +1,5 @@
 {
-  "numStartups": 4239,
+  "numStartups": 4245,
   "installMethod": "native",
   "autoUpdates": true,
   "theme": "dark-daltonized",
@@ -54,10 +54,10 @@
     "web-app": 1334,
     "mobile-app": 1335,
     "feedback-command": 1335,
-    "auto-copy-config-hint": 4230
+    "auto-copy-config-hint": 4242
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 159869,
+  "promptQueueUseCount": 159926,
   "btwUseCount": 6,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -344,14 +344,14 @@
       "lastCost": 0,
       "lastAPIDuration": 0,
       "lastToolDuration": 0,
-      "lastDuration": 26966,
+      "lastDuration": 391337,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
       "lastTotalInputTokens": 0,
       "lastTotalOutputTokens": 0,
       "lastTotalCacheCreationInputTokens": 0,
       "lastTotalCacheReadInputTokens": 0,
-      "lastSessionId": "e4b1e946-7247-40e2-a11d-7f605d68d77e",
+      "lastSessionId": "31797d69-10ee-445d-a943-efea12eb9f1e",
       "reactVulnerabilityCache": {
         "detected": false,
         "package": null,
@@ -389,9 +389,9 @@
       "lastSessionFirstPrompt": "we updated ms365 mcp in claude, do codex too.",
       "lastSessionModified": 1779211596554,
       "lastVersionBase": "2.1.263",
-      "lastStartTime": 1789419364167,
-      "lastFpsAverage": 1.24,
-      "lastFpsLow1Pct": 185.6
+      "lastStartTime": 1789448579472,
+      "lastFpsAverage": 0.15,
+      "lastFpsLow1Pct": 129.79
     },
     "/Users/jimweller/Library/CloudStorage/GoogleDrive-jim.weller@gmail.com/My Drive/Git": {
       "allowedTools": [],
@@ -4098,30 +4098,39 @@
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false,
       "exampleFiles": [],
-      "lastCost": 0.5352494999999999,
-      "lastAPIDuration": 21898,
-      "lastAPIDurationWithoutRetries": 21895,
-      "lastToolDuration": 545,
-      "lastDuration": 1358092,
+      "lastCost": 1.8711665000000002,
+      "lastAPIDuration": 102103,
+      "lastAPIDurationWithoutRetries": 102027,
+      "lastToolDuration": 2313,
+      "lastDuration": 257637,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 4,
-      "lastTotalOutputTokens": 1550,
-      "lastTotalCacheCreationInputTokens": 46306,
-      "lastTotalCacheReadInputTokens": 66839,
+      "lastTotalInputTokens": 920,
+      "lastTotalOutputTokens": 7743,
+      "lastTotalCacheCreationInputTokens": 109420,
+      "lastTotalCacheReadInputTokens": 1165135,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
-        "claude-opus-5[1m]": {
-          "inputTokens": 4,
-          "outputTokens": 1550,
-          "thinkingTokens": 901,
-          "cacheReadInputTokens": 66839,
-          "cacheCreationInputTokens": 46306,
+        "claude-haiku-4-5": {
+          "inputTokens": 894,
+          "outputTokens": 10,
+          "thinkingTokens": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.5352494999999999
+          "costUSD": 0.0009440000000000001
+        },
+        "claude-opus-5[1m]": {
+          "inputTokens": 26,
+          "outputTokens": 7733,
+          "thinkingTokens": 3021,
+          "cacheReadInputTokens": 1165135,
+          "cacheCreationInputTokens": 109420,
+          "webSearchRequests": 0,
+          "costUSD": 1.8702225000000003
         }
       },
-      "lastSessionId": "f5c74e55-ecc2-4e81-aff9-23f3807c775b",
+      "lastSessionId": "44b7108a-7496-494a-8979-6768a8e64137",
       "lastSessionMetrics": {
         "hook_duration_ms_count": 136,
         "hook_duration_ms_min": 1,
@@ -4147,7 +4156,9 @@
       },
       "lastGracefulShutdown": false,
       "lastVersionBase": "2.1.263",
-      "lastStartTime": 1789414725078
+      "lastStartTime": 1789450430460,
+      "lastFpsAverage": 1.27,
+      "lastFpsLow1Pct": 197.9
     },
     "/Users/jimweller/work/cwqi-sunset": {
       "allowedTools": [],
@@ -15337,6 +15348,21 @@
         "--enabled-tools",
         "^(accept-calendar-event|add-excel-table-rows|add-mail-attachment|cancel-calendar-event|clear-excel-range|clear-my-presence|clear-my-user-preferred-presence|copy-drive-item|copy-mail-message|create-calendar|create-calendar-event|create-chat|create-contact-child-folder|create-contact-folder|create-contact-in-folder|create-draft-email|create-drive-item-preview|create-drive-item-share-link|create-excel-chart|create-excel-table|create-focused-inbox-override|create-forward-draft|create-mail-attachment-upload-session|create-mail-child-folder|create-mail-folder|create-mail-rule|create-my-calendar-permission|create-onedrive-folder|create-onenote-notebook|create-onenote-page|create-onenote-section|create-onenote-section-page|create-online-meeting|create-outlook-category|create-outlook-contact|create-planner-bucket|create-planner-task|create-reply-all-draft|create-reply-draft|create-shared-mailbox-draft|create-sharepoint-list|create-sharepoint-list-column|create-sharepoint-list-item|create-specific-calendar-event|create-subscription|create-todo-linked-resource|create-todo-task|create-todo-task-list|create-upload-session|decline-calendar-event|delete-calendar|delete-calendar-event|delete-contact-folder|delete-drive-item-permission|delete-excel-range|delete-excel-table-row|delete-focused-inbox-override|delete-mail-attachment|delete-mail-folder|delete-mail-message|delete-mail-rule|delete-my-calendar-permission|delete-onedrive-file|delete-onenote-page|delete-online-meeting|delete-outlook-contact|delete-planner-bucket|delete-sharepoint-list-column|delete-sharepoint-list-item|delete-specific-calendar-event|delete-subscription|delete-todo-linked-resource|delete-todo-task|delete-todo-task-list|dismiss-calendar-event-reminder|extract-drive-item-sensitivity-labels|find-meeting-times|format-excel-range|forward-calendar-event|forward-mail-message|forward-shared-mailbox-mail|get-calendar-event|get-calendar-view|get-channel-message|get-chat|get-chat-message|get-current-user|get-drive-delta|get-drive-item|get-drive-root-item|get-excel-range|get-excel-table|get-excel-used-range|get-mail-message|get-mail-message-mime|get-mail-tips|get-mailbox-settings|get-meeting-attendance-report|get-meeting-recording|get-meeting-recording-content|get-meeting-transcript|get-meeting-transcript-content|get-my-presence|get-onenote-notebook-from-web-url|get-onenote-page-content|get-online-meeting|get-outlook-contact|get-planner-bucket|get-planner-plan|get-planner-task|get-planner-task-details|get-presences-by-user-id|get-schedule|get-shared-calendar-view|get-shared-mailbox-message|get-sharepoint-list-column|get-sharepoint-site|get-sharepoint-site-by-path|get-sharepoint-site-drive-by-id|get-sharepoint-site-item|get-sharepoint-site-list|get-sharepoint-site-list-item|get-sharepoint-site-onenote-page-content|get-sharepoint-sites-delta|get-specific-calendar-event|get-specific-calendar-view|get-subscription|get-team|get-team-channel|get-todo-task|get-user-presence|graph-batch|insert-excel-range|list-all-onenote-sections|list-calendar-event-instances|list-calendar-events|list-calendar-events-delta|list-calendar-view-delta|list-calendars|list-channel-message-hosted-contents|list-channel-message-replies|list-channel-messages|list-chat-message-hosted-contents|list-chat-message-replies|list-chat-messages|list-chats|list-contact-folder-child-folders|list-contact-folder-contacts|list-contact-folders|list-drive-item-permissions|list-drive-item-thumbnails|list-drive-item-versions|list-drives|list-excel-table-rows|list-excel-tables|list-excel-worksheets|list-focused-inbox-overrides|list-folder-files|list-joined-teams|list-mail-attachments|list-mail-child-folders|list-mail-folder-messages|list-mail-folder-messages-delta|list-mail-folders|list-mail-messages|list-mail-rules|list-meeting-attendance-records|list-meeting-attendance-reports|list-meeting-recordings|list-meeting-transcripts|list-my-associated-teams|list-my-calendar-permissions|list-my-installed-teams-apps|list-onenote-notebook-sections|list-onenote-notebooks|list-onenote-pages|list-onenote-section-groups|list-onenote-section-pages|list-online-meetings|list-outlook-categories|list-outlook-contacts|list-pinned-chat-messages|list-plan-buckets|list-plan-tasks|list-planner-tasks|list-relevant-people|list-shared-calendar-events|list-shared-mailbox-folder-messages|list-shared-mailbox-messages|list-sharepoint-list-columns|list-sharepoint-site-drives|list-sharepoint-site-items|list-sharepoint-site-list-items|list-sharepoint-site-lists|list-sharepoint-site-onenote-notebook-sections|list-sharepoint-site-onenote-notebooks|list-sharepoint-site-onenote-section-pages|list-specific-calendar-events|list-subscriptions|list-supported-languages|list-supported-time-zones|list-team-channels|list-todo-linked-resources|list-todo-task-lists|list-todo-tasks|list-trending-insights|merge-excel-range|move-mail-message|move-rename-onedrive-item|pin-chat-message|reauthorize-subscription|reply-all-mail-message|reply-all-shared-mailbox-mail|reply-mail-message|reply-shared-mailbox-mail|reply-to-channel-message|reply-to-chat-message|search-onedrive-files|search-query|search-sharepoint-sites|send-channel-message|send-chat-message|send-draft-message|send-mail|send-my-activity-notification|send-shared-mailbox-mail|set-channel-message-reaction|set-chat-message-reaction|set-my-presence|set-my-status-message|set-my-user-preferred-presence|share-drive-item|snooze-calendar-event-reminder|sort-excel-range|tentatively-accept-calendar-event|unmerge-excel-range|unpin-chat-message|unset-channel-message-reaction|unset-chat-message-reaction|update-calendar|update-calendar-event|update-contact-folder|update-excel-range|update-excel-table-row|update-focused-inbox-override|update-mail-folder|update-mail-message|update-mail-rule|update-mailbox-settings|update-my-calendar-permission|update-online-meeting|update-outlook-contact|update-planner-bucket|update-planner-task|update-planner-task-details|update-sharepoint-list-column|update-sharepoint-list-item|update-specific-calendar-event|update-subscription|update-todo-task|update-todo-task-list|upload-file-content|upload-my-profile-photo)$"
       ]
+    },
+    "datadog": {
+      "type": "http",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp?toolsets=core",
+      "headers": {
+        "DD-API-KEY": "${DD_API_KEY}",
+        "DD-APPLICATION-KEY": "${DD_APP_KEY}"
+      }
+    },
+    "sumo-logic": {
+      "type": "http",
+      "url": "https://mcp.us2.sumologic.com/mcp",
+      "oauth": {
+        "authServerMetadataUrl": "https://mcghealth.us2.sumologic.com/.well-known/oauth-authorization-server"
+      }
     }
   },
   "hasIdeOnboardingBeenShown": {
@@ -15688,8 +15714,8 @@
       "lastUsedAt": 1775952698182
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 723,
-      "lastUsedAt": 1789416137486
+      "usageCount": 726,
+      "lastUsedAt": 1789443331367
     },
     "code-reviews": {
       "usageCount": 21,
@@ -15708,12 +15734,12 @@
       "lastUsedAt": 1786589815226
     },
     "mcg-confluence-prefs": {
-      "usageCount": 374,
-      "lastUsedAt": 1789416138279
+      "usageCount": 377,
+      "lastUsedAt": 1789443333137
     },
     "commit": {
-      "usageCount": 401,
-      "lastUsedAt": 1789418372862
+      "usageCount": 402,
+      "lastUsedAt": 1789451822675
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -15744,8 +15770,8 @@
       "lastUsedAt": 1789178292417
     },
     "sage": {
-      "usageCount": 306,
-      "lastUsedAt": 1789394403329
+      "usageCount": 308,
+      "lastUsedAt": 1789445487573
     },
     "update-config": {
       "usageCount": 2,
@@ -16040,12 +16066,12 @@
       "lastUsedAt": 1787919860707
     },
     "tldr": {
-      "usageCount": 14,
-      "lastUsedAt": 1789355529404
+      "usageCount": 15,
+      "lastUsedAt": 1789430281111
     },
     "prose": {
-      "usageCount": 134,
-      "lastUsedAt": 1789348704969
+      "usageCount": 135,
+      "lastUsedAt": 1789444819126
     }
   },
   "opusProMigrationComplete": true,
@@ -16071,14 +16097,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 13768,
-      "lastUsedAt": 1789425066624,
-      "lastUsedNumStartups": 4239
+      "usageCount": 14224,
+      "lastUsedAt": 1789451871263,
+      "lastUsedNumStartups": 4245
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 4071,
-      "lastUsedAt": 1789419365257,
-      "lastUsedNumStartups": 4239
+      "usageCount": 4084,
+      "lastUsedAt": 1789450697090,
+      "lastUsedNumStartups": 4245
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 9,
@@ -16086,9 +16112,9 @@
       "lastUsedNumStartups": 4213
     },
     "beads@beads-marketplace": {
-      "usageCount": 4001,
-      "lastUsedAt": 1789419365257,
-      "lastUsedNumStartups": 4239
+      "usageCount": 4011,
+      "lastUsedAt": 1789450697090,
+      "lastUsedNumStartups": 4245
     },
     "claude-mem@jimweller": {
       "usageCount": 34296,
@@ -16116,14 +16142,14 @@
       "lastUsedNumStartups": 4150
     },
     "mcg-sensitive-canary@sead-claude-marketplace": {
-      "usageCount": 46655,
-      "lastUsedAt": 1789425126096,
-      "lastUsedNumStartups": 4239
+      "usageCount": 48679,
+      "lastUsedAt": 1789451872056,
+      "lastUsedNumStartups": 4245
     },
     "claude-mem@thedotmack": {
-      "usageCount": 78123,
-      "lastUsedAt": 1789425118574,
-      "lastUsedNumStartups": 4239
+      "usageCount": 80027,
+      "lastUsedAt": 1789451872056,
+      "lastUsedNumStartups": 4245
     },
     "mind-meld@inline": {
       "usageCount": 18,
@@ -16154,10 +16180,15 @@
       "usageCount": 4,
       "lastUsedAt": 1788457489010,
       "lastUsedNumStartups": 4062
+    },
+    "sonarqube@claude-plugins-official": {
+      "usageCount": 7,
+      "lastUsedAt": 1789450697090,
+      "lastUsedNumStartups": 4245
     }
   },
   "tipLifetimeShownCounts": {
-    "auto-copy-config-hint": 61
+    "auto-copy-config-hint": 62
   },
   "machineID": "1596c55d9a78723bd2ae5f9dc96df5e8ea2f5e9de4b4224f8d3b6f9a52aca309",
   "hasOpenedAgentsView": true,
