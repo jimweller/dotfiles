@@ -114,16 +114,16 @@ fi
 EFFORT_LEVEL=$(echo "$INPUT" | jq -r '.effort.level // empty')
 # Luminance ramp rather than a hue ramp: the operator's CVD type is unknown, and
 # brightness is the one channel every dichromacy preserves. The letter carries the
-# level on its own, so color is reinforcement. Medium and max both render m by
-# request; their brightness is what separates them.
+# level on its own, so color is reinforcement. Max renders ‼ instead of a
+# letter, so no two levels share a mark and brightness only reinforces.
 case "$EFFORT_LEVEL" in
-  low)    EFFORT_TEXT="l"; EFFORT_COLOR="\033[38;5;240m" ;;
-  medium) EFFORT_TEXT="m"; EFFORT_COLOR="\033[38;5;244m" ;;
-  high)   EFFORT_TEXT="h"; EFFORT_COLOR="\033[38;5;249m" ;;
-  xhigh)  EFFORT_TEXT="x"; EFFORT_COLOR="\033[38;5;253m" ;;
-  max)    EFFORT_TEXT="m"; EFFORT_COLOR="\033[1;38;5;231m" ;;
-  ultra*) EFFORT_TEXT="u"; EFFORT_COLOR="\033[1;7;38;5;231m" ;;
-  *)      EFFORT_TEXT="l"; EFFORT_COLOR="\033[38;5;240m" ;;
+  low)    EFFORT_TEXT="L"; EFFORT_COLOR="\033[38;5;240m" ;;
+  medium) EFFORT_TEXT="M"; EFFORT_COLOR="\033[38;5;244m" ;;
+  high)   EFFORT_TEXT="H"; EFFORT_COLOR="\033[38;5;249m" ;;
+  xhigh)  EFFORT_TEXT="X"; EFFORT_COLOR="\033[38;5;253m" ;;
+  max)    EFFORT_TEXT="‼"; EFFORT_COLOR="\033[1;38;5;231m" ;;
+  ultra*) EFFORT_TEXT="U"; EFFORT_COLOR="\033[1;7;38;5;231m" ;;
+  *)      EFFORT_TEXT="L"; EFFORT_COLOR="\033[38;5;240m" ;;
 esac
 
 CWD=$(echo "$INPUT" | jq -r '.workspace.current_dir // .cwd')

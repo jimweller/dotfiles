@@ -138,12 +138,12 @@ printf '%s' "$payload" | jq -c --argjson margin "$ROW_MARGIN" --argjson types "$
   # Absent effort prints nothing rather than defaulting to low.
   def effortmark:
     if . == null then ""
-    elif . == "low" then "l"
-    elif . == "medium" then "m"
-    elif . == "high" then "h"
-    elif . == "xhigh" then "x"
-    elif . == "max" then "m"
-    elif startswith("ultra") then "u"
+    elif . == "low" then "L"
+    elif . == "medium" then "M"
+    elif . == "high" then "H"
+    elif . == "xhigh" then "X"
+    elif . == "max" then "‼"
+    elif startswith("ultra") then "U"
     else "" end;
 
   # claude-sonnet-5[1m] and global.anthropic.claude-haiku-4-5-2025... both reduce
