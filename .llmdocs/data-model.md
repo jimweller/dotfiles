@@ -142,13 +142,44 @@ Two sources split the writing contract:
 | Source | Scope | Loading |
 | ------ | ----- | ------- |
 | Built-in `Concise` style | Brevity in the assistant turn: lead with the result, cut narration, 1-3 sentences for a simple question, no hedging, full detail on request, never trade correctness for brevity | `"outputStyle": "Concise"` in the three settings files |
-| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections: `Banned Patterns in All Writing` (prose mechanics, both surfaces), `Chat Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice), `Ghostwriting for Other Humans` (commits, PRs, code comments, docs, Jira, Slack, email), `LSP-First Navigation` | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
+| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections. `How to Write`, `Banned Patterns in All Writing` and `Ghostwriting for Other Humans` sit inside a `<prose-contract>` tag and are the written-artifact contract. `Chat Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice) and `LSP-First Navigation` sit outside it | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
+
+### The prose-contract block
+
+`<prose-contract>` wraps `How to Write`, `Banned Patterns in All Writing`, and
+`Ghostwriting for Other Humans`. `Chat Register` was moved below `Ghostwriting` so the
+three are contiguous and take one wrapper. It governs the assistant turn rather than an
+artifact, so it belongs outside a block the `prose` skill applies in full.
+
+Every rule inside the tag opens with a `` `PC-` `` id, 76 in total, being 55 in
+`Banned Patterns` and 21 in `Ghostwriting`. The 5 numbered moves in `How to Write` keep
+their existing `[move N]` tags, which already cross-reference from all 55 banned-pattern
+bullets.
+
+The ids exist because free-text rule names do not survive two sessions. One compliance run
+scored `trailing supplements` and `trailing supplements that hang a second beat on a
+finished clause` as two rules at 3 each instead of one at 6, and did that to three rules.
+An id is either in the contract or it is not, so an invented one is now visible.
+
+Four places address rules by id. `submodules/clanker-skills/skills/universal/prose/SKILL.md`
+points at the tag and nothing else. `evals/cases/*.csv` carries an id in its `bullet`
+column on all 595 rows. `evals/tools/bullet-groups.json` lists ids per judge group.
+`evals/prompts/` asks the rewriter and the judge to cite ids.
+
+`evals/tools/check-anchors.py` fails on an unknown id, a rule with no id, a duplicate id,
+or a `[move N]` pointing at a move that does not exist.
+`evals/tools/extract-catalog.py` cuts on the tag rather than on heading strings, so
+renaming a heading no longer breaks extraction. `evals/tools/pc-ids.json` holds the map
+from the old free-text names to ids.
+
+`MD033` is `false` in `configs/markdownlint/markdownlint-cli2.jsonc`, so the md-format
+hook leaves the tags alone. Both formatters were measured as no-ops on the tagged file.
 
 The four sections were separate files under `configs/claude-code/rules/` until 2026-08-24. All four carried no `paths` frontmatter, so all four already loaded on every Claude session; folding them into `claude_md.md` changed nothing for Claude and gave Codex content it had never received, because Codex resolves no `@file` references. `configs/claude-code/rules/` now holds only the nine `paths`-filtered language rules, which Codex never sees.
 
 `claude_md.md` also holds the Daneel persona, a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
 
-The file must stay harness-neutral. It names no Claude-only tools: the research bullet says "the builtin web search tools" and the STARTER_CHARACTER rule says "invoked by the skill system". Both spots are the ones to watch when editing. The measured size is 28,080 bytes. That is safe on both: the global `~/.codex/AGENTS.md` is exempt from `project_doc_max_bytes` (verified by setting the budget to 100 and watching the whole file still load), and Claude Code documents no CLAUDE.md size limit.
+The file must stay harness-neutral. It names no Claude-only tools: the research bullet says "the builtin web search tools" and the STARTER_CHARACTER rule says "invoked by the skill system". Both spots are the ones to watch when editing. The measured size is 58,095 bytes, up from 28,080 before the `PC-` ids and the earlier catalog expansions. That is safe on both: the global `~/.codex/AGENTS.md` is exempt from `project_doc_max_bytes` (verified by setting the budget to 100 and watching the whole file still load), and Claude Code documents no CLAUDE.md size limit.
 
 Codex has no `Concise` analogue. Its nearest lever is `personality`, with values `default`, `friendly`, and `pragmatic`, none of them terse. Codex therefore gets ordering and register but not brevity.
 
