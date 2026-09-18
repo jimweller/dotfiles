@@ -50,7 +50,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -184,7 +184,7 @@
     "mcg-lookup@sead-claude-marketplace": true,
     "mcg-status-updates@devx-claude-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
-    "mcg-sensitive-canary@sead-claude-marketplace": true,
+    "mcg-sensitive-canary@sead-claude-marketplace": false,
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true,
     "sonarqube@claude-plugins-official": true
