@@ -57,7 +57,7 @@
     "auto-copy-config-hint": 4263
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 160212,
+  "promptQueueUseCount": 160214,
   "btwUseCount": 7,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
@@ -15867,8 +15867,8 @@
       "lastUsedAt": 1775952698182
     },
     "mcg-atlassian:confluence": {
-      "usageCount": 757,
-      "lastUsedAt": 1789716163716
+      "usageCount": 758,
+      "lastUsedAt": 1789720317369
     },
     "code-reviews": {
       "usageCount": 21,
@@ -15887,8 +15887,8 @@
       "lastUsedAt": 1786589815226
     },
     "mcg-confluence-prefs": {
-      "usageCount": 407,
-      "lastUsedAt": 1789716166421
+      "usageCount": 408,
+      "lastUsedAt": 1789720319146
     },
     "commit": {
       "usageCount": 406,
@@ -16254,13 +16254,13 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 26194,
-      "lastUsedAt": 1789720017756,
+      "usageCount": 26204,
+      "lastUsedAt": 1789722164890,
       "lastUsedNumStartups": 4272
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 14454,
-      "lastUsedAt": 1789718936572,
+      "usageCount": 14455,
+      "lastUsedAt": 1789720317370,
       "lastUsedNumStartups": 4272
     },
     "mcg-lookup@sead-claude-marketplace": {
@@ -16304,8 +16304,8 @@
       "lastUsedNumStartups": 4268
     },
     "claude-mem@thedotmack": {
-      "usageCount": 123988,
-      "lastUsedAt": 1789720100114,
+      "usageCount": 124058,
+      "lastUsedAt": 1789722164890,
       "lastUsedNumStartups": 4272
     },
     "mind-meld@inline": {
