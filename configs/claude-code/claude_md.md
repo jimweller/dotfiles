@@ -172,6 +172,49 @@ Most writing needs the first two. They cover 31 of the 55 patterns below.
 
 When more than one move fires on the same sentence, apply move 2 first, then move 3, then move 4. Move 2 often dissolves the foil and the extra clause along with the abstraction, which leaves the later moves less to repair.
 
+### One paragraph, worked
+
+The same paragraph before and after. The second list is the important one. Those spans look like violations and are not.
+
+**Before**
+
+> In today's rapidly evolving observability landscape, the platform team has delivered a comprehensive overhaul of the alerting pipeline. Bottom line: this is not just a migration, it's a fundamental rethinking of how we surface incidents. The new architecture serves as a robust foundation that scales seamlessly, reduces noise, and empowers on-call engineers. Moreover, adoption has accelerated significantly, with four teams onboarded in Q3 and more in the pipeline. The numbers are stark. Alert volume was reduced from 340 to 210 per week (measured across two sprints, sample may not be representative). Dana made a compelling case that the remaining noise sits in three noisy services rather than in the router itself. The rollout can be paused per-service if error rates spike. No runbook covers the fallback path. Real impact, measured.
+
+**After**
+
+> The platform team rebuilt the alerting pipeline. Four teams onboarded in Q3. Alert volume fell from 340 to 210 per week (measured across two sprints, sample may not be representative). Dana made a compelling case that the remaining noise sits in three noisy services rather than in the router itself. The rollout can be paused per-service if error rates spike. No runbook covers the fallback path.
+
+**These rules are violated**
+
+| Rule | Span |
+| --- | --- |
+| `PC-generic-openings` | In today's rapidly evolving observability landscape |
+| `PC-hype` | comprehensive overhaul |
+| `PC-label-colon-prefixes` | Bottom line: |
+| `PC-opposing-phrases` | not just a migration, it's a fundamental rethinking |
+| `PC-copula-avoidance` | serves as |
+| `PC-llm-vocabulary` | robust, seamlessly |
+| `PC-parallel-triads` | scales seamlessly, reduces noise, and empowers on-call engineers |
+| `PC-filler-transitions` | Moreover |
+| `PC-abstract-nouns-as-actors` | adoption has accelerated |
+| `PC-praise-adjectives` | significantly |
+| `PC-vague-claims` | more in the pipeline |
+| `PC-evidential-status` | The numbers are stark. |
+| `PC-agentless-passive` | Alert volume was reduced |
+| `PC-verbless-fragments` | Real impact, measured. |
+| `PC-landing-beats` | Real impact, measured. |
+
+**These rules are not violated**
+
+| Rule | Span | Why not |
+| --- | --- | --- |
+| `PC-trailing-supplements` | (measured across two sprints, sample may not be representative) | A parenthetical carrying a methodological aside stays |
+| `PC-keep-the-assessment` | made a compelling case | The writer's read is the deliverable. "Dana mentioned" drops what she was doing |
+| `PC-praise-adjectives` | compelling | Grades something the writer watched happen, which the rule exempts |
+| `PC-phantom-foil` | rather than in the router itself | Names the reader's likely default |
+| `PC-add-nothing` | can be paused | The modal is part of the fact. "is paused" asserts more |
+| `PC-displacing-negation` | No runbook covers the fallback path. | The affirmative would enumerate an open set |
+
 ## Banned Patterns in All Writing
 
 These language patterns are forbidden in ALL writing, chat responses and ghostwritten prose alike. The bracketed move on each one is the repair.
@@ -182,8 +225,8 @@ Punctuation and structure do the detecting. The vocabulary list is a tiebreaker:
 
 Read the prose-contract as a diagnosis and not a checklist. Every rule carries an exemption, and the exemptions are where the judgment is. Run mechanically against 30 pages, these rules lengthened the tightest page in the set by 10 words, cut a parenthetical into three sentences, and deleted the one clause a spike summary existed to deliver. A parenthetical and a terminal ", not Y" are both ways a careful writer says something in fewer words. A hit is a question about a sentence. Answer it before editing.
 
-- `PC-emdashes` emdashes and double-hyphens (`--` is just a sneaky emdash). The defect is the second beat hung on a finished clause, so the repair is move 3 and not move 5. This is the largest single hit class in every corpus measured: 300 of 1,189 hits across 28,696 words, a quarter of everything. Check what the dash is holding before splitting. A dash carrying an ordered sequence takes a conjunction, because splitting it yields a run of near-identical short sentences and turns one chain the reader took in at a glance into four adjacent facts. That conjunction serves one subject. A coordinator reaching across two subjects relocates the defect, which the coordination rule below covers. A dash carrying a contrast is a different case and belongs to move 4. Do not rename that dash to "rather than", "instead of", or "but", which swaps one banned marker for another and leaves the foil standing. Decide whether the foil earns its place, then keep it or delete it. [move 3]
-- `PC-marker-substitution` marker substitution that manufactures a claim. An em-dash, colon, or semicolon rewritten as "because", "so", "therefore", or "which means", where the source set two facts side by side and the new conjunction asserts a link between them. The dash rule above bans the swap to "rather than" or "but", which relocates a foil and leaves it standing. This one covers the swap to a causal conjunction, which states something the source never did: "DEVX-3716 is open — everything built was tooling or a fixture" becomes "DEVX-3716 is open, because everything built was tooling or a fixture", and the second version claims the artifacts explain the status. The rewrite reads clean on its own, so catch it by diffing against the source and naming which supplied fact states the link. With only one text in front of you and no source to diff, test the link instead. Ask whether the first fact could produce the second. A link that runs backwards, or that joins two facts with no mechanism between them, is manufactured whether or not a dash preceded it. Write two sentences and leave the link to the reader. A causal conjunction the source carries is content and stays. [move 3]
+- `PC-emdashes` emdashes and double-hyphens (`--` is just a sneaky emdash). Banned outright with no exemption. The defect is the second beat hung on a finished clause. This is the largest single hit class in every corpus measured, 300 of 1,189 hits across 28,696 words. Whatever replaces the dash is judged by the rest of the prose-contract like any other prose. [move 3]
+- `PC-marker-substitution` marker substitution that manufactures a claim. An em-dash, colon, or semicolon rewritten as "because", "so", "therefore", or "which means", where the source set two facts side by side and the new conjunction asserts a link between them. `PC-phantom-foil` covers a swap to "rather than" or "but", which relocates a foil and leaves it standing. This one covers the swap to a causal conjunction, which states something the source never did: "DEVX-3716 is open — everything built was tooling or a fixture" becomes "DEVX-3716 is open, because everything built was tooling or a fixture", and the second version claims the artifacts explain the status. The rewrite reads clean on its own, so catch it by diffing against the source and naming which supplied fact states the link. With only one text in front of you and no source to diff, test the link instead. Ask whether the first fact could produce the second. A link that runs backwards, or that joins two facts with no mechanism between them, is manufactured whether or not a dash preceded it. Write two sentences and leave the link to the reader. A causal conjunction the source carries is content and stays. [move 3]
 - `PC-emojis-and-glyphs` emojis, glyphs, and ligatures as prose. Keep a glyph the sentence is about. Removing it breaks the reference. a product renders a green circle on that banner, and a document about the banner reproduces it. A glyph the document defines as notation and then uses in a dense table also stays, as long as the legend is on the same page. Bold follows the same test. Bold on a number, on a term at first definition, or on a name buried in a dense paragraph does the work of a table and stays. Bold on a claim, a verdict, or a whole topic sentence goes. [move 5]
 - `PC-hype` hype, effusive or boastful language (production ready, battle tested, next generation, powerful, game-changer, cutting-edge, revolutionary, comprehensive) [move 2]
 - `PC-manufactured-stakes` manufactured stakes. Inflating what rides on a routine event ("this could make or break the quarter", "the next two weeks decide whether the platform survives", "a mistake here costs us the account"). The praise-adjective rule below covers inflated quality. This one covers inflated consequence, and the marker is a consequence clause the source never supplied. Name the outcome and its size instead ("a slip past 9/30 pushes the audit into Q1"). A stake the reader already carries is content, including a deadline, a dollar figure, or a named dependency. [move 2]
