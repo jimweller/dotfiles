@@ -16370,8 +16370,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 26503,
-      "lastUsedAt": 1790048363143,
+      "usageCount": 26504,
+      "lastUsedAt": 1790048615380,
       "lastUsedNumStartups": 4290
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -16420,8 +16420,8 @@
       "lastUsedNumStartups": 4288
     },
     "claude-mem@thedotmack": {
-      "usageCount": 126166,
-      "lastUsedAt": 1790048532359,
+      "usageCount": 126176,
+      "lastUsedAt": 1790048956338,
       "lastUsedNumStartups": 4290
     },
     "mind-meld@inline": {
