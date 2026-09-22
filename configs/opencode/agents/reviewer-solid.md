@@ -1,10 +1,17 @@
 ---
 description: SOLID Principles review perspective. Dispatched by review-deep.
-mode: subagent
+mode: primary
 tools:
-  write: true
-  edit: false
+  apply_patch: true
   bash: false
+  context7_*: false
+  repomix_*: false
+  researcher_*: false
+  webfetch: false
+  serena_insert_*: false
+  serena_replace_*: false
+  serena_rename_*: false
+  serena_safe_delete_*: false
 ---
 
 <!-- markdownlint-disable-file MD041 -->
