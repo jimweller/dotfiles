@@ -10,8 +10,10 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | antidote       | `submodules/antidote/`       | Zsh plugin manager (git submodule)                       |
 | devcontainer   | `submodules/devcontainer/`   | Linux Docker dev image (git submodule)                   |
 | clanker-skills | `submodules/clanker-skills/` | Universal AI agent skills (git submodule)                |
-| total-recall   | `submodules/total-recall/`   | SQLite session memory for Claude Code (git submodule)    |
 | humble-master  | `submodules/humble-master/`  | Daneel persona research, upstream source of the persona text (git submodule) |
+| clanker-output-style-plugin | `submodules/clanker-output-style-plugin/` | Claude Code output-style plugin (git submodule) |
+| claude-marketplace | `submodules/claude-marketplace/` | The `jimweller` Claude Code plugin marketplace (git submodule) |
+| claude-session-plugin | `submodules/claude-session-plugin/` | The `session` plugin: search, resume, migrate sessions (git submodule) |
 
 ## Directory Layout
 
@@ -93,7 +95,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Six submodules defined in `.gitmodules`, all under `submodules/`:
+Eight submodules defined in `.gitmodules`, all under `submodules/`:
 
 | Submodule      | Shallow | Branch  |
 | -------------- | ------- | ------- |
@@ -101,5 +103,7 @@ Six submodules defined in `.gitmodules`, all under `submodules/`:
 | devcontainer   | yes     | main    |
 | antidote       | yes     | main    |
 | clanker-skills | no      | default |
-| total-recall   | no      | default |
 | humble-master  | no      | default |
+| clanker-output-style-plugin | no | default |
+| claude-marketplace | no | default |
+| claude-session-plugin | no | default |

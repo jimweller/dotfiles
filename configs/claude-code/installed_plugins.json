@@ -99,6 +99,44 @@
         "lastUpdated": "2026-08-02T05:57:32.841Z",
         "gitCommitSha": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a"
       }
+    ],
+    "story-stick@sead-claude-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/story-stick/0.1.4",
+        "version": "0.1.4",
+        "installedAt": "2026-09-22T04:50:18.955Z",
+        "lastUpdated": "2026-09-22T04:50:18.955Z"
+      }
+    ],
+    "sonarqube@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/sonarqube/81be40697fee",
+        "version": "81be40697fee",
+        "installedAt": "2026-09-22T04:50:18.955Z",
+        "lastUpdated": "2026-09-22T04:50:18.955Z"
+      }
+    ],
+    "clanker-output-style-plugin@jimweller": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-output-style-plugin/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-09-22T04:50:57.216Z",
+        "lastUpdated": "2026-09-22T04:50:57.216Z",
+        "gitCommitSha": "fc5ce56855d0faf72b62ef232c6d6fc59ae72969"
+      }
+    ],
+    "session@jimweller": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/session/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-09-22T04:57:00.562Z",
+        "lastUpdated": "2026-09-22T04:57:00.562Z",
+        "gitCommitSha": "fd8440439fd7c15f5dd46b77a27a8f672847f22a"
+      }
     ]
   }
 }

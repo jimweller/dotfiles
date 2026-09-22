@@ -69,16 +69,6 @@
         ]
       }
     ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -109,24 +99,6 @@
       }
     ],
     "SessionEnd": [
-      {
-        "matcher": "clear",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "prompt_input_exit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      },
       {
         "matcher": "",
         "hooks": [

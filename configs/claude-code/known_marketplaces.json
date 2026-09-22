@@ -66,5 +66,21 @@
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/ast-grep-marketplace",
     "lastUpdated": "2026-08-02T05:56:51.520Z"
+  },
+  "cwqi-claude-marketplace": {
+    "source": {
+      "source": "git",
+      "url": "https://dev.azure.com/mcgsead/MCG%20Sunset/_git/Mcg.CWQI.ClaudeMarketplace"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/cwqi-claude-marketplace",
+    "lastUpdated": "2026-09-22T04:50:20.689Z"
+  },
+  "jimweller": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/jimweller/claude-marketplace.git"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
+    "lastUpdated": "2026-09-22T04:56:59.365Z"
   }
 }

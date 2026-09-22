@@ -69,16 +69,6 @@
         ]
       }
     ],
-    "PreCompact": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
@@ -109,24 +99,6 @@
       }
     ],
     "SessionEnd": [
-      {
-        "matcher": "clear",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "prompt_input_exit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/ingest-transcript.sh"
-          }
-        ]
-      },
       {
         "matcher": "",
         "hooks": [
@@ -188,7 +160,8 @@
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true,
     "sonarqube@claude-plugins-official": true,
-    "clanker-output-style-plugin@jimweller": true
+    "clanker-output-style-plugin@jimweller": true,
+    "session@jimweller": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {

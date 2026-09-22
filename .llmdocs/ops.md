@@ -42,7 +42,6 @@ Env secrets are SOPS+age encrypted under `configs/secrets/` and committed; that 
 | `com.user.logrotate`           | `log-rotate.sh`            | Daily 03:30 + login         | `~/.logs/log-rotate.log`, `log-rotate.err` |
 | `com.user.steampipe`           | `steampipe service start`  | Login only                  | `~/assets/steampipe/` |
 | `com.user.ccusagecacherefresh` | `ccusage-cache-refresh.sh` | 00:00, 08:00, 16:00 + login | `~/.logs/`            |
-| `com.user.totalrecallbackfill` | `total-recall-backfill.sh` | Every 15 min                | `~/.logs/`            |
 
 ### Reload a LaunchAgent
 
@@ -109,7 +108,7 @@ It truncates in place instead of renaming. launchd holds `StandardOutPath` and `
 
 Nothing rotated these logs before 2026-09-11, when `~/.logs` reached 7.8G. `total-recall-backfill.log` alone was 8.1G (sparse), `backup-err.txt` 123M, `backup-log.txt` 57M. The first run reclaimed 7932 MiB.
 
-That size came from a failing job, not from normal volume. `total-recall-backfill.sh` runs every 15 minutes and its embedding step reports `4500 fail, 0 ok`, each failure logging `500 Server Error ... /api/embeddings`. The endpoint answers 200 for payloads from 100 to 8000 characters when tested by hand against `nomic-embed-text`, so the cause is situational rather than a payload-size bug and is still unresolved. Rotation caps the symptom only.
+That size came from a failing job. `total-recall-backfill.sh` ran every 15 minutes and its embedding step reported `4500 fail, 0 ok`, each failure logging `500 Server Error ... /api/embeddings` against `nomic-embed-text`. The endpoint answered 200 for hand-tested payloads from 100 to 8000 characters, so the cause was situational and was never diagnosed. total-recall was removed on 2026-09-21, which ends the log growth at its source.
 
 ## AWS SSO Token Refresh
 
@@ -140,16 +139,6 @@ scripts/qdrant-container.sh
 Starts qdrant on port 6333. Data at `~/assets/qdrant/data`.
 
 Both use `--restart always`/`unless-stopped`.
-
-## Total Recall Maintenance
-
-`scripts/total-recall-backfill.sh` runs every 15 minutes:
-
-- Backfills embeddings on new session data
-- Updates vector DB
-- Runs semantic linker
-
-Operates on `~/.claude/session_memory.db` using venv at `submodules/total-recall/.venv`.
 
 ## Shell Config Reload
 

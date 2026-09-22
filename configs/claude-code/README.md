@@ -39,10 +39,7 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 | `md-lint`                 | Format and lint markdown with prettier + markdownlint-cli2                   |
 | `llmdocs`                 | Update CLAUDE.md and .llmdocs/ after significant work                        |
 | `readme`                  | Generate README from folder contents and conversation                        |
-| `session-migrate`         | Migrate sessions between project folders                                     |
-| `session-resume`          | Search and resume past conversations                                         |
 | `test-driven-development` | London TDD workflow for features and bugfixes                                |
-| `transcript-search`       | Search session memory DB for past decisions/context                          |
 | `sage`                    | Research via context7 (library docs) and researcher (web search) MCP servers |
 | `beads`                   | bd (beads) issue tracker workflow and command reference                      |
 

@@ -15,9 +15,6 @@
   ignore = dirty
   branch = main
   shallow = true
-[submodule "dotfiles/claude-code/tools/total-recall"]
-	path = submodules/total-recall
-	url = https://github.com/jimweller/total-recall.git
 [submodule "dotfiles/claude-code/tools/humble-master"]
 	path = submodules/humble-master
 	url = https://github.com/jimweller/humble-master.git
@@ -27,3 +24,9 @@
 [submodule "submodules/clanker-output-style-plugin"]
 	path = submodules/clanker-output-style-plugin
 	url = https://github.com/jimweller/clanker-output-style-plugin.git
+[submodule "submodules/claude-session-plugin"]
+	path = submodules/claude-session-plugin
+	url = https://github.com/jimweller/claude-session-plugin.git
+[submodule "submodules/claude-marketplace"]
+	path = submodules/claude-marketplace
+	url = https://github.com/jimweller/claude-marketplace.git

@@ -10,8 +10,10 @@ Dotfiles are a feedback loop: **work, learn, edit, install**. Use the tools, enc
 - antidote -- zsh plugin manager (git submodule)
 - devcontainer -- Linux Docker image with utilities (git submodule)
 - clanker-skills -- universal AI agent skills (git submodule)
-- total-recall -- SQLite-backed session transcript memory for Claude Code (git submodule)
 - humble-master -- Daneel persona research for Claude Code (git submodule)
+- claude-marketplace -- the `jimweller` Claude Code plugin marketplace (git submodule)
+- claude-session-plugin -- the `session` plugin: search, resume, migrate sessions (git submodule)
+- clanker-output-style-plugin -- CLANKER output style plus per-turn hook (git submodule)
 - zsh-jim -- numbered zsh modules loaded in order (00-secrets through 95-linux)
 - scripts -- launchd plists, container helpers, cloud token refresh, sync
 
@@ -24,8 +26,10 @@ dotfiles/
 │   ├── antidote/                # Zsh plugin manager (submodule)
 │   ├── devcontainer/            # Linux container image (submodule)
 │   ├── clanker-skills/          # Universal AI agent skills (submodule)
-│   ├── total-recall/            # SQLite session transcript memory (submodule)
-│   └── humble-master/           # Daneel persona research (submodule)
+│   ├── humble-master/           # Daneel persona research (submodule)
+│   ├── claude-marketplace/      # jimweller plugin marketplace (submodule)
+│   ├── claude-session-plugin/   # session plugin: search/resume/migrate (submodule)
+│   └── clanker-output-style-plugin/  # CLANKER output style + hook (submodule)
 ├── configs/
 │   ├── zsh/                     # Shell entry points and plugin manifests
 │   ├── zsh-jim/                 # Numbered zsh modules (00-95)
@@ -137,7 +141,7 @@ The installer runs dotbot with platform detection:
 | `herdr/`       | Herdr            | Terminal multiplexer for agents, config.toml                                                     |
 | `litellm/`     | LiteLLM          | Proxy config for multi-provider model routing                                                    |
 
-The `total-recall` submodule provides SQLite-backed session memory for Claude Code. The `humble-master` submodule, symlinked to `~/.claude/tools/humble-master`, holds the Daneel persona research; the persona text itself lives in `configs/claude-code/claude_md.md`, which both `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md` point at. The `skills/` contents come from the `clanker-skills` submodule via `manifests/ai-skills.txt`.
+The `humble-master` submodule, symlinked to `~/.claude/tools/humble-master`, holds the Daneel persona research; the persona text itself lives in `configs/claude-code/claude_md.md`, which both `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md` point at. The `skills/` contents come from the `clanker-skills` submodule via `manifests/ai-skills.txt`.
 
 See `configs/claude-code/README.md` for skill inventory and plugin details.
 
