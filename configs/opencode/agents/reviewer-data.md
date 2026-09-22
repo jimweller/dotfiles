@@ -12,6 +12,10 @@ tools:
   serena_replace_*: false
   serena_rename_*: false
   serena_safe_delete_*: false
+  task: false
+permission:
+  task:
+    "*": deny
 ---
 
 <!-- markdownlint-disable-file MD041 -->
