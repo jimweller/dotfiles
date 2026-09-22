@@ -50,7 +50,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
@@ -232,6 +232,12 @@
         "source": "git",
         "url": "https://dev.azure.com/mcgsead/MCG%20Sunset/_git/Mcg.CWQI.ClaudeMarketplace"
       }
+    },
+    "jimweller": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/jimweller/claude-marketplace.git"
+      }
     }
   },
   "outputStyle": "Concise",
@@ -253,7 +259,7 @@
       "effortLevel": "xhigh"
     },
     "claude-sonnet-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "medium"
     }
   },
   "awaySummaryEnabled": false,

@@ -135,19 +135,19 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 The active style is the built-in `Concise`, selected by `"outputStyle": "Concise"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It ships inside the Claude Code binary, so no file for it exists in this repo. Capital C is required: `ggi()` resolves the style with `e[o]` against a map keyed by style name, and the built-in keys are exactly `Proactive`, `Concise`, `Explanatory`, `Learning`. A miss resolves to `null` with no warning and no style at all.
 
-A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules live in the `## Chat Register` section of `configs/claude-code/claude_md.md`.
+A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules live in the `## Clanker Register` section of `configs/claude-code/claude_md.md`.
 
 Two sources split the writing contract:
 
 | Source | Scope | Loading |
 | ------ | ----- | ------- |
 | Built-in `Concise` style | Brevity in the assistant turn: lead with the result, cut narration, 1-3 sentences for a simple question, no hedging, full detail on request, never trade correctness for brevity | `"outputStyle": "Concise"` in the three settings files |
-| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections. `How to Write`, `Banned Patterns in All Writing` and `Ghostwriting for Other Humans` sit inside a `<prose-contract>` tag and are the written-artifact contract. `Chat Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice) and `LSP-First Navigation` sit outside it | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
+| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections. `How to Write`, `Banned Patterns in All Writing` and `Ghostwriting for Other Humans` sit inside a `<prose-contract>` tag and are the written-artifact contract. `Clanker Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice) and `LSP-First Navigation` sit outside it | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
 
 ### The prose-contract block
 
 `<prose-contract>` wraps `How to Write`, `Banned Patterns in All Writing`, and
-`Ghostwriting for Other Humans`. `Chat Register` was moved below `Ghostwriting` so the
+`Ghostwriting for Other Humans`. `Clanker Register` was moved below `Ghostwriting` so the
 three are contiguous and take one wrapper. It governs the assistant turn rather than an
 artifact, so it belongs outside a block the `prose` skill applies in full.
 

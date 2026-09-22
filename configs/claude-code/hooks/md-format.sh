@@ -29,8 +29,11 @@ FILE="$(printf '%s' "$INPUT" | jq -r '.tool_input.file_path // empty')"
 [[ "$FILE" == *.md ]] || exit 0
 
 # Agent artifacts, matching the exclusions in ~/.claude/rules/md-syntax.md.
+# output-styles/*.md is included because prettier silently strips Private-Use-Area
+# glyphs (e.g. Nerd Font icons) from prose, and an output style's body is sent to
+# the model verbatim.
 case "$FILE" in
-    */.llmtmp/*|*/.llmdocs/*|*/SKILL.md|"$HOME"/.claude/plans/*) exit 0 ;;
+    */.llmtmp/*|*/.llmdocs/*|*/SKILL.md|"$HOME"/.claude/plans/*|*/evals/*prompt.md|*/evals/*/graders/*.md|*/output-styles/*.md) exit 0 ;;
 esac
 
 BEFORE="$(shasum -a 256 "$FILE" | cut -d' ' -f1)"
