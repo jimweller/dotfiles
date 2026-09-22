@@ -1,5 +1,5 @@
 {
-  "numStartups": 4293,
+  "numStartups": 4295,
   "installMethod": "native",
   "autoUpdates": false,
   "theme": "dark-daltonized",
@@ -57,8 +57,8 @@
     "auto-copy-config-hint": 4287
   },
   "memoryUsageCount": 1,
-  "promptQueueUseCount": 160341,
-  "btwUseCount": 7,
+  "promptQueueUseCount": 160363,
+  "btwUseCount": 8,
   "autoInstallIdeExtension": false,
   "terminalProgressBarEnabled": false,
   "cachedDynamicConfigs": {
@@ -3947,7 +3947,7 @@
         "Makefile",
         "server_multitenant.go",
         "Dockerfile",
-        "index.html"
+        "install.sh"
       ],
       "reactVulnerabilityCache": {
         "detected": false,
@@ -3956,7 +3956,7 @@
         "version": null,
         "packageManager": null
       },
-      "exampleFilesGeneratedAt": 1789271611770,
+      "exampleFilesGeneratedAt": 1790058379025,
       "lastCost": 636.0666488000022,
       "lastAPIDuration": 35723420,
       "lastAPIDurationWithoutRetries": 35598789,
@@ -4017,7 +4017,7 @@
       "lastHintSessionId": "968a85a2-b2d8-45fa-ab6a-eaeb39db697f",
       "lastSessionFirstPrompt": "how can I manually verify the machine identity?",
       "lastSessionModified": 1779073654415,
-      "lastVersionBase": "2.1.252",
+      "lastVersionBase": "2.1.278",
       "lastStartTime": 1789389051523,
       "lastFpsAverage": 0.32,
       "lastFpsLow1Pct": 22.09
@@ -15554,51 +15554,51 @@
         "api.ts"
       ],
       "exampleFilesGeneratedAt": 1790049267785,
-      "lastCost": 1.6444850000000002,
-      "lastAPIDuration": 113941,
-      "lastAPIDurationWithoutRetries": 113740,
-      "lastToolDuration": 9284,
-      "lastDuration": 2876034,
-      "lastStartTime": 1790049708095,
+      "lastCost": 8.798836399999999,
+      "lastAPIDuration": 806394,
+      "lastAPIDurationWithoutRetries": 805508,
+      "lastToolDuration": 140658,
+      "lastDuration": 30550347,
+      "lastStartTime": 1790052618654,
       "lastLinesAdded": 0,
       "lastLinesRemoved": 0,
-      "lastTotalInputTokens": 953,
-      "lastTotalOutputTokens": 9387,
-      "lastTotalCacheCreationInputTokens": 190721,
-      "lastTotalCacheReadInputTokens": 1627557,
+      "lastTotalInputTokens": 34088,
+      "lastTotalOutputTokens": 66247,
+      "lastTotalCacheCreationInputTokens": 419784,
+      "lastTotalCacheReadInputTokens": 10603678,
       "lastTotalWebSearchRequests": 0,
       "lastModelUsage": {
         "claude-sonnet-5[1m]": {
-          "inputTokens": 28,
-          "outputTokens": 5630,
-          "thinkingTokens": 962,
-          "cacheReadInputTokens": 835310,
-          "cacheCreationInputTokens": 130255,
+          "inputTokens": 33070,
+          "outputTokens": 19525,
+          "thinkingTokens": 5230,
+          "cacheReadInputTokens": 1811912,
+          "cacheCreationInputTokens": 211730,
           "webSearchRequests": 0,
-          "costUSD": 0.5490555
+          "costUSD": 1.1530974
         },
         "claude-opus-5[1m]": {
-          "inputTokens": 24,
-          "outputTokens": 3742,
-          "thinkingTokens": 1205,
-          "cacheReadInputTokens": 792247,
-          "cacheCreationInputTokens": 60466,
+          "inputTokens": 122,
+          "outputTokens": 46710,
+          "thinkingTokens": 19681,
+          "cacheReadInputTokens": 8791766,
+          "cacheCreationInputTokens": 208054,
           "webSearchRequests": 0,
-          "costUSD": 1.0944535
+          "costUSD": 7.644782999999999
         },
         "claude-haiku-4-5": {
-          "inputTokens": 901,
-          "outputTokens": 15,
+          "inputTokens": 896,
+          "outputTokens": 12,
           "thinkingTokens": 0,
           "cacheReadInputTokens": 0,
           "cacheCreationInputTokens": 0,
           "webSearchRequests": 0,
-          "costUSD": 0.000976
+          "costUSD": 0.000956
         }
       },
-      "lastSessionId": "00a7491d-44c4-4f5b-b227-1f782bb7cc2f",
-      "lastFpsAverage": 0.33,
-      "lastFpsLow1Pct": 50.24
+      "lastSessionId": "e42d6765-7cea-4de7-b317-77d3b5abde12",
+      "lastFpsAverage": 0.5,
+      "lastFpsLow1Pct": 569.71
     }
   },
   "firstStartTime": "2025-08-10T08:28:30.762Z",
@@ -16069,8 +16069,8 @@
       "lastUsedAt": 1789865226472
     },
     "commit": {
-      "usageCount": 409,
-      "lastUsedAt": 1790053602656
+      "usageCount": 410,
+      "lastUsedAt": 1790083162214
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -16101,8 +16101,8 @@
       "lastUsedAt": 1789178292417
     },
     "sage": {
-      "usageCount": 323,
-      "lastUsedAt": 1790036937192
+      "usageCount": 325,
+      "lastUsedAt": 1790059256522
     },
     "update-config": {
       "usageCount": 2,
@@ -16440,14 +16440,14 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 26557,
-      "lastUsedAt": 1790053550396,
-      "lastUsedNumStartups": 4293
+      "usageCount": 26619,
+      "lastUsedAt": 1790083113541,
+      "lastUsedNumStartups": 4294
     },
     "mcg-atlassian@sead-claude-marketplace": {
-      "usageCount": 14494,
-      "lastUsedAt": 1790052620064,
-      "lastUsedNumStartups": 4293
+      "usageCount": 14495,
+      "lastUsedAt": 1790058379556,
+      "lastUsedNumStartups": 4294
     },
     "mcg-lookup@sead-claude-marketplace": {
       "usageCount": 9,
@@ -16455,9 +16455,9 @@
       "lastUsedNumStartups": 4213
     },
     "beads@beads-marketplace": {
-      "usageCount": 14399,
-      "lastUsedAt": 1790052620064,
-      "lastUsedNumStartups": 4293
+      "usageCount": 14400,
+      "lastUsedAt": 1790058379556,
+      "lastUsedNumStartups": 4294
     },
     "claude-mem@jimweller": {
       "usageCount": 34296,
@@ -16490,9 +16490,9 @@
       "lastUsedNumStartups": 4293
     },
     "claude-mem@thedotmack": {
-      "usageCount": 126546,
-      "lastUsedAt": 1790053630304,
-      "lastUsedNumStartups": 4293
+      "usageCount": 126909,
+      "lastUsedAt": 1790083213490,
+      "lastUsedNumStartups": 4295
     },
     "mind-meld@inline": {
       "usageCount": 19,
@@ -16525,9 +16525,9 @@
       "lastUsedNumStartups": 4062
     },
     "sonarqube@claude-plugins-official": {
-      "usageCount": 10378,
-      "lastUsedAt": 1790052620064,
-      "lastUsedNumStartups": 4293
+      "usageCount": 10379,
+      "lastUsedAt": 1790058379556,
+      "lastUsedNumStartups": 4294
     },
     "mcg-atlassian@inline": {
       "usageCount": 54,
@@ -16545,9 +16545,14 @@
       "lastUsedNumStartups": 4288
     },
     "clanker-output-style-plugin@jimweller": {
-      "usageCount": 26,
-      "lastUsedAt": 1790053603070,
-      "lastUsedNumStartups": 4293
+      "usageCount": 50,
+      "lastUsedAt": 1790059249807,
+      "lastUsedNumStartups": 4294
+    },
+    "session@jimweller": {
+      "usageCount": 0,
+      "lastUsedAt": 1790058378789,
+      "lastUsedNumStartups": 4294
     }
   },
   "tipLifetimeShownCounts": {
