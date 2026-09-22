@@ -9,16 +9,28 @@
       },
       "models": {
         "gemini-3.8-flash": {
-          "name": "Gemini 3.8 Flash"
+          "name": "Gemini 3.8 Flash",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          }
         },
         "gemini-pro-latest": {
           "name": "Gemini Pro Latest"
         },
         "gemini-3.1-pro-preview": {
-          "name": "Gemini 3.1 Pro"
+          "name": "Gemini 3.1 Pro",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          }
         },
         "gemini-3.5-flash": {
-          "name": "Gemini 3.5 Flash"
+          "name": "Gemini 3.5 Flash",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          }
         }
       },
       "whitelist": [
@@ -34,13 +46,25 @@
       },
       "models": {
         "gpt-5.6-sol": {
-          "name": "GPT 5.6 Sol"
+          "name": "GPT 5.6 Sol",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          }
         },
         "gpt-5.5": {
-          "name": "GPT 5.5"
+          "name": "GPT 5.5",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          }
         },
         "gpt-5.4": {
-          "name": "GPT 5.4"
+          "name": "GPT 5.4",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          }
         }
       },
       "whitelist": [
@@ -53,22 +77,37 @@
       "npm": "@ai-sdk/anthropic",
       "options": {
         "baseURL": "https://dxclinical-187aa68e.services.ai.azure.com/anthropic/v1",
-        "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}"
+        "apiKey": "{env:ANTHROPIC_FOUNDRY_API_KEY}",
+        "headers": {
+          "anthropic-beta": "context-1m-2025-08-07"
+        }
       },
       "models": {
         "claude-opus-5": {
           "name": "Claude Opus 5",
           "options": {
-            "thinking": { "type": "adaptive" }
+            "thinking": {
+              "type": "adaptive"
+            }
           },
-          "limit": { "context": 200000, "output": 128000 }
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
         },
         "claude-sonnet-5": {
           "name": "Claude Sonnet 5",
-          "limit": { "context": 200000, "output": 128000 }
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
         },
         "claude-haiku-4-5": {
-          "name": "Claude Haiku 4.5"
+          "name": "Claude Haiku 4.5",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          }
         }
       },
       "whitelist": [
@@ -79,11 +118,19 @@
     }
   },
   "permission": "allow",
-  "enabled_providers": ["google", "openai", "az-anthropic"],
+  "enabled_providers": [
+    "google",
+    "openai",
+    "az-anthropic"
+  ],
   "mcp": {
     "context7": {
       "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
       "environment": {
         "DEFAULT_MINIMUM_TOKENS": "10000"
       },
@@ -91,17 +138,29 @@
     },
     "researcher": {
       "type": "local",
-      "command": ["web-researcher-mcp"],
+      "command": [
+        "web-researcher-mcp"
+      ],
       "enabled": false
     },
     "repomix": {
       "type": "local",
-      "command": ["npx", "-y", "repomix", "--mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "repomix",
+        "--mcp"
+      ],
       "enabled": true
     },
     "serena": {
       "type": "local",
-      "command": ["serena", "start-mcp-server", "--context=claude-code", "--project-from-cwd"],
+      "command": [
+        "serena",
+        "start-mcp-server",
+        "--context=claude-code",
+        "--project-from-cwd"
+      ],
       "enabled": true
     }
   }
