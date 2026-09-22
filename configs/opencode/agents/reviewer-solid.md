@@ -101,13 +101,20 @@ for each.
 
 ## Citations
 
-Cite the path and line number **of the source file**, never an offset into a diff,
-a packed snapshot, or any other input handed to you. Diff hunk headers read
+Cite the path and line number of the source file, never an offset into a diff, a
+packed snapshot, or any other input handed to you. Diff hunk headers read
 `@@ -old,count +new,count @@`; line `new` is the first line of that hunk in the
-current file. When the file is on disk, open it and confirm the line before citing
-it. Name the enclosing function, method, or type.
+current file.
 
-A finding without a verified citation is not a finding. Drop it.
+A citation is verified when you have seen the line. `find_symbol` returns a
+symbol's line range and that counts. Opening the file counts. A line number you
+inferred without seeing it does not.
+
+Name the enclosing function, method, or type.
+
+When you cannot verify the exact line, cite the nearest line you did see, name
+the symbol, and end the finding with `line unconfirmed`. Report it. Never
+discard a real defect because its line number is uncertain.
 
 ## Output
 
