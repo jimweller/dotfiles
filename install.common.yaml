@@ -93,6 +93,7 @@
     ~/.config/opencode/agents/:
       glob: true
       path: configs/opencode/agents/*
+    ~/.opencodereview/config.json: configs/opencodereview/config.json
     ~/.config/litellm/config.yaml: configs/litellm/config.yaml
     ~/.hermes/config.yaml: configs/hermes/config.yaml
     ~/.config/herdr/config.toml: configs/herdr/config.toml
