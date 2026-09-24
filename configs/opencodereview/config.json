@@ -1,12 +1,44 @@
 {
     "provider": "az-anthropic",
+    "providers": {
+        "gemini": {
+            "api_key_cmd": "printenv GEMINI_API_KEY",
+            "models": [
+                "gemini-3.8-flash"
+            ],
+            "extra_body": {
+                "max_completion_tokens": 32000
+            }
+        },
+        "openai": {
+            "api_key_cmd": "printenv OPENAI_KEY",
+            "models": [
+                "gpt-6-sol"
+            ]
+        },
+        "openai-responses": {
+            "api_key_cmd": "printenv OPENAI_KEY",
+            "models": [
+                "gpt-6-sol"
+            ],
+            "extra_body": {
+                "max_output_tokens": 32000
+            }
+        }
+    },
     "custom_providers": {
         "az-anthropic": {
-            "api_key_cmd": "sops -d $HOME/.secrets/ai.enc.env | sed -n \"s/^ANTHROPIC_FOUNDRY_API_KEY=//p\" | tr -d \"\\\"'\"",
+            "api_key_cmd": "printenv ANTHROPIC_FOUNDRY_API_KEY",
             "url": "https://dxclinical-187aa68e.services.ai.azure.com/anthropic/v1",
             "protocol": "anthropic",
-            "model": "claude-opus-5",
-            "auth_header": "x-api-key"
+            "model": "claude-opus-5-5",
+            "auth_header": "x-api-key",
+            "extra_body": {
+                "max_tokens": 32000
+            },
+            "extra_headers": {
+                "anthropic-beta": "context-1m-2025-08-07"
+            }
         }
     },
     "llm": {}
