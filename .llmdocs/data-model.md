@@ -355,13 +355,21 @@ grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
 
 | Config file                                                                | Model ID format                                                         |
 | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `configs/claude-code/claude_settings_json_azure`, `claude_settings_json_jim` | Foundry-style, `[1m]` suffix, e.g. `claude-opus-5[1m]`                   |
-| `configs/claude-code/claude_settings_json_aws`                              | Bedrock-style, e.g. `global.anthropic.claude-opus-5[1m]`                  |
-| `configs/hermes/config.yaml`, `configs/opencode/opencode.json`              | Bare Azure Foundry ID, no suffix, e.g. `claude-opus-5`                   |
+| `configs/claude-code/claude_settings_json_azure`, `claude_settings_json_jim` | Foundry-style, `[1m]` suffix, e.g. `claude-sonnet-5[1m]`                 |
+| `configs/claude-code/claude_settings_json_aws`                              | Bedrock-style, e.g. `global.anthropic.claude-sonnet-5[1m]`               |
+| `configs/hermes/config.yaml`, `configs/opencode/opencode.json`              | Bare Azure Foundry ID, no suffix, e.g. `claude-sonnet-5`                |
+
+The opus slot is the one family whose model differs by provider. Foundry-backed configs run
+`claude-opus-5-5`, verified by a 200 from `POST /anthropic/v1/messages` on the
+`dxclinical-187aa68e` resource. `claude_settings_json_aws` stays on
+`global.anthropic.claude-opus-5` because Bedrock returns AccessDeniedException on
+`global.anthropic.claude-opus-5-5` for the `AWSReservedSSO_493888979299-mcg-rockadm` role,
+naming `aws-marketplace:ViewSubscriptions` and `aws-marketplace:Subscribe` as the missing
+actions. Lifting that IAM restriction is what unblocks a single opus ID across all three files.
 
 The `[1m]` (1M context) suffix works only in Claude Code settings; Claude Code strips it client-side before calling the provider. Azure Foundry rejects a bracketed ID directly with a 404, so `hermes/config.yaml` and `opencode/opencode.json` must use the bare model ID.
 
-Bedrock IDs are not uniform across model generations, so never derive one by appending a suffix to another model's ID. The 5-series carries no version suffix (`global.anthropic.claude-opus-5[1m]`, `claude-sonnet-5[1m]`, `claude-fable-5[1m]`), while Haiku 4.5 needs the dated form `global.anthropic.claude-haiku-4-5-20251001-v1:0`. Bedrock rejects the bare `global.anthropic.claude-haiku-4-5` with `400 The provided model identifier is invalid`, which surfaces as a stop-hook evaluator failure because hook evaluation runs on haiku. The authoritative list of IDs this account has actually called is the set of `lastModelUsage` keys in `configs/claude-code/claude_json`:
+Bedrock IDs are not uniform across model generations, so never derive one by appending a suffix to another model's ID. The 5-series carries no version suffix (`global.anthropic.claude-opus-5[1m]`, `claude-sonnet-5[1m]`, `claude-fable-5-1[1m]`), while Haiku 4.5 needs the dated form `global.anthropic.claude-haiku-4-5-20251001-v1:0`. Bedrock rejects the bare `global.anthropic.claude-haiku-4-5` with `400 The provided model identifier is invalid`, which surfaces as a stop-hook evaluator failure because hook evaluation runs on haiku. The authoritative list of IDs this account has actually called is the set of `lastModelUsage` keys in `configs/claude-code/claude_json`:
 
 ```bash
 grep -o '"global\.anthropic\.[^"]*"' configs/claude-code/claude_json | sort -u

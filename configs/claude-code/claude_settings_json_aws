@@ -215,7 +215,7 @@
     ]
   },
   "modelSettings": {
-    "claude-fable-5": {
+    "claude-fable-5-1": {
       "effortLevel": "xhigh"
     },
     "claude-haiku-4-5": {
