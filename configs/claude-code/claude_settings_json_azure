@@ -13,6 +13,7 @@
     "CLAUDE_CODE_SHELL": "bash",
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
     "CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL": "5m",
+    "CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS": "50",
     "CLAUDE_CODE_USE_BEDROCK": "0",
     "CLAUDE_CODE_USE_FOUNDRY": "1",
     "DISABLE_AUTOUPDATER": "1",
@@ -160,7 +161,8 @@
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true,
     "sonarqube@claude-plugins-official": true,
-    "clanker-output-style-plugin@jimweller": true,
+    "clanker-chat@jimweller": true,
+    "clanker-prose@jimweller": true,
     "session@jimweller": true
   },
   "extraKnownMarketplaces": {
@@ -233,7 +235,7 @@
       "effortLevel": "xhigh"
     },
     "claude-sonnet-5": {
-      "effortLevel": "medium"
+      "effortLevel": "high"
     }
   },
   "awaySummaryEnabled": false,

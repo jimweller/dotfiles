@@ -157,7 +157,9 @@
     "mcg-sensitive-canary@sead-claude-marketplace": true,
     "ast-grep@ast-grep-marketplace": true,
     "story-stick@sead-claude-marketplace": true,
-    "sonarqube@claude-plugins-official": true
+    "sonarqube@claude-plugins-official": true,
+    "clanker-chat@jimweller": true,
+    "clanker-prose@jimweller": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
@@ -201,6 +203,12 @@
       "source": {
         "source": "git",
         "url": "https://dev.azure.com/mcgsead/MCG%20Sunset/_git/Mcg.CWQI.ClaudeMarketplace"
+      }
+    },
+    "jimweller": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/jimweller/claude-marketplace.git"
       }
     }
   },
