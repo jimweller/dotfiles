@@ -9,5 +9,9 @@ while IFS= read -r -u 3 line || [[ -n "$line" ]]; do
     [[ "$line" =~ ^[[:space:]]*# ]] && continue
     [[ -z "${line// }" ]] && continue
     read -ra args <<< "$line"
-    npx -y skills add "${args[@]}" "${AGENTS[@]}" -g -y --copy
+    if [[ "$line" == *" -a "* || "$line" == *" --agent "* ]]; then
+        npx -y skills add "${args[@]}" -g -y --copy
+    else
+        npx -y skills add "${args[@]}" "${AGENTS[@]}" -g -y --copy
+    fi
 done 3< "$MANIFEST"

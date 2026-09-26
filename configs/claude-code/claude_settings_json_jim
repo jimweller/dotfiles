@@ -159,7 +159,8 @@
     "story-stick@sead-claude-marketplace": true,
     "sonarqube@claude-plugins-official": true,
     "clanker-chat@jimweller": true,
-    "clanker-prose@jimweller": true
+    "clanker-prose@jimweller": true,
+    "clanker-code-review@jimweller": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {

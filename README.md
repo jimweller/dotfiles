@@ -15,6 +15,7 @@ Dotfiles are a feedback loop: **work, learn, edit, install**. Use the tools, enc
 - claude-session-plugin -- the `session` plugin: search, resume, migrate sessions (git submodule)
 - clanker-chat-plugin -- Clanker Register rules, output style, SessionStart injection, per-turn hook (git submodule)
 - clanker-prose-plugin -- prose-contract rules, prose skill, prose evals (git submodule)
+- clanker-code-review-plugin -- the `clanker-code-review` plugin: review-deep, review-full, review-diff, review-tickets skills and nine reviewer agents (git submodule)
 - zsh-jim -- numbered zsh modules loaded in order (00-secrets through 95-linux)
 - scripts -- launchd plists, container helpers, cloud token refresh, sync
 
@@ -31,7 +32,8 @@ dotfiles/
 │   ├── claude-marketplace/      # jimweller plugin marketplace (submodule)
 │   ├── claude-session-plugin/   # session plugin: search/resume/migrate (submodule)
 │   ├── clanker-chat-plugin/      # Clanker Register rules, style, hooks (submodule)
-│   └── clanker-prose-plugin/    # prose-contract rules, prose skill, evals (submodule)
+│   ├── clanker-prose-plugin/    # prose-contract rules, prose skill, evals (submodule)
+│   └── clanker-code-review-plugin/ # clanker-code-review plugin: review skills, agents (submodule)
 ├── configs/
 │   ├── zsh/                     # Shell entry points and plugin manifests
 │   ├── zsh-jim/                 # Numbered zsh modules (00-95)

@@ -129,9 +129,6 @@
     ~/.claude/rules/:
       glob: true
       path: configs/claude-code/rules/*
-    ~/.claude/agents/:
-      glob: true
-      path: configs/claude-code/agents/*
     ~/.claude/tools/humble-master: submodules/humble-master
     ~/.claude-mem/settings.json: configs/claude-mem/settings.json
     ~/.agents/skills/:
@@ -166,5 +163,10 @@
 - shell:
   - command: mise install -y
     description: Install mise-managed tools from configs/mise/config.toml
+
+# The nine reviewer agents moved into the clanker-code-review plugin. clean removes only
+# dead links under this directory, so a manual copy or another tool's link is left alone.
+- clean:
+    - ~/.claude/agents
 
 

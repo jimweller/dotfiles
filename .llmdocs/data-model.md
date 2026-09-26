@@ -26,7 +26,12 @@ Top-level directives:
     ~/.target: # symlink destination
       path: source # relative to repo root
       glob: true # expand wildcards (for path/*)
+
+- clean:
+    - ~/.target-dir # remove dead symlinks under this directory that point into the repo
 ```
+
+`clean` removes only dead links: a symlink under the named directory whose target no longer exists is unlinked, and everything else (real files, live symlinks, symlinks into some other repo) is left alone. It is how a glob-linked directory is retired without touching anything a link install never owned; `~/.claude/agents` uses it after the reviewer agents moved into the `clanker-code-review` plugin (see `~/.claude/agents/` in `.llmdocs/architecture.md`).
 
 ## Git Identity Model
 
@@ -71,6 +76,7 @@ gitconfig-hearst (work GitHub, includes gitconfig-all)
 | `manifests/brew-casks.txt`       | One cask per line             | Homebrew casks (36 apps)           |
 | `manifests/brew-taps.txt`        | One tap per line              | Homebrew taps (19 taps)            |
 | `manifests/apt.txt`              | One package per line          | Linux apt packages (6 packages)    |
+| `manifests/ai-skills.txt`        | One `<source-url> [-a agent]...` line per skill | AI agent skills installed via `npx skills add`, processed by `scripts/ai-npx-skills.sh` |
 | `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | SSH/GPG keys + age key tar archive |
 
 ## Secrets Model

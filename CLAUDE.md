@@ -21,6 +21,7 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `submodules/claude-session-plugin/` -- the `session` plugin, search/resume/migrate skills (submodule)
 - `submodules/clanker-chat-plugin/` -- Clanker Register rules, output style, SessionStart injection, per-turn hook (submodule)
 - `submodules/clanker-prose-plugin/` -- prose-contract rules, prose skill, prose evals (submodule)
+- `submodules/clanker-code-review-plugin/` -- the `clanker-code-review` plugin: review-deep, review-full, review-diff, review-tickets skills and nine reviewer agents (submodule)
 - `configs/` -- source configs symlinked to home
 - `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh
@@ -56,7 +57,7 @@ Prefer this hierarchy when deciding how to install a tool. Do not add one-off in
 2. mise -- declared in `configs/mise/config.toml`, installed via the single `mise install -y` dotbot step
 3. Manifest files in `manifests/` -- e.g. a `uv-tools.txt` for Python CLI tools processed by a single dotbot step
 
-The `npx skills add` steps in dotbot are an exception -- they are config/setup orchestration wiring skills to agent directories, not individual tool installs.
+The `npx skills add` steps in dotbot are an exception -- they are config/setup orchestration wiring skills to agent directories, not individual tool installs. `scripts/ai-npx-skills.sh` applies one fixed `-a claude-code -a codex -a opencode -a hermes-agent` to every `manifests/ai-skills.txt` line by default, except a line that already carries its own `-a` or `--agent` flags, which is installed with only the agents it names. `clanker-code-review-plugin` uses this to exclude `claude-code`: Claude Code gets those four skills only through the `clanker-code-review` plugin, and installing the same skill name from both a plugin and a personal/project skill directory loads it twice.
 
 ## Conventions
 

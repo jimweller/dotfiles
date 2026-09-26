@@ -33,3 +33,6 @@
 [submodule "submodules/clanker-prose-plugin"]
 	path = submodules/clanker-prose-plugin
 	url = https://github.com/jimweller/clanker-prose-plugin.git
+[submodule "submodules/clanker-code-review-plugin"]
+	path = submodules/clanker-code-review-plugin
+	url = https://github.com/jimweller/clanker-code-review-plugin.git

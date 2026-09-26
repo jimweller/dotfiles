@@ -15,6 +15,7 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | clanker-prose-plugin | `submodules/clanker-prose-plugin/` | Prose-contract rules, prose skill, prose evals (git submodule) |
 | claude-marketplace | `submodules/claude-marketplace/` | The `jimweller` Claude Code plugin marketplace (git submodule) |
 | claude-session-plugin | `submodules/claude-session-plugin/` | The `session` plugin: search, resume, migrate sessions (git submodule) |
+| clanker-code-review-plugin | `submodules/clanker-code-review-plugin/` | The `clanker-code-review` plugin: review-deep, review-full, review-diff, review-tickets skills and nine reviewer agents (git submodule) |
 
 ## Directory Layout
 
@@ -53,7 +54,7 @@ dotbot creates symlinks from `~` into this repo. Configured in three YAML files:
 
 Link defaults: `force: true`, `create: true`, `relink: true`.
 
-Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/skills/`, `~/.claude/hooks/`, `~/.claude/rules/`, `~/.claude/agents/`, `~/.agents/skills/`, `~/.config/powershell/`, `~/.config/opencode/agents/`.
+Glob links (`path/*`) used for: `~/.config/gh/`, `~/.claude/skills/`, `~/.claude/hooks/`, `~/.claude/rules/`, `~/.agents/skills/`, `~/.config/powershell/`, `~/.config/opencode/agents/`. `~/.claude/agents/` was a glob link into `configs/claude-code/agents/` until the nine reviewer agents moved into the `clanker-code-review` plugin; that directory is now dotbot-`clean`ed instead (see `.llmdocs/data-model.md`).
 
 ## Zsh Module System
 
@@ -96,7 +97,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Nine submodules defined in `.gitmodules`, all under `submodules/`:
+Ten submodules defined in `.gitmodules`, all under `submodules/`:
 
 | Submodule      | Shallow | Branch  |
 | -------------- | ------- | ------- |
@@ -109,3 +110,4 @@ Nine submodules defined in `.gitmodules`, all under `submodules/`:
 | clanker-prose-plugin | no | default |
 | claude-marketplace | no | default |
 | claude-session-plugin | no | default |
+| clanker-code-review-plugin | no | default |

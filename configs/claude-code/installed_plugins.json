@@ -14,11 +14,11 @@
     "agent-browser@agent-browser": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/6dcea79b4b56",
-        "version": "6dcea79b4b56",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/agent-browser/agent-browser/d01253d9db28",
+        "version": "d01253d9db28",
         "installedAt": "2026-03-03T06:48:44.798Z",
-        "lastUpdated": "2026-07-30T06:31:33.400Z",
-        "gitCommitSha": "6dcea79b4b567a5671f1e1164807204f69542a5c"
+        "lastUpdated": "2026-09-26T15:10:54.432Z",
+        "gitCommitSha": "d01253d9db28d75080e36da3c1c31ef89454731e"
       }
     ],
     "mcg-atlassian@sead-claude-marketplace": [
@@ -112,10 +112,11 @@
     "sonarqube@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/sonarqube/81be40697fee",
-        "version": "81be40697fee",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/claude-plugins-official/sonarqube/2.6.0",
+        "version": "2.6.0",
         "installedAt": "2026-09-22T04:50:18.955Z",
-        "lastUpdated": "2026-09-22T04:50:18.955Z"
+        "lastUpdated": "2026-09-26T15:10:55.307Z",
+        "gitCommitSha": "f194f77ab688c2a82b74a7c50023c552899c21ed"
       }
     ],
     "session@jimweller": [
@@ -146,6 +147,16 @@
         "installedAt": "2026-09-26T08:45:57.708Z",
         "lastUpdated": "2026-09-26T08:45:57.708Z",
         "gitCommitSha": "7c2f7e91cd649b3ba17a03ac9e74120ffd770a60"
+      }
+    ],
+    "clanker-code-review@jimweller": [
+      {
+        "scope": "user",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-09-26T17:25:39.521Z",
+        "lastUpdated": "2026-09-26T17:25:39.521Z",
+        "gitCommitSha": "f914f9dbb2df7f9a2e2173534d1fd20a0da8496d"
       }
     ]
   }
