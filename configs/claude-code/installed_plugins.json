@@ -152,11 +152,11 @@
     "clanker-code-review@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.3",
-        "version": "0.1.3",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.4",
+        "version": "0.1.4",
         "installedAt": "2026-09-26T17:25:39.521Z",
-        "lastUpdated": "2026-09-26T21:58:28.535Z",
-        "gitCommitSha": "98fb76107301723dcccf18de11c617eca472ba33"
+        "lastUpdated": "2026-09-26T23:36:48.280Z",
+        "gitCommitSha": "608eb61fa47cfe2a0483755c4e1616299a024aba"
       }
     ]
   }
