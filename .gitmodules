@@ -30,3 +30,6 @@
 [submodule "submodules/claude-marketplace"]
 	path = submodules/claude-marketplace
 	url = https://github.com/jimweller/claude-marketplace.git
+[submodule "submodules/clanker-prose-plugin"]
+	path = submodules/clanker-prose-plugin
+	url = https://github.com/jimweller/clanker-prose-plugin.git
