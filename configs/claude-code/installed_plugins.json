@@ -132,11 +132,11 @@
     "clanker-prose@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-prose/0.1.0",
-        "version": "0.1.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-prose/0.1.1",
+        "version": "0.1.1",
         "installedAt": "2026-09-26T08:45:55.921Z",
-        "lastUpdated": "2026-09-26T08:45:55.921Z",
-        "gitCommitSha": "5a3705306738274b709ce1ea0248d3f58842a0a3"
+        "lastUpdated": "2026-09-26T21:55:52.379Z",
+        "gitCommitSha": "8494168b8d816a69c7353df44f249597989520df"
       }
     ],
     "clanker-chat@jimweller": [
