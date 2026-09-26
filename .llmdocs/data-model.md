@@ -321,7 +321,7 @@ Formatting after an Edit invalidates the model's copy of the file. Two Edit call
 
 ## Auto-Compact Window
 
-None of the three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) sets `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` or `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Both were removed and nothing replaced them. `autoCompactEnabled` is also unset in every config. Auto-compaction runs at Claude Code's built-in default: `pct=40`, window `W` equal to the model's real context window.
+None of the three settings files (`claude_settings_json_azure`, `claude_settings_json_aws`, `claude_settings_json_jim`) sets `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` or `CLAUDE_CODE_AUTO_COMPACT_WINDOW`. Both were removed and nothing replaced them. `autoCompactEnabled` is also unset in every config. Auto-compaction runs at Claude Code's built-in default, with window `W` equal to the model's real context window. The measured 1M-window trigger below contradicts a default of `pct=40`.
 
 Claude Code computes the compaction threshold as `min(W, model_window) * pct/100 - reserve`, where the reserve is the model's default `max_output_tokens`.
 
@@ -334,10 +334,17 @@ Measured evidence brackets the reserve. Two auto-compaction events ran under `pc
 
 The trigger sits in the open interval (366766, 370689], putting the reserve between 29311 and 33234. Binary 2.1.233 carries `max_output_tokens:{default:32000}`, which lands inside that band. A 13000 reserve is ruled out, because a 387000 threshold would not have fired at 370689. These bracketed values are the basis for the default-trigger arithmetic below; they do not depend on the removed keys.
 
-With `pct=40` and no override, the arithmetic gives:
+With no override, `pct=40` would put the 1M-window trigger near `1000000 * 0.40 - 32000` = 368000. Measured auto-compaction events on 1M-window sessions fire near 967000 instead:
 
-- 1M-window model: `1000000 * 0.40 - 32000` = roughly 368000
-- 200K-window model: `200000 * 0.40 - 32000` = roughly 48000
+| Event (UTC)         | Binary  | Project         | `preTokens` at fire |
+| ------------------- | ------- | --------------- | ------------------- |
+| 2026-09-14T20:38:08 | 2.1.263 | quiver-main     | 967543              |
+| 2026-09-15T06:04:44 | 2.1.263 | quiver-main     | 967370              |
+| 2026-09-15T17:23:56 | 2.1.263 | quiver-main     | 967012              |
+| 2026-09-15T19:55:11 | 2.1.263 | quiver-main     | 969936              |
+| 2026-09-26T07:49:26 | 2.1.280 | flow-orcas/Orca | 998902              |
+
+The 998902 event ran on binary 2.1.280. Whether its turn overshot the same trigger or 2.1.280 moved the trigger is unverified. No 200K-window auto-compaction event has been measured since the override keys were removed.
 
 `configs/claude-code/statusline-command.sh:110` still hardcodes `COMPACT_THRESHOLD=400000`, used only to compute the displayed context-usage percentage. This was left unchanged on purpose; the user keeps it as a manual gauge for when to flush context by hand, independent of the real auto-compact trigger. It is not read from any auto-compact env var.
 
@@ -345,7 +352,7 @@ Session transcripts log the model as `claude-opus-5` with the `[1m]` extended-co
 
 Earlier evidence for the percentage being live (from when the override keys were still set) comes from 801 auto-compaction events in `~/.claude/projects`. At `pct=40`, 200K-window sessions clustered between 72197 and 88882, and 1M-window sessions produced 387841 and 424509. Those clusters fit a 13000 reserve closely (`200000*0.40 - 13000` = 67000 against a 72197 minimum, `1000000*0.40 - 13000` = 387000 against a 387841 fire) and fit the 32000 reserve only if the crossing turns overshot by 24197 and 19841 tokens. The two 2026-08 events rule 13000 out. The reserve may have changed between binary versions.
 
-Two things stay unverified. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. The exact default `pct` Claude Code applies with no override is inferred from the 801-event cluster, not read from the binary. Both resolve from the `preTokens` value on the next `compact_boundary` event:
+Two things stay unverified. The reserve constant is bracketed rather than read directly out of the binary, so 30000 remains a candidate alongside 32000. The default `pct` and reserve that produce a trigger near 967000 are not read from the binary. Both resolve from the `preTokens` value on the next `compact_boundary` event:
 
 ```bash
 grep -rh '"compact_boundary"' ~/.claude/projects --include=*.jsonl
