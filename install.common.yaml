@@ -68,6 +68,10 @@
       path: configs/powershell/*
     ~/.zsh_plugins.txt: configs/zsh/zsh_plugins.txt
     ~/.serena/serena_config.yml: configs/serena/serena_config.yml
+    ~/.serena-reviewer/serena_config.yml: configs/serena-reviewer/serena_config.yml
+    ~/.serena-reviewer/reviewer-context.yml: configs/serena-reviewer/reviewer-context.yml
+    ~/.serena-reviewer/system-prompt.md: configs/serena-reviewer/system-prompt.md
+    ~/.serena-reviewer/language_servers: ~/.serena/language_servers
     # sensitive-canary reads this one path in the home directory and never a
     # project-local copy, so the repo file has to be linked rather than sourced.
     ~/.mcg/sensitive-canary/config.json: configs/sensitive-canary/config.json
@@ -90,6 +94,7 @@
       path: configs/codex/agents/*
     ~/.config/opencode/opencode.json: configs/opencode/opencode.json
     ~/.config/opencode/tui.json: configs/opencode/tui.json
+    ~/.config/opencode/reviewer.json: configs/opencode/reviewer.json
     ~/.config/opencode/agents/:
       glob: true
       path: configs/opencode/agents/*

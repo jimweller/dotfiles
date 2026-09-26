@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["~/.serena-reviewer/system-prompt.md"],
+  "mcp": {
+    "serena": {
+      "type": "local",
+      "command": [
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "{env:HOME}/.serena-reviewer/reviewer-context.yml",
+        "--mode",
+        "planning",
+        "--mode",
+        "one-shot",
+        "--project-from-cwd"
+      ],
+      "environment": {
+        "SERENA_HOME": "{env:HOME}/.serena-reviewer"
+      },
+      "enabled": true
+    }
+  }
+}

@@ -34,6 +34,9 @@ Read a source file end to end only when symbolic navigation cannot answer the
 question. Every path named in this section is a source file under review. The Output
 section governs where your findings go.
 
+Before reporting a defect in a function, call `find_referencing_symbols` on that
+function and state how its callers are affected.
+
 ## Focus: Architecture & Design
 
 - [ ] Component boundaries between packages, layers, or services
