@@ -21,9 +21,9 @@
 [submodule "submodules/clanker-skills"]
 	path = submodules/clanker-skills
 	url = https://github.com/jimweller/clanker-skills.git
-[submodule "submodules/clanker-output-style-plugin"]
-	path = submodules/clanker-output-style-plugin
-	url = https://github.com/jimweller/clanker-output-style-plugin.git
+[submodule "submodules/clanker-chat-plugin"]
+	path = submodules/clanker-chat-plugin
+	url = https://github.com/jimweller/clanker-chat-plugin.git
 [submodule "submodules/claude-session-plugin"]
 	path = submodules/claude-session-plugin
 	url = https://github.com/jimweller/claude-session-plugin.git
