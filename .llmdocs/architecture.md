@@ -11,7 +11,8 @@ Dotfiles repo managing workstation config across macOS and Linux.
 | devcontainer   | `submodules/devcontainer/`   | Linux Docker dev image (git submodule)                   |
 | clanker-skills | `submodules/clanker-skills/` | Universal AI agent skills (git submodule)                |
 | humble-master  | `submodules/humble-master/`  | Daneel persona research, upstream source of the persona text (git submodule) |
-| clanker-output-style-plugin | `submodules/clanker-output-style-plugin/` | Claude Code output-style plugin (git submodule) |
+| clanker-chat-plugin | `submodules/clanker-chat-plugin/` | Clanker Register rules, output style, SessionStart injection, per-turn hook (git submodule) |
+| clanker-prose-plugin | `submodules/clanker-prose-plugin/` | Prose-contract rules, prose skill, prose evals (git submodule) |
 | claude-marketplace | `submodules/claude-marketplace/` | The `jimweller` Claude Code plugin marketplace (git submodule) |
 | claude-session-plugin | `submodules/claude-session-plugin/` | The `session` plugin: search, resume, migrate sessions (git submodule) |
 
@@ -95,7 +96,7 @@ Sub-plugins loaded separately via antidote: `terragrunt/`, `tmux/`, `alehouse/` 
 
 ## Submodules
 
-Eight submodules defined in `.gitmodules`, all under `submodules/`:
+Nine submodules defined in `.gitmodules`, all under `submodules/`:
 
 | Submodule      | Shallow | Branch  |
 | -------------- | ------- | ------- |
@@ -104,6 +105,7 @@ Eight submodules defined in `.gitmodules`, all under `submodules/`:
 | antidote       | yes     | main    |
 | clanker-skills | no      | default |
 | humble-master  | no      | default |
-| clanker-output-style-plugin | no | default |
+| clanker-chat-plugin | no | default |
+| clanker-prose-plugin | no | default |
 | claude-marketplace | no | default |
 | claude-session-plugin | no | default |

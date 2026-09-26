@@ -135,21 +135,26 @@ Standard macOS launchd plist format in `scripts/*.plist`:
 
 The active style is the built-in `Concise`, selected by `"outputStyle": "Concise"` in `claude_settings_json_azure`, `_aws`, and `_jim`. It ships inside the Claude Code binary, so no file for it exists in this repo. Capital C is required: `ggi()` resolves the style with `e[o]` against a map keyed by style name, and the built-in keys are exactly `Proactive`, `Concise`, `Explanatory`, `Learning`. A miss resolves to `null` with no warning and no style at all.
 
-A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules live in the `## Clanker Register` section of `configs/claude-code/claude_md.md`.
+A custom style named `clanker` previously occupied this slot. It was retired on 2026-08-20 because custom styles get no usable per-turn reminder (see "Per-turn reminder" below). Its register and ordering rules moved into the `clanker-chat` plugin's `rules/clanker-register.md`, and the plugin's own `Clanker` output style is available as a project- or user-level override on top of the `Concise` default; this project's `.claude/settings.local.json` selects `"clanker-chat:Clanker"`.
 
-Two sources split the writing contract:
+Three sources split the writing contract:
 
 | Source | Scope | Loading |
 | ------ | ----- | ------- |
 | Built-in `Concise` style | Brevity in the assistant turn: lead with the result, cut narration, 1-3 sentences for a simple question, no hedging, full detail on request, never trade correctness for brevity | `"outputStyle": "Concise"` in the three settings files |
-| `configs/claude-code/claude_md.md` | Everything else, as four `##` sections. `How to Write`, `Banned Patterns in All Writing` and `Ghostwriting for Other Humans` sit inside a `<prose-contract>` tag and are the written-artifact contract. `Clanker Register` (findings-then-recommendation ordering, conditional derivation, the CLANKER voice) and `LSP-First Navigation` sit outside it | Symlinked to `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`, loads every session on both |
+| `clanker-chat` plugin, `rules/clanker-register.md` | Findings-then-recommendation ordering, conditional derivation, the CLANKER voice (`<clanker-register>`, `CR-` ids) | A `SessionStart` hook prints a short pointer at the rules file, which the agent follows with `Read`; a `UserPromptSubmit` hook reinjects a one-line reminder every turn; paired with the plugin's `Clanker` output style |
+| `clanker-prose` plugin, `skills/prose/SKILL.md` | `How to Write`, `Banned Patterns in All Writing`, `Ghostwriting for Other Humans` (`<prose-contract>`, `PC-` ids), the written-artifact contract | A `SessionStart`/`SubagentStart` hook prints a short pointer at the skill file, which the agent follows with `Read` or the `Skill` tool (the file doubles as the `prose` skill) |
+
+`configs/claude-code/claude_md.md` keeps the Daneel persona, evidence rules, general preferences, workflow rules, `STARTER_CHARACTER`, and `LSP-First Navigation`, plus a one-line, harness-neutral backstop in `## General Preferences` telling the agent to check for and load a prose-contract or writing-rules reference before writing prose. It carries none of the three writing-contract sources directly; Codex, which has no plugin support, now sees only that backstop line and the persona/preference/workflow sections, not the register or the prose-contract.
 
 ### The prose-contract block
 
 `<prose-contract>` wraps `How to Write`, `Banned Patterns in All Writing`, and
-`Ghostwriting for Other Humans`. `Clanker Register` was moved below `Ghostwriting` so the
-three are contiguous and take one wrapper. It governs the assistant turn rather than an
-artifact, so it belongs outside a block the `prose` skill applies in full.
+`Ghostwriting for Other Humans`. It lives in the `clanker-prose` plugin's
+`skills/prose/SKILL.md`, not in `claude_md.md`. The `Clanker Register` (a separate
+`<clanker-register>` block, `clanker-chat` plugin's `rules/clanker-register.md`) governs
+the assistant turn rather than an artifact, so it is a different file entirely rather than
+a section outside the same wrapper.
 
 Every rule inside the tag opens with a `` `PC-` `` id, 76 in total, being 55 in
 `Banned Patterns` and 21 in `Ghostwriting`. The 5 numbered moves in `How to Write` keep
@@ -161,27 +166,31 @@ scored `trailing supplements` and `trailing supplements that hang a second beat 
 finished clause` as two rules at 3 each instead of one at 6, and did that to three rules.
 An id is either in the contract or it is not, so an invented one is now visible.
 
-Four places address rules by id. `submodules/clanker-skills/skills/universal/prose/SKILL.md`
-points at the tag and nothing else. `evals/cases/*.csv` carries an id in its `bullet`
-column on all 595 rows. `evals/tools/bullet-groups.json` lists ids per judge group.
-`evals/prompts/` asks the rewriter and the judge to cite ids.
+Four places address rules by id. `submodules/clanker-prose-plugin/skills/prose/SKILL.md`
+carries the tag directly and doubles as the `prose` skill. `evals/cases/*.csv` carries an
+id in its `bullet` column on all 595 rows. `evals/tools/bullet-groups.json` lists ids per
+judge group. `evals/prompts/` asks the rewriter and the judge to cite ids. All four live
+under `submodules/clanker-prose-plugin/evals/`.
 
-`evals/tools/check-anchors.py` fails on an unknown id, a rule with no id, a duplicate id,
-or a `[move N]` pointing at a move that does not exist.
+`submodules/clanker-prose-plugin/evals/tools/check-anchors.py` fails on an unknown id, a
+rule with no id, a duplicate id, or a `[move N]` pointing at a move that does not exist.
 `evals/tools/extract-catalog.py` cuts on the tag rather than on heading strings, so
-renaming a heading no longer breaks extraction. `evals/tools/pc-ids.json` holds the map
-from the old free-text names to ids.
+renaming a heading no longer breaks extraction, and reads
+`skills/prose/SKILL.md` as the source of truth (`CONTRACT_FILE` overrides). `evals/tools/pc-ids.json`
+holds the map from the old free-text names to ids.
 
 `MD033` is `false` in `configs/markdownlint/markdownlint-cli2.jsonc`, so the md-format
-hook leaves the tags alone. Both formatters were measured as no-ops on the tagged file.
+hook leaves the tags alone in files it formats. `SKILL.md` files are excluded from
+formatting entirely (see `configs/claude-code/rules/md-syntax.md`), since a `SKILL.md`'s
+body is sent to the model verbatim.
 
-The four sections were separate files under `configs/claude-code/rules/` until 2026-08-24. All four carried no `paths` frontmatter, so all four already loaded on every Claude session; folding them into `claude_md.md` changed nothing for Claude and gave Codex content it had never received, because Codex resolves no `@file` references. `configs/claude-code/rules/` now holds only the nine `paths`-filtered language rules, which Codex never sees.
+The four sections were separate files under `configs/claude-code/rules/` until 2026-08-24, then folded into `claude_md.md`, then moved again on 2026-09-26 into the `clanker-prose` and `clanker-chat` plugins. That last move was forced by a measurement, not a preference: printing the 61 KB `<prose-contract>` block directly as a hook's `additionalContext` truncates to roughly 2 KB inline, with the remainder silently diverted to a `tool-results/*.txt` file the agent never opens unprompted (measured directly in Phase 0 of `i-like-it-let-s-validated-dongarra.md`, both by a direct quote test past the preview and by a token-count comparison: 31,716 cache-creation tokens with the plugin against 1,666 without, roughly double a clean full-text load rather than matching one). The fix is a pointer, not the content: each plugin's `SessionStart`/`SubagentStart` hook prints a short (under 500-byte) instruction naming the real rules file and telling the agent to read it, via `Read` or (for prose) the `Skill` tool, either of which is uncapped because the cap is specific to hook `additionalContext`. `configs/claude-code/rules/` now holds only the nine `paths`-filtered language rules, which Codex never sees.
 
-`claude_md.md` also holds the Daneel persona, a `## Audience` table naming which contract applies to which artifact, and the evidence rules, preferences, and workflow sections. The table routes on who reads the artifact, not on where the file lives. Path lists stay out of the prose, because `paths` frontmatter is the deterministic construct for that and the loader applies it without the model inferring anything. An artifact a model reads takes no voice rules and is still bound by the banned-pattern catalog.
+`claude_md.md` keeps the Daneel persona and the evidence, preference, and workflow sections. The `## Audience` table that used to route "who reads the artifact" to which contract was removed with the prose-contract and Clanker Register sections it named; `claude_md.md` now carries only a one-line backstop in `## General Preferences` ("check whether a prose-contract or writing-rules reference is available in context, and load and follow it first"), worded with no tool name so Codex's copy stays inert on it rather than broken. An artifact a model reads still takes no voice rules and is still bound by the banned-pattern catalog when the prose-contract is loaded, the same routing principle the removed table stated explicitly.
 
-The file must stay harness-neutral. It names no Claude-only tools: the research bullet says "the builtin web search tools" and the STARTER_CHARACTER rule says "invoked by the skill system". Both spots are the ones to watch when editing. The measured size is 58,095 bytes, up from 28,080 before the `PC-` ids and the earlier catalog expansions. That is safe on both: the global `~/.codex/AGENTS.md` is exempt from `project_doc_max_bytes` (verified by setting the budget to 100 and watching the whole file still load), and Claude Code documents no CLAUDE.md size limit.
+The file must stay harness-neutral. It names no Claude-only tools: the research bullet says "the builtin web search tools" and the STARTER_CHARACTER rule says "invoked by the skill system". Both spots are the ones to watch when editing, along with the new backstop line. The measured size dropped to 9,306 bytes after the 2026-09-26 plugin cutover, down from 58,095 bytes (which was up from 28,080 bytes before the `PC-` ids and the earlier catalog expansions). The `clanker-prose` plugin's `skills/prose/SKILL.md` is now the large file, measured at 62,289 bytes; `clanker-chat`'s `rules/clanker-register.md` measures 2,399 bytes. Plugin rules files carry no CLAUDE.md-style size constraint to verify, since they load through a hook-triggered `Read`/`Skill` call rather than through `@file` discovery or `project_doc_max_bytes`.
 
-Codex has no `Concise` analogue. Its nearest lever is `personality`, with values `default`, `friendly`, and `pragmatic`, none of them terse. Codex therefore gets ordering and register but not brevity.
+Codex has no `Concise` analogue. Its nearest lever is `personality`, with values `default`, `friendly`, and `pragmatic`, none of them terse. Codex therefore gets ordering and register but not brevity, and after the 2026-09-26 cutover it gets neither the register nor the prose-contract either, only the harness-neutral backstop line and whatever it infers on its own.
 
 A rule with no `paths` frontmatter loads at `session_start` with the same priority as a CLAUDE.md, verified with an `InstructionsLoaded` hook on a turn that made no tool calls. A rule with `paths` loads only on `path_glob_match`, and the trigger is a Read of a matching file: writing a new `.md` with no prior Read produced no match event.
 
@@ -210,7 +219,7 @@ Read from the shipped binary at `/Users/jimweller/.local/share/claude/versions/2
 
 `Concise` sets `keepCodingInstructions:!0`, so the default coding-guidelines block stays. The retired `clanker.md` set `keep-coding-instructions: true` for the same effect.
 
-The style body competes with existing tone guidance rather than replacing it, so `Concise` closes with "Where these rules conflict with more general communication or formatting guidance elsewhere in your instructions, these rules win." That clause sits in the system prompt and outranks any rules file, which is why `chat-register.md` carries no competing precedence clause of its own and no rule that contradicts `Concise`.
+The style body competes with existing tone guidance rather than replacing it, so `Concise` closes with "Where these rules conflict with more general communication or formatting guidance elsewhere in your instructions, these rules win." That clause sits in the system prompt and outranks any rules file, which is why `clanker-chat`'s `rules/clanker-register.md` carries no competing precedence clause of its own and no rule that contradicts `Concise`.
 
 ### Per-turn reminder
 
