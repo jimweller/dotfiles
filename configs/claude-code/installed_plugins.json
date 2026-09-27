@@ -24,21 +24,21 @@
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.9.0",
-        "version": "0.9.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.12.2",
+        "version": "0.12.2",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-05-06T09:21:47.088Z",
-        "gitCommitSha": "5b51a5f13a481d54a840ebb6c2835a8d508520b8"
+        "lastUpdated": "2026-09-27T00:55:32.264Z",
+        "gitCommitSha": "8823c2db18228fa3b4203b0e2d44b36df4bed108"
       }
     ],
     "mcg-status-updates@devx-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.3.0",
-        "version": "0.3.0",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/devx-claude-marketplace/mcg-status-updates/0.8.0",
+        "version": "0.8.0",
         "installedAt": "2026-04-08T23:16:14.925Z",
-        "lastUpdated": "2026-05-06T14:21:04.504Z",
-        "gitCommitSha": "6824a5136a296c10264b9555894370e1b65626eb"
+        "lastUpdated": "2026-09-27T00:55:36.433Z",
+        "gitCommitSha": "e4b86060ec018d2730115ca5cf0a646de9606c9d"
       }
     ],
     "mcg-lookup@sead-claude-marketplace": [
@@ -64,30 +64,31 @@
     "beads@beads-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/beads-marketplace/beads/1.0.3",
-        "version": "1.0.3",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/beads-marketplace/beads/1.3.0",
+        "version": "1.3.0",
         "installedAt": "2026-04-28T19:38:38.974Z",
-        "lastUpdated": "2026-04-28T19:38:38.974Z",
-        "gitCommitSha": "203406d9f4c7f188c9a4eb69fb9fb5ec7711e793"
+        "lastUpdated": "2026-09-27T00:54:39.135Z",
+        "gitCommitSha": "566c84ba8e5ede620115e96066c581ed6295d400"
       }
     ],
     "mcg-sensitive-canary@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-sensitive-canary/0.7.1",
-        "version": "0.7.1",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-sensitive-canary/0.15.0",
+        "version": "0.15.0",
         "installedAt": "2026-07-30T06:28:04.262Z",
-        "lastUpdated": "2026-07-30T06:28:04.262Z"
+        "lastUpdated": "2026-09-27T00:55:35.110Z",
+        "gitCommitSha": "6aadf5bbb9e67b93686f901305ab0981a5f20109"
       }
     ],
     "claude-mem@thedotmack": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/13.12.4",
-        "version": "13.12.4",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/thedotmack/claude-mem/13.28.0",
+        "version": "13.28.0",
         "installedAt": "2026-07-30T06:28:36.114Z",
-        "lastUpdated": "2026-07-30T06:28:36.114Z",
-        "gitCommitSha": "132b46343e60ecf4057c427736c57b08f7615dfe"
+        "lastUpdated": "2026-09-27T00:54:52.683Z",
+        "gitCommitSha": "7d0355413c2aaa3fa57fe6788b2ba2717fa7ff6f"
       }
     ],
     "ast-grep@ast-grep-marketplace": [
@@ -103,10 +104,11 @@
     "story-stick@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/story-stick/0.1.4",
-        "version": "0.1.4",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/story-stick/0.1.5",
+        "version": "0.1.5",
         "installedAt": "2026-09-22T04:50:18.955Z",
-        "lastUpdated": "2026-09-22T04:50:18.955Z"
+        "lastUpdated": "2026-09-27T00:55:40.570Z",
+        "gitCommitSha": "ce38e99def5728ddcd7f949f79852732d01133de"
       }
     ],
     "sonarqube@claude-plugins-official": [
@@ -152,11 +154,11 @@
     "clanker-code-review@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.6",
-        "version": "0.1.6",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.7",
+        "version": "0.1.7",
         "installedAt": "2026-09-26T17:25:39.521Z",
-        "lastUpdated": "2026-09-27T00:25:52.432Z",
-        "gitCommitSha": "f293629881d726c36afe6778f7412ab6967c8ae6"
+        "lastUpdated": "2026-09-27T01:07:12.242Z",
+        "gitCommitSha": "9d370694b6d41fa3ff33b3a0267f02c06dac7abd"
       }
     ]
   }
