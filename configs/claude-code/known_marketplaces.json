@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-09-26T22:29:08.805Z",
+    "lastUpdated": "2026-09-27T00:17:31.200Z",
     "autoUpdate": true
   },
   "agent-browser": {
@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-09-26T22:29:10.939Z",
+    "lastUpdated": "2026-09-27T00:17:32.471Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -81,6 +81,6 @@
       "url": "https://github.com/jimweller/claude-marketplace.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-09-26T23:46:17.843Z"
+    "lastUpdated": "2026-09-27T00:25:51.374Z"
   }
 }
