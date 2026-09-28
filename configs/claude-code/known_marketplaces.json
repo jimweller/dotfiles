@@ -23,7 +23,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-09-28T05:27:59.769Z",
+    "lastUpdated": "2026-09-28T12:21:53.706Z",
     "autoUpdate": true
   },
   "devx-claude-marketplace": {
@@ -32,7 +32,7 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-09-28T05:27:57.889Z",
+    "lastUpdated": "2026-09-28T12:22:44.026Z",
     "autoUpdate": true
   },
   "beads-marketplace": {
@@ -81,7 +81,7 @@
       "url": "https://github.com/jimweller/claude-marketplace.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-09-28T06:13:58.795Z"
+    "lastUpdated": "2026-09-28T16:44:40.800Z"
   },
   "open-code-review": {
     "source": {
