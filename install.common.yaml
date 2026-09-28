@@ -121,8 +121,6 @@
     ~/.claude/statusline-command.sh: configs/claude-code/statusline-command.sh
     ~/.claude/subagent-statusline.sh: configs/claude-code/subagent-statusline.sh
     ~/.claude/CLAUDE.md: configs/claude-code/claude_md.md
-    ~/.claude/plugins/known_marketplaces.json: configs/claude-code/known_marketplaces.json
-    ~/.claude/plugins/installed_plugins.json: configs/claude-code/installed_plugins.json
     ~/.claude/hooks/:
       glob: true
       path: configs/claude-code/hooks/*
@@ -140,6 +138,13 @@
     ~/Library/Application Support/Claude-3p/claude_desktop_config.json: configs/claude-code/claude_desktop_config.json
     ~/.config/markdownlint/.markdownlint-cli2.jsonc: configs/markdownlint/markdownlint-cli2.jsonc
     ~/.prettierrc: configs/prettier/prettierrc
+
+# Claude Code rewrites both plugin registries in place and turns a symlink into a regular
+# file, so a forced link would put the repo snapshot back and revert every plugin updated
+# since the last sync. Seed them only where nothing exists yet.
+- shell:
+  - command: 'mkdir -p "$HOME/.claude/plugins" && for f in known_marketplaces installed_plugins; do p="$HOME/.claude/plugins/$f.json"; [ -e "$p" ] || [ -L "$p" ] || cp "configs/claude-code/$f.json" "$p"; done'
+    description: Seed Claude Code plugin registries when missing
 
 - defaults:
     link:
