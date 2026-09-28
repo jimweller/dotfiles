@@ -347,53 +347,100 @@ MTD_TOKENS=""
 MONTH_TOKENS=""
 MTD_RAW=""
 MONTH_RAW=""
-ACTUAL_RATIO=""
 SESSION_TOKENS=""
 if [ -f "$CCUSAGE_CACHE" ]; then
-  DATE_30D=$(date -v-30d +%F 2>/dev/null || date -d '30 days ago' +%F)
-  DATE_MONTH=$(date +%Y-%m-01)
-  read -r PROJ_COST_RAW PROJ_TOKENS MTD_TOKENS MONTH_TOKENS <<<"$(jq -r \
-    --arg p "$PROJECT_KEY" --arg m1 "$DATE_MONTH" --arg d30 "$DATE_30D" '
-      [.projects[][]] as $all
-      | (.projects[$p]? // []) as $proj
-      | [([$proj[].totalCost] | add // 0),
-         ([$proj[].totalTokens] | add // 0),
-         ([$all[] | select(.date >= $m1) | .totalTokens] | add // 0),
-         ([$all[] | select(.date >= $d30) | .totalTokens] | add // 0)]
+  read -r PROJ_COST_RAW PROJ_TOKENS <<<"$(jq -r --arg p "$PROJECT_KEY" '
+      (.projects[$p]? // []) as $proj
+      | [([$proj[].totalCost] | add // 0), ([$proj[].totalTokens] | add // 0)]
       | @tsv' "$CCUSAGE_CACHE" 2>/dev/null)"
   [ "${PROJ_TOKENS:-0}" -gt 0 ] 2>/dev/null && COST_PROJECT=$(printf '%s' "$PROJ_COST_RAW" | awk '{printf "%.0f", $1}')
 fi
 if [ -f "$AZURE_CACHE" ]; then
   MTD_RAW=$(jq -r '.mtd // empty' "$AZURE_CACHE" 2>/dev/null)
   MONTH_RAW=$(jq -r '.rolling30d // empty' "$AZURE_CACHE" 2>/dev/null)
-  ACTUAL_RATIO=$(jq -r '.actualRatio // empty' "$AZURE_CACHE" 2>/dev/null)
+  MTD_TOKENS=$(jq -r '.mtdTokens // empty' "$AZURE_CACHE" 2>/dev/null)
+  MONTH_TOKENS=$(jq -r '.rolling30dTokens // empty' "$AZURE_CACHE" 2>/dev/null)
   [ -n "$MTD_RAW" ] && COST_MTD=$(printf '%s' "$MTD_RAW" | awk '{printf "%.0f", $1}')
   [ -n "$MONTH_RAW" ] && COST_MONTH=$(printf '%s' "$MONTH_RAW" | awk '{printf "%.0f", $1}')
 fi
-# Cumulative session tokens live only in the transcript. The statusline payload
-# carries current context occupancy, which is a different number.
+# Cumulative session tokens live only in the transcripts. The statusline payload
+# carries current context occupancy, which is a different number. Subagent and
+# workflow transcripts sit in a directory named after the session, and
+# total_cost_usd already includes their spend. Claude Code writes one line per
+# content block, each repeating the message's usage, so lines are keyed by message
+# and request id. A per-session cache of byte offsets limits each run to new lines.
 TRANSCRIPT=$(echo "$INPUT" | jq -r '.transcript_path // empty')
-if [ -n "$TRANSCRIPT" ] && [ -f "$TRANSCRIPT" ]; then
-  SESSION_TOKENS=$(jq -s '[.[] | .message.usage | select(. != null)
-    | ((.input_tokens // 0) + (.output_tokens // 0)
-       + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0))]
-    | add // 0' "$TRANSCRIPT" 2>/dev/null)
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty')
+if [ -n "$TRANSCRIPT" ] && [ -f "$TRANSCRIPT" ] && [ -n "$SESSION_ID" ]; then
+  SESSION_TOKENS=$(python3 - "$TRANSCRIPT" "/tmp/statusline-tokens/${SESSION_ID}.json" <<'PY' 2>/dev/null
+import glob, json, os, sys
+
+transcript, cache_path = sys.argv[1], sys.argv[2]
+try:
+    with open(cache_path) as fh:
+        state = json.load(fh)
+except (OSError, ValueError):
+    state = {"offsets": {}, "msgs": {}}
+offsets, msgs = state["offsets"], state["msgs"]
+fields = ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens")
+session_dir = os.path.splitext(transcript)[0]
+files = [transcript] + glob.glob(os.path.join(session_dir, "**", "*.jsonl"), recursive=True)
+changed = False
+for path in files:
+    try:
+        size = os.path.getsize(path)
+    except OSError:
+        continue
+    start = offsets.get(path, 0)
+    if size < start:
+        start = 0
+    if size == start:
+        continue
+    with open(path, "rb") as fh:
+        fh.seek(start)
+        chunk = fh.read()
+    end = chunk.rfind(b"\n") + 1
+    pos = start
+    for line in chunk[:end].splitlines(keepends=True):
+        here = pos
+        pos += len(line)
+        if b'"usage"' not in line:
+            continue
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        msg = rec.get("message")
+        if not isinstance(msg, dict) or not isinstance(msg.get("usage"), dict):
+            continue
+        key = f'{msg["id"]}:{rec.get("requestId")}' if msg.get("id") else f"{path}:{here}"
+        msgs[key] = sum(msg["usage"].get(f) or 0 for f in fields)
+    offsets[path] = start + end
+    changed = True
+if changed:
+    os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+    tmp = f"{cache_path}.{os.getpid()}"
+    with open(tmp, "w") as fh:
+        json.dump(state, fh)
+    os.replace(tmp, cache_path)
+print(sum(msgs.values()))
+PY
+)
 fi
-# Dollars per million tokens. Session and project costs are Anthropic list price,
-# so they are repriced by what the platform actually billed. The Azure MTD and
-# rolling-30d figures are already actual dollars and take no ratio.
+# Dollars per million tokens. Session and project costs are list price. The Azure
+# MTD and rolling-30d costs are billed dollars.
 fmte() {
-  awk -v c="${1:-}" -v t="${2:-0}" -v r="${3:-}" 'BEGIN {
-    if (c == "" || r == "" || t + 0 <= 0) exit
-    v = sprintf("%.2f", c * r * 1000000 / t)
+  awk -v c="${1:-}" -v t="${2:-0}" 'BEGIN {
+    if (c == "" || t + 0 <= 0) exit
+    v = sprintf("%.2f", c * 1000000 / t)
     sub(/^0\./, ".", v)
     print v
   }'
 }
-EFF_SESSION=$(fmte "$COST_RAW" "$SESSION_TOKENS" "$ACTUAL_RATIO")
-EFF_PROJECT=$(fmte "$PROJ_COST_RAW" "$PROJ_TOKENS" "$ACTUAL_RATIO")
-EFF_MTD=$(fmte "$MTD_RAW" "$MTD_TOKENS" 1)
-EFF_MONTH=$(fmte "$MONTH_RAW" "$MONTH_TOKENS" 1)
+EFF_SESSION=$(fmte "$COST_RAW" "$SESSION_TOKENS")
+EFF_PROJECT=$(fmte "$PROJ_COST_RAW" "$PROJ_TOKENS")
+EFF_MTD=$(fmte "$MTD_RAW" "$MTD_TOKENS")
+EFF_MONTH=$(fmte "$MONTH_RAW" "$MONTH_TOKENS")
 fmtc() { LC_ALL=en_US.UTF-8 printf "%'d" "${1:-0}" 2>/dev/null || echo "${1:-0}"; }
 COST=$(fmtc "$COST")
 [ -n "$COST_PROJECT" ] && COST_PROJECT=$(fmtc "$COST_PROJECT")
