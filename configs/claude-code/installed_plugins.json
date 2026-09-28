@@ -24,11 +24,11 @@
     "mcg-atlassian@sead-claude-marketplace": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.12.2",
-        "version": "0.12.2",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/sead-claude-marketplace/mcg-atlassian/0.13.0",
+        "version": "0.13.0",
         "installedAt": "2026-03-23T04:50:27.524Z",
-        "lastUpdated": "2026-09-27T00:55:32.264Z",
-        "gitCommitSha": "8823c2db18228fa3b4203b0e2d44b36df4bed108"
+        "lastUpdated": "2026-09-28T04:07:07.913Z",
+        "gitCommitSha": "6bc1e75598021e0ed760fc43eb4a4e2341414435"
       }
     ],
     "mcg-status-updates@devx-claude-marketplace": [
@@ -154,11 +154,11 @@
     "clanker-code-review@jimweller": [
       {
         "scope": "user",
-        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.9",
-        "version": "0.1.9",
+        "installPath": "/Users/jimweller/.claude/plugins/cache/jimweller/clanker-code-review/0.1.10",
+        "version": "0.1.10",
         "installedAt": "2026-09-26T17:25:39.521Z",
-        "lastUpdated": "2026-09-28T02:13:09.300Z",
-        "gitCommitSha": "12ebad4816d2776e415a24ffeec19828bf883772"
+        "lastUpdated": "2026-09-28T06:13:59.972Z",
+        "gitCommitSha": "a849e7bded9008cdcff6ac7f2b1597ae557770fa"
       }
     ],
     "open-code-review@open-code-review": [

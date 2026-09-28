@@ -5,7 +5,7 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-09-27T00:55:36.777Z",
+    "lastUpdated": "2026-09-28T05:28:10.927Z",
     "autoUpdate": true
   },
   "agent-browser": {
@@ -14,7 +14,7 @@
       "repo": "vercel-labs/agent-browser"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/agent-browser",
-    "lastUpdated": "2026-09-27T00:55:18.730Z",
+    "lastUpdated": "2026-09-28T05:27:45.446Z",
     "autoUpdate": true
   },
   "sead-claude-marketplace": {
@@ -23,7 +23,7 @@
       "url": "https://dev.azure.com/mcgsead/AI%20Engineering%20Exchange/_git/sead-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/sead-claude-marketplace",
-    "lastUpdated": "2026-09-27T00:55:29.174Z",
+    "lastUpdated": "2026-09-28T05:27:59.769Z",
     "autoUpdate": true
   },
   "devx-claude-marketplace": {
@@ -32,7 +32,7 @@
       "url": "https://dev.azure.com/mcgsead/devx-internal/_git/devx-claude-marketplace"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/devx-claude-marketplace",
-    "lastUpdated": "2026-09-27T00:55:26.226Z",
+    "lastUpdated": "2026-09-28T05:27:57.889Z",
     "autoUpdate": true
   },
   "beads-marketplace": {
@@ -41,7 +41,7 @@
       "repo": "gastownhall/beads"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/beads-marketplace",
-    "lastUpdated": "2026-09-27T00:55:21.136Z"
+    "lastUpdated": "2026-09-28T05:27:51.821Z"
   },
   "thedotmack": {
     "source": {
@@ -49,7 +49,7 @@
       "repo": "thedotmack/claude-mem"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/thedotmack",
-    "lastUpdated": "2026-09-27T00:55:25.475Z"
+    "lastUpdated": "2026-09-28T05:27:56.891Z"
   },
   "azure-skills": {
     "source": {
@@ -65,7 +65,7 @@
       "repo": "ast-grep/agent-skill"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/ast-grep-marketplace",
-    "lastUpdated": "2026-09-27T00:55:19.907Z"
+    "lastUpdated": "2026-09-28T05:27:46.779Z"
   },
   "cwqi-claude-marketplace": {
     "source": {
@@ -81,7 +81,7 @@
       "url": "https://github.com/jimweller/claude-marketplace.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-09-28T02:13:08.271Z"
+    "lastUpdated": "2026-09-28T06:13:58.795Z"
   },
   "open-code-review": {
     "source": {
@@ -89,6 +89,6 @@
       "repo": "alibaba/open-code-review"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/open-code-review",
-    "lastUpdated": "2026-09-27T23:09:24.429Z"
+    "lastUpdated": "2026-09-28T05:28:10.421Z"
   }
 }
