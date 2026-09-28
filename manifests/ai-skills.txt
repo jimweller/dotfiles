@@ -4,10 +4,9 @@
 
 https://github.com/jimweller/clanker-skills/tree/main/skills/universal
 https://github.com/jimweller/clanker-code-review-plugin -a codex -a opencode -a hermes-agent
-https://github.com/kepano/obsidian-skills
+https://github.com/kepano/obsidian-skills -s defuddle -s obsidian-bases -s obsidian-cli -s obsidian-markdown
 https://github.com/vercel-labs/agent-browser -s agent-browser
-https://github.com/alibaba/open-code-review -s open-code-review
-https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/hermes-agent
+https://github.com/NousResearch/hermes-agent/tree/main/skills/autonomous-ai-agents/hermes-agent -a hermes-agent
 
 # jq-json-processing and yq-yaml-processing were archived 2026-08-12. Both are
 # generic jq/yq cheat sheets covering syntax the model already knows, so it never

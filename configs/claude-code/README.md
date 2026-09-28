@@ -33,42 +33,36 @@ Before v2.1.3, commands and skills were separate: commands were user-invoked `.m
 
 #### Human + Model Invocable
 
-| Skill                     | Description                                                                  |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| `commit`                  | Atomic conventional commit with AI context tracking                          |
-| `md-lint`                 | Format and lint markdown with prettier + markdownlint-cli2                   |
-| `llmdocs`                 | Update CLAUDE.md and .llmdocs/ after significant work                        |
-| `readme`                  | Generate README from folder contents and conversation                        |
-| `test-driven-development` | London TDD workflow for features and bugfixes                                |
-| `sage`                    | Research via context7 (library docs) and researcher (web search) MCP servers |
-| `beads`                   | bd (beads) issue tracker workflow and command reference                      |
+| Skill     | Description                                                                  |
+| --------- | ---------------------------------------------------------------------------- |
+| `commit`  | Atomic conventional commit with AI context tracking                          |
+| `md-lint` | Format and lint markdown with prettier + markdownlint-cli2                   |
+| `llmdocs` | Update CLAUDE.md and .llmdocs/ after significant work                        |
+| `readme`  | Generate README from folder contents and conversation                        |
+| `sage`    | Research via context7 (library docs) and researcher (web search) MCP servers |
+| `beads`   | bd (beads) issue tracker workflow and command reference                      |
 
 #### Human-Only (`disable-model-invocation: true`)
 
 | Skill               | Description                                                              |
 | ------------------- | ------------------------------------------------------------------------ |
 | `familiarize`       | Orient in a new repo by reading docs, config, and code structure         |
-| `worktree`          | Git worktree create, merge, rebase, remove                               |
 | `handoff`           | Print a prompt that points a fresh session at the current plan           |
 | `relay`             | Write session state document for next agent                              |
-| `code-reviews`      | Parallel code reviews via 3 models through opencode                      |
 | `ralph-builder`     | Build Ralph Wiggum loop files for autonomous execution                   |
 | `ralph-review`      | Single-model deep review of Ralph artifacts via in-process opus subagent |
 | `ralph-review-deep` | Multi-model parallel review of Ralph artifacts via 3 opencode processes  |
-| `prd`               | Generate a Product Requirements Document for a new feature               |
-| `prd-review`        | Single-model deep review of a PRD via in-process opus subagent           |
 | `docs`              | Run llmdocs and readme in parallel                                       |
 
 #### Model-Only (`user-invocable: false`)
 
-| Skill                  | Description                                             |
-| ---------------------- | ------------------------------------------------------- |
-| `ado`                  | Azure DevOps operations via az CLI                      |
-| `mcg-confluence-prefs` | MCG Confluence team defaults and space config           |
-| `mcg-jira-prefs`       | MCG Jira team defaults, custom fields, creation rules   |
-| `md-style`             | README writing conventions                              |
-| `md-syntax`            | Markdown syntax and formatting rules                    |
-| `python`               | Python development conventions (uv, src layout, pytest) |
+| Skill                  | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| `ado`                  | Azure DevOps operations via az CLI                    |
+| `mcg-confluence-prefs` | MCG Confluence team defaults and space config         |
+| `mcg-jira-prefs`       | MCG Jira team defaults, custom fields, creation rules |
+| `md-style`             | README writing conventions                            |
+| `md-syntax`            | Markdown syntax and formatting rules                  |
 
 ## claude-mem Plugin
 
