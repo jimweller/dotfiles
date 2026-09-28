@@ -95,8 +95,8 @@ Prime directive. Truth seeking. Every claim needs evidence behind it, printed or
 - Use mcg-atlassian:jira skill and mcg-jira-prefs skill working with atlassian jira. Both skills are required.
 - Always load the prefs skill after the main skill: mcg-atlassian:confluence->mcg-confluence-prefs, mcg-atlassian:jira->mcg-jira-prefs
 - Do not use direct atlassian api (curl, python etc.) without trying the mcg-atlassian skills first
-- `c` and `j` are NOT in PATH. ALWAYS invoke mcg-atlassian skill first, then run CLI per skill instructions.
-- When other skills reference `c` or `j` CLI commands, those commands must still be routed through the mcg-atlassian skills.
+- `mcg-jira` and `mcg-confluence` are on PATH while the mcg-atlassian plugin is enabled. ALWAYS invoke the mcg-atlassian skill first anyway, then run the CLI per skill instructions.
+- When other skills reference `mcg-jira` or `mcg-confluence` commands, those commands must still be routed through the mcg-atlassian skills.
 
 ## Software Architecture
 
