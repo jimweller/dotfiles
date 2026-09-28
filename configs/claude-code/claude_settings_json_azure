@@ -51,7 +51,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {
@@ -164,7 +164,8 @@
     "clanker-chat@jimweller": true,
     "clanker-prose@jimweller": true,
     "session@jimweller": true,
-    "clanker-code-review@jimweller": true
+    "clanker-code-review@jimweller": true,
+    "open-code-review@open-code-review": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
@@ -215,6 +216,12 @@
         "source": "git",
         "url": "https://github.com/jimweller/claude-marketplace.git"
       }
+    },
+    "open-code-review": {
+      "source": {
+        "source": "github",
+        "repo": "alibaba/open-code-review"
+      }
     }
   },
   "outputStyle": "Concise",
@@ -227,7 +234,7 @@
   },
   "modelSettings": {
     "claude-fable-5-1": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     },
     "claude-haiku-4-5": {
       "effortLevel": "xhigh"
