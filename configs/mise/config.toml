@@ -6,6 +6,7 @@ trusted_config_paths = [
   "~/hearst",
   "~/obsidian",
 ]
+idiomatic_version_file_enable_tools = ["node"]
 
 [tools]
 "github:zoharbabin/web-researcher-mcp" = "latest"
