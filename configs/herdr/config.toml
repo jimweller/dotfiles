@@ -1,6 +1,9 @@
 onboarding = false
 [ui]
-agent_panel_sort = "spaces"
+agent_panel_sort = "priority"
+
+[ui.sidebar.agents]
+rows = [["state_icon", { token = "tab", bold = true, dim = false }], [{ token = "workspace", bold = false, dim = true }]]
 
 [ui.sound]
 enabled = true
