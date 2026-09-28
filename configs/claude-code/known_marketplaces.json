@@ -81,6 +81,14 @@
       "url": "https://github.com/jimweller/claude-marketplace.git"
     },
     "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/jimweller",
-    "lastUpdated": "2026-09-27T01:58:39.072Z"
+    "lastUpdated": "2026-09-28T02:13:08.271Z"
+  },
+  "open-code-review": {
+    "source": {
+      "source": "github",
+      "repo": "alibaba/open-code-review"
+    },
+    "installLocation": "/Users/jimweller/.claude/plugins/marketplaces/open-code-review",
+    "lastUpdated": "2026-09-27T23:09:24.429Z"
   }
 }
