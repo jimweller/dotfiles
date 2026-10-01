@@ -98,6 +98,14 @@ Prime directive. Truth seeking. Every claim needs evidence behind it, printed or
 - `mcg-jira` and `mcg-confluence` are on PATH while the mcg-atlassian plugin is enabled. ALWAYS invoke the mcg-atlassian skill first anyway, then run the CLI per skill instructions.
 - When other skills reference `mcg-jira` or `mcg-confluence` commands, those commands must still be routed through the mcg-atlassian skills.
 
+## Azure
+
+- My ARM access comes from PIM activation of the `MCG-PLATFORM-ENGINEERING-ADMIN-FULL-ACCESS` group. The activation grants the Owner role at the management-group level. Every MCG subscription inherits that role.
+- I have access to more than 100 subscriptions. Always set or specify the correct subscription before any Azure operation, with `az account set` or a `--subscription` argument.
+- My standing Entra access, with no PIM activation, can create non-user principals and groups outside the `MCG Administrative Unit`.
+- My Entra PIM activation for the `MCG Administrative Unit` grants one thing, creating groups inside that administrative unit.
+- I create groups in the `MCG Administrative Unit` with the `mcg-group:mcg-group` skill from the mcg-group plugin, which aligns them with the MCG naming and nesting standards.
+
 ## Software Architecture
 
 - Follow Domain-Driven Design with bounded contexts
