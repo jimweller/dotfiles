@@ -19,6 +19,9 @@
   - ~/assets/postgres
   - ~/assets/qdrant
   - ~/assets/steampipe
+  # Target of the ~/.serena-reviewer/language_servers link. A fresh machine or bolt has
+  # no ~/.serena until Serena runs, and a link to a missing target fails ./install.
+  - ~/.serena/language_servers
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
