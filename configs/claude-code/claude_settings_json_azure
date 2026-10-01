@@ -165,7 +165,9 @@
     "clanker-prose@jimweller": true,
     "session@jimweller": true,
     "clanker-code-review@jimweller": true,
-    "open-code-review@open-code-review": true
+    "open-code-review@open-code-review": true,
+    "mcg-group@sead-claude-marketplace": true,
+    "mcg-documenter@sead-claude-marketplace": true
   },
   "extraKnownMarketplaces": {
     "azure-skills": {
