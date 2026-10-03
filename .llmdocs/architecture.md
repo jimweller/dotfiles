@@ -36,7 +36,8 @@ configs/                  # Source dotfiles (symlinked to home)
   iterm/                   # iTerm2 dynamic profiles
   macos/                   # macOS Automator workflows
   assets/                  # Static assets (md.css)
-manifests/                 # Package lists (brew, apt) and GPG archive
+  keys/                    # SOPS-encrypted SSH and GPG key files
+manifests/                 # Package lists (brew, apt)
 scripts/                   # Launchd plists, container helpers, sync
 install                    # Entry point installer script
 install.common.yaml        # Cross-platform dotbot config

@@ -17,7 +17,7 @@ Requires: git, bash. Idempotent.
 
 | Script                               | Purpose                                        | Invocation                               |
 | ------------------------------------ | ---------------------------------------------- | ---------------------------------------- |
-| `scripts/secrets.sh`                 | GPG archive manager                            | `secrets.sh open\|save\|list [password]` |
+| `scripts/keys.sh`                    | SSH and GPG key files in SOPS                  | `keys.sh init\|save\|restore`            |
 | `scripts/sync.sh`                    | Rsync backup to Google Drive folder            | `DOTFILES_BACKUP_DIR` overrides target   |
 | `scripts/backup-runner.c`            | TCC identity carrier that execs `sync.sh`      | Built to `~/bin/dotfiles-backup-runner`  |
 | `scripts/aws-refresh-token.sh`       | Renew AWS SSO credentials                      | Scheduled via launchd                    |

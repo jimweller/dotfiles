@@ -177,4 +177,17 @@
 - clean:
     - ~/.claude/agents
 
+# SSH and GPG keys come from configs/keys/, decrypted with the age key. A machine with no
+# age key or no sops yet skips the step and says so, so ./install still succeeds there.
+- shell:
+  - command: >-
+      if [ ! -r "$HOME/.config/sops/age/keys.txt" ]; then
+      echo "No age key at ~/.config/sops/age/keys.txt, so SSH and GPG keys were not restored. Run DOTFILES_KEY=<age key> scripts/keys.sh init, then ./install.";
+      elif ! command -v sops >/dev/null 2>&1; then
+      echo "sops is not installed, so SSH and GPG keys were not restored.";
+      else bash scripts/keys.sh restore; fi
+    description: Restore SSH and GPG keys from configs/keys
+    stdout: true
+    stderr: true
+
 

@@ -89,7 +89,6 @@ export DEVX_GIT_ROOT="$HOME/work"
 # JimContainer management alias (renamed from devcontainer to avoid VSCode conflict)
 alias jimcontainer='jimcontainer.sh'
 alias jimc='jimcontainer.sh'
-alias secrets='secrets.sh'
 
 bolt() {
   local name="${1:-jimweller-$(openssl rand -hex 2)}"

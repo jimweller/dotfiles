@@ -37,6 +37,7 @@ Antidote uses `conditional:is_macos` for macOS-only plugins (alehouse).
 1. Creates directories: `~/bin`, `~/.secrets`, `~/.config/sops/age`, `~/.logs`, `~/tmp`, `~/.ssh`, `~/assets/{postgres,qdrant,steampipe}`
 2. Updates git submodules
 3. Symlinks all cross-platform dotfiles (shell, git, SSH, tmux, cloud CLIs, AI tools, containers, linting)
+4. Restores SSH and GPG keys with `scripts/keys.sh restore` when the age key and sops exist, and prints why it skipped otherwise
 
 ### install.macos.yaml
 
@@ -66,7 +67,7 @@ VSCode devcontainer settings reference this repo for dotfiles injection into dev
 
 Not automated by the installer:
 
-- `scripts/secrets.sh open` to decrypt SSH keys and credentials
+- On a new machine, `DOTFILES_KEY=<age key> scripts/keys.sh init`, then `./install` again so it restores the SSH and GPG keys
 - `switch_git_profile work`, `switch_git_profile jim`, or `switch_git_profile hearst` to set git identity
 - Load LaunchAgents (macOS installer does this automatically)
 

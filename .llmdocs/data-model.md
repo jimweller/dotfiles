@@ -77,7 +77,6 @@ gitconfig-hearst (work GitHub, includes gitconfig-all)
 | `manifests/brew-taps.txt`        | One tap per line              | Homebrew taps (19 taps)            |
 | `manifests/apt.txt`              | One package per line          | Linux apt packages (6 packages)    |
 | `manifests/ai-skills.txt`        | One `<source-url> [-a agent]...` line per skill | AI agent skills installed via `npx skills add`, processed by `scripts/ai-npx-skills.sh` |
-| `manifests/zcnqj7nbbgg4szrm.gpg` | GPG symmetric AES256          | SSH/GPG keys + age key tar archive |
 
 ## Secrets Model
 
@@ -89,14 +88,13 @@ Two layers:
   - `scripts/confluence-backup.sh`, `scripts/jimcontainer.sh`, `scripts/mount.sh` use `${SECRETS_DIR:-$HOME/.secrets}` so they stay correct when run standalone (outside the interactive shell)
   - `configs/mise/personal.toml`, `configs/mise/work.toml`, `configs/mise/hearst.toml` set `GIT_PROFILE_ENC` to `{{env.HOME}}/.secrets/git-*.enc.env`, consumed by `configs/mise/load-git-secret.sh`. Each is symlinked to `~/<dir>/.mise.toml` by `install.macos.yaml`, and each directory is listed in `trusted_config_paths` in `configs/mise/config.toml`
   - Decryption uses the age key at `~/.config/sops/age/keys.txt` (`SOPS_AGE_KEY_FILE`), which itself is unchanged and is not under `~/.secrets`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (covers all shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd, since `sync.sh` invokes it and launchd provides no shell env). The variable is required because macOS sops defaults to `~/Library/Application Support/sops/age/keys.txt` while the key lives at the XDG path.
-- **Key material (GPG archive)**: `scripts/secrets.sh` manages a GPG-encrypted tar of:
-  - `~/.ssh/id*` (SSH key pairs)
-  - `~/.ssh/allowed_signers`
-  - `~/.config/sops/age/keys.txt` (the age private key)
-  - `~/.gnupg/private-keys-v1.d/*`
-  - `~/.gnupg/openpgp-revocs.d/*`
+- **Key files (SOPS+age)**: `configs/keys/` holds one SOPS file per key file, encrypted in binary mode and named `<file>.sops.json`. `scripts/keys.sh` reads and writes them.
+  - `ssh/` holds every `~/.ssh/id*` file and `~/.ssh/allowed_signers`
+  - `gnupg/private-keys-v1.d/` and `gnupg/openpgp-revocs.d/` hold the GPG private keys and revocation certificates
+  - `gnupg/pubkeys.asc` is an armored export of the public key for every secret key
+  - `gnupg/ownertrust.txt` is the ownertrust export with its timestamp comment removed, so an unchanged trust db saves nothing
 
-Password source: `DOTFILES_KEY` env var or CLI argument, unified to equal the age key. One string restores the archive (including `keys.txt`), which then decrypts the SOPS secrets.
+`DOTFILES_KEY` is the age secret key itself. `scripts/keys.sh init` writes it to `keys.txt`, and that one key decrypts both layers. The age key is in neither layer, because an encrypted copy needs the same key to open.
 
 ## Antidote Plugin Format
 

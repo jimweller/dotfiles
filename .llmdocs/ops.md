@@ -4,26 +4,37 @@ Maintenance, scheduled tasks, and operational runbooks.
 
 ## Secrets Management
 
-### Decrypt secrets
+### Set up the age key on a new machine
 
 ```bash
-DOTFILES_KEY=<password> scripts/secrets.sh open
+DOTFILES_KEY=<age key> scripts/keys.sh init
+./install
 ```
 
-Extracts SSH keys, GPG keys, and the age key (`~/.config/sops/age/keys.txt`) from `manifests/zcnqj7nbbgg4szrm.gpg`. `DOTFILES_KEY` equals the age key string.
+`init` adds the age secret key to `~/.config/sops/age/keys.txt` and keeps any other identity already in the file. `DOTFILES_KEY` is the `AGE-SECRET-KEY-` line itself. `./install` then restores the SSH and GPG keys.
 
-### Save updated secrets
+### Restore SSH and GPG keys
 
 ```bash
-DOTFILES_KEY=<password> scripts/secrets.sh save
+scripts/keys.sh restore
 ```
 
-Re-encrypts SSH/GPG keys and the age key back to the GPG archive. Run after rotating SSH or GPG keys. Env secrets are not in this archive; edit them with `sops` (see below).
+Decrypts `configs/keys/` into `~/.ssh` and `~/.gnupg`, overwriting any file that differs, then imports the GPG public keys and ownertrust. `./install` runs it whenever the age key and sops exist and prints why it skipped otherwise. A machine with no `gpg` gets the SSH keys and a message that the GPG keys were skipped.
 
-### List archived secrets
+### Save rotated keys
 
 ```bash
-DOTFILES_KEY=<password> scripts/secrets.sh list
+scripts/keys.sh save
+```
+
+Encrypts `~/.ssh/id*`, `~/.ssh/allowed_signers`, the GPG private keys and revocation certificates, and an export of the GPG public keys and ownertrust into `configs/keys/`. An unchanged key keeps its ciphertext, so only a rotated key shows up in `git status`. A key in the repo but not on this machine is reported and kept. Remove a retired key with `git rm`.
+
+### Deleting decrypted material
+
+`scripts/` is on PATH, and `scripts/rm` is a safe-rm wrapper that moves files into `~/.Trash`. A script that deletes decrypted key material must call `command -p rm`, which skips the wrapper. `scripts/keys.sh` does, and `tests/keys.test.sh` fails if a decrypted file reaches a Trash folder.
+
+```bash
+bash tests/keys.test.sh
 ```
 
 ### Edit an env secret (SOPS)

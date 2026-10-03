@@ -88,24 +88,21 @@ setup_dotfiles_in_container() {
             if source <(sops -d --input-type dotenv --output-type dotenv "$SECRETS_ENC_FILE"); then
                 set +a  # turn off automatic export
                 
-                debug "Environment loaded - DOTFILES_KEY length: ${#DOTFILES_KEY}, DOTFILES_ARCHIVE: $DOTFILES_ARCHIVE"
-                debug "Unpacking secrets with environment variables..."
-                
-                # Pass specific dotfiles environment variables to container
+                debug "Environment loaded - DOTFILES_KEY length: ${#DOTFILES_KEY}"
+                debug "Restoring SSH and GPG keys with keys.sh..."
+
                 local env_args=()
                 [[ -n "$DOTFILES_KEY" ]] && env_args+=("--env" "DOTFILES_KEY=$DOTFILES_KEY")
-                [[ -n "$DOTFILES_ARCHIVE" ]] && env_args+=("--env" "DOTFILES_ARCHIVE=$DOTFILES_ARCHIVE")
-                
-                debug "Environment args: ${env_args[*]}"
-                
-                # Run secrets.sh with environment variables
+
+                # keys.sh init writes the age key into the container, then restore decrypts
+                # configs/keys/. restore needs sops inside the container.
                 if ! timeout $SECRETS_TIMEOUT docker exec "${env_args[@]}" "$container_name" bash -c "
-                    SECRETS_SCRIPT=~/.config/dotfiles/scripts/secrets.sh
-                    if [[ -x \$SECRETS_SCRIPT ]]; then
-                        \$SECRETS_SCRIPT open </dev/null >/dev/null 2>&1
+                    KEYS_SCRIPT=~/.config/dotfiles/scripts/keys.sh
+                    if [[ -x \$KEYS_SCRIPT ]]; then
+                        \$KEYS_SCRIPT init </dev/null >/dev/null 2>&1 && \$KEYS_SCRIPT restore </dev/null >/dev/null 2>&1
                     fi
                 " 2>/dev/null; then
-                    debug "Secrets unpacking failed or timed out (this is optional)"
+                    debug "Key restore failed or timed out (this is optional)"
                 fi
             else
                 set +a  # make sure to turn off automatic export even on failure
@@ -490,7 +487,7 @@ Configuration (environment variables):
   DEVC_DOTFILES_INSTALL       Install command (default: ~/.config/dotfiles/install)
   DEVC_DOTFILES_AUTO          Auto-setup dotfiles (default: true)
   DEVC_DOTFILES_TIMEOUT       Dotfiles installation timeout in seconds (default: 60)
-  DEVC_SECRETS_AUTO           Auto-setup secrets via secrets.sh (default: true)
+  DEVC_SECRETS_AUTO           Auto-restore SSH and GPG keys via keys.sh (default: true)
   DEVC_SECRETS_TIMEOUT        Secrets unpacking timeout in seconds (default: 30)
   DEVC_SECRETS_DIR            Host secrets directory (default: \$HOME/.secrets)
   DEVC_SECRETS_ENV            Secrets environment file name (default: dotfiles.env)
@@ -499,7 +496,7 @@ Note: Container names automatically include the current directory name plus a ra
 2-character suffix for uniqueness. Each gets its own container instance and volume.
 Only the current working directory is mounted to /workspace in the container.
 Dotfiles are automatically installed on first connect unless DEVC_DOTFILES_AUTO=false.
-Secrets are automatically unpacked after dotfiles installation using secrets.sh if DEVC_SECRETS_AUTO=true (default).
+SSH and GPG keys are restored after dotfiles installation using keys.sh if DEVC_SECRETS_AUTO=true (default). The container needs sops.
 For secrets to work, you need the 'secret' command available on the host and a secrets env file in DEVC_SECRETS_DIR.
 The script sources the environment file (default: dotfiles.env, configurable via DEVC_SECRETS_ENV), then passes them to the container.
 Enable debug output with DEVC_DEBUG=true to troubleshoot setup issues.

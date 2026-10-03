@@ -7,7 +7,7 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - zsh + antidote (plugin manager) + Powerlevel10k (prompt)
 - dotbot (symlink orchestration)
 - Homebrew (macOS), apt (Linux)
-- SOPS + age (env secrets, committed encrypted); GPG symmetric archive (SSH/GPG keys + age key)
+- SOPS + age (env secrets and SSH/GPG key files, committed encrypted)
 - launchd (macOS scheduled tasks)
 
 ## Architecture
@@ -25,15 +25,18 @@ Idempotent workstation setup for macOS and Linux. Manages shell config, AI tooli
 - `configs/` -- source configs symlinked to home
 - `configs/zsh-jim/` -- numbered zsh modules (00-95), loaded in order
 - `scripts/` -- launchd plists, container helpers, backup, token refresh
-- `manifests/` -- package lists (brew, apt) and the GPG archive (SSH/GPG keys + age key)
+- `manifests/` -- package lists (brew, apt)
+- `configs/keys/` holds the SOPS+age encrypted SSH and GPG key files (`*.sops.json`) that `scripts/keys.sh restore` decrypts
 - `configs/secrets/` -- SOPS+age encrypted env secrets (`*.enc.env`), safe to commit; source of truth, dotbot glob-links them into `~/.secrets/` for runtime reads
 
 ## Commands
 
 ```bash
 ./install                    # Run dotbot installer (idempotent)
-scripts/secrets.sh open      # Restore SSH/GPG keys + age key (needs DOTFILES_KEY = age key)
-scripts/secrets.sh save      # Re-encrypt SSH/GPG keys + age key
+DOTFILES_KEY=<age key> scripts/keys.sh init   # New machine: add the age key, then ./install
+scripts/keys.sh restore      # Decrypt configs/keys/ into ~/.ssh and ~/.gnupg (./install runs it)
+scripts/keys.sh save         # Re-encrypt SSH/GPG keys after a rotation
+bash tests/keys.test.sh      # keys.sh tests, against a throwaway age key and HOME
 sops configs/secrets/NAME.enc.env   # Edit a SOPS-encrypted env secret
 scripts/sync.sh              # Rsync backup to $DOTFILES_BACKUP_DIR (default ~/bak/PortfolioJim/current)
 ```
@@ -67,7 +70,8 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - Git identity layered: `gitconfig-all` (base) included by `gitconfig-jim`, `gitconfig-work`, and `gitconfig-hearst`
 - Three git profiles: `jim` (personal GitHub), `work` (MCG Azure DevOps), `hearst` (work GitHub). `work` and `hearst` share `jim.weller@mcg.com` and `~/.ssh/id_mcg` and differ only in credential helper and token, so email alone never identifies a profile. Anything that displays the profile must resolve it from `GIT_CONFIG_GLOBAL` or the cwd
 - `GIT_CONFIG_GLOBAL` defaults to `~/.gitconfig-work`, set in `20-git.zsh`. `switch_git_profile` and per-directory mise config override it
-- Env secrets are SOPS-encrypted (age) in `configs/secrets/*.enc.env` and committed. dotbot glob-links them into `~/.secrets/`; runtime code reads from `$SECRETS_DIR` (`~/.secrets`), never the repo path directly. The age key (`~/.config/sops/age/keys.txt`) and any plaintext are never committed. The GPG archive holds SSH/GPG keys plus the age key
+- Env secrets are SOPS-encrypted (age) in `configs/secrets/*.enc.env` and committed. dotbot glob-links them into `~/.secrets/`; runtime code reads from `$SECRETS_DIR` (`~/.secrets`), never the repo path directly. The age key (`~/.config/sops/age/keys.txt`) and any plaintext are never committed. SSH and GPG key files are SOPS-encrypted the same way in `configs/keys/`
+- `scripts/` is on PATH, and `scripts/rm` is a safe-rm wrapper that moves files into `~/.Trash`. A script that deletes decrypted key material must call `command -p rm`, which skips the wrapper
 - `configs/claude-code/` is user-level Claude Code config, not repo metadata
 - `configs/claude-code/claude_settings_json_azure` is the active settings file (symlinked to `~/.claude/settings.json`). Make changes there first, then copy into `configs/claude-code/claude_settings_json_aws` and `configs/claude-code/claude_settings_json_jim`. Two differences exist between azure and aws that must be preserved when syncing: (1) azure uses `CLAUDE_CODE_USE_FOUNDRY=1`, aws uses `CLAUDE_CODE_USE_BEDROCK=1`; (2) model names use different ID formats -- azure/jim use Foundry-style IDs (e.g. `claude-sonnet-5[1m]`), aws uses Bedrock-style IDs (e.g. `global.anthropic.claude-sonnet-5[1m]`). Bedrock IDs vary by model generation, so never build one by appending a suffix; Haiku 4.5 is `global.anthropic.claude-haiku-4-5-20251001-v1:0` while the 5-series takes no version suffix. Check the `lastModelUsage` keys in `claude_json` for IDs this account has actually called. The jim file has no Foundry/Bedrock vars and uses Foundry-style model IDs. When the user updates model names in one file, translate to the correct ID format for the other files rather than copying verbatim. The opus slot is the one family that diverges. Azure and jim run `claude-opus-5-5`, and aws stays on `global.anthropic.claude-opus-5` because Bedrock denies InvokeModel on opus 5.5 for this SSO role. Each file also carries a `modelSettings` block keyed by bare model ID, so renaming a model in `env` means renaming its `modelSettings` key in the same edit.
 - `configs/claude-code/claude_json` is tracked and symlinked to `~/.claude.json`. The running session rewrites it continuously, so it goes dirty again seconds after any commit. Expect it in `git status` at all times. The churn is session telemetry and project history (token counts, cost, durations, per-project trust and MCP flags), not configuration. Commit it as `chore(claude-code)`, separate from unrelated work, and never treat a fresh modification as a failure or as something a prior step broke. Claude Code's atomic writes also drop `claude_json.tmp.<pid>.<hash>` files alongside it. Those are gitignored.
@@ -86,7 +90,7 @@ The `npx skills add` steps in dotbot are an exception -- they are config/setup o
 - **zsh-jim**: antidote plugin loaded from local path `$HOME/.config/dotfiles/configs/zsh-jim/`
 - **git profile switching**: `work`/`personal`/`hearst` aliases cd and set `GIT_CONFIG_GLOBAL`, `corp`/`jim`/`hrs` switch without the cd. All load profile secrets. Adding a profile means a `configs/git/gitconfig-<name>`, a `configs/secrets/git-<name>.enc.env`, a `configs/mise/<name>.toml` plus its `trusted_config_paths` entry, dotbot `create`/`link` entries, an alias pair, and a case arm in both `configs/p10k/p10k.git.zsh` and `configs/claude-code/statusline-command.sh`
 - **LaunchAgents**: macOS scheduled tasks for backup, log rotation, steampipe, ccusage
-- **secrets archive**: `manifests/zcnqj7nbbgg4szrm.gpg` contains SSH keys, GPG keys, and the age key (`keys.txt`); passphrase is `DOTFILES_KEY`, unified to equal the age key
+- **Key files** under `configs/keys/{ssh,gnupg}/` hold every `~/.ssh/id*` file, `allowed_signers`, the GPG private keys and revocation certificates, and an export of the GPG public keys and ownertrust, each SOPS-encrypted in binary mode. `scripts/keys.sh restore` overwrites any local file that differs, and `./install` runs it whenever the age key and sops exist. `DOTFILES_KEY` is the age secret key, and `scripts/keys.sh init` writes it to `keys.txt` on a new machine
 - **SOPS secrets**: env secrets are stored in `configs/secrets/*.enc.env` (age recipient in `.sops.yaml`, a pathless rule) and committed. dotbot glob-links them into `~/.secrets/` (`install.common.yaml:49-51`); all runtime reads use `$SECRETS_DIR` (`~/.secrets`), exported by `00-secrets.zsh`. `SOPS_AGE_KEY_FILE` is set in exactly two places: `00-secrets.zsh` (shell-derived contexts) and `scripts/confluence-backup.sh` (the only sops consumer reached via launchd). mise loads git profiles through `configs/mise/load-git-secret.sh`, pointed at `$SECRETS_DIR/git-*.enc.env`. One string (the age key) bootstraps everything
 - **markdown format hook**: `configs/claude-code/hooks/md-format.sh` is a `PostToolUse` hook registered in all three settings files. It runs `markdownlint-cli2 --fix` then `prettier --write` on every `.md` file an agent writes or edits. Two handlers are needed because an `if` rule matches the tool name, so `Edit(**/*.md)` alone never fires on a Write. See `.llmdocs/data-model.md`
 - **serena hooks**: `serena-hooks` is registered for four Claude Code lifecycle events in `claude_settings_json_azure` (SessionStart activate, PreToolUse remind, PreToolUse auto-approve on `mcp__serena__*`, SessionEnd cleanup). Session state lives at `~/.serena/hook_data/<session_id>/`

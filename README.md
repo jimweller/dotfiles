@@ -75,14 +75,14 @@ dotfiles/
 │   ├── macos/                   # macOS Automator workflows
 │   └── assets/                  # Static assets (md.css)
 ├── scripts/                     # Launchd plists, container scripts, sync
-└── manifests/                   # Package lists (brew, apt) and GPG archive
+└── manifests/                   # Package lists (brew, apt)
 ```
 
 ## Prerequisites
 
 - Python 3 (installer bootstraps via brew or apt if missing)
 - Git with submodule support
-- GPG (key material archive decryption)
+- GPG (restoring the GPG keys)
 - SOPS + age (env secret decryption)
 - macOS: Homebrew
 - Linux: apt
@@ -151,7 +151,7 @@ See `configs/claude-code/README.md` for skill inventory and plugin details.
 
 ## Secrets
 
-Two layers. Env secrets are SOPS-encrypted (age) under `configs/secrets/*.enc.env`, committed, symlinked into `~/.secrets/`, and decrypted into the shell at startup using the age key at `~/.config/sops/age/keys.txt`. Key material (SSH keys, GPG keys, the age key) lives in a GPG-encrypted archive at `manifests/*.gpg`, restored with `scripts/secrets.sh open`. Both use the same password, passed via `DOTFILES_KEY` env var or CLI argument. Plaintext secrets are never committed.
+Env secrets are SOPS-encrypted (age) under `configs/secrets/*.enc.env`, committed, symlinked into `~/.secrets/`, and decrypted into the shell at startup using the age key at `~/.config/sops/age/keys.txt`. SSH and GPG key files are SOPS-encrypted the same way under `configs/keys/`, and `./install` restores them with `scripts/keys.sh restore`. On a new machine, `DOTFILES_KEY=<age key> scripts/keys.sh init` writes the age key before the first `./install`. Plaintext secrets are never committed.
 
 ## Links
 
