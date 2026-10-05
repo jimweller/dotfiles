@@ -9,5 +9,6 @@ trusted_config_paths = [
 idiomatic_version_file_enable_tools = ["node"]
 
 [tools]
+dotnet = ["8", "9", "10"]
 "github:zoharbabin/web-researcher-mcp" = "latest"
 "pipx:hermes-agent" = { version = "latest", extras = "anthropic,mcp" }

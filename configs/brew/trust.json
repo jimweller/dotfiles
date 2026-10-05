@@ -3,7 +3,6 @@
     "azure/kubelogin",
     "dicklesworthstone/tap",
     "hashicorp/tap",
-    "isen-ng/dotnet-sdk-versions",
     "jandedobbeleer/oh-my-posh",
     "messense/macos-cross-toolchains",
     "minamijoyo/hcledit",
