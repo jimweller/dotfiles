@@ -1,6 +1,7 @@
 onboarding = false
 [ui]
 agent_panel_sort = "priority"
+status_indicators = "symbols"
 
 [ui.sidebar.agents]
 rows = [["state_icon", { token = "tab", bold = true, dim = false }], [{ token = "workspace", bold = false, dim = true }]]
