@@ -51,7 +51,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "fable",
+  "model": "sonnet",
   "hooks": {
     "PostToolUse": [
       {
