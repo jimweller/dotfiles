@@ -36,11 +36,7 @@ if command -v rustup >/dev/null 2>&1; then
   source <(rustup completions zsh)
 fi
 
-# opencode: emits BASH-style `complete -F _opencode_yargs_completions opencode`,
-# which requires bashcompinit to translate the bash compspec into a compdef
-# call. Loading bashcompinit here ensures the `complete` shim is defined when
-# the eval runs.
+# opencode: emits a native zsh #compdef script that registers itself via compdef.
 if command -v opencode >/dev/null 2>&1; then
-  autoload -Uz bashcompinit && bashcompinit
-  source <(opencode completion zsh)
+  source <(opencode --completions zsh)
 fi
