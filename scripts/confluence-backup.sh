@@ -113,11 +113,11 @@ while IFS= read -r -d '' html_file; do
     output_file="$OUTPUT_DIR/$dir_name/index.html"
     mkdir -p "$(dirname "$output_file")"
     
-    # Convert with pandoc
-    (cd "$(dirname "$html_file")" && pandoc "$(basename "$html_file")" \
-        --embed-resources --standalone -o "$output_file" 2>/dev/null) || true
-    
-    if [[ -f "$output_file" ]]; then
+    # Convert with pandoc. Confluence user avatars carry a server-relative src that
+    # pandoc reads as a missing local file and fails the page on, so drop those images.
+    if (cd "$(dirname "$html_file")" \
+        && LC_ALL=C sed -E 's#<img[^>]*src="/[^/"][^"]*"[^>]*>##g' "$(basename "$html_file")" \
+        | pandoc -f html --embed-resources --standalone -o "$output_file" 2>&1); then
         file_size=$(ls -lh "$output_file" | awk '{print $5}')
         rel_output="${output_file#$OUTPUT_DIR/}"
         echo "    ✓ $rel_output ($file_size)"
