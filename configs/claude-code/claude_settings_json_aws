@@ -3,7 +3,7 @@
   "cleanupPeriodDays": 366,
   "env": {
     "ANTHROPIC_DEFAULT_FABLE_MODEL": "global.anthropic.claude-fable-5-1[1m]",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-5-5[1m]",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-5[1m]",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-5-5[1m]",
     "ANTHROPIC_MODEL": "opus",
@@ -227,7 +227,7 @@
     "claude-fable-5-1": {
       "effortLevel": "xhigh"
     },
-    "claude-haiku-4-5": {
+    "claude-haiku-5-5": {
       "effortLevel": "xhigh"
     },
     "claude-opus-5": {
