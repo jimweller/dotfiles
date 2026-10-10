@@ -464,5 +464,13 @@ cost_seg "$ICON_CAL_TODAY" "$COST_MTD" "$EFF_MTD"
 cost_seg "$ICON_CAL_RANGE" "$COST_MONTH" "$EFF_MONTH"
 [ -n "$MONEY" ] && emit "$MONEY"
 
+# Color 237 sits just above the #000000 dark-mode background, so the version reads
+# only when looked for.
+CC_VERSION=$(echo "$INPUT" | jq -r '.version // empty')
+if [ -n "$CC_VERSION" ]; then
+  printf -v GRP " \033[38;5;237mv${CC_VERSION}\033[0m"
+  emit "$GRP"
+fi
+
 OUT+="$LINE"
 printf '%s\n' "$OUT"
