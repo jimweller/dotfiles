@@ -65,3 +65,9 @@
 	insteadOf = mcgsead@vs-ssh.visualstudio.com:v3/mcgsead/Platform/
 	insteadOf = ssh://mcgsead@vs-ssh.visualstudio.com/v3/mcgsead/Platform/
 	insteadOf = git@ssh.dev.azure.com:v3/mcgsead/Platform/
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
