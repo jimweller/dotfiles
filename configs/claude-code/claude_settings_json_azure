@@ -51,7 +51,7 @@
       "Skill(claude-mem:wowerpoint)"
     ]
   },
-  "model": "sonnet",
+  "model": "haiku",
   "hooks": {
     "PostToolUse": [
       {

@@ -54,7 +54,7 @@
     "web-app": 1334,
     "mobile-app": 1335,
     "feedback-command": 1335,
-    "auto-copy-config-hint": 4521
+    "auto-copy-config-hint": 4531
   },
   "memoryUsageCount": 1,
   "promptQueueUseCount": 161614,
@@ -16687,8 +16687,8 @@
       "lastUsedAt": 1789755396197
     },
     "md-syntax": {
-      "usageCount": 147,
-      "lastUsedAt": 1791606993270
+      "usageCount": 148,
+      "lastUsedAt": 1791667421260
     },
     "ado": {
       "usageCount": 135,
@@ -16799,8 +16799,8 @@
       "lastUsedAt": 1791615974902
     },
     "commit": {
-      "usageCount": 458,
-      "lastUsedAt": 1791667005879
+      "usageCount": 459,
+      "lastUsedAt": 1791667431124
     },
     "agent-browser:agent-browser": {
       "usageCount": 3,
@@ -17346,8 +17346,8 @@
   "seenNotifications": {},
   "pluginUsage": {
     "ralph-loop@claude-plugins-official": {
-      "usageCount": 30143,
-      "lastUsedAt": 1791666994355,
+      "usageCount": 30144,
+      "lastUsedAt": 1791667133365,
       "lastUsedNumStartups": 4531
     },
     "mcg-atlassian@sead-claude-marketplace": {
@@ -17396,8 +17396,8 @@
       "lastUsedNumStartups": 4531
     },
     "claude-mem@thedotmack": {
-      "usageCount": 189394,
-      "lastUsedAt": 1791667057390,
+      "usageCount": 189400,
+      "lastUsedAt": 1791667133365,
       "lastUsedNumStartups": 4531
     },
     "mind-meld@inline": {
@@ -17607,7 +17607,7 @@
     }
   },
   "tipLifetimeShownCounts": {
-    "auto-copy-config-hint": 81
+    "auto-copy-config-hint": 82
   },
   "machineID": "1596c55d9a78723bd2ae5f9dc96df5e8ea2f5e9de4b4224f8d3b6f9a52aca309",
   "hasOpenedAgentsView": true,
